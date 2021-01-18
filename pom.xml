@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.kairos</groupId>
+  <artifactId>kairos-fhir-dsl-mapping-example</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <description>This project contains kairos-fhir-dsl example mappings for the CentraXX FHIR custom export interface.</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.compiler.level>1.8</java.compiler.level>
+    <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+    <kairos-fhir-dsl.version>1.4.0</kairos-fhir-dsl.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>de.kairos</groupId>
+      <artifactId>kairos-fhir-dsl</artifactId>
+      <version>${kairos-fhir-dsl.version}</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>centraxx</id>
+      <url>http://nexus.kairosbochum.de/repository/centraxx</url>
+    </repository>
+    <repository>
+      <id>central</id>
+      <url>http://nexus.kairosbochum.de/repository/maven-central</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <url>http://nexus.kairosbochum.de/repository/maven-central</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${java.compiler.level}</source>
+          <target>${java.compiler.level}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <maxmem>1500m</maxmem>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
