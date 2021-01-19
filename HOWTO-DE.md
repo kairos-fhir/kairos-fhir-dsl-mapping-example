@@ -1,4 +1,4 @@
-#CentraXX FHIR Custom Export
+# CentraXX FHIR Custom Export
 ## Einleitung
 ### Umfang des Dokuments
 
