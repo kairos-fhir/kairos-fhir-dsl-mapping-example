@@ -103,7 +103,22 @@ clinicalImpression {
     }
   }
 
-  //TODO: | Specimen| TNMp| TNMc)
+  context.source["tumour.tnms"]?.each { final def tnm ->
+    finding {
+      itemReference {
+        reference = "Observation/Tnm-" + tnm["id"]
+      }
+    }
+  }
+
+  // duplicated references, because of problem reference to condition and reference condition -> sample
+  context.source["tumour.centraXXDiagnosis.samples"]?.each { final def s ->
+    finding {
+      itemReference {
+        reference = "Specimen/" + s["id"]
+      }
+    }
+  }
 }
 
 /**

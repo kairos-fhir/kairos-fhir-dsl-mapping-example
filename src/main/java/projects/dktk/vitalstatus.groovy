@@ -10,7 +10,7 @@ import java.time.Period
  * Specified by https://simplifier.net/oncology/vitalstatus
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.11
+ * @since CXX v.3.17.0.11, v.3.17.1
  */
 observation {
   id = "Observation/Vitalstatus-" + context.source["patientcontainer.id"]

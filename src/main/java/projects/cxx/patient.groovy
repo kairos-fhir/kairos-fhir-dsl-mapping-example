@@ -26,7 +26,9 @@ patient {
       }
     }
   }
-  gender = context.source["genderType"] != null ? mapGender(context.source["genderType"] as GenderType) : null
+  if (context.source["genderType"]) {
+    gender = mapGender(context.source["genderType"] as GenderType)
+  }
   birthDate = normalizeDate(context.source["birthdate.date"] as String)
   deceasedDateTime = "UNKNOWN" != context.source["dateOfDeath.precision"] ? context.source["dateOfDeath.date"] : null
   generalPractitioner {
