@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.kairos</groupId>
   <artifactId>kairos-fhir-dsl-mapping-example</artifactId>
-  <version>1.5.0-SNAPSHOT</version>
+  <version>1.5.0</version>
   <description>This project contains kairos-fhir-dsl example mappings for the CentraXX FHIR custom export interface.</description>
 
   <properties>
@@ -19,7 +17,7 @@
   <scm>
     <connection>scm:git:https://github.com/kairosmike/kairos-fhir-dsl-mapping-example.git</connection>
     <developerConnection>scm:git:https://github.com/kairosmike/kairos-fhir-dsl-mapping-example.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>kairos-fhir-dsl-mapping-example-1.5.0</tag>
   </scm>
 
   <dependencies>
