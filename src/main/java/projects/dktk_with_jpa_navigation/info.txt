@@ -1,0 +1,2 @@
+Mappings can be used to export to a samply blaze store: https://github.com/samply/blaze
+Profile definitions: https://simplifier.net/oncology
