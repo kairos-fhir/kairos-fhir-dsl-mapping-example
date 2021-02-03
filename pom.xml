@@ -11,7 +11,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.5.0</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.6.0-SNAPSHOT</kairos-fhir-dsl.version>
   </properties>
 
   <scm>
@@ -32,6 +32,22 @@
     <repository>
       <id>centraxx</id>
       <url>http://nexus.kairosbochum.de/repository/centraxx</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>centraxx-snapshots</id>
+      <url>http://nexus.kairosbochum.de/repository/centraxx-snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>central</id>
