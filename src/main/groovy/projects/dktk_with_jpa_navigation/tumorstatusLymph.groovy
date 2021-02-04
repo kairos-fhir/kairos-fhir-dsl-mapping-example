@@ -54,9 +54,8 @@ observation {
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source["date"] as String)
+    date = normalizeDate(context.source[progress().buildingDate()] as String)
   }
-  //TODO: no method date() offered by Progress
 
   valueCodeableConcept {
     coding {

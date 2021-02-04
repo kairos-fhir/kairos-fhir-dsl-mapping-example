@@ -51,7 +51,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source["date"] as String)
+    date = normalizeDate(context.source["buildingDate"] as String)
   }
 
   valueCodeableConcept {
