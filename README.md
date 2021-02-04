@@ -7,7 +7,7 @@ More infos to CentaXX can be found on the [Kairos Website](https://www.kairos.de
   Therefore, it is very helpful to use the kairos-fhir-dsl library as a dependency, which contains a CentraXX JPA meta model as a source, and the FHIR
   R4 model as a target.
 * This example project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
-  from [Maven Central] (https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
+  from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
   from [GitHub Packages](https://github.com/features/packages).
 * The kairos-fhir-dsl binaries before v.1.5.0 have not been published on a public maven repository yet, but can be downloaded in
   the [assets section of the corresponding tag](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/releases).
