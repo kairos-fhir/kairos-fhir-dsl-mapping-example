@@ -44,9 +44,8 @@ observation {
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source["date"] as String)
+    date = normalizeDate(context.source[surgery().buildingDate()] as String)
   }
-  //TODO: date? Method für surgery nicht vorhanden.
 
   valueCodeableConcept {
     coding {
