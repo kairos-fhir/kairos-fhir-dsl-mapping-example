@@ -2,9 +2,9 @@ package projects.dktk
 
 /**
  * Represented by a CXX Diagnosis
+ * Specified by https://simplifier.net/oncology/primaerdiagnose
  * @author Mike Wähnert
  * @since CXX.v.3.17.0.2
- * TODO: Extension Fernmetastasen
  */
 condition {
 

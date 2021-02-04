@@ -6,6 +6,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
+ * Specified by https://simplifier.net/oncology/primaerdiagnose
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
  */
