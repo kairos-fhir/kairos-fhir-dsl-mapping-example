@@ -1,8 +1,9 @@
 # kairos-fhir-dsl-mapping-example
+This project contains Groovy example scripts for the use of the FHIR custom export interface.
 
-This project contains Groovy example scripts for the use of the CentraXX FHIR custom export interface.
+More infos to CentaXX can be found on the [Kairos Website](https://www.kairos.de/en/)
 
-* To write or modify scripts, it is necessary to have a very good understanding of the source and target data models to transform into each other.
+* To write or modify custom export scripts, it is necessary to have a very good understanding of the source and target data models to transform into each other.
   Therefore, it is very helpful to use the kairos-fhir-dsl library as a dependency, which contains a CentraXX JPA meta model as a source, and the FHIR
   R4 model as a target.
 * This example project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
