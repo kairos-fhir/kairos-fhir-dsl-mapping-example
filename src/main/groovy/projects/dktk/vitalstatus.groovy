@@ -39,14 +39,8 @@ observation {
     reference = "Patient/" + context.source["patientcontainer.id"]
   }
 
-  if (context.source["episode"]) {
-    encounter {
-      reference = "Encounter/" + context.source["episode.id"]
-    }
-  }
-
   effectiveDateTime {
-    date = normalizeDate(context.source["date"] as String)
+    date = normalizeDate(context.source["creationDate"] as String)
   }
 
 

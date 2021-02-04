@@ -14,6 +14,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  * Represented by a CXX PatientMasterDataAnonymous
  * Specified by https://simplifier.net/oncology/vitalstatus
  *
+ * Hints:
+ * A vitalstatus has no separate encounter, but belongs to all encounter of the patient/subject
+ *
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
  */
@@ -44,18 +47,9 @@ observation {
     reference = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
   }
 
-  if (context.source["episode"]) {
-    encounter {
-      reference = "Encounter/" + context.source["episode.id"]
-    }
-  }
-  //TODO: patientMasterDataAnonymous offers no episode
-
   effectiveDateTime {
-    date = normalizeDate(context.source["date"] as String)
+    date = normalizeDate(context.source[patientMasterDataAnonymous().creationDate()] as String)
   }
-  //TODO: no method date()
-
 
   valueCodeableConcept {
     coding {
