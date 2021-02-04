@@ -53,6 +53,11 @@
       <id>central</id>
       <url>http://nexus.kairosbochum.de/repository/maven-central</url>
     </repository>
+    <repository>
+      <id>github</id>
+      <name>GitHub kairosmike Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/kairosmike/kairos-fhir-dsl-mapping-example</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
