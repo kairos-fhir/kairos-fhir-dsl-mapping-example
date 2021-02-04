@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
  * To avoid conflicts between both organization profiles, the specimen collection extension has been removed.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 specimen {
 

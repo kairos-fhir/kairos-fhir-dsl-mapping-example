@@ -13,7 +13,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
  * Resource is only exported, if a Progress.assessmentPrimaryDict exists.
  *
  * @author Mike Wähnert
- * @since CXX v.3.17.0.11, v.3.17.1
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 observation {
 

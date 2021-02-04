@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  * Specified by https://simplifier.net/oncology/vitalstatus
  *
  * @author Mike Wähnert
- * @since CXX v.3.17.0.11, v.3.17.1
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 observation {
   id = "Observation/Vitalstatus-" + context.source[patientMasterDataAnonymous().patientContainer().id()]

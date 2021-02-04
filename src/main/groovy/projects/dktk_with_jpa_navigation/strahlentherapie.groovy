@@ -9,7 +9,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
 /**
  * Represented by a CXX RadiationTherapy
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.4
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 procedure {
   id = "Procedure/RadiationTherapy-" + context.source[radiationTherapy().id()]

@@ -13,7 +13,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  * The DKTK-Encounter has been removed by CCP-IT JF on 2020-12-04 and must not longer be exported for the DKTK.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.5
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 encounter {
   id = "Encounter/" + context.source[episode().id()]

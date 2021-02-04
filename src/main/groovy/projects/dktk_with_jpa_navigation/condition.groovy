@@ -7,7 +7,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2* TODO: Extension Fernmetastasen
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 condition {
 

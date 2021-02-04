@@ -11,7 +11,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 patient {
 

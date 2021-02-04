@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
  * Reference to hasMember is not available. There is no parent child hierarchy of histologies in CXX yet.
  *
  * @author Mike Wähnert
- * @since CXX v.3.17.0.11, v.3.17.1
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 observation {
   id = "Observation/Histology-" + context.source[histology().id()]

@@ -8,7 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 /**
  * Represented by a CXX OrganizationUnit
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.4
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 organization {
   id = "Organization/" + context.source[organizationUnit().id()]

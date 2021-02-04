@@ -11,7 +11,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
  * Represented by a CXX Surgery
  * OPS code for surgeries are not available in CXX
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.4
+ * @since CXX.v.3.17.1.6, v.3.17.2
  */
 procedure {
   id = "Procedure/Surgery-" + context.source[surgery().id()]
