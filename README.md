@@ -9,16 +9,7 @@ More infos to CentraXX can be found on the [Kairos Website](https://www.kairos.d
   and the FHIR R4 model as a target.
 * This project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
   from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
-  from [GitHub Packages](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/packages). Because GitHub does not allow package downloads
-  without [token authentication](https://docs.github.com/en/packages/learn-github-packages/about-github-packages#authenticating-to-github-packages),
-  please add the following token to your maven settings.xml
-```
-<server>
-  <id>github</id>
-  <username>kairosmike</username>
-  <password>5ef468826534a72bb50881d77912ca3eb5658c86</password>
-</server>
-```
+  from [GitHub Packages](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/packages).
 * The kairos-fhir-dsl binaries before v.1.5.0 have not been published on a public maven repository yet, but can be downloaded in
   the [assets section of the corresponding tag](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/releases).
 * The versioning of this example projects will be parallel to the kairos-fhir-dsl library, which
