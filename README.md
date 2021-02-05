@@ -10,6 +10,10 @@ More infos to CentraXX can be found on the [Kairos Website](https://www.kairos.d
 * This project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
   from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
   from [GitHub Packages](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/packages).
+* Because GitHub does not allow to download packages without access token, use maven with the local settings.xml in this project. e.g.
+  ```
+  mvn install -s settings.xml
+  ```   
 * The kairos-fhir-dsl binaries before v.1.5.0 have not been published on a public maven repository yet, but can be downloaded in
   the [assets section of the corresponding tag](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/releases).
 * The versioning of this example projects will be parallel to the kairos-fhir-dsl library, which

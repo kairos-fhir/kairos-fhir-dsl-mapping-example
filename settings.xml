@@ -1,0 +1,13 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+      <id>github-kairosmike</id>
+      <username>kairosmike</username>
+      <!-- Public token with `read:packages` scope -->
+      <password>&#56;&#98;&#51;&#54;&#50;&#50;&#51;&#49;&#57;&#57;&#55;&#48;&#98;&#100;&#102;&#52;&#57;&#56;&#48;&#98;&#56;&#48;&#54;&#99;&#101;&#48;&#97;&#101;&#98;&#57;&#99;&#50;&#55;&#48;&#54;&#48;&#54;&#54;&#98;&#53;</password>
+    </server>
+  </servers>
+</settings>
