@@ -60,6 +60,10 @@
       <url>http://nexus.kairosbochum.de/repository/maven-central</url>
     </repository>
     <repository>
+      <id>maven-central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
       <id>github</id>
       <name>GitHub kairosmike Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/kairosmike/kairos-fhir-dsl-mapping-example</url>
@@ -70,6 +74,10 @@
     <pluginRepository>
       <id>central</id>
       <url>http://nexus.kairosbochum.de/repository/maven-central</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>maven-central</id>
+      <url>https://repo1.maven.org/maven2/</url>
     </pluginRepository>
   </pluginRepositories>
 
