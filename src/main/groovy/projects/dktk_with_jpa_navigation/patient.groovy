@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
-  id = "Patient/" + context.source[patientMasterDataAnonymous().id()]
+  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   meta {
     profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Patient-Pseudonym"
