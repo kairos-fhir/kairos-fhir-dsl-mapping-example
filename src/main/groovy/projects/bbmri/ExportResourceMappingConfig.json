@@ -20,6 +20,11 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observationBodyHeight",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationBodyWeight",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
