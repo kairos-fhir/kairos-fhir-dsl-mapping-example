@@ -63,9 +63,9 @@
       <url>https://repo1.maven.org/maven2/</url>
     </repository>
     <repository>
-      <id>github-kairosmike</id>
-      <name>GitHub kairosmike Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/kairosmike/kairos-fhir-dsl-mapping-example</url>
+      <id>github-kairos-fhir</id>
+      <name>GitHub kairos-fhir Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/kairos-fhir/kairos-fhir-dsl-mapping-example</url>
     </repository>
   </repositories>
 
