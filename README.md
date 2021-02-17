@@ -1,4 +1,6 @@
-# kairos-fhir-dsl-mapping-example
+Example project for the Kairos FHIR DSL
+========================================
+a.k.  kairos-fhir-dsl-mapping-example
 
 ## Scope
 
