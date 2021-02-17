@@ -6,7 +6,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @since v.1.6.0, CXX.v.3.17.1.7
  */
 condition {
 

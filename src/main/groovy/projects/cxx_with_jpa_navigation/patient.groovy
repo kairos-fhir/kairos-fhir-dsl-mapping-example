@@ -7,11 +7,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * @author Mike Wähnert
- * @since v.1.5.0
- * @since CXX.v.3.17.1.5
+ * @since v.1.5.0, CXX.v.3.17.1.5
  */
 patient {
 

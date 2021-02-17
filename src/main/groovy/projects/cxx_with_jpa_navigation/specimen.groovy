@@ -34,7 +34,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  * @author Mike Wähnert
- * @since v.1.5.0* @since CXX.v.3.17.1.5
+ * @since v.1.7.0, CXX.v.3.17.2
  */
 specimen {
 
