@@ -14,7 +14,7 @@ the [Kairos Website](https://www.kairos.de/en/)
   and the FHIR R4 model as a target.
 * This project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
   from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
-  from [GitHub Packages](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/packages).
+  from [GitHub Packages](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/packages).
 
 ## GitHub Authentication with Maven
 
@@ -29,7 +29,7 @@ the [Kairos Website](https://www.kairos.de/en/)
   possible to add it to .mvn/maven.config or to copy and past the repository authentication to another existing settings.file
 
 * The kairos-fhir-dsl binaries before v.1.5.0 have not been published on a public maven repository yet, but can be downloaded in
-  the [assets section of the corresponding tag](https://github.com/kairosmike/kairos-fhir-dsl-mapping-example/releases)
+  the [assets section of the corresponding tag](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/releases)
   and [installed manually](https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html).
 
 ## Versioning
