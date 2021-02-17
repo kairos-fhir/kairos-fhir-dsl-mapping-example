@@ -31,8 +31,11 @@ patient {
     }
   }
 
+  if (context.source["genderType"]) {
+    gender = mapGender(context.source["genderType"])
+  }
+
   birthDate = normalizeDate(context.source["birthdate.date"] as String)
-  gender = context.source["genderType"] != null ? mapGender(context.source["genderType"]) : null
   deceasedDateTime = "UNKNOWN" != context.source["dateOfDeath.precision"] ? normalizeDate(context.source["dateOfDeath.date"] as String) : null
 }
 

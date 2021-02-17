@@ -1,24 +1,25 @@
 package projects.bbmri
 
-
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Observation
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represented by a CXX LaborMapping
  * Specified by https://simplifier.net/bbmri.de/bodyheight
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.2
+ * @since v.1.7.0. CXX.v.3.17.2
  */
 observation {
 
-  if ("BodyHeight" != context.source[RootEntities.laborMapping().laborFinding().laborMethod().code()]) {
+  if ("BodyHeight" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return // no export
   }
 
-  id = "Observation/" + context.source[RootEntities.laborMapping().laborFinding().id()]
+  id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
     profile("https://fhir.bbmri.de/StructureDefinition/BodyHeight")
@@ -41,14 +42,14 @@ observation {
   }
 
   subject {
-    reference = "Patient/" + context.source[RootEntities.laborMapping().relatedPatient().id()]
+    reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source[RootEntities.laborMapping().laborFinding().findingDate().date()] as String)
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
-  final def bodyHeightLfLv = context.source[RootEntities.laborMapping().laborFinding().laborFindingLaborValues()].find {
+  final def bodyHeightLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "BodyHeightValue" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
 
