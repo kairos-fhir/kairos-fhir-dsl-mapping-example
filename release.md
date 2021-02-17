@@ -1,4 +1,5 @@
-# How to release
+How to release
+==============
 * If you have permissions. ;)
 * For example v.1.6.0.
 
