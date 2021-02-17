@@ -1,11 +1,10 @@
 Example project for the Kairos FHIR DSL
 ========================================
-a.k.  kairos-fhir-dsl-mapping-example
 
 ## Scope
 
-* This project contains Groovy example scripts for the use of the FHIR custom export interface. More infos to CentraXX can be found on
-the [Kairos Website](https://www.kairos.de/en/)
+* This project contains Groovy example scripts for the use of the FHIR custom export interface. More infos about CentraXX can be found on
+  the [Kairos Website](https://www.kairos.de/en/)
 
 ## Requirements
 
@@ -14,7 +13,7 @@ the [Kairos Website](https://www.kairos.de/en/)
   and the FHIR R4 model as a target.
 * This project uses [Maven](https://maven.apache.org/) for build management to download all necessary dependencies
   from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
-  from [GitHub Packages](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/packages).
+  from [GitHub Packages](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/packages/606516/versions).
 
 ## GitHub Authentication with Maven
 
