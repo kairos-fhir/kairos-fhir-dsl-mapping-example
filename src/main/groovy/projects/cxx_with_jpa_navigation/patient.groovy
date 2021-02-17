@@ -1,4 +1,4 @@
-package projects.cxx
+package projects.cxx_with_jpa_navigation
 
 import de.kairos.centraxx.common.types.GenderType
 import de.kairos.fhir.centraxx.metamodel.IdContainerType

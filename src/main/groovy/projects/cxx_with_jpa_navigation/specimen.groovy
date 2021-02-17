@@ -1,4 +1,4 @@
-package projects.cxx
+package projects.cxx_with_jpa_navigation
 
 import de.kairos.centraxx.common.types.sample.SampleKind
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
@@ -30,6 +30,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.USE_SPREC
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME_DATE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX AbstractSample
  * @author Mike Wähnert
@@ -98,7 +99,7 @@ specimen {
   }
 
   receivedTime {
-    date = context.source[sample().samplingDate().date()]
+    date = context.source[sample().receiptDate().date()]
   }
 
   collection {
@@ -138,6 +139,20 @@ specimen {
     valueCoding {
       system = "urn:centraxx"
       code = context.source[SAMPLE_CATEGORY]
+    }
+  }
+
+  if (context.source[sample().repositionDate()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.REPOSITION_DATE
+      valueDateTime = context.source[sample().repositionDate().date()]
+    }
+  }
+
+  if (context.source[sample().derivalDate()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.DERIVAL_DATE
+      valueDateTime = context.source[sample().derivalDate().date()]
     }
   }
 
