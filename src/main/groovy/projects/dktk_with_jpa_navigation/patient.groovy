@@ -24,7 +24,6 @@ patient {
   final def localId = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
     "Lokal" == it[ID_CONTAINER_TYPE]?.getAt(CODE) // TODO: site specific
   }
-  patientMasterDataAnonymous().patientContainer().idContainer().idContainerType().code()
 
   if (localId) {
     identifier {
