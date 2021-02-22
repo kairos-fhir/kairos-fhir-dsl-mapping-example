@@ -272,7 +272,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.STOCK_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source[sample().stockProcessing().code()] as String)
+            code = context.source[sample().stockProcessing().code()] as String
           }
         }
       }
