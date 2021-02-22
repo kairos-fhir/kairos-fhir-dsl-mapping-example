@@ -1,11 +1,11 @@
-package projects.cxx_with_jpa_navigation
+package projects.izi.frankfurt
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
- * @author Mike Wähnert
+ * @author Franzy Hohnstaedter, Mike Wähnert
  * @since v.1.6.0, CXX.v.3.17.1.7
  */
 condition {
