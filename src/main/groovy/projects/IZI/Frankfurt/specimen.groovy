@@ -305,7 +305,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source[sample().secondProcessing().code()] as String)
+            code = context.source[sample().secondProcessing().code()] as String
           }
         }
       }
@@ -332,39 +332,6 @@ static String toNumType(final Object sourceType) {
   }
 }
 
-static String toNUMProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A"))
-    return "Sprec-A"
-  if (sourceProcessing.startsWith("B"))
-    return "Sprec-B"
-  if (sourceProcessing.startsWith("C"))
-    return "Sprec-C"
-  if (sourceProcessing.startsWith("D"))
-    return "Sprec-D"
-  if (sourceProcessing.startsWith("E"))
-    return "Sprec-E"
-  if (sourceProcessing.startsWith("F"))
-    return "Sprec-F"
-  if (sourceProcessing.startsWith("G"))
-    return "Sprec-G"
-  if (sourceProcessing.startsWith("H"))
-    return "Sprec-H"
-  if (sourceProcessing.startsWith("I"))
-    return "Sprec-I"
-  if (sourceProcessing.startsWith("J"))
-    return "Sprec-J"
-  if (sourceProcessing.startsWith("M"))
-    return "Sprec-M"
-  if (sourceProcessing.startsWith("N"))
-    return "Sprec-N"
-  if (sourceProcessing.startsWith("X"))
-    return "Sprec-X"
-  if (sourceProcessing.startsWith("Z"))
-    return "Sprec-Z"
-  else
-    return sourceProcessing
-}
-
 static String toSampleReceptacleType(final Object sourceReceptacle) {
   switch (sourceReceptacle) {
     case "CPT_HEP_8":
@@ -375,13 +342,14 @@ static String toSampleReceptacleType(final Object sourceReceptacle) {
       return "StSTL101"
     default:
       return sourceReceptacle
-
   }
 }
 
-String toPrimaryContainerType(Object sourcePrimContainer) {
+static String toPrimaryContainerType(final Object sourcePrimContainer) {
   switch (sourcePrimContainer) {
     case "RNA_TEMP_2_5":
-        return "TEM"
+      return "TEM"
+    default:
+      return sourcePrimContainer
   }
 }
