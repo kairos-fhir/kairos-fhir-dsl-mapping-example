@@ -1,4 +1,4 @@
-package projects.cxx_with_jpa_navigation
+package projects.izi.frankfurt
 
 import de.kairos.centraxx.common.types.sample.SampleKind
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
@@ -33,7 +33,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX AbstractSample
- * @author Mike Wähnert
+ * @author Franzy Hohnstaedter
  * @since v.1.7.0, CXX.v.3.17.2
  */
 specimen {
@@ -62,15 +62,6 @@ specimen {
     coding {
       system = "urn:centraxx"
       code = toNumType(context.source[sample().sampleType().code()])
-    }
-    if (context.source["sampleType.sprecCode"]) {
-      coding += context.translateBuiltinConcept("sprec3_bbmri_sampletype", context.source[sample().sampleType().sprecCode()])
-      coding {
-        system = "https://doi.org/10.1089/bio.2017.0109"
-        code = context.source[sample().sampleType().sprecCode()]
-      }
-    } else {
-      coding += context.translateBuiltinConcept("centraxx_bbmri_samplekind", context.source[sample().sampleType().kind()] ?: "")
     }
   }
 
@@ -163,15 +154,6 @@ specimen {
       url = FhirUrls.Extension.Sprec.USE_SPREC
       valueBoolean = context.source[USE_SPREC]
     }
-//    if (context.source["sprecCode"]) {
-//      extension {
-//        url = FhirUrls.Extension.Sprec.SPREC_CODE
-//        valueCoding {
-//          system = "https://doi.org/10.1089/bio.2017.0109"
-//          code = context.source["sprecCode"]
-//        }
-//      }
-//    }
 
     //
     // SPREC TISSUE
