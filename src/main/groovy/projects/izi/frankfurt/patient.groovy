@@ -1,4 +1,4 @@
-package projects.cxx_with_jpa_navigation
+package projects.izi.frankfurt
 
 import de.kairos.centraxx.common.types.GenderType
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -10,7 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
- * @author Mike Wähnert
+ * @author Franzy Hohnstaedter, Mike Wähnert
  * @since v.1.5.0, CXX.v.3.17.1.5
  */
 patient {
