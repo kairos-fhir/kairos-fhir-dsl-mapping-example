@@ -44,7 +44,7 @@ More infos about CentraXX can be found on the [Kairos Website](https://www.kairo
 
 Further instructions to the interface and its DSL can be found in the [German how-to](/CXX_FHIR_Custom_Export.pdf).
 
-#License
+# License
 
 Copyright 2021 [KAIROS GmbH](https://kairos.de)
 
