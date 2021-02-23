@@ -1,12 +1,13 @@
 Example project for the Kairos FHIR DSL
 ========================================
 
-## Scope
+# Scope
 
-* This project contains Groovy example scripts for the use of the FHIR custom export interface. More infos about CentraXX can be found on
-  the [Kairos Website](https://www.kairos.de/en/)
+This project contains Groovy example scripts for the use of the CentraXX FHIR custom export interface. 
+The examples show the possibilities how to export CXX data to FHIR in accordance to almost any FHIR R4 profile. 
+More infos about CentraXX can be found on the [Kairos Website](https://www.kairos.de/en/)
 
-## Requirements
+# Requirements
 
 * To write or modify custom export scripts, it is necessary to have a very good understanding of the source and target data models to transform into
   each other. Therefore, it is very helpful to use the kairos-fhir-dsl library as a dependency, which contains a CentraXX JPA meta model as a source,
@@ -15,7 +16,7 @@ Example project for the Kairos FHIR DSL
   from [Maven Central](https://mvnrepository.com/repos/central) or the kairos-fhir-dsl library
   from [GitHub Packages](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/packages/606516/versions).
 
-## GitHub Authentication with Maven
+# GitHub Authentication with Maven
 
 * Because GitHub does not allow downloading packages without access token, use maven with the access token in the local [settings.xml](settings.xml)
   in this project.
@@ -31,7 +32,7 @@ Example project for the Kairos FHIR DSL
   the [assets section of the corresponding tag](https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example/releases)
   and [installed manually](https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html).
 
-## Versioning
+# Versioning
 
 * The versioning of this example projects will be parallel to the kairos-fhir-dsl library, which
   follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -39,6 +40,22 @@ Example project for the Kairos FHIR DSL
   specified CentraXX version contains the necessary minimal version of the kairos-fhir-dsl library, CXX entity exporter, initializer and support for
   the ExportResourceMappingConfig.json.
 
-## How-To
+# How-To
 
 Further instructions to the interface and its DSL can be found in the [German how-to](/CXX_FHIR_Custom_Export.pdf).
+
+#License
+
+Copyright 2021 [KAIROS GmbH](https://kairos.de)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
