@@ -1,0 +1,3 @@
+Mappings can be used to export to a samply blaze store: https://github.com/samply/blaze
+Profile definitions: https://simplifier.net/oncology
+This project has the same scope as v1, but shows examples with the newer jpa navigation paths.

@@ -1,1 +1,0 @@
-This project has the same scope as cxx, but shows examples with the newer jpa navigation paths.
