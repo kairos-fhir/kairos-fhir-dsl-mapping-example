@@ -44,11 +44,13 @@ medicationStatement {
     reference = "Condition/" + context.source[systemTherapy().tumour().centraxxDiagnosis().id()]
   }
 
-  extension {
-    url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
-    valueCoding {
-      system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
-      code = context.source[systemTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+  if (context.source[systemTherapy().intentionDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
+      valueCoding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
+        code = context.source[systemTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+      }
     }
   }
 }
