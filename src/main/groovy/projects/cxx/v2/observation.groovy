@@ -1,5 +1,8 @@
 package projects.cxx.v2
 
+import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
@@ -66,6 +69,12 @@ observation {
         }
       }
 
+      meta {
+        tag {
+          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String
+        }
+      }
+
       if (isNumeric(lflv)) {
         valueQuantity {
           value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
@@ -86,49 +95,62 @@ observation {
       }
 
       if (isString(lflv)) {
-        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+        valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
       }
 
-      if (isString(lflv)) {
-        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+      if (isCatalog(lflv)) {
+        valueCodeableConcept {
+          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CatalogEntry.CODE] as String
+            }
+          }
+          lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+              code = entry[IcdEntry.CODE] as String
+            }
+          }
+        }
       }
-
-      if (isString(lflv)) {
-        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
-      }
-
     }
   }
 }
 
+private static boolean isDTypeOf(final Object lflv, final ArrayList<LaborValueDType> types) {
+  return types.contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType)
+}
+
 static boolean isBoolean(final Object lflv) {
-  return LaborValueDType.BOOLEAN == lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)
+  return isDTypeOf(lflv, [LaborValueDType.BOOLEAN])
 }
 
 static boolean isNumeric(final Object lflv) {
-  return ["INTEGER", "DECIMAL", "SLIDER"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.INTEGER, LaborValueDType.DECIMAL, LaborValueDType.SLIDER])
 }
 
+
 static boolean isDate(final Object lflv) {
-  return ["DATE", "LONGDATE"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.DATE, LaborValueDType.LONGDATE])
 }
 
 static boolean isTime(final Object lflv) {
-  return ["TIME"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.TIME])
 }
 
 static boolean isEnumeration(final Object lflv) {
-  return ["ENUMERATION"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.ENUMERATION])
 }
 
 static boolean isString(final Object lflv) {
-  return ["STRING", "LONGSTRING"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
 }
 
 static boolean isCatalog(final Object lflv) {
-  return ["CATALOG"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.CATALOG])
 }
 
 static boolean isOptionGroup(final Object lflv) {
-  return ["OPTIONGROUP"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+  return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
 }
