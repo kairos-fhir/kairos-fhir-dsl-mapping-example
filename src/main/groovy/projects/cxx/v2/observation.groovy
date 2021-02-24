@@ -1,6 +1,9 @@
 package projects.cxx.v2
 
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
@@ -46,7 +49,6 @@ observation {
     }
   }
 
-//  issued = context.source[laborMapping().laborFinding().creationDate()] TODO extend builder
   method {
     coding {
       system = "urn:centraxx"
@@ -59,17 +61,74 @@ observation {
     component {
       code {
         coding {
-          system = ""
-          code = ""
-
+          system = "urn:centraxx"
+          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
         }
       }
-      valueQuantity {
-        value = ""
+
+      if (isNumeric(lflv)) {
+        valueQuantity {
+          value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+        }
       }
+      if (isBoolean(lflv)) {
+        valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
+      }
+
+      if (isDate(lflv)) {
+        valueDateTime {
+          date = lflv[LaborFindingLaborValue.DATE_VALUE]
+        }
+      }
+
+      if (isTime(lflv)) {
+        valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+      }
+
+      if (isString(lflv)) {
+        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+      }
+
+      if (isString(lflv)) {
+        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+      }
+
+      if (isString(lflv)) {
+        valueString(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+      }
+
     }
   }
-
-
 }
 
+static boolean isBoolean(final Object lflv) {
+  return LaborValueDType.BOOLEAN == lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)
+}
+
+static boolean isNumeric(final Object lflv) {
+  return ["INTEGER", "DECIMAL", "SLIDER"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isDate(final Object lflv) {
+  return ["DATE", "LONGDATE"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isTime(final Object lflv) {
+  return ["TIME"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isEnumeration(final Object lflv) {
+  return ["ENUMERATION"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isString(final Object lflv) {
+  return ["STRING", "LONGSTRING"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isCatalog(final Object lflv) {
+  return ["CATALOG"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
+
+static boolean isOptionGroup(final Object lflv) {
+  return ["OPTIONGROUP"].contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String)
+}
