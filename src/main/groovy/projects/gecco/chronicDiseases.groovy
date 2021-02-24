@@ -1,6 +1,9 @@
 package projects.gecco
 
+import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Annotation
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
@@ -15,11 +18,11 @@ import org.hl7.fhir.r4.model.Annotation
  */
 condition {
 
-  final String diagnosisCode = context.source["icdEntry.code"] as String
+  final String diagnosisCode = context.source[diagnosis().icdEntry().code()] as String
   final boolean hasRelevance = isRelevantDisease(diagnosisCode)
   if (hasRelevance) {
 
-    id = "Condition/" + context.source["id"]
+    id = "Condition/" + context.source[diagnosis().id()]
 
     extension {
       url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/uncertainty-of-presence"
@@ -41,21 +44,21 @@ condition {
     verificationStatus {
       coding {
         system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
-        code = conditionVerificationStatusMapping(context.source["diagnosisCertainty"] as String)
+        code = conditionVerificationStatusMapping(context.source[diagnosis().diagnosisCertainty()] as String)
       }
       coding {
         system = "http://snomed.info/sct"
-        code = conditionVerificationStatusMappingSNOMED(context.source["diagnosisCertainty"] as String)
+        code = conditionVerificationStatusMappingSNOMED(context.source[diagnosis().diagnosisCertainty()] as String)
       }
     }
 
     code {
       coding {
-        if (context.source["diagnosisCertainty"]) {
+        if (context.source[diagnosis().diagnosisCertainty()]) {
           extension {
             coding {
               url = "http://fhir.de/StructureDefinition/icd-10-gm-diagnosesicherheit"
-              valueCode = context.source["diagnosisCertainty"] as String
+              valueCode = context.source[diagnosis().diagnosisCertainty()] as String
             }
           }
         }
@@ -68,11 +71,11 @@ condition {
         extension {
           coding {
             url = "http://fhir.de/StructureDefinition/icd-10-gm-primaercode"
-            code = primaryDiagnosis(diagnosisCode, context.source["parent"] as Boolean)
+            code = primaryDiagnosis(diagnosisCode, context.source[diagnosis().parent()] as Boolean)
           }
         }
         system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-        version = context.source["icdEntry.catalogue.catalogueVersion"]
+        version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
         code = diagnosisCode
       }
     }
@@ -147,38 +150,38 @@ condition {
       }
     }
 
-    if (context.source["diagnosisLocalisation"]) {
+    if (context.source[diagnosis().diagnosisLocalisation()]) {
       bodySite {
         coding {
           system = "http://snomed.info/sct"
-          code = context.source["diagnosisLocalisation"] as String
+          code = context.source[diagnosis().diagnosisLocalisation()] as String
         }
       }
     }
     subject {
-      reference = "Patient/" + context.source["patientcontainer.id"]
+      reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
     }
 
-    if (context.source["episode"]) {
+    if (context.source[diagnosis().episode()]) {
       encounter {
-        reference = "Encounter/" + context.source["episode.id"]
+        reference = "Encounter/" + context.source[diagnosis().episode().id()]
       }
     }
 
     onsetDateTime {
-      date = context.source["diagnosisDate.date"]
+      date = context.source[diagnosis().diagnosisDate().date()]
     }
 
-    recordedDate = normalizeDate(context.source["creationdate"] as String)
-    if (context.source["creator.id"]) {
+    recordedDate = normalizeDate(context.source[diagnosis().creationDate()] as String)
+    if (context.source[diagnosis().creator().id()]) {
       recorder {
-        reference = "Person/" + context.source["creator.id"]
+        reference = "Person/" + context.source[diagnosis().creator().id()]
       }
     }
 
-    if (context.source["comments"]) {
+    if (context.source[diagnosis().comments()]) {
       final Annotation annotation = new Annotation()
-      annotation.setText(context.source["comments"] as String)
+      annotation.setText(context.source[diagnosis().comments()] as String)
       note.add(annotation)
     }
   }
