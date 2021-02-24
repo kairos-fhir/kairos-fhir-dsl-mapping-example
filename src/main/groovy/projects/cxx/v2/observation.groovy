@@ -17,6 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
  * @since v.1.7.0, CXX.v.3.17.2
+ * TODO: extend example for Enumerations and RadioOptionGroups
  */
 observation {
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
@@ -69,12 +70,6 @@ observation {
         }
       }
 
-      meta {
-        tag {
-          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as String
-        }
-      }
-
       if (isNumeric(lflv)) {
         valueQuantity {
           value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
@@ -118,7 +113,7 @@ observation {
   }
 }
 
-private static boolean isDTypeOf(final Object lflv, final ArrayList<LaborValueDType> types) {
+private static boolean isDTypeOf(final Object lflv, final List<LaborValueDType> types) {
   return types.contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType)
 }
 
