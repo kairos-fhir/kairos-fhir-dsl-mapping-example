@@ -1,22 +1,26 @@
 package projects.gecco
 
 import de.kairos.centraxx.common.types.GenderType
+import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * Defined by https://simplifier.net/forschungsnetzcovid-19/patient
  * @author Lukas Reinert
+ * @since CXX.v.3.17.0.2
  */
 patient {
 
-  id = "Patient/" + context.source["patientcontainer.id"]
+  id = "Patient/" + context.source[patient().patientContainer().id()]
 
   meta {
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/Patient"
   }
 
-  context.source["patientcontainer.ethnicities"]?.each { final ethn ->
+  context.source[patient().patientContainer().ethnicities()]?.each { final ethn ->
     extension {
       url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
       valueCoding {
@@ -33,12 +37,12 @@ patient {
       valueDateTime = new Date().format("yyyy-MM-dd") // Interpreted as date when age is calculated (date of export)
     }
 
-    if (context.source["birthdate.date"]) {
+    if (context.source[patient().birthdate().date()]) {
       extension {
         url = "age"
         valueAge {
           //TODO: Calculate age between birthdate and dateOfDeath if exists.
-          valueDecimal = computeAge(context.source["birthdate.date"] as String)
+          value = computeAge(context.source[patient().birthdate().date()] as String)
           system = "http://unitsofmeasure.org"
           code = "a"
           unit = "years"
@@ -47,7 +51,7 @@ patient {
     }
   }
 
-  final def localId = context.source["patientcontainer.idContainer"]?.find {
+  final def localId = context.source[patient().patientContainer().idContainer()]?.find {
     "Lokal" == it["idContainerType"]?.getAt("code") // TODO: site specific
   }
 
@@ -63,7 +67,7 @@ patient {
     }
   }
 
-  final def globalId = context.source["patientcontainer.idContainer"]?.find {
+  final def globalId = context.source[patient().patientContainer().idContainer()]?.find {
     "DKTK" == it["idContainerType"]?.getAt("code") // TODO: site specific
   }
 
@@ -80,14 +84,14 @@ patient {
   }
 
 
-  active = context.source["PatientStatus"]
+  active = context.source[patient().patientContainer().patientStatus()]
   // name =
   // telecom = PatientAddress
   if (context.source["genderType"]) {
-    gender = mapGender(context.source["genderType"] as GenderType)
+    gender = mapGender(context.source[patient().genderType()] as GenderType)
   }
-  birthDate = normalizeDate(context.source["birthdate.date"] as String)
-  deceasedDateTime = "UNKNOWN" != context.source["dateOfDeath.precision"] ? normalizeDate(context.source["dateOfDeath.date"] as String) : null
+  birthDate = normalizeDate(context.source[patient().birthdate().date()] as String)
+  deceasedDateTime = "UNKNOWN" != context.source[patient().dateOfDeath().precision()] ? normalizeDate(context.source[patient().dateOfDeath().date()] as String) : null
   // deceasedBoolean =
   // address = context.source["PatientAddress"]
 
