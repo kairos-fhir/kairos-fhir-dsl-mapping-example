@@ -31,7 +31,7 @@ patient {
       type {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/PseudonymArtCS"
-          code = "Lokal" // TODO: site specific
+          code = "Lokal" // A local site id has always type "Lokal"
         }
       }
     }
@@ -47,7 +47,7 @@ patient {
       type {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/PseudonymArtCS"
-          code = "Global" // TODO: site specific
+          code = "Global" // The global DKTK Id has always type "Global"
         }
       }
     }
