@@ -48,5 +48,6 @@ static String readFromSamplyMdr() {
   final def json = connection.getInputStream().withCloseable { final inStream ->
     new JsonSlurper().parse(inStream as InputStream)
   }
+  // returns "Die standortspezifische lokale DKTK-ID "
   return json.designations[0].definition
 }
