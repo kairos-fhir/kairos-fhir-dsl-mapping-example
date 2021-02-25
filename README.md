@@ -1,3 +1,5 @@
+![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue.png "Kairos Logo")
+
 Example project for the Kairos FHIR DSL
 ========================================
 
