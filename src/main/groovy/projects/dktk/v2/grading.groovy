@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
@@ -20,7 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
  */
 observation {
 
-  if (context.source["gradingDict"] == null) {
+  if (context.source[histology().gradingDict()] == null) {
     return
   }
 
