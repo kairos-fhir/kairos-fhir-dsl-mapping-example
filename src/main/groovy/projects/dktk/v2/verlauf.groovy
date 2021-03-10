@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
  * The clinical expression is also created, if no reference exists.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since CXX.v.3.17.1.6, missing References added since CXX.v.3.17.2
  */
 clinicalImpression {
 
