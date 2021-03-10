@@ -1,12 +1,17 @@
 package projects.dktk.v2
 
 
+import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 
 /**
  * Represented by a CXX TNM
+ * Hints:
+ *  CCP-IT has decided on 2020-11-17 to use the TNMc profile only if all TNM prefixes are clinical.
+ *  If only one prefix is not clinical (c) the profile TNMp is used, even if it is no prefix p (pathology), but e.g a (autopsy) or u (ultrasonic).
+ *  Both profiles differ only in the loinc codes for Observation.code.coding.code and Observation.component:TNM-T/N/M.code.coding.code
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
  */
@@ -14,9 +19,10 @@ observation {
 
   id = "Observation/Tnm-" + context.source[tnm().id()]
 
+  final def isClinical = isClinical(context.source)
   meta {
-    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMp"
-    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMc"
+    profile isClinical ? "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMc"
+        : "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMp"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
@@ -31,7 +37,7 @@ observation {
   code {
     coding {
       system = "http://loinc.org"
-      code = "21902-2"
+      code = isClinical ? "21908-9" : "21902-2"
     }
   }
 
@@ -73,7 +79,7 @@ observation {
       code {
         coding {
           system = "http://loinc.org"
-          code = "21899-0"
+          code = isClinical ? "21905-5" : "21899-0"
         }
       }
       valueCodeableConcept {
@@ -100,7 +106,7 @@ observation {
       code {
         coding {
           system = "http://loinc.org"
-          code = "21900-6"
+          code = isClinical ? "201906-3" : "21900-6"
         }
       }
       valueCodeableConcept {
@@ -127,7 +133,7 @@ observation {
       code {
         coding {
           system = "http://loinc.org"
-          code = "21901-4"
+          code = isClinical ? "21907-1" : "21901-4"
         }
       }
       valueCodeableConcept {
@@ -202,4 +208,12 @@ observation {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean isClinical(final Fhir4Source source) {
+  final String clinicalPrefix = "c"
+  final String prefixT = source[tnm().praefixTDict().code()]
+  final String prefixN = source[tnm().praefixNDict().code()]
+  final String prefixM = source[tnm().praefixMDict().code()]
+  return prefixT.equalsIgnoreCase(clinicalPrefix) && prefixN.equalsIgnoreCase(clinicalPrefix) && prefixM.equalsIgnoreCase(clinicalPrefix)
 }
