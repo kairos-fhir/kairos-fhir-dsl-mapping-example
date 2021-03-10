@@ -82,11 +82,9 @@ clinicalImpression {
   }
 
   // Reference Vitalstatus
-  if (context.source[progress().assessmentMetaDict()]) {
-    finding {
-      itemReference {
-        reference = "Observation/Vitalstatus-" + context.source[progress().patientContainer().id()]
-      }
+  finding {
+    itemReference {
+      reference = "Observation/Vitalstatus-" + context.source[progress().patientContainer().id()]
     }
   }
 
@@ -98,7 +96,6 @@ clinicalImpression {
       }
     }
   }
-  //TODO: verify if Metastis.ID is used correctly here, metastasis() returns AbstractPathType
 
   context.source[progress().histologies()]?.each { final def h ->
     finding {
