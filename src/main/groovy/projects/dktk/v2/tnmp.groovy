@@ -19,7 +19,7 @@ observation {
 
   id = "Observation/Tnm-" + context.source[tnm().id()]
 
-  final def isClinical = isClinical(context.source)
+  final boolean isClinical = isClinical(context.source)
   meta {
     profile isClinical ? "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMc"
         : "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-TNMp"
@@ -215,5 +215,5 @@ static boolean isClinical(final Fhir4Source source) {
   final String prefixT = source[tnm().praefixTDict().code()]
   final String prefixN = source[tnm().praefixNDict().code()]
   final String prefixM = source[tnm().praefixMDict().code()]
-  return prefixT.equalsIgnoreCase(clinicalPrefix) && prefixN.equalsIgnoreCase(clinicalPrefix) && prefixM.equalsIgnoreCase(clinicalPrefix)
+  return clinicalPrefix.equalsIgnoreCase(prefixT) && clinicalPrefix.equalsIgnoreCase(prefixN) && clinicalPrefix.equalsIgnoreCase(prefixM)
 }
