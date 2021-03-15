@@ -51,49 +51,12 @@ patient {
     }
   }
 
-  final def localId = context.source[patient().patientContainer().idContainer()]?.find {
-    "Lokal" == it["idContainerType"]?.getAt("code") // TODO: site specific
-  }
-
-  if (localId) {
-    identifier {
-      value = localId["psn"]
-      type {
-        coding {
-          //system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/PseudonymArtCS"
-          code = "Lokal" // TODO: site specific
-        }
-      }
-    }
-  }
-
-  final def globalId = context.source[patient().patientContainer().idContainer()]?.find {
-    "DKTK" == it["idContainerType"]?.getAt("code") // TODO: site specific
-  }
-
-  if (globalId) {
-    identifier {
-      value = globalId["psn"]
-      type {
-        coding {
-          //system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/PseudonymArtCS"
-          code = "Global" // TODO: site specific
-        }
-      }
-    }
-  }
-
-
   active = context.source[patient().patientContainer().patientStatus()]
-  // name =
-  // telecom = PatientAddress
   if (context.source["genderType"]) {
     gender = mapGender(context.source[patient().genderType()] as GenderType)
   }
   birthDate = normalizeDate(context.source[patient().birthdate().date()] as String)
   deceasedDateTime = "UNKNOWN" != context.source[patient().dateOfDeath().precision()] ? normalizeDate(context.source[patient().dateOfDeath().date()] as String) : null
-  // deceasedBoolean =
-  // address = context.source["PatientAddress"]
 
 
 }
