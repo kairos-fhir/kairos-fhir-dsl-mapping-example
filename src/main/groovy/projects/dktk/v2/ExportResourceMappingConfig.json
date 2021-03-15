@@ -1,0 +1,105 @@
+{
+  "description": "This configuration links a CentraXX entity (selectFromCxxEntity) to a FHIR resource (exportToFhirResource) by conversion through a transformation template (transformByTemplate). Only the template can be changed. The same entity can be configured to the same FHIR resource by multiple templates. The configuration can be changed during runtime without CentraXX restart. The mapping order is important, if the target system checks referential integrity (e.g. blaze store).",
+  "mappings": [
+    {
+      "selectFromCxxEntity": "ORGANIZATION_UNIT",
+      "transformByTemplate": "organisation",
+      "exportToFhirResource": "Organization"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "patient",
+      "exportToFhirResource": "Patient"
+    },
+    {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "fall",
+      "exportToFhirResource": "Encounter"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen"
+    },
+    {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "condition",
+      "exportToFhirResource": "Condition"
+    },
+    {
+      "selectFromCxxEntity": "RADIATION_THERAPY",
+      "transformByTemplate": "strahlentherapie",
+      "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "SYSTEM_THERAPY",
+      "transformByTemplate": "systemtherapie",
+      "exportToFhirResource": "MedicationStatement"
+    },
+    {
+      "selectFromCxxEntity": "SURGERY_THERAPY",
+      "transformByTemplate": "operation",
+      "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "TNM",
+      "transformByTemplate": "tnmp",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "METASTASIS",
+      "transformByTemplate": "fernmetastasen",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "SURGERY_THERAPY",
+      "transformByTemplate": "residualstatusGlobal",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "SURGERY_THERAPY",
+      "transformByTemplate": "residualstatusLokal",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "histologie",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "grading",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "vitalstatus",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "tumorstatusGesamt",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "tumorstatusLokal",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "tumorstatusLymph",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "tumorstatusMetas",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "verlauf",
+      "exportToFhirResource": "ClinicalImpression"
+    }
+  ]
+}
