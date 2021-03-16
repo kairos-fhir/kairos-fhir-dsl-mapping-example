@@ -1,12 +1,12 @@
 ![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue.png "Kairos Logo")
 
-Getting started: CentraXX-FHIR-Custom-Export
-============================================
-This is a brief tutorial on how to set up and configure a CentraXX-FHIR export. For a detailed description, please read
-the documentation (CXX_FHIR_Custom_Export.pdf).
+Getting started
+===============
+This is a brief tutorial on how to set up and configure a CentraXX FHIR custom export. For a detailed description, please read
+the [How-To](CXX_FHIR_Custom_Export.pdf) documentation.
 ____________________________________________
 
-## Quickstart steps
+# Quickstart steps
 
 1. Configure centraxx-dev.properties
 2. Create a project directory for an FHIR-export
@@ -23,38 +23,36 @@ At the first export, CentraXX creates two more configuration files.
 7. Configure the resource mapping in the ```ExportResourceMappingConfig.json```, and the HTTP-Requests for export to
    target URL in the ```BundleRequestMethodConfig.json``` file.
 
-### Configuration of FHIR Custom Export interface in CentraXX
-
+# Configuration
+## centraxx-dev.properties
 Add the following configs to the centraxx-dev.properties file:
-
-`interfaces.fhir.custom.export.scheduled.enable=true`
-`interfaces.fhir.custom.export.incremental.enable=true`
-`interfaces.fhir.custom.mapping.dir=C:/applications/centraxx-home/fhir-custom-mappings`
-
+```
+interfaces.fhir.custom.export.scheduled.enable=true
+interfaces.fhir.custom.export.incremental.enable=true
+interfaces.fhir.custom.mapping.dir=C:/applications/centraxx-home/fhir-custom-mappings
+```
 The path is an example. The specified directory will contain the individual export project folders. It must exist
 on the CentraXX application server.
 
-_________________________________________________
-
-### ProjectConfig.json
+## ProjectConfig.json
 
 The individual export project is configured in this the ```ProjectConfig.json```. CentraXX creates this file in a
 freshly added project directory after a restart. This file configures
 
 * the patient filter for the export project
 * the export mechanism
-    - incremental export
-    - scheduled export
+  - incremental export
+  - scheduled export
 * the export target
-    - export to the filesystem
-    - export to target URL
+  - export to the filesystem
+  - export to target URL
 
-### ExportResourceMappingConfig.json
+## ExportResourceMappingConfig.json
 
 This file is created at the first export if it does not already exist in the directory. The file configures the Groovy
 scripts used to configure a CentraXX entity and in which FHIR bundle resource type the result is exported.
 
-### BundleRequestMethodConfig.json
+## BundleRequestMethodConfig.json
 
 This configuration specifies the HTTP-Request methods used for export to a target URL like a FHIR blaze store
 
@@ -76,15 +74,3 @@ Alternatively, you can activate the incremental export for testing and trigger t
 made changes in the config or the scripts. You only have to change a test patient record in CentraXX to start the
 incremental export. That prevents the export and accumulation of unnecessary FHIR resources in your target directory
 during the setup and testing phase, which might happen when using a frequently scheduled export to the filesystem.
-
-
-
-
-
-
-
-
-
-
-
- 
