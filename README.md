@@ -9,6 +9,14 @@ This project contains Groovy example scripts for the use of the CentraXX FHIR cu
 The examples show the possibilities how to export CXX data to FHIR in accordance to almost any FHIR R4 profile. 
 More infos about CentraXX can be found on the [Kairos Website](https://www.kairos.de/en/)
 
+# Getting Started
+
+A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR custom export in CentraXX..  
+
+# How-To
+
+Detailed instructions to the interface and its DSL can be found in the [German how-to](/CXX_FHIR_Custom_Export.pdf).
+
 # Requirements
 
 * To write or modify custom export scripts, it is necessary to have a very good understanding of the source and target data models to transform into
@@ -42,9 +50,9 @@ More infos about CentraXX can be found on the [Kairos Website](https://www.kairo
   specified CentraXX version contains the necessary minimal version of the kairos-fhir-dsl library, CXX entity exporter, initializer and support for
   the ExportResourceMappingConfig.json.
 
-# How-To
 
-Further instructions to the interface and its DSL can be found in the [German how-to](/CXX_FHIR_Custom_Export.pdf).
+
+
 
 # License
 
