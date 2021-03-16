@@ -31,8 +31,8 @@ Add the following configs to the centraxx-dev.properties file:
 `interfaces.fhir.custom.export.incremental.enable=true`
 `interfaces.fhir.custom.mapping.dir=C:/applications/centraxx-home/fhir-custom-mappings`
 
-The specified directory will contain the individual export project folders. It must exist on the CentraXX application
-server.
+The path is an example. The specified directory will contain the individual export project folders. It must exist
+on the CentraXX application server.
 
 _________________________________________________
 
