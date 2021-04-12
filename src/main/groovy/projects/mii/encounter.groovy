@@ -1,5 +1,7 @@
 import de.kairos.fhir.centraxx.metamodel.*
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * represented bz CCX Episode
@@ -15,16 +17,21 @@ encounter {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
   }
 
-  context.source[episode().idContainer()]?.each { final idc ->
+  //Created Episode Id in CXX called visit number
+  final def visit_number = context.source[episode().idContainer()]?.find { idc ->
+    "VISIT_NUMBER" == idc[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
+  }
+
+  if (visit_number) {
     identifier {
-      value = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.ID)
-      system = "urn:centraxx"
       type {
         coding {
-          system = "urn:centraxx"
-          code = idc[IdContainerType.CODE]
+          system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+          code = "VN"
         }
       }
+      value = visit_number[EpisodeIdContainer.PSN]
+      system = "urn:centraxx"
     }
   }
 
@@ -80,7 +87,22 @@ encounter {
     }
   }
 
+  final def miiHosp = context.source[episode().patientContainer().laborMappings()].find { lm ->
+    "MII_HOSPITALIZATION" == lm[laborMapping().laborFinding().laborMethod().path()]?.getAt(LaborMethod.CODE)
+  }
 
+  if (miiHosp){
+    hospitalization {
+      admitSource {
+        coding {
+          system = "http://terminology.hl7.org/CodeSystem/admit-source"
+          code = miiHosp[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES]?.find { lflv ->
+            "ADMIT_SOURCE" == lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+          }?.getAt(LaborFindingLaborValue.STRING_VALUE)
+        }
+      }
+    }
+  }
 }
 
 
