@@ -39,9 +39,9 @@ The path is an example. The specified directory will contain the individual expo
 
 ## ProjectConfig.json
 
-Each subdirectory of ```interfaces.fhir.custom.mapping.dir``` (C:/applications/centraxx-home/fhir-custom-mappings) represents an individual project
-and is configured in this the ```ProjectConfig.json```. CentraXX creates this file in a freshly added project directory after a restart. This file
-configures
+Each subdirectory of ```interfaces.fhir.custom.mapping.dir``` (_C:/applications/centraxx-home/fhir-custom-mappings_) represents an individual
+project (e.g. _C:/applications/centraxx-home/fhir-custom-mappings/project1_) and is configured in this the ```ProjectConfig.json```. CentraXX creates
+this file in a freshly added project directory after a restart. This file configures
 
 * the patient filter for the export project
 * the export mechanism
@@ -63,9 +63,9 @@ This configuration specifies the HTTP-Request methods used for export to a targe
 Both the ```ExportResourceMappingConfig.json``` and the ```BundleRequestMethodConfig.json``` are created upon the first export attempt. They can be
 changed during runtime and do not require a CentraXX restart.
 
-**Note**: When you configure a scheduled export, CentraXX needs to be restarted to apply changes at the
-```ProjectConfig.json```. CentraXX initializes the Scheduler at the start reading in the ```ProjectConfig.json```. The incremental export does not
-require a restart after changes in the ```ProjectConfig.json```.
+**Note**: When you configure a scheduled export, CentraXX needs to be restarted to apply changes at the ```ProjectConfig.json```. CentraXX initializes
+the Scheduler at the start reading in the ```ProjectConfig.json```. The incremental export does not require a restart after changes in
+the ```ProjectConfig.json```.
 
 _______________________________________________________
 
