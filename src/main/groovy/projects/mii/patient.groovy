@@ -5,7 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.2
+ * @since v.1.8.0, CXX.v.3.18.1
  */
 
 //TODO: export of state and country in address
@@ -70,6 +70,7 @@ patient {
   final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
     CoverageType.C == it[PatientInsurances.COVERAGE_TYPE] || CoverageType.P == it[PatientInsurances.COVERAGE_TYPE]
   }
+
   if (pkvInsurance) {
     identifier {
       use = gkvInsurance ? "secondary" : "official"

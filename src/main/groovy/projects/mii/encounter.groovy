@@ -22,7 +22,7 @@ encounter {
       type {
         coding {
           system = "urn:centraxx"
-          code = idc[]
+          code = idc[IdContainerType.CODE]
         }
       }
     }
