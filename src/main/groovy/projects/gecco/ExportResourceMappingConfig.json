@@ -75,6 +75,76 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observationPregnancyStatus",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationFrailtyScore",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "malignantNeoplasticDisease",
+      "exportToFhirResource": "Condition"
+    },
+	{
+	  "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "observationAssignedSexAtBirth",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "diagnosisCovid19",
+      "exportToFhirResource": "Condition"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationHistoryOfTravel",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "historyOfOrganRecipient",
+      "exportToFhirResource": "Condition"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "immunizationHistoryOfVaccination",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationKnownExposureToCovid19",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReportRadiology",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationStudyInclusion",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationInterventionalClinicalTrial",
+      "exportToFhirResource": "Observation"
+    },
+	{
+	  "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "dependenceOnVentilator",
+      "exportToFhirResource": "Condition"
+    },
+	{
+	  "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "complicationsOfCovid",
+      "exportToFhirResource": "Condition"
+    },
+	{
+	  "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationDischargeDisposition",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
