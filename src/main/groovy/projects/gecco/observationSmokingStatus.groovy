@@ -1,5 +1,6 @@
 package projects.gecco
 
+import de.kairos.centraxx.common.types.GenderType
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
@@ -14,6 +15,7 @@ import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.CanonicalType
+import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.SimpleQuantity
 
@@ -29,14 +31,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  */
 observation {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().code()] != "PREGNANCY_CODE") {
+  if (context.source[laborMapping().laborFinding().laborMethod().code()] != "SMOKINGSTATUS_PROFILE_CODE") {
     return // no export
   }
 
-  id = "PregnancyStatus/" + context.source[laborMapping().laborFinding().id()]
+  id = "SmokingStatus/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pregnancy-status"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/smoking-status"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
@@ -44,7 +46,7 @@ observation {
   code {
     coding {
       system = "http://loinc.org"
-      code = "82810-3"
+      code = "72166-2"
     }
   }
 
@@ -60,49 +62,27 @@ observation {
     date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
-  final def pregStatLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "PREGNANCYSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+  final def smokeStatLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
+     "SMOKINGSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pregStatLfLv) {
-    final Map<String, Object> multiValue = pregStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
+  if (smokeStatLfLv) {
+    final Map<String, Object> multiValue = smokeStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
     final def singleValue = multiValue.iterator().next()[UsageEntry.CODE] as String
-    if (singleValue == "YES_CODE"){
-      valueCodeableConcept {
-        coding{
-          system = "http://loinc.org"
-          code = "LA15173-0"
-        }
-        coding{
-          system = "http://snomed.info/sct"
-          code = "77386006"
-        }
-      }
-    }
-    else if (singleValue == "NO_CODE"){
-      valueCodeableConcept {
-        coding{
-          system = "http://loinc.org"
-          code = "LA26683-5"
-        }
-      }
-    }
-  }
-  else {
+
     valueCodeableConcept {
       coding {
-        system = "http://loinc.org"
-        code = "LA4489-6" //LOINC answer ID for unknown pregnancy
+        code = mapSmokingStatus(singleValue)
       }
     }
   }
 
   //If the measurement profile contains a measurement parameter with code "ANNOTATION_CODE" and type "String"
-  final def pregStatAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
+  final def smokeStatAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pregStatAnnotation){
+  if (smokeStatAnnotation){
     note{
-      text = pregStatAnnotation[LaborFindingLaborValue.STRING_VALUE]
+      text = smokeStatAnnotation[LaborFindingLaborValue.STRING_VALUE]
     }
   }
 }
@@ -110,4 +90,23 @@ observation {
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+//Function to map CXX controlled vocabulary codes to LOINC codes
+//Alternatively CXX controlled vocabulary codes could also directly be set to LOINC codes
+static String mapSmokingStatus(final String smokingStatus) {
+  switch (smokingStatus) {
+    case null:
+      return null
+    case "CURRENT_EVERY_DAY_SMOKER_CODE":
+      return "LA18976-3"
+    case "FORMER_SMOKER_CODE":
+      return "LA15920-4"
+    case "NEVER_SMOKER_CODE":
+      return "LA18978-9"
+    case "UNKNOWN_IF_EVER_SMOKED_CODE":
+      return "LA18980-5"
+    default:
+      return null
+  }
 }
