@@ -51,7 +51,7 @@ observation {
   }
 
   final def smokeStatLfLv = context.source[studyVisitItem().crf().items()].find {
-    "Grade (Radiobox (UsageEntry))" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE);
+    "Grade (Radiobox (UsageEntry))" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (smokeStatLfLv) {
     final Map<String, Object> multiValue = smokeStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
