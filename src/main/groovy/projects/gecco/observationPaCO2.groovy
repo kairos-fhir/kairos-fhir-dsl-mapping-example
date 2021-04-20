@@ -1,21 +1,13 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -36,7 +28,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://loinc.org"
       code = "26436-6"
@@ -56,17 +48,17 @@ observation {
       system = "http://loinc.org"
       code = "11557-6"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "2019-8"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "2020-6"
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
@@ -79,9 +71,9 @@ observation {
   }
 
   final def paCO2LfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "PACO2_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "PACO2_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (paCO2LfLv){
+  if (paCO2LfLv) {
     valueQuantity {
       value = paCO2LfLv[LaborFindingLaborValue.NUMERIC_VALUE]
       unit = "mm[Hg]"
@@ -94,20 +86,20 @@ observation {
   final def pHAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pHAnnotation){
-    note{
+  if (pHAnnotation) {
+    note {
       text = pHAnnotation[LaborFindingLaborValue.STRING_VALUE]
     }
   }
 
 
-  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String){
+  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String) {
     specimen {
       reference = "Specimen/" + context.source[laborMapping().relatedOid()]
     }
   }
 
-  if(paCO2LfLv){
+  if (paCO2LfLv) {
     referenceRange {
       low {
         value = paCO2LfLv[LaborFindingLaborValue.LABOR_VALUE][LaborValueInteger.LOWER_VALUE]

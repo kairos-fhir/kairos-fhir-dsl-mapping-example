@@ -1,10 +1,9 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.RootEntities
+
 import org.hl7.fhir.r4.model.Annotation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX Diagnosis
@@ -99,9 +98,9 @@ condition {
       }
     }
 
-    stage{
-      summary{
-        coding{
+    stage {
+      summary {
+        coding {
           system = "http://snomed.info/sct"
         }
       }

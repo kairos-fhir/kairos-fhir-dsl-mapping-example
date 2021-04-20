@@ -1,7 +1,6 @@
 package projects.gecco
 
 import de.kairos.centraxx.common.types.GenderType
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient

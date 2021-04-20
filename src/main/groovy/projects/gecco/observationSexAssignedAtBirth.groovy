@@ -1,27 +1,9 @@
 package projects.gecco
 
 import de.kairos.centraxx.common.types.GenderType
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
-import de.kairos.fhir.centraxx.metamodel.LaborValueEnumeration
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
 
-import javax.persistence.criteria.Root
-
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
@@ -57,19 +39,18 @@ observation {
       }
     }
 
-    subject{
+    subject {
       reference = "Patient/" + context.source[patient().patientContainer().id()]
     }
 
     valueCodeableConcept {
-      coding{
+      coding {
         system = "AdministrativeGender"
-        code = mapGender(context.source[patient().genderType()] as GenderType)
+        code = mapGender(context.source[patient().genderType()] as GenderType) as String
       }
     }
   }
 }
-
 
 
 static Enumerations.AdministrativeGender mapGender(final GenderType genderType) {

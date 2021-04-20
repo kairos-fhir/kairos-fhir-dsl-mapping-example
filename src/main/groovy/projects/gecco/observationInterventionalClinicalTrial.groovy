@@ -1,26 +1,12 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -42,7 +28,7 @@ observation {
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
-    coding{
+    coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
       code = "survey"
     }
@@ -55,12 +41,12 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
   final def episodeID = context.source[laborMapping().episode().id()]
-  if (episodeID){
+  if (episodeID) {
     encounter {
       reference = "Episode/" + episodeID
     }
@@ -73,8 +59,8 @@ observation {
   final def intTrialLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "INTERVENTIONAL_TRIAL_PARTICIPATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (intTrialLfLv){
-    valueCodeableConcept{
+  if (intTrialLfLv) {
+    valueCodeableConcept {
       intTrialLfLv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
         coding {
           system = "http://snomed.info/sct"
@@ -88,10 +74,10 @@ observation {
   final def eudractLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "EUDRACT_NUMBER_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (eudractLfLv){
-    component{
-      code{
-        coding{
+  if (eudractLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
           code = "04"
         }
@@ -104,10 +90,10 @@ observation {
   final def nctLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "NCT_NUMBER_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (nctLfLv){
-    component{
-      code{
-        coding{
+  if (nctLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
           code = "05"
         }
@@ -115,7 +101,6 @@ observation {
       valueString(nctLfLv[LaborFindingLaborValue.STRING_VALUE] as String)
     }
   }
-
 
 
 }

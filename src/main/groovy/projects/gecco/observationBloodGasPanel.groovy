@@ -1,13 +1,6 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
+
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
@@ -31,7 +24,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://loinc.org"
       code = "26436-6"
@@ -51,17 +44,17 @@ observation {
       system = "http://loinc.org"
       code = "24338-6"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "24336-0"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "24337-8"
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   encounter {
@@ -74,19 +67,19 @@ observation {
   }
 
   hasMember {
-    reference = "pH/" +  context.source[laborMapping().laborFinding().id()]
+    reference = "pH/" + context.source[laborMapping().laborFinding().id()]
   }
   hasMember {
-    reference = "PaCO2/" +  context.source[laborMapping().laborFinding().id()]
+    reference = "PaCO2/" + context.source[laborMapping().laborFinding().id()]
   }
   hasMember {
-    reference = "PaO2/" +  context.source[laborMapping().laborFinding().id()]
+    reference = "PaO2/" + context.source[laborMapping().laborFinding().id()]
   }
   hasMember {
-    reference = "Oxygen Saturation/" +  context.source[laborMapping().laborFinding().id()]
+    reference = "Oxygen Saturation/" + context.source[laborMapping().laborFinding().id()]
   }
   hasMember {
-    reference = "FiO2/" +  context.source[laborMapping().laborFinding().id()]
+    reference = "FiO2/" + context.source[laborMapping().laborFinding().id()]
   }
 
 }

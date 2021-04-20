@@ -1,9 +1,6 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
@@ -30,7 +27,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
       code = "vital-signs"
@@ -42,13 +39,13 @@ observation {
       system = "http://loinc.org"
       code = "85354-9"
     }
-    coding{
+    coding {
       system = "http://snomed.info/sct"
       code = "75367002"
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()] as String
   }
   encounter {
@@ -61,17 +58,16 @@ observation {
   }
 
 
-
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
 
-    if (lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE] == "BLOODPRESSURE_SYS"){
+    if (lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE] == "BLOODPRESSURE_SYS") {
       component {
         code {
           coding {
             system = "http://loinc.org"
             code = "8480-6"
           }
-          coding{
+          coding {
             system = "http://snomed.info/sct"
             code = "271649006"
           }
@@ -83,15 +79,14 @@ observation {
           }
         }
       }
-    }
-    else if (lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE] == "BLOODPRESSURE_DIA"){
+    } else if (lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE] == "BLOODPRESSURE_DIA") {
       component {
         code {
           coding {
             system = "http://loinc.org"
             code = "8462-4"
           }
-          coding{
+          coding {
             system = "http://snomed.info/sct"
             code = "271650006"
           }

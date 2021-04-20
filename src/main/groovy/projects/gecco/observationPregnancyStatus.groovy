@@ -1,26 +1,12 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
-import de.kairos.fhir.centraxx.metamodel.LaborValueEnumeration
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -48,7 +34,7 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   encounter {
@@ -61,33 +47,31 @@ observation {
   }
 
   final def pregStatLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "PREGNANCYSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "PREGNANCYSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
   if (pregStatLfLv) {
     final Map<String, Object> multiValue = pregStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
     final def singleValue = multiValue.iterator().next()[UsageEntry.CODE] as String
-    if (singleValue == "YES_CODE"){
+    if (singleValue == "YES_CODE") {
       valueCodeableConcept {
-        coding{
+        coding {
           system = "http://loinc.org"
           code = "LA15173-0"
         }
-        coding{
+        coding {
           system = "http://snomed.info/sct"
           code = "77386006"
         }
       }
-    }
-    else if (singleValue == "NO_CODE"){
+    } else if (singleValue == "NO_CODE") {
       valueCodeableConcept {
-        coding{
+        coding {
           system = "http://loinc.org"
           code = "LA26683-5"
         }
       }
     }
-  }
-  else {
+  } else {
     valueCodeableConcept {
       coding {
         system = "http://loinc.org"
@@ -100,9 +84,9 @@ observation {
   final def pregStatAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pregStatAnnotation){
-    note{
-      text = pregStatAnnotation[LaborFindingLaborValue.STRING_VALUE]
+  if (pregStatAnnotation) {
+    note {
+      text = pregStatAnnotation[LaborFindingLaborValue.STRING_VALUE] as String
     }
   }
 }

@@ -1,26 +1,12 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -42,11 +28,11 @@ observation {
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "18726-0"
     }
-    coding{
+    coding {
       system = "http://terminology.hl7.org/CodeSystem/v2-0074"
       code = "RAD"
     }
@@ -59,12 +45,12 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
   final def episodeID = context.source[laborMapping().episode().id()]
-  if (episodeID){
+  if (episodeID) {
     encounter {
       reference = "Episode/" + episodeID
     }
@@ -77,8 +63,8 @@ observation {
   final def radFindLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "RADIOLOGIC_FINDINGS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (radFindLfLv){
-    valueCodeableConcept{
+  if (radFindLfLv) {
+    valueCodeableConcept {
       radFindLfLv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
         coding {
           system = "http://snomed.info/sct"

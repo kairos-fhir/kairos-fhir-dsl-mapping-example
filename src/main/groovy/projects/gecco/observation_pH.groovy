@@ -1,23 +1,13 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -38,7 +28,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://loinc.org"
       code = "26436-6"
@@ -58,17 +48,17 @@ observation {
       system = "http://loinc.org"
       code = "11558-4"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "2744-1"
     }
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "2745-8"
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   encounter {
@@ -82,9 +72,9 @@ observation {
 
 
   final def pHLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "PH_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "PH_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pHLfLv){
+  if (pHLfLv) {
     valueQuantity {
       value = pHLfLv[LaborFindingLaborValue.NUMERIC_VALUE]
       unit = "[pH]"
@@ -97,20 +87,20 @@ observation {
   final def pHAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pHAnnotation){
-    note{
-      text = pHAnnotation[LaborFindingLaborValue.STRING_VALUE]
+  if (pHAnnotation) {
+    note {
+      text = pHAnnotation[LaborFindingLaborValue.STRING_VALUE] as String
     }
   }
 
-  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String){
+  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String) {
     specimen {
       reference = "Specimen/" + context.source[laborMapping().relatedOid()]
     }
   }
 
 
-  if(pHLfLv){
+  if (pHLfLv) {
     referenceRange {
       low {
         value = pHLfLv[LaborFindingLaborValue.LABOR_VALUE][LaborValueInteger.LOWER_VALUE]

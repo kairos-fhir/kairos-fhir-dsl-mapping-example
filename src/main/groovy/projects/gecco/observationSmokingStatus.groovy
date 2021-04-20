@@ -1,28 +1,12 @@
 package projects.gecco
 
-import de.kairos.centraxx.common.types.GenderType
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
-import de.kairos.fhir.centraxx.metamodel.LaborValueEnumeration
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -50,7 +34,7 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   encounter {
@@ -63,7 +47,7 @@ observation {
   }
 
   final def smokeStatLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "SMOKINGSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "SMOKINGSTATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
   if (smokeStatLfLv) {
     final Map<String, Object> multiValue = smokeStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
@@ -80,9 +64,9 @@ observation {
   final def smokeStatAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (smokeStatAnnotation){
-    note{
-      text = smokeStatAnnotation[LaborFindingLaborValue.STRING_VALUE]
+  if (smokeStatAnnotation) {
+    note {
+      text = smokeStatAnnotation[LaborFindingLaborValue.STRING_VALUE] as String
     }
   }
 }

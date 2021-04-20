@@ -1,6 +1,6 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.RootEntities
+
 import org.hl7.fhir.r4.model.Annotation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
@@ -71,7 +71,7 @@ condition {
         extension {
           coding {
             url = "http://fhir.de/StructureDefinition/seitenlokalisation"
-            valueCoding{
+            valueCoding {
               code = "UNKNOWN"
             }
           }

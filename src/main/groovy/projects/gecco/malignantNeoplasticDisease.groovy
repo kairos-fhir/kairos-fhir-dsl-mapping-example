@@ -1,10 +1,7 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import org.hl7.fhir.r4.model.Annotation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
-
 /**
  * Represented by a CXX Diagnosis
  * @authors Mike Wähnert, Lukas Reinert
@@ -110,11 +107,8 @@ condition {
     }
 
     if (context.source[diagnosis().comments()]) {
-      final Annotation annotation = new Annotation()
-      annotation.setText(context.source[diagnosis().comments()] as String)
-      //note.add(annotation)
-      note{
-        text = annotation
+      note {
+        text = context.source[diagnosis().comments()] as String
       }
     }
   }

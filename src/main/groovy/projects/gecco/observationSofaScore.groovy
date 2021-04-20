@@ -1,26 +1,12 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
@@ -41,7 +27,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
       code = "survey"
@@ -55,7 +41,7 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   encounter {
@@ -69,23 +55,22 @@ observation {
 
 
   final def SofaScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-     "SOFA_SCORE_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "SOFA_SCORE_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (SofaScoLfLv){
-    valueQuantity{
-        value = SofaScoLfLv[LaborFindingLaborValue.NUMERIC_VALUE]
+  if (SofaScoLfLv) {
+    valueQuantity {
+      value = SofaScoLfLv[LaborFindingLaborValue.NUMERIC_VALUE]
     }
   }
-
 
 
   //If the measurement profile contains a measurement parameter with code "ANNOTATION_CODE" and type "String"
   final def SofaScoAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (SofaScoAnnotation){
-    note{
-      text = SofaScoAnnotation[LaborFindingLaborValue.STRING_VALUE]
+  if (SofaScoAnnotation) {
+    note {
+      text = SofaScoAnnotation[LaborFindingLaborValue.STRING_VALUE] as String
     }
   }
 
@@ -94,10 +79,10 @@ observation {
   final def RespFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_RESP_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (RespFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (RespFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "resp"
         }
@@ -117,10 +102,10 @@ observation {
   final def nsFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_NS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (nsFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (nsFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "ns"
         }
@@ -140,10 +125,10 @@ observation {
   final def cvsFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_CVS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (cvsFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (cvsFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "cvs"
         }
@@ -163,10 +148,10 @@ observation {
   final def livFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_LIVER_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (livFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (livFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "liv"
         }
@@ -186,10 +171,10 @@ observation {
   final def coaFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_COA_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (coaFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (coaFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "coa"
         }
@@ -209,10 +194,10 @@ observation {
   final def kidFraScoLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "SOFA_SCORE_KID_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (kidFraScoLfLv){
-    component{
-      code{
-        coding{
+  if (kidFraScoLfLv) {
+    component {
+      code {
+        coding {
           system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/sofa-score"
           code = "kid"
         }
