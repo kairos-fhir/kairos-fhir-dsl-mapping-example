@@ -1,5 +1,19 @@
-import de.kairos.fhir.centraxx.metamodel.*
+package projects.mii
+
+
+import de.kairos.fhir.centraxx.metamodel.ContactAddress
+import de.kairos.fhir.centraxx.metamodel.Country
+import de.kairos.fhir.centraxx.metamodel.CountryState
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
+import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.PatientAddress
+import de.kairos.fhir.centraxx.metamodel.PatientInsurances
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * represented by CXX Patient
@@ -10,7 +24,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 
 //TODO: export of state and country in address
 //TODO: export of title as prefix
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 patient {
   id = "Patient/" + context.source[patient().patientContainer().id()]
@@ -130,11 +143,11 @@ patient {
   context.source[patient().addresses()]?.each { final ad ->
     address {
       city = ad[PatientAddress.CITY] ? ad[PatientAddress.CITY] : null
-      if (ad[PatientAddress.STATE]){
+      if (ad[PatientAddress.STATE]) {
         state = ad[PatientAddress.STATE][CountryState.CODE]
       }
       postalCode = ad[PatientAddress.ZIPCODE] ? ad[PatientAddress.ZIPCODE] : null
-      country = ad[PatientAddress.COUNTRY] ? ad[PatientAddress.COUNTRY][Country.ISO2_CODE]: null
+      country = ad[PatientAddress.COUNTRY] ? ad[PatientAddress.COUNTRY][Country.ISO2_CODE] : null
       def lineString = getLineString(ad as Map)
       if (lineString) {
         line lineString

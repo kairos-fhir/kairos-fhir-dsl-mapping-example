@@ -1,3 +1,5 @@
+package projects.mii
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
@@ -90,7 +92,7 @@ condition {
   }
 
   final def comment = context.source[diagnosis().comments()]
-  if (comment){
+  if (comment) {
     note {
       text = comment as String
     }

@@ -1,4 +1,16 @@
-import de.kairos.fhir.centraxx.metamodel.*
+package projects.mii
+
+
+import de.kairos.fhir.centraxx.metamodel.Diagnosis
+import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.MedDepartment
+import de.kairos.fhir.centraxx.metamodel.StayType
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
@@ -91,7 +103,7 @@ encounter {
     "MII_HOSPITALIZATION" == lm[laborMapping().laborFinding().laborMethod().path()]?.getAt(LaborMethod.CODE)
   }
 
-  if (miiHosp){
+  if (miiHosp) {
     hospitalization {
       admitSource {
         coding {
