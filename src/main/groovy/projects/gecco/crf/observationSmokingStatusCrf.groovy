@@ -1,4 +1,4 @@
-package projects.gecco
+package projects.gecco.crf
 
 
 import de.kairos.fhir.centraxx.metamodel.CrfItem
@@ -11,6 +11,7 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 /**
  * Represented by a CXX StudyVisitItem
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/smokingstatus
  * @author Lukas Reinert
  * @since v.1.7.0, CXX.v.3.17.2
  */
