@@ -9,11 +9,15 @@ import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
+
 /**
  * Represented by a CXX StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/smokingstatus
- * @author Lukas Reinert
- * @since v.1.7.0, CXX.v.3.17.2
+ * @author Mike Wähnert
+ * @since v.1.8.0, CXX.v.3.18.1
+ *
+ * hints:
+ *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 observation {
 
@@ -22,7 +26,7 @@ observation {
     return // no export
   }
 
-  id = "SmokingStatus/" + context.source[studyVisitItem().id()]
+  id = "Observation/SmokingStatus-" + context.source[studyVisitItem().id()]
 
   meta {
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/smoking-status"
@@ -41,21 +45,15 @@ observation {
     reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
-  // A StudyEpisode is no regular episode and cannot reference an encounter
-  //  encounter {
-  //    reference = "Episode/" + context.source[studyVisitItem().episode().id()]
-  //  }
-
-
   effectiveDateTime {
     date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
   }
 
-  final def smokeStatLfLv = context.source[studyVisitItem().crf().items()].find {
+  final def smokeStatSvi = context.source[studyVisitItem().crf().items()].find {
     "Grade (Radiobox (UsageEntry))" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (smokeStatLfLv) {
-    final Map<String, Object> multiValue = smokeStatLfLv[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
+  if (smokeStatSvi) {
+    final Map<String, Object> multiValue = smokeStatSvi[LaborFindingLaborValue.MULTI_VALUE] as Map<String, Object>
     final def singleValue = multiValue.iterator().next()[UsageEntry.CODE] as String
 
     valueCodeableConcept {
@@ -65,15 +63,15 @@ observation {
     }
   }
 
-  //If the measurement profile contains a measurement parameter with code "ANNOTATION_CODE" and type "String"
-//  final def smokeStatAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-//    "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
-//  }
-//  if (smokeStatAnnotation) {
-//    note {
-//      text = smokeStatAnnotation[LaborFindingLaborValue.STRING_VALUE]
-//    }
-//  }
+  //If the CRF contains a measurement parameter with code "ANNOTATION_CODE" and type "String"
+  final def smokeStatAnnotationSvi = context.source[studyVisitItem().crf().items()].find {
+    "ANNOTATION_CODE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (smokeStatAnnotationSvi) {
+    note {
+      text = smokeStatAnnotationSvi[LaborFindingLaborValue.STRING_VALUE] as String
+    }
+  }
 }
 
 
