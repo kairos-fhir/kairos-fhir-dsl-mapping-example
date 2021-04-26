@@ -99,7 +99,7 @@ encounter {
     }
   }
 
-  final def miiHosp = context.source[episode().patientContainer().laborMappings()].find { lm ->
+  final def miiHosp = context.source[episode().laborMappings()].find { lm ->
     "MII_HOSPITALIZATION" == lm[laborMapping().laborFinding().laborMethod().path()]?.getAt(LaborMethod.CODE)
   }
 
@@ -108,8 +108,8 @@ encounter {
       admitSource {
         coding {
           system = "http://terminology.hl7.org/CodeSystem/admit-source"
-          code = miiHosp[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES]?.find { lflv ->
-            "ADMIT_SOURCE" == lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+          code = miiHosp[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { lflv ->
+            "ADMIT_SOURCE" == lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
           }?.getAt(LaborFindingLaborValue.STRING_VALUE)
         }
       }

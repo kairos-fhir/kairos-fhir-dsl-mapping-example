@@ -17,9 +17,14 @@
       "exportToFhirResource": "Condition"
     },
     {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "vitalstatus",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "MED_PROCEDURE",
+      "transformByTemplate": "procedure",
+      "exportToFhirResource": "Procedure"
     }
   ]
 }

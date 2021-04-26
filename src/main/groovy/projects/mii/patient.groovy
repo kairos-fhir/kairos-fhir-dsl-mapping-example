@@ -1,6 +1,5 @@
 package projects.mii
 
-
 import de.kairos.fhir.centraxx.metamodel.ContactAddress
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.CountryState
@@ -14,7 +13,6 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
-
 /**
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
@@ -119,7 +117,7 @@ patient {
 
   gender {
     value = toGender(context.source[patient().genderType()])
-    if (value.toString().equals("other")) {
+    if (value.toString() == "other") {
       extension {
         url = "http://fhir.de/StructureDefinition/gender-amtlich-de"
         valueCoding {
