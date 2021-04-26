@@ -1,26 +1,24 @@
 package projects.mii
 
-
 import de.kairos.fhir.centraxx.metamodel.Diagnosis
 import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.LaborFinding
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.LaborMethod
-import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.MedDepartment
 import de.kairos.fhir.centraxx.metamodel.StayType
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * represented bz CCX Episode
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
+ * hints:
+ * identifier visit number: the MII profile requires a "Aufnahmenummer" as identifier. Therefore a specific Episode ID
+ * must be defined in CentraXX (with code "VISIT_NUMBER" in this example)
+ * serviceType: The fhir-profile requires a "Fachabteilungsschluessel" as defined in the following value set
+ * https://www.medizininformatik-initiative.de/fhir/core/modul-fall/CodeSystem/Fachabteilungsschluessel
+ * For consistency, the med departments codes defined in CXX must match those defined in this value set.
+ * type.kontaktebene, hospitalization are not depicted in CXX
  */
-//TODO: hospitalization, location
 
 encounter {
   id = "Encounter/" + context.source[episode().id()]
@@ -63,7 +61,6 @@ encounter {
       coding {
         system = "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/CodeSystem/Fachabteilungsschluessel"
         code = medDepartment[MedDepartment.CODE]
-        //TODO: Mapping of Fachabteilungsschlüssel
       }
     }
   }
@@ -99,22 +96,6 @@ encounter {
     }
   }
 
-  final def miiHosp = context.source[episode().laborMappings()].find { lm ->
-    "MII_HOSPITALIZATION" == lm[laborMapping().laborFinding().laborMethod().path()]?.getAt(LaborMethod.CODE)
-  }
-
-  if (miiHosp) {
-    hospitalization {
-      admitSource {
-        coding {
-          system = "http://terminology.hl7.org/CodeSystem/admit-source"
-          code = miiHosp[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { lflv ->
-            "ADMIT_SOURCE" == lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
-          }?.getAt(LaborFindingLaborValue.STRING_VALUE)
-        }
-      }
-    }
-  }
 }
 
 
