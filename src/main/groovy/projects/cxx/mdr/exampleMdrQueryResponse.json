@@ -1,0 +1,42 @@
+{
+  "_embedded": {
+    "definitions": [
+      {
+        "id": "13539-2",
+        "caption": {
+          "de": {
+            "name": "Phosphat",
+            "description": "Phosphate [Moles/volume] in Urine"
+          },
+          "en": {
+            "name": "Phosphate Ur-sCnc",
+            "description": "Phosphate [Moles/volume] in Urine"
+          }
+        },
+        "unit": "mmol/L",
+        "valueType": "NUMERIC",
+        "function": null,
+        "catalog": null,
+        "phCatalog": null,
+        "refCatalog": null,
+        "tags": [],
+        "systemUrl": "tag:kairos.de,2017:mdr/def:13539-2:1",
+        "referenceRange": null,
+        "version": 1,
+        "approvalStatus": "DRAFT",
+        "modificationTime": 1619177371545,
+        "annotatedValue": false,
+        "_links": {
+          "self": {
+            "href": "http://127.0.0.1:8080/mdr-server/rest/v1/definitions/tag:kairos.de,2017:mdr/def:13539-2:1"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://127.0.0.1:8080/mdr-server/rest/v1/definitions?query=where%20caption.name%20ilike%20'%25Phosphate%25'%20order%20by%20id%20limit%201%20offset%200"
+    }
+  }
+}
