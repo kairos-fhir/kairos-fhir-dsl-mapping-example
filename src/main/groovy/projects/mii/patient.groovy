@@ -2,7 +2,6 @@ package projects.mii
 
 import de.kairos.fhir.centraxx.metamodel.ContactAddress
 import de.kairos.fhir.centraxx.metamodel.Country
-import de.kairos.fhir.centraxx.metamodel.CountryState
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
@@ -18,10 +17,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
+ * TODO: export of state and country in address
+ * TODO: export of title as prefix
  */
 
-//TODO: export of state and country in address
-//TODO: export of title as prefix
 
 patient {
   id = "Patient/" + context.source[patient().patientContainer().id()]
@@ -131,7 +130,7 @@ patient {
 
   birthDate = normalizeDate(context.source[patient().birthdate().date()] as String)
 
-  final def dateOfDeath = context.source[patient().dateOfDeath()] as String
+  final def dateOfDeath = context.source[patient().dateOfDeath()]
 
   if (dateOfDeath) {
     deceasedBoolean = true
@@ -140,12 +139,10 @@ patient {
 
   context.source[patient().addresses()]?.each { final ad ->
     address {
-      city = ad[PatientAddress.CITY] ? ad[PatientAddress.CITY] : null
-      if (ad[PatientAddress.STATE]) {
-        state = ad[PatientAddress.STATE][CountryState.CODE]
-      }
-      postalCode = ad[PatientAddress.ZIPCODE] ? ad[PatientAddress.ZIPCODE] : null
-      country = ad[PatientAddress.COUNTRY] ? ad[PatientAddress.COUNTRY][Country.ISO2_CODE] : null
+      type = "physical"
+      city = ad[PatientAddress.CITY]
+      postalCode = ad[PatientAddress.ZIPCODE]
+      country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE)
       def lineString = getLineString(ad as Map)
       if (lineString) {
         line lineString
