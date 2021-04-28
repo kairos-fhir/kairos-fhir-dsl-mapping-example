@@ -27,6 +27,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  *  Example covers no Enumerations and RadioOptionGroups yet
  *  The example shows, how to enrich FHIR messages with LOINC codes from a CentraXX MDRs
  *  observationLoincFromMdr.json shows an example response for the laborValueCode 'Phosphat'
+ *  TODO: change MDR server url and credentials basic auth (client_id:client_secret), username and password
  */
 observation {
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
@@ -174,6 +175,10 @@ static String readFromCxxMdr(String laborValueCode) {
   return queryMdr(bearerToken, laborValueCode)
 }
 
+/**
+ * Gets an MDR OAuth2 bearer access token.
+ * @return the token.
+ */
 private static String getBearerToken() {
 
   String httpMethod = "POST"
@@ -198,7 +203,7 @@ private static String getBearerToken() {
  * Returns the MDR query result
  * @param bearerToken OAuth2 MDR Access Token
  * @param laborValueCode Speaking Labor Value Code in CXX
- * @return MDR definition code where caption.name = laborValueCode order by id offset 0 limit 1 (only the first if exists)
+ * @return MDR definition code where caption.name ilike '%laborValueCode%' order by id offset 0 limit 1 (only the first if exists)
  */
 private static String queryMdr(String bearerToken, String laborValueCode) {
   String httpMethod = "GET"
