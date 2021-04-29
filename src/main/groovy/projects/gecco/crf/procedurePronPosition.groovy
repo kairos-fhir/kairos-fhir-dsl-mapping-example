@@ -1,30 +1,28 @@
 package projects.gecco.crf
 
-import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
-
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/pharmacologicaltherapy
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/proneposition-procedure
  * @author Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-medicationStatement {
+procedure {
 
-  id = "MedicationStatement/SVI-" + context.source[studyVisitItem().id()]
+  id = "Procedure/SVI-" + context.source[studyVisitItem().id()]
 
   meta {
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/prone-position"
   }
 
-  status = MedicationStatement.MedicationStatementStatus.UNKNOWN
+  status = "unknown"
 
   subject {
     reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
-  effectiveDateTime {
+  performedDateTime {
     date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
   }
 
