@@ -25,7 +25,7 @@ procedure {
   id = "Procedure/MedProcedure-" + context.source[medProcedure().id()]
 
   meta {
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/dialysis"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/procedureDialysis"
   }
 
   status = Procedure.ProcedureStatus.UNKNOWN

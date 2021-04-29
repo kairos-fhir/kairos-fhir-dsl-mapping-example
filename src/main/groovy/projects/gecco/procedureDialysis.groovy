@@ -21,7 +21,7 @@ procedure {
       id = "Dialysis/" + opsCode[MedProcedure.ID] as String
 
       meta {
-        profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/dialysis"
+        profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/procedureDialysis"
       }
 
       extension {
