@@ -9,13 +9,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
  * Represented by a CXX MedProcedure
  * Specified by https://simplifier.net/forschungsnetzcovid-19/dialysis
  * @author Mike Wähnert
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  * Hints:
  *  Only OPS sub codes of 8-85 allowed as specified by https://simplifier.net/forschungsnetzcovid-19/dialysis-procedures-ops
  *  TODO: work in progress
  */
-
 procedure {
 
   String opsCode = context.source[medProcedure().opsEntry().code()]
