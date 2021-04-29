@@ -1,35 +1,16 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.eclipse.birt.chart.script.api.data.IDateTimeDataElement
-import org.eclipse.birt.chart.util.CDateTime
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
-import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-import org.hl7.fhir.r4.model.StringType
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
  * @author Lukas Reinert
- * @since CXX.v.3.18.1
- *
+ * @since CXX.v.3.18.1*
  * Maps the following profile:
  *  - Prone Position
  */
@@ -44,7 +25,7 @@ procedure {
   final def pronePosition = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "PRONE_POSITION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (!pronePosition){
+  if (!pronePosition) {
     return // no export
   }
 
@@ -80,11 +61,11 @@ procedure {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   final def episodeID = context.source[laborMapping().episode().id()]
-  if (episodeID){
+  if (episodeID) {
     encounter {
       reference = "Episode/" + episodeID
     }
@@ -93,7 +74,7 @@ procedure {
   final def performedDate = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "PERFORMED_DATE_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (performedDate){
+  if (performedDate) {
     performedDateTime {
       performedDateTime = performedDate[LaborFindingLaborValue.DATE_VALUE]
     }
@@ -103,32 +84,11 @@ procedure {
   final def pHAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (pHAnnotation){
-    note{
+  if (pHAnnotation) {
+    note {
       text = pHAnnotation[LaborFindingLaborValue.STRING_VALUE]
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
