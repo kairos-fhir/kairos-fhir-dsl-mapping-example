@@ -1,0 +1,7 @@
+{
+  "domain": "Annotation",
+  "attribute": "LOINC",
+  "value": [
+    "tag:kairos.de,2017:mdr/catentry:LOINC:2020:123"
+  ]
+}

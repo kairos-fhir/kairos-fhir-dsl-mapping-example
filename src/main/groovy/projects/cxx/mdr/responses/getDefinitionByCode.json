@@ -1,0 +1,27 @@
+{
+  "id": "ery",
+  "caption": {
+    "de": {
+      "name": "Erothrozyten",
+      "description": null
+    }
+  },
+  "unit": "/L",
+  "valueType": "NUMERIC",
+  "function": null,
+  "catalog": null,
+  "phCatalog": null,
+  "refCatalog": null,
+  "tags": [],
+  "systemUrl": "tag:kairos.de,2017:mdr/def:ery:1",
+  "referenceRange": null,
+  "version": 1,
+  "approvalStatus": "DRAFT",
+  "modificationTime": 1620037720795,
+  "annotatedValue": false,
+  "_links": {
+    "self": {
+      "href": "http://127.0.0.1:8080/mdr-server/rest/v1/definitions/tag:kairos.de,2017:mdr/def:ery:1"
+    }
+  }
+}

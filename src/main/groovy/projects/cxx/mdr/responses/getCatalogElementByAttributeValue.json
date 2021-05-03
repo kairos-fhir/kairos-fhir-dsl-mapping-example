@@ -1,0 +1,13 @@
+{
+  "caption": {},
+  "uri": "tag:kairos.de,2017:mdr/catentry:LOINC:2020:123",
+  "code": "123",
+  "parent": null,
+  "catalogUri": "tag:kairos.de,2017:mdr/catalog:LOINC:2020",
+  "modificationTime": 1620037432502,
+  "_links": {
+    "self": {
+      "href": "http://127.0.0.1:8080/mdr-server/rest/v1/catalogs/entry?code=LOINC&version=2020&entryCode=123"
+    }
+  }
+}
