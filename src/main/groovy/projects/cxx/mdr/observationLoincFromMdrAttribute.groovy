@@ -140,36 +140,36 @@ private static boolean isDTypeOf(final Object lflv, final List<LaborValueDType> 
   return types.contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType)
 }
 
-static boolean isBoolean(final Object lflv) {
+private static boolean isBoolean(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.BOOLEAN])
 }
 
-static boolean isNumeric(final Object lflv) {
+private static boolean isNumeric(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.INTEGER, LaborValueDType.DECIMAL, LaborValueDType.SLIDER])
 }
 
 
-static boolean isDate(final Object lflv) {
+private static boolean isDate(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.DATE, LaborValueDType.LONGDATE])
 }
 
-static boolean isTime(final Object lflv) {
+private static boolean isTime(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.TIME])
 }
 
-static boolean isEnumeration(final Object lflv) {
+private static boolean isEnumeration(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.ENUMERATION])
 }
 
-static boolean isString(final Object lflv) {
+private static boolean isString(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
 }
 
-static boolean isCatalog(final Object lflv) {
+private static boolean isCatalog(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.CATALOG])
 }
 
-static boolean isOptionGroup(final Object lflv) {
+private static boolean isOptionGroup(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
 }
 
@@ -179,7 +179,7 @@ static boolean isOptionGroup(final Object lflv) {
  * @param laborValueCode the laborValue code to query
  * @return the LOINC Code, if exists or null, if none exists.
  */
-static String readFromCxxMdr(String mdrBaseUrl, String bearerToken, String laborValueCode) {
+private static String readFromCxxMdr(String mdrBaseUrl, String bearerToken, String laborValueCode) {
   String version = queryDefinitionVersionById(mdrBaseUrl, bearerToken, laborValueCode)
   if (!version) {
     return null
@@ -223,7 +223,7 @@ private static String getBearerToken(String mdrBaseUrl) {
 /**
  * For an example response see /responses/getDefinitionByCode.json
  */
-static String queryDefinitionVersionById(String mdrBaseUrl, String bearerToken, String laborValueCode) {
+private static String queryDefinitionVersionById(String mdrBaseUrl, String bearerToken, String laborValueCode) {
   String httpMethod = "GET"
   URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/definition?code=" + laborValueCode)
 
@@ -234,7 +234,7 @@ static String queryDefinitionVersionById(String mdrBaseUrl, String bearerToken, 
 /**
  * For an example response see /responses/getAttributeByCodeAndVersion.json
  */
-static String queryAttributeTagByCodeAndVersion(String mdrBaseUrl, String bearerToken, String laborValueCode, String version) {
+private static String queryAttributeTagByCodeAndVersion(String mdrBaseUrl, String bearerToken, String laborValueCode, String version) {
   String httpMethod = "GET"
   URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/attribute/definition/version?code=" + laborValueCode + "&version=" + version + "&domainCode=Annotation&attributeCode=LOINC")
 
@@ -245,7 +245,7 @@ static String queryAttributeTagByCodeAndVersion(String mdrBaseUrl, String bearer
 /**
  * For an example response see /responses/getCatalogElementByAttributeValue.json
  */
-static String queryCatalogEntryCodeByAttributeTag(String mdrBaseUrl, String bearerToken, String tag) {
+private static String queryCatalogEntryCodeByAttributeTag(String mdrBaseUrl, String bearerToken, String tag) {
   String httpMethod = "GET"
   URL url = new URL(mdrBaseUrl + "/rest/v1/catalogs/entry/tag?tag=" + tag)
 

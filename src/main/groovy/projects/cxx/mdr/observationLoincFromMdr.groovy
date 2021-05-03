@@ -137,40 +137,39 @@ private static boolean isDTypeOf(final Object lflv, final List<LaborValueDType> 
   return types.contains(lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType)
 }
 
-static boolean isBoolean(final Object lflv) {
+private static boolean isBoolean(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.BOOLEAN])
 }
 
-static boolean isNumeric(final Object lflv) {
+private static boolean isNumeric(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.INTEGER, LaborValueDType.DECIMAL, LaborValueDType.SLIDER])
 }
 
-
-static boolean isDate(final Object lflv) {
+private static boolean isDate(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.DATE, LaborValueDType.LONGDATE])
 }
 
-static boolean isTime(final Object lflv) {
+private static boolean isTime(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.TIME])
 }
 
-static boolean isEnumeration(final Object lflv) {
+private static boolean isEnumeration(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.ENUMERATION])
 }
 
-static boolean isString(final Object lflv) {
+private static boolean isString(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
 }
 
-static boolean isCatalog(final Object lflv) {
+private static boolean isCatalog(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.CATALOG])
 }
 
-static boolean isOptionGroup(final Object lflv) {
+private static boolean isOptionGroup(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
 }
 
-static String readFromCxxMdr(String laborValueCode) {
+private static String readFromCxxMdr(String laborValueCode) {
   String bearerToken = getBearerToken()
   return queryMdr(bearerToken, laborValueCode)
 }
@@ -221,10 +220,13 @@ private static String queryMdr(String bearerToken, String laborValueCode) {
   return json?._embedded?.definitions?.iterator()?.next()?.id // id = code: the code contains usually the loinc code
 }
 
+/**
+ * Validates the HTTP response. If a response is not valid (not 200), an exception is thrown and the transformation ends.
+ */
 private static void validateResponse(int httpStatusCode, String httpMethod, URL url) {
   int expectedStatusCode = 200
   if (httpStatusCode != expectedStatusCode) {
-    throw new IllegalStateException("'" + httpMethod + "' request on ' " + url.getPath() + " ' returned status code: " + httpStatusCode + ". Expected: " + expectedStatusCode)
+    throw new IllegalStateException("'" + httpMethod + "' request on '" + url + "' returned status code: " + httpStatusCode + ". Expected: " + expectedStatusCode)
   }
 }
 
