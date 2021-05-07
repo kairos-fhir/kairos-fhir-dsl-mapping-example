@@ -316,6 +316,25 @@ specimen {
         }
       }
     }
+
+    // Sample Location
+    if (context.source[sample().sampleLocation()]) {
+      extension {
+        url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
+          valueString = context.source[sample().sampleLocation().locationPath()]
+        }
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/xPosition"
+          valueInteger = context.source[sample().xPosition()] as Integer
+        }
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/yPosition"
+          valueInteger = context.source[sample().yPosition()] as Integer
+        }
+      }
+    }
   }
 }
 
