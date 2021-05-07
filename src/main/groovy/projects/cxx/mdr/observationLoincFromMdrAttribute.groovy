@@ -3,7 +3,6 @@ package projects.cxx.mdr
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
@@ -15,8 +14,6 @@ import org.slf4j.LoggerFactory
 
 import java.nio.charset.StandardCharsets
 
-import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
-import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -46,22 +43,8 @@ observation {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
-
-  final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
-    "COVID-19-PATIENTID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-  }
-  if (patIdContainer) {
-    subject {
-      identifier {
-        value = patIdContainer[PSN]
-        type {
-          coding {
-            system = "urn:centraxx"
-            code = patIdContainer[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE) as String
-          }
-        }
-      }
-    }
+  subject {
+    reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
   method {
@@ -209,6 +192,7 @@ private static String getBearerToken(String mdrBaseUrl) {
   connection.setDoOutput(true)
   connection.setRequestProperty("Authorization", "Basic TURSX1VJOmthaXJvcw==") // Basic Auth contains client_id:client_secret, e.g. MDR_UI:kairos
   connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+  connection.setRequestProperty("Accept", "application/json")
   connection.getOutputStream().write(bodyMsg.getBytes(StandardCharsets.UTF_8))
 
   if (!validateResponse(connection.getResponseCode(), httpMethod, url)) {
@@ -261,6 +245,7 @@ private static def queryMdr(URL url, String httpMethod, String bearerToken) {
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
   connection.setRequestProperty("Authorization", "Bearer " + bearerToken)
+  connection.setRequestProperty("Accept", "application/json")
 
   if (!validateResponse(connection.getResponseCode(), httpMethod, url)) {
     return null
