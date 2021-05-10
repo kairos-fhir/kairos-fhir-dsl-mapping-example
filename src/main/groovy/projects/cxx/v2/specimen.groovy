@@ -63,15 +63,6 @@ specimen {
       system = "urn:centraxx"
       code = toNumType(context.source[sample().sampleType().code()])
     }
-    if (context.source["sampleType.sprecCode"]) {
-      coding += context.translateBuiltinConcept("sprec3_bbmri_sampletype", context.source[sample().sampleType().sprecCode()])
-      coding {
-        system = "https://doi.org/10.1089/bio.2017.0109"
-        code = context.source[sample().sampleType().sprecCode()]
-      }
-    } else {
-      coding += context.translateBuiltinConcept("centraxx_bbmri_samplekind", context.source[sample().sampleType().kind()] ?: "")
-    }
   }
 
   final def patIdContainer = context.source[sample().patientContainer().idContainer()]?.find {
@@ -163,12 +154,13 @@ specimen {
       url = FhirUrls.Extension.Sprec.USE_SPREC
       valueBoolean = context.source[USE_SPREC]
     }
+
 //    if (context.source["sprecCode"]) {
 //      extension {
 //        url = FhirUrls.Extension.Sprec.SPREC_CODE
 //        valueCoding {
 //          system = "https://doi.org/10.1089/bio.2017.0109"
-//          code = context.source["sprecCode"]
+//          code = context.source[sample().sprecCode()]
 //        }
 //      }
 //    }
