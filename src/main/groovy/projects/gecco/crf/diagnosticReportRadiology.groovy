@@ -10,7 +10,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-
 diagnosticReport {
 
   id = "DiagnosticReport/SVI-" + context.source[studyVisitItem().id()]
