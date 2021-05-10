@@ -1,5 +1,7 @@
 package projects.gecco.crf
 
+import org.hl7.fhir.r4.model.Immunization
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -17,7 +19,7 @@ immunization {
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/immunization"
   }
 
-  status = "unknown"
+  clinicalStatus = Immunization.ImmunizationStatus.COMPLETED
 
   patient {
     reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
