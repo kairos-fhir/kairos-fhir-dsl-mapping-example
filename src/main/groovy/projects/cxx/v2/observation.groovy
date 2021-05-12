@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
@@ -75,7 +76,7 @@ observation {
       if (isNumeric(lflv)) {
         valueQuantity {
           value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
-          unit =  lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(Unity.CODE) as String
+          unit = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(Unity.CODE) as String
         }
       }
       if (isBoolean(lflv)) {
@@ -84,7 +85,7 @@ observation {
 
       if (isDate(lflv)) {
         valueDateTime {
-          date = lflv[LaborFindingLaborValue.DATE_VALUE]
+          date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
         }
       }
 
