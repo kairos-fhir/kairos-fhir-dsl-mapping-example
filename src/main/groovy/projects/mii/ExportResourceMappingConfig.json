@@ -25,6 +25,11 @@
       "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
       "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }

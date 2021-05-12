@@ -12,6 +12,7 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
+
 /**
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
@@ -52,6 +53,7 @@ patient {
       }
     }
   }
+
   final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
     CoverageType.T == it[PatientInsurances.COVERAGE_TYPE]
   }
@@ -96,6 +98,29 @@ patient {
       }
     }
   }
+
+  active = context.source[patient().patientContainer().patientStatus()]
+
+  final def contacts = [context.source[patient().addresses().email()],
+                        context.source[patient().addresses().phone1()],
+                        context.source[patient().addresses().phone2()],
+                        context.source[patient().addresses().mobile()],
+                        context.source[patient().addresses().fax()]
+  ].collect {
+    it as List
+  }
+
+  final def contactInfo = ["email", "phone", "phone", "phone", "fax"]
+
+  contacts.eachWithIndex { contact, i ->
+    if (contact.first() != null) {
+      telecom {
+        system = contactInfo[i]
+        value = contact.first() as String
+      }
+    }
+  }
+
 
   humanName {
     use = "official"
