@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.medikation
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication

@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.prozedur
 
 import de.kairos.fhir.centraxx.metamodel.enums.Localization
 import org.hl7.fhir.r4.model.Procedure

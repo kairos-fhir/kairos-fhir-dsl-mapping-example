@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.medikation
 
 import org.hl7.fhir.r4.model.MedicationStatement
 

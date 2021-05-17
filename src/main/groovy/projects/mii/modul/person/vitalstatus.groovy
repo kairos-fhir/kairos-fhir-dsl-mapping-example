@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.person
 
 import org.hl7.fhir.r4.model.Observation
 

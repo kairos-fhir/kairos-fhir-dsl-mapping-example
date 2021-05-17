@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.diagnose
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
@@ -72,7 +72,7 @@ condition {
       }
       system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
       version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
-      code = context.source[diagnosis().icdEntry().code()]
+      code = context.source[diagnosis().icdEntry().code()] as String
     }
   }
 

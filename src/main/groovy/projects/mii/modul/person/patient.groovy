@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.person
 
 import de.kairos.fhir.centraxx.metamodel.ContactAddress
 import de.kairos.fhir.centraxx.metamodel.Country

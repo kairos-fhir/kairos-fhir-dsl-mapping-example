@@ -1,4 +1,4 @@
-package projects.mii
+package projects.mii.modul.fall
 
 import de.kairos.fhir.centraxx.metamodel.Diagnosis
 import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
