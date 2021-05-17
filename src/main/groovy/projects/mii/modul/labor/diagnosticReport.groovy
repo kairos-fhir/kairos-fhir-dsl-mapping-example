@@ -8,6 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * represented by CXX LaborMapping
+ * specified by https://simplifier.net/medizininformatikinitiative-modullabor/diagnosticreportlab
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
  */
@@ -63,8 +64,10 @@ diagnosticReport {
 
   issued(context.source[laborMapping().laborFinding().creationDate()])
 
-  result {
-    reference = "Observation/" + context.source[laborMapping().laborFinding().id()]
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()]?.each { def lflv ->
+    result {
+      reference = "Observation/" + lflv[LaborFindingLaborValue.ID]
+    }
   }
 
   final def interpretation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
