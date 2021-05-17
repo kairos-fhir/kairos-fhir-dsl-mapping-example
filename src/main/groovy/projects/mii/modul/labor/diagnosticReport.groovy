@@ -1,7 +1,8 @@
+package projects.mii.modul.labor
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import org.hl7.fhir.r4.model.DiagnosticReport
-
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
@@ -9,12 +10,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * represented by CXX LaborMapping
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
- * TODO: testing. Not tested because export of LaborMapping to DiagnosticReport not yet supported.
  */
-
 diagnosticReport {
   id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
-
 
   meta {
     source = "urn:centraxx"
@@ -52,26 +50,26 @@ diagnosticReport {
   subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
-  encounter {
-    reference = "Encounter/" + context.source[laborMapping().episode().id()]
+
+  if (context.source[laborMapping().episode()]) {
+    encounter {
+      reference = "Encounter/" + context.source[laborMapping().episode().id()]
+    }
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate()] as String)
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
   issued(context.source[laborMapping().laborFinding().creationDate()])
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()]?.each {
-    result {
-      reference = it[LaborFindingLaborValue.ID]
-    }
+  result {
+    reference = "Observation/" + context.source[laborMapping().laborFinding().id()]
   }
 
   final def interpretation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "INTERPRETATION" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
-
 
   conclusion = interpretation ? interpretation[LaborFindingLaborValue.STRING_VALUE] : null
 
