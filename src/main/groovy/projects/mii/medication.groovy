@@ -3,7 +3,13 @@ package projects.mii
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
-// TODO: work in progress
+/**
+ * Represented by a CXX Medication
+ * Specified by https://simplifier.net/medizininformatikinitiative-modulmedikation/medication-duplicate-3
+ * @author Mike Wähnert
+ * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * TODO: work in progress
+ */
 medication {
 
   id = "Medication/" + context.source[medication().id()]
