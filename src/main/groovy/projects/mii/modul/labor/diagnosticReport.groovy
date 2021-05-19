@@ -36,7 +36,7 @@ diagnosticReport {
   category {
     coding {
       system = "urn:centraxx"
-      code = context.source[laborMapping().laborFinding().laborMethod().category()]
+      code = context.source[laborMapping().laborFinding().laborMethod().category()] as String
     }
   }
 

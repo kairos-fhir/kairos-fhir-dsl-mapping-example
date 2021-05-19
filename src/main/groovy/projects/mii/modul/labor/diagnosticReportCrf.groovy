@@ -1,15 +1,17 @@
+package projects.mii.modul.labor
+
+import de.kairos.fhir.centraxx.metamodel.Annotation
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
+
 /**
- * Represented by a CXX LaborMapping
- * exports a a study crf to a
+ * Represented by a CXX StudyVisitItem
  * Specified by https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab
  * @author Jonas KÜttner
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-
 diagnosticReport {
 
   id = "DiagnosticReport/SVI-" + context.source[studyVisitItem().id()]
@@ -51,7 +53,7 @@ diagnosticReport {
   }
 
   encounter {
-    reference = context.source[studyVisitItem().episode()]? "Encounter/" + context.source[studyVisitItem().episode().id()] : null
+    reference = context.source[studyVisitItem().episode()] ? "Encounter/" + context.source[studyVisitItem().episode().id()] : null
   }
 
   effectiveDateTime {
@@ -59,20 +61,19 @@ diagnosticReport {
   }
 
   final def issuedDate = context.source[studyVisitItem().crf().lastChangedOn()]
-  if (issuedDate){
+  if (issuedDate) {
     issued(issuedDate)
   }
 
-  context.source[studyVisitItem().crf().items()].each{
+  context.source[studyVisitItem().crf().items()]?.each { def item ->
     result {
-      reference = "Observation-SVI/" + it[CrfItem.ID] as String
+      reference = "Observation/SVI" + item[CrfItem.ID]
     }
   }
 
-
-  context.source[studyVisitItem().crf().annotations()]?.each {
+  context.source[studyVisitItem().crf().annotations()]?.each { def annotation ->
     media {
-      comment = "the comment" //TODO: get the actual comment
+      comment = annotation[Annotation.VALUE]
     }
   }
 
