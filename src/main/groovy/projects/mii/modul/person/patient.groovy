@@ -113,7 +113,7 @@ patient {
   final def contactInfo = ["email", "phone", "phone", "phone", "fax"]
 
   contacts.eachWithIndex { contact, i ->
-    if (contact.first() != null) {
+    if (contact?.first() != null) {
       telecom {
         system = contactInfo[i]
         value = contact.first() as String
