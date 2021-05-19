@@ -35,8 +35,8 @@ diagnosticReport {
 
   category {
     coding {
-      system = "http://terminology.hl7.org/CodeSystem/v2-0074"
-      code = mapCategories(context.source[laborMapping().laborFinding().laborMethod().category()] as String)
+      system = "urn:centraxx"
+      code = context.source[laborMapping().laborFinding().laborMethod().category()]
     }
   }
 
@@ -83,10 +83,3 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapCategories(String cxxCategory) {
-  switch (cxxCategory) {
-    case "LABOR": return "LAB"
-    case "NURSING": return "NRS"
-    default: return "OTH"
-  }
-}

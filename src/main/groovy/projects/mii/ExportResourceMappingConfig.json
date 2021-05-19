@@ -30,6 +30,11 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "diagnosticReport",
       "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "diagnosticReportCrf",
+      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }
