@@ -29,7 +29,6 @@ diagnosticReport {
     }
     system = "urn:centraxx"
     value = context.source[laborMapping().laborFinding().laborFindingId()]
-    //TODO: assigner
   }
 
   status = DiagnosticReport.DiagnosticReportStatus.UNKNOWN
@@ -59,7 +58,7 @@ diagnosticReport {
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
+    date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
   issued(context.source[laborMapping().laborFinding().creationDate()])
@@ -70,6 +69,8 @@ diagnosticReport {
     }
   }
 
+  // there is no field for an interpretation/conclusion of results in CXX. To export such, a measure parameter must
+  // be introduced in CXX.
   final def interpretation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "INTERPRETATION" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
