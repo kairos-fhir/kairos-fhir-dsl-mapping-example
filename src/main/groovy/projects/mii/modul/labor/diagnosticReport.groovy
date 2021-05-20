@@ -2,10 +2,10 @@ package projects.mii.modul.labor
 
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * represented by CXX LaborMapping
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/diagnosticreportlab
@@ -13,6 +13,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @since v.1.8.0, CXX.v.3.18.1
  */
 diagnosticReport {
+
   id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
@@ -35,15 +36,18 @@ diagnosticReport {
 
   category {
     coding {
-      system = "urn:centraxx"
-      code = context.source[laborMapping().laborFinding().laborMethod().category()] as String
+      system = "http://terminology.hl7.org/CodeSystem/v2-0074"
+      code = mapCategories(context.source[laborMapping().laborFinding().laborMethod().category()] as String)
     }
   }
 
   code {
     coding {
-      system = "http://loinc.org"
-      code = "11502-2"
+      system = "urn:centraxx"
+      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
+      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()].find { def entry ->
+        "de" == entry[MultilingualEntry.LANG]
+      }?.getAt(MultilingualEntry.VALUE)
     }
   }
 
@@ -77,9 +81,19 @@ diagnosticReport {
 
   conclusion = interpretation ? interpretation[LaborFindingLaborValue.STRING_VALUE] : null
 
+
+
 }
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static String mapCategories(String cxxCategory) {
+  switch (cxxCategory) {
+    case "LABOR": return "LAB"
+    case "NURSING": return "NRS"
+    default: return "OTH"
+  }
 }
 

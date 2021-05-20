@@ -35,6 +35,11 @@
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "diagnosticReportCrf",
       "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
+      "transformByTemplate": "observation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
