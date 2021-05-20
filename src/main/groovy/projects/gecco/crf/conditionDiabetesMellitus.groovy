@@ -1,0 +1,105 @@
+package projects.gecco.crf
+
+
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+import de.kairos.fhir.centraxx.metamodel.CrfItem
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+
+//import javax.xml.catalog.Catalog
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
+
+/**
+ * Represented by a CXX StudyVisitItem
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/diabetesmellitus
+ * @author Lukas Reinert, Mike Wähnert
+ * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ *
+ * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
+ *       will be added as additional codings.
+ */
+
+
+condition {
+  final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
+  final def studyVisitStatus = context.source[studyVisitItem().status()]
+  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+    return //no export
+  }
+  final def crfItemDiab = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_DIABETES" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "DiabetesMellitus/" + context.source[studyVisitItem().crf().id()]
+
+    meta {
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diabetes-mellitus"
+    }
+
+    extension {
+      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+      valueCodeableConcept {
+        coding {
+          system = "http://snomed.info/sct"
+          code = "261665006"
+        }
+      }
+    }
+    category {
+      coding {
+        system = "http://snomed.info/sct"
+        code = "408475000"
+      }
+    }
+
+    subject {
+      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+    }
+
+    code {
+      final def ICDcode = matchResponseToICD(crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
+      if (ICDcode) {
+        coding {
+          system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+          version = "2020"
+          code = ICDcode
+        }
+      }
+      final def SNOMEDcode = matchResponseToSNOMED(crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
+      if (SNOMEDcode) {
+        coding {
+          system = "http://snomed.info/sct"
+          code = SNOMEDcode
+        }
+      }
+    }
+
+    recordedDate {
+      recordedDate = crfItemDiab[CrfItem.CREATIONDATE]
+    }
+  }
+}
+
+
+static String matchResponseToICD(final String resp) {
+  switch (resp) {
+    case ("[COV_TYP1]"):
+      return "E10.9"
+    default: null
+  }
+}
+
+static String matchResponseToSNOMED(final String resp) {
+  switch (resp) {
+    case ("[COV_TYP1]"):
+      return "46635009"
+    case ("[COV_TYP2_INSULIN]"):
+      return "237599002"
+    case ("[COV_TYP2_O_INSULIN]"):
+      return "44054006"
+    case ("[COV_TYP3]"):
+      return "8801005"
+    default: null
+  }
+}
