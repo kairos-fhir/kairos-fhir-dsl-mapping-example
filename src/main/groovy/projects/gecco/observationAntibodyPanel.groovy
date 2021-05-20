@@ -1,35 +1,17 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.eclipse.birt.chart.script.api.data.IDateTimeDataElement
-import org.eclipse.birt.chart.util.CDateTime
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.SimpleQuantity
-import org.hl7.fhir.r4.model.StringType
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
  * Represented by a CXX LaborMapping
  * @author Lukas Reinert
- * @since CXX.v.3.18.0
- *
+ * @since CXX.v.3.18.0*
  * Maps the following profile:
  *  - SARS-CoV-2 (COVID-19) Ab panel - Serum or Plasma by Immunoassay
  */
@@ -49,7 +31,7 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category{
+  category {
     coding {
       system = "http://loinc.org"
       code = "26436-6"
@@ -67,11 +49,11 @@ observation {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
   final def episodeID = context.source[laborMapping().episode().id()]
-  if (episodeID){
+  if (episodeID) {
     encounter {
       reference = "Episode/" + episodeID
     }
@@ -86,25 +68,24 @@ observation {
   final def antibodyAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (antibodyAnnotation){
-    note{
+  if (antibodyAnnotation) {
+    note {
       text = antibodyAnnotation[LaborFindingLaborValue.STRING_VALUE]
     }
   }
 
-  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String){
+  if (context.source[laborMapping().mappingType()] == LaborMappingType.SAMPLELABORMAPPING as String) {
     specimen {
       reference = "Specimen/" + context.source[laborMapping().relatedOid()]
     }
   }
 
 
-
   //References to sub-profiles of the panel
   final def abPresence = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_AB_PRESENCE_BY_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (abPresence){
+  if (abPresence) {
     hasMember {
       reference = "AbPresence/" + ID
     }
@@ -112,7 +93,7 @@ observation {
   final def abConcentration = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_AB_CONCENTRATION_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (abConcentration){
+  if (abConcentration) {
     hasMember {
       reference = "AbConcentration/" + ID
     }
@@ -120,7 +101,7 @@ observation {
   final def IgAabPresence = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGA_AB_PRESENCE_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgAabPresence){
+  if (IgAabPresence) {
     hasMember {
       reference = "AbIgAPresence/" + ID
     }
@@ -128,7 +109,7 @@ observation {
   final def IgAabConcentration = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGA_AB_CONCENTRATION_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgAabConcentration){
+  if (IgAabConcentration) {
     hasMember {
       reference = "AbIgAConcentration/" + ID
     }
@@ -136,7 +117,7 @@ observation {
   final def IgGabPresence = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGG_AB_PRESENCE_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgGabPresence){
+  if (IgGabPresence) {
     hasMember {
       reference = "AbIgGPresence/" + ID
     }
@@ -144,7 +125,7 @@ observation {
   final def IgGabConcentration = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGG_AB_CONCENTRATION_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgGabConcentration){
+  if (IgGabConcentration) {
     hasMember {
       reference = "AbIgGConcentration/" + ID
     }
@@ -152,7 +133,7 @@ observation {
   final def IgMabPresence = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGM_AB_PRESENCE_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgMabPresence){
+  if (IgMabPresence) {
     hasMember {
       reference = "AbIgMPresence/" + ID
     }
@@ -160,7 +141,7 @@ observation {
   final def IgMabConcentration = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "COVID_IGM_AB_CONCENTRATION_IMMUNOASSAY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (IgMabConcentration){
+  if (IgMabConcentration) {
     hasMember {
       reference = "AbIgMConcentration/" + ID
     }

@@ -1,19 +1,13 @@
 package projects.gecco.crf
 
-import de.kairos.centraxx.model.service.hl7.hl7messages.helper.dto.CatalogEntryValueDTo
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.Crf
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.jboss.jandex.TypeTarget
 
 //import javax.xml.catalog.Catalog
 
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -30,7 +24,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 condition {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN"){
+  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemLung = context.source[studyVisitItem().crf().items()].find {
@@ -90,8 +84,6 @@ condition {
     }
   }
 }
-
-
 
 
 static String matchResponseToICD(final String resp) {

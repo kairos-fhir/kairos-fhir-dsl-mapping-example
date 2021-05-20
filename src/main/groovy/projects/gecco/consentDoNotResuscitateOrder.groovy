@@ -1,31 +1,14 @@
 package projects.gecco
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.Episode
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueInteger
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
-import org.eclipse.birt.chart.script.api.data.IDateTimeDataElement
-import org.eclipse.birt.chart.util.CDateTime
-import org.hl7.fhir.r4.model.CanonicalType
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.IntegerType
-import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.Patient
-import org.hl7.fhir.r4.model.SimpleQuantity
-import org.hl7.fhir.r4.model.StringType
-
-import javax.persistence.criteria.Root
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
@@ -33,8 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 /**
  * Represented by a CXX LaborMapping
  * @author Lukas Reinert
- * @since CXX.v.3.18.1
- *
+ * @since CXX.v.3.18.1*
  * Maps the following profile:
  *  - Do-Not-Resuscitate Order
  */
@@ -45,25 +27,12 @@ patient {
   context.source[patient().patientContainer().consents()]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   final def lM = context.source[patient().patientContainer().laborMappings() as String].find {
     it[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "SYMPTOMS_COVID19_PROFILE_CODE"
   }
 
-  if (!lM){
-   return // no export
+  if (!lM) {
+    return // no export
   }
 
   id = "SymptomsCovid19/" + lM[LaborMapping.LABOR_FINDING][LaborFinding.ID]
@@ -75,7 +44,7 @@ patient {
   extension {
     url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
     valueCodeableConcept {
-      coding{
+      coding {
         system = "http://snomed.info/sct"
         code = "261665006"
       }
@@ -83,14 +52,13 @@ patient {
   }
 
 
-
   final def clinicStat = lM[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
     "CLINICAL_STATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (clinicStat){
+  if (clinicStat) {
     clinicalStatus {
       clinicStat[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-        coding{
+        coding {
           system = "http://terminology.hl7.org/CodeSystem/condition-clinical"
           code = entry[CatalogEntry.CODE] as String
         }
@@ -101,10 +69,10 @@ patient {
   final def verifStat = lM[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
     "VERIFICATION_STATUS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (verifStat){
+  if (verifStat) {
     verificationStatus {
       verifStat[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-        coding{
+        coding {
           system = "http://snomed.info/sct"
           code = entry[CatalogEntry.CODE] as String
         }
@@ -113,7 +81,7 @@ patient {
   }
 
   category {
-    coding{
+    coding {
       system = "http://loinc.org"
       code = "75325-1"
     }
@@ -122,7 +90,7 @@ patient {
   final def sympSever = lM[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
     "SYMPTOM_SEVERITY_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (sympSever){
+  if (sympSever) {
     sympSever[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
       severity {
         coding {
@@ -136,7 +104,7 @@ patient {
   final def sympCode = lM[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
     "COVID_SYMPTOMS_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (sympCode){
+  if (sympCode) {
     sympCode[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
       code {
         coding {
@@ -147,11 +115,11 @@ patient {
     }
   }
 
-  subject{
+  subject {
     reference = "Patient/" + lM[LaborMapping.RELATED_PATIENT][Patient.IDENTIFIER as String]
   }
   final def episodeID = lM[LaborMapping.EPISODE][Episode.ID]
-  if (episodeID){
+  if (episodeID) {
     encounter {
       reference = "Episode/" + episodeID
     }
@@ -160,7 +128,7 @@ patient {
   final def onsetDate = lM[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
     "ONSET_DATE_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (onsetDate){
+  if (onsetDate) {
     onsetDateTime {
       onsetDateTime = onsetDate[LaborFindingLaborValue.DATE_VALUE]
     }
@@ -170,8 +138,8 @@ patient {
   final def sympAnnotation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     "ANNOTATION_CODE" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
-  if (sympAnnotation){
-    note{
+  if (sympAnnotation) {
+    note {
       text = sympAnnotation[LaborFindingLaborValue.STRING_VALUE]
     }
   }
