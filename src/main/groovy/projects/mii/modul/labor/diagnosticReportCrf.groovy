@@ -2,14 +2,13 @@ package projects.mii.modul.labor
 
 import de.kairos.fhir.centraxx.metamodel.Annotation
 import de.kairos.fhir.centraxx.metamodel.CrfItem
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.DiagnosticReport
 
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 /**
  * Represented by a CXX StudyVisitItem
  * Specified by https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab
+ * This export study crf as DiagnosticReport. The Export of single observations from CentraXX CrfItems is not yet implemented.
  * @author Jonas KÜttner
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
@@ -47,11 +46,10 @@ diagnosticReport {
   code {
     coding {
       system = "urn:centraxx"
-      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()].find { def entry ->
-        "de" == entry[MultilingualEntry.LANG]
-      }?.getAt(MultilingualEntry.VALUE)
+      code = context.source[studyVisitItem().crf().template().name()] as String
+      version = context.source[studyVisitItem().crf().template().version()] as String
     }
+    text = context.source[studyVisitItem().crf().template().description()] as String
   }
 
   subject {
