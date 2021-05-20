@@ -14,6 +14,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 diagnosticReport {
 
+  if (!context.source[studyVisitItem().crf()]){ return }
+
   id = "DiagnosticReport/SVI-" + context.source[studyVisitItem().id()]
 
   meta {
@@ -76,7 +78,6 @@ diagnosticReport {
       comment = annotation[Annotation.VALUE]
     }
   }
-
 }
 
 static String normalizeDate(final String dateTimeString) {
