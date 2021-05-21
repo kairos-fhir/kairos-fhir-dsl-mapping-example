@@ -74,10 +74,10 @@ observation {
     }
   }
 
-  def lfEncounter = context.source[laborFindingLaborValue().laborFinding().laborMappings().episode()]
-  if (encounter) {
+  def episode = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find { it[LaborMapping.EPISODE] != null }
+  if (episode) {
     encounter {
-      reference = "Encounter/" + lfEncounter[Episode.ID] //TODO: does not work
+      reference = "Encounter/" + episode[Episode.ID]
     }
   }
 
@@ -181,8 +181,8 @@ observation {
   method {
     coding {
       system = "urn:centraxx"
-      version = context.source[laborFindingLaborValue().laborFinding().laborMethod().version()] //TODO: null
-      code = context.source[laborFindingLaborValue().laborFinding().laborMethod().code()] as String //TODO: null
+      version = context.source[laborFindingLaborValue().laborFinding().laborMethod().version()]
+      code = context.source[laborFindingLaborValue().laborFinding().laborMethod().code()] as String
     }
   }
 }
