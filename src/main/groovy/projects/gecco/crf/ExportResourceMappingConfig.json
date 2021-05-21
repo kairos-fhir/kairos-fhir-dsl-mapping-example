@@ -30,6 +30,11 @@
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "conditionOrganRecipient",
       "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionDiabetesMellitus",
+      "exportToFhirResource": "Condition"
    }
   ]
 }
