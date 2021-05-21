@@ -16,6 +16,7 @@ medicationStatement {
   id = "MedicationStatement/" + context.source[medication().id()]
 
   meta {
+    source = "urn:centraxx"
     profile("https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationStatement")
   }
 
@@ -33,5 +34,34 @@ medicationStatement {
 
   context_ {
     reference = "Encounter/" + context.source[medication().episode().id()]
+  }
+
+  effectiveDateTime = context.source[medication().trgDate()]
+
+  effectivePeriod {
+    start = context.source[medication().observationBegin()]
+    end = context.source[medication().observationEnd()]
+  }
+
+  dosage {
+    text = context.source[medication().dosisSchema()] as String
+    patientInstruction = context.source[medication().notes()]
+
+    route {
+      coding {
+        system = "urn:centraxx"
+        code = context.source[medication().methodOfApplication()]
+      }
+    }
+
+
+    doseAndRate {
+      doseQuantity {
+        value = context.source[medication().dosis()]
+        system = "http://unitsofmeasure.org"
+        unit = context.source[medication().unit().code()]
+      }
+    }
+
   }
 }
