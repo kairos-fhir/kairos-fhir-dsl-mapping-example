@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  */
 medicationStatement {
 
-  id = "MedicationStatement/" + context.source[medication().id()]
+  id = "MedicationStatementWithAgent/" + context.source[medication().id()]
 
   meta {
     source = "urn:centraxx"
