@@ -12,12 +12,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/chronicliverdiseases
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/chronickidneydiseases
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
- * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
- *       will be added as additional codings.
  */
 
 
@@ -27,14 +25,14 @@ condition {
   if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemLiver = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_LEBERERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemKidney = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_NIERENERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "ChronicLiverDisease/" + context.source[studyVisitItem().crf().id()]
+  if (crfItemKidney[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "ChronicKidneyDisease/" + context.source[studyVisitItem().crf().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-liver-diseases"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-kidney-diseases"
     }
 
     extension {
@@ -49,7 +47,7 @@ condition {
     category {
       coding {
         system = "http://snomed.info/sct"
-        code = "408472002"
+        code = "394589003"
       }
     }
 
@@ -57,8 +55,9 @@ condition {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
+
     code {
-      crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      crfItemKidney[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
         if (ICDcode) {
           coding {
@@ -68,7 +67,7 @@ condition {
           }
         }
       }
-      crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      crfItemKidney[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
           coding {
@@ -78,9 +77,8 @@ condition {
         }
       }
     }
-
     recordedDate {
-      recordedDate = date = normalizeDate(crfItemLiver[CrfItem.CREATIONDATE] as String)
+      recordedDate = crfItemKidney[CrfItem.CREATIONDATE] as String
     }
   }
 }
@@ -88,14 +86,10 @@ condition {
 
 static String matchResponseToICD(final String resp) {
   switch (resp) {
-    case ("COV_FETTLEBER"):
-      return "K76.0"
-    case ("COV_LEBERZIRRHOSE"):
-      return "K74.6"
-    case ("COV_CHRO_HEPATITIS"):
-      return "B18.9"
-    case ("COV_AUTO_LEBER"):
-      return null
+    case ("COV_HAEMODIALYSE"):
+      return "Z99.2"
+    case ("COV_OHNE_HAEMODIALYSE"):
+      return "N18.9"
     case ("COV_UNBEKANNT"):
       return "Unknown"
     default: null
@@ -104,20 +98,12 @@ static String matchResponseToICD(final String resp) {
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("COV_FETTLEBER"):
-      return "197321007"
-    case ("COV_LEBERZIRRHOSE"):
-      return "19943007"
-    case ("COV_CHRO_HEPATITIS"):
-      return "10295004"
-    case ("COV_AUTO_LEBER"):
-      return "235890007"
+    case ("COV_HAEMODIALYSE"):
+      return "709044004"
+    case ("COV_OHNE_HAEMODIALYSE"):
+      return "709044004"
     case ("COV_UNBEKANNT"):
       return "261665006"
     default: null
   }
-}
-
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

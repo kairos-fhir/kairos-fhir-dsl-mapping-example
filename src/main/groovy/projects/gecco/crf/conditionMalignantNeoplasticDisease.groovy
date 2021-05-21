@@ -16,8 +16,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
- * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
- *       will be added as additional codings.
  */
 
 
@@ -58,25 +56,29 @@ condition {
     }
 
     code {
-      final def ICDcode = matchResponseToICD(crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (ICDcode) {
-        coding {
-          system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-          version = "2020"
-          code = ICDcode
+      crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
+        if (ICDcode) {
+          coding {
+            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+            version = "2020"
+            code = ICDcode
+          }
         }
       }
-      final def SNOMEDcode = matchResponseToSNOMED(crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (SNOMEDcode) {
-        coding {
-          system = "http://snomed.info/sct"
-          code = SNOMEDcode
+      crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
+        if (SNOMEDcode) {
+          coding {
+            system = "http://snomed.info/sct"
+            code = SNOMEDcode
+          }
         }
       }
     }
 
     recordedDate {
-      recordedDate = crfItemCancer[CrfItem.CREATIONDATE]
+      date = normalizeDate(crfItemCancer[CrfItem.CREATIONDATE] as String)
     }
   }
 }
@@ -84,11 +86,11 @@ condition {
 
 static String matchResponseToICD(final String resp) {
   switch (resp) {
-    case ("[COV_AKTIV]"):
+    case ("COV_AKTIV"):
       return ""
-    case ("[COV_REMISSION]"):
+    case ("COV_REMISSION"):
       return ""
-    case ("[COV_KEINE_ERKRANKUNG]"):
+    case ("COV_KEINE_ERKRANKUNG"):
       return ""
     default: null
   }
@@ -96,10 +98,14 @@ static String matchResponseToICD(final String resp) {
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("[COV_AKTIV]"):
+    case ("COV_AKTIV"):
       return "363346000"
-    case ("[COV_REMISSION]"):
+    case ("COV_REMISSION"):
       return "363346000"
     default: null
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

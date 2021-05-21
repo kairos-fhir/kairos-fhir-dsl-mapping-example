@@ -16,8 +16,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
- * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
- *       will be added as additional codings.
  */
 
 
@@ -58,19 +56,23 @@ condition {
     }
 
     code {
-      final def ICDcode = matchResponseToICD(crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (ICDcode) {
-        coding {
-          system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-          version = "2020"
-          code = ICDcode
+      crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
+        if (ICDcode) {
+          coding {
+            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+            version = "2020"
+            code = ICDcode
+          }
         }
       }
-      final def SNOMEDcode = matchResponseToSNOMED(crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (SNOMEDcode) {
-        coding {
-          system = "http://snomed.info/sct"
-          code = SNOMEDcode
+      crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def SNOMEDcode =  matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
+        if (SNOMEDcode) {
+          coding {
+            system = "http://snomed.info/sct"
+            code = SNOMEDcode
+          }
         }
       }
     }
@@ -84,7 +86,7 @@ condition {
 
 static String matchResponseToICD(final String resp) {
   switch (resp) {
-    case ("[COV_TYP1]"):
+    case ("COV_TYP1"):
       return "E10.9"
     default: null
   }
@@ -92,13 +94,13 @@ static String matchResponseToICD(final String resp) {
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("[COV_TYP1]"):
+    case ("COV_TYP1"):
       return "46635009"
-    case ("[COV_TYP2_INSULIN]"):
+    case ("COV_TYP2_INSULIN"):
       return "237599002"
-    case ("[COV_TYP2_O_INSULIN]"):
+    case ("COV_TYP2_O_INSULIN"):
       return "44054006"
-    case ("[COV_TYP3]"):
+    case ("COV_TYP3"):
       return "8801005"
     default: null
   }

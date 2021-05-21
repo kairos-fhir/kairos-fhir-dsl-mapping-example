@@ -35,6 +35,46 @@
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "conditionDiabetesMellitus",
       "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionMalignantNeoplasticDisease",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionNeuroDisease",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionChronicKidneyDisease",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionGastrointestinalUlcers",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationSmokingStatus",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureRespiratoryTherapies",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationHistoryOfTravel",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "immunizationHistoryOfVaccination",
+      "exportToFhirResource": "Immunization"
    }
   ]
 }

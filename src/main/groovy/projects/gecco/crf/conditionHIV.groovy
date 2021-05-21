@@ -14,8 +14,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
- * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
- *       will be added as additional codings.
  */
 
 
@@ -56,24 +54,28 @@ condition {
     }
 
     code {
-      final def ICDcode = matchResponseToICD(crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (ICDcode) {
-        coding {
-          system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-          version = "2020"
-          code = ICDcode
+      crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
+        if (ICDcode) {
+          coding {
+            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+            version = "2020"
+            code = ICDcode
+          }
         }
       }
-      final def SNOMEDcode = matchResponseToSNOMED(crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
-      if (SNOMEDcode) {
-        coding {
-          system = "http://snomed.info/sct"
-          code = SNOMEDcode
+      crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
+        if (SNOMEDcode) {
+          coding {
+            system = "http://snomed.info/sct"
+            code = SNOMEDcode
+          }
         }
       }
     }
     recordedDate {
-      recordedDate = crfItemHIV[CrfItem.CREATIONDATE]
+      date = normalizeDate(crfItemHIV[CrfItem.CREATIONDATE] as String)
     }
   }
 }
@@ -83,9 +85,9 @@ static String matchResponseToICD(final String resp) {
   switch (resp) {
     case ("COV_NEIN"):
       return null
-    case ("[COV_JA]"):
+    case ("COV_JA"):
       return "B24"
-    case ("[COV_NA]"):
+    case ("COV_NA"):
       return "Unknown"
     default: null
   }
@@ -95,10 +97,14 @@ static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_NEIN"):
       return null
-    case ("[COV_JA]"):
+    case ("COV_JA"):
       return "86406008"
-    case ("[COV_NA]"):
+    case ("COV_NA"):
       return "261665006"
     default: null
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

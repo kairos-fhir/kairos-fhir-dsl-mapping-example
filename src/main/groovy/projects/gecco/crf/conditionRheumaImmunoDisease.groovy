@@ -84,7 +84,7 @@ condition {
     }
 
     recordedDate {
-      recordedDate = crfItemRheu[CrfItem.CREATIONDATE]
+      date = normalizeDate(crfItemRheu[CrfItem.CREATIONDATE] as String)
     }
   }
 }
@@ -118,4 +118,8 @@ static String matchResponseToSNOMED(final String resp) {
       return "261665006"
     default: null
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
