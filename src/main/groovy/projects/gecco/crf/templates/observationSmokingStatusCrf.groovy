@@ -1,4 +1,4 @@
-package projects.gecco.crf
+package projects.gecco.crf.templates
 
 
 import de.kairos.fhir.centraxx.metamodel.CrfItem

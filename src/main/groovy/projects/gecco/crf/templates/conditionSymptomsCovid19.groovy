@@ -1,4 +1,4 @@
-package projects.gecco.crf
+package projects.gecco.crf.templates
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem

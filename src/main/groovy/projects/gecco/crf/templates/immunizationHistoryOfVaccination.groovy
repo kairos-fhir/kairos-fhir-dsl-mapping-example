@@ -1,4 +1,4 @@
-package projects.gecco.crf
+package projects.gecco.crf.templates
 
 import org.hl7.fhir.r4.model.Immunization
 

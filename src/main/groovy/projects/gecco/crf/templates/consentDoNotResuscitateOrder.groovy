@@ -1,4 +1,4 @@
-package projects.gecco.crf
+package projects.gecco.crf.templates
 
 
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
@@ -7,7 +7,7 @@ import org.hl7.fhir.r4.model.Consent
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a CXX Consent
  * Specified by https://simplifier.net/forschungsnetzcovid-19/donotresuscitateorder
  * @author Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
