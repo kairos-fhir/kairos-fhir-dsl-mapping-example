@@ -7,9 +7,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 /**
  * Represented by a CXX Medication
  * Specified by https://simplifier.net/medizininformatikinitiative-modulmedikation/medicationstatement-duplicate-3
- * @author Mike Wähnert
+ * The specification of the coding used in CXX is unknown. Thus, the use of specific code systems must be integrated
+ * depending on the standard that might be used in a customer CXX.
+ * @author Mike Wähnert, Jonas Küttner
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
- * TODO: work in progress
  */
 medicationStatement {
 
