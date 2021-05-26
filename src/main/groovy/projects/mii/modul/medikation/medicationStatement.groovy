@@ -40,8 +40,8 @@ medicationStatement {
   effectiveDateTime = context.source[medication().trgDate()]
 
   effectivePeriod {
-    start = context.source[medication().observationBegin()]
-    end = context.source[medication().observationEnd()]
+    start = context.source[medication().observationBegin().date()]
+    end = context.source[medication().observationEnd().date()]
   }
 
   dosage {

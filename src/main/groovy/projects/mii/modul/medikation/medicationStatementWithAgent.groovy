@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  */
 medicationStatement {
 
-  id = "MedicationStatementWithAgent/" + context.source[medication().id()]
+  id = "MedicationStatement/WithAgent-" + context.source[medication().id()]
 
   meta {
     source = "urn:centraxx"
@@ -45,8 +45,8 @@ medicationStatement {
   effectiveDateTime = context.source[medication().trgDate()]
 
   effectivePeriod {
-    start = context.source[medication().observationBegin()]
-    end = context.source[medication().observationEnd()]
+    start = context.source[medication().observationBegin().date()]
+    end = context.source[medication().observationEnd().date()]
   }
 
   dosage {
