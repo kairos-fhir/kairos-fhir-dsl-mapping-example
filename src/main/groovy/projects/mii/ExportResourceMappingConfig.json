@@ -40,6 +40,21 @@
       "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medication",
+      "exportToFhirResource": "Medication"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationStatement",
+      "exportToFhirResource": "MedicationStatement"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationStatementWithAgent",
+      "exportToFhirResource": "MedicationStatement"
     }
-  ]
+    ]
 }
