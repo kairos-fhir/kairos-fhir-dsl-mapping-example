@@ -1,11 +1,9 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -25,6 +23,9 @@ condition {
   }
   final def crfItemHIV = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_HIV" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemHIV){
+    return
   }
   if (crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "HIV/" + context.source[studyVisitItem().crf().id()]

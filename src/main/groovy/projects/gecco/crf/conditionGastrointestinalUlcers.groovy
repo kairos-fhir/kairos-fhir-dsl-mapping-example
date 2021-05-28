@@ -1,11 +1,9 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -25,6 +23,9 @@ condition {
   }
   final def crfItemUlcer = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_MAGENGESCHWUERE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemUlcer){
+    return //no export
   }
   if (crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "GastrointestinalUlcers/" + context.source[studyVisitItem().crf().id()]
@@ -76,7 +77,7 @@ condition {
       }
     }
     recordedDate {
-      date = normalizeDate(crfItemUlcers[CrfItem.CREATIONDATE] as String)
+      date = normalizeDate(crfItemUlcer[CrfItem.CREATIONDATE] as String)
     }
   }
 }

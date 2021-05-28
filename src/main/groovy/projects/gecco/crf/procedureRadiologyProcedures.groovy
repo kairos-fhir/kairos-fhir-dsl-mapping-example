@@ -4,11 +4,12 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/respiratorytherapies-procedure
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/radiologyprocedures
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
@@ -17,20 +18,21 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 procedure {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "BILDGEBUNG" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemRespThera = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_SAUERSTOFFTHERAPIE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemRadProc = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_BILD_LUNGE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemRespThera){
+  if (!crfItemRadProc){
     return
   }
-  if (crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "RespiratoryTherapies/" + context.source[studyVisitItem().id()]
+
+  if (crfItemRadProc[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "RadiologyProcedures/" + context.source[studyVisitItem().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/radiology-procedures"
     }
 
     status = "unknown"
@@ -38,21 +40,12 @@ procedure {
     category {
       coding{
         system = "http://snomed.info/sct"
-        code = "277132007"
+        code = "103693007"
       }
     }
 
     code {
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def LOINCcode = matchResponseToLOINC(item[CatalogEntry.CODE] as String)
-        if (LOINCcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/ops"
-            code = LOINCcode
-          }
-        }
-      }
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      crfItemRadProc[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
           coding {
@@ -69,6 +62,12 @@ procedure {
     performedDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
     }
+    bodySite {
+      coding{
+        system = "http://snomed.info/sct"
+        code = "39607008"
+      }
+    }
   }
 }
 
@@ -77,22 +76,15 @@ static String normalizeDate(final String dateTimeString) {
 }
 
 
-static String matchResponseToLOINC(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "8-70" // ????
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
-    default: null
-  }
-}
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("COV_JA"):
-      return "53950000"
-    case ("COV_UNBEKANNT"):
-      return "261665006"
+    case ("COV_CT"):
+      return "77477000"
+    case ("COV_ROENTGEN"):
+      return "168537006"
+    case ("COV_US"):
+      return "16310003"
     default: null
   }
 }

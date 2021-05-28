@@ -75,6 +75,141 @@
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "immunizationHistoryOfVaccination",
       "exportToFhirResource": "Immunization"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "consentDoNotResuscitateOrder",
+      "exportToFhirResource": "Consent"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureRadiologyProcedures",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "diagnosticReportRadiology",
+      "exportToFhirResource": "DiagnosticReport"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationPregnancyStatus",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "patientFromFile",
+      "exportToFhirResource": "Patient"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "patientFromCRF",
+      "exportToFhirResource": "Patient"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationSexAssignedAtBirth",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationFrailtyScore",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationBodyWeight",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationBodyHeight",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationKnownExposure",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionComplicationsOfCovid19",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionStageAtDiagnosis",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "medicationStatementPharmacologicalTherapy",
+      "exportToFhirResource": "MedicationStatement"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "medicationStatementACEHemmer",
+      "exportToFhirResource": "MedicationStatement"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "medicationStatementImmunoglobulins",
+      "exportToFhirResource": "MedicationStatement"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "medicationStatementAnticoagulants",
+      "exportToFhirResource": "MedicationStatement"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionDependenceOnVentilator",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationSarsCov2RT_PCR",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationStudyInclusionDueToCovid19",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureDialyseHaemofiltration",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureApharesis",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedurePronePosition",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureECMO",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationPatientInICU",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "procedureVentilationType",
+      "exportToFhirResource": "Procedure"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid",
+      "exportToFhirResource": "Condition"
    }
   ]
 }

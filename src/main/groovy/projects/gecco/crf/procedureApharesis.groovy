@@ -8,7 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/respiratorytherapies-procedure
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/apheresis-procedure
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
@@ -17,20 +17,20 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 procedure {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "MEDIKATION" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemRespThera = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_SAUERSTOFFTHERAPIE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemRespAphe = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_APHERESE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemRespThera){
+  if (!crfItemRespAphe){
     return
   }
-  if (crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "RespiratoryTherapies/" + context.source[studyVisitItem().id()]
+  if (crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "Apheresis/" + context.source[studyVisitItem().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/apheresis"
     }
 
     status = "unknown"
@@ -43,16 +43,16 @@ procedure {
     }
 
     code {
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def LOINCcode = matchResponseToLOINC(item[CatalogEntry.CODE] as String)
-        if (LOINCcode) {
+      crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def OPScode = matchResponseToOPS(item[CatalogEntry.CODE] as String)
+        if (OPScode) {
           coding {
             system = "http://fhir.de/CodeSystem/dimdi/ops"
-            code = LOINCcode
+            code = OPScode
           }
         }
       }
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
           coding {
@@ -77,12 +77,10 @@ static String normalizeDate(final String dateTimeString) {
 }
 
 
-static String matchResponseToLOINC(final String resp) {
+static String matchResponseToOPS(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "8-70" // ????
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
+      return "8-82"
     default: null
   }
 }
@@ -90,9 +88,7 @@ static String matchResponseToLOINC(final String resp) {
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "53950000"
-    case ("COV_UNBEKANNT"):
-      return "261665006"
+      return "127788007"
     default: null
   }
 }

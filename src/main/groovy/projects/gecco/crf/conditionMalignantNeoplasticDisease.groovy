@@ -1,12 +1,10 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
-//import javax.xml.catalog.Catalog
+import org.hl7.fhir.r4.model.CodeableConcept
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
@@ -27,6 +25,9 @@ condition {
   }
   final def crfItemCancer = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_TUMORERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemCancer){
+    return
   }
   if (crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "MalignantNeoplasticDisease/" + context.source[studyVisitItem().crf().id()]
@@ -105,6 +106,13 @@ static String matchResponseToSNOMED(final String resp) {
     default: null
   }
 }
+
+
+
+
+
+
+
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null

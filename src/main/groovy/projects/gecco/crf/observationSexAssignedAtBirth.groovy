@@ -12,8 +12,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/historyoftravel
- * @author Mike Wähnert
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/sexassignedatbirth
+ * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  * hints:
@@ -23,20 +23,20 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 observation {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemTravel = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_REISE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemGen = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemTravel){
+  if (!crfItemGen){
     return
   }
-  if (crfItemTravel[CrfItem.STRING_VALUE]) {
-    id = "HistoryOfTravel/" + context.source[studyVisitItem().id()]
+  if (crfItemGen[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "SexAssignedAtBirth/" + context.source[studyVisitItem().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/history-of-travel"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sex-assigned-at-birth"
     }
 
     status = Observation.ObservationStatus.UNKNOWN
@@ -47,10 +47,11 @@ observation {
         code = "social-history"
       }
     }
+
     code {
       coding {
         system = "http://loinc.org"
-        code = "8691-8"
+        code = "76689-9"
       }
     }
 
@@ -58,16 +59,22 @@ observation {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
-    effectiveDateTime {
-      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-    }
-
-    final def SNOMEDcode = mapTravel(crfItemTravel[CrfItem.STRING_VALUE] as String)
-    if (SNOMEDcode) {
-      valueCodeableConcept {
-        coding{
-          code = SNOMEDcode
-          system = "http://snomed.info/sct"
+    valueCodeableConcept {
+      crfItemGen[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def LOINCcode = mapGender(item[CatalogEntry.CODE] as String)
+        if (LOINCcode) {
+          if (["male", "female", "unknown"].contains(LOINCcode)){
+            coding{
+              system = "http://hl7.org/fhir/administrative-gender"
+              code = LOINCcode
+            }
+          }
+          else if (["x", "D"].contains(LOINCcode)){
+            coding{
+              system = "http://fhir.de/CodeSystem/gender-amtlich-de"
+              code = LOINCcode
+            }
+          }
         }
       }
     }
@@ -79,19 +86,17 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapTravel(final String travel) {
-  switch (travel) {
-    case "Ja":
-      return "373066001"
-    case "Nein":
-      return "373067005"
-    case "Unbekannt":
-      return "261665006"
-    case "Andere":
-      return "74964007"
-    case "Nicht anwendbar":
-      return "385432009"
+static String mapGender(final String gender) {
+  switch (gender) {
+    case "COV_MAENNLICH":
+      return "male"
+    case "COV_WEIBLICH":
+      return "female"
+    case "COV_KEINE_ANGABE":
+      return "X"
+    case "COV_DIVERS":
+      return "D"
     default:
-      return null
+      return "X"
   }
 }

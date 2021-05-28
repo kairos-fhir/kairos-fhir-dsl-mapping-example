@@ -6,10 +6,6 @@ import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.Consent
-
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -27,9 +23,11 @@ consent {
   final def crfItemDNR = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_DNR_STATUS" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  
+  if (!crfItemDNR){
+    return //no export
+  }
   if (crfItemDNR[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "DoNotResucitateOrder/" + context.source[consent().id()]
+    id = "DoNotResucitateOrder/" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile("https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/do-not-resuscitate-order")
@@ -56,31 +54,10 @@ consent {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
-    performer {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
-    }
-
     provision {
 
       type = Consent.ConsentProvisionType.PERMIT
-/*
-      def validFrom = context.source[consent().validFrom()]
-      if (validFrom) {
-        period {
-          start {
-            date = validFrom[PrecisionDate.DATE]
-          }
 
-          def validUntil = context.source[consent().validUntil()]
-          if (validUntil) {
-            end {
-              date = validUntil[PrecisionDate.DATE]
-            }
-          }
-        }
-      }
-
- */
       code {
         crfItemDNR[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
           final def DNRcode = mapDNR(item[CatalogEntry.CODE] as String)

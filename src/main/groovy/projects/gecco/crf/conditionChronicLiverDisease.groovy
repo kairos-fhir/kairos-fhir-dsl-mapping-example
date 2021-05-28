@@ -80,7 +80,7 @@ condition {
     }
 
     recordedDate {
-      recordedDate = date = normalizeDate(crfItemLiver[CrfItem.CREATIONDATE] as String)
+      date = normalizeDate(crfItemLiver[CrfItem.CREATIONDATE] as String)
     }
   }
 }

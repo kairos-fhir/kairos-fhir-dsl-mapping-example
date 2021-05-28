@@ -1,13 +1,9 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
-//import javax.xml.catalog.Catalog
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -27,6 +23,9 @@ condition {
   }
   final def crfItemDiab = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_DIABETES" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemDiab){
+    return //no export
   }
   if (crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "DiabetesMellitus/" + context.source[studyVisitItem().crf().id()]

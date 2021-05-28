@@ -1,13 +1,9 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
-//import javax.xml.catalog.Catalog
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -29,6 +25,9 @@ condition {
   }
   final def crfItemRheu = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_IMMONOLOGISCHE_ERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemRheu){
+    return
   }
   if (crfItemRheu[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "RheumatologicImmunologicDisease/" + context.source[studyVisitItem().crf().id()]

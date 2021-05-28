@@ -8,35 +8,35 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/historyoftravel
- * @author Mike Wähnert
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/bodyheight
+ * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemTravel = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_REISE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemHeight = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_GROESSE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemTravel){
+  if (!crfItemHeight){
     return
   }
-  if (crfItemTravel[CrfItem.STRING_VALUE]) {
-    id = "HistoryOfTravel/" + context.source[studyVisitItem().id()]
+  if (crfItemHeight[CrfItem.NUMERIC_VALUE]) {
+    id = "BodyHeight/" + context.source[studyVisitItem().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/history-of-travel"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/body-height"
     }
 
     status = Observation.ObservationStatus.UNKNOWN
@@ -44,13 +44,18 @@ observation {
     category{
       coding{
         system = "http://terminology.hl7.org/CodeSystem/observation-category"
-        code = "social-history"
+        code = "vital-signs"
       }
     }
+
     code {
       coding {
         system = "http://loinc.org"
-        code = "8691-8"
+        code = "8302-2"
+      }
+      coding {
+        system = "http://snomed.info/sct"
+        code = "248334005"
       }
     }
 
@@ -62,12 +67,16 @@ observation {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
     }
 
-    final def SNOMEDcode = mapTravel(crfItemTravel[CrfItem.STRING_VALUE] as String)
-    if (SNOMEDcode) {
-      valueCodeableConcept {
-        coding{
-          code = SNOMEDcode
-          system = "http://snomed.info/sct"
+
+
+
+    crfItemHeight[CrfItem.NUMERIC_VALUE]?.each { final item ->
+      if (item) {
+        valueQuantity {
+          value = item
+          unit = "[cm]"
+          system = "http://unitsofmeasure.org"
+          code = "cm"
         }
       }
     }
@@ -79,19 +88,4 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapTravel(final String travel) {
-  switch (travel) {
-    case "Ja":
-      return "373066001"
-    case "Nein":
-      return "373067005"
-    case "Unbekannt":
-      return "261665006"
-    case "Andere":
-      return "74964007"
-    case "Nicht anwendbar":
-      return "385432009"
-    default:
-      return null
-  }
-}
+

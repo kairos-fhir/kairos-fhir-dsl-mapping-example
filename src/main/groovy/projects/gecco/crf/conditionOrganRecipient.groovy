@@ -1,13 +1,9 @@
 package projects.gecco.crf
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-
-//import javax.xml.catalog.Catalog
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -29,6 +25,9 @@ condition {
   }
   final def crfItemOrgan = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ORGANTRANSPLANIERT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  }
+  if (!crfItemOrgan){
+    return
   }
   if (crfItemOrgan[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "HistoryOfOrganTransplant/" + context.source[studyVisitItem().crf().id()]
@@ -102,20 +101,12 @@ static String matchResponseToICD(final String resp) {
       return "Z94.5"
     case ("COV_HORNHAUT"):
       return "Z94.7"
-    case ("COV_GEHOERKNOECHELCHEN"):
-      return ""
     case ("COV_HERZKLAPPEN"):
       return "Z95.5"
     case ("COV_BLUTGEFAESSE"):
       return "Z95.88"
-    case ("COV_HIRNHAUT"):
-      return ""
     case ("COV_KNOCHENGEWEBE"):
       return "Z94.6"
-    case ("COV_KNORPELGEWEBE"):
-      return ""
-    case ("COV_SEHNE"):
-      return ""
     default: null
   }
 }
@@ -123,33 +114,37 @@ static String matchResponseToICD(final String resp) {
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_HERZ"):
-      return ""
+      return "302509004"
     case ("COV_LUNGE"):
-      return ""
+      return "181216001"
     case ("COV_LEBER"):
-      return ""
+      return "181268008"
     case ("COV_NIEREN"):
-      return ""
+      return "181414000"
     case ("COV_DARM"):
-      return ""
+      return "181254001"
     case ("COV_HAUT"):
-      return ""
+      return "119181002"
     case ("COV_HORNHAUT"):
-      return ""
+      return "181162001"
     case ("COV_GEHOERKNOECHELCHEN"):
-      return ""
+      return "41845008"
     case ("COV_HERZKLAPPEN"):
-      return ""
+      return "181285005"
     case ("COV_BLUTGEFAESSE"):
-      return ""
+      return "119206002"
     case ("COV_HIRNHAUT"):
-      return ""
+      return "8935007"
     case ("COV_KNOCHENGEWEBE"):
-      return ""
+      return "3138006"
     case ("COV_KNORPELGEWEBE"):
-      return ""
+      return "309312004"
     case ("COV_SEHNE"):
-      return ""
+      return "13024002"
+    case ("COV_NEIN"):
+      return "410594000"
+    case ("COV_UNBEKANNT"):
+      return "261665006"
     default: null
   }
 }

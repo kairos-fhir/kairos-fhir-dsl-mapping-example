@@ -17,17 +17,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 procedure {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "THERAPIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemRespThera = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_SAUERSTOFFTHERAPIE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_BEATMUNGSTYP" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (!crfItemRespThera){
     return
   }
   if (crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "RespiratoryTherapies/" + context.source[studyVisitItem().id()]
+    id = "VentilationType/" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
@@ -43,15 +43,6 @@ procedure {
     }
 
     code {
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def LOINCcode = matchResponseToLOINC(item[CatalogEntry.CODE] as String)
-        if (LOINCcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/ops"
-            code = LOINCcode
-          }
-        }
-      }
       crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
@@ -76,23 +67,18 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-
-static String matchResponseToLOINC(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "8-70" // ????
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
-    default: null
-  }
-}
-
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("COV_JA"):
-      return "53950000"
-    case ("COV_UNBEKANNT"):
-      return "261665006"
+    case ("COV_NEIN"):
+      return "not-performed"
+    case ("COV_NHFST"):
+      return "371907003:425391005=426854004"
+    case ("COV_NIB"):
+      return "428311008"
+    case ("COV_INVASIVE_BEATMUNG"):
+      return "40617009:425391005=26412008"
+    case ("COV_TRACHEOTOMIE"):
+      return "40617009:425391005=129121000"
     default: null
   }
 }

@@ -8,49 +8,52 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/historyoftravel
- * @author Mike Wähnert
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/dischargedisposition
+ * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 
+
 observation {
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemTravel = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_REISE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemDisc = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_ENTLASSUNGSART" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemTravel){
+  if (!crfItemDisc){
     return
   }
-  if (crfItemTravel[CrfItem.STRING_VALUE]) {
-    id = "HistoryOfTravel/" + context.source[studyVisitItem().id()]
+  if (crfItemDisc[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+    id = "DischargeDisposition/" + context.source[studyVisitItem().id()]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/history-of-travel"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/discharge-disposition"
     }
 
     status = Observation.ObservationStatus.UNKNOWN
 
-    category{
-      coding{
+    category {
+      coding {
         system = "http://terminology.hl7.org/CodeSystem/observation-category"
         code = "social-history"
       }
     }
+
     code {
       coding {
         system = "http://loinc.org"
-        code = "8691-8"
+        code = "55128-3"
       }
     }
 
@@ -62,12 +65,14 @@ observation {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
     }
 
-    final def SNOMEDcode = mapTravel(crfItemTravel[CrfItem.STRING_VALUE] as String)
-    if (SNOMEDcode) {
-      valueCodeableConcept {
-        coding{
-          code = SNOMEDcode
-          system = "http://snomed.info/sct"
+    valueCodeableConcept {
+      crfItemDisc[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def SNOMEDcode = mapDiscSNOMED(item[CatalogEntry.CODE] as String)
+        if (SNOMEDcode) {
+          coding {
+            system = "http://snomed.info/sct"
+            code = SNOMEDcode
+          }
         }
       }
     }
@@ -79,19 +84,22 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapTravel(final String travel) {
-  switch (travel) {
-    case "Ja":
-      return "373066001"
-    case "Nein":
-      return "373067005"
-    case "Unbekannt":
-      return "261665006"
-    case "Andere":
-      return "74964007"
-    case "Nicht anwendbar":
-      return "385432009"
+
+static String mapDiscSNOMED(final String discharge) {
+  switch (discharge) {
     default:
       return null
+    case "COV_LEBEND":
+      return "371827001"
+    case "COV_KRANKENHAUSEINWEISUNG":
+      return "32485007"
+    case "COV_UEBERWEISUNG":
+      return "3457005"
+    case "COV_TOD":
+      return "419099009"
+    case "COV_PALLIATIV":
+      return "306237005"
+    case "COV_UNBEKANNT":
+      return "261665006"
   }
 }

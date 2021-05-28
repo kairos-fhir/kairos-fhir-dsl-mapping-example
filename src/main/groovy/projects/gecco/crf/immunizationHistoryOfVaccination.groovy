@@ -23,6 +23,9 @@ immunization {
   final def crfItemVaccine = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_IMPFUNGEN" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
+  if (!crfItemVaccine){
+    return //no export
+  }
   if (crfItemVaccine[CrfItem.CATALOG_ENTRY_VALUE] != []) {
 
     id = "HistoryOfVaccination" + context.source[studyVisitItem().id()]
@@ -62,7 +65,6 @@ immunization {
     occurrenceDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
     }
-
   }
 }
 
@@ -77,7 +79,7 @@ static String matchResponseToATC(final String resp) {
     case ("COV_COVID19"):
       return ""
     case ("COV_UMG_UNBEKANNT"):
-      return "261665006"
+      return ""
     default: null
   }
 }
@@ -85,15 +87,15 @@ static String matchResponseToATC(final String resp) {
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_INFLUENZA"):
-      return "871895005"
+      return "6142004"
     case ("COV_PNEUMOKOKKEN"):
-      return "836398006+836380007"
+      return "16814004"
     case ("COV_BCG"):
-      return "J07AN"
+      return "56717001"
     case ("COV_COVID19"):
-      return "J07BX03"
+      return "840539006"
     case ("COV_UMG_UNBEKANNT"):
-      return "Unknown"
+      return "no-immunization-info"
     default: null
   }
 }
