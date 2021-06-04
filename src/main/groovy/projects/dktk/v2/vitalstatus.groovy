@@ -48,7 +48,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = normalizeDate(context.source[patientMasterDataAnonymous().creationDate()] as String)
+    date = normalizeDate(context.source[patientMasterDataAnonymous().patientContainer().creationDate()] as String)
   }
 
   valueCodeableConcept {
