@@ -1,11 +1,14 @@
 package projects.mii.modul.biobanking
 
+import de.kairos.fhir.centraxx.metamodel.AbstractIdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.SampleLocation
 import org.hl7.fhir.r4.model.Specimen
 
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX SAMPLE
  * Codings are custumized in CXX. Therefore, the code system is unknown. In this example the usage of snomed-ct is assumed to be used.
@@ -21,24 +24,45 @@ specimen {
     profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ProfileSpecimenBioprobe"
   }
 
-  extension {
-    url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionDiagnose"
-    valueReference {
-      reference = "Diagnosis/" + context.source[sample().diagnosis().id()]
+  if (context.source[abstractSample().episode()]) {
+    extension {
+      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionDiagnose"
+      valueReference {
+        reference = "Diagnosis/" + context.source[sample().episode().id()]
+      }
     }
   }
 
-  extension {
-    url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionVerwaltendeOrganisation"
-    valueReference {
-      reference = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
+  if (context.source[sample().organisationUnit()]) {
+    extension {
+      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionVerwaltendeOrganisation"
+      valueReference {
+        reference = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
+      }
     }
   }
 
-  // Specimen status is customized in CXX. Exact meaning depends on implementation in CXX.
-  if (context.source[sample().sampleStatus()]) {
-    status = Specimen.SpecimenStatus.NULL
+
+  context.source[sample().idContainer()].find { final def idObj ->
+    identifier {
+      type {
+        coding {
+          system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+          code = "FILL"
+        }
+        coding {
+          system = "urn:centraxx"
+          code = idObj[AbstractIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+          display = idObj[AbstractIdContainer.ID_CONTAINER_TYPE][IdContainerType.NAME] as String
+        }
+      }
+      value = idObj[AbstractIdContainer.PSN]
+    }
   }
+
+  // Specimen status is customized in CXX. Exact meaning depends on implementation in CXX. Here, it is assumed that the codes of the codesystem
+  // are implemented in CXX.
+  status = mapSpecimenStatus(context.source[sample().sampleStatus().code()] as String)
 
   if (context.source[sample().sampleType()]) {
     type {
@@ -62,7 +86,7 @@ specimen {
   }
 
   receivedTime {
-    date = context.source[sample().receiptDate().date()]
+    date = context.source[sample().receiptDate()]?.getAt(PrecisionDate.DATE)
   }
 
   if (context.source[sample().parent()]) {
@@ -124,11 +148,20 @@ specimen {
         unit = context.source[sample().restAmount().unit()]
       }
     }
+  }
 
-    note {
-      text = context.source[sample().note()] as String
-    }
+  note {
+    text = context.source[sample().note()] as String
+  }
+}
 
+static Specimen.SpecimenStatus mapSpecimenStatus(final String specimenStatus){
+  switch (specimenStatus){
+    case "available" : return Specimen.SpecimenStatus.AVAILABLE
+    case "unavailable" : return Specimen.SpecimenStatus.UNAVAILABLE
+    case "unsatisfactory": return Specimen.SpecimenStatus.UNSATISFACTORY
+    case "entered-in-error": return Specimen.SpecimenStatus.ENTEREDINERROR
+    default: return Specimen.SpecimenStatus.NULL
   }
 }
 
