@@ -21,9 +21,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 
 observation {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemGen = context.source[studyVisitItem().crf().items()].find {
@@ -96,7 +100,9 @@ static String mapGender(final String gender) {
       return "X"
     case "COV_DIVERS":
       return "D"
+    case "COV_UNBEKANNT":
+      return "unknown"
     default:
-      return "X"
+      return "unknown"
   }
 }

@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -18,9 +19,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 condition {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemRheu = context.source[studyVisitItem().crf().items()].find {
@@ -84,6 +89,7 @@ condition {
 
     recordedDate {
       date = normalizeDate(crfItemRheu[CrfItem.CREATIONDATE] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 }
@@ -115,6 +121,8 @@ static String matchResponseToSNOMED(final String resp) {
       return "31996006"
     case ("COV_UNBEKANNT"):
       return "261665006"
+    case ("COV_NEIN"):
+      return "410594000"
     default: null
   }
 }

@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -23,9 +24,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 observation {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemDisc = context.source[studyVisitItem().crf().items()].find {
@@ -63,6 +68,7 @@ observation {
 
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.SECOND.toString()
     }
 
     valueCodeableConcept {

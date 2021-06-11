@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -15,9 +16,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 procedure {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "MEDIKATION" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_THERAPIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemRespAphe = context.source[studyVisitItem().crf().items()].find {
@@ -33,7 +38,12 @@ procedure {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/apheresis"
     }
 
-    status = "unknown"
+    crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+      if (STATUScode) {
+        status = STATUScode
+      }
+    }
 
     category {
       coding{
@@ -43,24 +53,16 @@ procedure {
     }
 
     code {
-      crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def OPScode = matchResponseToOPS(item[CatalogEntry.CODE] as String)
-        if (OPScode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/ops"
-            code = OPScode
-          }
-        }
+      coding {
+        system = "http://fhir.de/CodeSystem/dimdi/ops"
+        code = "8-82"
       }
-      crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
-          }
-        }
+      coding {
+        system = "http://snomed.info/sct"
+        code = "127788007"
+        display = "Apheresis (procedure)"
       }
+
     }
     subject {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
@@ -68,6 +70,7 @@ procedure {
 
     performedDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 }
@@ -77,18 +80,14 @@ static String normalizeDate(final String dateTimeString) {
 }
 
 
-static String matchResponseToOPS(final String resp) {
+static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "8-82"
-    default: null
-  }
-}
-
-static String matchResponseToSNOMED(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "127788007"
+      return "in-progress"
+    case ("COV_NEIN"):
+      return "not-done"
+    case ("COV_UNBEKANNT"):
+      return "unknown"
     default: null
   }
 }

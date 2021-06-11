@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -21,9 +22,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 observation {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemHeight = context.source[studyVisitItem().crf().items()].find {
@@ -65,6 +70,7 @@ observation {
 
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
 
 
@@ -74,7 +80,7 @@ observation {
       if (item) {
         valueQuantity {
           value = item
-          unit = "[cm]"
+          unit = "centimeter"
           system = "http://unitsofmeasure.org"
           code = "cm"
         }

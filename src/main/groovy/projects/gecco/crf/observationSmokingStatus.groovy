@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -19,14 +20,19 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
+
 observation {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemSmoke = context.source[studyVisitItem().crf().items()].find {
-    "COV_UMG_AMBU_RAUCHSTATUS" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_covid19f-dataelement-1240" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (!crfItemSmoke){
     return //no export
@@ -53,15 +59,17 @@ observation {
 
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
 
 
     crfItemSmoke[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-      final def ICDcode = mapSmokingStatus(item[CatalogEntry.CODE] as String)
-      if (ICDcode) {
+      final def LOINCcode = mapSmokingStatus(item[CatalogEntry.CODE] as String)
+      if (LOINCcode) {
         valueCodeableConcept {
           coding{
-            code = ICDcode
+            system = "http://loinc.org"
+            code = LOINCcode
           }
         }
       }
@@ -78,10 +86,14 @@ static String normalizeDate(final String dateTimeString) {
 //Alternatively CXX controlled vocabulary codes could also directly be set to LOINC codes
 static String mapSmokingStatus(final String smokingStatus) {
   switch (smokingStatus) {
-    case "COV_UMG_AMBU_JA":
-      return "LA18976-3"
-    case "COV_UMG_AMBU_NEIN":
+    case "COV_LA18978-9":
       return "LA18978-9"
+    case "COV_LA15920-4":
+      return "LA15920-4"
+    case "COV_LA18976-3":
+      return "LA18976-3"
+    case "COV_UNKNOWN":
+      return "LA18980-5"
     default:
       return null
   }

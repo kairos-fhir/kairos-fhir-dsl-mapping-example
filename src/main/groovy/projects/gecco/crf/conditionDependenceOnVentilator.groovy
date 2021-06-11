@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -18,9 +19,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 condition {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemVent = context.source[studyVisitItem().crf().items()].find {
@@ -34,6 +39,18 @@ condition {
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/dependence-on-ventilator"
+    }
+
+    verificationStatus {
+      crfItemVent[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def VERcode = matchResponseToVerStat(item[CatalogEntry.CODE] as String)
+        if (VERcode) {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
+        }
+      }
     }
 
     category {
@@ -61,12 +78,22 @@ condition {
 
     recordedDate {
       date = normalizeDate(crfItemVent[CrfItem.CREATIONDATE] as String)
+      precision = TemporalPrecisionEnum.SECOND.toString()
     }
   }
 }
 
 
 static String matchResponseToSNOMED(final String resp) {
+  switch (resp) {
+    case ("COV_BEATMET_JA"):
+      return "444932008"
+    case ("COV_BEATMET_NEIN"):
+      return "444932008"
+    default: null
+  }
+}
+static String matchResponseToVerStat(final String resp) {
   switch (resp) {
     case ("COV_BEATMET_JA"):
       return "410605003"

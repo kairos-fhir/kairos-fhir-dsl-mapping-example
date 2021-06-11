@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -15,9 +16,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 procedure {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "THERAPIE" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_THERAPIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemRespProne = context.source[studyVisitItem().crf().items()].find {
@@ -33,7 +38,12 @@ procedure {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/prone-position"
     }
 
-    status = "unknown"
+    crfItemRespProne[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+      if (STATUScode) {
+        status = STATUScode
+      }
+    }
 
     category {
       coding{
@@ -43,14 +53,9 @@ procedure {
     }
 
     code {
-      crfItemRespProne[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
-          }
-        }
+      coding {
+        system = "http://snomed.info/sct"
+        code = "431182000"
       }
     }
     subject {
@@ -59,6 +64,7 @@ procedure {
 
     performedDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 }
@@ -67,10 +73,14 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String matchResponseToSNOMED(final String resp) {
+static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "431182000"
+      return "in-progress"
+    case ("COV_NEIN"):
+      return "not-done"
+    case ("COV_UNBEKANNT"):
+      return "unknown"
     default: null
   }
 }

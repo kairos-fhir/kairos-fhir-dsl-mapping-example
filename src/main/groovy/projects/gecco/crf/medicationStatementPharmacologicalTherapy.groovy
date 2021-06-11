@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -16,9 +17,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 
 medicationStatement {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "MEDIKATION" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_MEDIKATION" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemThera = context.source[studyVisitItem().crf().items()].find {
@@ -60,7 +65,7 @@ medicationStatement {
           final def Othercode = matchResponseToOther(item[CatalogEntry.CODE] as String)
           if (Othercode) {
             coding {
-              system = "2.25.24197857203266734864793317670504947440"
+              system = "1.2.276.0.76.5.498"
               code = Othercode
             }
           }
@@ -73,6 +78,7 @@ medicationStatement {
     }
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.SECOND.toString()
     }
   }
 }
@@ -84,7 +90,7 @@ static String normalizeDate(final String dateTimeString) {
 static String matchResponseToATC(final String resp) {
   switch (resp) {
     case ("COV_HYDROXYVITAMIN_D"):
-      return "A11CC06" //check with art-decor ?
+      return "A11CC06"
     case ("COV_ANTI_TNF"):
       return "L04AB"
     case ("COV_ANTIPYRETIKA"):
@@ -100,7 +106,7 @@ static String matchResponseToATC(final String resp) {
     case ("COV_COLCHICINE"):
       return "M04AC01"
     case ("COV_CONVA_PLASMA"):
-      return "E9743" //check with art-decor ?
+      return "E9743"
     case ("COV_DARUNAVIR"):
       return "J05AE10"
     case ("COV_FAVIPIRAVIR"):
@@ -110,7 +116,7 @@ static String matchResponseToATC(final String resp) {
     case ("COV_HYDROXYCHLOROQUIN"):
       return "P01BA02"
     case ("COV_II1_RECEPTOR"):
-      return "L04AC" //check with art-decor ?
+      return "L04AC"
     case ("COV_INTERFERONE"):
       return "L03AB"
     case ("COV_IVERMECTIN"):
@@ -118,7 +124,7 @@ static String matchResponseToATC(final String resp) {
     case ("COV_KORTIKOSTEROIDE"):
       return "S02B"
     case ("COV_LOPINAVIR"):
-      return "J05AR10" //check with art-decor ?
+      return "J05AR10"
     case ("COV_OSELTAMIVIR"):
       return "J05AH02"
     case ("COV_RIBAVIRIN"):
@@ -130,7 +136,7 @@ static String matchResponseToATC(final String resp) {
     case ("COV_TOCILIZUMAB"):
       return "L04AC07"
     case ("COV_ZINC"):
-      return "A12CB" //check with art-decor ?
+      return "A12CB"
     default: null
   }
 }

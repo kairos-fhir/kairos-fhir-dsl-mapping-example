@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -15,9 +16,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 procedure {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemRespThera = context.source[studyVisitItem().crf().items()].find {
@@ -33,7 +38,12 @@ procedure {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
     }
 
-    status = "unknown"
+    crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+      if (STATUScode) {
+        status = STATUScode
+      }
+    }
 
     category {
       coding{
@@ -43,23 +53,9 @@ procedure {
     }
 
     code {
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def LOINCcode = matchResponseToLOINC(item[CatalogEntry.CODE] as String)
-        if (LOINCcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/ops"
-            code = LOINCcode
-          }
-        }
-      }
-      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
-          }
-        }
+      coding {
+        system = "http://snomed.info/sct"
+        code = "53950000"
       }
     }
     subject {
@@ -68,31 +64,24 @@ procedure {
 
     performedDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.MINUTE.toString()
     }
   }
 }
 
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+  return dateTimeString != null ? dateTimeString.substring(0, TemporalPrecisionEnum.MINUTE.stringLength()) : null
 }
 
 
-static String matchResponseToLOINC(final String resp) {
+static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "8-70" // ????
+      return "in-progress"
+    case ("COV_NEIN"):
+      return "not-done"
     case ("COV_UNBEKANNT"):
-      return "Unknown"
-    default: null
-  }
-}
-
-static String matchResponseToSNOMED(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "53950000"
-    case ("COV_UNBEKANNT"):
-      return "261665006"
+      return "unknown"
     default: null
   }
 }

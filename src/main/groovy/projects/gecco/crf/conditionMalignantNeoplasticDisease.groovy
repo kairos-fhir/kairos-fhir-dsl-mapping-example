@@ -1,5 +1,6 @@
 package projects.gecco.crf
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -18,9 +19,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 
 condition {
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemCancer = context.source[studyVisitItem().crf().items()].find {
@@ -45,6 +50,30 @@ condition {
         }
       }
     }
+
+
+    crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def clinicalStatusCode = matchResponseToClinicalStatus(item[CatalogEntry.CODE] as String)
+      if (clinicalStatusCode) {
+        clinicalStatus {
+          coding{
+            system = "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            code = clinicalStatusCode
+          }
+        }
+      }
+    }
+    crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def verificationStatusCode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (verificationStatusCode) {
+        verificationStatus {
+          coding{
+            system = "http://snomed.info/sct"
+            code = verificationStatusCode
+          }
+        }
+      }
+    }
     category {
       coding {
         system = "http://snomed.info/sct"
@@ -57,52 +86,40 @@ condition {
     }
 
     code {
-      crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
-        if (ICDcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-            version = "2020"
-            code = ICDcode
-          }
-        }
-      }
-      crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
-          }
-        }
+      coding {
+        system = "http://snomed.info/sct"
+        code = "363346000"
+        display = "Malignant neoplastic disease"
       }
     }
 
     recordedDate {
       date = normalizeDate(crfItemCancer[CrfItem.CREATIONDATE] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 }
 
 
-static String matchResponseToICD(final String resp) {
+static String matchResponseToClinicalStatus(final String resp) {
   switch (resp) {
     case ("COV_AKTIV"):
-      return ""
+      return "active"
     case ("COV_REMISSION"):
-      return ""
-    case ("COV_KEINE_ERKRANKUNG"):
-      return ""
+      return "remission"
     default: null
   }
 }
-
-static String matchResponseToSNOMED(final String resp) {
+static String matchResponseToVerificationStatus(final String resp) {
   switch (resp) {
     case ("COV_AKTIV"):
-      return "363346000"
+      return "410605003"
     case ("COV_REMISSION"):
-      return "363346000"
+      return "410605003"
+    case ("COV_NO"):
+      return "410594000"
+    case ("COV_UNKNOWN"):
+      return "261665006"
     default: null
   }
 }
