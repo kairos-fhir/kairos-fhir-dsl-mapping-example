@@ -38,16 +38,16 @@ medicationStatement {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy-immunoglobulins"
     }
 
-    status = MedicationStatement.MedicationStatementStatus.UNKNOWN
 
-    medication {
-      medicationCodeableConcept {
-        crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-          final def ATCcode = matchResponseToATC(item[CatalogEntry.CODE] as String)
-          if (ATCcode) {
+    crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+      if (STATUScode) {
+        status = STATUScode
+        medication {
+          medicationCodeableConcept {
             coding {
               system = "http://fhir.de/CodeSystem/dimdi/atc"
-              code = ATCcode
+              code = "J06B"
             }
             coding {
               system = "http://snomed.info/sct"
@@ -57,7 +57,6 @@ medicationStatement {
         }
       }
     }
-
     subject {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
@@ -72,11 +71,16 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-
-static String matchResponseToATC(final String resp) {
+static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_JA"):
-      return "J06B"
+      return "active"
+    case ("COV_NEIN"):
+      return "not-taken"
+    case ("COV_UNBEKANNT"):
+      return "unknown"
+    case ("COV_ABGEBROCHEN"):
+      return "stopped"
     default: null
   }
 }

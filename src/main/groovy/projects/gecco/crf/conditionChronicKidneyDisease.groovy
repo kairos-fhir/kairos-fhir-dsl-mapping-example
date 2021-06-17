@@ -37,12 +37,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-kidney-diseases"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemKidney[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -80,7 +93,7 @@ condition {
       }
     }
     recordedDate {
-      recordedDate = crfItemKidney[CrfItem.CREATIONDATE] as String
+      date = normalizeDate(crfItemKidney[CrfItem.CREATIONDATE] as String)
       precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
@@ -93,8 +106,6 @@ static String matchResponseToICD(final String resp) {
       return "Z99.2"
     case ("COV_OHNE_HAEMODIALYSE"):
       return "N18.9"
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
     default: null
   }
 }
@@ -106,9 +117,25 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_OHNE_HAEMODIALYSE"):
       return "709044004"
     case ("COV_UNBEKANNT"):
+      return "709044004"
+    case ("COV_NEIN"):
+      return "709044004"
+    default: null
+  }
+}
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"
-    default: null
+    default: "410605003"
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

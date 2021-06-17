@@ -23,12 +23,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2 (UMG-IKCL)"){
+  if (studyCode != "SARS-Cov-2"){
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "STUDIENEINSCHLUSS / EINSCHLUSSKRITERIEN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_STUDIENEINSCHLUSS / EINSCHLUSSKRITERIEN" || studyVisitStatus == "OPEN") {
     return //no export
   }
   final def crfItemStudy = context.source[studyVisitItem().crf().items()].find {

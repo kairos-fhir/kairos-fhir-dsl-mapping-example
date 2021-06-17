@@ -26,7 +26,7 @@ immunization {
     return //no export
   }
   final def crfItemVaccine = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_IMPFUNGEN" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_covid19f-dataelement-2.2211" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (!crfItemVaccine){
     return //no export
@@ -51,42 +51,25 @@ immunization {
           }
         }
       }
-      crfItemVaccine[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ATCcode = matchResponseToATC(item[CatalogEntry.CODE] as String)
-        if (ATCcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/atc"
-            version = "2020"
-            code = ATCcode
-          }
-        }
-      }
     }
 
     patient {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
-    occurrenceDateTime {
-      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-      precision = TemporalPrecisionEnum.DAY.toString()
+    final def crfItemVaccineDate = context.source[studyVisitItem().crf().items()].find {
+      "COV_GECCO_DAT_covid19f-dataelement-2.2211" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
     }
-  }
-}
 
-static String matchResponseToATC(final String resp) {
-  switch (resp) {
-    case ("COV_INFLUENZA"):
-      return "J07AG"
-    case ("COV_PNEUMOKOKKEN"):
-      return "J07AL"
-    case ("COV_BCG"):
-      return ""
-    case ("COV_COVID19"):
-      return ""
-    case ("COV_UMG_UNBEKANNT"):
-      return ""
-    default: null
+    crfItemVaccineDate[CrfItem.DATE_VALUE]?.each { final vaccDate ->
+      if (vaccDate) {
+        occurrenceDateTime {
+          date = vaccDate as String
+          //normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+          precision = TemporalPrecisionEnum.DAY.toString()
+        }
+      }
+    }
   }
 }
 
@@ -106,9 +89,4 @@ static String matchResponseToSNOMED(final String resp) {
   }
 }
 
-
-
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
-}
 

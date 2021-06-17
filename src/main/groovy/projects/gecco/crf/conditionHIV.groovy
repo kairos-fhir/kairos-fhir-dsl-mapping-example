@@ -39,12 +39,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/human-immunodeficiency-virus-infection"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -90,25 +103,33 @@ condition {
 
 static String matchResponseToICD(final String resp) {
   switch (resp) {
-    case ("COV_NEIN"):
-      return null
     case ("COV_JA"):
       return "B24"
-    case ("COV_NA"):
-      return "Unknown"
     default: null
   }
 }
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
-    case ("COV_NEIN"):
-      return "410594000"
     case ("COV_JA"):
       return "86406008"
+    case ("COV_NEIN"):
+      return "86406008"
     case ("COV_NA"):
-      return "261665006"
+      return "86406008"
     default: null
+  }
+}
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
+      return "261665006"
+    case ("COV_NEIN"):
+      return "410594000"
+    default: "410605003"
   }
 }
 

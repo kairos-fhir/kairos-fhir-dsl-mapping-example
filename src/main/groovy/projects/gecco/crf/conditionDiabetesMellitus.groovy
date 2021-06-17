@@ -39,12 +39,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diabetes-mellitus"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -82,7 +95,7 @@ condition {
     }
 
     recordedDate {
-      recordedDate = crfItemDiab[CrfItem.CREATIONDATE] as String
+      date = normalizeDate(crfItemDiab[CrfItem.CREATIONDATE] as String)
       precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
@@ -108,9 +121,26 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_TYP3"):
       return "8801005"
     case ("COV_UNBEKANNT"):
+      return "73211009" //generic code for diabetes
+    case ("COV_NEIN"):
+      return "73211009" //generic code for diabetes
+    default: null
+  }
+}
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"
-    default: null
+    default: "410605003"
   }
+}
+
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

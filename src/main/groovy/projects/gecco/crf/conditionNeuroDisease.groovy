@@ -41,12 +41,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-neurological-mental-diseases"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemNeuro[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -115,8 +128,6 @@ static String matchResponseToICD(final String resp) {
       return "G40.9"
     case ("COV_MIGRAENE"):
       return "G43.9"
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
     default: null
   }
 }
@@ -146,10 +157,22 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_APOPLEX_O_RESIDUEN"):
       return "429993008"
     case ("COV_UNBEKANNT"):
+      return "128283000" //generic code for chronic nervous system disorder
+    case ("COV_NEIN"):
+      return "128283000" //generic code for chronic nervous system disorder
+    default: null
+  }
+}
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"
-    default: null
+    default: "410605003"
   }
 }
 

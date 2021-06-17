@@ -41,12 +41,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/rheumatological-immunological-diseases"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemRheu[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -101,8 +114,6 @@ static String matchResponseToICD(final String resp) {
       return "D84.8"
     case ("COV_RHEUM_ATHRITIS"):
       return "I77.6"
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
     default: null
   }
 }
@@ -120,10 +131,22 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_VASKULITIDEN"):
       return "31996006"
     case ("COV_UNBEKANNT"):
+      return "396332003"
+    case ("COV_NEIN"):
+      return "396332003"
+    default: null
+  }
+}
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"
-    default: null
+    default: "410605003"
   }
 }
 

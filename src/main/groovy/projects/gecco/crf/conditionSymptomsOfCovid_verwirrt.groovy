@@ -10,7 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/chronicliverdiseases
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/symptomscovid19-profile
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
@@ -26,20 +26,24 @@ condition {
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_SYMPTOME" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemLiver = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_LEBERERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemSymptom = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_BEWUSSTSEIN_VERWIRRT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "ChronicLiverDisease/" + context.source[studyVisitItem().crf().id()]
+  if (!crfItemSymptom){
+    return //no export
+  }
+  if (crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE] != []){
+
+    id = "SymptomsOfCovid/" + context.source[studyVisitItem().crf().id()] + "_" + crfItemSymptom[CrfItem.ID]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-liver-diseases"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/symptoms-covid-19"
     }
 
-    crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+    crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
       if (VERcode == "261665006") {
         extension {
@@ -61,10 +65,11 @@ condition {
         }
       }
     }
+
     category {
       coding {
-        system = "http://snomed.info/sct"
-        code = "408472002"
+        system = "http://loinc.org"
+        code = "75325-1"
       }
     }
 
@@ -72,64 +77,43 @@ condition {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
-    code {
-      crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
-        if (ICDcode) {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-            version = "2020"
-            code = ICDcode
-          }
-        }
-      }
-      crfItemLiver[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
-          }
-        }
-      }
-    }
     recordedDate {
-      date = normalizeDate(crfItemLiver[CrfItem.CREATIONDATE] as String)
+      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
       precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
-}
 
 
-static String matchResponseToICD(final String resp) {
-  switch (resp) {
-    case ("COV_FETTLEBER"):
-      return "K76.0"
-    case ("COV_LEBERZIRRHOSE"):
-      return "K74.6"
-    case ("COV_CHRO_HEPATITIS"):
-      return "B18.9"
-    default: null
+
+  crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+    final def SNOMEDcode = item[CatalogEntry.CODE] as String
+    if (SNOMEDcode == "COV_JA"){
+      final def crfItemSeverity = context.source[studyVisitItem().crf().items()].find {
+        "COV_GECCO_BEWUSSTSEIN_VERWIRRT_SCHWEREGRAD" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+      }
+      crfItemSeverity[CrfItem.CATALOG_ENTRY_VALUE]?.each { final itemSev ->
+        final def severityCode = matchResponseToSeverity(itemSev[CatalogEntry.CODE] as String)
+        if (severityCode){
+          severity {
+            coding{
+              system = "http://snomed.info/sct"
+              code = severityCode
+            }
+          }
+        }
+      }
+    }
+    code {
+      if (SNOMEDcode) {
+        coding {
+          system = "http://snomed.info/sct"
+          code = "40917007"
+        }
+      }
+    }
   }
 }
 
-static String matchResponseToSNOMED(final String resp) {
-  switch (resp) {
-    case ("COV_FETTLEBER"):
-      return "197321007"
-    case ("COV_LEBERZIRRHOSE"):
-      return "19943007"
-    case ("COV_CHRO_HEPATITIS"):
-      return "10295004"
-    case ("COV_AUTO_LEBER"):
-      return "235890007"
-    case ("COV_UNBEKANNT"):
-      return "328383001"
-    case ("COV_NEIN"):
-      return "328383001"
-    default: null
-  }
-}
 
 static String matchResponseToVerificationStatus(final String resp) {
   switch (resp) {
@@ -140,6 +124,20 @@ static String matchResponseToVerificationStatus(final String resp) {
     case ("COV_NEIN"):
       return "410594000"
     default: "410605003"
+  }
+}
+
+static String matchResponseToSeverity(final String resp) {
+  switch (resp) {
+    case ("COV_GECCO_SYMPTOME_SCHWEREGRAD_MILD"):
+      return "255604002"
+    case ("COV_GECCO_SYMPTOME_SCHWEREGRAD_MODERATE"):
+      return "6736007"
+    case ("COV_GECCO_SYMPTOME_SCHWEREGRAD_SCHWER"):
+      return "24484000"
+    case ("COV_GECCO_SYMPTOME_SCHWEREGRAD_LEBENSBEDROHLICH_SCHWER"):
+      return "442452003"
+    default: null
   }
 }
 

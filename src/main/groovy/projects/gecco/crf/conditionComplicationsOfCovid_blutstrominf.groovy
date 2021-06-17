@@ -5,14 +5,17 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/gastrointestinalulcers
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/complications-covid-19-profile
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
+ * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
+ *       will be added as additional codings.
  */
 
 
@@ -23,23 +26,24 @@ condition {
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_KOMPLIKATIONEN" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemUlcer = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_MAGENGESCHWUERE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+  final def crfItemBlutinfekt = context.source[studyVisitItem().crf().items()].find {
+    "COV_GECCO_BLUTSTROMINFEKTION" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemUlcer){
-    return //no export
+  if (!crfItemBlutinfekt){
+    return // no export
   }
-  if (crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "GastrointestinalUlcers/" + context.source[studyVisitItem().crf().id()]
+
+  if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []){
+    id = "ComplicationsOfCovid/" + context.source[studyVisitItem().crf().id()]  + "_" + crfItemBlutinfekt[CrfItem.ID]
 
     meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/gastrointestinal-ulcers"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/complications-covid-19"
     }
 
-    crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+    crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
       if (VERcode == "261665006") {
         extension {
@@ -64,7 +68,7 @@ condition {
     category {
       coding {
         system = "http://snomed.info/sct"
-        code = "394584008"
+        code = "408472002"
       }
     }
 
@@ -72,53 +76,34 @@ condition {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
+    recordedDate {
+      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+      precision = TemporalPrecisionEnum.DAY.toString()
+    }
 
-    code {
-      crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
-        if (ICDcode) {
+  }
+  code {
+    if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []) {
+      crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def ICDcode = item[CatalogEntry.CODE] as String
+        if (ICDcode == "COV_JA") {
           coding {
             system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
             version = "2020"
-            code = ICDcode
+            code = "A41.9"
           }
         }
       }
-      crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
+      crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def SNOMEDcode = item[CatalogEntry.CODE] as String
+        if (SNOMEDcode == "COV_JA") {
           coding {
             system = "http://snomed.info/sct"
-            code = SNOMEDcode
+            code = "434156008"
           }
         }
       }
     }
-    recordedDate {
-      date = normalizeDate(crfItemUlcer[CrfItem.CREATIONDATE] as String)
-      precision = TemporalPrecisionEnum.DAY.toString()
-    }
-  }
-}
-
-
-static String matchResponseToICD(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "K28.9"
-    default: null
-  }
-}
-
-static String matchResponseToSNOMED(final String resp) {
-  switch (resp) {
-    case ("COV_JA"):
-      return "40845000"
-    case ("COV_UNBEKANNT"):
-      return "40845000" //generic code for gastrointestinal ulcer
-    case ("COV_NEIN"):
-      return "40845000" //generic code for gastrointestinal ulcer
-    default: null
   }
 }
 
@@ -126,7 +111,7 @@ static String matchResponseToVerificationStatus(final String resp) {
   switch (resp) {
     case null:
       return null
-    case ("COV_UNBEKANNT"):
+    case ("COV_NA"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"

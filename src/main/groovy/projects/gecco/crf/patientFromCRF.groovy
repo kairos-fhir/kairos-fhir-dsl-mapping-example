@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Ethnicity
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
@@ -21,10 +22,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 
 patient {
-
+  final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
+  if (studyCode != "SARS-Cov-2"){
+    return //no export
+  }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
   final def studyVisitStatus = context.source[studyVisitItem().status()]
-  if (crfName != "DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
+  if (crfName != "SarsCov2_DEMOGRAPHIE" || studyVisitStatus == "OPEN") {
     return //no export
   }
 
@@ -60,12 +64,13 @@ patient {
       "COV_GECCO_GEBURTSDATUM" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
     }
 
+    final def DateOfDeath = context.source[studyVisitItem().studyMember().patientContainer().dateOfDeath()] //TODO
+
     if (crfItemAge) {
       extension {
         url = "age"
         valueAge {
-          //TODO: Calculate age between birthdate and dateOfDeath if exists.
-          value = computeAge(crfItemAge[CrfItem.DATE_VALUE] as String)
+          value = computeAge(crfItemAge[CrfItem.DATE_VALUE] as String, DateOfDeath as String)
           system = "http://unitsofmeasure.org"
           code = "a"
           unit = "years"
@@ -109,10 +114,18 @@ static String normalizeDate(final String dateTimeString) {
 
 
 //Compute age of patient from birthdate
-static int computeAge(final String dateString) {
-  final int doe = dateString.substring(0, 4).toInteger()
-  final int now = Calendar.getInstance().get(Calendar.YEAR)
-  return now - doe
+static int computeAge(final String dateString, final String dateOfDeath) {
+  if (dateOfDeath){
+    final int dod = dateOfDeath.substring(0,4).toInteger()
+    final int doe = dateString.substring(0, 4).toInteger()
+    return dod - doe
+  }
+  else{
+    final int now = Calendar.getInstance().get(Calendar.YEAR)
+    final int doe = dateString.substring(0, 4).toInteger()
+    return now - doe
+  }
+
 }
 
 //Function to map ethnicities

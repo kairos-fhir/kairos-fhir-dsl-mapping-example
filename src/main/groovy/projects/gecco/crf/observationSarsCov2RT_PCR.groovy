@@ -68,9 +68,17 @@ observation {
       reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
-    effectiveDateTime {
-      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-      precision = TemporalPrecisionEnum.SECOND.toString()
+    final def crfItemAbstrichDate = context.source[studyVisitItem().crf().items()].find {
+      "COV_UMG_FOLGEABSTRICH_VOM" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    }
+
+    crfItemAbstrichDate[CrfItem.DATE_VALUE]?.each { final abstrichDate ->
+      if (abstrichDate) {
+        effectiveDateTime {
+          date = abstrichDate as String
+          precision = TemporalPrecisionEnum.DAY.toString()
+        }
+      }
     }
 
     valueCodeableConcept {

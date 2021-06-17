@@ -39,7 +39,13 @@ medicationStatement {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy-anticoagulants"
     }
 
-    status = MedicationStatement.MedicationStatementStatus.UNKNOWN
+
+    crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+      if (STATUScode) {
+        status = STATUScode
+      }
+    }
 
     medication {
       medicationCodeableConcept {
@@ -86,6 +92,14 @@ static String matchResponseToATC(final String resp) {
       return "B01AA04"
     case ("COV_DOAK"):
       return "B01AE"
+    default: null
+  }
+}
+
+static String matchResponseToSTATUS(final String resp) {
+  switch (resp) {
+    case ("COV_NEIN"):
+      return "not-taken"
     default: null
   }
 }

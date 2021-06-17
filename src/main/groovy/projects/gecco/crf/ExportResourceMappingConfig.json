@@ -97,11 +97,6 @@
       "exportToFhirResource": "Observation"
    },
    {
-      "selectFromCxxEntity": "PATIENT_MASTER",
-      "transformByTemplate": "patientFromFile",
-      "exportToFhirResource": "Patient"
-   },
-   {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "patientFromCRF",
       "exportToFhirResource": "Patient"
@@ -133,7 +128,17 @@
    },
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
-      "transformByTemplate": "conditionComplicationsOfCovid19",
+      "transformByTemplate": "conditionComplicationsOfCovid_thrombo",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionComplicationsOfCovid_pulmonale",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionComplicationsOfCovid_blutstrominf",
       "exportToFhirResource": "Condition"
    },
    {
@@ -208,7 +213,52 @@
    },
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
-      "transformByTemplate": "conditionSymptomsOfCovid",
+      "transformByTemplate": "conditionSymptomsOfCovid_bauchschmerzen",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_durchfall",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_erbrechen",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_fieber",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_geruch",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_husten",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_kopfschmerzen",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_kurzatmig",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_uebelkeit",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionSymptomsOfCovid_verwirrt",
       "exportToFhirResource": "Condition"
    }
   ]

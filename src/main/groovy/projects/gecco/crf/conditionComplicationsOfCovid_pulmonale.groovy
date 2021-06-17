@@ -29,34 +29,39 @@ condition {
   if (crfName != "SarsCov2_KOMPLIKATIONEN" || studyVisitStatus == "OPEN") {
     return //no export
   }
-  final def crfItemDialyse = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_DIALYSE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
-  }
   final def crfItemCoinfect = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_PULMONALE_CO_INFEKTION" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  final def crfItemBlutinfekt = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_BLUTSTROMINFEKTION" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
-  }
-  if (!crfItemDialyse && !crfItemCoinfect && !crfItemBlutinfekt){
+  if (!crfItemCoinfect){
     return // no export
   }
 
-  if (crfItemDialyse[CrfItem.CATALOG_ENTRY_VALUE] != [] ||
-          crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE] != [] ||
-          crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []){
-    id = "ComplicationsOfCovid/" + context.source[studyVisitItem().crf().id()]
+  if (crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE] != []){
+    id = "ComplicationsOfCovid/" + context.source[studyVisitItem().crf().id()]  + "_" + crfItemCoinfect[CrfItem.ID]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/complications-covid-19"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -78,27 +83,6 @@ condition {
 
   }
   code {
-    if (crfItemDialyse[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-      crfItemDialyse[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ICDcode = item[CatalogEntry.CODE] as String
-        if (ICDcode == "COV_JA") {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-            version = "2020"
-            code = "N17.9"
-          }
-        }
-      }
-      crfItemDialyse[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = item[CatalogEntry.CODE] as String
-        if (SNOMEDcode == "COV_JA") {
-          coding {
-            system = "http://snomed.info/sct"
-            code = "14669001"
-          }
-        }
-      }
-    }
     if (crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE] != []) {
       crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = item[CatalogEntry.CODE] as String
@@ -119,32 +103,21 @@ condition {
           }
         }
       }
-
-    }
-    if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-      crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def ICDcode = item[CatalogEntry.CODE] as String
-        if (ICDcode == "COV_JA") {
-          coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
-            version = "2020"
-            code = "A41.9"
-          }
-        }
-      }
-      crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = item[CatalogEntry.CODE] as String
-        if (SNOMEDcode == "COV_JA") {
-          coding {
-            system = "http://snomed.info/sct"
-            code = "434156008"
-          }
-        }
-      }
     }
   }
 }
 
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_NA"):
+      return "261665006"
+    case ("COV_NEIN"):
+      return "410594000"
+    default: "410605003"
+  }
+}
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null

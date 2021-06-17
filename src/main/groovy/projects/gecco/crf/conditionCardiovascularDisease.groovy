@@ -39,12 +39,25 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/cardiovascular-diseases"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
+    crfItemCardio[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      }
+      else if (["410594000","410605003"].contains(VERcode)){
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
         }
       }
     }
@@ -103,8 +116,6 @@ static String matchResponseToICD(final String resp) {
       return "I73.9"
     case ("COV_CARO"):
       return "I65.2"
-    case ("COV_UNBEKANNT"):
-      return "Unknown"
     default: null
   }
 }
@@ -128,12 +139,25 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_CARO"):
       return "64586002"
     case ("COV_UNBEKANNT"):
-      return "261665006"
+      return "49601007" //generic cardiovascular disease
     case ("COV_NEIN"):
-      return "410594000"
+      return "49601007" //generic cardiovascular disease
     default: null
   }
 }
+
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
+      return "261665006"
+    case ("COV_NEIN"):
+      return "410594000"
+    default: "410605003"
+  }
+}
+
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null
