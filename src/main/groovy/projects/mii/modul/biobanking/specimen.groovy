@@ -4,7 +4,7 @@ import de.kairos.fhir.centraxx.metamodel.AbstractIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.SampleLocation
+import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Specimen
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
@@ -111,23 +111,14 @@ specimen {
     }
   }
 
-
-  processing {
-    final def temperature = context.source[sample().sampleLocation()]?.getAt(SampleLocation.TEMPERATURE) as String
-    if (temperature) {
-      //Temperature at the sample location is given as one value in CXX.
-      extension {
-        url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionTemperaturbedingungen"
-
-        valueQuantity {
-          value = temperature
-          unit = "C"
-          system = "http://unitsofmeasure.org"
-          code = "Cel"
-        }
+  if (context.source[sample().sampleLocation()]) {
+    processing {
+      procedure {
+        coding = [new Coding("https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/CodeSystem/Probenlagerung",
+            "LAGERUNG",
+            "Lagerung einer Probe")]
       }
     }
-
     timeDateTime = context.source[sample().repositionDate().date()]
   }
 
