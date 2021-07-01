@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.8.0-SNAPSHOT</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.8.0</kairos-fhir-dsl.version>
   </properties>
 
   <scm>
