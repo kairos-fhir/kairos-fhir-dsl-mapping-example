@@ -31,63 +31,84 @@ observation {
   if (crfName != "SarsCov2_OUTCOME BEI ENTLASSUNG" || studyVisitStatus == "OPEN") {
     return //no export
   }
+
   final def crfItemDisc = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ERGEBNIS_ABSTRICH" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (!crfItemDisc){
     return
   }
-  if (crfItemDisc[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "SarsCov2RT_PCR/" + context.source[studyVisitItem().id()]
 
-    meta {
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-rt-pcr"
+  final def crfItems = context.source[studyVisitItem().crf().items()]
+  if (!crfItems || crfItems == []) {
+    return
+  }
+
+  id = "SarsCov2RT_PCR/" + context.source[studyVisitItem().id()]
+
+  meta {
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-rt-pcr"
+  }
+
+  status = Observation.ObservationStatus.UNKNOWN
+
+  category {
+    coding {
+      system = "http://loinc.org"
+      code = "26436-6"
     }
-
-    status = Observation.ObservationStatus.UNKNOWN
-
-    category {
-      coding {
-        system = "http://loinc.org"
-        code = "26436-6"
-      }
-      coding {
-        system = "http://terminology.hl7.org/CodeSystem/observation-category"
-        code = "laboratory"
-      }
+    coding {
+      system = "http://terminology.hl7.org/CodeSystem/observation-category"
+      code = "laboratory"
     }
+  }
 
-    code {
-      coding {
-        system = "http://loinc.org"
-        code = "94500-6"
-      }
+  code {
+    coding {
+      system = "http://loinc.org"
+      code = "94500-6"
     }
+  }
 
-    subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
-    }
+  subject {
+    reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+  }
 
-    final def crfItemAbstrichDate = context.source[studyVisitItem().crf().items()].find {
-      "COV_UMG_FOLGEABSTRICH_VOM" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
-    }
 
-    crfItemAbstrichDate[CrfItem.DATE_VALUE]?.each { final abstrichDate ->
-      if (abstrichDate) {
-        effectiveDateTime {
-          date = abstrichDate as String
-          precision = TemporalPrecisionEnum.DAY.toString()
+  final valIndex = []
+
+  //Vaccine codes
+  valueCodeableConcept {
+    crfItems?.each { final item ->
+      final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
+      if (measParamCode == "COV_GECCO_ERGEBNIS_ABSTRICH"){
+        valIndex.add(item[CrfItem.VALUE_INDEX])
+        item[CrfItem.CATALOG_ENTRY_VALUE]?.each { final ite ->
+          final def SNOMEDcode = mapDiscSNOMED(ite[CatalogEntry.CODE] as String)
+          if (SNOMEDcode) {
+            coding {
+              system = "http://snomed.info/sct"
+              code = SNOMEDcode
+            }
+          }
         }
       }
     }
+  }
 
-    valueCodeableConcept {
-      crfItemDisc[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode = mapDiscSNOMED(item[CatalogEntry.CODE] as String)
-        if (SNOMEDcode) {
-          coding {
-            system = "http://snomed.info/sct"
-            code = SNOMEDcode
+  //effective DateTime
+  crfItems?.each { final item ->
+    final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
+    if (measParamCode == "COV_UMG_FOLGEABSTRICH_VOM"){
+      final def valIndexDate = item[CrfItem.VALUE_INDEX]
+      if (valIndex.contains(valIndexDate)){
+        item[CrfItem.DATE_VALUE]?.each { final tD ->
+          final def testDate = normalizeDate(tD.toString())
+          if (testDate) {
+            effectiveDateTime {
+              date = testDate
+              precision = TemporalPrecisionEnum.DAY.toString()
+            }
           }
         }
       }
@@ -95,11 +116,14 @@ observation {
   }
 }
 
-
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+  if (dateTimeString.contains("DAY")){
+    return null
+  }
+  else{
+    return dateTimeString != null ? dateTimeString.substring(5) : null
+  }
 }
-
 
 static String mapDiscSNOMED(final String discharge) {
   switch (discharge) {

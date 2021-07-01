@@ -1,5 +1,6 @@
 package projects.gecco
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.common.types.GenderType
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.Crf
@@ -39,7 +40,7 @@ patient {
   }
 
   final def crfItemEthn = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_ETHNISCHE_ZUGEHÖRIGKEIT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_ETHNISCHE_ZUGEHOERIGKEIT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemEthn[CrfItem.CATALOG_ENTRY_VALUE] != [] && crfItemEthn) {
     extension {
@@ -64,31 +65,32 @@ patient {
       "COV_GECCO_GEBURTSDATUM" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
     }
 
-    final def DateOfDeath = context.source[studyVisitItem().studyMember().patientContainer().dateOfDeath()] //TODO
 
     if (crfItemAge) {
+      final def ageDate = crfItemAge[CrfItem.DATE_VALUE]
       extension {
         url = "age"
         valueAge {
-          value = computeAge(crfItemAge[CrfItem.DATE_VALUE] as String, DateOfDeath as String)
+          value = computeAge(ageDate as String)
           system = "http://unitsofmeasure.org"
           code = "a"
           unit = "years"
         }
       }
-      birthDate = normalizeDate(crfItemAge[CrfItem.DATE_VALUE] as String)
+      birthDate = ageDate.toString().substring(6,16)
     }
   }
 
   active = context.source[studyVisitItem().studyMember().patientContainer().patientStatus()]
 
   final def crfItemGender = context.source[studyVisitItem().crf().items()].find {
-    "COV_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemGender) {
-    gender = mapGender(crfItemGender[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
+    crfItemGender[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE]?.each { final gen ->
+      gender = mapGender(gen as String)
+    }
   }
-
 }
 
 
@@ -102,8 +104,6 @@ static String mapGender(final String gender) {
       return "unknown"
     case "COV_DIVERS":
       return "other"
-    default:
-      return "unknown"
   }
 }
 
@@ -114,18 +114,10 @@ static String normalizeDate(final String dateTimeString) {
 
 
 //Compute age of patient from birthdate
-static int computeAge(final String dateString, final String dateOfDeath) {
-  if (dateOfDeath){
-    final int dod = dateOfDeath.substring(0,4).toInteger()
-    final int doe = dateString.substring(0, 4).toInteger()
-    return dod - doe
-  }
-  else{
+static int computeAge(final String dateString) {
     final int now = Calendar.getInstance().get(Calendar.YEAR)
-    final int doe = dateString.substring(0, 4).toInteger()
+    final int doe = dateString.substring(6,10).toInteger()
     return now - doe
-  }
-
 }
 
 //Function to map ethnicities
@@ -149,5 +141,20 @@ static String mapEthnicityCode(final String ethnicity) {
 }
 
 
+/*
 
+final def DateOfDeath = "2020-01-01"//context.source[studyVisitItem().studyMember().patientContainer().dateOfDeath()] //TODO
+static int computeAge(final String dateString, final String dateOfDeath) {
+  if (dateOfDeath){
+    final int dod = dateOfDeath.substring(0,4).toInteger()
+    final int doe = dateString.substring(0, 4).toInteger()
+    return dod - doe
+  }
+  else{
+    final int now = Calendar.getInstance().get(Calendar.YEAR)
+    final int doe = dateString.substring(0, 4).toInteger()
+    return now - doe
+  }
+}
 
+ */
