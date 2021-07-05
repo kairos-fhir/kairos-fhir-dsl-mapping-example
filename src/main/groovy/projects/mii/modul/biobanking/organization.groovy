@@ -7,10 +7,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 /**
  * Represented by a CXX OrganizationUnit
  * @author Jonas Küttner
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1.1
  */
-
 organization {
+
   id = "Organization/" + context.source[organizationUnit().id()]
 
   meta {
@@ -26,7 +26,11 @@ organization {
     "de" == entry[MultilingualEntry.LANG]
   }[MultilingualEntry.VALUE]
 
-  //TODO: partof, reference to parent orgunits
+  if (context.source[organizationUnit().parent()]) {
+    partOf {
+      reference = "Organization/" + context.source[organizationUnit().parent().id()]
+    }
+  }
 
 }
 
