@@ -17,11 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
  *       will be added as additional codings.
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -32,10 +30,10 @@ condition {
   final def crfItemSymptom = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_BAUSCHSCHMERZEN" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemSymptom){
+  if (!crfItemSymptom) {
     return //no export
   }
-  if (crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE] != []){
+  if (crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE] != []) {
 
     id = "Condition/SymptomsOfCovid-" + context.source[studyVisitItem().crf().id()] + "_" + crfItemSymptom[CrfItem.ID]
 
@@ -55,8 +53,7 @@ condition {
             }
           }
         }
-      }
-      else if (["410594000","410605003"].contains(VERcode)){
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
             system = "http://snomed.info/sct"
@@ -84,18 +81,17 @@ condition {
   }
 
 
-
   crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
     final def SNOMEDcode = item[CatalogEntry.CODE] as String
-    if (SNOMEDcode == "COV_JA"){
+    if (SNOMEDcode == "COV_JA") {
       final def crfItemSeverity = context.source[studyVisitItem().crf().items()].find {
         "COV_UMG_AMBU_SV_BAUCHSCHMERZEN_SCHWEREGRAD" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
       }
       crfItemSeverity[CrfItem.CATALOG_ENTRY_VALUE]?.each { final itemSev ->
         final def severityCode = matchResponseToSeverity(itemSev[CatalogEntry.CODE] as String)
-        if (severityCode){
+        if (severityCode) {
           severity {
-            coding{
+            coding {
               system = "http://snomed.info/sct"
               code = severityCode
             }

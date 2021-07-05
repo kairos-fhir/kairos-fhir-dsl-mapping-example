@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -16,11 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
  *       will be added as additional codings.
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -31,11 +30,11 @@ condition {
   final def crfItemOrgan = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ORGANTRANSPLANIERT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemOrgan){
+  if (!crfItemOrgan) {
     return
   }
   if (crfItemOrgan[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "HistoryOfOrganTransplant/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/HistoryOfOrganTransplant-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/organ-recipient"
@@ -53,8 +52,7 @@ condition {
             }
           }
         }
-      }
-      else if (["410594000","410605003"].contains(VERcode)){
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
             system = "http://snomed.info/sct"

@@ -3,11 +3,9 @@ package projects.gecco.crf
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -19,10 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -33,7 +30,7 @@ observation {
   final def crfItemGen = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemGen){
+  if (!crfItemGen) {
     return
   }
   if (crfItemGen[CrfItem.CATALOG_ENTRY_VALUE] != []) {
@@ -45,8 +42,8 @@ observation {
 
     status = Observation.ObservationStatus.UNKNOWN
 
-    category{
-      coding{
+    category {
+      coding {
         system = "http://terminology.hl7.org/CodeSystem/observation-category"
         code = "social-history"
       }
@@ -67,14 +64,13 @@ observation {
       crfItemGen[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def LOINCcode = mapGender(item[CatalogEntry.CODE] as String)
         if (LOINCcode) {
-          if (["male", "female", "unknown"].contains(LOINCcode)){
-            coding{
+          if (["male", "female", "unknown"].contains(LOINCcode)) {
+            coding {
               system = "http://hl7.org/fhir/administrative-gender"
               code = LOINCcode
             }
-          }
-          else if (["x", "D"].contains(LOINCcode)){
-            coding{
+          } else if (["x", "D"].contains(LOINCcode)) {
+            coding {
               system = "http://fhir.de/CodeSystem/gender-amtlich-de"
               code = LOINCcode
             }

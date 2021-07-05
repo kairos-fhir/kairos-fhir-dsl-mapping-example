@@ -5,7 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import org.hl7.fhir.r4.model.MedicationStatement
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -14,10 +14,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-
 medicationStatement {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -28,7 +27,7 @@ medicationStatement {
   final def crfItemThera = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ACE_HEMMER" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemThera){
+  if (!crfItemThera) {
     return
   }
   if (crfItemThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {

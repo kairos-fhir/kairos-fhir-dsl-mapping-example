@@ -4,8 +4,8 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.Consent
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -16,7 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 consent {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -27,7 +27,7 @@ consent {
   final def crfItemDNR = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_DNR_STATUS" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemDNR){
+  if (!crfItemDNR) {
     return //no export
   }
   if (crfItemDNR[CrfItem.CATALOG_ENTRY_VALUE] != []) {
@@ -36,7 +36,7 @@ consent {
     meta {
       profile("https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/do-not-resuscitate-order")
     }
-    
+
     status = "active"
 
     scope {

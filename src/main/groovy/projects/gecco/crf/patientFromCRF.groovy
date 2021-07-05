@@ -1,15 +1,11 @@
 package projects.gecco
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.centraxx.common.types.GenderType
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.Crf
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.Ethnicity
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.RootEntities
-import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -21,10 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 patient {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -77,7 +72,7 @@ patient {
           unit = "years"
         }
       }
-      birthDate = ageDate.toString().substring(6,16)
+      birthDate = ageDate.toString().substring(6, 16)
     }
   }
 
@@ -115,9 +110,9 @@ static String normalizeDate(final String dateTimeString) {
 
 //Compute age of patient from birthdate
 static int computeAge(final String dateString) {
-    final int now = Calendar.getInstance().get(Calendar.YEAR)
-    final int doe = dateString.substring(6,10).toInteger()
-    return now - doe
+  final int now = Calendar.getInstance().get(Calendar.YEAR)
+  final int doe = dateString.substring(6, 10).toInteger()
+  return now - doe
 }
 
 //Function to map ethnicities

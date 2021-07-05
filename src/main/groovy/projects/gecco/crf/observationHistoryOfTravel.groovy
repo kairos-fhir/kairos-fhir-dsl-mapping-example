@@ -1,14 +1,11 @@
 package projects.gecco.crf
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -20,10 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -34,7 +30,7 @@ observation {
   final def crfItemTravel = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_REISE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemTravel){
+  if (!crfItemTravel) {
     return
   }
   if (crfItemTravel[CrfItem.STRING_VALUE]) {
@@ -46,8 +42,8 @@ observation {
 
     status = Observation.ObservationStatus.UNKNOWN
 
-    category{
-      coding{
+    category {
+      coding {
         system = "http://terminology.hl7.org/CodeSystem/observation-category"
         code = "social-history"
       }
@@ -71,7 +67,7 @@ observation {
     final def SNOMEDcode = mapTravel(crfItemTravel[CrfItem.STRING_VALUE] as String)
     if (SNOMEDcode) {
       valueCodeableConcept {
-        coding{
+        coding {
           code = SNOMEDcode
           system = "http://snomed.info/sct"
         }

@@ -4,11 +4,9 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -20,10 +18,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -34,7 +31,7 @@ observation {
   final def crfItemPreg = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_SCHWANGERSCHAFT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemPreg){
+  if (!crfItemPreg) {
     return
   }
   if (crfItemPreg[CrfItem.CATALOG_ENTRY_VALUE] != []) {
@@ -66,7 +63,7 @@ observation {
       crfItemPreg[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def LOINCcode = mapPreg(item[CatalogEntry.CODE] as String)
         if (LOINCcode) {
-          coding{
+          coding {
             system = "http://loinc.org"
             code = LOINCcode
           }
@@ -103,6 +100,7 @@ static String mapPreg(final String smokingStatus) {
       return "LA4489-6"
   }
 }
+
 static String mapPregSNOMED(final String smokingStatus) {
   switch (smokingStatus) {
     default:

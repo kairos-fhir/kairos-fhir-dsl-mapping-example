@@ -5,10 +5,8 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import org.hl7.fhir.r4.model.CodeableConcept
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
-
 /**
  * Represented by a CXX StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/malignantneoplasticdisease
@@ -35,7 +33,7 @@ condition {
     return
   }
   if (crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "MalignantNeoplasticDisease/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/MalignantNeoplasticDisease-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/malignant-neoplastic-disease"

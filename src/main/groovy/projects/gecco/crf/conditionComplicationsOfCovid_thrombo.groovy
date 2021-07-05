@@ -17,11 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
  *       will be added as additional codings.
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -32,13 +30,13 @@ condition {
   final def crfItemThrombo = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_THROMBO_EREIGNISSE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemThrombo){
+  if (!crfItemThrombo) {
     return // no export
   }
 
-  if (crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE] != []){
+  if (crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE] != []) {
 
-    id = "ComplicationsOfCovid/" + context.source[studyVisitItem().crf().id()] + "_" + crfItemThrombo[CrfItem.ID]
+    id = "Condition/ComplicationsOfCovid-" + context.source[studyVisitItem().crf().id()] + "_" + crfItemThrombo[CrfItem.ID]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/complications-covid-19"
@@ -48,7 +46,7 @@ condition {
       final def VERcode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
       if (VERcode) {
         verificationStatus {
-          coding{
+          coding {
             system = ""
             code = VERcode
           }
@@ -115,6 +113,7 @@ static String matchResponseToSNOMED(final String resp) {
     default: null
   }
 }
+
 static String matchResponseToICD(final String resp) {
   switch (resp) {
     case ("COV_VENOESE_THROMBOSE"):
@@ -128,6 +127,7 @@ static String matchResponseToICD(final String resp) {
     default: null
   }
 }
+
 static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_HGW_NEIN"):

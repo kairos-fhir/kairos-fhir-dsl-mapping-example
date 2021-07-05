@@ -4,11 +4,9 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -20,10 +18,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -35,7 +32,7 @@ observation {
   final def crfItemDisc = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ERGEBNIS_ABSTRICH" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemDisc){
+  if (!crfItemDisc) {
     return
   }
 
@@ -81,7 +78,7 @@ observation {
   valueCodeableConcept {
     crfItems?.each { final item ->
       final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-      if (measParamCode == "COV_GECCO_ERGEBNIS_ABSTRICH"){
+      if (measParamCode == "COV_GECCO_ERGEBNIS_ABSTRICH") {
         valIndex.add(item[CrfItem.VALUE_INDEX])
         item[CrfItem.CATALOG_ENTRY_VALUE]?.each { final ite ->
           final def SNOMEDcode = mapDiscSNOMED(ite[CatalogEntry.CODE] as String)
@@ -99,9 +96,9 @@ observation {
   //effective DateTime
   crfItems?.each { final item ->
     final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-    if (measParamCode == "COV_UMG_FOLGEABSTRICH_VOM"){
+    if (measParamCode == "COV_UMG_FOLGEABSTRICH_VOM") {
       final def valIndexDate = item[CrfItem.VALUE_INDEX]
-      if (valIndex.contains(valIndexDate)){
+      if (valIndex.contains(valIndexDate)) {
         item[CrfItem.DATE_VALUE]?.each { final tD ->
           final def testDate = normalizeDate(tD.toString())
           if (testDate) {
@@ -117,10 +114,9 @@ observation {
 }
 
 static String normalizeDate(final String dateTimeString) {
-  if (dateTimeString.contains("DAY")){
+  if (dateTimeString.contains("DAY")) {
     return null
-  }
-  else{
+  } else {
     return dateTimeString != null ? dateTimeString.substring(5) : null
   }
 }

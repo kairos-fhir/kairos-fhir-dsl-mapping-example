@@ -4,11 +4,8 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
-import org.hl7.fhir.r4.model.CodeableConcept
-import org.hl7.fhir.r4.model.Observation
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -20,10 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-
 observation {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -34,7 +30,7 @@ observation {
   final def crfItemPatinICU = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_INTENSIVSTATION" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemPatinICU){
+  if (!crfItemPatinICU) {
     return
   }
   if (crfItemPatinICU[CrfItem.CATALOG_ENTRY_VALUE] != []) {

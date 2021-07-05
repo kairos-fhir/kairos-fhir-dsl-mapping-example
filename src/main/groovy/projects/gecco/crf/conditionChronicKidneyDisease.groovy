@@ -13,13 +13,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/chronickidneydiseases
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
- *
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -31,7 +28,7 @@ condition {
     "COV_GECCO_NIERENERKRANKUNG" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemKidney[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "ChronicKidneyDisease/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/ChronicKidneyDisease-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-kidney-diseases"
@@ -49,8 +46,7 @@ condition {
             }
           }
         }
-      }
-      else if (["410594000","410605003"].contains(VERcode)){
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
             system = "http://snomed.info/sct"
