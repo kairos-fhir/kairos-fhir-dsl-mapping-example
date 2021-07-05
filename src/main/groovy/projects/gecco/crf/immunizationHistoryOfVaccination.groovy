@@ -5,7 +5,6 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import org.hl7.fhir.r4.model.Immunization
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -18,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 immunization {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
 
@@ -30,7 +29,7 @@ immunization {
   final def crfItemDisc = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_covid19f-dataelement-2.2211" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemDisc){
+  if (!crfItemDisc) {
     return
   }
 
@@ -56,7 +55,7 @@ immunization {
   vaccineCode {
     crfItems?.each { final item ->
       final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-      if (measParamCode == "COV_GECCO_covid19f-dataelement-2.2211"){
+      if (measParamCode == "COV_GECCO_covid19f-dataelement-2.2211") {
         valIndex.add(item[CrfItem.VALUE_INDEX])
         item[CrfItem.CATALOG_ENTRY_VALUE]?.each { final ite ->
           final def SNOMEDcode = matchResponseToSNOMED(ite[CatalogEntry.CODE] as String)
@@ -78,9 +77,9 @@ immunization {
 
   crfItemVaccineDates?.each { final dates ->
     final def vaccDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-    if (vaccDateCode == "COV_GECCO_DAT_covid19f-dataelement-2.2211"){
+    if (vaccDateCode == "COV_GECCO_DAT_covid19f-dataelement-2.2211") {
       final def valIndexDate = dates[CrfItem.VALUE_INDEX]
-      if (valIndex.contains(valIndexDate)){
+      if (valIndex.contains(valIndexDate)) {
         dates[CrfItem.DATE_VALUE]?.each { final vD ->
           final def vaccDate = normalizeDate(vD.toString())
           if (vaccDate) {
@@ -96,10 +95,9 @@ immunization {
 }
 
 static String normalizeDate(final String dateTimeString) {
-  if (dateTimeString.contains("DAY")){
+  if (dateTimeString.contains("DAY")) {
     return null
-  }
-  else{
+  } else {
     return dateTimeString != null ? dateTimeString.substring(5) : null
   }
 }

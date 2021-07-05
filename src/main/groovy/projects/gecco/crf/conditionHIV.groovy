@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -14,11 +15,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -29,11 +28,11 @@ condition {
   final def crfItemHIV = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_HIV" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemHIV){
+  if (!crfItemHIV) {
     return
   }
   if (crfItemHIV[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "HIV/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/HIV-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/human-immunodeficiency-virus-infection"
@@ -51,8 +50,7 @@ condition {
             }
           }
         }
-      }
-      else if (["410594000","410605003"].contains(VERcode)){
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
             system = "http://snomed.info/sct"

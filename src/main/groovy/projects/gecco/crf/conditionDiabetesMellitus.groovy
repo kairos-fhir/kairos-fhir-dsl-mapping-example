@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -14,11 +15,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -29,11 +28,11 @@ condition {
   final def crfItemDiab = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_DIABETES" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemDiab){
+  if (!crfItemDiab) {
     return //no export
   }
   if (crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "DiabetesMellitus/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/DiabetesMellitus-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diabetes-mellitus"
@@ -51,8 +50,7 @@ condition {
             }
           }
         }
-      }
-      else if (["410594000","410605003"].contains(VERcode)){
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
             system = "http://snomed.info/sct"
@@ -84,7 +82,7 @@ condition {
         }
       }
       crfItemDiab[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-        final def SNOMEDcode =  matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
+        final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
           coding {
             system = "http://snomed.info/sct"

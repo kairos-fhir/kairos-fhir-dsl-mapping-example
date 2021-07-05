@@ -37,7 +37,7 @@ condition {
   }
 
   if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []){
-    id = "ComplicationsOfCovid/" + context.source[studyVisitItem().crf().id()]  + "_" + crfItemBlutinfekt[CrfItem.ID]
+    id = "Condition/ComplicationsOfCovid-" + context.source[studyVisitItem().crf().id()]  + "_" + crfItemBlutinfekt[CrfItem.ID]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/complications-covid-19"

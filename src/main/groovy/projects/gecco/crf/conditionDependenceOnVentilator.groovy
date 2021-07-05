@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -16,11 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
  *       will be added as additional codings.
  */
-
-
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -31,11 +30,11 @@ condition {
   final def crfItemVent = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_RESP_OUTCOME" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemVent){
+  if (!crfItemVent) {
     return //no export
   }
   if (crfItemVent[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "DependenceOnVentilator/" + context.source[studyVisitItem().crf().id()]
+    id = "Condition/DependenceOnVentilator-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/dependence-on-ventilator"
@@ -93,6 +92,7 @@ static String matchResponseToSNOMED(final String resp) {
     default: null
   }
 }
+
 static String matchResponseToVerStat(final String resp) {
   switch (resp) {
     case ("COV_BEATMET_JA"):

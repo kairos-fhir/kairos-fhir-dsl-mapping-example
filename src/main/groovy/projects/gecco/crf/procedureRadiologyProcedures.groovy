@@ -5,7 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import org.hl7.fhir.r4.model.Procedure
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -14,11 +14,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-
-
 procedure {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -29,7 +27,7 @@ procedure {
   final def crfItemRadProc = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_BILD_LUNGE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemRadProc){
+  if (!crfItemRadProc) {
     return
   }
 
@@ -43,7 +41,7 @@ procedure {
     status = "unknown"
 
     category {
-      coding{
+      coding {
         system = "http://snomed.info/sct"
         code = "103693007"
       }
@@ -69,7 +67,7 @@ procedure {
       precision = TemporalPrecisionEnum.DAY.toString()
     }
     bodySite {
-      coding{
+      coding {
         system = "http://snomed.info/sct"
         code = "39607008"
       }
@@ -80,7 +78,6 @@ procedure {
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
-
 
 
 static String matchResponseToSNOMED(final String resp) {

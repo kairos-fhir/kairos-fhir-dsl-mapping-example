@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
@@ -13,11 +14,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @author Lukas Reinert, Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
-
-
 procedure {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
-  if (studyCode != "SARS-Cov-2"){
+  if (studyCode != "SARS-Cov-2") {
     return //no export
   }
   final def crfName = context.source[studyVisitItem().template().crfTemplate().name()]
@@ -28,7 +27,7 @@ procedure {
   final def crfItemRespAphe = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_APHERESE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (!crfItemRespAphe){
+  if (!crfItemRespAphe) {
     return
   }
   if (crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE] != []) {
@@ -46,7 +45,7 @@ procedure {
     }
 
     category {
-      coding{
+      coding {
         system = "http://snomed.info/sct"
         code = "277132007"
       }
