@@ -32,7 +32,7 @@ procedure {
     return
   }
   if (crfItemRespECMO[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "ECMO/" + context.source[studyVisitItem().id()]
+    id = "Procedure/ECMO" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/extracorporeal-membrane-oxygenation"

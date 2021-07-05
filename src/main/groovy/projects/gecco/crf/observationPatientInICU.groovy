@@ -38,7 +38,7 @@ observation {
     return
   }
   if (crfItemPatinICU[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "PatientInICU/" + context.source[studyVisitItem().id()]
+    id = "Observation/PatientInICU-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/patient-in-icu"

@@ -38,7 +38,7 @@ observation {
     return
   }
   if (crfItemPreg[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "Pregnancy/" + context.source[studyVisitItem().id()]
+    id = "Observation/Pregnancy-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pregnancy-status"

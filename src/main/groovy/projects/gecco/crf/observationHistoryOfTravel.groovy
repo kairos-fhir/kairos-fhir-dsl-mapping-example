@@ -38,7 +38,7 @@ observation {
     return
   }
   if (crfItemTravel[CrfItem.STRING_VALUE]) {
-    id = "HistoryOfTravel/" + context.source[studyVisitItem().id()]
+    id = "Observation/HistoryOfTravel-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/history-of-travel"

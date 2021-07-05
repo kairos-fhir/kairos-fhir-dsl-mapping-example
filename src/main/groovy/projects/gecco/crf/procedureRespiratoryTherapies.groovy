@@ -32,7 +32,7 @@ procedure {
     return
   }
   if (crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "RespiratoryTherapies/" + context.source[studyVisitItem().id()]
+    id = "Procedure/RespiratoryTherapies-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"

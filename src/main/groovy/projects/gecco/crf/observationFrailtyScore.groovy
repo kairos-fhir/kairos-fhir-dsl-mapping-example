@@ -35,7 +35,7 @@ observation {
     "COV_GECCO_FRAILTY_SCORE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemFrailty) {
-    id = "FrailtyScore" + context.source[studyVisitItem().id()]
+    id = "Observation/FrailtyScore-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/frailty-score"

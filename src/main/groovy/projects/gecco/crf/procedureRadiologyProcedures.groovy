@@ -34,7 +34,7 @@ procedure {
   }
 
   if (crfItemRadProc[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "RadiologyProcedures/" + context.source[studyVisitItem().id()]
+    id = "Procedure/RadiologyProcedures-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/radiology-procedures"

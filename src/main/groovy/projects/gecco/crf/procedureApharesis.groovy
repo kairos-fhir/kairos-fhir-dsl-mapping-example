@@ -32,7 +32,7 @@ procedure {
     return
   }
   if (crfItemRespAphe[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "Apheresis/" + context.source[studyVisitItem().id()]
+    id = "Procedure/Apheresis-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/apheresis"

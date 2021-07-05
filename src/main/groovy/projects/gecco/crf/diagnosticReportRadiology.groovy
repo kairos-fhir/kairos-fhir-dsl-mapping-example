@@ -41,7 +41,7 @@ diagnosticReport {
   }
 
   if (crfItemFinding[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "DiagnosticReportRadiology" + context.source[studyVisitItem().id()]
+    id = "DiagnosticReport/DiagnosticReportRadiology-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diagnostic-report-radiology"

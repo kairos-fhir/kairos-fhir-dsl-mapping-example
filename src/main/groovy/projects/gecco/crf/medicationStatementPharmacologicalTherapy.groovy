@@ -33,7 +33,7 @@ medicationStatement {
     return
   }
   if (crfItemThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "PharmacologicalTherapy/" + context.source[studyVisitItem().id()]
+    id = "MedicationStatement/PharmacologicalTherapy-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy"

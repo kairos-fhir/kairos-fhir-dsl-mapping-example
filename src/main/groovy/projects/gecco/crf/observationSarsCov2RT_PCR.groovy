@@ -44,7 +44,7 @@ observation {
     return
   }
 
-  id = "SarsCov2RT_PCR/" + context.source[studyVisitItem().id()]
+  id = "Observation/SarsCov2RT_PCR-" + context.source[studyVisitItem().id()]
 
   meta {
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-rt-pcr"
