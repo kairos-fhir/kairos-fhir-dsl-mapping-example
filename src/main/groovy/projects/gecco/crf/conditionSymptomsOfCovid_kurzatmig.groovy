@@ -37,7 +37,7 @@ condition {
   }
   if (crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE] != []){
 
-    id = "SymptomsOfCovid/" + context.source[studyVisitItem().crf().id()] + "_" + crfItemSymptom[CrfItem.ID]
+    id = "Condition/SymptomsOfCovid-" + context.source[studyVisitItem().crf().id()] + "_" + crfItemSymptom[CrfItem.ID]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/symptoms-covid-19"

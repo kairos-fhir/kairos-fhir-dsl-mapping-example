@@ -37,7 +37,7 @@ observation {
     return
   }
   if (crfItemGen[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "SexAssignedAtBirth/" + context.source[studyVisitItem().id()]
+    id = "Observation/SexAssignedAtBirth-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sex-assigned-at-birth"

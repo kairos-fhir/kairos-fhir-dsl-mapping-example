@@ -38,7 +38,7 @@ observation {
     return
   }
   if (crfItemStudy[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "InterventionalTrialParticipation/" + context.source[studyVisitItem().id()]
+    id = "Observation/InterventionalTrialParticipation-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/interventional-clinical-trial-participation"

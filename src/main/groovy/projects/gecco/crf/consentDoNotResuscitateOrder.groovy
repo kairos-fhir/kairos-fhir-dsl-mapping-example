@@ -31,7 +31,7 @@ consent {
     return //no export
   }
   if (crfItemDNR[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "DoNotResucitateOrder/" + context.source[studyVisitItem().crf().id()]
+    id = "Consent/DoNotResucitateOrder-" + context.source[studyVisitItem().crf().id()]
 
     meta {
       profile("https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/do-not-resuscitate-order")
