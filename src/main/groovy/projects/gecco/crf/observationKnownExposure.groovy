@@ -38,7 +38,7 @@ observation {
     return
   }
   if (crfItemExpo[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "KnownExposure/" + context.source[studyVisitItem().id()]
+    id = "Observation/KnownExposure-" + context.source[studyVisitItem().id()]
 
     meta {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/known-exposure"

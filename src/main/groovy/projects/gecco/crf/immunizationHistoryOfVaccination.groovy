@@ -39,7 +39,7 @@ immunization {
     return
   }
 
-  id = "HistoryOfVaccination" + context.source[studyVisitItem().id()]
+  id = "Immunization/HistoryOfVaccination-" + context.source[studyVisitItem().id()]
 
   meta {
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/immunization"
