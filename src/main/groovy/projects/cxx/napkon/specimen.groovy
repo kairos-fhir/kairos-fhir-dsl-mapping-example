@@ -29,7 +29,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 specimen {
 
   // 1. Filter sample category
-  (!([SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(context.source[sample().sampleCategory()] as SampleCategory))) {
+  final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
+  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  if (!containsCategory) {
     return
   }
 
@@ -92,26 +94,16 @@ specimen {
     }
   }
 
-  //TODO: Standard organization unit attached to sample
-  // extension{
-  //  url = "https://fhir.centraxx.de/extension/sample/sampleOrgunit"
-  //  valueCoding{
-  //    system = "https://fhir.centraxx.de/extension/sample/sampleOrgunit"
-  //    code = "NUM_Hannover"
-  //  }
-  //}
-  //organization {
-  //  identifier{
-  //    value = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
-  //    type {
-  //      coding {
-  //        system = "https://fhir.centraxx.de/extension/sample/sampleOrgunit"
-  //        code = context.source[sample().organisationUnit().code()]
-  //      }
-  //    }
-  //  }
-  //}
-
+  //4: Standard organization unit attached to sample
+  extension {
+    url = "https://fhir.centraxx.de/extension/sample/organizationUnit"
+    valueReference {
+      // by identifier
+      identifier {
+        value = "NUM_Hannover"
+      }
+    }
+  }
 
   status = context.source[sample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
@@ -142,7 +134,37 @@ specimen {
 
   if (context.source[sample().parent()] != null) {
     parent {
-      reference = "Specimen/" + context.source[sample().parent().id()]
+      // Reference by identifier SampleId, because parent MasterSample might already exists in the target system
+      if (SampleCategory.MASTER == context.source[sample().parent().sampleCategory()] as SampleCategory) {
+        identifier {
+          type {
+            coding {
+              code = "EXTSAMPLEID"
+            }
+          }
+          final def extSampleIdParent = context.source[sample().parent().idContainer()]?.find { final def entry ->
+            "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+          }
+          value = extSampleIdParent[SampleIdContainer.PSN]
+        }
+      }
+      // SampleId of parent AliquotGroup has to be constructed by OID, because there is no custom id
+//      else if (SampleCategory.ALIQUOTGROUP == context.source[sample().parent().sampleCategory()] as SampleCategory) {
+//        identifier {
+//          type {
+//            coding {
+//              code = "EXTSAMPLEID"
+//            }
+//          }
+//          final def extSampleIdParent = context.source[sample().parent().id()]?.find { final def entry ->
+//            "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+//          }
+//          value = extSampleIdParent[SampleIdContainer.PSN]
+//        }
+//      }
+      else {
+        reference = "Specimen/" + context.source[sample().parent().id()]
+      }
     }
   }
 
@@ -393,5 +415,5 @@ static String toNUMProcessing(final String sourceProcessing) {
   if (sourceProcessing.startsWith("Z"))
     return "Sprec-Z"
   else
-    return sourceProcessing;
+    return sourceProcessing
 }
