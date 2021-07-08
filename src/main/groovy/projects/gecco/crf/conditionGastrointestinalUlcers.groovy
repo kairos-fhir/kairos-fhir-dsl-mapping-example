@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  *
  */
-scondition {
+condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
   if (studyCode != "SARS-Cov-2") {
     return //no export

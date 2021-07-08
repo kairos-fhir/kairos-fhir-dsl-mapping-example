@@ -3,7 +3,7 @@
   "mappings": [
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
-      "transformByTemplate": "chronicLungDisease",
+      "transformByTemplate": "conditionCardiovascularDisease",
       "exportToFhirResource": "Condition"
    },
    {
