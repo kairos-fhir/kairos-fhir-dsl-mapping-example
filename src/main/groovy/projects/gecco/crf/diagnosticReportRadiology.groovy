@@ -18,7 +18,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
-sdiagnosticReport {
+diagnosticReport {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
   if (studyCode != "SARS-Cov-2") {
     return //no export
