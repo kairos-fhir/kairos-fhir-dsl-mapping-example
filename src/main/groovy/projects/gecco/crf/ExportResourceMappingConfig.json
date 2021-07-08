@@ -58,6 +58,16 @@
    },
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionChronicLiverDisease",
+      "exportToFhirResource": "Condition"
+   },
+ {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "conditionChronicLungDisease",
+      "exportToFhirResource": "Condition"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "conditionGastrointestinalUlcers",
       "exportToFhirResource": "Condition"
    },
@@ -74,6 +84,11 @@
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "observationHistoryOfTravel",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationInterventionalClinicalTrialParticipation",
       "exportToFhirResource": "Observation"
    },
    {
@@ -204,6 +219,11 @@
    {
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "observationPatientInICU",
+      "exportToFhirResource": "Observation"
+   },
+   {
+      "selectFromCxxEntity": "STUDY_VISIT_ITEM",
+      "transformByTemplate": "observationDischargeDisposition",
       "exportToFhirResource": "Observation"
    },
    {
