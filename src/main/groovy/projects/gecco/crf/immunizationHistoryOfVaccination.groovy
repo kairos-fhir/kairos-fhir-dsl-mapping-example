@@ -1,13 +1,10 @@
 package projects.gecco.crf
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import com.ctc.wstx.shaded.msv_core.datatype.xsd.datetime.PreciseCalendarFormatter
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.dsl.r4.BuilderUtils
 import org.hl7.fhir.r4.model.Immunization
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -79,7 +76,7 @@ immunization {
     return
   }
 
-  final ArrayList vaccDateList = []
+  final List vaccDateList = []
   crfItemVaccineDates?.each { final dates ->
     final def vaccDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
     if (vaccDateCode == "COV_GECCO_DAT_covid19f-dataelement-2.2211") {
@@ -94,21 +91,14 @@ immunization {
   occurrenceDateTime {
     date = selectMostRecentDate(vaccDateList)
   }
-
-
 }
 
-static String normalizeDate(final String dateTimeString){
+static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
 
-static String selectMostRecentDate(final ArrayList vdl) {
-  if (!vdl){
-    return null
-  }
-  else {
-    return vdl.sort()[-1] as String
-  }
+static String selectMostRecentDate(final List<String> vdl) {
+  return !vdl ? null : (vdl.sort().last() as String)
 }
 
 static String matchResponseToSNOMED(final String resp) {
