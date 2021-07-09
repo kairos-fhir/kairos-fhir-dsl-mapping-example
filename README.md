@@ -49,10 +49,8 @@ Detailed instructions to the interface and its DSL can be found in the [German h
 * All Groovy example scripts will contain a @since annotation that describes the first CentraXX version, that can interpret the respective script. The
   specified CentraXX version contains the necessary minimal version of the kairos-fhir-dsl library, CXX entity exporter, initializer and support for
   the ExportResourceMappingConfig.json.
-
-
-
-
+* The master branch might contain scripts, which using methods of the SNAPSHOT version of the underlying KAIROS-FHIR-DSL that has not been released yet. 
+  Please use only scripts of release tags, intended for your installed CentraXX version.
 
 # License
 
