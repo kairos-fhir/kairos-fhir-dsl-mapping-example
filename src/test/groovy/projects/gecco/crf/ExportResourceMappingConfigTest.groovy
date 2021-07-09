@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertTrue
 
+/**
+ * Test to verify that ExportResourceMappingConfig is valid and covers all groovy scripts.
+ */
 class ExportResourceMappingConfigTest {
 
   @Test
