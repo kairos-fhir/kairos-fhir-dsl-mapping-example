@@ -34,6 +34,7 @@ procedure {
     id = "Procedure/RespiratoryTherapies-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
     }
 
@@ -58,18 +59,17 @@ procedure {
       }
     }
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     performedDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-      precision = TemporalPrecisionEnum.MINUTE.toString()
     }
   }
 }
 
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, TemporalPrecisionEnum.MINUTE.stringLength()) : null
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
 
 

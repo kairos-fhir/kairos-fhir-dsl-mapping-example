@@ -41,9 +41,10 @@ observation {
     return
   }
 
-  id = "Observation/SarsCov2RT_PCR-" + context.source[studyVisitItem().id()]
+  id = "Observation/SarsCov2RT-PCR-" + context.source[studyVisitItem().id()]
 
   meta {
+    source = "https://fhir.centraxx.de"
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-rt-pcr"
   }
 
@@ -68,7 +69,7 @@ observation {
   }
 
   subject {
-    reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+    reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
 

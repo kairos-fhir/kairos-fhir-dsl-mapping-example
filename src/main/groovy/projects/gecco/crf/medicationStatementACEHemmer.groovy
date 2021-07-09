@@ -32,9 +32,12 @@ medicationStatement {
   }
   if (crfItemThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
     id = "MedicationStatement/ACEInhibitors-" + context.source[studyVisitItem().id()]
+
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy-ace-inhibitors"
     }
+
     crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
       if (STATUScode) {
@@ -50,7 +53,7 @@ medicationStatement {
       }
     }
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)

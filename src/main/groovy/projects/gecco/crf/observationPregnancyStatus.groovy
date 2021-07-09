@@ -38,6 +38,7 @@ observation {
     id = "Observation/Pregnancy-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pregnancy-status"
     }
 
@@ -51,7 +52,7 @@ observation {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     effectiveDateTime {

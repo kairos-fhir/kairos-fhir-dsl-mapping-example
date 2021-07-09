@@ -34,6 +34,7 @@ consent {
     id = "Consent/DoNotResucitateOrder-" + context.source[studyVisitItem().crf().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile("https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/do-not-resuscitate-order")
     }
 
@@ -54,7 +55,7 @@ consent {
     }
 
     patient {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     provision {

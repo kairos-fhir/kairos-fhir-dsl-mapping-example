@@ -34,6 +34,7 @@ procedure {
     id = "Procedure/Dialyse-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/dialysis"
     }
 
@@ -62,7 +63,7 @@ procedure {
       }
     }
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     performedDateTime {

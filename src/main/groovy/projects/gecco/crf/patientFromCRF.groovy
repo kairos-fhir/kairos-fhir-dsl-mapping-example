@@ -31,6 +31,7 @@ patient {
   id = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
 
   meta {
+    source = "https://fhir.centraxx.de"
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/Patient"
   }
 
