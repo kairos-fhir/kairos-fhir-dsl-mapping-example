@@ -35,6 +35,7 @@ medicationStatement {
     id = "MedicationStatement/PharmacologicalTherapy-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy"
     }
 
@@ -73,7 +74,7 @@ medicationStatement {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
     effectiveDateTime {
       date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)

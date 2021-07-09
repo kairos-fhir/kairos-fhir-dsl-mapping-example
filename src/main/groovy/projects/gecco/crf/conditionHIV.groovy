@@ -35,6 +35,7 @@ condition {
     id = "Condition/HIV-" + context.source[studyVisitItem().crf().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/human-immunodeficiency-virus-infection"
     }
 
@@ -67,7 +68,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     code {

@@ -38,6 +38,7 @@ observation {
     id = "Observation/InterventionalTrialParticipation-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/interventional-clinical-trial-participation"
     }
 
@@ -58,7 +59,7 @@ observation {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     effectiveDateTime {

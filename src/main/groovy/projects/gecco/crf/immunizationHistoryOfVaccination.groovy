@@ -1,10 +1,13 @@
 package projects.gecco.crf
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import com.ctc.wstx.shaded.msv_core.datatype.xsd.datetime.PreciseCalendarFormatter
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.dsl.r4.BuilderUtils
 import org.hl7.fhir.r4.model.Immunization
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -41,17 +44,18 @@ immunization {
   id = "Immunization/HistoryOfVaccination-" + context.source[studyVisitItem().id()]
 
   meta {
+    source = "https://fhir.centraxx.de"
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/immunization"
   }
+
 
   clinicalStatus = Immunization.ImmunizationStatus.COMPLETED
 
   patient {
-    reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+    reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
   final def valIndex = []
-
   vaccineCode {
     crfItems?.each { final item ->
       final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
@@ -75,30 +79,35 @@ immunization {
     return
   }
 
+  final ArrayList vaccDateList = []
   crfItemVaccineDates?.each { final dates ->
     final def vaccDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
     if (vaccDateCode == "COV_GECCO_DAT_covid19f-dataelement-2.2211") {
-      final def valIndexDate = dates[CrfItem.VALUE_INDEX]
-      if (valIndex.contains(valIndexDate)) {
-        dates[CrfItem.DATE_VALUE]?.each { final vD ->
-          final def vaccDate = normalizeDate(vD.toString())
-          if (vaccDate) {
-            occurrenceDateTime {
-              date = vaccDate
-              precision = TemporalPrecisionEnum.DAY.toString()
-            }
-          }
-        }
+      final String vDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
+      if (vDs) {
+        vaccDateList.add(vDs)
       }
     }
   }
+
+  //Date of last vaccination --> "Date of full immunization
+  occurrenceDateTime {
+    date = selectMostRecentDate(vaccDateList)
+  }
+
+
 }
 
-static String normalizeDate(final String dateTimeString) {
-  if (dateTimeString.contains("DAY")) {
+static String normalizeDate(final String dateTimeString){
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
+}
+
+static String selectMostRecentDate(final ArrayList vdl) {
+  if (!vdl){
     return null
-  } else {
-    return dateTimeString != null ? dateTimeString.substring(5) : null
+  }
+  else {
+    return vdl.sort()[-1] as String
   }
 }
 

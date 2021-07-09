@@ -39,6 +39,7 @@ condition {
     id = "Condition/NeuroDisease-" + context.source[studyVisitItem().crf().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/chronic-neurological-mental-diseases"
     }
 
@@ -75,7 +76,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
 

@@ -35,9 +35,10 @@ condition {
   }
 
   if (crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "Condition/ComplicationsOfCovid-" + context.source[studyVisitItem().crf().id()] + "_" + crfItemCoinfect[CrfItem.ID]
+    id = "Condition/ComplicationsOfCovid-" + context.source[studyVisitItem().crf().id()] + "-" + crfItemCoinfect[CrfItem.ID]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/complications-covid-19"
     }
 
@@ -70,7 +71,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     recordedDate {

@@ -37,6 +37,7 @@ condition {
     id = "Condition/StageAtDiagnosis-s" + context.source[studyVisitItem().crf().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diagnosis-covid-19"
     }
 
@@ -48,7 +49,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
 

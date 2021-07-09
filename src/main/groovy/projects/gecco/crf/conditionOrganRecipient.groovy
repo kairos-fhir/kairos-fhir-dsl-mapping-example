@@ -37,6 +37,7 @@ condition {
     id = "Condition/HistoryOfOrganTransplant-" + context.source[studyVisitItem().crf().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/organ-recipient"
     }
 
@@ -69,7 +70,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     code {

@@ -35,9 +35,10 @@ condition {
   }
   if (crfItemSymptom[CrfItem.CATALOG_ENTRY_VALUE] != []) {
 
-    id = "Condition/SymptomsOfCovid-" + context.source[studyVisitItem().crf().id()] + "_" + crfItemSymptom[CrfItem.ID]
+    id = "Condition/SymptomsOfCovid-" + context.source[studyVisitItem().crf().id()] + "-" + crfItemSymptom[CrfItem.ID]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/symptoms-covid-19"
     }
 
@@ -71,7 +72,7 @@ condition {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     recordedDate {

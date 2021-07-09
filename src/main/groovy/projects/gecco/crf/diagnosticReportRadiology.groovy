@@ -39,6 +39,7 @@ diagnosticReport {
     id = "DiagnosticReport/DiagnosticReportRadiology-" + context.source[studyVisitItem().id()]
 
     meta {
+      source = "https://fhir.centraxx.de"
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diagnostic-report-radiology"
     }
 
@@ -64,7 +65,7 @@ diagnosticReport {
     }
 
     subject {
-      reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     effectiveDateTime {
