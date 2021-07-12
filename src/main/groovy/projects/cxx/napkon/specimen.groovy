@@ -79,17 +79,18 @@ specimen {
 
   //2: mapping of centrifugation date on reposition date.
   //The first reposition date is not exported. Therefore, the reposition date is used here.
-  extension {
-    url = "https://fhir.centraxx.de/extension/sample/repositionDate" + FhirUrls.Extension.Sample.REPOSITION_DATE
-    valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate()]
+  if (context.source[sample().sprecPostCentrifugationDelayDate()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.REPOSITION_DATE
+      valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+    }
   }
-
 
   //3: Standard location path
   extension {
-    url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
+    url = FhirUrls.Extension.Sample.SAMPLE_LOCATION
     extension {
-      url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
+      url = FhirUrls.Extension.Sample.SAMPLE_LOCATION_PATH
       valueString = "NUM --> Klinikum Hannover --> Aliqoute"
     }
   }
