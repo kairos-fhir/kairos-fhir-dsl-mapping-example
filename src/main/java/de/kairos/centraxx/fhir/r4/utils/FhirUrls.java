@@ -40,14 +40,19 @@ public final class FhirUrls {
       domains.addAll(Sample.getAllDomains());
       domains.addAll(Medication.getAllDomains());
       domains.addAll(Consent.getAllDomains());
+      domains.addAll(Consent.Revocation.getAllDomains());
       domains.addAll(Calendar.getAllDomains());
       domains.addAll(Task.getAllDomains());
       domains.addAll(Crf.getAllDomains());
       domains.addAll(StudyVisitItem.getAllDomains());
+      domains.addAll(Document.getAllDomains());
+      domains.addAll(ServiceRequest.getAllDomains());
+      domains.addAll(LaborMapping.getAllDomains());
       return domains;
     }
 
     public static final class Sample {
+
       private static final String SAMPLE_BASE_URL = Extension.BASE_URL + "/sample";
       public static final String DERIVAL_DATE = SAMPLE_BASE_URL + "/derivalDate";
       public static final String REPOSITION_DATE = SAMPLE_BASE_URL + "/repositionDate";
@@ -55,11 +60,12 @@ public final class FhirUrls {
       public static final String SAMPLE_LOCATION_PATH = SAMPLE_BASE_URL + "/sampleLocationPath";
       public static final String X_POSITION = SAMPLE_BASE_URL + "/xPosition";
       public static final String Y_POSITION = SAMPLE_BASE_URL + "/yPosition";
+      public static final String ORGANIZATION_UNIT = SAMPLE_BASE_URL + "/organizationUnit";
 
       private Sample() {/* hide constructor */}
 
       public static List<String> getAllDomains() {
-        return asList(DERIVAL_DATE, REPOSITION_DATE, SAMPLE_LOCATION, SAMPLE_LOCATION_PATH, X_POSITION, Y_POSITION);
+        return asList(DERIVAL_DATE, REPOSITION_DATE, SAMPLE_LOCATION, SAMPLE_LOCATION_PATH, X_POSITION, Y_POSITION, ORGANIZATION_UNIT);
       }
 
     }
@@ -237,11 +243,13 @@ public final class FhirUrls {
       public static final String UPPER_VALUE = LABORVALUE_BASE_URL + "/upperValue";
       public static final String LOWER_VALUE = LABORVALUE_BASE_URL + "/lowerValue";
       public static final String UNIT = LABORVALUE_BASE_URL + "/unit";
+      public static final String FILE_VALUE = LABORVALUE_BASE_URL + "/fileValue";
 
       private LaborValue() {/* hide constructor */}
 
       public static List<String> getAllDomains() {
-        return asList(LABORVALUETYPE, MIN, MAX, DATE_PRECISION, OBSERVATION_METHOD, OBSERVATION_METHODS, IS_DEVIANT_VALUE, CHOICE_TYPE);
+        return asList(LABORVALUETYPE, MIN, MAX, DATE_PRECISION, OBSERVATION_METHOD, OBSERVATION_METHODS, IS_DEVIANT_VALUE, CHOICE_TYPE, UPPER_VALUE,
+                      LOWER_VALUE, UNIT, FILE_VALUE);
       }
     }
 
@@ -257,13 +265,44 @@ public final class FhirUrls {
     }
 
     public static final class Consent {
+
       private static final String CONSENT_BASE_URL = Extension.BASE_URL + "/consent";
       public static final String USER_INFO_FILE = CONSENT_BASE_URL + "/userInfoFile";
+      public static final String NOTES = CONSENT_BASE_URL + "/notes";
+      public static final String FILE = CONSENT_BASE_URL + "/file";
 
       private Consent() {/* hide constructor */}
 
       public static List<String> getAllDomains() {
-        return singletonList(USER_INFO_FILE);
+        return asList(USER_INFO_FILE, NOTES, FILE);
+      }
+
+      public static final class Revocation {
+        public static final String REVOCATION_BASE_URL = Consent.CONSENT_BASE_URL + "/revocation";
+        public static final String REVOCATION_PARTLY = REVOCATION_BASE_URL + "/partlyRevoked";
+        public static final String REVOCATION_FILE = REVOCATION_BASE_URL + "/file";
+        public static final String REVOCATION_DATE = REVOCATION_BASE_URL + "/date";
+        public static final String REVOCATION_NOTES = REVOCATION_BASE_URL + "/notes";
+
+        private Revocation() {/* hide constructor */}
+
+        public static List<String> getAllDomains() {
+          return asList(REVOCATION_BASE_URL, REVOCATION_PARTLY, REVOCATION_FILE, REVOCATION_DATE, REVOCATION_NOTES);
+        }
+      }
+    }
+
+    public static final class Document {
+      private static final String BASE_URL = Extension.BASE_URL + "/document";
+      public static final String DESCRIPTION = BASE_URL + "/description";
+      public static final String KEYWORDS = BASE_URL + "/keywords";
+      public static final String PRODUCER_ORDER_NUMBER = BASE_URL + "/producerOrderNumber";
+      public static final String STATUS = BASE_URL + "/status";
+
+      private Document() {/* hide constructor */}
+
+      public static List<String> getAllDomains() {
+        return asList(DESCRIPTION, KEYWORDS, PRODUCER_ORDER_NUMBER, STATUS);
       }
     }
 
@@ -333,6 +372,36 @@ public final class FhirUrls {
         return asList(DESCRIPTION, CAL_EVENT, NOTIFY_ON_RESOLVE, ASSIGNEE_GROUP);
       }
     }
+
+    public static final class ServiceRequest {
+      private static final String SERVICE_REQUEST_BASE_URL = Extension.BASE_URL + "/serviceRequest";
+      public static final String LABOR_MAPPINGS = SERVICE_REQUEST_BASE_URL + "/laborMappings";
+      public static final String LABOR_MAPPING = LABOR_MAPPINGS + "/laborMapping";
+      public static final String STATUS = SERVICE_REQUEST_BASE_URL + "/status";
+      public static final String CURRENT_STATUS = STATUS + "/currentStatus";
+      public static final String LAST_STATUS_TRANSITION = STATUS + "/lastStatusTransition";
+      public static final String REQUESTER = SERVICE_REQUEST_BASE_URL + "/requester";
+
+      private ServiceRequest() { /* hide constructor */}
+
+      public static List<String> getAllDomains() {
+        return asList(LABOR_MAPPINGS, LABOR_MAPPING, STATUS, CURRENT_STATUS, LAST_STATUS_TRANSITION, REQUESTER);
+      }
+    }
+
+    public static final class LaborMapping {
+      public static final String LABOR_MAPPING_BASE_URL = Extension.BASE_URL + "/laborMapping";
+      public static final String LABOR_MAPPING_TYPE = LABOR_MAPPING_BASE_URL + "/type";
+      public static final String RELATED_REFERENCE = LABOR_MAPPING_BASE_URL + "/relatedReference";
+      public static final String PATIENT = LABOR_MAPPING_BASE_URL + "/patient";
+      public static final String ENCOUNTER = LABOR_MAPPING_BASE_URL + "/encounter";
+
+      private LaborMapping() { /* hide constructor */}
+
+      public static List<String> getAllDomains() {
+        return asList(LABOR_MAPPING_BASE_URL, LABOR_MAPPING_TYPE, RELATED_REFERENCE, PATIENT, ENCOUNTER);
+      }
+    }
   }
 
   public static final class System {
@@ -342,6 +411,8 @@ public final class FhirUrls {
     public static final String STAY_TYPE = BASE_URL + "/stayType";
     public static final String CRF = BASE_URL + "/crf";
     public static final String LABOR_MAPPING = BASE_URL + "/laborMapping";
+    public static final String CONTACT_ADDRESS = BASE_URL + "/contactAddress";
+    public static final String LABOR_METHOD = BASE_URL + "/laborMethod";
 
     private System() {/* hide constructor */}
 
@@ -494,8 +565,18 @@ public final class FhirUrls {
       public static final String MAPPING_TYPE = BASE_URL + "/mappingType";
       public static final String KIND = BASE_URL + "/kind";
       public static final String CATEGORY = BASE_URL + "/category";
+      public static final String DOCUMENT_ID = BASE_URL + "/documentId";
+      public static final String STATUS = BASE_URL + "/status";
 
       private Document() {/* hide constructor */}
+    }
+
+    public static final class ServiceRequest {
+      private static final String BASE_URL = System.BASE_URL + "/serviceRequest";
+      public static final String TYPE = BASE_URL + "/type";
+      public static final String REQUEST_ID = BASE_URL + "/requestId";
+
+      private ServiceRequest() {}
     }
 
   }
