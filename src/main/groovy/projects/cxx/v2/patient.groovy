@@ -1,7 +1,8 @@
 package projects.cxx.v2
 
-import de.kairos.centraxx.common.types.GenderType
+
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
