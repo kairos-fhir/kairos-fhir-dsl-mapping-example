@@ -97,7 +97,7 @@ specimen {
 
   //4: Standard organization unit attached to sample
   extension {
-    url = "https://fhir.centraxx.de/extension/sample/organizationUnit"
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
     valueReference {
       // by identifier
       identifier {
@@ -275,7 +275,7 @@ specimen {
       }
       if (context.source[sample().sprecFixationTime()]) {
         extension {
-          url = FhirUrls.Extension.Sprec.SPFREC_FIXATION_TIME
+          url = FhirUrls.Extension.Sprec.SPREC_FIXATION_TIME
           valueCoding {
             system = "urn:centraxx"
             code = context.source[sample().sprecFixationTime().code()]
