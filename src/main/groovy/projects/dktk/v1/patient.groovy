@@ -1,6 +1,6 @@
 package projects.dktk.v1
 
-import de.kairos.centraxx.common.types.GenderType
+import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender
 
 /**

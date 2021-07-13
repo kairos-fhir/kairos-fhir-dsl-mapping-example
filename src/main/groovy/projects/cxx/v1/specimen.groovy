@@ -1,7 +1,8 @@
 package projects.cxx.v1
 
-import de.kairos.centraxx.common.types.sample.SampleKind
+
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 
 /**
  * Represented by a CXX AbstractSample

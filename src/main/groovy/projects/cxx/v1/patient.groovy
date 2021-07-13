@@ -1,6 +1,7 @@
 package projects.cxx.v1
 
-import de.kairos.centraxx.common.types.GenderType
+import de.kairos.fhir.centraxx.metamodel.enums.GenderType
+
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
