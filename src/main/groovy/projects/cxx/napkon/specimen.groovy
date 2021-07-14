@@ -130,11 +130,11 @@ specimen {
         identifier {
           type {
             coding {
-              code = "EXTSAMPLEID"
+              code = "SAMPLEID"
             }
           }
           final def extSampleIdParent = context.source[sample().parent().idContainer()]?.find { final def entry ->
-            "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+            "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
           }
           value = extSampleIdParent[SampleIdContainer.PSN]
         }
