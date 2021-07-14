@@ -126,15 +126,15 @@ specimen {
   if (context.source[sample().parent()] != null) {
     parent {
       // Reference by identifier SampleId, because parent MasterSample might already exists in the target system
-      if (SampleCategory.MASTER == context.source[sample().parent().sampleCategory()] as SampleCategory) {
+      final def extSampleIdParent = context.source[sample().parent().idContainer()]?.find { final def entry ->
+        "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+      }
+      if (SampleCategory.MASTER == context.source[sample().parent().sampleCategory()] as SampleCategory && extSampleIdParent) {
         identifier {
           type {
             coding {
               code = "SAMPLEID"
             }
-          }
-          final def extSampleIdParent = context.source[sample().parent().idContainer()]?.find { final def entry ->
-            "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
           }
           value = extSampleIdParent[SampleIdContainer.PSN]
         }
