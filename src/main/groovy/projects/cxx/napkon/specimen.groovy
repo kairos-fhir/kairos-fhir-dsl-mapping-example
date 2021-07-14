@@ -19,7 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * Hints:
  * 1. Filter: only master samples, derived samples and aliquot groups are allowed to export.
  * 2. Filter: Only samples of the OrgUnit P-2216-NAP are exported.
- * 3. Mapping: postcenrtifugationdate (Einfrierzeitpunkt HUB) to firstrepositiondate (Einfrierzeitpunkt DZHK)
+ * 3. Mapping: postcentrifugationdate (Einfrierzeitpunkt HUB) to firstrepositiondate (Einfrierzeitpunkt DZHK)
  * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK) TODO: verify codes
  * 5. Mapping IDs: EXTSAMPLEID (HUB) to SAMPLEID (DZHK) TODO: Turn around for reverse sync
  * 6. Filter: Link only LaborMethod "DZHKFLAB" NUM WF3 -> see observation.groovy
@@ -46,10 +46,6 @@ specimen {
     "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
-  final def sampleIdContainer = context.source[sample().idContainer()]?.find { final def entry ->
-    "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-  }
-
   // 5: cross-mapping of the ids
   if (externalSampleIdContainer) {
     identifier {
@@ -57,23 +53,9 @@ specimen {
         coding {
           system = "urn:centraxx"
           code = "SAMPLEID"
-          display = "Proben ID"
         }
       }
       value = externalSampleIdContainer?.getAt(SampleIdContainer.PSN)
-    }
-  }
-
-  if (sampleIdContainer) {
-    identifier {
-      type {
-        coding {
-          system = "urn:centraxx"
-          code = "EXTSAMPLEID"
-          display = "Externe Proben ID"
-        }
-      }
-      value = sampleIdContainer?.getAt(SampleIdContainer.PSN)
     }
   }
 
@@ -106,12 +88,20 @@ specimen {
     }
   }
 
+  // TODO: Mapping of the derival date
+  if (context.source[sample().derivalDate()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.DERIVAL_DATE
+      valueDateTime = context.source[sample().derivalDate().date()]
+    }
+  }
+
   status = context.source[sample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
   type {
     coding {
       system = "urn:centraxx"
-      code = toNumType(context.source[sample().sampleType().code()])
+      code = toDzhkType(context.source[sample().sampleType().code()])
     }
   }
 
@@ -187,7 +177,7 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = context.source[sample().receptable().code()]
+        value = toDzhkContainer(context.source[sample().receptable().code()])
         system = "urn:centraxx"
       }
 
@@ -323,7 +313,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.SPREC_POST_CENTRIFUGATION_DELAY
           valueCoding {
             system = "urn:centraxx"
-            code = context.source[sample().sprecPostCentrifugationDelay()]
+            code = context.source[sample().sprecPostCentrifugationDelay().code()]
           }
         }
       }
@@ -338,7 +328,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.STOCK_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source[sample().stockProcessing().code()] as String)
+            code = toDzhkProcessing(context.source[sample().stockProcessing().code()] as String)
           }
         }
       }
@@ -353,7 +343,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source[sample().secondProcessing().code()] as String)
+            code = toDzhkProcessing(context.source[sample().secondProcessing().code()] as String)
           }
         }
       }
@@ -367,7 +357,8 @@ specimen {
   }
 }
 
-static String toNumType(final Object sourceType) {
+// TODO: add the correct Mappings of the Type-Codes
+static String toDzhkType(final Object sourceType) {
   switch (sourceType) {
     case "BAL":
       return "NUM_bal"
@@ -386,35 +377,22 @@ static String toNumType(final Object sourceType) {
   }
 }
 
-static String toNUMProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A"))
+//TODO: Mapping of the stockProcessing codes.
+static String toDzhkProcessing(final String sourceProcessing) {
+  if (sourceProcessing.startsWith("A")) {
     return "Sprec-A"
-  if (sourceProcessing.startsWith("B"))
-    return "Sprec-B"
-  if (sourceProcessing.startsWith("C"))
-    return "Sprec-C"
-  if (sourceProcessing.startsWith("D"))
-    return "Sprec-D"
-  if (sourceProcessing.startsWith("E"))
-    return "Sprec-E"
-  if (sourceProcessing.startsWith("F"))
-    return "Sprec-F"
-  if (sourceProcessing.startsWith("G"))
-    return "Sprec-G"
-  if (sourceProcessing.startsWith("H"))
-    return "Sprec-H"
-  if (sourceProcessing.startsWith("I"))
-    return "Sprec-I"
-  if (sourceProcessing.startsWith("J"))
-    return "Sprec-J"
-  if (sourceProcessing.startsWith("M"))
-    return "Sprec-M"
-  if (sourceProcessing.startsWith("N"))
-    return "Sprec-N"
-  if (sourceProcessing.startsWith("X"))
-    return "Sprec-X"
-  if (sourceProcessing.startsWith("Z"))
-    return "Sprec-Z"
-  else
+  }
+  else{
     return sourceProcessing
+  }
 }
+
+// TODO: Insert Mappings for container codes
+static String toDzhkContainer(final Object sourceType) {
+  switch (sourceType) {
+    case "BLD":
+      return "SER"
+    default: return sourceType
+  }
+}
+
