@@ -41,6 +41,33 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/diagnosis-covid-19"
     }
 
+    crfItemStage[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      } else if (["410594000", "410605003"].contains(VERcode)) {
+        verificationStatus {
+          coding {
+            system = "http://snomed.info/sct"
+            code = VERcode
+          }
+          coding {
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            code = matchResponseToVerificationStatusHL7(item[CatalogEntry.CODE] as String)
+          }
+        }
+      }
+    }
+
+
     category {
       coding {
         system = "http://snomed.info/sct"
@@ -97,6 +124,24 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_UNKNOWN"):
       return "261665006"
     default: null
+  }
+}
+static String matchResponseToVerificationStatus(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNKNOWN"):
+      return "261665006"
+    default: "410605003"
+  }
+}
+static String matchResponseToVerificationStatusHL7(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNKNOWN"):
+      return "unconfirmed"
+    default: "confirmed"
   }
 }
 

@@ -28,7 +28,7 @@ observation {
     return //no export
   }
   final def crfItemFrailty = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_FRAILTY_SCORE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_FARILITYSCORE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemFrailty) {
     id = "Observation/FrailtyScore-" + context.source[studyVisitItem().id()]

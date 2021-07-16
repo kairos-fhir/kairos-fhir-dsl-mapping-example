@@ -44,12 +44,26 @@ condition {
     }
 
     crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-      final def VERcode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
-      if (VERcode) {
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
           coding {
-            system = ""
+            system = "http://snomed.info/sct"
             code = VERcode
+          }
+          coding {
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            code = matchResponseToVerificationStatusHL7(item[CatalogEntry.CODE] as String)
           }
         }
       }
@@ -129,14 +143,25 @@ static String matchResponseToICD(final String resp) {
   }
 }
 
-static String matchResponseToSTATUS(final String resp) {
+
+static String matchResponseToVerificationStatus(final String resp) {
   switch (resp) {
+    case null:
+      return null
     case ("COV_HGW_NEIN"):
       return "410594000"
     default: "410605003"
   }
 }
-
+static String matchResponseToVerificationStatusHL7(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_HGW_NEIN"):
+      return "refuted"
+    default: "confirmed"
+  }
+}
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null
