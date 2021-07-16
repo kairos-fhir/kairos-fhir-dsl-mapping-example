@@ -105,7 +105,7 @@ static String mapGender(final String gender) {
 
 
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
 
 

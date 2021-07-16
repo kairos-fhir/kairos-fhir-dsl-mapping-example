@@ -49,6 +49,10 @@ condition {
             system = "http://snomed.info/sct"
             code = VERcode
           }
+          coding {
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            code = matchResponseToVerificationStatusHL7(item[CatalogEntry.CODE] as String)
+          }
         }
       }
     }
@@ -100,6 +104,17 @@ static String matchResponseToVerStat(final String resp) {
       return "410605003"
     case ("COV_BEATMET_NEIN"):
       return "410594000"
+    default: null
+  }
+}
+static String matchResponseToVerificationStatusHL7(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_BEATMET_JA"):
+      return "confirmed"
+    case ("COV_BEATMET_NEIN"):
+      return "refuted"
     default: null
   }
 }
