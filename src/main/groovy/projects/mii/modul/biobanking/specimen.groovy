@@ -26,7 +26,7 @@ specimen {
 
   if (context.source[abstractSample().episode()]) {
     extension {
-      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionDiagnose"
+      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Diagnose"
       valueReference {
         reference = "Diagnosis/" + context.source[sample().episode().id()]
       }
@@ -35,7 +35,7 @@ specimen {
 
   if (context.source[sample().organisationUnit()]) {
     extension {
-      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionVerwaltendeOrganisation"
+      url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/VerwaltendeOrganisation"
       valueReference {
         reference = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
       }
@@ -43,13 +43,9 @@ specimen {
   }
 
 
-  context.source[sample().idContainer()].find { final def idObj ->
+  context.source[sample().idContainer()].each { final def idObj ->
     identifier {
       type {
-        coding {
-          system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-          code = "FILL"
-        }
         coding {
           system = "urn:centraxx"
           code = idObj[AbstractIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
@@ -66,17 +62,9 @@ specimen {
 
   if (context.source[sample().sampleType()]) {
     type {
-      // Types can be specified in CXX. This code system applies only if snomed-ct is used for coding in CXX.
-      coding {
-        system = "http://snomed.info/sct"
-        code = context.source[sample().sampleType().code()]
-        display = context.source[sample().sampleType().nameMultilingualEntries()].find { final def entry ->
-          "de" == entry[MultilingualEntry.LANG]
-        }[MultilingualEntry.VALUE]
-      }
       // SPREC is implemented in CXX.
       coding {
-        system = "https://www.isber.org/page/SPREC"
+        system = "https://doi.org/10.1089/bio.2017.0109/type-of-sample"
         code = context.source[sample().sampleType().sprecCode()]
       }
     }
@@ -126,7 +114,7 @@ specimen {
     container {
       type {
         coding {
-          system = "https://www.isber.org/page/SPREC"
+          system = "https://doi.org/10.1089/bio.2017.0109/long-term-storage"
           code = context.source[sample().receptable().sprecCode()]
         }
       }
@@ -137,6 +125,24 @@ specimen {
       specimenQuantity {
         value = context.source[sample().restAmount().amount()]
         unit = context.source[sample().restAmount().unit()]
+      }
+      additiveReference {
+        if (context.source[sample().sprecPrimarySampleContainer()]){
+          additiveCodeableConcept {
+            coding {
+              system = "https://doi.org/10.1089/bio.2017.0109/type-of-primary-container"
+              code = context.source[sample().sprecPrimarySampleContainer().sprecCode()]
+            }
+          }
+        }
+        if (context.source[sample().stockType()]){
+          additiveCodeableConcept {
+            coding {
+              system = "https://doi.org/10.1089/bio.2017.0109/type-of-primary-container"
+              code = context.source[sample().stockType().sprecCode()]
+            }
+          }
+        }
       }
     }
   }
