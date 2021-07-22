@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.8.1</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.9.0-SNAPSHOT</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
   </properties>
