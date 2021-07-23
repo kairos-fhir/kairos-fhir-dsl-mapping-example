@@ -43,9 +43,9 @@ specimen {
   }
 
   // 2. Filter OrgUnit
-  /*if ("P-2216-NAP" != context.source[sample().organisationUnit().code()]) {
+  if ("P-2216-NAP" != context.source[sample().organisationUnit().code()]) {
     return
-  }*/
+  }
 
   id = "Specimen/" + context.source[sample().id()]
 
