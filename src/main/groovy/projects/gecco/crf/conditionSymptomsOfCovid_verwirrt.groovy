@@ -17,6 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  * NOTE: Due to the Cardinality-restraint (1..1) for "code", multiple selections in CXX for this parameter
  *       will be added as additional codings.
  */
+
 condition {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
   if (studyCode != "SARS-Cov-2") {
@@ -59,6 +60,10 @@ condition {
           coding {
             system = "http://snomed.info/sct"
             code = VERcode
+          }
+          coding {
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            code = matchResponseToVerificationStatusHL7(item[CatalogEntry.CODE] as String)
           }
         }
       }
@@ -121,6 +126,17 @@ static String matchResponseToVerificationStatus(final String resp) {
     case ("COV_NEIN"):
       return "410594000"
     default: "410605003"
+  }
+}
+static String matchResponseToVerificationStatusHL7(final String resp) {
+  switch (resp) {
+    case null:
+      return null
+    case ("COV_UNBEKANNT"):
+      return "unconfirmed"
+    case ("COV_NEIN"):
+      return "refuted"
+    default: "confirmed"
   }
 }
 

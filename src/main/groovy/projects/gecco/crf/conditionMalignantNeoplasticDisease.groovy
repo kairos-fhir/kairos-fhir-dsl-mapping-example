@@ -70,6 +70,10 @@ condition {
             system = "http://snomed.info/sct"
             code = verificationStatusCode
           }
+          coding {
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            code = matchResponseToVerificationStatusHL7(item[CatalogEntry.CODE] as String)
+          }
         }
       }
     }
@@ -122,7 +126,19 @@ static String matchResponseToVerificationStatus(final String resp) {
     default: null
   }
 }
-
+static String matchResponseToVerificationStatusHL7(final String resp) {
+  switch (resp) {
+    case ("COV_AKTIV"):
+      return "confirmed"
+    case ("COV_REMISSION"):
+      return "confirmed"
+    case ("COV_NO"):
+      return "refuted"
+    case ("COV_UNKNOWN"):
+      return "unconfirmed"
+    default: null
+  }
+}
 
 
 
