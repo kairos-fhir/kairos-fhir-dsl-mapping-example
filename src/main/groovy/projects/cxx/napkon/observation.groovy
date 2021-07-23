@@ -74,9 +74,10 @@ observation {
     }
   }
 
-  specimen {
+  // uncomment when facility to access specimen by identifier out of labor findings is included in a future CXX version.
+  /*specimen {
     reference = "Specimen/" + context.source[laborMapping().relatedOid()] //TODO change against reference by identifier
-  }
+  }*/
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final def labFinLabVal ->
     component {
