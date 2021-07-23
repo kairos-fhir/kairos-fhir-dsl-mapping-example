@@ -7,6 +7,9 @@ import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 
+import java.text.SimpleDateFormat
+import java.util.concurrent.TimeUnit
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
@@ -21,12 +24,16 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * 2. Filter: Only samples of the OrgUnit P-2216-NAP are exported.
  * 3. Mapping: postcentrifugationdate (Einfrierzeitpunkt HUB) to firstrepositiondate (Einfrierzeitpunkt DZHK)
  * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK) TODO: verify codes
- * 5. Mapping IDs: EXTSAMPLEID (HUB) to SAMPLEID (DZHK) TODO: Turn around for reverse sync
+ * 5. Mapping IDs: EXTSAMPLEID (HUB) to SAMPLEID (DZHK)
  * 6. Filter: Link only LaborMethod "DZHKFLAB" NUM WF3 -> see observation.groovy
- *
  * TODO: 7. Check mapping of the sample type.
+ * 8. Filter samples that were created not longer than 3 days ago.
  */
 specimen {
+  // 8. CreationDate Filter
+  if (isMoreThanNDaysAgo(context.source[sample().creationDate()] as String, 3)) {
+    return
+  }
 
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
@@ -36,26 +43,48 @@ specimen {
   }
 
   // 2. Filter OrgUnit
-  if ("P-2216-NAP" != context.source[sample().organisationUnit().code()]) {
+  /*if ("P-2216-NAP" != context.source[sample().organisationUnit().code()]) {
     return
-  }
+  }*/
 
   id = "Specimen/" + context.source[sample().id()]
 
-  final def externalSampleIdContainer = context.source[sample().idContainer()]?.find { final def entry ->
-    "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-  }
+  final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "EXTSAMPLEID": "SAMPLEID"]
+  final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
+    return [
+        (idContainerCode): context.source[sample().idContainer()]?.find { final def entry ->
+          idContainerCode == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+        }
+    ]
+  } as Map<String, Object>
 
-  // 5: cross-mapping of the ids
-  if (externalSampleIdContainer) {
-    identifier {
-      type {
-        coding {
-          system = "urn:centraxx"
-          code = "SAMPLEID"
+  // 5: cross-mapping of the ids of MASTER samples. The sample id of the HUB is provided as external sampled id to DZHK.
+  // The external sample id of HUB is provided as sample id to DZHK.
+  if (context.source[sample().sampleCategory()] as SampleCategory == SampleCategory.MASTER) {
+    idContainersMap.each { final String idContainerCode, final Object idContainer ->
+      if (idContainer) {
+        identifier {
+          type {
+            coding {
+              system = "urn:centraxx"
+              code = idContainerCodeMap[idContainerCode]
+            }
+          }
+          value = idContainer[SampleIdContainer.PSN]
         }
       }
-      value = externalSampleIdContainer?.getAt(SampleIdContainer.PSN)
+    }
+  } else { // Providing HUB sample id as sample id to DZHK.
+    if (idContainersMap["SAMPLEID"]) {
+      identifier {
+        type {
+          coding {
+            system = "urn:centraxx"
+            code = "SAMPLEID"
+          }
+        }
+        value = idContainersMap["SAMPLEID"][SampleIdContainer.PSN]
+      }
     }
   }
 
@@ -357,6 +386,11 @@ specimen {
   }
 }
 
+static boolean isMoreThanNDaysAgo(String dateString, int days) {
+  final Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(dateString)
+  final long differenceInMillis = (System.currentTimeMillis() - date.getTime())
+  return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
+}
 // TODO: add the correct Mappings of the Type-Codes
 static String toDzhkType(final Object sourceType) {
   switch (sourceType) {
@@ -381,8 +415,7 @@ static String toDzhkType(final Object sourceType) {
 static String toDzhkProcessing(final String sourceProcessing) {
   if (sourceProcessing.startsWith("A")) {
     return "Sprec-A"
-  }
-  else{
+  } else {
     return sourceProcessing
   }
 }
