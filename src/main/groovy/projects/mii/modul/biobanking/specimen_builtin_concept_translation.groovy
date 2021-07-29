@@ -4,11 +4,13 @@ import de.kairos.fhir.centraxx.metamodel.AbstractIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.dsl.r4.context.BuiltinConcept
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Specimen
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX SAMPLE
  * Codings are custumized in CXX. Therefore, the code system is unknown. If other codings are used in the local CXX system, the code systems must be adjusted.
@@ -63,7 +65,7 @@ specimen {
 
   if (context.source[sample().sampleType()]) {
     type {
-      final Coding translationResult = context.translateBuiltinConcept("mii_sprec_snomed_sampletype.json", context.source[sample().sampleType().sprecCode()])
+      final Coding translationResult = context.translateBuiltinConcept(BuiltinConcept.MII_SPREC_SNOMED_SAMPLETYPE, context.source[sample().sampleType().sprecCode()])
       if (translationResult) {
         coding.add(translationResult)
       } else {
@@ -74,6 +76,7 @@ specimen {
       }
     }
   }
+
   subject {
     reference = "Patient/" + context.source[sample().patientContainer().id()]
   }
@@ -118,7 +121,7 @@ specimen {
   if (context.source[sample().receptable()]) {
     container {
       type {
-        final Coding translationResult = context.translateBuiltinConcept("mii_sprec_snomed_longtermstorage", sample().receptable().sprecCode() as String)
+        final Coding translationResult = context.translateBuiltinConcept(BuiltinConcept.MII_SPREC_SNOMED_LONGTERMSTORAGE, sample().receptable().sprecCode() as String)
         if (translationResult) {
           coding.add(translationResult)
         } else {
