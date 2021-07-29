@@ -56,10 +56,11 @@ procedure {
       coding {
         system = "http://fhir.de/CodeSystem/dimdi/ops"
         code = "8-852"
+        version = "2021"
       }
       coding {
         system = "http://snomed.info/sct"
-        code = "71388002"
+        code = "233573008"
       }
     }
 

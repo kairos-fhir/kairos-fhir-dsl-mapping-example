@@ -54,7 +54,7 @@ observation {
     code {
       coding {
         system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
-        code = "02"
+        code = "03"
       }
     }
 
@@ -75,6 +75,22 @@ observation {
             system = "http://snomed.info/sct"
             code = SNOMEDcode
           }
+        }
+      }
+    }
+    component {
+      code {
+        coding {
+          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes",
+          code = "04"
+        }
+      }
+    }
+    component {
+      code {
+        coding {
+          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes",
+          code = "05"
         }
       }
     }
