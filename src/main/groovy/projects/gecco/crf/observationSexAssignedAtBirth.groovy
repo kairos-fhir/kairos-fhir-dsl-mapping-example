@@ -28,7 +28,7 @@ observation {
     return //no export
   }
   final def crfItemGen = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_Geschlecht_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (!crfItemGen) {
     return
