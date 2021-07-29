@@ -70,7 +70,7 @@ condition {
     category {
       coding {
         system = "http://snomed.info/sct"
-        code = "408472002"
+        code = "116223007"
       }
     }
 

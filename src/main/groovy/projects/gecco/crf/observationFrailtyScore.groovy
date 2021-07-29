@@ -1,6 +1,7 @@
 package projects.gecco.crf
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
@@ -64,13 +65,13 @@ observation {
     }
 
 
-    crfItemFrailty[CrfItem.NUMERIC_VALUE]?.each { final item ->
-      final def Fcode = item as Integer
+    crfItemFrailty[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def Fcode = item[CatalogEntry.CODE] as Integer
       if (Fcode) {
         valueCodeableConcept {
           coding {
             system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/frailty-score"
-            code = Fcode as String
+            code = getFrailtyScore(Fcode as String)
             display = mapFrailty(Fcode as String)
           }
         }
@@ -84,25 +85,29 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
+static String getFrailtyScore(final String frailtyString) {
+  return frailtyString != null ? frailtyString.substring(0, 1) : null
+}
+
 static String mapFrailty(final String frailty) {
   switch (frailty) {
-    case "1":
+    case "1 - Sehr fit":
       return "Very Fit"
-    case "2":
+    case "2 - Durchschnittlich aktiv":
       return "Well"
-    case "3":
+    case "3 - Gut zurechtkommend":
       return "Managing Well"
-    case "4":
+    case "4 - Vulnerabel":
       return "Vulnerable"
-    case "5":
+    case "5 - Geringgradig frail":
       return "Mildly Frail"
-    case "6":
+    case "6 - Mittelgradig frail":
       return "Moderately Frail"
-    case "7":
+    case "7 - Ausgeprägt frail":
       return "Severely Frail"
-    case "8":
+    case "8 - Extrem frail":
       return "Very Severely Frail"
-    case "9":
+    case "9 - Terminal Erkrankt":
       return "Terminally Ill"
     default:
       return null
