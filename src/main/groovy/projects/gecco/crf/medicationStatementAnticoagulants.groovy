@@ -99,6 +99,6 @@ static String matchResponseToSTATUS(final String resp) {
   switch (resp) {
     case ("COV_NEIN"):
       return "not-taken"
-    default: null
+    default: "unknown"
   }
 }

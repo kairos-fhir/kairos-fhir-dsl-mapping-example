@@ -42,7 +42,19 @@ observation {
   }
 
   id = "Observation/SarsCov2RT-PCR-" + context.source[studyVisitItem().id()]
-
+  identifier {
+    type {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "OBI"
+      }
+    }
+    system = "http://www.acme.com/identifiers/patient"
+    value = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+    assigner {
+      reference = "Assigner/" + context.source[studyVisitItem().creator().id()]
+    }
+  }
   meta {
     source = "https://fhir.centraxx.de"
     profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-rt-pcr"
@@ -67,7 +79,10 @@ observation {
       code = "94500-6"
     }
   }
-
+  effectiveDateTime {
+    date = normalizeDate(crfItemDisc[CrfItem.CREATIONDATE] as String)
+    precision = TemporalPrecisionEnum.DAY.toString()
+  }
   subject {
     reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }

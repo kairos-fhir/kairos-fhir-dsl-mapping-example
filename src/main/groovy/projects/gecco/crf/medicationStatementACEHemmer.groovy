@@ -45,6 +45,11 @@ medicationStatement {
         medication {
           medicationCodeableConcept {
             coding {
+              system = "http://snomed.info/sct"
+              code = "41549009"
+              display = "Product containing angiotensin-converting enzyme inhibitor (product)"
+            }
+            coding {
               system = "http://fhir.de/CodeSystem/dimdi/atc"
               code = "C09A"
             }

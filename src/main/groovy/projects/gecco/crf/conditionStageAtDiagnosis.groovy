@@ -103,6 +103,12 @@ condition {
           }
         }
       }
+      type {
+        coding{
+          system = "http://loinc.org"
+          code = "88859-4"
+        }
+      }
     }
 
   }
