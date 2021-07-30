@@ -81,7 +81,7 @@ observation {
     component {
       code {
         coding {
-          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes",
+          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
           code = "04"
         }
       }
@@ -89,11 +89,13 @@ observation {
     component {
       code {
         coding {
-          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes",
+          system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
           code = "05"
         }
       }
     }
+
+
   }
 }
 
