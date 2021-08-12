@@ -112,7 +112,7 @@ specimen {
     valueReference {
       // by identifier
       identifier {
-        value = "NUM_Hannover"
+        value = "NUM_H_SUEP"
       }
     }
   }
@@ -130,7 +130,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toDzhkType(context.source[sample().sampleType().code()])
+      code = toDzhkType(context.source[sample().sampleType().code()] as String)
     }
   }
 
@@ -206,7 +206,7 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toDzhkContainer(context.source[sample().receptable().code()])
+        value = toDzhkContainer(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().sprecCode()] as String)
         system = "urn:centraxx"
       }
 
@@ -392,40 +392,35 @@ static boolean isMoreThanNDaysAgo(String dateString, int days) {
   return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
 }
 // TODO: add the correct Mappings of the Type-Codes
-static String toDzhkType(final Object sourceType) {
+static String toDzhkType(final String sourceType) {
   switch (sourceType) {
-    case "BAL":
-      return "NUM_bal"
-    case "ZZZ(nab)":
-      return "NUM_abstrich"
-    case "ZZZ(pbm)":
-      return "NUM_pbmc"
-    case "SAL":
-      return "NUM_speichel"
-    case ["SPT", "SPT(ind)"]:
-      return "NUM_sputum"
-    case "ZZZ(usd)":
-      return "NUM_urins"
-    default:
-      return sourceType
+    case "BAL": return "NUM_bal"
+    case "ZZZ(nab)": return "NUM_abstrich"
+    case "ZZZ(pbm)": return "NUM_pbmc"
+    case "SAL": return "NUM_speichel"
+    case ["SPT", "SPT(ind)"]: return "NUM_sputum"
+    case "ZZZ(usd)": return "NUM_urins"
+    case "PL1": return "EDTA"
+    case "PL2": return "EDTA"
+    default: return sourceType
   }
 }
 
 //TODO: Mapping of the stockProcessing codes.
 static String toDzhkProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A")) {
-    return "Sprec-A"
-  } else {
-    return sourceProcessing
-  }
+  if (sourceProcessing.startsWith("A")) return "Sprec-A"
+  else return sourceProcessing
 }
 
-// TODO: Insert Mappings for container codes
-static String toDzhkContainer(final Object sourceType) {
-  switch (sourceType) {
-    case "BLD":
-      return "SER"
-    default: return sourceType
-  }
+static String toDzhkContainer(final String sampleType, final String sampleReceptacleSprecCode) {
+  if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
+  else if (sampleType == "SER" && sampleReceptacleSprecCode == "SST") return "NUMCryoAliquot500"
+  else if (sampleType == "SAL" && sampleReceptacleSprecCode == "ZZZ(ppu)") return "NUMCryoAliquot500"
+  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "SCI") return "NUMCryoAliquot500"
+  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
+  else if (sampleType == "BFF" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "URN") return "NUMCryoAliquot500"
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "ZZZ(usd)") return "NUMCryoAliquot2000"
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot2000"
+  else return "Unbekannt (XXX)"
 }
-
