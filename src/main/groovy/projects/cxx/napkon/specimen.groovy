@@ -43,11 +43,12 @@ specimen {
   }
 
   // 2. Filter OrgUnit
-  if ("P-2216-NAP" != context.source[sample().organisationUnit().code()]) {
+  if ("P-2216-NAP" == context.source[sample().organisationUnit().code()] || "P-2216-NAP" == context.source[sample().parent().organisationUnit().code()]) {
+    id = "Specimen/" + context.source[sample().id()]
+  } else {
     return
   }
 
-  id = "Specimen/" + context.source[sample().id()]
 
   final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "EXTSAMPLEID": "SAMPLEID"]
   final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
