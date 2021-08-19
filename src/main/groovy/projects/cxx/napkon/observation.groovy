@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
@@ -24,7 +25,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * Represented by a CXX LaborMapping
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.9.0, CXX.v.3.18.2
+ * @since v.1.10.0, CXX.v.3.18.2, CXX.v.3.18.1.8
  *
  * The mapping transforms specimen from the HUB Hannover system to the DZHK Greifswald system.
  * Script to extract measurement results that contain only simple data types and single / multiple selections from value lists or custom catalogs.
@@ -33,7 +34,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * for the import.
  */
 observation {
-  if (!((LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType) && (["DZHKFLAB", "NUM_PBMC_ISOLIERUNG", "NUM_BAL"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])))) {
+  def isSampleMapping = LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType
+  def isDzhkRelevant = ["DZHKFLAB", "NUM_PBMC_ISOLIERUNG", "NUM_BAL"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
+  if (!(isSampleMapping && isDzhkRelevant)) {
     return
   }
 
@@ -66,6 +69,25 @@ observation {
     }
   }
 
+  if (context.source[laborMapping().sample()] != null) {
+    // Reference by identifier SampleId, because parent MasterSample might already exists in the target system
+    // The external sample id of HUB is provided as sample id to DZHK.
+    final def extSampleId = context.source[laborMapping().sample().idContainer()]?.find { final def entry ->
+      "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    }
+
+    specimen {
+      identifier {
+        type {
+          coding {
+            code = "SAMPLEID"
+          }
+        }
+        value = extSampleId[SampleIdContainer.PSN]
+      }
+    }
+  }
+
   effectiveDateTime = context.source[laborMapping().laborFinding().findingDate().date()]
 
   method {
@@ -75,11 +97,6 @@ observation {
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
     }
   }
-
-  // uncomment when facility to access specimen by identifier out of labor findings is included in a future CXX version.
-  /*specimen {
-    reference = "Specimen/" + context.source[laborMapping().relatedOid()] //TODO change against reference by identifier
-  }*/
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final def labFinLabVal ->
     component {
@@ -137,8 +154,17 @@ observation {
 // TODO: Add right mappings from labor value code to the corresponding value list of the target system (DZHK)
 static mapParameterCodesOnOid(final String LaborValueCode) {
   switch (LaborValueCode) {
-    case "Parameter-1": return "1"
-    case "Parameter-2": return "2"
+    case "NAPKON_ABWEICHUNGEN": return "?"
+    case "NAPKON_ART_DER_BLUTENTNAHME": return "?"
+    case "NAPKON_ART_DER_URINGEWINNUNG": return "?"
+    case "NAPKON_DAUER_DER_POSITION_VOR_BE": return "?"
+    case "NAPKON_NUECHTERSTATUS": return "?"
+    case "NAPKON_ERNAEHRUNG_PARENTERAL": return "?"
+    case "NAPKON_NUECHTERN_GENAU": return "?"
+    case "NAPKON_FALLS_JA_WELCHE": return "?"
+    case "NAPKON_MENSTRUATIONSBLUTUNG": return "?"
+    case "NAPKON_STANDORT_PROBENETNAHME": return "?"
+    case "NAPKON_VISITENART": return "?"
   }
 }
 
