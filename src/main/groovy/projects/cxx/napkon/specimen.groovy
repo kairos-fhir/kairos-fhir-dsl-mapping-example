@@ -130,7 +130,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toDzhkType(context.source[sample().sampleType().code()] as String)
+      code = toDzhkType(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().sprecCode()] as String, context.source[sample().receptable().code()] as String)
     }
   }
 
