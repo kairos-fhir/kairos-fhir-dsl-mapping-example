@@ -13,7 +13,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
  * @author Mike Wähnert
  * @since v.1.10.0, CXX.v.3.18.2
- * TODO: work in progress
  */
 researchSubject {
 
@@ -26,6 +25,13 @@ researchSubject {
   status = ResearchSubject.ResearchSubjectStatus.ONSTUDY
 
   identifier {
+    type {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "ANON"
+      }
+    }
+    system = "urn:centraxx"
     value = context.source[studyMember().studyMemberId()]
   }
 
@@ -69,5 +75,4 @@ researchSubject {
       }
     }
   }
-
 }
