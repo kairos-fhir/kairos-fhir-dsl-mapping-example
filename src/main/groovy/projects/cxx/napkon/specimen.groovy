@@ -131,7 +131,11 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toDzhkType(context.source[sample().sampleType().code()] as String)
+      code = toDzhkType(
+          context.source[sample().sampleType().code()] as String,
+          context.source[sample().receptable().code()] as String,
+          context.source[sample().sprecPrimarySampleContainer().sprecCode()] as String
+      )
     }
   }
 
@@ -207,7 +211,7 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toDzhkContainer(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().sprecCode()] as String)
+        value = toDzhkContainer(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().code()] as String)
         system = "urn:centraxx"
       }
 
@@ -393,18 +397,24 @@ static boolean isMoreThanNDaysAgo(String dateString, int days) {
   return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
 }
 // TODO: add the correct Mappings of the Type-Codes
-static String toDzhkType(final String sourceType) {
-  switch (sourceType) {
-    case "BAL": return "NUM_bal"
-    case "ZZZ(nab)": return "NUM_abstrich"
-    case "ZZZ(pbm)": return "NUM_pbmc"
-    case "SAL": return "NUM_speichel"
-    case ["SPT", "SPT(ind)"]: return "NUM_sputum"
-    case "ZZZ(usd)": return "NUM_urins"
-    case "PL1": return "EDTA"
-    case "PL2": return "EDTA"
-    default: return sourceType
-  }
+static String toDzhkType(final String sampleType, final String sampleReceptacleCode, final String primaryContainerSprecCode) {
+  //MASTER
+  if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SST") return "SER" //Serum
+  else if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "PED") return "EDTAWB" //EDTA Vollblut
+  else if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SCI") return "CIT" //Zitrat
+  else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "NUM_pax" //PAX-Gene
+  else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "NUM_speichel" //Speichel
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMonoUri085") return "URN" //Urin
+  //ALIQUOT
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
+  else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SCI") return "CIT" //Citrat
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "EDTA" //EDTA-Plasma
+  else if (sampleType == "BFF" && sampleReceptacleCode == "Ma2D010ScT") return "EDTABUF" //Buffy Coat
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "URN") return "NUM_urinf" //Urin-Überstand
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "ZZZ(usd)") return "NUM_urins" //Urin-Sediment
+  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUM_PBMC_C" //PBMC Zellen
+  else return "Unbekannt (XXX)"
 }
 
 //TODO: Mapping of the stockProcessing codes.
@@ -413,15 +423,20 @@ static String toDzhkProcessing(final String sourceProcessing) {
   else return sourceProcessing
 }
 
-static String toDzhkContainer(final String sampleType, final String sampleReceptacleSprecCode) {
-  if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
-  else if (sampleType == "SER" && sampleReceptacleSprecCode == "SST") return "NUMCryoAliquot500"
-  else if (sampleType == "SAL" && sampleReceptacleSprecCode == "ZZZ(ppu)") return "NUMCryoAliquot500"
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "SCI") return "NUMCryoAliquot500"
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
-  else if (sampleType == "BFF" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot500"
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "URN") return "NUMCryoAliquot500"
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "ZZZ(usd)") return "NUMCryoAliquot2000"
-  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "PED") return "NUMCryoAliquot2000"
+static String toDzhkContainer(final String sampleType, final String sampleReceptacleCode) {
+  //MASTER
+  if (sampleType == "BLD" && sampleReceptacleCode == "StMono075") return "ORG" //Serum + EDTA Vollblut + Citrat
+  else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "ORG" //PAX-Gene
+  else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "ORG" //Speichel
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMonoUri085") return "ORG" //Urin
+  //ALIQUOT
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUMCryoAliquot500" //PBMC
+  else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Serum
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Citrat
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //EDTA-Plasma
+  else if (sampleType == "BFF" && sampleReceptacleCode == "Ma2D010ScT") return "NUMCryoAliquot500" //Buffy Coat
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Urin-Überstand
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT") return "AliquotFluidX"     //Urin-Sediment
+  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUMCryoAliquot2000"//PBMC Zellen
   else return "Unbekannt (XXX)"
 }
