@@ -137,8 +137,17 @@ observation {
 // TODO: Add right mappings from labor value code to the corresponding value list of the target system (DZHK)
 static mapParameterCodesOnOid(final String LaborValueCode) {
   switch (LaborValueCode) {
-    case "Parameter-1": return "1"
-    case "Parameter-2": return "2"
+    case "NAPKON_ABWEICHUNGEN": return "?"
+    case "NAPKON_ART_DER_BLUTENTNAHME": return "?"
+    case "NAPKON_ART_DER_URINGEWINNUNG": return "?"
+    case "NAPKON_DAUER_DER_POSITION_VOR_BE": return "?"
+    case "NAPKON_NUECHTERSTATUS": return "?"
+    case "NAPKON_ERNAEHRUNG_PARENTERAL": return "?"
+    case "NAPKON_NUECHTERN_GENAU": return "?"
+    case "NAPKON_FALLS_JA_WELCHE": return "?"
+    case "NAPKON_MENSTRUATIONSBLUTUNG": return "?"
+    case "NAPKON_STANDORT_PROBENETNAHME": return "?"
+    case "NAPKON_VISITENART": return "?"
   }
 }
 
