@@ -31,13 +31,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  */
 specimen {
   // 8. CreationDate Filter
+  /*
   if (isMoreThanNDaysAgo(context.source[sample().creationDate()] as String, 3)) {
     return
   }
-
+  */
+  
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
-  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.ALIQUOTGROUP].contains(category)
+  //  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+
   if (!containsCategory) {
     return
   }
@@ -404,7 +408,8 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SCI") return "CIT" //Zitrat
   else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "NUM_pax" //PAX-Gene
   else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "NUM_speichel" //Speichel
-  else if (sampleType == "URN" && sampleReceptacleCode == "StMonoUri085") return "URN" //Urin
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "URN" //Urin
+
   //ALIQUOT
   else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
@@ -420,6 +425,19 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
 //TODO: Mapping of the stockProcessing codes.
 static String toDzhkProcessing(final String sourceProcessing) {
   if (sourceProcessing.startsWith("A")) return "Sprec-A"
+  else if (sourceProcessing.startsWith("B")) return "Sprec-B"
+  else if (sourceProcessing.startsWith("C")) return "Sprec-C"
+  else if (sourceProcessing.startsWith("D")) return "Sprec-D"
+  else if (sourceProcessing.startsWith("E")) return "Sprec-E"
+  else if (sourceProcessing.startsWith("F")) return "Sprec-F"
+  else if (sourceProcessing.startsWith("G")) return "Sprec-G"
+  else if (sourceProcessing.startsWith("H")) return "Sprec-H"
+  else if (sourceProcessing.startsWith("I")) return "Sprec-I"
+  else if (sourceProcessing.startsWith("J")) return "Sprec-J"
+  else if (sourceProcessing.startsWith("M")) return "Sprec-M"
+  else if (sourceProcessing.startsWith("N")) return "Sprec-N"
+  else if (sourceProcessing.startsWith("X")) return "Sprec-X"
+  else if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
   else return sourceProcessing
 }
 
@@ -428,7 +446,8 @@ static String toDzhkContainer(final String sampleType, final String sampleRecept
   if (sampleType == "BLD" && sampleReceptacleCode == "StMono075") return "ORG" //Serum + EDTA Vollblut + Citrat
   else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "ORG" //PAX-Gene
   else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "ORG" //Speichel
-  else if (sampleType == "URN" && sampleReceptacleCode == "StMonoUri085") return "ORG" //Urin
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "ORG" //Urin
+
   //ALIQUOT
   else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUMCryoAliquot500" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Serum
