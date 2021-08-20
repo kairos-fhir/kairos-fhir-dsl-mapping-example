@@ -1,4 +1,4 @@
-package projects.cxx.napkon
+package projects.cxx.napkon.hub
 
 
 import de.kairos.fhir.centraxx.metamodel.IdContainer
