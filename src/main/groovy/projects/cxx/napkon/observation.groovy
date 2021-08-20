@@ -76,14 +76,16 @@ observation {
       "EXTSAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
     }
 
-    specimen {
-      identifier {
-        type {
-          coding {
-            code = "SAMPLEID"
+    if (extSampleId) {
+      specimen {
+        identifier {
+          type {
+            coding {
+              code = "SAMPLEID"
+            }
           }
+          value = extSampleId[SampleIdContainer.PSN]
         }
-        value = extSampleId[SampleIdContainer.PSN]
       }
     }
   }
