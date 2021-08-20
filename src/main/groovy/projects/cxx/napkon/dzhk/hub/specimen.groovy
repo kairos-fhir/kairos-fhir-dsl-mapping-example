@@ -1,6 +1,5 @@
 package projects.cxx.napkon.dzhk.hub
 
-
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
@@ -46,9 +45,7 @@ specimen {
     return
   }
 
-
   id = "Specimen/" + context.source[ID]
-
 
   final def idContainer = context.source[ID_CONTAINER]?.find {
     "SAMPLEID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
@@ -103,7 +100,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toHubType(context.source[sample().sampleType().code()])
+      code = toHubType(context.source[sample().sampleType().code()] as String)
     }
   }
 
@@ -171,20 +168,20 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toHubContainer(context.source[sample().sampleType().code()])
+        value = toHubContainer(context.source[sample().sampleType().code()] as String)
         system = "urn:centraxx"
       }
 
       capacity {
-        value = toHubContainerCapacity(context.source[sample().sampleType().code()])
-        unit = toHubContainerCapacityUnit(context.source[sample().sampleType().code()])
+        value = toHubContainerCapacity(context.source[sample().sampleType().code()] as String)
+        unit = toHubContainerCapacityUnit(context.source[sample().sampleType().code()] as String)
         system = "urn:centraxx"
       }
     }
 
     specimenQuantity {
       value = context.source[sample().restAmount().amount()] as Number
-      unit = toHubContainerCapacityUnit(context.source[sample().sampleType().code()])
+      unit = toHubContainerCapacityUnit(context.source[sample().sampleType().code()] as String)
       system = "urn:centraxx"
     }
   }
@@ -298,7 +295,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.SPREC_PRIMARY_SAMPLE_CONTAINER
           valueCoding {
             system = "urn:centraxx"
-            code = toHubSprecPrimaryContainer(context.source[sample().sampleType().code()])
+            code = toHubSprecPrimaryContainer(context.source[sample().sampleType().code()] as String)
           }
         }
       }
@@ -366,121 +363,77 @@ specimen {
   }
 }
 
-static String toHubContainerCapacityUnit(final Object sourceType) {
-  switch (sourceType) {
-    case "SAL":
-      return ""
-    default:
-      return "ML"
+// TODO check if blank return value is valid
+static String toHubContainerCapacityUnit(final String sampleTypeCode) {
+  switch (sampleTypeCode) {
+    case "SAL": return ""
+    default: return "ML"
   }
 }
 
-static String toHubContainerCapacity(final Object sourceType) {
-  switch (sourceType) {
-    case "SAL":
-      return "1.0"
-    case "NUM_pax":
-      return "2.5"
-    case "URN":
-      return "8.5"
-    default:
-      return "7.5"
+static String toHubContainerCapacity(final String sampleTypeCode) {
+  switch (sampleTypeCode) {
+    case "SAL": return "1.0"
+    case "NUM_pax": return "2.5"
+    case "URN": return "8.5"
+    default: return "7.5"
   }
 }
 
-static String toHubContainer(final Object sourceType) {
-  switch (sourceType) {
-    case "SER":
-      return "StMono075"
-    case "EDTAWB":
-      return "StMono075"
-    case "CIT":
-      return "StMono075"
-    case "NUM_pax":
-      return "BDPax025"
-    case "NUM_pbmc_edta":
-      return "StMono075"
-    case "NUM_speichel":
-      return "StSali001"
-    case "URN":
-      return "StMono085"
-    default:
-      return sourceType
-  }
-
-}
-
-static String toHubType(final Object sourceType) {
-  switch (sourceType) {
-    case "SER":
-      return "BLD"
-    case "EDTAWB":
-      return "BLD"
-    case "CIT":
-      return "BLD"
-    case "NUM_pax":
-      return "BLD"
-    case "NUM_pbmc_edta":
-      return "BLD"
-    case "NUM_speichel":
-      return "SAL"
-    case "URN":
-      return "URN"
-    default:
-      return sourceType
+static String toHubContainer(final String sampleTypeCode) {
+  switch (sampleTypeCode) {
+    case "SER": return "StMono075"
+    case "EDTAWB": return "StMono075"
+    case "CIT": return "StMono075"
+    case "NUM_pax": return "BDPax025"
+    case "NUM_pbmc_edta": return "StMono075"
+    case "NUM_speichel": return "StSali001"
+    case "URN": return "StMono085"
+    default: return sampleTypeCode
   }
 }
 
-static String toHubSprecPrimaryContainer(final Object sourceType) {
-  switch (sourceType) {
-    case "SER":
-      return "SST"
-    case "EDTAWB":
-      return "PED"
-    case "CIT":
-      return "SCI"
-    case "NUM_pax":
-      return "PAX"
-    case "NUM_pbmc_edta":
-      return "PED"
-    case "NUM_speichel":
-      return "SAL"
-    case "URN":
-      return "ZZZ(ppu)"
-    default:
-      return sourceType
+static String toHubType(final String sampleTypeCode) {
+  switch (sampleTypeCode) {
+    case "SER": return "BLD"
+    case "EDTAWB": return "BLD"
+    case "CIT": return "BLD"
+    case "NUM_pax": return "BLD"
+    case "NUM_pbmc_edta": return "BLD"
+    case "NUM_speichel": return "SAL"
+    case "URN": return "URN"
+    default: return sampleTypeCode
   }
 }
 
+static String toHubSprecPrimaryContainer(final String sampleTypeCode) {
+  switch (sampleTypeCode) {
+    case "SER": return "SST"
+    case "EDTAWB": return "PED"
+    case "CIT": return "SCI"
+    case "NUM_pax": return "PAX"
+    case "NUM_pbmc_edta": return "PED"
+    case "NUM_speichel": return "SAL"
+    case "URN": return "ZZZ(ppu)"
+    default: return sampleTypeCode
+  }
+}
+
+// TODO: turn around mapping from DZHK to HUB
 static String toNUMProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A"))
-    return "Sprec-A"
-  if (sourceProcessing.startsWith("B"))
-    return "Sprec-B"
-  if (sourceProcessing.startsWith("C"))
-    return "Sprec-C"
-  if (sourceProcessing.startsWith("D"))
-    return "Sprec-D"
-  if (sourceProcessing.startsWith("E"))
-    return "Sprec-E"
-  if (sourceProcessing.startsWith("F"))
-    return "Sprec-F"
-  if (sourceProcessing.startsWith("G"))
-    return "Sprec-G"
-  if (sourceProcessing.startsWith("H"))
-    return "Sprec-H"
-  if (sourceProcessing.startsWith("I"))
-    return "Sprec-I"
-  if (sourceProcessing.startsWith("J"))
-    return "Sprec-J"
-  if (sourceProcessing.startsWith("M"))
-    return "Sprec-M"
-  if (sourceProcessing.startsWith("N"))
-    return "Sprec-N"
-  if (sourceProcessing.startsWith("X"))
-    return "Sprec-X"
-  if (sourceProcessing.startsWith("Z"))
-    return "Sprec-Z"
-  else
-    return sourceProcessing
+  if (sourceProcessing.startsWith("A")) return "Sprec-A"
+  if (sourceProcessing.startsWith("B")) return "Sprec-B"
+  if (sourceProcessing.startsWith("C")) return "Sprec-C"
+  if (sourceProcessing.startsWith("D")) return "Sprec-D"
+  if (sourceProcessing.startsWith("E")) return "Sprec-E"
+  if (sourceProcessing.startsWith("F")) return "Sprec-F"
+  if (sourceProcessing.startsWith("G")) return "Sprec-G"
+  if (sourceProcessing.startsWith("H")) return "Sprec-H"
+  if (sourceProcessing.startsWith("I")) return "Sprec-I"
+  if (sourceProcessing.startsWith("J")) return "Sprec-J"
+  if (sourceProcessing.startsWith("M")) return "Sprec-M"
+  if (sourceProcessing.startsWith("N")) return "Sprec-N"
+  if (sourceProcessing.startsWith("X")) return "Sprec-X"
+  if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
+  else return sourceProcessing
 }
