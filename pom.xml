@@ -4,7 +4,7 @@
 
   <groupId>de.kairos</groupId>
   <artifactId>kairos-fhir-dsl-mapping-example</artifactId>
-  <version>1.9.1-SNAPSHOT</version>
+  <version>1.10.1-SNAPSHOT</version>
   <description>This project contains kairos-fhir-dsl example mappings for the CentraXX FHIR custom export interface.</description>
   <url>https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example</url>
   <organization>
@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
     <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.9.0</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.10.0</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
   </properties>
@@ -24,7 +24,7 @@
   <scm>
     <connection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</connection>
     <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</developerConnection>
-    <tag>kairos-fhir-dsl-mapping-example-1.9.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>

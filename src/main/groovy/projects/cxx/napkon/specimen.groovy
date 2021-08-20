@@ -409,6 +409,7 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "NUM_pax" //PAX-Gene
   else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "NUM_speichel" //Speichel
   else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "URN" //Urin
+
   //ALIQUOT
   else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
@@ -446,6 +447,7 @@ static String toDzhkContainer(final String sampleType, final String sampleRecept
   else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "ORG" //PAX-Gene
   else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "ORG" //Speichel
   else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "ORG" //Urin
+
   //ALIQUOT
   else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUMCryoAliquot500" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Serum

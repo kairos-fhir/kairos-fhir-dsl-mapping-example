@@ -1,30 +1,30 @@
-package projects.gecco.crf
+package projects.gecco.crf.lab_vital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.CrfItem
-import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.FlexiStudy
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a CXX LaborMapping
  * Specified by https://simplifier.net/forschungsnetzcovid-19/bodytemperature
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1.7
  *
  */
-
 observation {
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
+
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
   if (profileName != "COV_GECCO_VITALPARAMTER") {
     return //no export
@@ -34,9 +34,8 @@ observation {
     "COV_GECCO_FIO2" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
   if (!labVal) {
-    return
+    return //no export
   }
-
 
   id = "Observation/FiO2-" + context.source[laborMapping().id()]
 
@@ -78,7 +77,7 @@ observation {
   }
 
   labVal[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
-    if (numVal){
+    if (numVal) {
       valueQuantity {
         value = numVal
         unit = "°C"
@@ -88,7 +87,6 @@ observation {
     }
   }
 }
-
 
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null

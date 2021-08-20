@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * In this example SPREC codes for the sample type, and container are translated by a builtin concept.
  * TODO: NOTE: The script was written while the corresponding FHIR profile on simplifier.net was still in draft state. Changes in the profile might require adjustments in the script.
  * @author Jonas Küttner
- * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.2
+ * @since KAIROS-FHIR-DSL.v.1.10.0, CXX.v.3.18.2
  */
 
 specimen {
@@ -121,7 +121,7 @@ specimen {
   if (context.source[sample().receptable()]) {
     container {
       type {
-        final Coding translationResult = context.translateBuiltinConcept(BuiltinConcept.MII_SPREC_SNOMED_LONGTERMSTORAGE, sample().receptable().sprecCode() as String)
+        final Coding translationResult = context.translateBuiltinConcept(BuiltinConcept.MII_SPREC_SNOMED_LONGTERMSTORAGE, context.source[sample().receptable().sprecCode()] as String)
         if (translationResult) {
           coding.add(translationResult)
         } else {
@@ -193,6 +193,7 @@ static Specimen.SpecimenStatus mapSpecimenStatus(final String specimenStatus) {
     case "entered-in-error": return Specimen.SpecimenStatus.ENTEREDINERROR
     default: return Specimen.SpecimenStatus.NULL
   }
+
 }
 
 
