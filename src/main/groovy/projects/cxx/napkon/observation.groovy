@@ -4,11 +4,13 @@ import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.Unity
+import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import org.hl7.fhir.r4.model.Observation
@@ -21,7 +23,6 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.NUMERIC_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.TIME_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represented by a CXX LaborMapping
  * @author Jonas Küttner, Mike Wähnert
@@ -35,7 +36,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
   def isSampleMapping = LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType
-  def isDzhkRelevant = ["DZHKFLAB", "NUM_PBMC_ISOLIERUNG", "NUM_BAL"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
+  def isDzhkRelevant = ["DZHKFLAB", "NUM_PBMC_ISOLIERUNG", "NUM_BAL", "SPECIAL_ONE"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
   if (!(isSampleMapping && isDzhkRelevant)) {
     return
   }
@@ -145,6 +146,17 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/" + getUriPart(entry[CatalogEntry.CATALOG][AbstractCustomCatalog.CATALOG_CATEGORY] as CatalogCategory) + "-" + mapParameterCodesOnOid(labFinLabVal[LABOR_VALUE][LaborValue.CODE] as String)
               code = entry[CatalogEntry.CODE] as String
+            }
+          }
+        }
+      }
+
+      if (labFinLabVal[LaborFindingLaborValue.MULTI_VALUE]){
+        valueCodeableConcept {
+          labFinLabVal[LaborFindingLaborValue.MULTI_VALUE].each {final def entry ->
+            coding {
+              system = "urn:centraxx:CodeSystem/UsageEntry-" + entry[UsageEntry.ID]
+              code = entry[UsageEntry.CODE] as String
             }
           }
         }
