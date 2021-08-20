@@ -38,10 +38,10 @@ observation {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
-
   final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
     "COVID-19-PATIENTID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
+
   if (patIdContainer) {
     subject {
       identifier {

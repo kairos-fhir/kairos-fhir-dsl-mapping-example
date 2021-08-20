@@ -18,8 +18,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
- * TODO: export of state and country in address
- * TODO: export of title as prefix
  */
 
 
