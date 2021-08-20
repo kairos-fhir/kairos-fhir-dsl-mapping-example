@@ -31,25 +31,28 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  */
 specimen {
   // 8. CreationDate Filter
+  /*
   if (isMoreThanNDaysAgo(context.source[sample().creationDate()] as String, 3)) {
     return
   }
-
+  */
+  
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
-  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.ALIQUOTGROUP].contains(category)
+  //  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+
   if (!containsCategory) {
     return
   }
 
   // 2. Filter OrgUnit
   if ("P-2216-NAP" == context.source[sample().organisationUnit().code()] || "P-2216-NAP" == context.source[sample().parent().organisationUnit().code()]) {
-	  id = "Specimen/" + context.source[sample().id()]
+    id = "Specimen/" + context.source[sample().id()]
   } else {
-	  return
+    return
   }
 
-  id = "Specimen/" + context.source[sample().id()]
 
   final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "EXTSAMPLEID": "SAMPLEID"]
   final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
@@ -132,7 +135,11 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toDzhkType(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().sprecCode()] as String, context.source[sample().receptable().code()] as String)
+      code = toDzhkType(
+          context.source[sample().sampleType().code()] as String,
+          context.source[sample().receptable().code()] as String,
+          context.source[sample().sprecPrimarySampleContainer().sprecCode()] as String
+      )
     }
   }
 
@@ -208,7 +215,7 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toDzhkContainer(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().sprecCode()] as String)
+        value = toDzhkContainer(context.source[sample().sampleType().code()] as String, context.source[sample().receptable().code()] as String)
         system = "urn:centraxx"
       }
 
@@ -394,46 +401,59 @@ static boolean isMoreThanNDaysAgo(String dateString, int days) {
   return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
 }
 // TODO: add the correct Mappings of the Type-Codes
-static String toDzhkType(final String sampleType, final String sampleReceptacleSprecCode, final String sampleReceptacleCode) {
+static String toDzhkType(final String sampleType, final String sampleReceptacleCode, final String primaryContainerSprecCode) {
   //MASTER
-  if      (sampleType == "BLD" && sampleReceptacleSprecCode == "StMono075" && sampleReceptacleCode == "SST") return "SER" //Serum
-  else if (sampleType == "BLD" && sampleReceptacleSprecCode == "StMono075" && sampleReceptacleCode == "PED") return "EDTAWB" //EDTA Vollblut
-  else if (sampleType == "BLD" && sampleReceptacleSprecCode == "StMono075" && sampleReceptacleCode == "SCI") return "CIT" //Zitrat
-  else if (sampleType == "BLD" && sampleReceptacleSprecCode == "BDPax025") return "NUM_pax" //PAX-Gene
-  else if (sampleType == "SAL" && sampleReceptacleSprecCode == "StSali001") return "NUM_speichel" //Speichel
-  else if (sampleType == "URN" && sampleReceptacleSprecCode == "StMonoUri085") return "URN" //Urin
+  if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SST") return "SER" //Serum
+  else if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "PED") return "EDTAWB" //EDTA Vollblut
+  else if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SCI") return "CIT" //Zitrat
+  else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "NUM_pax" //PAX-Gene
+  else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "NUM_speichel" //Speichel
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "URN" //Urin
   //ALIQUOT
-  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
-  else if (sampleType == "SER" && sampleReceptacleSprecCode == "Ma2D005ScT" && sampleReceptacleCode == "SST") return "SER" //Serum
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "Ma2D005ScT" && sampleReceptacleCode == "SCI") return "CIT" //Citrat
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "Ma2D005ScT") return "EDTA" //EDTA-Plasma
-  else if (sampleType == "BFF" && sampleReceptacleSprecCode == "Ma2D010ScT") return "EDTABUF" //Buffy Coat
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "Ma2D005ScT" && sampleReceptacleCode == "URN") return "NUM_urinf" //Urin-Überstand
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "Ma2D005ScT" && sampleReceptacleCode == "ZZZ(usd)") return "NUM_urins" //Urin-Sediment
-  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleSprecCode == "Ma2D010ScT") return "NUM_PBMC_C" //PBMC Zellen
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
+  else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SCI") return "CIT" //Citrat
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "EDTA" //EDTA-Plasma
+  else if (sampleType == "BFF" && sampleReceptacleCode == "Ma2D010ScT") return "EDTABUF" //Buffy Coat
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "URN") return "NUM_urinf" //Urin-Überstand
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "ZZZ(usd)") return "NUM_urins" //Urin-Sediment
+  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUM_PBMC_C" //PBMC Zellen
   else return "Unbekannt (XXX)"
 }
 
 //TODO: Mapping of the stockProcessing codes.
 static String toDzhkProcessing(final String sourceProcessing) {
   if (sourceProcessing.startsWith("A")) return "Sprec-A"
+  else if (sourceProcessing.startsWith("B")) return "Sprec-B"
+  else if (sourceProcessing.startsWith("C")) return "Sprec-C"
+  else if (sourceProcessing.startsWith("D")) return "Sprec-D"
+  else if (sourceProcessing.startsWith("E")) return "Sprec-E"
+  else if (sourceProcessing.startsWith("F")) return "Sprec-F"
+  else if (sourceProcessing.startsWith("G")) return "Sprec-G"
+  else if (sourceProcessing.startsWith("H")) return "Sprec-H"
+  else if (sourceProcessing.startsWith("I")) return "Sprec-I"
+  else if (sourceProcessing.startsWith("J")) return "Sprec-J"
+  else if (sourceProcessing.startsWith("M")) return "Sprec-M"
+  else if (sourceProcessing.startsWith("N")) return "Sprec-N"
+  else if (sourceProcessing.startsWith("X")) return "Sprec-X"
+  else if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
   else return sourceProcessing
 }
 
-static String toDzhkContainer(final String sampleType, final String sampleReceptacleSprecCode) {
+static String toDzhkContainer(final String sampleType, final String sampleReceptacleCode) {
   //MASTER
-  if      (sampleType == "BLD" && sampleReceptacleSprecCode == "StMono075")         return "ORG" //Serum + EDTA Vollblut + Citrat
-  else if (sampleType == "BLD" && sampleReceptacleSprecCode == "BDPax025")          return "ORG" //PAX-Gene
-  else if (sampleType == "SAL" && sampleReceptacleSprecCode == "StSali001")         return "ORG" //Speichel
-  else if (sampleType == "URN" && sampleReceptacleSprecCode == "StMonoUri085")      return "ORG" //Urin
+  if (sampleType == "BLD" && sampleReceptacleCode == "StMono075") return "ORG" //Serum + EDTA Vollblut + Citrat
+  else if (sampleType == "BLD" && sampleReceptacleCode == "BDPax025") return "ORG" //PAX-Gene
+  else if (sampleType == "SAL" && sampleReceptacleCode == "StSali001") return "ORG" //Speichel
+  else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "ORG" //Urin
   //ALIQUOT
-  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleSprecCode == "Ma2D020ScT")   return "NUMCryoAliquot500" //PBMC
-  else if (sampleType == "SER" && sampleReceptacleSprecCode == "Ma2D005ScT")        return "NUMCryoAliquot500" //Serum
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "Ma2D005ScT")        return "NUMCryoAliquot500" //Citrat
-  else if (sampleType == "PL1" && sampleReceptacleSprecCode == "Ma2D005ScT")        return "NUMCryoAliquot500" //EDTA-Plasma
-  else if (sampleType == "BFF" && sampleReceptacleSprecCode == "Ma2D010ScT")        return "NUMCryoAliquot500" //Buffy Coat
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "Ma2D005ScT")   return "NUMCryoAliquot500" //Urin-Überstand
-  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleSprecCode == "Ma2D005ScT")   return "AliquotFluidX"     //Urin-Sediment
-  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleSprecCode == "Ma2D010ScT")   return "NUMCryoAliquot2000"//PBMC Zellen
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUMCryoAliquot500" //PBMC
+  else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Serum
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Citrat
+  else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //EDTA-Plasma
+  else if (sampleType == "BFF" && sampleReceptacleCode == "Ma2D010ScT") return "NUMCryoAliquot500" //Buffy Coat
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT") return "NUMCryoAliquot500" //Urin-Überstand
+  else if (sampleType == "ZZZ(ppu)" && sampleReceptacleCode == "Ma2D005ScT") return "AliquotFluidX"     //Urin-Sediment
+  else if (sampleType == "ZZZ(ppm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUMCryoAliquot2000"//PBMC Zellen
   else return "Unbekannt (XXX)"
 }
