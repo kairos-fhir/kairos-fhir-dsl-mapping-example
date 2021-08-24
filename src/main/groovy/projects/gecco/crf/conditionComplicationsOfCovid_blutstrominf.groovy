@@ -91,22 +91,22 @@ condition {
     if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []) {
       crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = item[CatalogEntry.CODE] as String
-        if (ICDcode == "COV_JA") {
+        //if (ICDcode == "COV_JA") {
           coding {
             system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
             version = "2020"
             code = "A41.9"
           }
-        }
+        //}
       }
       crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = item[CatalogEntry.CODE] as String
-        if (SNOMEDcode == "COV_JA") {
+        //if (SNOMEDcode == "COV_JA") {
           coding {
             system = "http://snomed.info/sct"
             code = "434156008"
           }
-        }
+        //}
       }
     }
   }

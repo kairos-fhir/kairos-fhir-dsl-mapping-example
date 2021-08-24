@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -115,25 +116,16 @@ observation {
     if (measParamCode == "COV_UMG_FOLGEABSTRICH_VOM") {
       final def valIndexDate = item[CrfItem.VALUE_INDEX]
       if (valIndex.contains(valIndexDate)) {
-        item[CrfItem.DATE_VALUE]?.each { final tD ->
-          final def testDate = normalizeDate(tD.toString())
+        item[CrfItem.DATE_VALUE][PrecisionDate.DATE]?.each { final tD ->
+          final def testDate = tD.toString()
           if (testDate) {
             effectiveDateTime {
               date = testDate
-              precision = TemporalPrecisionEnum.DAY.toString()
             }
           }
         }
       }
     }
-  }
-}
-
-static String normalizeDate(final String dateTimeString) {
-  if (dateTimeString.contains("DAY")) {
-    return null
-  } else {
-    return dateTimeString != null ? dateTimeString.substring(5) : null
   }
 }
 

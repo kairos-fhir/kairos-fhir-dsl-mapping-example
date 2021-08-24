@@ -1,64 +1,90 @@
-package projects.gecco.crf
+package projects.gecco.crf.labVital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.FlexiStudy
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import org.hl7.fhir.r4.model.IntegerType
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/sofa
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/observation-fio2
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
  */
 
 observation {
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
   if (profileName != "COV_GECCO_VITALPARAMTER") {
     return //no export
   }
 
   final def labVal = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "COV_GECCO_SOFA" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+    "COV_GECCO_FIO2" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
   if (!labVal) {
     return
   }
 
+  identifier {
+    type{
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "OBI"
+      }
+    }
+    system = "http://www.acme.com/identifiers/patient"
+    value = "Observation/FiO2-" + context.source[laborMapping().id()]
+    assigner {
+      reference = "Assigner/" + context.source[laborMapping().creator().id()]
+    }
+  }
 
-  id = "Observation/SOFAScore-" + context.source[laborMapping().id()]
+  id = "Observation/FiO2-" + context.source[laborMapping().id()]
 
   meta {
     source = "https://fhir.centraxx.de"
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sofa-score"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/inhaled-oxygen-concentration"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
     coding {
+      system = "http://loinc.org"
+      code = "26436-6"
+    }
+    coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
-      code = "survey"
+      code = "laboratory"
+    }
+    coding {
+      system = "http://loinc.org"
+      code = "18767-4"
     }
   }
 
   code {
     coding {
-      system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
-      code = "06"
+      system = "http://loinc.org"
+      code = "3150-0"
+    }
+    coding {
+      system = "http://snomed.info/sct"
+      code = "250774007"
     }
   }
 
@@ -76,7 +102,12 @@ observation {
 
   labVal[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
     if (numVal){
-      valueInteger(numVal.toString().substring(0,1).toInteger())
+      valueQuantity {
+        value = numVal
+        unit = "%"
+        system = "http://unitsofmeasure.org"
+        code = "%"
+      }
     }
   }
 }

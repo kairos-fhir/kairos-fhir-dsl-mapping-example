@@ -1,4 +1,4 @@
-package projects.gecco.crf
+package projects.gecco.crf.labVital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CrfItem
@@ -15,17 +15,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * Represented by a CXX LaborMapping
  * Specified by https://simplifier.net/guide/GermanCoronaConsensusDataSet-ImplementationGuide/Laboratoryvalue
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
  */
 observation {
 
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
 
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
   if (profileName != "COV_GECOO_LABOR") {

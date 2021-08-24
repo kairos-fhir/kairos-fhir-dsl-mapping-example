@@ -6,15 +6,16 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import org.hl7.fhir.r4.model.IntegerType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/observation-fio2
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/sofa
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
  */
 
@@ -31,45 +32,33 @@ observation {
   }
 
   final def labVal = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "COV_GECCO_FIO2" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+    "COV_GECCO_SOFA" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
   if (!labVal) {
     return
   }
 
 
-  id = "Observation/FiO2-" + context.source[laborMapping().id()]
+  id = "Observation/SOFAScore-" + context.source[laborMapping().id()]
 
   meta {
     source = "https://fhir.centraxx.de"
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/inhaled-oxygen-concentration"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sofa-score"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
     coding {
-      system = "http://loinc.org"
-      code = "26436-6"
-    }
-    coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
-      code = "laboratory"
-    }
-    coding {
-      system = "http://loinc.org"
-      code = "18767-4"
+      code = "survey"
     }
   }
 
   code {
     coding {
-      system = "http://loinc.org"
-      code = "3150-0"
-    }
-    coding {
-      system = "http://snomed.info/sct"
-      code = "250774007"
+      system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
+      code = "06"
     }
   }
 
@@ -87,12 +76,7 @@ observation {
 
   labVal[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
     if (numVal){
-      valueQuantity {
-        value = numVal
-        unit = "%"
-        system = "http://unitsofmeasure.org"
-        code = "%"
-      }
+      valueInteger(numVal.toString().substring(0,1).toInteger())
     }
   }
 }

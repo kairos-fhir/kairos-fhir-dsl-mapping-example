@@ -1,75 +1,70 @@
-package projects.gecco.crf
+package projects.gecco.crf.labVital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.FlexiStudy
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/sarscov2igaserpliaacnc
- * @author Lukas Reinert, Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/oxygensaturation
+ * @author Lukas Reinert
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
- * hints:
- *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 
 observation {
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
-  if (profileName != "COV_GECOO_LABOR") {
+  if (profileName != "COV_GECCO_VITALPARAMTER") {
     return //no export
   }
 
-  final def labValAb = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "COV_GECCO_SARS-COV-2_IGG_IA" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+  final def labVal = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
+    "COV_GECCO_PERI_O2" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
-  if (!labValAb) {
+  if (!labVal) {
     return
   }
 
 
-  id = "Observation/SARSCoV2-IgA-" + context.source[laborMapping().id()]
+  id = "Observation/PeriO2Saturation-" + context.source[laborMapping().id()]
 
   meta {
     source = "https://fhir.centraxx.de"
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/sars-cov-2-iga-ser-pl-ia-acnc"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/oxygen-saturation"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
     coding {
-      system = "http://loinc.org"
-      code = "26436-6"
-    }
-    coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
-      code = "laboratory"
+      code = "vital-signs"
     }
   }
 
   code {
     coding {
       system = "http://loinc.org"
-      code = "94720-0"
+      code = "2708-6"
     }
-  }
-
-  effectiveDateTime {
-    date = normalizeDate(context.source[laborMapping().creationDate()] as String)
-    precision = TemporalPrecisionEnum.DAY.toString()
+    coding {
+      system = "http://snomed.info/sct"
+      code = "431314004"
+    }
   }
 
   //Iteration to remove "[]" from id in string
@@ -79,12 +74,18 @@ observation {
     }
   }
 
-  labValAb[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
+  effectiveDateTime {
+    date = normalizeDate(context.source[laborMapping().creationDate()] as String)
+    precision = TemporalPrecisionEnum.DAY.toString()
+  }
+
+  labVal[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
     if (numVal){
       valueQuantity {
         value = numVal
-        unit = "mg/dl"
+        unit = "%"
         system = "http://unitsofmeasure.org"
+        code = "%"
       }
     }
   }

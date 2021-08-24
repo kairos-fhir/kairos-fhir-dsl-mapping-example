@@ -108,12 +108,13 @@ condition {
       if (SNOMEDcode) {
         coding {
           system = "http://snomed.info/sct"
-          code = "36955009"
-        }
-        coding {
-          system = "http://snomed.info/sct"
           code = "44169009"
         }
+        //coding {
+        //  system = "http://snomed.info/sct"
+        //  code = "36955009"
+        //}
+
       }
     }
   }

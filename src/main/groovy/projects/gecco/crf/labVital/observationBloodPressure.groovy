@@ -1,11 +1,13 @@
-package projects.gecco.crf
+package projects.gecco.crf.labVital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.FlexiStudy
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
@@ -14,17 +16,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * Represented by a CXX StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/bloodpressure
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
  */
 
 observation {
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
   if (profileName != "COV_GECCO_VITALPARAMTER") {
     return //no export
@@ -109,11 +111,11 @@ observation {
         code = "8462-4"
       }
       coding{
-        system =  "http://snomed.info/sct"
+        system = "http://snomed.info/sct"
         code = "271650006"
       }
     }
-    labValSys[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
+    labValDia[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
       if (numVal){
         valueQuantity {
           value = numVal

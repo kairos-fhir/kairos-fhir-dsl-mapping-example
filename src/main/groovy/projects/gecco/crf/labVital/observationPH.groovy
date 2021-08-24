@@ -1,67 +1,86 @@
-package projects.gecco.crf
+package projects.gecco.crf.labVital
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.FlexiStudy
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/heartrate
- * @author Lukas Reinert, Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * Specified by https://simplifier.net/forschungsnetzcovid-19/gaspanel-ph
+ * @author Lukas Reinert
+ * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
  *
  */
 
 observation {
-  //final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find{
-  //  it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
-  //}
-  //if (!studyMember) {
-  //  return //no export
-  //}
+  final def studyMember = context.source[laborMapping().relatedPatient().studyMembers()].find {
+    it[StudyMember.STUDY][FlexiStudy.CODE] == "SARS-Cov-2"
+  }
+  if (!studyMember) {
+    return //no export
+  }
   final def profileName = context.source[laborMapping().laborFinding().laborMethod().code()]
   if (profileName != "COV_GECCO_VITALPARAMTER") {
     return //no export
   }
 
   final def labVal = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "COV_GECCO_HERZFREQUENZ" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
+    "COV_GECCO_PH_BLUT" == it[LaborFindingLaborValue.LABOR_VALUE][LaborValue.CODE]
   }
   if (!labVal) {
     return
   }
 
+  identifier {
+    type{
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "OBI"
+      }
+    }
+    system = "http://www.acme.com/identifiers/patient"
+    value = "Observation/pH-" + context.source[laborMapping().id()]
+    assigner {
+      reference = "Assigner/" + context.source[laborMapping().creator().id()]
+    }
+  }
 
-  id = "Observation/HeartRate-" + context.source[laborMapping().id()]
+  id = "Observation/pH-" + context.source[laborMapping().id()]
 
   meta {
     source = "https://fhir.centraxx.de"
-    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/heart-rate"
+    profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pH"
   }
 
   status = Observation.ObservationStatus.UNKNOWN
 
   category {
     coding {
+      system = "http://loinc.org"
+      code = "26436-6"
+    }
+    coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"
-      code = "vital-signs"
+      code = "laboratory"
+    }
+    coding {
+      system = "http://loinc.org"
+      code = "18767-4"
     }
   }
 
   code {
     coding {
       system = "http://loinc.org"
-      code = "8867-4"
-    }
-    coding {
-      system = "http://snomed.info/sct"
-      code = "364075005"
+      code = "11558-4"
     }
   }
 
@@ -81,9 +100,9 @@ observation {
     if (numVal){
       valueQuantity {
         value = numVal
-        unit = "per minute"
+        unit = "pH"
         system = "http://unitsofmeasure.org"
-        code = "/min"
+        code = "[pH]"
       }
     }
   }
