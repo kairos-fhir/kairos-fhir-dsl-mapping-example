@@ -22,7 +22,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_POST_CENTRI
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_POST_CENTRIFUGATION_DELAY_DATE
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRE_CENTRIFUGATION_DELAY
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRE_CENTRIFUGATION_DELAY_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRIMARY_SAMPLE_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_TISSUE_COLLECTION_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.STOCK_PROCESSING
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.STOCK_PROCESSING_DATE
@@ -290,7 +289,7 @@ specimen {
     // SPREC LIQUID
     //
     if (SampleKind.LIQUID == context.source[SAMPLE_KIND] as SampleKind) {
-      if (context.source[SPREC_PRIMARY_SAMPLE_CONTAINER]) {
+      if (context.source[sample().sampleType().code()]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_PRIMARY_SAMPLE_CONTAINER
           valueCoding {
