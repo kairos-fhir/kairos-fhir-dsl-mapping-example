@@ -58,17 +58,117 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observationLaborValue",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observationSarsCov2RT_PCRLabParam",
       "exportToFhirResource": "Observation"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observationSarsAntibodyIGA",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueANTITROMBIN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueBILIRUBIN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueCRP",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueDDIMER",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueFERRITIN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueFIBRINOGEN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueGAMMA-GT",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueGOTAST",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueHÄMOGLOBIN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueIL6",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueINR",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueKARDIALE_TROPONINE",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueKREATININ",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueLAKTAT",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueLDH",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueLEUKOZYTEN_ABS",
+      "exportToFhirResource": "Observation"
+    },
+    { 
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueLYMPHOZYTEN_ABS",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueNT-PRO-BP",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValuePTT",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueTHROMBOZYTEN",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observationLaborValueTHROMBOZYTEN_ABS",
       "exportToFhirResource": "Observation"
     }
   ]

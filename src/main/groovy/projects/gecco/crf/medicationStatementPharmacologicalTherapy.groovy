@@ -146,7 +146,7 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_HYDROXYVITAMIN_D"):
       return "88519001"
     case ("COV_ANTI_TNF"):
-      return "416587008"
+      return "416897008"
     case ("COV_ATAZANAVIR"):
       return "413591007"
     case ("COV_CHLORO_PHOS"):
@@ -178,7 +178,7 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_RIBAVIRIN"):
       return "35063004"
     case ("COV_RUXOLITINIB"):
-      return "416587008"
+      return "703779004"
     case ("COV_SARILUMAB"):
       return "763522001"
     case ("COV_TOCILIZUMAB"):

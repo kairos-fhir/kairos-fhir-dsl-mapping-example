@@ -93,14 +93,13 @@ observation {
         code = "271649006"
       }
     }
-    labValSys[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
-      if (numVal){
-        valueQuantity {
-          value = numVal
-          unit = "mmHg"
-          system = "http://unitsofmeasure.org"
-          code = "mm[Hg]"
-        }
+    def numVal = labValSys[LaborFindingLaborValue.NUMERIC_VALUE]
+    if (numVal) {
+      valueQuantity {
+        value = numVal
+        unit = "mmHg"
+        system = "http://unitsofmeasure.org"
+        code = "mm[Hg]"
       }
     }
   }
@@ -115,14 +114,13 @@ observation {
         code = "271650006"
       }
     }
-    labValDia[LaborFindingLaborValue.NUMERIC_VALUE]?.each { final numVal ->
-      if (numVal){
-        valueQuantity {
-          value = numVal
-          unit = "mmHg"
-          system = "http://unitsofmeasure.org"
-          code = "mm[Hg]"
-        }
+    def numVal = labValDia[LaborFindingLaborValue.NUMERIC_VALUE]
+    if (numVal) {
+      valueQuantity {
+        value = numVal
+        unit = "mmHg"
+        system = "http://unitsofmeasure.org"
+        code = "mm[Hg]"
       }
     }
   }
