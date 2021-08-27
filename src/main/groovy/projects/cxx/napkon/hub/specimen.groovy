@@ -36,7 +36,7 @@ specimen {
     return
   }
   */
-  
+
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
   boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.ALIQUOTGROUP].contains(category)
@@ -422,9 +422,14 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else return "Unbekannt (XXX)"
 }
 
-//TODO: Mapping of the stockProcessing codes.
 static String toDzhkProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A")) return "Sprec-A"
+
+  if (sourceProcessing == "A(RT_15_1000)") return "Sprec-A"
+  else if (sourceProcessing == "B(15)") return "NUM_RT15min2000g"
+  else if (sourceProcessing == "B(20)") return "NUM_RT20min1650g"
+  else if (sourceProcessing == "N") return ""
+  else if (sourceProcessing == "Z(RT_5_800_b)") return "NUM_BEGINN_ZENT"
+  else if (sourceProcessing.startsWith("A")) return "Sprec-A"
   else if (sourceProcessing.startsWith("B")) return "Sprec-B"
   else if (sourceProcessing.startsWith("C")) return "Sprec-C"
   else if (sourceProcessing.startsWith("D")) return "Sprec-D"
@@ -438,7 +443,7 @@ static String toDzhkProcessing(final String sourceProcessing) {
   else if (sourceProcessing.startsWith("N")) return "Sprec-N"
   else if (sourceProcessing.startsWith("X")) return "Sprec-X"
   else if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
-  else return sourceProcessing
+  else return "Sprec-X"
 }
 
 static String toDzhkContainer(final String sampleType, final String sampleReceptacleCode) {
