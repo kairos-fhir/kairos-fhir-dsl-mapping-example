@@ -2,6 +2,7 @@ package projects.cxx.napkon.dzhk.hub
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.enums.AmountUnit
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 
@@ -365,8 +366,8 @@ specimen {
 // TODO check if blank return value is valid
 static String toHubContainerCapacityUnit(final String sampleTypeCode) {
   switch (sampleTypeCode) {
-    case "SAL": return ""
-    default: return "ML"
+    case "SAL": return AmountUnit.PC
+    default: return AmountUnit.ML
   }
 }
 
@@ -412,27 +413,18 @@ static String toHubSprecPrimaryContainer(final String sampleTypeCode) {
     case "CIT": return "SCI"
     case "NUM_pax": return "PAX"
     case "NUM_pbmc_edta": return "PED"
-    case "NUM_speichel": return "SAL"
+    case "NUM_speichel": return "ZZZ(ppu)"
     case "URN": return "ZZZ(ppu)"
     default: return sampleTypeCode
   }
 }
 
-// TODO: turn around mapping from DZHK to HUB
 static String toNUMProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A")) return "Sprec-A"
-  if (sourceProcessing.startsWith("B")) return "Sprec-B"
-  if (sourceProcessing.startsWith("C")) return "Sprec-C"
-  if (sourceProcessing.startsWith("D")) return "Sprec-D"
-  if (sourceProcessing.startsWith("E")) return "Sprec-E"
-  if (sourceProcessing.startsWith("F")) return "Sprec-F"
-  if (sourceProcessing.startsWith("G")) return "Sprec-G"
-  if (sourceProcessing.startsWith("H")) return "Sprec-H"
-  if (sourceProcessing.startsWith("I")) return "Sprec-I"
-  if (sourceProcessing.startsWith("J")) return "Sprec-J"
-  if (sourceProcessing.startsWith("M")) return "Sprec-M"
-  if (sourceProcessing.startsWith("N")) return "Sprec-N"
-  if (sourceProcessing.startsWith("X")) return "Sprec-X"
-  if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
-  else return sourceProcessing
+  if (sourceProcessing == null) return "N"
+  if (sourceProcessing == "NUM_BEGINN_ZENT") return "Z(RT_5_800_b)"
+  if (sourceProcessing == "NUM_RT15min2000g") return "B(15)"
+  else if (sourceProcessing == "NUM_RT20min1650g") return "B(20)"
+  else return "X"
+
+  // NOT used anymore: if (sourceProcessing == "NUM_RT10min350gBremse") return "?"
 }
