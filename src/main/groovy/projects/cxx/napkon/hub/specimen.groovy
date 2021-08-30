@@ -18,16 +18,18 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * @since v.1.8.0, CXX.v.3.8.1.1
  *
  * The mapping transforms specimen from the HUB Hannover system to the DZHK Greifswald system.
+ * Intended to be used with POST (createOrUpdateByNaturalIdentifier) methods, because master samples already exists in the target system with a different logical fhir id.
  *
  * Hints:
  * 1. Filter: only master samples, derived samples and aliquot groups are allowed to export.
  * 2. Filter: Only samples of the OrgUnit P-2216-NAP are exported.
  * 3. Mapping: postcentrifugationdate (Einfrierzeitpunkt HUB) to firstrepositiondate (Einfrierzeitpunkt DZHK)
- * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK) TODO: verify codes
+ * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK)
  * 5. Mapping IDs: EXTSAMPLEID (HUB) to SAMPLEID (DZHK)
  * 6. Filter: Link only LaborMethod "DZHKFLAB" NUM WF3 -> see observation.groovy
- * TODO: 7. Check mapping of the sample type.
+ * 7. Mapping: HUB sampleType.code, receptable.code, sprecPrimarySampleContainer.sprecCode to DZHK sampleType
  * 8. Filter samples that were created not longer than 3 days ago.
+ * 9. Mapping: Filter samples that were created not longer than 3 days ago.
  */
 specimen {
   // 8. CreationDate Filter
@@ -122,7 +124,6 @@ specimen {
     }
   }
 
-  // TODO: Mapping of the derival date
   if (context.source[sample().derivalDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.DERIVAL_DATE
@@ -132,6 +133,7 @@ specimen {
 
   status = context.source[sample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
+  // 7: sample type mapping
   type {
     coding {
       system = "urn:centraxx"
@@ -176,22 +178,7 @@ specimen {
           }
           value = extSampleIdParent[SampleIdContainer.PSN]
         }
-      }
-      // SampleId of parent AliquotGroup has to be constructed by OID, because there is no custom id
-//      else if (SampleCategory.ALIQUOTGROUP == context.source[sample().parent().sampleCategory()] as SampleCategory) {
-//        identifier {
-//          type {
-//            coding {
-//              code = "EXTSAMPLEID"
-//            }
-//          }
-//          final def extSampleIdParent = context.source[sample().parent().id()]?.find { final def entry ->
-//            "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-//          }
-//          value = extSampleIdParent[SampleIdContainer.PSN]
-//        }
-//      }
-      else {
+      } else {
         reference = "Specimen/" + context.source[sample().parent().id()]
       }
     }
@@ -400,7 +387,7 @@ static boolean isMoreThanNDaysAgo(String dateString, int days) {
   final long differenceInMillis = (System.currentTimeMillis() - date.getTime())
   return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
 }
-// TODO: add the correct Mappings of the Type-Codes
+
 static String toDzhkType(final String sampleType, final String sampleReceptacleCode, final String primaryContainerSprecCode) {
   //MASTER
   if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SST") return "SER" //Serum
