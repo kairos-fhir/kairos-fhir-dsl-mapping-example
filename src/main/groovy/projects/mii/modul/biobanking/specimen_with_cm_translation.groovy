@@ -13,7 +13,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX SAMPLE
- * Codings are custumized in CXX. Therefore, the code system is unknown. If other codings are used in the local CXX system, the code systems must be adjusted.
+ * Specified by https://simplifier.net/medizininformatikinitiative-modulbiobank/profilespecimenbioprobe History.v.8 (draft)
+ * Codings are customized in CXX. Therefore, the code system is unknown. If other codings are used in the local CXX system, the code systems must be adjusted.
  * In this example SPREC codes for the sample type, and container are translated requesting the the provided concept maps per HTTP.
  * TODO: NOTE: The script was written while the corresponding FHIR profile on simplifier.net was still in draft state. Changes in the profile might require adjustments in the script.
  * @author Jonas Küttner
@@ -125,7 +126,7 @@ specimen {
             longTermStorageConceptMapUrl)
         if (longTermStorageTranslationResult.code) {
           coding {
-            system = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/ValueSet/containertyp"
+            system = "http://snomed.info/sct"
             code = longTermStorageTranslationResult.code
             display = longTermStorageTranslationResult.display
           }
