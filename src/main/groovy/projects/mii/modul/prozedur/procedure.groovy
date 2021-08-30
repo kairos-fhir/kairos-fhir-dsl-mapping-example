@@ -6,7 +6,8 @@ import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 
 /**
- * represented by CXX medProcedure
+ * Represented by CXX MedProcedure
+ * Specified by https://simplifier.net/medizininformatikinitiative-modulprozeduren/prozedur v.2.0.0
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
  * TODO: bodysite: is it actually monitored in CXX?
@@ -32,7 +33,7 @@ procedure {
 
   code {
     coding {
-      system = "http://fhir.de/ValueSet/dimdi/ops"
+      system = "http://fhir.de/CodeSystem/dimdi/ops"
       version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
       code = opsCode
       Localization localization = context.source[medProcedure().localisation()] as Localization
