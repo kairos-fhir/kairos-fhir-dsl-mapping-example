@@ -1,4 +1,4 @@
-![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue.png "Kairos Logo")
+![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue_iqvia.png "Kairos Logo")
 
 Example mappings for the Medical Informatics Initiative (MII)
 ==============================================================
