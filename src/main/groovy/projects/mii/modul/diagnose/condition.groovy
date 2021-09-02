@@ -4,6 +4,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * represented by CXX DIAGNOSIS
+ * Specified by (stable release) https://www.medizininformatik-initiative.de/Kerndatensatz/Modul_Diagnose/Condition.html v.1.0.4
+ * Working draft (future release) https://simplifier.net/guide/MedizininformatikInitiative-ModulDiagnosen-ImplementationGuide/Condition
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
  * hints:
@@ -61,8 +63,10 @@ condition {
       if (context.source[diagnosis().diagnosisCertainty()]) {
         extension {
           url = "http://fhir.de/StructureDefinition/icd-10-gm-diagnosesicherheit"
-          system = "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ICD_DIAGNOSESICHERHEIT"
-          valueCode = context.source[diagnosis().diagnosisCertainty()] as String
+          valueCoding {
+            system = "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ICD_DIAGNOSESICHERHEIT"
+            code = context.source[diagnosis().diagnosisCertainty()] as String
+          }
         }
       }
       extension {
