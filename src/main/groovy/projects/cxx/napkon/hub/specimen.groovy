@@ -32,17 +32,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * 9. Mapping: Filter samples that were created not longer than 3 days ago.
  */
 specimen {
+
   // 8. CreationDate Filter
-  /*
   if (isMoreThanNDaysAgo(context.source[sample().creationDate()] as String, 3)) {
     return
   }
-  */
 
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
-  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.ALIQUOTGROUP].contains(category)
-  //  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
 
   if (!containsCategory) {
     return
@@ -54,7 +52,6 @@ specimen {
   } else {
     return
   }
-
 
   final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "EXTSAMPLEID": "SAMPLEID"]
   final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
@@ -124,6 +121,7 @@ specimen {
     }
   }
 
+  // TODO: Mapping of the derival date
   if (context.source[sample().derivalDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.DERIVAL_DATE
@@ -398,7 +396,7 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "URN" //Urin
 
   //ALIQUOT
-  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUM_pbmc_edta" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
   else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SCI") return "CIT" //Citrat
   else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "EDTA" //EDTA-Plasma
