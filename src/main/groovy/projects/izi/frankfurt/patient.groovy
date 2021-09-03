@@ -12,14 +12,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * @author Franzy Hohnstaedter, Mike Wähnert
- * @since v.1.5.0, CXX.v.3.17.1.5
+ * @since v.1.7.0, CXX.v.3.17.2
  */
 patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   final def idContainer = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
-    "SID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "PaIdTMP" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
   if (idContainer) {
@@ -49,14 +49,10 @@ patient {
 
 static def mapGender(final GenderType genderType) {
   switch (genderType) {
-    case GenderType.MALE:
-      return "male"
-    case GenderType.FEMALE:
-      return "female"
-    case GenderType.UNKNOWN:
-      return "unknown"
-    default:
-      return "other"
+    case GenderType.MALE: return "male"
+    case GenderType.FEMALE: return "female"
+    case GenderType.UNKNOWN: return "unknown"
+    default: return "other"
   }
 }
 
