@@ -8,6 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
+ * Intended to be used with PUT (createOrUpdateByIdType) methods, because samples will be assigned by a logical fhir patient id reference.
  * @author Mike Wähnert
  * @since v.1.5.0, CXX.v.3.17.1.5
  */

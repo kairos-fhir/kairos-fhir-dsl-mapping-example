@@ -18,29 +18,29 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * @since v.1.8.0, CXX.v.3.8.1.1
  *
  * The mapping transforms specimen from the HUB Hannover system to the DZHK Greifswald system.
+ * Intended to be used with POST (createOrUpdateByNaturalIdentifier) methods, because master samples already exists in the target system with a different logical fhir id.
  *
  * Hints:
  * 1. Filter: only master samples, derived samples and aliquot groups are allowed to export.
  * 2. Filter: Only samples of the OrgUnit P-2216-NAP are exported.
  * 3. Mapping: postcentrifugationdate (Einfrierzeitpunkt HUB) to firstrepositiondate (Einfrierzeitpunkt DZHK)
- * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK) TODO: verify codes
+ * 4. Mapping OrgUnit: P-2216-NAP (HUB) to "NUM_Hannover" (DZHK)
  * 5. Mapping IDs: EXTSAMPLEID (HUB) to SAMPLEID (DZHK)
  * 6. Filter: Link only LaborMethod "DZHKFLAB" NUM WF3 -> see observation.groovy
- * TODO: 7. Check mapping of the sample type.
+ * 7. Mapping: HUB sampleType.code, receptable.code, sprecPrimarySampleContainer.sprecCode to DZHK sampleType
  * 8. Filter samples that were created not longer than 3 days ago.
+ * 9. Mapping: Filter samples that were created not longer than 3 days ago.
  */
 specimen {
+
   // 8. CreationDate Filter
-  /*
   if (isMoreThanNDaysAgo(context.source[sample().creationDate()] as String, 3)) {
     return
   }
-  */
-  
+
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
-  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.ALIQUOTGROUP].contains(category)
-  //  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
 
   if (!containsCategory) {
     return
@@ -52,7 +52,6 @@ specimen {
   } else {
     return
   }
-
 
   final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "EXTSAMPLEID": "SAMPLEID"]
   final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
@@ -132,6 +131,7 @@ specimen {
 
   status = context.source[sample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
+  // 7: sample type mapping
   type {
     coding {
       system = "urn:centraxx"
@@ -176,22 +176,7 @@ specimen {
           }
           value = extSampleIdParent[SampleIdContainer.PSN]
         }
-      }
-      // SampleId of parent AliquotGroup has to be constructed by OID, because there is no custom id
-//      else if (SampleCategory.ALIQUOTGROUP == context.source[sample().parent().sampleCategory()] as SampleCategory) {
-//        identifier {
-//          type {
-//            coding {
-//              code = "EXTSAMPLEID"
-//            }
-//          }
-//          final def extSampleIdParent = context.source[sample().parent().id()]?.find { final def entry ->
-//            "SAMPLEID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-//          }
-//          value = extSampleIdParent[SampleIdContainer.PSN]
-//        }
-//      }
-      else {
+      } else {
         reference = "Specimen/" + context.source[sample().parent().id()]
       }
     }
@@ -400,7 +385,7 @@ static boolean isMoreThanNDaysAgo(String dateString, int days) {
   final long differenceInMillis = (System.currentTimeMillis() - date.getTime())
   return TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS) > days
 }
-// TODO: add the correct Mappings of the Type-Codes
+
 static String toDzhkType(final String sampleType, final String sampleReceptacleCode, final String primaryContainerSprecCode) {
   //MASTER
   if (sampleType == "BLD" && sampleReceptacleCode == "StMono075" && primaryContainerSprecCode == "SST") return "SER" //Serum
@@ -411,7 +396,7 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else if (sampleType == "URN" && sampleReceptacleCode == "StMono085") return "URN" //Urin
 
   //ALIQUOT
-  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D020ScT") return "NUM_pbmc" //PBMC
+  else if (sampleType == "ZZZ(pbm)" && sampleReceptacleCode == "Ma2D010ScT") return "NUM_pbmc_edta" //PBMC
   else if (sampleType == "SER" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SST") return "SER" //Serum
   else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT" && primaryContainerSprecCode == "SCI") return "CIT" //Citrat
   else if (sampleType == "PL1" && sampleReceptacleCode == "Ma2D005ScT") return "EDTA" //EDTA-Plasma
@@ -422,9 +407,14 @@ static String toDzhkType(final String sampleType, final String sampleReceptacleC
   else return "Unbekannt (XXX)"
 }
 
-//TODO: Mapping of the stockProcessing codes.
 static String toDzhkProcessing(final String sourceProcessing) {
-  if (sourceProcessing.startsWith("A")) return "Sprec-A"
+
+  if (sourceProcessing == "A(RT_15_1000)") return "Sprec-A"
+  else if (sourceProcessing == "B(15)") return "NUM_RT15min2000g"
+  else if (sourceProcessing == "B(20)") return "NUM_RT20min1650g"
+  else if (sourceProcessing == "N") return ""
+  else if (sourceProcessing == "Z(RT_5_800_b)") return "NUM_BEGINN_ZENT"
+  else if (sourceProcessing.startsWith("A")) return "Sprec-A"
   else if (sourceProcessing.startsWith("B")) return "Sprec-B"
   else if (sourceProcessing.startsWith("C")) return "Sprec-C"
   else if (sourceProcessing.startsWith("D")) return "Sprec-D"
@@ -438,7 +428,7 @@ static String toDzhkProcessing(final String sourceProcessing) {
   else if (sourceProcessing.startsWith("N")) return "Sprec-N"
   else if (sourceProcessing.startsWith("X")) return "Sprec-X"
   else if (sourceProcessing.startsWith("Z")) return "Sprec-Z"
-  else return sourceProcessing
+  else return "Sprec-X"
 }
 
 static String toDzhkContainer(final String sampleType, final String sampleReceptacleCode) {

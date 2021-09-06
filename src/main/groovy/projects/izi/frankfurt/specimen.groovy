@@ -304,35 +304,52 @@ specimen {
 
 static String toNumType(final Object sourceType) {
   switch (sourceType) {
-    case "PBMC":
-      return "ZZZ(pbm)"
-    case "EDTA":
-      return "BLD"
-    case "URIN":
-      return "URN"
-    default:
-      return sourceType
+    case "PBMC": return "ZZZ(pbm)"
+    case "CIT_PL": return "CIT_PL"
+    case "CPT_PL": return "CPT_PL"
+    case "EDTA_PL": return "EDTA_PL"
+    case "PAX": return "PAX"
+    case "STL_STAB": return "STL_STAB"
+    case "URIN": return "URN"
+    case "EDTA": return "BLD"
+    case "SER": return "SER"
+    case "STL": return "STL"
+    default: return sourceType
   }
 }
 
 static String toSampleReceptacleType(final Object sourceReceptacle) {
   switch (sourceReceptacle) {
-    case "CPT_HEP_8":
-      return "BDCPT080"
-    case "RNA_TEMP_2_5":
-      return "BDVac100"
-    case "STU_CONV":
-      return "StSTL101"
-    default:
-      return sourceReceptacle
+    case "CPT_HEP_8": return "BDCPT080"
+    case "RNA_TEMP_2_5": return "BDVac100"
+    case "STU_CONV": return "StSTL101"
+    case "EDTA_7_5": return "7_5_ML_BLUTROEHRCHEN"
+    case "URIN_3_2": return "URIN_3_2"
+    case "STU_CONV": return "STU_CONV" //TODO can never be reached because of duplicated case in line 325
+    case "STU_STAB_CONV": return "STU_STAB_CONV"
+    case "CIT_10": return "CIT_10"
+    case "SER_GEL_4_7": return "SER_GEL_4_7"
+    case "UTK_SAR_2_SER": return "UTK_SAR_2_SER"
+    case "UTK_SAR_2_SER": return "UTK_SAR_2_SER" //TODO duplicate line 333. Is there a third UTK_SAR_2_ variant missing?
+    case "UTK_SAR_2_PL": return "UTK_SAR_2_PL"
+    case "CRYO_SAR_2": return "CRYO_SAR_2"
+    case "SER_GEL_9": return "SER_GEL_9"
+    case "LVL_300_SE": return "LVL_300_SE"
+    case "LVL_1000_SE": return "LVL_1000_SE"
+    case "LVL_1000_PL": return "LVL_1000_PL"
+    default: return sourceReceptacle
   }
 }
 
 static String toPrimaryContainerType(final Object sourcePrimContainer) {
   switch (sourcePrimContainer) {
-    case "RNA_TEMP_2_5":
-      return "TEM"
-    default:
-      return sourcePrimContainer
+    case "RNA_TEMP_2_5": return "TEM"
+    case "EDTA_7_5": return "EDTA_7_5"
+    case "URIN_3_2": return "URIN_3_2"
+    case "STU_CONV": return "STU_CONV"
+    case "STU_STAB_CONV": return "STU_STAB_CONV"
+    case "CIT_10": return "CIT_10"
+    case "CPT_HEP_8": return "CPT_HEP_8"
+    default: return sourcePrimContainer
   }
 }
