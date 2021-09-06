@@ -42,6 +42,21 @@ observation {
 
   final def numID = context.source[laborMapping().id()]
   final String labValID = lFlV[LaborFindingLaborValue.LABOR_VALUE][LaborValue.ID]
+
+  identifier {
+    type{
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "OBI"
+      }
+    }
+    system = "http://www.acme.com/identifiers/patient"
+    value = "Observation/LaborValue-" + labValID + "-" + numID
+    assigner {
+      reference = "Assigner/" + context.source[laborMapping().creator().id()]
+    }
+  }
+
   id = "Observation/LaborValue-" + labValID + "-" + numID
 
   meta {
