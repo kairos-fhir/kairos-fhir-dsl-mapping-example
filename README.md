@@ -67,3 +67,19 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+# SNOMED CT
+
+This project includes SNOMED Clinical Terms® (SNOMED CT®) which is used by permission of the InternationalHealth Terminology Standards Development Organisation (IHTSDO). All rights reserved. SNOMED CT®, was originally created by The College of American Pathologists. “SNOMED” and “SNOMED CT” are registered trademarks of the IHTSDO.
+
+Please make sure, that you have a valid SNOMED CT license, if you use example scripts with SNOMED CT concepts. 
+SNOMED CT concepts are recognizable by the system url http://snomed.info/sct .
+
+Example 
+
+```
+coding {
+  system = "http://snomed.info/sct"
+  code = "261665006"
+}
+```
