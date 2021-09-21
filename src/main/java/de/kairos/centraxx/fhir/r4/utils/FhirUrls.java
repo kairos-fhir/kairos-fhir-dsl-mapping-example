@@ -25,6 +25,13 @@ public final class FhirUrls {
     public static final String SPREC = BASE_URL + "/sprec";
     public static final String SAMPLE_CATEGORY = BASE_URL + "/sampleCategory";
 
+    /**
+     * General URL for resource-wide extension to set the update mode - true means "update with replace/overwrite"
+     */
+    public static final String UPDATE_WITH_OVERWRITE = BASE_URL + "/updateWithOverwrite";
+
+    private static final String NAME = "/name";
+
     private Extension() {/* hide constructor */}
 
     public static List<String> getAllDomains() {
@@ -34,6 +41,7 @@ public final class FhirUrls {
       domains.addAll(Patient.getAllDomains());
       domains.addAll(Sprec.getAllDomains());
       domains.addAll(Study.getAllDomains());
+      domains.addAll(Survey.getAllDomains());
       domains.addAll(CrfTemplate.getAllDomains());
       domains.addAll(LaborValue.getAllDomains());
       domains.addAll(Hotline.getAllDomains());
@@ -48,6 +56,7 @@ public final class FhirUrls {
       domains.addAll(Document.getAllDomains());
       domains.addAll(ServiceRequest.getAllDomains());
       domains.addAll(LaborMapping.getAllDomains());
+      domains.addAll(SampleLocation.getAllDomains());
       return domains;
     }
 
@@ -61,11 +70,12 @@ public final class FhirUrls {
       public static final String X_POSITION = SAMPLE_BASE_URL + "/xPosition";
       public static final String Y_POSITION = SAMPLE_BASE_URL + "/yPosition";
       public static final String ORGANIZATION_UNIT = SAMPLE_BASE_URL + "/organizationUnit";
+      public static final String CONCENTRATION = SAMPLE_BASE_URL + "/concentration";
 
       private Sample() {/* hide constructor */}
 
       public static List<String> getAllDomains() {
-        return asList(DERIVAL_DATE, REPOSITION_DATE, SAMPLE_LOCATION, SAMPLE_LOCATION_PATH, X_POSITION, Y_POSITION, ORGANIZATION_UNIT);
+        return asList(DERIVAL_DATE, REPOSITION_DATE, SAMPLE_LOCATION, SAMPLE_LOCATION_PATH, X_POSITION, Y_POSITION, ORGANIZATION_UNIT, CONCENTRATION);
       }
 
     }
@@ -106,12 +116,12 @@ public final class FhirUrls {
       private static final String STUDY_BASE_URL = Extension.BASE_URL + "/study";
       public static final String PHASES = STUDY_BASE_URL + "/phases";
       public static final String PHASE = PHASES + "/phase";
-      public static final String PHASE_NAME = PHASE + "/name";
+      public static final String PHASE_NAME = PHASE + NAME;
       public static final String PHASE_DESCRIPTION = PHASE + "/description";
 
       public static final String VISITS = STUDY_BASE_URL + "/visits";
       public static final String VISIT = VISITS + "/visit";
-      public static final String VISIT_NAME = VISIT + "/name";
+      public static final String VISIT_NAME = VISIT + NAME;
       public static final String VISIT_COPYVISITS = VISIT + "/copyVisits";
 
       private Study() {/* hide constructor */}
@@ -119,6 +129,24 @@ public final class FhirUrls {
       public static List<String> getAllDomains() {
         return asList(PHASES, PHASE, PHASE_NAME, PHASE_DESCRIPTION,
                       VISITS, VISIT, VISIT_NAME, VISIT_COPYVISITS);
+      }
+    }
+
+    public static final class Survey {
+      private static final String SURVEY_BASE_URL = Extension.BASE_URL + "/survey";
+      public static final String CYCLES = SURVEY_BASE_URL + "/cycles";
+      public static final String CYCLE = CYCLES + "/cycle";
+      public static final String CYCLE_NAME = CYCLE + NAME;
+      public static final String CYCLE_DESCRIPTION = CYCLE + "/description";
+
+      public static final String FORMS = SURVEY_BASE_URL + "/forms";
+      public static final String FORM = FORMS + "/form";
+      public static final String FORM_NAME = FORM + NAME;
+
+      private Survey() {/* hide constructor */}
+
+      public static List<String> getAllDomains() {
+        return asList(CYCLES, CYCLE, CYCLE_NAME, CYCLE_DESCRIPTION, FORMS, FORM, FORM_NAME);
       }
     }
 
@@ -355,7 +383,9 @@ public final class FhirUrls {
 
         private Recurrence() { /* hide constructor */}
 
-        public static List<String> getAllDomains() { return asList(BASE, RECURRENCE_EXPRESSION, RECURRENCE_ENDDATE, RECURRENCE_COUNT); }
+        public static List<String> getAllDomains() {
+          return asList(BASE, RECURRENCE_EXPRESSION, RECURRENCE_ENDDATE, RECURRENCE_COUNT);
+        }
       }
     }
 
@@ -402,19 +432,56 @@ public final class FhirUrls {
         return asList(LABOR_MAPPING_BASE_URL, LABOR_MAPPING_TYPE, RELATED_REFERENCE, PATIENT, ENCOUNTER);
       }
     }
+
+    public static final class SampleLocation {
+      public static final String SAMPLE_LOCATION_BASE_URL = Extension.BASE_URL + "/sampleLocation";
+      public static final String PATH = SAMPLE_LOCATION_BASE_URL + "/path";
+      public static final String SCHEMA = SAMPLE_LOCATION_BASE_URL + "/schema";
+      public static final String MAX_SIZE = SCHEMA + "/maxSize";
+      public static final String HEIGHT = SCHEMA + "/height";
+      public static final String WIDTH = SCHEMA + "/width";
+      public static final String UNLIMITED = SCHEMA + "/unlimited";
+      public static final String STORABLE = SCHEMA + "/storable";
+      public static final String FILL_COUNT = SAMPLE_LOCATION_BASE_URL + "/fillCount";
+
+      private SampleLocation() { /* hide constructor */}
+
+      public static List<String> getAllDomains() {
+        return asList(PATH, SCHEMA, MAX_SIZE, HEIGHT, WIDTH, UNLIMITED, STORABLE, FILL_COUNT);
+      }
+    }
   }
 
   public static final class System {
     private static final String BASE_URL = CXX_BASE_URL + "/system";
+    private static final String BASE_URL_VALUESET = CXX_BASE_URL + "/valueSet";
+
     public static final String SAMPLE_CATEGORY = BASE_URL + "/sampleCategory";
     public static final String MED_DEPARTMENT = BASE_URL + "/medDepartment";
     public static final String STAY_TYPE = BASE_URL + "/stayType";
     public static final String CRF = BASE_URL + "/crf";
     public static final String LABOR_MAPPING = BASE_URL + "/laborMapping";
     public static final String CONTACT_ADDRESS = BASE_URL + "/contactAddress";
-    public static final String LABOR_METHOD = BASE_URL + "/laborMethod";
+    public static final String LOCATION_TYPE = BASE_URL + "/locationType";
+    public static final String ORGANIZATION_UNIT = BASE_URL + "/organizationUnit";
 
     private System() {/* hide constructor */}
+
+    public static final class LaborMethod {
+      public static final String BASE_URL = System.BASE_URL + "/laborMethod";
+      public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/laborMethod";
+
+      private LaborMethod() {
+      }
+    }
+
+    public static final class IdContainerType {
+      public static final String BASE_URL = System.BASE_URL + "/idContainerType";
+      public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/idContainerType";
+
+      private IdContainerType() {
+      }
+    }
 
     public static final class Patient {
       private static final String BASE_URL = System.BASE_URL + "/patient";
@@ -500,6 +567,7 @@ public final class FhirUrls {
 
     public static final class Finding {
       public static final String BASE_URL = System.BASE_URL + "/finding";
+      public static final String LABOR_FINDING_ID = BASE_URL + "/laborFindingId";
 
       private Finding() {/* hide constructor */}
 
@@ -554,8 +622,9 @@ public final class FhirUrls {
     }
 
     public static final class LaborValue {
-      private static final String BASE_URL = System.BASE_URL + "/laborValue";
+      public static final String BASE_URL = System.BASE_URL + "/laborValue";
       public static final String UNIT = BASE_URL + "/unit";
+      public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/laborValue";
 
       private LaborValue() {/* hide constructor */}
     }
@@ -576,10 +645,48 @@ public final class FhirUrls {
       public static final String TYPE = BASE_URL + "/type";
       public static final String REQUEST_ID = BASE_URL + "/requestId";
 
-      private ServiceRequest() {}
+      private ServiceRequest() {
+      }
     }
 
+    public static final class List {
+      private static final String BASE_URL = System.BASE_URL + "/list";
+      public static final String TYPE = BASE_URL + "/type";
+
+      private List() {
+      }
+    }
+
+    public static final class SampleLocationSchema {
+      public static final String BASE_URL = System.BASE_URL + "/sampleLocationSchema";
+
+      private SampleLocationSchema() {
+      }
+    }
+
+    public static final class Sample {
+
+      private Sample() {
+      }
+
+      public static final class SampleType {
+        public static final String BASE_URL = System.BASE_URL + "/sampleType";
+        public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/sampleType";
+
+        private SampleType() {
+        }
+      }
+
+      public static class Receptacle {
+        public static final String BASE_URL = System.BASE_URL + "/sampleReceptacle";
+        public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/sampleReceptacle";
+
+        private Receptacle() {
+        }
+      }
+    }
   }
 
   private FhirUrls() {/* hide constructor */}
+
 }
