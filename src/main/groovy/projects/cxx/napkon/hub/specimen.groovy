@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.8.0, CXX.v.3.8.1.1
+ * @since v.1.11.0, CXX.v.3.8.1.13
  *
  * The mapping transforms specimen from the HUB Hannover system to the DZHK Greifswald system.
  * Intended to be used with POST (createOrUpdateByNaturalIdentifier) methods, because master samples already exists in the target system with a different logical fhir id.
@@ -40,7 +40,7 @@ specimen {
 
   // 1. Filter sample category
   final SampleCategory category = context.source[sample().sampleCategory()] as SampleCategory
-  boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
+  final boolean containsCategory = [SampleCategory.DERIVED, SampleCategory.MASTER, SampleCategory.ALIQUOTGROUP].contains(category)
 
   if (!containsCategory) {
     return
@@ -223,6 +223,16 @@ specimen {
     valueCoding {
       system = "urn:centraxx"
       code = context.source[sample().sampleCategory()]
+    }
+  }
+
+  if (context.source[sample().concentration()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.CONCENTRATION
+      valueQuantity {
+        value = context.source[sample().concentration().amount()]
+        unit = context.source[sample().concentration().unit()]
+      }
     }
   }
 
