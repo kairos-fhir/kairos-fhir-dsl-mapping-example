@@ -88,10 +88,7 @@ observation {
     reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
-
-  final valIndex = []
-
-  //Vaccine codes
+  final def valIndex = []
   valueCodeableConcept {
     crfItems?.each { final item ->
       final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
@@ -110,23 +107,29 @@ observation {
     }
   }
 
-  //effective DateTime
-  crfItems?.each { final item ->
-    final def measParamCode = item[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-    if (measParamCode == "COV_UMG_FOLGEABSTRICH_VOM") {
-      final def valIndexDate = item[CrfItem.VALUE_INDEX]
-      if (valIndex.contains(valIndexDate)) {
-        item[CrfItem.DATE_VALUE][PrecisionDate.DATE]?.each { final tD ->
-          final def testDate = tD.toString()
-          if (testDate) {
-            effectiveDateTime {
-              date = testDate
-            }
-          }
-        }
+  final def crfItemPCRDates = context.source[studyVisitItem().crf().items()]
+  if (!crfItemPCRDates || crfItemPCRDates == []) {
+    return
+  }
+
+  final List pcrDateList = []
+  crfItemPCRDates?.each { final dates ->
+    final def pcrDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
+    if (pcrDateCode == "COV_UMG_FOLGEABSTRICH_VOM") {
+      final String tDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
+      if (tDs) {
+        pcrDateList.add(tDs)
       }
     }
   }
+
+  //Date of last test--> most relevant
+  effectiveDateTime {
+    date = selectMostRecentDate(pcrDateList)
+  }
+
+
+
 }
 
 static String mapDiscSNOMED(final String discharge) {
@@ -138,4 +141,12 @@ static String mapDiscSNOMED(final String discharge) {
     case "COV_NEGATIV":
       return "260415000"
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static String selectMostRecentDate(final List<String> vdl) {
+  return !vdl ? null : (vdl.sort().last() as String)
 }

@@ -104,6 +104,7 @@ observation {
       value = numVal
       unit = "g/dL"
       system = "http://unitsofmeasure.org"
+      code = "g/dL"
     }
   }
 }

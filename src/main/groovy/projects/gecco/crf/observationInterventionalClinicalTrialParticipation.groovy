@@ -19,6 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 observation {
+  
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
   if (studyCode != "SARS-Cov-2") {
     return //no export
@@ -78,6 +79,7 @@ observation {
         }
       }
     }
+    /*
     component {
       code {
         coding {
@@ -94,6 +96,7 @@ observation {
         }
       }
     }
+    */
 
 
   }

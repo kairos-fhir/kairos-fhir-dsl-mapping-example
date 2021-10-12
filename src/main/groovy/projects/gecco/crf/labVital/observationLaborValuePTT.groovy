@@ -104,6 +104,7 @@ observation {
       value = numVal
       unit = "s"
       system = "http://unitsofmeasure.org"
+      code = "s"
     }
   }
 }

@@ -104,6 +104,7 @@ observation {
       value = numVal
       unit = "INR"
       system = "http://unitsofmeasure.org"
+      code = "INR"
     }
   }
 }
