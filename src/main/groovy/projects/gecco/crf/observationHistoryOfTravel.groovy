@@ -18,6 +18,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  *  A StudyEpisode is no regular episode and cannot reference an encounter
  */
 observation {
+
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
   if (studyCode != "SARS-Cov-2") {
     return //no export
@@ -27,13 +28,19 @@ observation {
   if (crfName != "SarsCov2_ANAMNESE / RISIKOFAKTOREN" || studyVisitStatus == "OPEN") {
     return //no export
   }
+
+
   final def crfItemTravel = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_REISE" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
+
   if (!crfItemTravel) {
     return
   }
-  if (crfItemTravel[CrfItem.STRING_VALUE]) {
+
+  if (crfItemTravel[CrfItem.STRING_VALUE] && ["Ja", "Nein", "unbekannt", "Andere", "Nicht anwendbar"].contains(crfItemTravel[CrfItem.STRING_VALUE])) {
+
+
     id = "Observation/HistoryOfTravel-" + context.source[studyVisitItem().id()]
 
     meta {

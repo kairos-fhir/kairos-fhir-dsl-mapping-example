@@ -104,6 +104,7 @@ observation {
       value = numVal
       unit = "10*3/µL"
       system = "http://unitsofmeasure.org"
+      code = "10*3/µL"
     }
   }
 }
