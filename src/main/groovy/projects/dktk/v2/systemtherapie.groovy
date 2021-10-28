@@ -40,8 +40,10 @@ medicationStatement {
     }
   }
 
-  reasonReference {
-    reference = "Condition/" + context.source[systemTherapy().tumour().centraxxDiagnosis().id()]
+  if (context.source[systemTherapy().tumour()]) {
+    reasonReference {
+      reference = "Condition/" + context.source[systemTherapy().tumour().centraxxDiagnosis().id()]
+    }
   }
 
   if (context.source[systemTherapy().intentionDict()]) {

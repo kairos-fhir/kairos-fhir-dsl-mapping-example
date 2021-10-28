@@ -41,8 +41,10 @@ clinicalImpression {
     date = normalizeDate(context.source[progress().examinationDate()] as String)
   }
 
-  problem {
-    reference = "Condition/" + context.source[progress().tumour().centraxxDiagnosis().id()]
+  if (context.source[progress().tumour()]) {
+    problem {
+      reference = "Condition/" + context.source[progress().tumour().centraxxDiagnosis().id()]
+    }
   }
 
   // Reference GesamtbeurteilungTumorstatus

@@ -39,8 +39,10 @@ procedure {
     }
   }
 
-  reasonReference {
-    reference = "Condition/" + context.source[surgery().tumour().centraxxDiagnosis().id()]
+  if (context.source[surgery().tumour()]) {
+    reasonReference {
+      reference = "Condition/" + context.source[surgery().tumour().centraxxDiagnosis().id()]
+    }
   }
 
   outcome {
