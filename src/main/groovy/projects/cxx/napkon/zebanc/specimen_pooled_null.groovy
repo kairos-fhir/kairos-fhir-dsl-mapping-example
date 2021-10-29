@@ -10,7 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.8.0, CXX.v.3.8.1.1
+ * @since v.1.8.0, CXX.v.3.18.1.1
  *
  * The mapping transforms pooled specimen (that are set to rest amount 0) from the BB Charité system to the DZHK Greifswald system.
  *

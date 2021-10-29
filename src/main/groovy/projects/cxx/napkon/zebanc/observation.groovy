@@ -1,5 +1,6 @@
 package projects.cxx.napkon.zebanc
 
+
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -7,7 +8,6 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
@@ -17,18 +17,18 @@ import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.BOOLEAN_VALUE
+import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.NUMERIC_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.TIME_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX LaborMapping
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.8.0, CXX.v.3.8.1.1
+ * @since v.1.8.0, CXX.v.3.18.1.1
  *
  * Script to extract measurement results that contain only simple data types and single / multiple selections from value lists.
  * Based on the assumption that the measurement profiles (LaborMethods), measurement parameters (LaborValues) and the associated value lists are
