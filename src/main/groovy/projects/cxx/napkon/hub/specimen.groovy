@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.11.0, CXX.v.3.8.1.13
+ * @since v.1.11.0, CXX.v.3.18.1.13
  *
  * The mapping transforms specimen from the HUB Hannover system to the DZHK Greifswald system.
  * Intended to be used with POST (createOrUpdateByNaturalIdentifier) methods, because master samples already exists in the target system with a different logical fhir id.
