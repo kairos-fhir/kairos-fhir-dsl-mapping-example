@@ -38,8 +38,10 @@ procedure {
     }
   }
 
-  reasonReference {
-    reference = "Condition/" + context.source[radiationTherapy().tumour().centraxxDiagnosis().id()]
+  if (context.source[radiationTherapy().tumour()]) {
+    reasonReference {
+      reference = "Condition/" + context.source[radiationTherapy().tumour().centraxxDiagnosis().id()]
+    }
   }
 
   if (context.source[radiationTherapy().intentionDict()]) {
