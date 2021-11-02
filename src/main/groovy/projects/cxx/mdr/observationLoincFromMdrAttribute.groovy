@@ -56,17 +56,17 @@ observation {
   }
 
   final String mdrBaseUrl = "http://mdr-trunk-server.kairosbochum.de"
-  String bearerToken = getBearerToken(mdrBaseUrl)
+  final String bearerToken = getBearerToken(mdrBaseUrl)
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
     component {
       code {
-        String laborValueCode = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
+        final String laborValueCode = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
         coding {
           system = "urn:centraxx"
           code = laborValueCode
         }
 
-        String loincCode = readFromCxxMdr(mdrBaseUrl, bearerToken, laborValueCode)
+        final String loincCode = readFromCxxMdr(mdrBaseUrl, bearerToken, laborValueCode)
         if (loincCode) {
           coding {
             system = "http://loinc.org"
@@ -162,13 +162,13 @@ private static boolean isOptionGroup(final Object lflv) {
  * @param laborValueCode the laborValue code to query
  * @return the LOINC Code, if exists or null, if none exists.
  */
-private static String readFromCxxMdr(String mdrBaseUrl, String bearerToken, String laborValueCode) {
-  String version = queryDefinitionVersionById(mdrBaseUrl, bearerToken, laborValueCode)
+private static String readFromCxxMdr(final String mdrBaseUrl, final String bearerToken, final String laborValueCode) {
+  final String version = queryDefinitionVersionById(mdrBaseUrl, bearerToken, laborValueCode)
   if (!version) {
     return null
   }
 
-  String tag = queryAttributeTagByCodeAndVersion(mdrBaseUrl, bearerToken, laborValueCode, version)
+  final String tag = queryAttributeTagByCodeAndVersion(mdrBaseUrl, bearerToken, laborValueCode, version)
   if (!version) {
     return null
   }
@@ -181,11 +181,11 @@ private static String readFromCxxMdr(String mdrBaseUrl, String bearerToken, Stri
  * For an example response see /responses/authToken.json
  * @return the token.
  */
-private static String getBearerToken(String mdrBaseUrl) {
+private static String getBearerToken(final String mdrBaseUrl) {
 
-  String httpMethod = "POST"
-  String bodyMsg = "grant_type=password&username=install&password=kairos&scope=anyscope"
-  URL url = new URL(mdrBaseUrl + "/oauth/token")
+  final String httpMethod = "POST"
+  final String bodyMsg = "grant_type=password&username=install&password=kairos&scope=anyscope"
+  final URL url = new URL(mdrBaseUrl + "/oauth/token")
 
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
@@ -207,33 +207,33 @@ private static String getBearerToken(String mdrBaseUrl) {
 /**
  * For an example response see /responses/getDefinitionByCode.json
  */
-private static String queryDefinitionVersionById(String mdrBaseUrl, String bearerToken, String laborValueCode) {
-  String httpMethod = "GET"
-  URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/definition?code=" + laborValueCode)
+private static String queryDefinitionVersionById(final String mdrBaseUrl, final String bearerToken, final String laborValueCode) {
+  final String httpMethod = "GET"
+  final URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/definition?code=" + laborValueCode)
 
-  def json = queryMdr(url, httpMethod, bearerToken)
+  final def json = queryMdr(url, httpMethod, bearerToken)
   return json?.version
 }
 
 /**
  * For an example response see /responses/getAttributeByCodeAndVersion.json
  */
-private static String queryAttributeTagByCodeAndVersion(String mdrBaseUrl, String bearerToken, String laborValueCode, String version) {
-  String httpMethod = "GET"
-  URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/attribute/definition/version?code=" + laborValueCode + "&version=" + version + "&domainCode=Annotation&attributeCode=LOINC")
+private static String queryAttributeTagByCodeAndVersion(final String mdrBaseUrl, final String bearerToken, final String laborValueCode, final String version) {
+  final String httpMethod = "GET"
+  final URL url = new URL(mdrBaseUrl + "/rest/v1/definitions/attribute/definition/version?code=" + laborValueCode + "&version=" + version + "&domainCode=Annotation&attributeCode=LOINC")
 
-  def json = queryMdr(url, httpMethod, bearerToken)
+  final def json = queryMdr(url, httpMethod, bearerToken)
   return json?.value?.iterator()?.next()
 }
 
 /**
  * For an example response see /responses/getCatalogElementByAttributeValue.json
  */
-private static String queryCatalogEntryCodeByAttributeTag(String mdrBaseUrl, String bearerToken, String tag) {
-  String httpMethod = "GET"
-  URL url = new URL(mdrBaseUrl + "/rest/v1/catalogs/entry/tag?tag=" + tag)
+private static String queryCatalogEntryCodeByAttributeTag(final String mdrBaseUrl, final String bearerToken, final String tag) {
+  final String httpMethod = "GET"
+  final URL url = new URL(mdrBaseUrl + "/rest/v1/catalogs/entry/tag?tag=" + tag)
 
-  def json = queryMdr(url, httpMethod, bearerToken)
+  final def json = queryMdr(url, httpMethod, bearerToken)
   return json?.code
 }
 
@@ -241,7 +241,7 @@ private static String queryCatalogEntryCodeByAttributeTag(String mdrBaseUrl, Str
  * Executes the REST query, validates and returns the result, if exists.
  * @return JsonSlurper with the REST response or null, if response was not valid.
  */
-private static def queryMdr(URL url, String httpMethod, String bearerToken) {
+private static def queryMdr(final URL url, final String httpMethod, final String bearerToken) {
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
   connection.setRequestProperty("Authorization", "Bearer " + bearerToken)
@@ -260,8 +260,8 @@ private static def queryMdr(URL url, String httpMethod, String bearerToken) {
  * Validates the HTTP response
  * @return true, if status code is valid 200 or otherwise false. A false response is logged.
  */
-private static boolean validateResponse(int httpStatusCode, String httpMethod, URL url) {
-  int expectedStatusCode = 200
+private static boolean validateResponse(final int httpStatusCode, final String httpMethod, final URL url) {
+  final int expectedStatusCode = 200
   if (httpStatusCode != expectedStatusCode) {
     LoggerFactory.getLogger(getClass()).warn("'" + httpMethod + "' request on '" + url + "' returned status code: " + httpStatusCode + ". Expected: " + expectedStatusCode)
     return false

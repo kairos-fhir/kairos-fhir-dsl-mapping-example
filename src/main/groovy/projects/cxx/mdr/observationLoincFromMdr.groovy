@@ -14,6 +14,7 @@ import org.hl7.fhir.r4.model.Observation
 import java.nio.charset.StandardCharsets
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
@@ -56,13 +57,13 @@ observation {
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
     component {
       code {
-        String laborValueCode = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
+        final String laborValueCode = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
         coding {
           system = "urn:centraxx"
           code = laborValueCode
         }
 
-        String loincCode = readFromCxxMdr(laborValueCode)
+        final String loincCode = readFromCxxMdr(laborValueCode)
         if (loincCode) {
           coding {
             system = "http://loinc.org"
@@ -151,8 +152,8 @@ private static boolean isOptionGroup(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
 }
 
-private static String readFromCxxMdr(String laborValueCode) {
-  String bearerToken = getBearerToken()
+private static String readFromCxxMdr(final String laborValueCode) {
+  final String bearerToken = getBearerToken()
   return queryMdr(bearerToken, laborValueCode)
 }
 
@@ -162,9 +163,9 @@ private static String readFromCxxMdr(String laborValueCode) {
  */
 private static String getBearerToken() {
 
-  String httpMethod = "POST"
-  String bodyMsg = "grant_type=password&username=install&password=kairos&scope=anyscope"
-  URL url = new URL("http://mdr-trunk-server.kairosbochum.de/oauth/token")
+  final String httpMethod = "POST"
+  final String bodyMsg = "grant_type=password&username=install&password=kairos&scope=anyscope"
+  final URL url = new URL("http://mdr-trunk-server.kairosbochum.de/oauth/token")
 
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
@@ -187,10 +188,10 @@ private static String getBearerToken() {
  * @param laborValueCode Speaking Labor Value Code in CXX
  * @return MDR definition code where caption.name ilike '%laborValueCode%' order by id offset 0 limit 1 (only the first if exists)
  */
-private static String queryMdr(String bearerToken, String laborValueCode) {
-  String httpMethod = "GET"
-  String mdrQuery = "where%20caption.name%20ilike%20'%25" + laborValueCode + "%25'%20order%20by%20id%20limit%201%20offset%200"
-  URL url = new URL("http://mdr-trunk-server.kairosbochum.de/rest/v1/definitions?query=" + mdrQuery)
+private static String queryMdr(final String bearerToken, final String laborValueCode) {
+  final String httpMethod = "GET"
+  final String mdrQuery = "where%20caption.name%20ilike%20'%25" + laborValueCode + "%25'%20order%20by%20id%20limit%201%20offset%200"
+  final URL url = new URL("http://mdr-trunk-server.kairosbochum.de/rest/v1/definitions?query=" + mdrQuery)
 
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
@@ -207,8 +208,8 @@ private static String queryMdr(String bearerToken, String laborValueCode) {
 /**
  * Validates the HTTP response. If a response is not valid (not 200), an exception is thrown and the transformation ends.
  */
-private static void validateResponse(int httpStatusCode, String httpMethod, URL url) {
-  int expectedStatusCode = 200
+private static void validateResponse(final int httpStatusCode, final String httpMethod, final URL url) {
+  final int expectedStatusCode = 200
   if (httpStatusCode != expectedStatusCode) {
     throw new IllegalStateException("'" + httpMethod + "' request on '" + url + "' returned status code: " + httpStatusCode + ". Expected: " + expectedStatusCode)
   }
