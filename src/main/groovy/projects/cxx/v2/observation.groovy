@@ -3,15 +3,14 @@ package projects.cxx.v2
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
@@ -19,8 +18,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
- * @since v.1.7.0, CXX.v.3.17.2
+ * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
  * TODO: extend example for Enumerations and RadioOptionGroups
+ * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
+ * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
  */
 observation {
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
@@ -39,7 +40,7 @@ observation {
   }
 
   final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
-    "COVID-19-PATIENTID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "COVID-19-PATIENTID" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (patIdContainer) {
@@ -49,7 +50,7 @@ observation {
         type {
           coding {
             system = "urn:centraxx"
-            code = patIdContainer[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE) as String
+            code = patIdContainer[ID_CONTAINER_TYPE]?.getAt(CODE) as String
           }
         }
       }
@@ -69,14 +70,20 @@ observation {
       code {
         coding {
           system = "urn:centraxx"
-          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE) as String
+          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(CODE) as String
+        }
+        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
+          coding {
+            system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
+            code = idContainer[PSN] as String
+          }
         }
       }
 
       if (isNumeric(lflv)) {
         valueQuantity {
           value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
-          unit = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(Unity.CODE) as String
+          unit = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
         }
       }
       if (isBoolean(lflv)) {
@@ -102,13 +109,13 @@ observation {
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-              code = entry[CatalogEntry.CODE] as String
+              code = entry[CODE] as String
             }
           }
           lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
-              code = entry[IcdEntry.CODE] as String
+              code = entry[CODE] as String
             }
           }
         }
