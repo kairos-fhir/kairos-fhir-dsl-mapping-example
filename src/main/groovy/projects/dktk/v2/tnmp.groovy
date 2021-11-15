@@ -12,8 +12,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
  *  CCP-IT has decided on 2020-11-17 to use the TNMc profile only if all TNM prefixes are clinical.
  *  If only one prefix is not clinical (c) the profile TNMp is used, even if it is no prefix p (pathology), but e.g a (autopsy) or u (ultrasonic).
  *  Both profiles differ only in the loinc codes for Observation.code.coding.code and Observation.component:TNM-T/N/M.code.coding.code
+ *  Reference to focus condition has been added additionally, because a reverse reference is not possible yet.
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since CXX.v.3.18.1.21, CXX.v.3.18.2, kairos-fhir-dsl-1.13.0
  */
 observation {
 
@@ -196,6 +197,12 @@ observation {
           code = context.source[tnm().multiple()] as String
         }
       }
+    }
+  }
+
+  if (context.source[tnm().tumour()]) {
+    focus {
+      reference = "Condition/" + context.source[tnm().tumour().centraxxDiagnosis().id()]
     }
   }
 
