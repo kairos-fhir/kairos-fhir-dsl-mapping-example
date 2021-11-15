@@ -107,7 +107,7 @@ observation {
       code {
         coding {
           system = "http://loinc.org"
-          code = isClinical ? "201906-3" : "21900-6"
+          code = isClinical ? "21906-3" : "21900-6"
         }
       }
       valueCodeableConcept {
