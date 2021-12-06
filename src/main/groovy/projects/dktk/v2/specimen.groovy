@@ -1,10 +1,10 @@
 package projects.dktk.v2
 
-
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX AbstractSample
@@ -114,6 +114,18 @@ specimen {
 //    }
 //  }
 
+  if (context.source[abstractSample().diagnosis()]) {
+    extension {
+      url = "https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis"
+      valueCodeableConcept {
+        coding {
+          system = "http://hl7.org/fhir/sid/icd-10"
+          code = context.source[sample().diagnosis().diagnosisCode()]
+        }
+      }
+    }
+  }
+
   final def temperature = toTemperature(context)
   if (temperature) {
     extension {
@@ -131,15 +143,11 @@ specimen {
 
 static def toTemperature(final ctx) {
   final def temp = ctx.source[abstractSample().sampleLocation().temperature()]
-
   if (null != temp) {
     switch (temp) {
-      case { it >= 2.0 && it <= 10 }:
-        return "temperature2to10"
-      case { it <= -18.0 && it >= -35.0 }:
-        return "temperature-18to-35"
-      case { it <= -60.0 && it >= -85.0 }:
-        return "temperature-60to-85"
+      case { it >= 2.0 && it <= 10 }: return "temperature2to10"
+      case { it <= -18.0 && it >= -35.0 }: return "temperature-18to-35"
+      case { it <= -60.0 && it >= -85.0 }: return "temperature-60to-85"
     }
   }
 
