@@ -1,5 +1,7 @@
 package projects.bbmri
 
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX AbstractSample
  * Specified by https://simplifier.net/bbmri.de/specimen
@@ -106,6 +108,18 @@ specimen {
     }
   }
 
+  if (context.source[sample().diagnosis()]) {
+    extension {
+      url = "https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis"
+      valueCodeableConcept {
+        coding {
+          system = "http://hl7.org/fhir/sid/icd-10"
+          code = context.source[sample().diagnosis().diagnosisCode()]
+        }
+      }
+    }
+  }
+
   final def temperature = toTemperature(context)
   if (temperature) {
     extension {
@@ -118,7 +132,6 @@ specimen {
       }
     }
   }
-
 }
 
 static def toTemperature(final ctx) {
@@ -126,26 +139,19 @@ static def toTemperature(final ctx) {
 
   if (null != temp) {
     switch (temp) {
-      case { it >= 2.0 && it <= 10 }:
-        return "temperature2to10"
-      case { it <= -18.0 && it >= -35.0 }:
-        return "temperature-18to-35"
-      case { it <= -60.0 && it >= -85.0 }:
-        return "temperature-60to-85"
+      case { it >= 2.0 && it <= 10 }: return "temperature2to10"
+      case { it <= -18.0 && it >= -35.0 }: return "temperature-18to-35"
+      case { it <= -60.0 && it >= -85.0 }: return "temperature-60to-85"
     }
   }
 
   final def sprec = ctx.source["receptable.sprecCode"]
   if (null != sprec) {
     switch (sprec) {
-      case ['C', 'F', 'O', 'Q']:
-        return "temperatureLN"
-      case ['A', 'D', 'J', 'L', 'N', 'O', 'S']:
-        return "temperature-60to-85"
-      case ['B', 'H', 'K', 'M', 'T']:
-        return "temperature-18to-35"
-      default:
-        return "temperatureOther"
+      case ['C', 'F', 'O', 'Q']: return "temperatureLN"
+      case ['A', 'D', 'J', 'L', 'N', 'O', 'S']: return "temperature-60to-85"
+      case ['B', 'H', 'K', 'M', 'T']: return "temperature-18to-35"
+      default: return "temperatureOther"
     }
   }
 
