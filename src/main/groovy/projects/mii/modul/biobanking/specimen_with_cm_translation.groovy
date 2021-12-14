@@ -24,7 +24,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 final String sampleTypeConceptMapUrl = "https://fhir.simplifier.net/MedizininformatikInitiative-ModulBiobank/ConceptMap/SPRECSampleTypeMap"
 final String longTermStorageConceptMapUrl = "https://fhir.simplifier.net/MedizininformatikInitiative-ModulBiobank/ConceptMap/SPRECLongTermStorageMap"
 specimen {
-  id = "Sample/" + context.source[sample().id()]
+
+  id = "Specimen/" + context.source[sample().id()]
 
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ProfileSpecimenBioprobe"
@@ -88,7 +89,7 @@ specimen {
 
   if (context.source[sample().parent()]) {
     parent {
-      reference = "Sample/" + context.source[sample().parent().id()]
+      reference = "Specimen/" + context.source[sample().parent().id()]
     }
   }
 
