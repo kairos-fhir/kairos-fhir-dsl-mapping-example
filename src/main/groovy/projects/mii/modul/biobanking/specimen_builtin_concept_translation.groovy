@@ -21,7 +21,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  */
 
 specimen {
-  id = "Sample/" + context.source[sample().id()]
+
+  id = "Specimen/" + context.source[sample().id()]
 
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ProfileSpecimenBioprobe"
@@ -87,7 +88,7 @@ specimen {
 
   if (context.source[sample().parent()]) {
     parent {
-      reference = "Sample/" + context.source[sample().parent().id()]
+      reference = "Specimen/" + context.source[sample().parent().id()]
     }
   }
 
