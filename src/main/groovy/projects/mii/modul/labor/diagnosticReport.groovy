@@ -45,7 +45,7 @@ diagnosticReport {
     coding {
       system = "urn:centraxx"
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()].find { def entry ->
+      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()].find { final def entry ->
         "de" == entry[MultilingualEntry.LANG]
       }?.getAt(MultilingualEntry.VALUE)
     }
@@ -67,7 +67,7 @@ diagnosticReport {
 
   issued(context.source[laborMapping().laborFinding().creationDate()])
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()]?.each { def lflv ->
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()]?.each { final def lflv ->
     result {
       reference = "Observation/" + lflv[LaborFindingLaborValue.ID]
     }
@@ -89,7 +89,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapCategories(String cxxCategory) {
+static String mapCategories(final String cxxCategory) {
   switch (cxxCategory) {
     case "LABOR": return "LAB"
     case "NURSING": return "NRS"

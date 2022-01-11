@@ -39,7 +39,7 @@ condition {
     }
   }
 
-  List codeDisplay = getVerificationStatus(context.source[diagnosis().diagnosisCertainty()])
+  final List codeDisplay = getVerificationStatus(context.source[diagnosis().diagnosisCertainty()])
   if (codeDisplay) {
     verificationStatus {
       coding {
@@ -109,7 +109,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
 }
 
-static List getVerificationStatus(Object cxxVerificationState) {
+static List getVerificationStatus(final Object cxxVerificationState) {
   switch (cxxVerificationState) {
     case "V":
       return ["provisional", "Provisional"]

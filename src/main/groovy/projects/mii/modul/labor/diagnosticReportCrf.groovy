@@ -69,13 +69,13 @@ diagnosticReport {
     issued(issuedDate)
   }
 
-  context.source[studyVisitItem().crf().items()]?.each { def item ->
+  context.source[studyVisitItem().crf().items()]?.each { final def item ->
     result {
       reference = "Observation/SVI" + item[CrfItem.ID]
     }
   }
 
-  context.source[studyVisitItem().crf().annotations()]?.each { def annotation ->
+  context.source[studyVisitItem().crf().annotations()]?.each { final def annotation ->
     media {
       comment = annotation[Annotation.VALUE]
     }

@@ -28,11 +28,11 @@ specimen {
     profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ProfileSpecimenBioprobe"
   }
 
-  if (context.source[abstractSample().episode()]) {
+  if (context.source[abstractSample().diagnosis()]) {
     extension {
       url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionDiagnose"
       valueReference {
-        reference = "Diagnosis/" + context.source[sample().episode().id()]
+        reference = "Condition/" + context.source[sample().diagnosis().id()]
       }
     }
   }
@@ -41,7 +41,7 @@ specimen {
     extension {
       url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionVerwaltendeOrganisation"
       valueReference {
-        reference = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
+        reference = "Organization/" + context.source[sample().organisationUnit().id()]
       }
     }
   }

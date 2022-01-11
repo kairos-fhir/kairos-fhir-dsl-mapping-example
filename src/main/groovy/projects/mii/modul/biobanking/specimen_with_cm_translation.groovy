@@ -31,11 +31,11 @@ specimen {
     profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ProfileSpecimenBioprobe"
   }
 
-  if (context.source[abstractSample().episode()]) {
+  if (context.source[abstractSample().diagnosis()]) {
     extension {
       url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionDiagnose"
       valueReference {
-        reference = "Diagnosis/" + context.source[sample().episode().id()]
+        reference = "Condition/" + context.source[sample().diagnosis().id()]
       }
     }
   }
@@ -44,7 +44,7 @@ specimen {
     extension {
       url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/ExtensionVerwaltendeOrganisation"
       valueReference {
-        reference = "OrganisationUnit/" + context.source[sample().organisationUnit().id()]
+        reference = "Organization/" + context.source[sample().organisationUnit().id()]
       }
     }
   }
@@ -142,7 +142,7 @@ specimen {
         unit = context.source[sample().restAmount().unit()]
       }
       additiveReference {
-        if (context.source[sample().sprecPrimarySampleContainer()]){
+        if (context.source[sample().sprecPrimarySampleContainer()]) {
           additiveCodeableConcept {
             coding {
               system = "https://doi.org/10.1089/bio.2017.0109/type-of-primary-container"
@@ -150,7 +150,7 @@ specimen {
             }
           }
         }
-        if (context.source[sample().stockType()]){
+        if (context.source[sample().stockType()]) {
           additiveCodeableConcept {
             coding {
               system = "https://doi.org/10.1089/bio.2017.0109/type-of-primary-container"
@@ -170,18 +170,18 @@ specimen {
             }
           }
         }*/
-        /*if (context.source[sample().stockType()]) {
-          final TranslationResult sprecFixationTypeTranslationResult = translateConceptMap(context.source[sample().stockType().sprecCode()] as String, sprecFixationTypeConceptMapUrl)
-          if (sprecFixationTypeTranslationResult.code) {
-            additiveCodeableConcept {
-              system = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/ValueSet/additive"
-              code = sprecFixationTypeTranslationResult.code
-              display = sprecFixationTypeTranslationResult.display
-            }
+      /*if (context.source[sample().stockType()]) {
+        final TranslationResult sprecFixationTypeTranslationResult = translateConceptMap(context.source[sample().stockType().sprecCode()] as String, sprecFixationTypeConceptMapUrl)
+        if (sprecFixationTypeTranslationResult.code) {
+          additiveCodeableConcept {
+            system = "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/ValueSet/additive"
+            code = sprecFixationTypeTranslationResult.code
+            display = sprecFixationTypeTranslationResult.display
           }
-        }*/
-      }
+        }
+      }*/
     }
+  }
   note {
     text = context.source[sample().note()] as String
   }
@@ -202,16 +202,16 @@ class TranslationResult {
   String display
   String equivalence
 
-  TranslationResult(code, display, equivalence) {
+  TranslationResult(final code, final display, final equivalence) {
     this.code = code
     this.display = display
     this.equivalence = equivalence
   }
 }
 
-private static TranslationResult translateConceptMap(String code, String queryUrl) {
-  String httpMethod = "GET"
-  URL url = new URL(queryUrl)
+private static TranslationResult translateConceptMap(final String code, final String queryUrl) {
+  final String httpMethod = "GET"
+  final URL url = new URL(queryUrl)
 
   final HttpURLConnection connection = url.openConnection() as HttpURLConnection
   connection.setRequestMethod(httpMethod)
@@ -236,8 +236,8 @@ private static TranslationResult translateConceptMap(String code, String queryUr
 /**
  * Validates the HTTP response. If a response is not valid (not 200), an exception is thrown and the transformation ends.
  */
-private static void validateResponse(int httpStatusCode, String httpMethod, URL url) {
-  int expectedStatusCode = 200
+private static void validateResponse(final int httpStatusCode, final String httpMethod, final URL url) {
+  final int expectedStatusCode = 200
   if (httpStatusCode != expectedStatusCode) {
     throw new IllegalStateException("'" + httpMethod + "' request on '" + url + "' returned status code: " + httpStatusCode + ". Expected: " + expectedStatusCode)
   }
