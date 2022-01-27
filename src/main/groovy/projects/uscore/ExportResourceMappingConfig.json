@@ -6,6 +6,12 @@
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "encounter",
+      "exportToFhirResource": "Encounter",
+      "exportDeleteEnable": false
     }
   ]
 }
