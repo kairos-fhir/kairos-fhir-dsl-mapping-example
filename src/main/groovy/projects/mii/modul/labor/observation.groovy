@@ -61,23 +61,28 @@ observation {
     coding {
       system = "urn:centraxx"
       code = context.source[laborFindingLaborValue().laborValue().code()] as String
-      display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()].find { def entry ->
+      display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()].find { final def entry ->
         "de" == entry[MultilingualEntry.LANG]
       }?.getAt(MultilingualEntry.VALUE)
     }
   }
 
-  def patient = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find { it[LaborMapping.RELATED_PATIENT] != null }
-  if (patient) {
+  final def laborMappingWithRelatedPatient = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find {
+    it[LaborMapping.RELATED_PATIENT] != null
+  }
+  if (laborMappingWithRelatedPatient) {
     subject {
-      reference = "Patient/" + patient[PatientContainer.ID]
+      reference = "Patient/" + laborMappingWithRelatedPatient[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
     }
   }
 
-  def episode = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find { it[LaborMapping.EPISODE] != null }
-  if (episode) {
+
+  final def laborMappingWithEpisode = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find {
+    it[LaborMapping.EPISODE] != null
+  }
+  if (laborMappingWithEpisode) {
     encounter {
-      reference = "Encounter/" + episode[Episode.ID]
+      reference = "Encounter/" + laborMappingWithEpisode[LaborMapping.EPISODE][Episode.ID]
     }
   }
 
