@@ -1,7 +1,8 @@
-package projects.cxx.uscore
+package projects.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
+import de.kairos.fhir.centraxx.metamodel.Ethnicity
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
@@ -20,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  * @author Mike Wähnert
  * @since v.1.13.0, CXX.v.2022.1.0
  *
- * TODO: add extensions for race and ethnicity
+ * Hints: Race, and birth sex ae no explicit fields in CXX. If needed, specify the field and add extensions similar to ethnicity.
  */
 patient {
 
@@ -81,7 +82,37 @@ patient {
       }
     }
   }
+
+  final def firstEthnicity = context.source[patient().patientContainer().ethnicities()].find { final def ethnicity -> ethnicity != null }
+  if (firstEthnicity != null) {
+    extension {
+      url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+      extension {
+        url = "ombCategory"
+        valueCoding {
+          //http://hl7.org/fhir/us/core/STU4/ValueSet-omb-ethnicity-category.html
+          system = "urn:oid:2.16.840.1.113883.6.238"
+          code = "2135-2" // assumes that only hispanic or latino codes are code-able
+        }
+      }
+      extension {
+        url = "detailed"
+        valueCoding {
+          // see http://hl7.org/fhir/us/core/STU4/ValueSet-detailed-ethnicity.html
+          system = "urn:oid:2.16.840.1.113883.6.238"
+          code = firstEthnicity[CODE]
+        }
+      }
+      extension {
+        url = "text"
+        valueString = firstEthnicity[Ethnicity.NAME_MULTILINGUAL_ENTRIES].find { final def me ->
+          me[MultilingualEntry.LANG] == "de"
+        }?.getAt(MultilingualEntry.VALUE) as String
+      }
+    }
+  }
 }
+
 
 static String getLineString(final Map address) {
   final def keys = [PatientAddress.STREET, PatientAddress.STREETNO]
