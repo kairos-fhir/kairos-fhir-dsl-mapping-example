@@ -4,7 +4,8 @@
     {
       "selectFromCxxEntity": "ORGANIZATION_UNIT",
       "transformByTemplate": "organization",
-      "exportToFhirResource": "Organization"
+      "exportToFhirResource": "Organization",
+      "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
