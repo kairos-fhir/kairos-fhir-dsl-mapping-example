@@ -59,8 +59,9 @@ observation {
   if (context.source[tnm().stadium()]) {
     valueCodeableConcept {
       coding {
-        version = context.source[tnm().version()]
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/UiccstadiumCS"
         code = (context.source[tnm().stadium()] as String).trim()
+        version = context.source[tnm().version()]
       }
     }
   }
