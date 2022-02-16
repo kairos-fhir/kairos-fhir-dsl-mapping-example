@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:19:20.075+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Millimeter Hg</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - MM_HG</Value>
+      </NameMultilingualEntries>
+      <Code>MM_HG</Code>
+      <Used>false</Used>
+      <SyncId>46b56837-e06a-498f-920c-c371d7d8bdf0</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>BLOOD_PRESSURE_DIA</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Blutdruck diastolisch</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Blood Pressure Diastolic</Value>
+        </NameMultilingualEntries>
+        <SyncId>f15c6e50-232c-4d54-a103-73fb7c0596ba</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/27" DisplayName="Millimeter Hg">MM_HG</UnitTypeRef>
+      </FlexibleDecimalValue>
+      <FlexibleDecimalValue>
+        <Code>BLOOD_PRESSURE_SYS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Blood Pressure systolic</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Blutdruck systolisch</Value>
+        </NameMultilingualEntries>
+        <SyncId>9b144a99-1e20-434a-a8b0-3502ffa062eb</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/27" DisplayName="Millimeter Hg">MM_HG</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_BLOOD_PRESSURE</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Blutdruck</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - BLOOD_PRESSURE</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck systolisch">BLOOD_PRESSURE_SYS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck diastolisch">BLOOD_PRESSURE_DIA</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/209">
+        <Name>US Core Blutdruck</Name>
+        <Version>0</Version>
+        <SyncId>85b5cfaf-fcca-4773-b22d-4de18e8671f5</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>98770ab8-3f48-497f-a85c-4974806c0be8</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Blutdruck</Name>
+      <CrfTemplateSection>
+        <Name>BLOOD_PRESSURE</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Blutdruck</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Blood Pressure</Value>
+        </NameMultilingualEntries>
+        <Code>BLOOD_PRESSURE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck systolisch">BLOOD_PRESSURE_SYS</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>97ebbd4d-a001-4115-b0fc-bc4ddcb4b9f0</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck diastolisch">BLOOD_PRESSURE_DIA</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>085aff26-f684-4ca3-b405-d99a62d3a90d</SyncId>
+        </CrfTemplateField>
+        <Height>2</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>0235564c-d331-4abd-97e7-130c1ed22de3</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>85b5cfaf-fcca-4773-b22d-4de18e8671f5</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

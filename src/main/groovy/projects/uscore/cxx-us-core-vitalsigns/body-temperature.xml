@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:21:48.736+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - DEGREES_CELSIUS</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Grad Celsius</Value>
+      </NameMultilingualEntries>
+      <Code>DEGREES_CELSIUS</Code>
+      <Used>false</Used>
+      <SyncId>791cd0b5-25dc-441f-97c7-2f3b74df4120</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>BODY_TEMPERATURE</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Temperature</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpertemperatur</Value>
+        </NameMultilingualEntries>
+        <SyncId>df2f7cff-566f-4933-b3d5-1c95fc860d32</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/28" DisplayName="Grad Celsius">DEGREES_CELSIUS</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_BODY_TEMPERATURE</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Body Temperature</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Körpertemperatur</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/251" DisplayName="Körpertemperatur">BODY_TEMPERATURE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/208">
+        <Name>US Core Körpertemperatur</Name>
+        <Version>0</Version>
+        <SyncId>295f8793-83a0-4e22-9b22-00393f4b3691</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>29952477-9c66-44ba-8fa1-88882b26df5b</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Körpertemperatur</Name>
+      <CrfTemplateSection>
+        <Name>BODY_TEMPERATURE</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Temperature</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpertemperatur</Value>
+        </NameMultilingualEntries>
+        <Code>BODY_TEMPERATURE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/251" DisplayName="Körpertemperatur">BODY_TEMPERATURE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>47709f37-648e-43c3-9541-182eaa173ac7</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>4c362667-24eb-4031-9b2f-509a6a788e0a</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>295f8793-83a0-4e22-9b22-00393f4b3691</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

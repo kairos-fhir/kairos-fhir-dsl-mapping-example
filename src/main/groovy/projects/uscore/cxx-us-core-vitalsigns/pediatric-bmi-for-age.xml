@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:24:47.705+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
+      </NameMultilingualEntries>
+      <Code>PERCENT</Code>
+      <Used>false</Used>
+      <SyncId>7130f803-989f-4e68-b1cd-9fb38a96e091</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>PEDIATRIC_BMI_FOR_AGE</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric BMI for Age</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrischer BMI für Alter</Value>
+        </NameMultilingualEntries>
+        <SyncId>0f71b4a7-cce3-48cd-b11e-447007e7cb48</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_PEDIATRIC_BMI_FOR_AGE</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pädiatrischer BMI für Alter</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Pediatric BMI for Age</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/258" DisplayName="Pädiatrischer BMI für Alter">PEDIATRIC_BMI_FOR_AGE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/215">
+        <Name>US Core Pädiatrischer BMI für Alter</Name>
+        <Version>0</Version>
+        <SyncId>40213d59-7abf-4b2d-806d-8a70bef3b568</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>39c606b1-f9b9-4cd6-aa69-94636d68698f</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Pädiatrischer BMI für Alter</Name>
+      <CrfTemplateSection>
+        <Name>PEDIATRIC_BMI</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrischer BMI für Alter</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric BMI for Age</Value>
+        </NameMultilingualEntries>
+        <Code>PEDIATRIC_BMI</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/258" DisplayName="Pädiatrischer BMI für Alter">PEDIATRIC_BMI_FOR_AGE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>a55f7a94-f42c-418a-9386-b5dcd5224f0a</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>beeb5575-ad69-490e-8877-51f15afd95cb</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>40213d59-7abf-4b2d-806d-8a70bef3b568</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

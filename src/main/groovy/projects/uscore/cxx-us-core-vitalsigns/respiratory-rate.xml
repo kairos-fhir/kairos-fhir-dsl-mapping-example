@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:29:58.191+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>per minute</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - /min</Value>
+      </NameMultilingualEntries>
+      <Code>PER_MINUTE</Code>
+      <Used>false</Used>
+      <SyncId>b217f19c-0f5e-4e1f-a46a-d64ef1b369a4</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>RESPIRATORY_RATE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Respiratorische Rate</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - Respiratory rate</Value>
+        </NameMultilingualEntries>
+        <SyncId>bf18a247-e495-4c14-b3c5-abcb802fdeb5</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/30" DisplayName="per minute">PER_MINUTE</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_RESPIRATORY_RATE</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Respiratory Rate</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Respiratorische Rate</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/263" DisplayName="Respiratorische Rate">RESPIRATORY_RATE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/219">
+        <Name>US Core Respiratorische Rate</Name>
+        <Version>0</Version>
+        <SyncId>57bde951-0da0-4fd8-ae80-e9942983dae3</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>4d1c57bb-1d56-4a3f-a49f-956f488e96cc</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Respiratorische Rate</Name>
+      <CrfTemplateSection>
+        <Name>RESPIRATORY_RATE</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Respiratorische Rate</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Respiratory Rate</Value>
+        </NameMultilingualEntries>
+        <Code>RESPIRATORY_RATE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/263" DisplayName="Respiratorische Rate">RESPIRATORY_RATE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>2acfa610-4206-4f9a-a584-9a47f756e327</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>15af86dc-0266-4546-bed7-39c14ab98e50</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>57bde951-0da0-4fd8-ae80-e9942983dae3</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
