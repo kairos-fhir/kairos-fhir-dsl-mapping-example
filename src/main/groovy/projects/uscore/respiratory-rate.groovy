@@ -13,11 +13,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * Represents a CXX LaborMapping for the US Core Vital Sign Observation Respiratory Rate.
- * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-encounter.html
+ * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-respiratory-rate.html
  *
  * hints:
  * - Observation are specified by LOINC codes.
- * - Units are specified UCUM codes.
+ * - Units are specified by UCUM codes.
  *
  * Note: The mapping requires labor methods, labor values and units defined in CXX that math the specification of the
  * profile! For more information, see project readme.txt
