@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:20:08.824+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - BODY_MASS_INDEX</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Kilogramm pro Quadratmeter</Value>
+      </NameMultilingualEntries>
+      <Code>KG_PER_M2</Code>
+      <Used>false</Used>
+      <SyncId>e62c4470-e5ef-4fa4-a2b1-b4d8d400cfb1</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>BODY_MASS_INDEX</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Mass Index</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Body-Mass-Index</Value>
+        </NameMultilingualEntries>
+        <SyncId>64bf1034-99e1-4676-ae90-d11fa7f924e7</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/29" DisplayName="Kilogramm pro Quadratmeter">KG_PER_M2</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_BMI</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Body-Mass-Index</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Body Mass Index</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/255" DisplayName="Body-Mass-Index">BODY_MASS_INDEX</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/211">
+        <Name>US Core Body-Mass-Index</Name>
+        <Version>0</Version>
+        <SyncId>c27aca4b-9c99-4432-a502-40e8b10c521f</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>9b28dfae-f75e-44c4-8d64-d4ebf1906c77</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Body-Mass-Index</Name>
+      <CrfTemplateSection>
+        <Name>BMI</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Mass Index</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Body-Mass-Index</Value>
+        </NameMultilingualEntries>
+        <Code>BMI</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/255" DisplayName="Body-Mass-Index">BODY_MASS_INDEX</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>64462f23-e438-4f73-8844-7ce8e161f8ca</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>dcc766cc-3bd9-4d38-9f20-30435e6a787d</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>c27aca4b-9c99-4432-a502-40e8b10c521f</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:23:13.637+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Zentimeter</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>centi metre</Value>
+      </NameMultilingualEntries>
+      <Code>CENTI_METRE</Code>
+      <Used>false</Used>
+      <SyncId>5DE02DAA-1DBE-48C9-AE94-547A178B28FB</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>HEAD_CIRCUMFERENCE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Kopfumfang</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Head Circumference</Value>
+        </NameMultilingualEntries>
+        <SyncId>8f444dd1-df67-48ff-8e47-ab87b16855de</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/5" DisplayName="Zentimeter">CENTI_METRE</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_HEAD_CIRCUMFERENCE</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Kopfumfang</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Head Circumference</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/256" DisplayName="Kopfumfang">HEAD_CIRCUMFERENCE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/212">
+        <Name>US Core Kopfumfang</Name>
+        <Version>0</Version>
+        <SyncId>d9d4d03c-8c19-4550-ba73-df6f409d12a3</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>2e3b962c-8d3e-4ce9-be21-5b6608c48de1</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Kopfumfang</Name>
+      <CrfTemplateSection>
+        <Name>HEAD_CIRCUMFERENCE</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Head Circumference</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Kopfumfang</Value>
+        </NameMultilingualEntries>
+        <Code>HEAD_CIRCUMFERENCE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/256" DisplayName="Kopfumfang">HEAD_CIRCUMFERENCE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>bf30c009-a581-47b8-aaa3-4db7319ab042</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>9727d7ef-d3fc-42cc-8555-1e8ff4b86e5d</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>d9d4d03c-8c19-4550-ba73-df6f409d12a3</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

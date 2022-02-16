@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:27:32.177+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
+      </NameMultilingualEntries>
+      <Code>PERCENT</Code>
+      <Used>false</Used>
+      <SyncId>7130f803-989f-4e68-b1cd-9fb38a96e091</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>PEDIATRIC_WEIGHT_FOR_HEIGHT</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrisches Gewicht zu Größe-Verhältnis</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric Weight For Height</Value>
+        </NameMultilingualEntries>
+        <SyncId>42811756-d3fc-4ac8-99d9-4a7df1b99d9e</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_PEDIATRIC_WEIGHT_FOR_HEIGHT</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Pediatric Weight for Height</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pädiatrische Gewicht zu Größen-Verhältnis</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/260" DisplayName="Pädiatrisches Gewicht zu Größe-Verhältnis">PEDIATRIC_WEIGHT_FOR_HEIGHT</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/217">
+        <Name>US Core Pädiatrische Gewicht zu Größen-Verhältnis</Name>
+        <Version>0</Version>
+        <SyncId>03128baa-de17-4489-b61b-38c3e7295909</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>7ac89541-a0b1-437a-a2c6-db5bda9da9ff</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Pädiatrische Gewicht zu Größen-Verhältnis</Name>
+      <CrfTemplateSection>
+        <Name>WEIGHT_FOR_HEIGHT</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric Weight for Height</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrisches Gewicht zu Größe-Verhältnis</Value>
+        </NameMultilingualEntries>
+        <Code>WEIGHT_FOR_HEIGHT</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/260" DisplayName="Pädiatrisches Gewicht zu Größe-Verhältnis">PEDIATRIC_WEIGHT_FOR_HEIGHT</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>3c67e931-1fe1-45ab-bebe-c3981bd06b6b</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>5454c770-c529-4e08-a457-ccda3a6683bd</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>03128baa-de17-4489-b61b-38c3e7295909</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

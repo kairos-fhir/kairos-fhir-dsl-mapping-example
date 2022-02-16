@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:26:21.622+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
+      </NameMultilingualEntries>
+      <Code>PERCENT</Code>
+      <Used>false</Used>
+      <SyncId>7130f803-989f-4e68-b1cd-9fb38a96e091</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>PEDIATRIC_OCCIPITAL_FRONTAL_CIRCUMFERENCE_PERCENTILE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrischer Okzipital Frontal Umfang Perzentil</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric Occipital Frontal Circumference Percentile</Value>
+        </NameMultilingualEntries>
+        <SyncId>2cb38d48-8a7e-40fc-9202-e4324dd7c2fd</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_PEDIATRIC_OCCIPITAL_FRONTAL_CIRCUMFERENCE_PERCENTILE</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Us Core Pediatric Occipital Frontal Circumference Percentile</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pädiatrischer Okziptal-Frontaler Umfang Perzentil</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/259" DisplayName="Pädiatrischer Okzipital Frontal Umfang Perzentil">PEDIATRIC_OCCIPITAL_FRONTAL_CIRCUMFERENCE_PERCENTILE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/216">
+        <Name>US Core Pädiatrischer Okziptal-Frontaler Umfang Perzentil</Name>
+        <Version>0</Version>
+        <SyncId>97bd811d-b1d5-49b6-a887-40c18d7ddb1a</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>79964fdd-4b63-4e10-ad19-6eb2b4504cdf</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Pädiatrischer Okziptal-Frontaler Umfang Perzentil</Name>
+      <CrfTemplateSection>
+        <Name>OCCIPITAL_FRONTAL_CIRC</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric Occipital Frontal Circumference Percentile</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrischer Okziptal-Frontaler Umfang Perzentil</Value>
+        </NameMultilingualEntries>
+        <Code>OCCIPITAL_FRONTAL_CIRC</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/259" DisplayName="Pädiatrischer Okzipital Frontal Umfang Perzentil">PEDIATRIC_OCCIPITAL_FRONTAL_CIRCUMFERENCE_PERCENTILE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>96d997a5-69cb-4434-993f-b6e869da109a</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>4e665a4d-5062-4e4f-8e53-1c60e43e9ea2</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>97bd811d-b1d5-49b6-a887-40c18d7ddb1a</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

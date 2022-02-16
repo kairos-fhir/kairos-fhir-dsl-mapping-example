@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:20:43.681+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Zentimeter</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>centi metre</Value>
+      </NameMultilingualEntries>
+      <Code>CENTI_METRE</Code>
+      <Used>false</Used>
+      <SyncId>5DE02DAA-1DBE-48C9-AE94-547A178B28FB</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>BODY_HEIGHT</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Height</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpergröße</Value>
+        </NameMultilingualEntries>
+        <SyncId>324cc942-c85b-4b36-8c92-6f7afc5cdcc1</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/5" DisplayName="Zentimeter">CENTI_METRE</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_BODY_HEIGHT</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Body Height</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Körpergröße</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/2" DisplayName="Körpergröße">BODY_HEIGHT</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/207">
+        <Name>US Core Körpergröße</Name>
+        <Version>0</Version>
+        <SyncId>ac401cc5-7880-426f-aa75-ea9ba0c3a61e</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>769341b3-f08f-4bc6-8818-08d8b98620ac</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Körpergröße</Name>
+      <CrfTemplateSection>
+        <Name>BODY_HEIGHT</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpergröße</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Height</Value>
+        </NameMultilingualEntries>
+        <Code>BODY_HEIGHT</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/2" DisplayName="Körpergröße">BODY_HEIGHT</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>47d4662b-c804-4948-b321-83fbb11b1c4d</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>a7457f75-0e9a-4c32-959a-a9380e901ae0</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>ac401cc5-7880-426f-aa75-ea9ba0c3a61e</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

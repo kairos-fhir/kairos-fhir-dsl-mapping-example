@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:22:34.595+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Kilogramm</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>kilo gramm</Value>
+      </NameMultilingualEntries>
+      <Code>KILOGRAMM</Code>
+      <Used>false</Used>
+      <SyncId>61C10044-5649-45FC-BC13-94DFDB4F7E19</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>BODY_WEIGHT</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Weight</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpergewicht</Value>
+        </NameMultilingualEntries>
+        <SyncId>70b5fa5f-a8d5-4062-aab9-51bc2e6eebee</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/1" DisplayName="Kilogramm">KILOGRAMM</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_BODY_WEIGHT</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Körpergewicht</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Body Weight</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/249" DisplayName="Körpergewicht">BODY_WEIGHT</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/206">
+        <Name>US Core Körpergewicht</Name>
+        <Version>0</Version>
+        <SyncId>142477a4-abf4-45a8-8cb7-204c8d463d6b</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>05a196d6-bb90-40b7-bbd8-c4808747fc1e</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Körpergewicht</Name>
+      <CrfTemplateSection>
+        <Name>BODY_WEIGHT</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpergewicht</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Weight</Value>
+        </NameMultilingualEntries>
+        <Code>BODY_WEIGHT</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/249" DisplayName="Körpergewicht">BODY_WEIGHT</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>80283b67-15a0-4ba8-aca4-d5fbaaf8ef1c</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>214b8fe3-c5d6-420b-b4a0-063dff580c9d</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>142477a4-abf4-45a8-8cb7-204c8d463d6b</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

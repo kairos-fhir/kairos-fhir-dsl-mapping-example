@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-16T10:28:59.145+01:00</ExportDate>
+  <CatalogueData>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
+      </NameMultilingualEntries>
+      <Code>PERCENT</Code>
+      <Used>false</Used>
+      <SyncId>7130f803-989f-4e68-b1cd-9fb38a96e091</SyncId>
+    </UnityCatalogueItem>
+    <UnityCatalogueItem>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - LITRE_PER_MINUTE</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Liter pro Minute</Value>
+      </NameMultilingualEntries>
+      <Code>LITRE_PER_MINUTE</Code>
+      <Used>false</Used>
+      <SyncId>6014eff8-d574-4344-8dca-e70454153474</SyncId>
+    </UnityCatalogueItem>
+    <FlexibleValueCatalogueItem>
+      <FlexibleDecimalValue>
+        <Code>O2_CONC_INHALED</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Oxygen concentration</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Sauerstoffkonzentration</Value>
+        </NameMultilingualEntries>
+        <SyncId>b12f0b22-b0a1-475a-9788-633a6686cb53</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
+      </FlexibleDecimalValue>
+      <FlexibleDecimalValue>
+        <Code>O2_FLOW_INHALED</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Inhaled Oxygen Flow Rate</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Sauerstoff Flussrate</Value>
+        </NameMultilingualEntries>
+        <SyncId>4fc8d105-1fb2-4d2b-ac9a-ef7ca54d057e</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+        <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/32" DisplayName="Liter pro Minute">LITRE_PER_MINUTE</UnitTypeRef>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_PULSE_OXIMETRY</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pulsoximetrie</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Pulse Oximetry</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/261" DisplayName="Sauerstoff Flussrate">O2_FLOW_INHALED</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/262" DisplayName="Sauerstoffkonzentration">O2_CONC_INHALED</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/218">
+        <Name>US Core Pulsoximetrie</Name>
+        <Version>0</Version>
+        <SyncId>94be8733-7b29-41ef-9a0d-bc2330f51d10</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>fdeb2c16-2ebc-4231-b573-c59f2c73cca3</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Pulsoximetrie</Name>
+      <CrfTemplateSection>
+        <Name>PULSE_OXIMETRY</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pulsoximetrie</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pulse Oximetry</Value>
+        </NameMultilingualEntries>
+        <Code>PULSE_OXIMETRY</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/261" DisplayName="Sauerstoff Flussrate">O2_FLOW_INHALED</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>8e48bc37-8d4e-4bc9-880f-a7515a0518d4</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/262" DisplayName="Sauerstoffkonzentration">O2_CONC_INHALED</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>9df6b89d-3559-414a-86c6-da38965fd2f4</SyncId>
+        </CrfTemplateField>
+        <Height>2</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>b7af8915-890e-469e-8672-7b99cfd9e299</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>94be8733-7b29-41ef-9a0d-bc2330f51d10</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

@@ -12,6 +12,20 @@ import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.*
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
+/**
+ * Represents a CXX LaborMapping for the US Core Vital Sign Observation Head Circumference.
+ * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-encounter.html
+ *
+ * hints:
+ * - Observation are specified by LOINC codes.
+ * - Units are specified UCUM codes.
+ *
+ * Note: The mapping requires labor methods, labor values and units defined in CXX that math the specification of the
+ * profile! For more information, see project readme.txt
+ *
+ * @author Jonas Küttner
+ * @since v.1.13.0, CXX.v.2022.1.0
+ */
 observation {
   if ("US_CORE_HEAD_CIRCUMFERENCE" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
@@ -30,7 +44,7 @@ observation {
     }
   }
 
-  final laborFindingLaborValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
+  final def laborFindingLaborValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "HEAD_CIRCUMFERENCE" }
 
   valueQuantity {
