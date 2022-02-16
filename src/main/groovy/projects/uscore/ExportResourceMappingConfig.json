@@ -18,6 +18,84 @@
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "bmi",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "body-weight",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "body-height",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "body-temperature",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "blood-pressure",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "head-circumference",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "heart-rate",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "pediatric-bmi-for-age",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "pediatric-head-occipital-frontal-circumference-percentile",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "pediatric-weight-for-height",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "pulse-oximetry.groovy",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "respiratory-rate",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "respiratory-rate",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
     }
   ]
 }
