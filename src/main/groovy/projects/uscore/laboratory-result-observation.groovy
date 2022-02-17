@@ -28,10 +28,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
  *
  * TODO: Implement export of MasterDataEntries
  */
-
+final def lang = "de "
 observation {
   id = "Observation/" + context.source[laborFindingLaborValue().id()]
-
+  language = lang
   status = Observation.ObservationStatus.FINAL
 
   category {
@@ -46,10 +46,10 @@ observation {
       system = FhirUrls.System.LaborValue.BASE_URL
       code = context.source[laborFindingLaborValue().laborValue().code()]
       display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()]
-          .find { final me -> me[LANG] == "de" }?.getAt(VALUE)
+          .find { final me -> me[LANG] == lang }?.getAt(VALUE)
     }
     text = context.source[laborFindingLaborValue().laborValue().descMultilingualEntries()]
-        .find { final me -> me[LANG] == "de" }?.getAt(VALUE)
+        .find { final me -> me[LANG] == lang }?.getAt(VALUE)
 
   }
 
@@ -91,7 +91,7 @@ observation {
     valueQuantity {
       value = numericValue
       if (unit_ != null) {
-        unit = unit_[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == "de" }?.getAt(VALUE)
+        unit = unit_[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         system = ucumCode != null ? "http://unitsofmeasure.org" : FhirUrls.System.LaborValue.Unit.BASE_URL
         code = ucumCode != null ? ucumCode : unit_[CODE]
       }
@@ -113,7 +113,7 @@ observation {
           system = "urn:centraxx:CodeSystem/UsageEntry-" + entry[ID]
           code = entry[CODE]
           display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == "de" }?.getAt(VALUE)
+              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         }
       }
     }
@@ -147,7 +147,7 @@ observation {
           version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
           code = entry[CODE] as String
           display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == "de" }?.getAt(VALUE)
+              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         }
       }
     }
@@ -159,7 +159,7 @@ observation {
           version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
           code = entry[CODE] as String
           display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == "de" }?.getAt(VALUE)
+              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         }
       }
     }
@@ -171,7 +171,7 @@ observation {
           version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
           code = entry[CODE] as String
           display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == "de" }?.getAt(VALUE)
+              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         }
       }
     }

@@ -96,6 +96,12 @@
       "transformByTemplate": "respiratory-rate",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnostic-report-for-laboratory-results-reporting.groovy",
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": false
     }
   ]
 }
