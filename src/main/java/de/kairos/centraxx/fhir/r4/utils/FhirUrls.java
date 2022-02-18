@@ -602,6 +602,13 @@ public final class FhirUrls {
 
       private LaborMethod() {
       }
+
+      public static final class Category{
+        public static final String BASE_URL = LaborMethod.BASE_URL + "/category";
+        public static final String BASE_URL_VALUESET = LaborMethod.BASE_URL_VALUESET + "/category";
+
+        private Category(){}
+      }
     }
 
     public static final class IdContainerType {

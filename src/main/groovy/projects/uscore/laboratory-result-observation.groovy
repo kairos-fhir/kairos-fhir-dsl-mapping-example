@@ -34,6 +34,10 @@ observation {
   language = lang
   status = Observation.ObservationStatus.FINAL
 
+  meta {
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
+  }
+
   category {
     coding {
       system = "http://terminology.hl7.org/CodeSystem/observation-category"

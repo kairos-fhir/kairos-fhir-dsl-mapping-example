@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-18T19:00:46.847+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_SMOKING_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Us Core Raucher-Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Smoking Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>a9032c73-e04c-4570-b167-fbe47d7c5aa0</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/44">
+          <Code>SNOMED_SMOKING_STATUS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_SMOKING_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Raucher-Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Smoking Status</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/290" DisplayName="Us Core Raucher-Status">US_CORE_SMOKING_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/227">
+        <Name>US Core Raucher-Status</Name>
+        <Version>2</Version>
+        <SyncId>83ae36be-051d-48cd-b458-0229650b5068</SyncId>
+      </CrfTemplateRef>
+      <Version>2</Version>
+      <SyncId>7ae2e3ef-1e26-4773-9046-e1038432bf4a</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Raucher-Status</Name>
+      <CrfTemplateSection>
+        <Name>SMOKING_STATUS</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Raucher-Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Smoking Status</Value>
+        </NameMultilingualEntries>
+        <Code>SMOKING_STATUS</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/290" DisplayName="Us Core Raucher-Status">US_CORE_SMOKING_STATUS</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>ae787fe4-84e6-45a2-8a08-c034cee067da</SyncId>
+        </CrfTemplateField>
+        <Height>1</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>000e642f-0f8c-402b-9936-cfb8f6d769c7</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>2</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>83ae36be-051d-48cd-b458-0229650b5068</SyncId>
+    </CrfTemplate>
+    <CustomCatalog>
+      <Code>SNOMED_SMOKING_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Snomed Smoking Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Snomed Smoking Status</Value>
+      </NameMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>428071000124103</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Current Heavy tobacco smoker</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Aktuell starke/r Tabakraucher/in</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>4192bb67-026f-4322-a76a-f3d1dee291a5</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>428061000124105</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Current Light tobacco smoker</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Aktuell mäßiger Tabakraucher/in</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>b1f726c7-fd88-4230-b2db-2fd29924d993</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>428041000124106</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Current some day smoker</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Current some day smoker</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>06a0e509-218f-4ee7-a8c0-089893c620ab</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>8517006</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Ex-smoker (finding)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Ex Raucher/in</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>4f6947f3-64d1-4674-b99b-4b70b85c924a</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>266919005</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Never smoked tobacco (finding)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Hat nie Tabak geraucht (Befund)</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>e56e0058-5587-41c2-9a54-a0ce871c40fb</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>77176002</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Smoker (finding)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Raucher/in (Befund)</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>123a120a-a4ee-43f3-868f-5ec53cfe1439</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>449868002</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Smokes tobacco daily (finding)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Raucht täglich Tabak</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>4ff8b0a6-2a68-46f3-a552-26fc9ec1702f</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>266927001</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Tobacco smoking consumption unknown (finding)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Tabakrauchkonsumverhalten unbekannt (Befund)</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>218ba70a-d6fc-405f-89a1-b4d837ac7a75</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>ba93aa22-f505-4595-b453-4df614ac1e9d</SyncId>
+    </CustomCatalog>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

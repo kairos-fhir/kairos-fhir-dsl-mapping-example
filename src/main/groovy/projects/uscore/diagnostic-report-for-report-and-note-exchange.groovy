@@ -1,6 +1,7 @@
 package projects.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.BinaryFile
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.DiagnosticReport
@@ -10,8 +11,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represents a CXX LaborMapping.
- * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-diagnosticreport-lab.html
+ * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-diagnosticreport-note.html
  *
+ * The resulting DiagnosticReport contains all the files that are attached to the finding as a laborFindingLaborValue
+ *
+ *  TODO: export of file as attachment
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
  *
@@ -20,25 +24,19 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 final def lang = "de"
 
 diagnosticReport {
-  // filter for lblvs that are not files
+  // filter for lblvs that are files
   final def lflvs = context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
-    final def lflv -> !lflv[LaborFindingLaborValue.FILE_VALUE]
+    final def lflv -> lflv[LaborFindingLaborValue.FILE_VALUE]
   }
 
   if (lflvs.isEmpty()) {
     return
   }
 
-  id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
+  id = "DiagnosticReport/Note-" + context.source[laborMapping().laborFinding().id()]
   language = lang
   status = DiagnosticReport.DiagnosticReportStatus.UNKNOWN
 
-  category {
-    coding {
-      system = "http://terminology.hl7.org/CodeSystem/v2-0074"
-      code = "LAB"
-    }
-  }
 
   category {
     coding {
@@ -65,6 +63,13 @@ diagnosticReport {
     }
   }
 
+  final def relatedEncounter = context.source[laborMapping().episode()]
+  if (relatedEncounter) {
+    encounter {
+      reference = "Encounter/" + relatedEncounter[ID]
+    }
+  }
+
   effectiveDateTime {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
@@ -73,8 +78,10 @@ diagnosticReport {
 
   lflvs.each {
     final def lflv ->
-      result {
-        reference = "Observation/" + lflv[ID]
+      presentedForm {
+        contentType = lflv["contentType"]
+        size = lflv["fileSize"] as Integer
+        creation = lflv[BinaryFile.CREATIONDATE]
       }
   }
 
