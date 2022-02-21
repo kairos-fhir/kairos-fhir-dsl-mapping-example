@@ -1,16 +1,16 @@
 package projects.uscore
 
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
-import de.kairos.fhir.centraxx.metamodel.Unity
 
-import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.*
-import static de.kairos.fhir.centraxx.metamodel.LaborValue.*
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.*
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
+import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.RecordedValue.NUMERIC_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represents a CXX LaborMapping for the US Core Vital Sign Observation Respiratory Rate.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-respiratory-rate.html
@@ -19,7 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * - Observation are specified by LOINC codes.
  * - Units are specified by UCUM codes.
  *
- * Note: The mapping requires labor methods, labor values and units defined in CXX that math the specification of the
+ * Note: The mapping requires labor methods, labor values and units defined in CXX that correspond to the specification of the
  * profile! For more information, see project README.md
  *
  * @author Jonas Küttner
