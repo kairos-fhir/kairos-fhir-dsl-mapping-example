@@ -81,7 +81,7 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "pulse-oximetry.groovy",
+      "transformByTemplate": "pulse-oximetry",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
@@ -95,6 +95,12 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "respiratory-rate",
       "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "implantable-device",
+      "exportToFhirResource": "Device",
       "exportDeleteEnable": false
     }
   ]
