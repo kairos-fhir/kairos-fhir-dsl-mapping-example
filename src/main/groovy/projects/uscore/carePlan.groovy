@@ -7,8 +7,8 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VAL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core AlleryIntolerance Profile.
- * Specified by http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
+ * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
+ * Specified by http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan
  *
  * TODO: Work in progress!
  *
@@ -16,16 +16,16 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @since v.1.14.0, CXX.v.2022.1.0
  */
 
-allergyIntolerance {
+carePlan {
 
   if ("bool" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
   }
 
-  id = "AllergyIntolerance/" + context.source[laborMapping().laborFinding().id()]
+  id = "CarePlan/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance")
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan")
   }
 
   final def laborFindingLaborValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()]

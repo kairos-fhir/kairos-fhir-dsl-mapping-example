@@ -102,6 +102,12 @@
       "transformByTemplate": "allergyIntolerance",
       "exportToFhirResource": "AllergyIntolerance",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "carePlan",
+      "exportToFhirResource": "CarePlan",
+      "exportDeleteEnable": false
     }
   ]
 }
