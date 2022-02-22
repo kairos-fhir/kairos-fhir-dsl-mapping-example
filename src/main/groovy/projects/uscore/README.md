@@ -10,8 +10,8 @@ US Core Mappings
 
 ## US CORE VITALSIGNS
 
-The US Core provides very specific profiles for a set of Vital signs. The observations are specified by LOINC codes and are mostly fixed values or
-chosen from a bound value set. However, CentraXX does not support LOINC codes for labor values. Therefore, corresponding labor mappings must be
-defined in CXX in order to map US Core Vitals Signs. A set of CXX master data xml files is provided that specifies labor methods, labor values and
-units that need to be defined in CXX for the groovy mappings to work. They can be imported over the CXX Xml import interface. The files are located
-in `/cxx-us-core-vitalsigns`
+The US Core provides very specific profiles for a set of vital signs. The observations are specified by LOINC codes and are mostly fixed values or
+chosen from a bound value set. However, CentraXX does not support LOINC codes for labor values natively yet. Therefore, corresponding labor mappings
+must be defined in CXX in order to map US Core Vitals Signs. A set of CXX master data xml files is provided that specifies labor methods, labor values
+and units that need to be defined in CXX for the groovy mappings to work. They can be imported over the CXX XML import interface for master data. 
+The files are located in `/xml`
