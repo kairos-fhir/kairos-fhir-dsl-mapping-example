@@ -105,14 +105,38 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "diagnostic-report-for-laboratory-results-reporting.groovy",
+      "transformByTemplate": "diagnosticReportForLaboratoryResultsReporting.groovy",
       "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReportForReportAndNoteExchange.groovy",
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
+      "transformByTemplate": "laboratoryResultObservation.groovy",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "immunization",
+      "exportToFhirResource": "Immunization",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "carePlan",
       "exportToFhirResource": "CarePlan",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "smokingStatus",
+      "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     }
   ]

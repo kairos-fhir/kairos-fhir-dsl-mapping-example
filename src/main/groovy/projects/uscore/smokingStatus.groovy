@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * - Observation are specified by LOINC codes.
  * The LaborMapping must therefore use a custom catalog with the required SNOMED CT Codes.
  * The CXX Master data that must be defined in CXX for this script to work is provided
- * in /cxx-us-core-smokingStatus/smokingStatus.xml. The file can be imported over the xml import interface.
+ * in /xml/smokingStatus.xml. The file can be imported over the xml import interface.
  *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
