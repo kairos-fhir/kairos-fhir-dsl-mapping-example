@@ -102,6 +102,12 @@
       "transformByTemplate": "allergyIntolerance",
       "exportToFhirResource": "AllergyIntolerance",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnostic-report-for-laboratory-results-reporting.groovy",
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": false
     }
   ]
 }

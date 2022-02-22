@@ -39,7 +39,7 @@ observation {
 
     meta {
       source = "https://fhir.centraxx.de"
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/smoking-status"
+      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/smokingStatus"
     }
 
     status = Observation.ObservationStatus.UNKNOWN

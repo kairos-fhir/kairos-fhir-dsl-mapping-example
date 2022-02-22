@@ -33,7 +33,7 @@ observation {
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi")
+    profile("https://www.hl7.org/fhir/us/core/StructureDefinition-head-occipital-frontal-circumference-percentile.html")
   }
 
   code {
