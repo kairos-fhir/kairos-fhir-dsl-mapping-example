@@ -1,17 +1,14 @@
 package projects.uscore
 
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.CustomCatalog
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
-import static de.kairos.fhir.centraxx.metamodel.CatalogEntry.*
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.*
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represents a CXX LaborMapping for the US Core Smoking Status .
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-smokingstatus.html
@@ -20,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * - Observation are specified by LOINC codes.
  * The LaborMapping must therefore use a custom catalog with the required SNOMED CT Codes.
  * The CXX Master data that must be defined in CXX for this script to work is provided
- * in /cxx-us-core-smoking-status/smoking-status.xml. The file can be imported over the xml import interface.
+ * in /cxx-us-core-smokingStatus/smokingStatus.xml. The file can be imported over the xml import interface.
  *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0

@@ -1,7 +1,12 @@
 package projects.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.*
+import de.kairos.fhir.centraxx.metamodel.IcdEntry
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
+import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.Unity
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCatalog.CATALOGUE_VERSION
@@ -14,7 +19,6 @@ import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.OpsEntry.CATALOGUE
 import static de.kairos.fhir.centraxx.metamodel.OpsEntry.PREFERRED
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
-
 
 /**
  * Represents a CXX LaborFindingLaborValue.
