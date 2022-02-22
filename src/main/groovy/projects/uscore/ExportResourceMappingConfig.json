@@ -99,7 +99,7 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "implantable-device",
+      "transformByTemplate": "implantableDevice",
       "exportToFhirResource": "Device",
       "exportDeleteEnable": false
     },
