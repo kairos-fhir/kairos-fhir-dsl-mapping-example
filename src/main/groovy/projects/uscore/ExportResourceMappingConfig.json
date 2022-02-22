@@ -102,6 +102,12 @@
       "transformByTemplate": "implantable-device",
       "exportToFhirResource": "Device",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "allergyIntolerance",
+      "exportToFhirResource": "AllergyIntolerance",
+      "exportDeleteEnable": false
     }
   ]
 }
