@@ -105,19 +105,19 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "diagnosticReportForLaboratoryResultsReporting.groovy",
+      "transformByTemplate": "diagnosticReportForLaboratoryResultsReporting",
       "exportToFhirResource": "DiagnosticReport",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "diagnosticReportForReportAndNoteExchange.groovy",
+      "transformByTemplate": "diagnosticReportForReportAndNoteExchange",
       "exportToFhirResource": "DiagnosticReport",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
-      "transformByTemplate": "laboratoryResultObservation.groovy",
+      "transformByTemplate": "laboratoryResultObservation",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },

@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-22T18:52:28.484+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_ALLERGY_INTOLERANCE_VERIFICATION_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Allergy Intolerance Verification Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Allergy Intolerance Verification Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>4b953913-76c1-4cd2-a331-e05853e77370</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/23" DisplayName="US Core Allergy Intolerance">US_CORE_ALLERGY_INTOLERANCE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/57">
+          <Code>US_CORE_ALLERGY_INTOLERANCE_STATUS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_ALLERGY_INTOLERANCE_CLINICAL_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Allergy Intolerance Clinical Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Allergy Intolerance Clinical Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>4ddf8977-5bff-4567-adc4-b605ac18e284</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/23" DisplayName="US Core Allergy Intolerance">US_CORE_ALLERGY_INTOLERANCE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/58">
+          <Code>FHIR_ALLERGY_INTOLERANCE_CLINICAL_STATUS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_ALLERGY_INTOLERANCE_CODE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Allergy Intolerance Substance Code</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Allergy Intolerance Substance Code</Value>
+        </NameMultilingualEntries>
+        <SyncId>797b0680-eab5-4dae-8490-ec6bebfca30b</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/23" DisplayName="US Core Allergy Intolerance">US_CORE_ALLERGY_INTOLERANCE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/59">
+          <Code>US_CORE_ALLERGY_INTOLERANCE_SUBSTANCES</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Allergy Intolerance Manifestation</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Allergy Intolerance Manifestation</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Clinical Finding</Value>
+        </DescMultilingualEntries>
+        <SyncId>56ac8f8a-aa62-4742-a264-2b3b76aa4841</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/23" DisplayName="US Core Allergy Intolerance">US_CORE_ALLERGY_INTOLERANCE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTMANY</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/56">
+          <Code>SNOMED_CT_CLINICAL_FINDINGS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_ALLERGY_INTOLERANCE</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - US_CORE_</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Allergy Intolerance</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/304" DisplayName="US Core Allergy Intolerance Clinical Status">US_CORE_ALLERGY_INTOLERANCE_CLINICAL_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/305" DisplayName="US Core Allergy Intolerance Verification Status">US_CORE_ALLERGY_INTOLERANCE_VERIFICATION_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/306" DisplayName="US Core Allergy Intolerance Substance Code">US_CORE_ALLERGY_INTOLERANCE_CODE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/307" DisplayName="US Core Allergy Intolerance Manifestation">US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/245">
+        <Name>US Core Allergy Intolerance</Name>
+        <Version>3</Version>
+        <SyncId>652d0769-a297-4167-a99d-b5b01f2b96a1</SyncId>
+      </CrfTemplateRef>
+      <Version>3</Version>
+      <SyncId>1d7cc266-7bae-48e9-a940-01849c13c3ad</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Allergy Intolerance</Name>
+      <CrfTemplateSection>
+        <Name>ALLERGY_INTOLERANCE</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Allergy Intolerance</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Allergy Intolerance</Value>
+        </NameMultilingualEntries>
+        <Code>ALLERGY_INTOLERANCE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/304" DisplayName="US Core Allergy Intolerance Clinical Status">US_CORE_ALLERGY_INTOLERANCE_CLINICAL_STATUS</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>029b069b-3aed-4666-a293-723820adee57</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/305" DisplayName="US Core Allergy Intolerance Verification Status">US_CORE_ALLERGY_INTOLERANCE_VERIFICATION_STATUS</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>69a87030-1694-4ea1-bbec-d44dd405b42b</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/306" DisplayName="US Core Allergy Intolerance Substance Code">US_CORE_ALLERGY_INTOLERANCE_CODE</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>0b4ba26e-13fb-4210-b058-04944dd8f6c1</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/307" DisplayName="US Core Allergy Intolerance Manifestation">US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION</LaborValue>
+          <LowerRow>3</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>3</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>65ff8088-005f-4f60-99fe-cb4ec5018e5e</SyncId>
+        </CrfTemplateField>
+        <Height>4</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>bb56f07f-9368-4199-b717-472639cc1d10</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>3</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>652d0769-a297-4167-a99d-b5b01f2b96a1</SyncId>
+    </CrfTemplate>
+    <CustomCatalog>
+      <Code>US_CORE_ALLERGY_INTOLERANCE_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Allergy Intolerance Status Verification Codes</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Allergy Intolerance Status Verification Codes</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>http://hl7.org/fhir/ValueSet/allergyintolerance-verification</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>unconfirmed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Unconfirmed</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - unconfirmed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>A low level of certainty about the propensity for a reaction to the identified substance.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>A low level of certainty about the propensity for a reaction to the identified substance.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>ab8c632e-11bc-4b5d-b655-a8ec46ae878f</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>confirmed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Confirmed</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - confirmed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>A high level of certainty about the propensity for a reaction to the identified substance, which may include clinical evidence by testing or rechallenge.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>516cfcaf-bd28-441b-8d98-a82c5ca3b956</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>refuted</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Refuted</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Refuted</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>A propensity for a reaction to the identified substance has been disputed or disproven with a sufficient level of clinical certainty to justify invalidating the assertion. This might or might not include testing or rechallenge.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>A propensity for a reaction to the identified substance has been disputed or disproven with a sufficient level of clinical certainty to justify invalidating the assertion. This might or might not include testing or rechallenge.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>024b196b-1cd9-43ec-82b0-4e6b2b3c9df5</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>entered-in-error</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Entered in Error</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Entered in Error</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The statement was entered in error and is not valid.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>The statement was entered in error and is not valid.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>e75d7edc-4085-49d0-ac08-9e36f965e726</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>c06b9709-7d7e-4958-bb1c-902308b77e4b</SyncId>
+    </CustomCatalog>
+    <CustomCatalog>
+      <Code>US_CORE_ALLERGY_INTOLERANCE_SUBSTANCES</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Common substances for allergy and intolerance documentation including refutations</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Common substances for allergy and intolerance documentation including refutations</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Common substances for allergy and intolerance documentation including refutations</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>EXAMPLE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Example</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Example</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>2da105b8-7b3b-4aa4-ac07-c5072e8376b5</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>96cbdabf-7e79-486b-9e5e-b72d77c44cd8</SyncId>
+    </CustomCatalog>
+    <CustomCatalog>
+      <Code>FHIR_ALLERGY_INTOLERANCE_CLINICAL_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Allergy Intolerance Clinical Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Allergy Intolerance Clinical Status</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>http://hl7.org/fhir/ValueSet/allergyintolerance-clinical</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>active</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Aktiv</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Active</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The subject is currently experiencing, or is at risk of, a reaction to the identified substance.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>6a7a6a09-7db9-4622-955d-32430bc00329</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>inactive</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Inaktiv</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Inactive</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The subject is no longer at risk of a reaction to the identified substance.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>572aa560-6e38-4cbd-9182-4b61c77ac274</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>resolved</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Resolved</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Resolved</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>A reaction to the identified substance has been clinically reassessed by testing or re-exposure and is considered no longer to be present. Re-exposure could be accidental, unplanned, or outside of any clinical setting.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>3d2ea4a0-2673-4af8-a693-62c408828c86</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>a2e6795d-d71c-4c5e-af8a-5e39ca3a8772</SyncId>
+    </CustomCatalog>
+    <CustomCatalog>
+      <Code>SNOMED_CT_CLINICAL_FINDINGS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>SNOMED CT Clinical Findings</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>SNOMED CT Clinical Findings</Value>
+      </NameMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>109006</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Anxiety disorder of childhood OR adolescence</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Anxiety disorder of childhood OR adolescence</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>098e7f41-4f9a-4930-aa4e-f7d366dcbb15</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>122003</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Choroidal hemorrhage</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Choroidal hemorrhage</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>5cfaa6ad-62b4-4dc1-910f-653941703164</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>127009</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Spontaneous abortion with laceration of cervix</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Spontaneous abortion with laceration of cervix</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>4000d816-0a1d-4384-a51c-6668bbe24328</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>5ea7007f-7eca-41c0-9306-31ee727a0ebf</SyncId>
+    </CustomCatalog>
+    <LaborValueGroup>
+      <Code>US_CORE_ALLERGY_INTOLERANCE</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Allergy Intolerance</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Allergy Intolerance</Value>
+      </NameMultilingualEntries>
+      <SyncId>2166a151-556f-41e8-ab8e-c928de8496cf</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-22T18:51:19.788+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleStringValue>
+        <Code>DEVICE_UDI_IDENTIFIER</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>UDI Identifier</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core UDI Identifier</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>UDI Human Readable Barcode String</Value>
+        </DescMultilingualEntries>
+        <SyncId>9954bc3d-2ba5-4e0b-8359-8f7b61d61de2</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleStringValue>
+        <Code>DEVICE_LOT_NUMBER</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>lotNumber</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>lotNumber</Value>
+        </NameMultilingualEntries>
+        <SyncId>d7df16ed-027f-4c48-8c50-2b2c403b472c</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleDateValue>
+        <Code>DEVICE_MANUFACTURE_DATE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Herstelldatum</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Manufacture Date</Value>
+        </NameMultilingualEntries>
+        <SyncId>5134e8d2-58c0-4630-9c41-51d44dc454d2</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleDateValue>
+      <FlexibleDateValue>
+        <Code>DEVICE_EXPIRATION_DATE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Ablaufdatum</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Expiration Date</Value>
+        </NameMultilingualEntries>
+        <SyncId>b8ac0fa1-9ed0-4ee0-9eb6-8c2e08047fb4</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleDateValue>
+      <FlexibleStringValue>
+        <Code>DEVICE_IDENTIFIER</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Device Identifier</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Device Identifier</Value>
+        </NameMultilingualEntries>
+        <SyncId>162b9bef-8506-4eec-91dc-012ebacf78c1</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleStringValue>
+        <Code>DEVICE_SERIAL_NUMBER</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Serial Number</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Seriennummer</Value>
+        </NameMultilingualEntries>
+        <SyncId>6e07ee68-448b-4247-93b9-d7c84aa31e79</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleCatalogValue>
+        <Code>DEVICE_TYPE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Device Kind</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Device Kind</Value>
+        </NameMultilingualEntries>
+        <SyncId>c4578c5e-cd98-414c-8439-1662447ee234</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/63">
+          <Code>FHIR_DEVICE_KINDS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_IMPLANTABLE_DEVICE</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Implantable Device</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Implantable Device</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/310" DisplayName="Device Identifier">DEVICE_IDENTIFIER</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/311" DisplayName="US Core UDI Identifier">DEVICE_UDI_IDENTIFIER</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/312" DisplayName="Herstelldatum">DEVICE_MANUFACTURE_DATE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/313" DisplayName="Ablaufdatum">DEVICE_EXPIRATION_DATE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/314" DisplayName="lotNumber">DEVICE_LOT_NUMBER</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/315" DisplayName="Seriennummer">DEVICE_SERIAL_NUMBER</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/309" DisplayName="US Core Device Kind">DEVICE_TYPE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/256">
+        <Name>US Core Implantable Device</Name>
+        <Version>0</Version>
+        <SyncId>b8f20900-c985-4d5f-9076-4daf78a57467</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>cf8c01f1-62e7-4d22-9d93-5023e95bb6e8</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Implantable Device</Name>
+      <CrfTemplateSection>
+        <Name>IMPLANTABLE_DEVICE</Name>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Implantierbares Gerät</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Implantable Device</Value>
+        </NameMultilingualEntries>
+        <Code>IMPLANTABLE_DEVICE</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/310" DisplayName="Device Identifier">DEVICE_IDENTIFIER</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>2c64908b-fa22-4929-9798-722b7d09c5f1</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/311" DisplayName="US Core UDI Identifier">DEVICE_UDI_IDENTIFIER</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>064b1bde-6b83-459c-85e3-fd8bcd04ef54</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/312" DisplayName="Herstelldatum">DEVICE_MANUFACTURE_DATE</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <DefaultDateValue>
+            <Date>2022-02-22T18:28:22.193+01:00</Date>
+            <Precision>EXACT</Precision>
+          </DefaultDateValue>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>f60b86a3-0fbf-4831-9330-ed0fe9c6510b</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/313" DisplayName="Ablaufdatum">DEVICE_EXPIRATION_DATE</LaborValue>
+          <LowerRow>3</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>3</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <DefaultDateValue>
+            <Date>2022-02-22T18:28:22.193+01:00</Date>
+            <Precision>EXACT</Precision>
+          </DefaultDateValue>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>4ac59f1d-374c-49e2-b429-009f73f5f5cc</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/314" DisplayName="lotNumber">DEVICE_LOT_NUMBER</LaborValue>
+          <LowerRow>4</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>4</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>a69f31f1-7880-49ba-9e48-9afeedf53071</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/315" DisplayName="Seriennummer">DEVICE_SERIAL_NUMBER</LaborValue>
+          <LowerRow>5</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>5</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>3c90deb2-b956-4075-b5d7-4a7061500897</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/309" DisplayName="US Core Device Kind">DEVICE_TYPE</LaborValue>
+          <LowerRow>6</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>6</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>a6609467-b5c2-46a9-ad10-973eba42c642</SyncId>
+        </CrfTemplateField>
+        <Height>7</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>90d95be8-790b-44e2-8edb-538345ddc2e3</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>b8f20900-c985-4d5f-9076-4daf78a57467</SyncId>
+    </CrfTemplate>
+    <CustomCatalog>
+      <Code>FHIR_DEVICE_KINDS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Device kinds</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Device kinds</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>http://hl7.org/fhir/ValueSet/device-kind
+
+          Soll alle Codes  aus SNOMED CT mit Konzept  a 49062001 (Device)</Value>
+      </DescMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>http://hl7.org/fhir/ValueSet/device-kind
+
+          Should include all SNOMED CT codes where concept is-a 49062001 (Device)</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>156009</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>(156009) Spine board</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(156009) Spine board</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>91a4faba-eb8c-4789-b74c-3025215f6253</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>287000</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>(287000) Air Receiver</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(287000) Air Receiver</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>fd77155a-d207-4b77-9906-515f4f545ccf</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>1b77cb76-2f56-40a0-b77a-f12177425848</SyncId>
+    </CustomCatalog>
+    <LaborValueGroup>
+      <Code>US_CORE_IMPLANTABLE_DEVICE</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Implantable Device</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Implantable Device</Value>
+      </NameMultilingualEntries>
+      <SyncId>d504acdc-336a-4370-a10e-56476b011d3d</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

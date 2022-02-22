@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-22T18:53:14.263+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_IMMUNIZATION_STATUS_REASON</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Immunization Status Reason</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Immunization Status Reason</Value>
+        </NameMultilingualEntries>
+        <SyncId>7b421cc8-3760-490d-a992-716e14d6dc9a</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/22" DisplayName="US Core Immunization">US_CORE_IMMUNIZATION</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/54" DisplayName="US Core Immunization Status Reason">US_CORE_IMMUNIZATION_STATUS_REASON</ValueListRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_IMMUNIZATION_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Immunization Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Immunization Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>5345b578-fb48-495d-bc6a-9f01e9c70ca8</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/22" DisplayName="US Core Immunization">US_CORE_IMMUNIZATION</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/53" DisplayName="US Core Immunization Status">US_CORE_IMMUNIZTION_STATUS</ValueListRef>
+      </FlexibleCatalogValue>
+      <FlexibleBooleanValue>
+        <Code>US_CORE_IMMUNIZATION_PRIMARY_SOURCE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Immunization Primary Source</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Immunization Primary Source</Value>
+        </NameMultilingualEntries>
+        <SyncId>29442ba2-ddb9-4b12-91e2-5855a557513f</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/22" DisplayName="US Core Immunization">US_CORE_IMMUNIZATION</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleBooleanValue>
+      <FlexibleDateValue>
+        <Code>US_CORE_IMMUNIZATION_DATE</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Immunization Date</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Immunization Date</Value>
+        </NameMultilingualEntries>
+        <SyncId>9b8f8eee-5d9a-4949-a60d-aa6ffa2a2f21</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/22" DisplayName="US Core Immunization">US_CORE_IMMUNIZATION</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleDateValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_VACCINE_CODE</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - US_CORE_VACCINE_CODE</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Vaccine Code</Value>
+        </NameMultilingualEntries>
+        <SyncId>1188a12b-7f31-4fc5-b290-04213f26f8a2</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/55" DisplayName="US Core Vaccine Codes">US_CORE_VACCINE_CODES</ValueListRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_IMMUNIZATION</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Immunization</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Immunization</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/299" DisplayName="US Core Immunization Status">US_CORE_IMMUNIZATION_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/300" DisplayName="US Core Immunization Status Reason">US_CORE_IMMUNIZATION_STATUS_REASON</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/301" DisplayName="US Core Vaccine Code">US_CORE_VACCINE_CODE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/302" DisplayName="US Core Immunization Date">US_CORE_IMMUNIZATION_DATE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueBoolean/303" DisplayName="US Core Immunization Primary Source">US_CORE_IMMUNIZATION_PRIMARY_SOURCE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/255">
+        <Name>US Core Immunization</Name>
+        <Version>0</Version>
+        <SyncId>9f8fc177-03c1-4fa5-9335-3baafcc96f4a</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>67a05901-3703-4978-9eb5-a91657258742</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Immunization</Name>
+      <CrfTemplateSection>
+        <Name>IMMUNIZATION</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Immunization</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Immunisierung</Value>
+        </NameMultilingualEntries>
+        <Code>IMMUNIZATION</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/299" DisplayName="US Core Immunization Status">US_CORE_IMMUNIZATION_STATUS</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>3d91d84c-f844-4aab-9f5e-6b85a9fd64fc</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/300" DisplayName="US Core Immunization Status Reason">US_CORE_IMMUNIZATION_STATUS_REASON</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>3695a8b7-f875-47e0-8ddc-f4b8d52c55bf</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/301" DisplayName="US Core Vaccine Code">US_CORE_VACCINE_CODE</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>e6fddbec-d51b-4f00-be6d-a03a313fedfa</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/302" DisplayName="US Core Immunization Date">US_CORE_IMMUNIZATION_DATE</LaborValue>
+          <LowerRow>3</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>3</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <DefaultDateValue>
+            <Date>2022-02-22T17:28:31.970+01:00</Date>
+            <Precision>EXACT</Precision>
+          </DefaultDateValue>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>14221cef-7dba-400f-bc8f-36b1656d96f5</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueBoolean/303" DisplayName="US Core Immunization Primary Source">US_CORE_IMMUNIZATION_PRIMARY_SOURCE</LaborValue>
+          <LowerRow>4</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>4</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <DefaultValue>0</DefaultValue>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>3fa7353e-3ab0-49cb-a1d4-e1f5e8b0c62c</SyncId>
+        </CrfTemplateField>
+        <Height>5</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>83791425-d062-4f0c-acee-1cf0fa8f90cf</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>9f8fc177-03c1-4fa5-9335-3baafcc96f4a</SyncId>
+    </CrfTemplate>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Immunization Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Immunization Status</Value>
+      </NameMultilingualEntries>
+      <Code>US_CORE_IMMUNIZTION_STATUS</Code>
+      <CustomCatalogEntry>
+        <Code>completed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Completed</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Completed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The event has now concluded.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>c8e80ece-a0b8-42c4-b62d-ac3cd045fc8a</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>entered-in-error</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>entered-in-error</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>entered-in-error</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "stopped" rather than "entered-in-error".).</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>6433e133-2e16-4d9c-96e5-21baa48583cd</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>not-done</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Not Done</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Not Done</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The event was terminated prior to any activity beyond preparation. I.e. The 'main' activity has not yet begun. The boundary between preparatory and the 'main' activity is context-specific.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>986ef856-bdaf-463e-aa5a-058ed98e0deb</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>43b90f27-7f8e-4b61-a4c2-a40fa4c040d6</SyncId>
+    </ValueList>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - US_CORE_VACCINE_CODES</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vaccine Codes</Value>
+      </NameMultilingualEntries>
+      <Code>US_CORE_VACCINE_CODES</Code>
+      <CustomCatalogEntry>
+        <Code>POCKS</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pocken</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pocks</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>b2431e56-43bc-4690-b4fb-fcf07ae54f0b</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>0a1bd8c6-92e4-4425-ad59-eee62449d921</SyncId>
+    </ValueList>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Immunization Status Reason</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Immunization Status Reason</Value>
+      </NameMultilingualEntries>
+      <Code>US_CORE_IMMUNIZATION_STATUS_REASON</Code>
+      <CustomCatalogEntry>
+        <Code>IMMUNE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>immunity</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>immunity</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Definition:Testing has shown that the patient already has immunity to the agent targeted by the immunization.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>948f5f20-8658-4e7b-86ba-3272f426d9b1</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>MEDPREC</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>medical precaution</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>medical precaution</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Definition:The patient currently has a medical condition for which the vaccine is contraindicated or for which precaution is warranted.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>f1ba9cc9-d9da-4912-8f24-50a5a890553d</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>OSTOCK</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>product out of stock</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>product out of stock</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Definition:There was no supply of the product on hand to perform the service.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>34b64bc3-1065-4d55-8265-2d2666d8d8fe</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>PATOBJ</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>patient objection</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>patient objection</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Definition:The patient or their guardian objects to receiving the vaccine.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>63e3cf97-bc60-48df-8f17-dbf4bbb6cd3a</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>fa8008f8-d818-49bc-8830-3f8c5f40290e</SyncId>
+    </ValueList>
+    <LaborValueGroup>
+      <Code>US_CORE_IMMUNIZATION</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - US_CORE_IMMUNIZATION</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Immunization</Value>
+      </NameMultilingualEntries>
+      <SyncId>16114051-0ce0-42a4-b963-60fb6548d6ac</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
