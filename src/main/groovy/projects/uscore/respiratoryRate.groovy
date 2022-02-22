@@ -12,39 +12,39 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.NUMERIC_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Vital Sign Observation Heart Rate.
- * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-heart-rate.html
+ * Represents a CXX LaborMapping for the US Core Vital Sign Observation Respiratory Rate.
+ * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-respiratory-rate.html
  *
  * hints:
  * - Observation are specified by LOINC codes.
  * - Units are specified by UCUM codes.
  *
- * Note: The mapping requires labor methods, labor values and units defined in CXX that math the specification of the
- * profile! For more information, see project readme.txt
+ * Note: The mapping requires labor methods, labor values and units defined in CXX that correspond to the specification of the
+ * profile! For more information, see project README.md
  *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
  */
 observation {
-  if ("US_CORE_HEART_RATE" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
+  if ("US_CORE_RESPIRATORY_RATE" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
   }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-heart-rate")
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi")
   }
 
   code {
     coding {
       system = "http://loinc.org"
-      code = "8867-4"
+      code = "9279-1"
     }
   }
 
   final def laborFindingLaborValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
-      .find { final lblv -> lblv[LABOR_VALUE][CODE] == "HEART_RATE" }
+      .find { final lblv -> lblv[LABOR_VALUE][CODE] == "RESPIRATORY_RATE" }
 
   valueQuantity {
     value = laborFindingLaborValue[NUMERIC_VALUE]
@@ -54,4 +54,5 @@ observation {
     code = "/min"
   }
 }
+
 

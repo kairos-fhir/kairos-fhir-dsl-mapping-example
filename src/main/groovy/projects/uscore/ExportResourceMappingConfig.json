@@ -27,74 +27,80 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "body-weight",
+      "transformByTemplate": "bodyWeight",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "body-height",
+      "transformByTemplate": "bodyHeight",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "body-temperature",
+      "transformByTemplate": "bodyTemperature",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "blood-pressure",
+      "transformByTemplate": "bloodPressure",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "head-circumference",
+      "transformByTemplate": "headCircumference",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "heart-rate",
+      "transformByTemplate": "heartRate",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "pediatric-bmi-for-age",
+      "transformByTemplate": "pediatricBmiForAge",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "pediatric-head-occipital-frontal-circumference-percentile",
+      "transformByTemplate": "pediatricHeadOccipitalFrontalCircumferencePercentile",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "pediatric-weight-for-height",
+      "transformByTemplate": "pediatricWeightForHeight",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "pulse-oximetry.groovy",
+      "transformByTemplate": "pulseOximetry",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "respiratory-rate",
+      "transformByTemplate": "respiratoryRate",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "respiratory-rate",
-      "exportToFhirResource": "Observation",
+      "transformByTemplate": "implantableDevice",
+      "exportToFhirResource": "Device",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "allergyIntolerance",
+      "exportToFhirResource": "AllergyIntolerance",
       "exportDeleteEnable": false
     },
     {

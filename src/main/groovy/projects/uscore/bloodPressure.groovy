@@ -19,8 +19,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * - Observation are specified by LOINC codes.
  * - Units are specified by UCUM codes.
  *
- * Note: The mapping requires labor methods, labor values and units defined in CXX that math the specification of the
- * profile! For more information, see project readme.txt
+ * Note: The mapping requires labor methods, labor values and units defined in CXX that correspond to the specification of the
+ * profile! For more information, see project README.md
  *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
