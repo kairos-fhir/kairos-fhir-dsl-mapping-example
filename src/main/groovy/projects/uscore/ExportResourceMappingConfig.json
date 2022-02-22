@@ -105,6 +105,12 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnostic-report-for-laboratory-results-reporting.groovy",
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "carePlan",
       "exportToFhirResource": "CarePlan",
       "exportDeleteEnable": false
