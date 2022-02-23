@@ -8,7 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
- * Specified by https://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-careplan.html
+ * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-careteam.html
  *
  * TODO: Work in progress!
  *
@@ -16,16 +16,16 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @since v.1.14.0, CXX.v.2022.1.0
  */
 
-carePlan {
+careTeam {
 
   if ("bool" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
   }
 
-  id = "CarePlan/" + context.source[laborMapping().laborFinding().id()]
+  id = "CareTeam/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan")
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam")
   }
 
   final def laborFindingLaborValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()]

@@ -135,6 +135,12 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "careTeam",
+      "exportToFhirResource": "CareTeam",
+      "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "smokingStatus",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
