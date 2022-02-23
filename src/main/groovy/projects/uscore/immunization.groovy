@@ -42,7 +42,7 @@ immunization {
   if (lblvStatusReason) {
     statusReason {
       coding {
-        system = "http://hl7.org/fhir/ValueSet/immunization-status-reason"
+        system = "http://terminology.hl7.org/CodeSystem/v3-ActReason"
         code = (lblvStatusReason[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
       }
     }

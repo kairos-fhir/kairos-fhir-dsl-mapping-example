@@ -87,7 +87,7 @@ device {
   if (lblvType) {
     type {
       coding {
-        system = "http://hl7.org/fhir/ValueSet/device-kind"
+        system = "http://snomed.info/sct"
         code = (lblvType[CATALOG_ENTRY_VALUE] as List)?.get(0)?.getAt(CODE)
       }
     }

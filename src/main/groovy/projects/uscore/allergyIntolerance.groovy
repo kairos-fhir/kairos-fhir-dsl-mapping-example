@@ -35,7 +35,7 @@ allergyIntolerance {
 
   clinicalStatus {
     coding {
-      system = "http://hl7.org/fhir/ValueSet/allergyintolerance-clinical"
+      system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
       code = (lblvClinicalStatus[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
     }
   }
@@ -45,7 +45,7 @@ allergyIntolerance {
 
   verificationStatus {
     coding {
-      system = "http://hl7.org/fhir/R4/valueset-allergyintolerance-verification.html"
+      system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
       code = (lblvStatusReason[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
     }
   }
@@ -71,7 +71,7 @@ allergyIntolerance {
     lblvManifestation?.each {final def ce ->
       manifestation {
         coding {
-          system = "http://hl7.org/fhir/ValueSet/clinical-findings"
+          system = "http://snomed.info/sct"
           code = ce[CODE] as String
         }
       }
