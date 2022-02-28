@@ -294,6 +294,73 @@
       <SortAlphabetical>true</SortAlphabetical>
       <SyncId>9cdeb7c6-983a-48cf-b6bb-0fd5206b43e4</SyncId>
     </MasterDataCatalog>
+  <CatalogueData>
+    <AttendingDoctor>
+      <ContactAddress>
+        <City>Berlin</City>
+        <Country>DE</Country>
+        <Email>horst.peters@example.com</Email>
+        <Fax>lalkcwcw</Fax>
+        <Mobile>02231212</Mobile>
+        <Phone1>012783213</Phone1>
+        <Phone2>0183912933</Phone2>
+        <Street>Straße</Street>
+        <StreetNo>421</StreetNo>
+        <Zipcode>39123</Zipcode>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Horst Peters</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Horst Peters</Value>
+        </NameMultilingualEntries>
+        <ContactPersonFirstName>Horst</ContactPersonFirstName>
+        <ContactPersonLastName>Peters</ContactPersonLastName>
+        <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
+        <WebSite>horst.de</WebSite>
+        <Institute>Institut für Irgendwas</Institute>
+        <Department>Facility Management</Department>
+        <Position>Boss</Position>
+        <SyncId>1c2b513f-007b-4c5d-a5af-4083b58037df</SyncId>
+        <Building>MB-67</Building>
+        <Floor>3</Floor>
+        <Room>231</Room>
+        <CxxContactId>PETERS_HORST</CxxContactId>
+      </ContactAddress>
+      <SyncId>ef22117c-0262-414f-93ea-fdf812fc948b</SyncId>
+    </AttendingDoctor>
+    <AttendingDoctor>
+      <ContactAddress>
+        <City>Hogsmead</City>
+        <Country>GB</Country>
+        <Phone1>032471625</Phone1>
+        <Phone2>124514252</Phone2>
+        <PoBox>Eulerei</PoBox>
+        <Street>Hogs street</Street>
+        <StreetNo>2134</StreetNo>
+        <Zipcode>777</Zipcode>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Poppy Pomfrey</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Poppy Pomfrey</Value>
+        </NameMultilingualEntries>
+        <ContactPersonFirstName>Poppy</ContactPersonFirstName>
+        <ContactPersonLastName>Pomfrey</ContactPersonLastName>
+        <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
+        <Institute>Hogwarts Schule für Hexerei und Zauberei</Institute>
+        <Position>Head of Healing</Position>
+        <SyncId>3f1177bc-2448-4ba3-9e87-8756ee01c669</SyncId>
+        <Building>Krankenflügel</Building>
+        <Floor>2</Floor>
+        <Room>123</Room>
+        <CxxContactId>4r9724123e</CxxContactId>
+      </ContactAddress>
+      <SyncId>b871b9a2-7cca-4e63-86cf-d9f5d0222b35</SyncId>
+    </AttendingDoctor>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>
