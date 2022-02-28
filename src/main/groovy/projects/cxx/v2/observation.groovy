@@ -1,5 +1,6 @@
 package projects.cxx.v2
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
@@ -7,6 +8,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
@@ -116,6 +118,26 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
+            }
+          }
+          // example for master data catalog entries of blood group
+          lflv[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final entry ->
+            final def bloodGroup = entry[ValueReference.BLOOD_GROUP_VALUE]
+            if (bloodGroup != null) {
+              coding {
+                system = FhirUrls.System.Patient.BloodGroup.BASE_URL
+                code = bloodGroup?.getAt(CODE) as String
+              }
+            }
+
+            // example for master data catalog entries of attending doctor
+            final def attendingDoctor = entry[ValueReference.ATTENDING_DOCTOR_VALUE]
+            if (attendingDoctor != null) {
+              coding {
+                system = FhirUrls.System.AttendingDoctor.BASE_URL
+                // CXX uses the reference embedded in a coding to support multi selects
+                code = "Practitioner/" + attendingDoctor?.getAt(AbstractCatalog.ID) as String
+              }
             }
           }
         }
