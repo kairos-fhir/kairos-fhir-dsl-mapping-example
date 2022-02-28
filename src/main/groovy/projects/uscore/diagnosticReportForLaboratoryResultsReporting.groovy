@@ -3,6 +3,7 @@ package projects.uscore
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
@@ -20,6 +21,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 final def lang = "de"
 
 diagnosticReport {
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR){
+    return
+  }
   // filter for lblvs that are not files
   final def lflvs = context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
     final def lflv -> !lflv[LaborFindingLaborValue.FILE_VALUE]
