@@ -14,6 +14,9 @@ import static org.hl7.fhir.r4.model.CarePlan.CarePlanStatus.fromCode
  * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
  * Specified by https://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-careplan.html
  *
+ * The Script works with a CentraXX measurement profile with the code US_CORE_CARE_PLAN
+ * The master data definition for this profile can be found in xml/carePlan.xml and can be imported over
+ * the CentraXX XML import interface
  * TODO: discuss text field
  *
  * @author Mike Wähnert, Jonas Küttner

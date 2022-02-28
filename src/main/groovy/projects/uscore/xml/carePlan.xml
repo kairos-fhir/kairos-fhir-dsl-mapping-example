@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-28T12:04:07.785+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleLongStringValue>
+        <Code>US_CORE_CARE_PLAN_NARRATIVE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Care Plan Narrative</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Care Plan Narrative</Value>
+        </NameMultilingualEntries>
+        <SyncId>0f0e8e3b-2c99-45da-b177-ba5744d02d78</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/42" DisplayName="US Core Care Plan">US_CORE_CARE_PLAN</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleLongStringValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_CARE_PLAN_INTENT</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Care Plan Intent</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Care Plan Intent</Value>
+        </NameMultilingualEntries>
+        <SyncId>584ff762-55fc-483f-b9bc-0678a904f5fe</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/42" DisplayName="US Core Care Plan">US_CORE_CARE_PLAN</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/75">
+          <Code>FHIR_CARE_PLAN_INTENT</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_CARE_PLAN_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>US Core Care Plan Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>US Core Care Plan Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>619b9d29-5788-40bb-8aa2-61a9a9477921</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/42" DisplayName="US Core Care Plan">US_CORE_CARE_PLAN</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/74">
+          <Code>FHIR_REQUEST_STATUS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_CARE_PLAN</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Care Plan Documentation</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Care Plan Documentation</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueLongString/320" DisplayName="US Core Care Plan Narrative">US_CORE_CARE_PLAN_NARRATIVE</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/321" DisplayName="US Core Care Plan Status">US_CORE_CARE_PLAN_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/322" DisplayName="US Core Care Plan Intent">US_CORE_CARE_PLAN_INTENT</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>NURSING</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/267">
+        <Name>US Core Care Plan Documentation</Name>
+        <Version>0</Version>
+        <SyncId>823147e5-bb3c-4001-94b0-301ee472377c</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>e89474f3-a2a5-4cef-99ae-e2f3dce3adf6</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Care Plan Documentation</Name>
+      <CrfTemplateSection>
+        <Name>CARE_PLAN</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care Plan</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Care Plan</Value>
+        </NameMultilingualEntries>
+        <Code>CARE_PLAN</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueLongString/320" DisplayName="US Core Care Plan Narrative">US_CORE_CARE_PLAN_NARRATIVE</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>d6a13be0-6a9a-4d2a-baff-9f0cf2045fad</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/321" DisplayName="US Core Care Plan Status">US_CORE_CARE_PLAN_STATUS</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>dfba0ea2-43f8-4342-8488-0d0545d16962</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/322" DisplayName="US Core Care Plan Intent">US_CORE_CARE_PLAN_INTENT</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>c965adc3-a10d-4791-b7df-116f71a8806f</SyncId>
+        </CrfTemplateField>
+        <Height>5</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>bc887f00-ad46-4813-a534-af1479af479f</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>823147e5-bb3c-4001-94b0-301ee472377c</SyncId>
+    </CrfTemplate>
+    <CustomCatalog>
+      <Code>FHIR_CARE_PLAN_INTENT</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Care Plan Intent</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Care Plan Intent</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>http://hl7.org/fhir/R4/valueset-care-plan-intent.html</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>proposal</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Proposal</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Proposal</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>dabf65c0-87a2-4b26-81b2-6869f43a79c2</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>plan</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Plan</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Plan</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request represents an intention to ensure something occurs without providing an authorization for others to act.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>6c17218a-974c-4855-9dc3-4a1b2c6065d3</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>order</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Order</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Order</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request represents a request/demand and authorization for action by a Practitioner.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>165e12fd-2b0d-4541-b9fc-d2f0ee2ec612</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>option</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Option</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Option</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests. Refer to [[[RequestGroup]]] for additional information on how this status is used.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>d41021a9-2596-4223-9f82-ef50044eb374</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>18e2cb7d-547b-4ecd-ad14-2a4059e96e6d</SyncId>
+    </CustomCatalog>
+    <CustomCatalog>
+      <Code>FHIR_REQUEST_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Request Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Request Status</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>http://hl7.org/fhir/R4/valueset-request-status.html</Value>
+      </DescMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>draft</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Draft</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Draft</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request has been created but is not yet complete or ready for action.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>1a32d349-ceed-4554-a74b-1c5be80002d4</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>active</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Active</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Active</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request is in force and ready to be acted upon.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>7905648f-ae02-4fb6-a58e-cebc6dc05b35</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>on-hold</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>On Hold</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>On Hold</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The request (and any implicit authorization to act) has been temporarily withdrawn but is expected to resume in the future.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>2f7a3df9-0c23-41c6-a90a-6c4a659b8981</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>revoked</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Revoked</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Revoked</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>The request (and any implicit authorization to act) has been terminated prior to the known full completion of the intended actions. No further activity should occur.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>b84e6ab9-ba8f-45b9-9fe4-46d11fe477bb</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>completed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Completed</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Completed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The activity described by the request has been fully performed. No further activity will occur.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>83844965-5ae6-47ee-8b9b-07995e3aa529</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>entered-in-error</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Entered in Error</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Entered in Error</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>This request should never have existed and should be considered 'void'. (It is possible that real-world decisions were based on it. If real-world activity has occurred, the status should be "revoked" rather than "entered-in-error".).</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>a6a7360e-74fd-4fe5-94e3-3541ade0c5c4</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>unknown</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Unknown</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Unknown</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The authoring/source system does not know which of the status values currently applies for this request. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>141d508e-12b7-4895-975e-1b430c9b3624</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>e1a26e76-8360-4527-a606-5539d4b19c72</SyncId>
+    </CustomCatalog>
+    <LaborValueGroup>
+      <Code>US_CORE_CARE_PLAN</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Care Plan</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Care Plan</Value>
+      </NameMultilingualEntries>
+      <SyncId>28d866c5-5101-4cf6-adfc-9dd1f0b20cb3</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
