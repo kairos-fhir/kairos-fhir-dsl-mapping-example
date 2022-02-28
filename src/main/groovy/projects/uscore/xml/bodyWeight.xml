@@ -54,7 +54,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>GENERAL</Category>
+      <Category>VITALSIGN</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/206">
         <Name>US Core Körpergewicht</Name>
         <Version>0</Version>
