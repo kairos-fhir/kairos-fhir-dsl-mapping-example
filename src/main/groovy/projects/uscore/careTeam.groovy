@@ -2,7 +2,6 @@ package projects.uscore
 
 import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.MasterDataCatalogEntry
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import org.hl7.fhir.r4.model.CareTeam
 
@@ -10,7 +9,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-careteam.html
@@ -50,7 +48,7 @@ careTeam {
   final def lblvMembers = context.source[laborFindingLaborValue().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_CARE_TEAM" }
 
-  lblvMembers[LaborFindingLaborValue.MASTER_DATA_CATALOG_ENTRY_VALUE].each { final mdce ->
+  lblvMembers[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final mdce ->
     participant {
       role {
         coding {
@@ -60,7 +58,7 @@ careTeam {
         }
       }
       member {
-        reference = "Practitioner/" + mdce[MasterDataCatalogEntry.ID][ValueReference.ATTENDING_DOCTOR_VALUE][AttendingDoctor.ID]
+        reference = "Practitioner/" + mdce[ValueReference.ATTENDING_DOCTOR_VALUE][AttendingDoctor.ID]
       }
     }
   }
