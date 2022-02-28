@@ -37,7 +37,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
  */
 final def lang = "de"
 observation {
-  if (context.source[laborFindingLaborValue().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR) {
+  if (context.source[laborFindingLaborValue().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR.toString()) {
     return
   }
 

@@ -21,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 final def lang = "de"
 
 diagnosticReport {
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR){
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR.toString()){
     return
   }
   // filter for lblvs that are not files
