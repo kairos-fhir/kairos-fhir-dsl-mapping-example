@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-02-28T16:16:34.138+01:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleCatalogValue>
+        <Code>FHIR_CARE_TEAM_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>FHIR Care Team Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>FHIR Care Team Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>87fd28d2-d382-42c9-a536-d8a479808ab8</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/52" DisplayName="US Core Care Team">US_CORE_CARE_TEAM</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/84">
+          <Code>FHIR_CARE_TEAM_STATUS</Code>
+          <Version>1</Version>
+        </UserDefinedCatalogRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>US_CORE_CARE_TEAM</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Care Team</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care Team</Value>
+        </NameMultilingualEntries>
+        <SyncId>a1f6e820-64e5-4b34-adbd-b66424b02345</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/52" DisplayName="US Core Care Team">US_CORE_CARE_TEAM</LaborValueGroupRef>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTMANY</ChoiseType>
+        <MasterDataCatalogRef RefUrl="/rest/export/catalogdata/MasterDataCatalog/83" DisplayName="Team">CARE_TEAM</MasterDataCatalogRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_CARE_TEAM</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Care Team</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Care Team</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/330" DisplayName="FHIR Care Team Status">FHIR_CARE_TEAM_STATUS</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/329" DisplayName="Care Team">US_CORE_CARE_TEAM</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>OTHER</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/276">
+        <Name>US Core Care Team</Name>
+        <Version>2</Version>
+        <SyncId>dd627ca4-2cf3-4035-9f4a-95fd3e06b09d</SyncId>
+      </CrfTemplateRef>
+      <Version>2</Version>
+      <SyncId>ead084bb-4227-45a1-a672-1e59043cdcbe</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Care Team</Name>
+      <CrfTemplateSection>
+        <Name>CARE_TEAM</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care Team</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Care Team</Value>
+        </NameMultilingualEntries>
+        <Code>CARE_TEAM</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/330" DisplayName="FHIR Care Team Status">FHIR_CARE_TEAM_STATUS</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>80f8fc61-5994-428d-988c-31ed07259de1</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/329" DisplayName="Care Team">US_CORE_CARE_TEAM</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>7b7a709f-b0a9-4866-aa13-0b3fa90d6e9c</SyncId>
+        </CrfTemplateField>
+        <Height>2</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>8de51192-8e49-442d-b0b9-209bdf155af8</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>2</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>dd627ca4-2cf3-4035-9f4a-95fd3e06b09d</SyncId>
+    </CrfTemplate>
+    <CustomCatalog>
+      <Code>FHIR_CARE_TEAM_STATUS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>FHIR Care Team Status</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>FHIR Care Team Status</Value>
+      </NameMultilingualEntries>
+      <CatalogUsage>MEASURE</CatalogUsage>
+      <Version>1</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <CustomCatalogEntry>
+        <Code>proposed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Proposed</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Proposed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The care team has been drafted and proposed, but not yet participating in the coordination and delivery of care.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>d884ab5b-7ecf-411a-ac00-aab8575ab0ff</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>active</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Active</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Active</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The care team is currently participating in the coordination and delivery of care.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>83c51883-50b4-4694-86d3-f359baa4dc1f</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>suspended</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Suspended</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Suspended</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The care team is temporarily on hold or suspended and not participating in the coordination and delivery of care.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>ebe2744b-ed5e-4ff4-9c15-c1774980908d</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>inactive</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Inactive</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Inactive</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The care team was, but is no longer, participating in the coordination and delivery of care.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>ace456ea-b27f-4cac-b5a1-37ec1b467053</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>entered-in-error</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Entered In Error</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Entered In Error</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The care team should have never existed.</Value>
+        </DescMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>abb5204e-1ba3-4ae4-9286-ac8951fa578d</SyncId>
+      </CustomCatalogEntry>
+      <SyncId>d4511b7e-6fa7-4a7c-8a68-6ac86de76918</SyncId>
+    </CustomCatalog>
+    <LaborValueGroup>
+      <Code>US_CORE_CARE_TEAM</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Care Team</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Care Team</Value>
+      </NameMultilingualEntries>
+      <SyncId>0771e4d6-8231-4948-9cdd-971259c790aa</SyncId>
+    </LaborValueGroup>
+    <MasterDataCatalog>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Team</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Team</Value>
+      </NameMultilingualEntries>
+      <Code>CARE_TEAM</Code>
+      <EntityCatalogType>ATTENDINGDOCTOR</EntityCatalogType>
+      <ContainsAllMasterDataEntries>false</ContainsAllMasterDataEntries>
+      <MasterDataCatalogEntry>
+        <ValueReference>
+          <ReferenceType>ATTENDINGDOCTOR</ReferenceType>
+          <AttendingDoctorRef>
+            <ContactAddressName>Poppy Pomfrey</ContactAddressName>
+            <Lang>de</Lang>
+            <ContactPersonFirstName>Poppy</ContactPersonFirstName>
+            <ContactPersonLastName>Pomfrey</ContactPersonLastName>
+            <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
+            <SyncIdRef>3f1177bc-2448-4ba3-9e87-8756ee01c669</SyncIdRef>
+            <CxxContactIdRef>4r9724123e</CxxContactIdRef>
+          </AttendingDoctorRef>
+        </ValueReference>
+        <IsCategory>false</IsCategory>
+      </MasterDataCatalogEntry>
+      <MasterDataCatalogEntry>
+        <ValueReference>
+          <ReferenceType>ATTENDINGDOCTOR</ReferenceType>
+          <AttendingDoctorRef>
+            <ContactAddressName>Horst Peters</ContactAddressName>
+            <Lang>de</Lang>
+            <ContactPersonFirstName>Horst</ContactPersonFirstName>
+            <ContactPersonLastName>Peters</ContactPersonLastName>
+            <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
+            <SyncIdRef>1c2b513f-007b-4c5d-a5af-4083b58037df</SyncIdRef>
+            <CxxContactIdRef>PETERS_HORST</CxxContactIdRef>
+          </AttendingDoctorRef>
+        </ValueReference>
+        <IsCategory>false</IsCategory>
+      </MasterDataCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>9cdeb7c6-983a-48cf-b6bb-0fd5206b43e4</SyncId>
+    </MasterDataCatalog>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
