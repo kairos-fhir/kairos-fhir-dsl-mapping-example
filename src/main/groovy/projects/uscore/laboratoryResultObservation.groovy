@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.Unity
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCatalog.CATALOGUE_VERSION
@@ -21,19 +22,25 @@ import static de.kairos.fhir.centraxx.metamodel.OpsEntry.PREFERRED
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 
 /**
- * Represents a CXX LaborFindingLaborValue.
+ * Represents a CXX LaborFindingLaborValue that is part of a LaborFinding of Category LABOR.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-observation-lab.html
  *
  * Mapping uses CentraXX code system, since LOINC is not explicitly supported by CentraXX
  * and UCUM can not be set in UI.
  *
+ * does export LFLV of Type masterDataCatalogEntry
+ *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
  *
- * TODO: Implement export of MasterDataEntries
+ *
  */
-final def lang = "de "
+final def lang = "de"
 observation {
+  if (context.source[laborFindingLaborValue().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR) {
+    return
+  }
+
   id = "Observation/" + context.source[laborFindingLaborValue().id()]
   language = lang
   status = Observation.ObservationStatus.FINAL
@@ -91,7 +98,6 @@ observation {
   final def icdCatalog = laborValue[LaborValueCatalog.ICD_CATALOG]
   final def customCatalog = laborValue[LaborValueCatalog.CUSTOM_CATALOG]
   final def valueList = laborValue[LaborValueCatalog.VALUE_LIST]
-  final def masterDataCatalog = laborValue[LaborValueCatalog.MASTER_DATA_CATALOG]
 
   if (numericValue) {
     final def unit_ = laborValue[LaborValueNumeric.UNIT]
@@ -159,19 +165,8 @@ observation {
         }
       }
     }
-  } else if (masterDataCatalog) {
-    valueCodeableConcept {
-      context.source[laborFindingLaborValue().masterDataCatalogEntryValue()].each { final def entry ->
-        coding {
-          system = "urn:centraxx:CodeSystem/MasterDataCatalog-" + masterDataCatalog[ID]
-          version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
-          code = entry[CODE] as String
-          display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
-        }
-      }
-    }
-  } else if (valueList) {
+  }
+  else if (valueList) {
     valueCodeableConcept {
       context.source[laborFindingLaborValue().catalogEntryValue()].each { final def entry ->
         coding {
