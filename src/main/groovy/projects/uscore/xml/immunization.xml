@@ -124,7 +124,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>GENERAL</Category>
+      <Category>OTHER</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/255">
         <Name>US Core Immunization</Name>
         <Version>0</Version>

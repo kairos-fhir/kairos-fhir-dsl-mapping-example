@@ -76,7 +76,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>GENERAL</Category>
+      <Category>VITALSIGN</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/209">
         <Name>US Core Blutdruck</Name>
         <Version>0</Version>

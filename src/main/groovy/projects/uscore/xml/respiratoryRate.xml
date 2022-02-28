@@ -54,7 +54,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>GENERAL</Category>
+      <Category>VITALSIGN</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/219">
         <Name>US Core Respiratorische Rate</Name>
         <Version>0</Version>

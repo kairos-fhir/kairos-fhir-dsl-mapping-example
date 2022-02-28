@@ -168,7 +168,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>GENERAL</Category>
+      <Category>OTHER</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/256">
         <Name>US Core Implantable Device</Name>
         <Version>0</Version>
