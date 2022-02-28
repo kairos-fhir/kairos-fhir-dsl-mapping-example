@@ -5,10 +5,15 @@ import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.MedDepartment
 import de.kairos.fhir.centraxx.metamodel.StayType
+import org.hl7.fhir.r4.model.CodeableConcept
+import org.hl7.fhir.r4.model.Coding
+import org.hl7.fhir.r4.model.codesystems.DiagnosisRole
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
+
 /**
- * represented bz CCX Episode
+ * Represents a CXX Episode
+ * Specified by https://simplifier.net/medizininformatikinitiative-modulfall/kontaktgesundheitseinrichtung
  * @author Jonas Küttner
  * @since v.1.8.0, CXX.v.3.18.1
  * hints:
@@ -28,7 +33,7 @@ encounter {
   }
 
   //Created Episode Id in CXX called visit number
-  final def visit_number = context.source[episode().idContainer()]?.find { idc ->
+  final def visit_number = context.source[episode().idContainer()]?.find { final idc ->
     "VISIT_NUMBER" == idc[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
   }
 
@@ -45,17 +50,17 @@ encounter {
     }
   }
 
-  def typeOfStay = context.source[episode().stayType()]?.getAt(StayType.CODE)
+  final def typeOfStay = context.source[episode().stayType()]?.getAt(StayType.CODE)
   if (typeOfStay) {
     class_ {
-      def codeDisplay = getTypeOfStayCode(typeOfStay)
+      final def codeDisplay = getTypeOfStayCode(typeOfStay)
       system = "http://terminology.hl7.org/CodeSystem/v2-0004"
       code = codeDisplay[0]
       display = codeDisplay[1]
     }
   }
 
-  def medDepartment = context.source[episode().medDepartment()]
+  final def medDepartment = context.source[episode().medDepartment()]
   if (medDepartment) {
     serviceType {
       coding {
@@ -93,20 +98,18 @@ encounter {
           value = d[Diagnosis.DIAGNOSIS_ID]
         }
       }
+      setUse(new CodeableConcept().addCoding(new Coding(DiagnosisRole.AD.getSystem(), DiagnosisRole.AD.toCode(), DiagnosisRole.AD.getDisplay())))
     }
   }
 
 }
 
 
-static List getTypeOfStayCode(Object cxxTypeOfStay) {
+static List getTypeOfStayCode(final Object cxxTypeOfStay) {
   switch (cxxTypeOfStay) {
-    case "AH-001":
-      return ["O", "Outpatient"]
-    case "AH-002":
-      return ["I", "Inpatient"]
-    default:
-      return ["U", "Unknown"]
+    case "AH-001": return ["O", "Outpatient"]
+    case "AH-002": return ["I", "Inpatient"]
+    default: return ["U", "Unknown"]
   }
 }
 
