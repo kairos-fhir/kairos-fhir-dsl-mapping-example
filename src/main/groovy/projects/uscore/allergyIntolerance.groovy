@@ -68,7 +68,7 @@ allergyIntolerance {
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION" }
 
   reaction {
-    lblvManifestation?.each {final def ce ->
+    lblvManifestation[CATALOG_ENTRY_VALUE]?.each { final ce ->
       manifestation {
         coding {
           system = "http://snomed.info/sct"
