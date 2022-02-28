@@ -67,6 +67,18 @@ public final class FhirUrls {
       return domains;
     }
 
+    @Nonnull
+    private static Map<String, String> getExtensionMap(@Nonnull final List<String> extensionUrls) {
+      final Map<String, String> subExtensionsMap = new HashMap<>();
+      extensionUrls.forEach(domain -> subExtensionsMap.put(getLastSplit(domain.split("/")), domain));
+      return subExtensionsMap;
+    }
+
+    @Nonnull
+    private static String getLastSplit(@Nonnull final String[] array) {
+      return array[array.length - 1];
+    }
+
     public static final class Sample {
 
       private static final String SAMPLE_BASE_URL = Extension.BASE_URL + "/sample";
@@ -570,6 +582,7 @@ public final class FhirUrls {
   }
 
   public static final class System {
+
     private static final String BASE_URL = CXX_BASE_URL + "/system";
     private static final String BASE_URL_VALUESET = CXX_BASE_URL + "/valueSet";
 
@@ -579,6 +592,13 @@ public final class FhirUrls {
     public static final String LABOR_MAPPING = BASE_URL + "/laborMapping";
     public static final String LOCATION_TYPE = BASE_URL + "/locationType";
     public static final String ORGANIZATION_UNIT = BASE_URL + "/organizationUnit";
+
+    // special master data catalog entry values
+    public static final String STRING = CXX_BASE_URL + "/string";
+    public static final String INTEGER = CXX_BASE_URL + "/integer";
+    public static final String DECIMAL = CXX_BASE_URL + "/decimal";
+    public static final String DATE = CXX_BASE_URL + "/date";
+    public static final String BOOLEAN = CXX_BASE_URL + "/boolean";
 
     private System() {/* hide constructor */}
 
@@ -632,7 +652,49 @@ public final class FhirUrls {
         private Ethnicity() {}
       }
 
+      public static final class BloodGroup {
+        public static final String BASE_URL = Patient.BASE_URL + "/bloodgroup";
+
+        private BloodGroup() {}
+      }
+
+      public static final class Citizenship {
+        public static final String BASE_URL = Patient.BASE_URL + "/citizenship";
+
+        private Citizenship() {}
+      }
+
+      public static final class Denomination {
+        public static final String BASE_URL = Patient.BASE_URL + "/denomination";
+
+        private Denomination() {}
+      }
+
+      public static final class MaritalStatus {
+        public static final String BASE_URL = Patient.BASE_URL + "/maritalStatus";
+
+        private MaritalStatus() {}
+      }
+
+      public static final class Species {
+        public static final String BASE_URL = Patient.BASE_URL + "/species";
+
+        private Species() {}
+      }
+
+      public static final class Title {
+        public static final String BASE_URL = Patient.BASE_URL + "/title";
+
+        private Title() {}
+      }
+
       private Patient() {/* hide constructor */}
+
+      public static final class Gender {
+        public static final String BASE_URL = Patient.BASE_URL + "/gender";
+
+        private Gender() {}
+      }
     }
 
     public static final class Study {
@@ -1034,16 +1096,51 @@ public final class FhirUrls {
         private SampleType() {}
       }
 
-      public static class Receptacle {
+      public static final class Receptacle {
         public static final String BASE_URL = Sample.BASE_URL + "/sampleReceptacle";
         public static final String BASE_URL_VALUESET = Sample.BASE_URL_VALUESET + "/sampleReceptacle";
 
         private Receptacle() {}
       }
 
+      public static final class SampleDonator {
+        public static final String BASE_URL = Sample.BASE_URL + "/sampleDonator";
+
+        private SampleDonator() {}
+      }
+
+      public static final class SamplePartner {
+        public static final String BASE_URL = Sample.BASE_URL + "/samplePartner";
+
+        private SamplePartner() {}
+      }
+
+      public static final class SamplingMoment {
+        public static final String BASE_URL = Sample.BASE_URL + "/samplingMoment";
+
+        private SamplingMoment() {}
+      }
+
+      public static final class Project {
+        public static final String BASE_URL = Sample.BASE_URL + "/project";
+
+        private Project() {}
+      }
+
+      public static final class SampleKind {
+        public static final String BASE_URL = Sample.BASE_URL + "/sampleKind";
+
+        private SampleKind() {}
+      }
+
+      public static final class SampleLocalisation {
+        public static final String BASE_URL = Sample.BASE_URL + "/sampleLocalisation";
+
+        private SampleLocalisation() {}
+      }
     }
 
-    public static class StudyVisitItem {
+    public static final class StudyVisitItem {
       public static final String BASE_URL = System.BASE_URL + "/studyVisitItem";
       public static final String BASE_URL_VALUESET = System.BASE_URL_VALUESET + "/studyVisitItem";
 
@@ -1056,20 +1153,33 @@ public final class FhirUrls {
 
       private StudyVisitItem() {/*hide constructor*/}
     }
+
+    public static final class Country {
+
+      public static final String BASE_URL = System.BASE_URL + "/country";
+
+      private Country() {}
+    }
+
+    public static final class Catalogs {
+      private static final String BASE_URL = System.BASE_URL + "/catalogs";
+
+      private Catalogs() {}
+
+      public static final class SearchCatalogItem {
+        public static final String BASE_URL = Catalogs.BASE_URL + "/searchCatalogItem";
+
+        private SearchCatalogItem() {}
+      }
+    }
+
+    public static final class AttendingDoctor {
+      public static final String BASE_URL = System.BASE_URL + "/attendingDoctor";
+
+      private AttendingDoctor() {}
+    }
   }
 
   private FhirUrls() {/* hide constructor */}
 
-  @Nonnull
-  private static Map<String, String> getExtensionMap(@Nonnull final List<String> extensionUrls) {
-    final Map<String, String> subExtensionsMap = new HashMap<>();
-    extensionUrls.forEach(domain ->
-                            subExtensionsMap.put(getLastSplit(domain.split("/")), domain));
-    return subExtensionsMap;
-  }
-
-  @Nonnull
-  private static String getLastSplit(@Nonnull final String[] array) {
-    return array[array.length - 1];
-  }
 }
