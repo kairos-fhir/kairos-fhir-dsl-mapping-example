@@ -17,6 +17,7 @@ condition {
 
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+    versionId = "1.0.4"
   }
 
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
