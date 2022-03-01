@@ -1,14 +1,12 @@
 package projects.uscore
 
-
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX Diagnosis
  * Specified: https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-condition.html
  * @author Niklas Biedka
- * @since ?
+ * @since v.1.13.0, CXX.v.2022.1.0
  */
 
 condition {
@@ -33,13 +31,10 @@ condition {
         }
     }
 
-    category {
-    }
-
     code {
         coding {
-            system = "http://snomed.info/sct"
-            code = matchResponseToSNOMED(context.source[diagnosis().diagnosisCode()] as String)
+            system = "http://hl7.org/fhir/sid/icd-10-cm"
+            code = context.source[diagnosis().icdEntry().code()]
         }
     }
 
@@ -62,30 +57,5 @@ static String matchVerificationStatusToDiagnosisCertainty(final String resp) {
         default:
             null
     }
-}
 
-static String matchResponseToSNOMED(final String resp) {
-    switch (resp) {
-        case ("COV_BLUTHOCHDRUCK"):
-            return "38341003"
-        case ("COV_ZUSTAND_N_HERZINFARKT"):
-            return "22298006"
-        case ("COV_HERZRHYTHMUSSTOERUNGEN"):
-            return "698247007"
-        case ("COV_HERZINSUFFIZIENZ"):
-            return "84114007"
-        case ("COV_PAVK"):
-            return "399957001"
-        case ("COV_REVASKULARISATION"):
-            return "81266008"
-        case ("COV_KHK"):
-            return "53741008"
-        case ("COV_CARO"):
-            return "64586002"
-        case ("COV_UNBEKANNT"):
-            return "49601007" //generic cardiovascular disease
-        case ("COV_NEIN"):
-            return "49601007" //generic cardiovascular disease
-        default: null
-    }
 }
