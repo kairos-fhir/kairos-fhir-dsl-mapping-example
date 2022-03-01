@@ -2,6 +2,7 @@ package projects.uscore
 
 import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.MasterDataCatalogEntry
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import org.hl7.fhir.r4.model.CareTeam
 
@@ -47,7 +48,16 @@ careTeam {
   final def lblvMembers = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_CARE_TEAM" }
 
-  lblvMembers[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final mdce ->
+
+  final def combinedList = []
+  lblvMembers[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final entry ->
+    combinedList.add(entry)
+  }
+  lblvMembers[LaborFindingLaborValue.MASTER_DATA_CATALOG_ENTRY_VALUE].each { final entry ->
+    combinedList.add(entry[MasterDataCatalogEntry.VALUE_REFERENCE])
+  }
+
+  combinedList.each { final mdce ->
     participant {
       role {
         coding {
@@ -62,5 +72,3 @@ careTeam {
     }
   }
 }
-
-

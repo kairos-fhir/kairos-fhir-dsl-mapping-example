@@ -28,7 +28,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
  * Mapping uses CentraXX code system, since LOINC is not explicitly supported by CentraXX
  * and UCUM can not be set in UI.
  *
- * does export LFLV of Type masterDataCatalogEntry
+ * hint:
+ * Does not export LFLV of Type masterDataCatalogEntry
  *
  * @author Jonas Küttner
  * @since v.1.13.0, CXX.v.2022.1.0
@@ -59,12 +60,12 @@ observation {
   code {
     coding {
       system = FhirUrls.System.LaborValue.BASE_URL
-      code = context.source[laborFindingLaborValue().laborValue().code()]
+      code = context.source[laborFindingLaborValue().laborValue().code()] as String
       display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()]
           .find { final me -> me[LANG] == lang }?.getAt(VALUE)
     }
     text = context.source[laborFindingLaborValue().laborValue().descMultilingualEntries()]
-        .find { final me -> me[LANG] == lang }?.getAt(VALUE)
+        .find { final me -> me[LANG] == lang }?.getAt(VALUE) as String
 
   }
 
@@ -107,7 +108,7 @@ observation {
       if (unit_ != null) {
         unit = unit_[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         system = ucumCode != null ? "http://unitsofmeasure.org" : FhirUrls.System.LaborValue.Unit.BASE_URL
-        code = ucumCode != null ? ucumCode : unit_[CODE]
+        code = (ucumCode != null ? ucumCode : unit_[CODE]) as String
       }
     }
   } else if (stringValue) {
@@ -125,7 +126,7 @@ observation {
       usageEntries.each { final def entry ->
         coding {
           system = "urn:centraxx:CodeSystem/UsageEntry-" + entry[ID]
-          code = entry[CODE]
+          code = entry[CODE] as String
           display = entry[NAME_MULTILINGUAL_ENTRIES]
               .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
         }
@@ -165,8 +166,7 @@ observation {
         }
       }
     }
-  }
-  else if (valueList) {
+  } else if (valueList) {
     valueCodeableConcept {
       context.source[laborFindingLaborValue().catalogEntryValue()].each { final def entry ->
         coding {
