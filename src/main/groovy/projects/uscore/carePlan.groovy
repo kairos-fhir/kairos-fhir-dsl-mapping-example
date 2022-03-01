@@ -1,13 +1,10 @@
 package projects.uscore
 
-
 import org.hl7.fhir.r4.model.CarePlan
-import org.hl7.fhir.r4.model.Narrative
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static org.hl7.fhir.r4.model.CarePlan.CarePlanStatus.fromCode
 /**
@@ -17,7 +14,8 @@ import static org.hl7.fhir.r4.model.CarePlan.CarePlanStatus.fromCode
  * The Script works with a CentraXX measurement profile with the code US_CORE_CARE_PLAN
  * The master data definition for this profile can be found in xml/carePlan.xml and can be imported over
  * the CentraXX XML import interface
- * TODO: discuss text field
+ *
+ * The export of the "text" field is not supported yet
  *
  * @author Mike Wähnert, Jonas Küttner
  * @since v.1.14.0, CXX.v.2022.1.0
@@ -38,13 +36,6 @@ carePlan {
   final def lblvNarrative = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_CARE_PLAN_NARRATIVE" }
 
-
-  text {
-    status = Narrative.NarrativeStatus.ADDITIONAL
-    div {
-      addText(lblvNarrative[STRING_VALUE] as String)
-    }
-  }
 
   final def lblvStatus = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_CARE_PLAN_STATUS" }
