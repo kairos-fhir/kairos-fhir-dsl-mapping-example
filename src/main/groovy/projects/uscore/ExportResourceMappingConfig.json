@@ -144,6 +144,12 @@
       "transformByTemplate": "smokingStatus",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "DOCUMENT_MAPPING",
+      "transformByTemplate": "documentReference",
+      "exportToFhirResource": "DocumentReference",
+      "exportDeleteEnable": false
     }
   ]
 }
