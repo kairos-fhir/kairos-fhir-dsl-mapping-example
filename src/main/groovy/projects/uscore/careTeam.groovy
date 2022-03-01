@@ -7,7 +7,6 @@ import org.hl7.fhir.r4.model.CareTeam
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
@@ -45,7 +44,7 @@ careTeam {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  final def lblvMembers = context.source[laborFindingLaborValue().laborFinding().laborFindingLaborValues()]
+  final def lblvMembers = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_CARE_TEAM" }
 
   lblvMembers[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final mdce ->
