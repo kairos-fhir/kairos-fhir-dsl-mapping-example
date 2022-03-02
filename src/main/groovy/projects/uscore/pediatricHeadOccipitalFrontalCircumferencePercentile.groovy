@@ -31,7 +31,7 @@ observation {
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
-    profile("https://www.hl7.org/fhir/us/core/StructureDefinition-head-occipital-frontal-circumference-percentile.html")
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile")
   }
 
   code {
