@@ -1,0 +1,62 @@
+{
+  "resourceType": "Observation",
+  "id": "200",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Körpergewicht_02.03.2022 11:06:08 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T11:06:08+01:00",
+  "performer": [
+    {
+      "reference": "Person/32"
+    }
+  ],
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_BODY_WEIGHT",
+        "display": "US Core Körpergewicht"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "BODY_WEIGHT",
+            "display": "Körpergewicht"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 82.0,
+        "unit": "KILOGRAMM",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "KILOGRAMM"
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "resourceType": "Observation",
+  "id": "133",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Pulsoximetrie_02.03.2022 12:16:25 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T12:16:25+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_PULSE_OXIMETRY",
+        "display": "US Core Pulsoximetrie"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "O2_FLOW_INHALED",
+            "display": "Sauerstoff Flussrate"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 123.0,
+        "unit": "LITRE_PER_MINUTE",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "LITRE_PER_MINUTE"
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "O2_CONC_INHALED",
+            "display": "Sauerstoffkonzentration"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 76.0,
+        "unit": "PERCENT",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "PERCENT"
+      }
+    }
+  ]
+}
