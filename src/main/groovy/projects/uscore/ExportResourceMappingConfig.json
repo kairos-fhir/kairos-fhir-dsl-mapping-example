@@ -156,6 +156,12 @@
       "transformByTemplate": "medicationRequest",
       "exportToFhirResource": "MedicationRequest",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "goal",
+      "exportToFhirResource": "Goal",
+      "exportDeleteEnable": false
     }
   ]
 }
