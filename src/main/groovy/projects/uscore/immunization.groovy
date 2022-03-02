@@ -29,6 +29,10 @@ immunization {
 
   id = "Immunization/" + context.source[laborMapping().laborFinding().id()]
 
+  meta {
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization")
+  }
+
   final def lblvClinicalStatus = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     final lblv -> "US_CORE_IMMUNIZATION_STATUS" == lblv[LABOR_VALUE][CODE]
   }
