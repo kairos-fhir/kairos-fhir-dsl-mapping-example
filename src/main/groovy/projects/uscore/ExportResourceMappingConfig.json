@@ -150,6 +150,12 @@
       "transformByTemplate": "documentReference",
       "exportToFhirResource": "DocumentReference",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest",
+      "exportDeleteEnable": false
     }
   ]
 }

@@ -9,6 +9,7 @@ import org.hl7.fhir.r4.model.CareTeam
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-careteam.html
@@ -23,7 +24,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @author Mike Wähnert, Jonas Küttner
  * @since v.1.14.0, CXX.v.2022.1.0
  */
-
 careTeam {
 
   if ("US_CORE_CARE_TEAM" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
