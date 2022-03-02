@@ -1,0 +1,139 @@
+{
+  "resourceType": "Observation",
+  "id": "139",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Allergy Intolerance_02.03.2022 12:38:26 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T12:38:26+01:00",
+
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "3",
+        "code": "US_CORE_ALLERGY_INTOLERANCE",
+        "display": "US Core Allergy Intolerance"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_ALLERGY_INTOLERANCE_CLINICAL_STATUS",
+            "display": "US Core Allergy Intolerance Clinical Status"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-58",
+            "code": "active",
+            "display": "Aktiv"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_ALLERGY_INTOLERANCE_VERIFICATION_STATUS",
+            "display": "US Core Allergy Intolerance Verification Status"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-57",
+            "code": "confirmed",
+            "display": "Confirmed"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_ALLERGY_INTOLERANCE_CODE",
+            "display": "US Core Allergy Intolerance Substance Code"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-59",
+            "code": "EXAMPLE",
+            "display": "Example"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION",
+            "display": "US Core Allergy Intolerance Manifestation"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-56",
+            "code": "122003",
+            "display": "Choroidal hemorrhage"
+          }
+        ]
+      }
+    }
+  ]
+}

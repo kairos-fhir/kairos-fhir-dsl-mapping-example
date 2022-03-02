@@ -1,0 +1,57 @@
+{
+  "resourceType": "Observation",
+  "id": "127",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Pädiatrischer BMI für Alter_02.03.2022 12:05:09 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T12:05:09+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_PEDIATRIC_BMI_FOR_AGE",
+        "display": "US Core Pädiatrischer BMI für Alter"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "PEDIATRIC_BMI_FOR_AGE",
+            "display": "Pädiatrischer BMI für Alter"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 42.0,
+        "unit": "PERCENT",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "PERCENT"
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "resourceType": "Observation",
+  "id": "115",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Blutdruck_02.03.2022 11:31:34 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T11:31:34+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_BLOOD_PRESSURE",
+        "display": "US Core Blutdruck"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "BLOOD_PRESSURE_SYS",
+            "display": "Blutdruck systolisch"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 132.0,
+        "unit": "MM_HG",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "MM_HG"
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "BLOOD_PRESSURE_DIA",
+            "display": "Blutdruck diastolisch"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 165.0,
+        "unit": "MM_HG",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "MM_HG"
+      }
+    }
+  ]
+}

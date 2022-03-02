@@ -1,0 +1,148 @@
+{
+  "resourceType": "Observation",
+  "id": "144",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Immunization_02.03.2022 13:58:35 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T13:58:35+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_IMMUNIZATION",
+        "display": "US Core Immunization"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_IMMUNIZATION_STATUS",
+            "display": "US Core Immunization Status"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/ValueList-53",
+            "code": "completed",
+            "display": "Completed"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_IMMUNIZATION_STATUS_REASON",
+            "display": "US Core Immunization Status Reason"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/ValueList-54",
+            "code": "IMMUNE",
+            "display": "immunity"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_VACCINE_CODE",
+            "display": "US Core Vaccine Code"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/ValueList-55",
+            "code": "POCKS",
+            "display": "Pocken"
+          }
+        ]
+      }
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DATE"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_IMMUNIZATION_DATE",
+            "display": "US Core Immunization Date"
+          }
+        ]
+      },
+      "valueDateTime": "2022-03-02T13:58:56+01:00"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "BOOLEAN"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_IMMUNIZATION_PRIMARY_SOURCE",
+            "display": "US Core Immunization Primary Source"
+          }
+        ]
+      },
+      "valueBoolean": true
+    }
+  ]
+}

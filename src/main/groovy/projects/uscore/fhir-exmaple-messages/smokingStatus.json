@@ -1,0 +1,60 @@
+{
+  "resourceType": "Observation",
+  "id": "137",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Raucher-Status_02.03.2022 12:36:28 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T12:36:28+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "2",
+        "code": "US_CORE_SMOKING_STATUS",
+        "display": "US Core Raucher-Status"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_SMOKING_STATUS",
+            "display": "Us Core Raucher-Status"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-44",
+            "code": "8517006",
+            "display": "Ex Raucher/in"
+          }
+        ]
+      }
+    }
+  ]
+}

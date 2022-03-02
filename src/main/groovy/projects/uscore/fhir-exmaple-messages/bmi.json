@@ -1,0 +1,57 @@
+{
+  "resourceType": "Observation",
+  "id": "117",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Body-Mass-Index_02.03.2022 11:37:09 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T11:37:09+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_BMI",
+        "display": "US Core Body-Mass-Index"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "BODY_MASS_INDEX",
+            "display": "Body-Mass-Index"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 23.4,
+        "unit": "KG_PER_M2",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "KG_PER_M2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "resourceType": "Observation",
+  "id": "146",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Implantable Device_02.03.2022 14:03:44 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T14:03:44+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_IMPLANTABLE_DEVICE",
+        "display": "US Core Implantable Device"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_IDENTIFIER",
+            "display": "Device Identifier"
+          }
+        ]
+      },
+      "valueString": "whatever"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_UDI_IDENTIFIER",
+            "display": "US Core UDI Identifier"
+          }
+        ]
+      },
+      "valueString": "whatever else"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DATE"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_MANUFACTURE_DATE",
+            "display": "Herstelldatum"
+          }
+        ]
+      },
+      "valueDateTime": "2022-03-02T14:04:03+01:00"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DATE"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_EXPIRATION_DATE",
+            "display": "Ablaufdatum"
+          }
+        ]
+      },
+      "valueDateTime": "2022-03-25T14:04:08+01:00"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_LOT_NUMBER",
+            "display": "lotNumber"
+          }
+        ]
+      },
+      "valueString": "67509275"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_SERIAL_NUMBER",
+            "display": "Seriennummer"
+          }
+        ]
+      },
+      "valueString": "9384u2fh3298"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "CATALOG"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "DEVICE_TYPE",
+            "display": "US Core Device Kind"
+          }
+        ]
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:centraxx:CodeSystem/Catalog-63",
+            "code": "287000",
+            "display": "(287000) Air Receiver"
+          }
+        ]
+      }
+    }
+  ]
+}

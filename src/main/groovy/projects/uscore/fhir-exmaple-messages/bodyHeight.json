@@ -1,0 +1,57 @@
+{
+  "resourceType": "Observation",
+  "id": "111",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Körpergröße_02.03.2022 11:05:50 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "effectiveDateTime": "2022-03-02T11:05:50+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_BODY_HEIGHT",
+        "display": "US Core Körpergröße"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "DECIMAL"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "BODY_HEIGHT",
+            "display": "Körpergröße"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 186.0,
+        "unit": "CENTI_METRE",
+        "system": "https://fhir.centraxx.de/system/laborValue/unit",
+        "code": "CENTI_METRE"
+      }
+    }
+  ]
+}
