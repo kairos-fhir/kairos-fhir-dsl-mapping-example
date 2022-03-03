@@ -47,14 +47,14 @@ diagnosticReport {
   category {
     coding {
       system = FhirUrls.System.LaborMethod.Category.BASE_URL
-      code = context.source[laborMapping().laborFinding().laborMethod().category()]
+      code = context.source[laborMapping().laborFinding().laborMethod().category()]as String
     }
   }
 
   code {
     coding {
       system = FhirUrls.System.LaborMethod.BASE_URL
-      code = context.source[laborMapping().laborFinding().laborMethod().code()]
+      code = context.source[laborMapping().laborFinding().laborMethod().code()]as String
       display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()]?.find {
         final def ml -> ml[MultilingualEntry.LANG] == lang
       }?.getAt(MultilingualEntry.VALUE)

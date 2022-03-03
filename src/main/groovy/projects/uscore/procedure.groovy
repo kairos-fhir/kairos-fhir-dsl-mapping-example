@@ -33,7 +33,7 @@ procedure {
       coding {
         system = "http://fhir.de/CodeSystem/dimdi/ops"
         version = opsEntry[OpsEntry.CATALOGUE][OpsCatalog.CATALOGUE_VERSION]
-        code = opsEntry[OpsEntry.CODE]
+        code = opsEntry[OpsEntry.CODE] as String
         display = opsEntry[OpsEntry.PREFERRED]
       }
     }
@@ -44,7 +44,7 @@ procedure {
       coding {
         system = "urn:centraxx:CodeSystem/CustomCatalog-" + customCatalogEntry[CatalogEntry.CATALOG][AbstractCustomCatalog.ID]
         version = customCatalogEntry[CatalogEntry.CATALOG][AbstractCustomCatalog.VERSION]
-        code = customCatalogEntry[CatalogEntry.CODE]
+        code = customCatalogEntry[CatalogEntry.CODE] as String
         display = customCatalogEntry[CatalogEntry.NAME_MULTILINGUAL_ENTRIES].find {
           final def ml -> ml[MultilingualEntry.LANG] == lang
         }?.getAt(MultilingualEntry.VALUE)
