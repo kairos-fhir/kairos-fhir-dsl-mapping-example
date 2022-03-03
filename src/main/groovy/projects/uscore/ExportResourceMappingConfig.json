@@ -162,6 +162,12 @@
       "transformByTemplate": "goal",
       "exportToFhirResource": "Goal",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "provenance",
+      "exportToFhirResource": "Provenance",
+      "exportDeleteEnable": false
     }
   ]
 }
