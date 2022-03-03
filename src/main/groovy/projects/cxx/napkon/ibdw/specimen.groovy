@@ -42,11 +42,11 @@ specimen {
   String orgUnit = ""
   if ("napPOP" == context.source[sample().organisationUnit().code()] || "napPOP" == context.source[sample().parent().organisationUnit().code()]) {
     id = "Specimen/" + context.source[sample().id()]
-    orgUnit = "NUM_Wuerzburg_POP"
+    orgUnit = "NUM_W_POP"
   }
   else if ("napSUP" == context.source[sample().organisationUnit().code()] || "napSUP" == context.source[sample().parent().organisationUnit().code()]) {
     id = "Specimen/" + context.source[sample().id()]
-    orgUnit = "NUM_Wuerzburg_SUEP"
+    orgUnit = "NUM_W_SUEP"
   }
   else {
     return
@@ -123,7 +123,9 @@ specimen {
     url = FhirUrls.Extension.Sample.SAMPLE_LOCATION
     extension {
       url = FhirUrls.Extension.Sample.SAMPLE_LOCATION_PATH
-      valueString = "NUM --> Klinikum Wuerzburg --> Aliqoute"
+      valueString = toNumStorage(
+              context.source[sample().sampleType().code()] as String
+      )
     }
   }
 
@@ -450,13 +452,21 @@ static String toNumContainer(final String sampleType, final String sampleRecepta
   else if (sampleType == "THRTSWAB") return "ORG" 															//Rachen Abstrich
 
   //ALIQUOT
-  else if (sampleType == "URINE" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer"			//Urin-Überstand
-  else if (sampleType == "URINESED" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer" 		//Urin-Sediment
-  else if (sampleType == "BLDCELLS" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer" 		//PBMC Zellen
-  else if (sampleType == "EDTAPLASMA" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer" 	//EDTA-Plasma
-  else if (sampleType == "BFFYCOAT" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer" 		//Buffy Coat
-  else if (sampleType == "SERUM" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer" 			//Serum
-  else if (sampleType == "CITRATE" && sampleReceptacleCode == "MIC750") return "NUMAliquotcontainer"		//Citrat
+  else if (sampleType == "URINE" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer"			    //Urin-Überstand
+  else if (sampleType == "URINESED" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer" 		    //Urin-Sediment
+  else if (sampleType == "BLDCELLS" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer" 		    //PBMC Zellen
+  else if (sampleType == "EDTAPLASMA" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer" 	    //EDTA-Plasma
+  else if (sampleType == "BFFYCOAT" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer" 		    //Buffy Coat
+  else if (sampleType == "SERUM" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer" 			//Serum
+  else if (sampleType == "CITRATE" && sampleReceptacleCode == "MIC750") return "NUM_AliContainer"		    //Citrat
   else return "Unbekannt (XXX)"
 }
 
+static String toNumStorage(final String sampleType) {
+  switch (sampleType) {
+    case "BLDCELLS":
+      return "NUM --> Klinikum Wuerzburg --> N2 Tank POP -196°C"
+    default:
+      return "NUM --> Klinikum Wuerzburg --> Ultra-Tiefkühlschrank POP -80°C"
+  }
+}
