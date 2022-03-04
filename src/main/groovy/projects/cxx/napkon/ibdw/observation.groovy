@@ -38,7 +38,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 observation {
 
   final boolean isSampleMapping = LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType
-  final boolean isDzhkMethod = ["SAMPLESTATUS"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
+  final boolean isDzhkMethod = ["DZHKFLAB"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
   if (!(isSampleMapping && isDzhkMethod)) {
     return
   }
