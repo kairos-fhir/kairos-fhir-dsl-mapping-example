@@ -1,0 +1,26 @@
+{
+  "resourceType": "Procedure",
+  "id": "1",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Procedure"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "urn:centraxx:CodeSystem/OpsCatalog-1",
+        "code": "1-212.0",
+        "display": "1-212.0 code"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "encounter": {
+    "reference": "Encounter/12"
+  },
+  "performedDateTime": "2021-11-08"
+}
