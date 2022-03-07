@@ -168,6 +168,12 @@
       "transformByTemplate": "provenance",
       "exportToFhirResource": "Provenance",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "MED_PROCEDURE",
+      "transformByTemplate": "procedure",
+      "exportToFhirResource": "Procedure",
+      "exportDeleteEnable": false
     }
   ]
 }
