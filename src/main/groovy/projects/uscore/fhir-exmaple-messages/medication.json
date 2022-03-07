@@ -1,0 +1,56 @@
+{
+  "resourceType": "MedicationStatement",
+  "id": "1",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/MedicationStatement"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.centraxx.de/extension/medication/fillerOrderNumber",
+      "valueString": "fillerOrderNumber-243"
+    },
+    {
+      "url": "https://fhir.centraxx.de/extension/medication/prescribedBy",
+      "valueString": "Hausarzt"
+    }
+  ],
+  "status": "completed",
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/medication",
+        "code": "PZN-123",
+        "display": "Aspirin"
+      },
+      {
+        "system": "https://fhir.centraxx.de/system/medication/agent",
+        "code": "Acetylsalicylsäure"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/573"
+  },
+  "context": {
+    "reference": "Encounter/13"
+  },
+  "dateAsserted": "2021-11-10T11:49:31+01:00",
+  "note": [
+    {
+      "text": "blabla"
+    }
+  ],
+  "dosage": [
+    {
+      "text": "1-2-1",
+      "additionalInstruction": [
+        {
+          "text": "Mittwochs f. 2 Wochen"
+        }
+      ],
+      "asNeededBoolean": false
+    }
+  ]
+}
