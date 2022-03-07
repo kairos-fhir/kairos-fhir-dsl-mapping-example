@@ -48,7 +48,7 @@ medicationRequest {
   }
 
   authoredOn {
-    date = context.source[medication().creationDate()]
+    date = context.source[medication().transcriptionDate()]
   }
 
   requester {
@@ -57,6 +57,9 @@ medicationRequest {
 
   dosageInstruction {
     text = context.source[medication().dosisSchema()] as String
+  }
+  dosageInstruction {
+    text = context.source[medication().ordinanceReleaseForm()] as String
   }
 
 
