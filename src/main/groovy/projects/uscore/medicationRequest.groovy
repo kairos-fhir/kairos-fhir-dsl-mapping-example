@@ -9,11 +9,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * Represents a CXX Medication for the US Core Resource Profile: US Core MedicationRequest Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-medicationrequest.html
  *
- * TODO: Work in progress
+ * hints: The "prescribedBy" field of a CXX Medication is just a String. Therefore, a US-CORE Requester
+ * can not be referenced.
  *
- * @author Mike Wähnert
+ * @author Mike Wähnert, Jonas Küttner
  * @since v.1.14.0, CXX.v.2022.1.0
  */
+
 medicationRequest {
 
   id = "MedicationRequest/" + context.source[medication().id()]
@@ -24,6 +26,16 @@ medicationRequest {
 
   status = MedicationRequest.MedicationRequestStatus.ACTIVE
   intent = MedicationRequest.MedicationRequestIntent.PROPOSAL
+
+  medication {
+    medicationCodeableConcept {
+      coding {
+        system = "http://fhir.de/CodeSystem/ifa/pzn"
+        code = context.source[medication().code()] as String
+      }
+      text = context.source[medication().name()] as String
+    }
+  }
 
   subject {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
@@ -39,8 +51,13 @@ medicationRequest {
     date = context.source[medication().creationDate()]
   }
 
+  requester {
+    display = context.source[medication().prescribedBy()]
+  }
+
   dosageInstruction {
     text = context.source[medication().dosisSchema()] as String
   }
+
 
 }
