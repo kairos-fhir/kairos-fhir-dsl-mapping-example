@@ -270,6 +270,11 @@
       "selectFromCxxEntity": "STUDY_VISIT_ITEM",
       "transformByTemplate": "conditionSymptomsOfCovid_verwirrt",
       "exportToFhirResource": "Condition"
+    },
+	{
+      "selectFromCxxEntity": "CONSENT",
+      "transformByTemplate": "consentConsent",
+      "exportToFhirResource": "Consent"
     }
   ]
 }
