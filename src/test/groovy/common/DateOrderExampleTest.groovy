@@ -13,9 +13,9 @@ class DateOrderExampleTest {
   @Test
   void testThatFirstAndLastDateIsFound() {
 
-    def dateStrings = ["2021-07-03", "2021-07-01", "2021-07-07", "2021-07-02"]
+    final def dateStrings = ["2021-07-03", "2021-07-01", "2021-07-07", "2021-07-02"]
 
-    def sortedList = dateStrings.sort()
+    final def sortedList = dateStrings.sort()
 
     assertEquals("2021-07-01", sortedList.first())
     assertEquals("2021-07-07", sortedList.last())
