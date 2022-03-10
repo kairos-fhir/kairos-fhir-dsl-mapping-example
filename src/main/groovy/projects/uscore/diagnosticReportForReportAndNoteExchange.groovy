@@ -2,6 +2,7 @@ package projects.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.BinaryFile
+import de.kairos.fhir.centraxx.metamodel.BinaryFilePart
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.DiagnosticReport
@@ -34,6 +35,12 @@ diagnosticReport {
   }
 
   id = "DiagnosticReport/Note-" + context.source[laborMapping().laborFinding().id()]
+
+  meta {
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
+  }
+
+
   language = lang
   status = DiagnosticReport.DiagnosticReportStatus.UNKNOWN
 
@@ -78,14 +85,19 @@ diagnosticReport {
 
   lflvs.each {
     final def lflv ->
+      final def binaryFile = lflv[LaborFindingLaborValue.FILE_VALUE]
       presentedForm {
-        contentType = lflv["contentType"]
-        size = lflv["fileSize"] as Integer
-        creation = lflv[BinaryFile.CREATIONDATE]
+        creation = binaryFile[BinaryFile.CREATIONDATE]
+        contentType = binaryFile[BinaryFile.CONTENT_TYPE]
+        size = binaryFile[BinaryFile.FILE_SIZE] as Integer
+        final def filePart = binaryFile[BinaryFile.CONTENT_PARTS].find { final part -> part[BinaryFilePart.CONTENT] != null }
+        if (filePart != null) {
+          data {
+            value = filePart[BinaryFilePart.CONTENT] as byte[]
+          }
+        }
       }
   }
-
-
 }
 
 static String normalizeDate(final String dateTimeString) {
