@@ -171,7 +171,7 @@ specimen {
         type {
           coding {
             system = "urn:centraxx"
-            code = patIdContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+            code = "LIMSPSN"
           }
         }
       }
@@ -412,10 +412,10 @@ static String toNumType(final String sampleType, final String sampleReceptacleCo
   if (sampleType == "URINE" && sampleReceptacleCode == "URINE") return "URN" 								//Urin
   else if (sampleType == "BLDCELLS" && sampleReceptacleCode == "CPTHEP") return "NUM_pbmc_cpt" 				//CPT Heparin
   else if (sampleType == "EDTAPLASMA" && sampleReceptacleCode == "EDTA") return "EDTAWB" 					//EDTA
-  else if (sampleType == "PAXGEN") return "ORG" 															//PAX-Gene
-  else if (sampleType == "SALIVA") return "ORG" 															//Speichel
-  else if (sampleType == "NASLSWAB") return "ORG-rachenabstrich" 											//Oropharynx Abstrich
-  else if (sampleType == "THRTSWAB") return "ORG" 															//Rachen Abstrich
+  else if (sampleType == "PAXGEN") return "NUM_pax" 														//PAX-Gene
+  else if (sampleType == "SALIVA") return "NUM_speichel" 													//Speichel
+  else if (sampleType == "NASLSWAB") return "NUM_nasen-rachenabstrich" 										//Oropharynx Abstrich
+  else if (sampleType == "THRTSWAB") return "NUM_rachenabstrich" 											//Rachen Abstrich
 
   //ALIQUOT
   else if (sampleType == "URINE" && sampleReceptacleCode == "MIC750") return "NUM_urinf" 					//Urin-Überstand
