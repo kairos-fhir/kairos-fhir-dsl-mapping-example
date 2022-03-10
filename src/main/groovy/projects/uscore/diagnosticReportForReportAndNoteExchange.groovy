@@ -90,6 +90,7 @@ diagnosticReport {
         creation = binaryFile[BinaryFile.CREATIONDATE]
         contentType = binaryFile[BinaryFile.CONTENT_TYPE]
         size = binaryFile[BinaryFile.FILE_SIZE] as Integer
+        title = binaryFile[BinaryFile.FILE_NAME]
         final def filePart = binaryFile[BinaryFile.CONTENT_PARTS].find { final part -> part[BinaryFilePart.CONTENT] != null }
         if (filePart != null) {
           data {
