@@ -1,0 +1,90 @@
+{
+  "resourceType": "Observation",
+  "id": "161",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "social-history"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "72166-2"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "2022-03-09T16:29:32+01:00",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "428061000124105",
+      "display": "Aktuell mäßiger Tabakraucher/in"
+    } ]
+  }
+}
+{
+  "resourceType": "Observation",
+  "id": "162",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "social-history"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "72166-2"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "2011-01-06T16:30:13+01:00",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "77176002",
+      "display": "Raucher/in (Befund)"
+    } ]
+  }
+}
+{
+  "resourceType": "Observation",
+  "id": "163",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "social-history"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "72166-2"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "1992-07-29T16:30:43+02:00",
+  "valueCodeableConcept": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "266927001",
+      "display": "Tabakrauchkonsumverhalten unbekannt (Befund)"
+    } ]
+  }
+}

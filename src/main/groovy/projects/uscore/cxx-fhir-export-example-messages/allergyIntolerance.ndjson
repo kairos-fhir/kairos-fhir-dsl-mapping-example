@@ -1,0 +1,180 @@
+{
+  "resourceType": "AllergyIntolerance",
+  "id": "148",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ]
+  },
+  "clinicalStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+      "code": "active"
+    } ]
+  },
+  "verificationStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+      "code": "confirmed"
+    } ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion",
+      "code": "EXAMPLE"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "reaction": [ {
+    "manifestation": [ {
+      "coding": [ {
+        "system": "http://snomed.info/sct",
+        "code": "122003"
+      } ]
+    } ]
+  } ]
+}
+{
+  "resourceType": "AllergyIntolerance",
+  "id": "149",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ]
+  },
+  "clinicalStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+      "code": "resolved"
+    } ]
+  },
+  "verificationStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+      "code": "refuted"
+    } ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion",
+      "code": "EXAMPLE"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "reaction": [ {
+    "manifestation": [ {
+      "coding": [ {
+        "system": "http://snomed.info/sct",
+        "code": "127009"
+      } ]
+    } ]
+  } ]
+}
+{
+  "resourceType": "AllergyIntolerance",
+  "id": "150",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ]
+  },
+  "clinicalStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+      "code": "resolved"
+    } ]
+  },
+  "verificationStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+      "code": "confirmed"
+    } ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion",
+      "code": "EXAMPLE"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "reaction": [ {
+    "manifestation": [ {
+      "coding": [ {
+        "system": "http://snomed.info/sct",
+        "code": "122003"
+      } ]
+    } ]
+  } ]
+}
+{
+  "resourceType": "AllergyIntolerance",
+  "id": "151",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ]
+  },
+  "clinicalStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+      "code": "inactive"
+    } ]
+  },
+  "verificationStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+      "code": "confirmed"
+    } ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion",
+      "code": "EXAMPLE"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "reaction": [ {
+    "manifestation": [ {
+      "coding": [ {
+        "system": "http://snomed.info/sct",
+        "code": "122003"
+      } ]
+    } ]
+  } ]
+}
+{
+  "resourceType": "AllergyIntolerance",
+  "id": "152",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance" ]
+  },
+  "clinicalStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+      "code": "resolved"
+    } ]
+  },
+  "verificationStatus": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+      "code": "unconfirmed"
+    } ]
+  },
+  "code": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion",
+      "code": "EXAMPLE"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "reaction": [ {
+    "manifestation": [ {
+      "coding": [ {
+        "system": "http://snomed.info/sct",
+        "code": "122003"
+      } ]
+    } ]
+  } ]
+}

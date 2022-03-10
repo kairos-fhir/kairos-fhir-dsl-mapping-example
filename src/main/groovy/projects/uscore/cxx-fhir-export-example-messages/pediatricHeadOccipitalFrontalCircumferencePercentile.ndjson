@@ -1,0 +1,87 @@
+{
+  "resourceType": "Observation",
+  "id": "204",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "vital-signs"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "8289-1"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "1983-03-24T10:18:07+01:00",
+  "valueQuantity": {
+    "value": 42.00000000,
+    "unit": "Prozent",
+    "system": "http://unitsofmeasure.org",
+    "code": "%"
+  }
+}
+{
+  "resourceType": "Observation",
+  "id": "205",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "vital-signs"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "8289-1"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "1987-05-14T10:18:33+02:00",
+  "valueQuantity": {
+    "value": 34.00000000,
+    "unit": "Prozent",
+    "system": "http://unitsofmeasure.org",
+    "code": "%"
+  }
+}
+{
+  "resourceType": "Observation",
+  "id": "206",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/head-occipital-frontal-circumference-percentile" ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+      "code": "vital-signs"
+    } ]
+  } ],
+  "code": {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "8289-1"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "effectiveDateTime": "2016-08-11T10:18:58+02:00",
+  "valueQuantity": {
+    "value": 84.00000000,
+    "unit": "Prozent",
+    "system": "http://unitsofmeasure.org",
+    "code": "%"
+  }
+}

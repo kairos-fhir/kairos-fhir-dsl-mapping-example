@@ -1,0 +1,80 @@
+{
+  "resourceType": "CareTeam",
+  "id": "164",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam" ]
+  },
+  "status": "inactive",
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "participant": [ {
+    "role": [ {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "code": "unknown",
+        "display": "unknown"
+      } ]
+    } ],
+    "member": {
+      "reference": "Practitioner/12"
+    }
+  }, {
+    "role": [ {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "code": "unknown",
+        "display": "unknown"
+      } ]
+    } ],
+    "member": {
+      "reference": "Practitioner/1"
+    }
+  } ]
+}
+{
+  "resourceType": "CareTeam",
+  "id": "165",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam" ]
+  },
+  "status": "inactive",
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "participant": [ {
+    "role": [ {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "code": "unknown",
+        "display": "unknown"
+      } ]
+    } ],
+    "member": {
+      "reference": "Practitioner/12"
+    }
+  } ]
+}
+{
+  "resourceType": "CareTeam",
+  "id": "166",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam" ]
+  },
+  "status": "proposed",
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "participant": [ {
+    "role": [ {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+        "code": "unknown",
+        "display": "unknown"
+      } ]
+    } ],
+    "member": {
+      "reference": "Practitioner/1"
+    }
+  } ]
+}
