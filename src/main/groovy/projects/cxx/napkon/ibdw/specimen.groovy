@@ -22,8 +22,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  *
  * Hints:
  * 1. Filter: only master samples, derived samples and aliquot groups are allowed
- * 2. Filter: Only samples of the OrgUnits napPOP and napSUP
- * 3. Filter: Only master samples and their aliquots for which a NAPKON-ID mapping exists
+ * 2. Filter: Only master samples and their aliquots for which a NAPKON-ID mapping exists
+ * 3. Filter: Only samples of the OrgUnits napPOP and napSUP
  * 4. Cross Mapping IDs: NAPKONSMP (ibdw) to SAMPLEID (NUM) and SAMPLEID (ibdw) to EXTSAMPLEID (NUM)
  * 5. Mapping OrgUnit: napPOP (ibdw) to "NUM_Wuerzburg_POP" (NUM) and napSUP (ibdw) to "NUM_Wuerzburg_SUEP" (NUM)
  * 6. Mapping: ibdw sampleType.code, receptable.code to NUM sampleType
@@ -38,21 +38,7 @@ specimen {
     return
   }
 
-  // 2. Filter OrgUnit
-  String orgUnit = ""
-  if ("napPOP" == context.source[sample().organisationUnit().code()] || "napPOP" == context.source[sample().parent().organisationUnit().code()]) {
-    id = "Specimen/" + context.source[sample().id()]
-    orgUnit = "NUM_W_POP"
-  }
-  else if ("napSUP" == context.source[sample().organisationUnit().code()] || "napSUP" == context.source[sample().parent().organisationUnit().code()]) {
-    id = "Specimen/" + context.source[sample().id()]
-    orgUnit = "NUM_W_SUEP"
-  }
-  else {
-    return
-  }
-
-  // 3. Filter NAPKON-ID Mapping exists
+  // 2. Filter NAPKON-ID Mapping exists
   String napkonMappingExists = ""
   if (category == SampleCategory.MASTER) {
     napkonMappingExists = context.source[sample().idContainer()]?.find { final def entry ->
@@ -70,6 +56,19 @@ specimen {
     return
   }
 
+  // 3. Filter OrgUnit
+  String orgUnit = ""
+  if ("napPOP" == context.source[sample().organisationUnit().code()] || "napPOP" == context.source[sample().parent().organisationUnit().code()]) {
+    id = "Specimen/" + context.source[sample().id()]
+    orgUnit = "NUM_W_POP"
+  }
+  else if ("napSUP" == context.source[sample().organisationUnit().code()] || "napSUP" == context.source[sample().parent().organisationUnit().code()]) {
+    id = "Specimen/" + context.source[sample().id()]
+    orgUnit = "NUM_W_SUEP"
+  }
+  else {
+    return
+  }
 
   final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "NAPKONSMP": "SAMPLEID"]
   final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
@@ -80,8 +79,8 @@ specimen {
     ]
   } as Map<String, Object>
 
-  // 4: cross-mapping of the ids of MASTER samples. The sample id of the HUB is provided as external sampled id to NUM.
-  // The external sample id of HUB is provided as sample id to NUM.
+  // 4: cross-mapping of the ids of MASTER samples. The sample id of the ibdw is provided as external sampled id to NUM.
+  // The external sample id of ibdw is provided as sample id to NUM.
   if (context.source[sample().sampleCategory()] as SampleCategory == SampleCategory.MASTER) {
     idContainersMap.each { final String idContainerCode, final Object idContainer ->
       if (idContainer) {
@@ -96,7 +95,7 @@ specimen {
         }
       }
     }
-  } else { // Providing HUB sample id as sample id to NUM.
+  } else { // Providing ibdw sample id as sample id to NUM.
     if (idContainersMap["SAMPLEID"]) {
       identifier {
         type {
