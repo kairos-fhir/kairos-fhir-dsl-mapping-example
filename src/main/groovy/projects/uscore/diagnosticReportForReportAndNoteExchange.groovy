@@ -16,15 +16,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  *
  * The resulting DiagnosticReport contains all the files that are attached to the finding as a laborFindingLaborValue
  *
- *  TODO: export of file as attachment
- * @author Jonas Küttner
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @author Jonas Küttner, Mike Wähnert
+ * @since v.1.15.0, CXX.v.2022.1.0
  *
  */
-
 final def lang = "de"
 
 diagnosticReport {
+
   // filter for lblvs that are files
   final def lflvs = context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
     final def lflv -> lflv[LaborFindingLaborValue.FILE_VALUE]
@@ -40,10 +39,8 @@ diagnosticReport {
     profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
   }
 
-
   language = lang
   status = DiagnosticReport.DiagnosticReportStatus.UNKNOWN
-
 
   category {
     coding {
