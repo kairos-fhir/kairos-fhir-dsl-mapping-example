@@ -1,0 +1,93 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "24",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest" ]
+  },
+  "status": "active",
+  "intent": "proposal",
+  "medicationCodeableConcept": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+      "code": "PZN-123"
+    } ],
+    "text": "Ibuprofen"
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "encounter": {
+    "reference": "Encounter/16"
+  },
+  "authoredOn": "2021-11-10T11:49:31+01:00",
+  "requester": {
+    "display": "Hausarzt"
+  },
+  "dosageInstruction": [ {
+    "text": "2-5-1"
+  }, {
+    "text": "Dienstags und Donnerstag f. 2 Wochen"
+  } ]
+}
+{
+  "resourceType": "MedicationRequest",
+  "id": "25",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest" ]
+  },
+  "status": "active",
+  "intent": "proposal",
+  "medicationCodeableConcept": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+      "code": "PZN-524"
+    } ],
+    "text": "Hustensaft"
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "encounter": {
+    "reference": "Encounter/14"
+  },
+  "authoredOn": "2021-11-10T11:49:31+01:00",
+  "requester": {
+    "display": "Hausarzt"
+  },
+  "dosageInstruction": [ {
+    "text": "2-2-6"
+  }, {
+    "text": "f. 6 Wochen"
+  } ]
+}
+{
+  "resourceType": "MedicationRequest",
+  "id": "26",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest" ]
+  },
+  "status": "active",
+  "intent": "proposal",
+  "medicationCodeableConcept": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+      "code": "PZN-124311"
+    } ],
+    "text": "Apfel"
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "encounter": {
+    "reference": "Encounter/18"
+  },
+  "authoredOn": "2021-11-10T11:49:31+01:00",
+  "requester": {
+    "display": "Apotheker des Vertrauens"
+  },
+  "dosageInstruction": [ {
+    "text": "1-2-7"
+  }, {
+    "text": "forever, cause an apple a day keeps the doctor away"
+  } ]
+}

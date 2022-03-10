@@ -33,30 +33,36 @@ allergyIntolerance {
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ALLERGY_INTOLERANCE_CLINICAL_STATUS" }
 
 
-  clinicalStatus {
-    coding {
-      system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
-      code = (lblvClinicalStatus[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+  if (lblvClinicalStatus) {
+    clinicalStatus {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"
+        code = (lblvClinicalStatus[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+      }
     }
   }
 
   final def lblvStatusReason = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ALLERGY_INTOLERANCE_VERIFICATION_STATUS" }
 
-  verificationStatus {
-    coding {
-      system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
-      code = (lblvStatusReason[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+  if (lblvStatusReason) {
+    verificationStatus {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"
+        code = (lblvStatusReason[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+      }
     }
   }
 
   final def lblvCode = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ALLERGY_INTOLERANCE_CODE" }
 
-  code {
-    coding {
-      system = "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion"
-      code = (lblvCode[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+  if (lblvCode) {
+    code {
+      coding {
+        system = "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1186.8/expansion"
+        code = (lblvCode[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
+      }
     }
   }
 
@@ -67,17 +73,18 @@ allergyIntolerance {
   final def lblvManifestation = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
       .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ALLERGY_INTOLERANCE_MANIFESTATION" }
 
-  reaction {
-    lblvManifestation[CATALOG_ENTRY_VALUE]?.each { final ce ->
-      manifestation {
-        coding {
-          system = "http://snomed.info/sct"
-          code = ce[CODE] as String
+  if (lblvManifestation != null) {
+    reaction {
+      lblvManifestation[CATALOG_ENTRY_VALUE]?.each { final ce ->
+        manifestation {
+          coding {
+            system = "http://snomed.info/sct"
+            code = ce[CODE] as String
+          }
         }
       }
     }
   }
-
 }
 
 

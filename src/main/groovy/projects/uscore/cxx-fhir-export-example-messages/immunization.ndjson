@@ -1,0 +1,75 @@
+{
+  "resourceType": "Immunization",
+  "id": "158",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" ]
+  },
+  "status": "completed",
+  "statusReason": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+      "code": "MEDPREC"
+    } ]
+  },
+  "vaccineCode": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1010.6/expansion",
+      "code": "POCKS"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "occurrenceDateTime": "2022-03-09T14:55:08+01:00",
+  "primarySource": true
+}
+{
+  "resourceType": "Immunization",
+  "id": "159",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" ]
+  },
+  "status": "completed",
+  "statusReason": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+      "code": "MEDPREC"
+    } ]
+  },
+  "vaccineCode": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1010.6/expansion",
+      "code": "POCKS"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "occurrenceDateTime": "2022-03-09T14:55:27+01:00",
+  "primarySource": true
+}
+{
+  "resourceType": "Immunization",
+  "id": "160",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" ]
+  },
+  "status": "entered-in-error",
+  "statusReason": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+      "code": "OSTOCK"
+    } ]
+  },
+  "vaccineCode": {
+    "coding": [ {
+      "system": "https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1010.6/expansion",
+      "code": "POCKS"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  },
+  "occurrenceDateTime": "2022-03-09T14:56:16+01:00",
+  "primarySource": true
+}

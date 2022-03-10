@@ -1,0 +1,120 @@
+{
+  "resourceType": "Device",
+  "id": "153",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ]
+  },
+  "udiCarrier": [ {
+    "deviceIdentifier": "12343143",
+    "carrierHRF": "123454254"
+  } ],
+  "manufactureDate": "2022-03-02T00:00:00+01:00",
+  "expirationDate": "2022-03-31T00:00:00+02:00",
+  "lotNumber": "21434554231",
+  "serialNumber": "213445453",
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "156009"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  }
+}
+{
+  "resourceType": "Device",
+  "id": "154",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ]
+  },
+  "udiCarrier": [ {
+    "deviceIdentifier": "23154325",
+    "carrierHRF": "56324652"
+  } ],
+  "manufactureDate": "2022-03-16T00:00:00+01:00",
+  "expirationDate": "2022-03-26T00:00:00+01:00",
+  "lotNumber": "432654532",
+  "serialNumber": "14565362536",
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "287000"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  }
+}
+{
+  "resourceType": "Device",
+  "id": "155",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ]
+  },
+  "udiCarrier": [ {
+    "deviceIdentifier": "6542346526",
+    "carrierHRF": "84365322"
+  } ],
+  "manufactureDate": "2022-03-25T00:00:00+01:00",
+  "expirationDate": "2022-04-09T00:00:00+02:00",
+  "lotNumber": "234656546542",
+  "serialNumber": "546257246376",
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "156009"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  }
+}
+{
+  "resourceType": "Device",
+  "id": "156",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ]
+  },
+  "udiCarrier": [ {
+    "deviceIdentifier": "4536267476",
+    "carrierHRF": "7643734765437"
+  } ],
+  "manufactureDate": "2022-03-25T00:00:00+01:00",
+  "expirationDate": "2022-03-09T14:52:55+01:00",
+  "lotNumber": "5362576437",
+  "serialNumber": "2346556524",
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "156009"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  }
+}
+{
+  "resourceType": "Device",
+  "id": "157",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device" ]
+  },
+  "udiCarrier": [ {
+    "deviceIdentifier": "75643526",
+    "carrierHRF": "764w5673"
+  } ],
+  "manufactureDate": "2022-03-31T00:00:00+02:00",
+  "expirationDate": "2022-03-28T00:00:00+02:00",
+  "lotNumber": "431652476437",
+  "serialNumber": "2134553654264",
+  "type": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "287000"
+    } ]
+  },
+  "patient": {
+    "reference": "Patient/574"
+  }
+}

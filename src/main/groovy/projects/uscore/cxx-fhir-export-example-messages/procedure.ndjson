@@ -1,0 +1,80 @@
+{
+  "resourceType": "Procedure",
+  "id": "9",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure" ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/dimdi/ops",
+      "version": "2021",
+      "code": "5-822.g",
+      "display": "Bikondyläre Oberflächenersatzprothese"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "performedDateTime": "2022-03-10T00:00:00+01:00"
+}
+{
+  "resourceType": "Procedure",
+  "id": "10",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure" ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [ {
+      "system": "urn:centraxx:CodeSystem/CustomCatalog-43",
+      "version": "1",
+      "code": "MASSAGE",
+      "display": "Massage"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "performedDateTime": "1972-03-23T00:00:00+01:00"
+}
+{
+  "resourceType": "Procedure",
+  "id": "11",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure" ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/dimdi/ops",
+      "version": "2021",
+      "code": "8-84d.27",
+      "display": "Drei Stents V. cava"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "performedDateTime": "2022-03-17T00:00:00+01:00"
+}
+{
+  "resourceType": "Procedure",
+  "id": "12",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure" ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [ {
+      "system": "http://fhir.de/CodeSystem/dimdi/ops",
+      "version": "2021",
+      "code": "1-203.x",
+      "display": "Sonstige"
+    } ]
+  },
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "performedDateTime": "1952-03-08T00:00:00+01:00"
+}

@@ -1,0 +1,104 @@
+{
+  "resourceType": "Patient",
+  "id": "578",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Patient"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.centraxx.de/extension/patient/ethnicities",
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/patient/ethnicities/ethnicity",
+          "valueCoding": {
+            "system": "https://fhir.centraxx.de/system/patient/ethnicity",
+            "code": "EUROPEAN",
+            "display": "EuropäerIn"
+          }
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/idContainerType",
+            "code": "TEST_ID",
+            "display": "Test-ID"
+          }
+        ]
+      },
+      "value": "IMPORT1"
+    },
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/idContainerType",
+            "code": "US_CORE_ID",
+            "display": "US-CORE"
+          }
+        ]
+      },
+      "value": "US_CORE_IMP"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "family": "Siegfridi",
+      "given": [
+        "Alfredo"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "034587234",
+      "use": "home",
+      "rank": 1
+    },
+    {
+      "system": "phone",
+      "value": "03232512541",
+      "use": "home",
+      "rank": 2
+    },
+    {
+      "system": "email",
+      "value": "iGFdiewdwe@mail.com",
+      "use": "home",
+      "rank": 3
+    },
+    {
+      "system": "phone",
+      "value": "245253535",
+      "use": "mobile",
+      "rank": 4
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1988-02-06",
+  "deceasedBoolean": false,
+  "address": [
+    {
+      "type": "postal",
+      "line": [
+        "Kurze Straße",
+        "1"
+      ],
+      "city": "Mailand",
+      "postalCode": "905823"
+    }
+  ],
+  "generalPractitioner": [
+    {
+      "reference": "Organization/1"
+    }
+  ]
+}

@@ -86,23 +86,6 @@ patient {
   final def firstEthnicity = context.source[patient().patientContainer().ethnicities()].find { final def ethnicity -> ethnicity != null }
   if (firstEthnicity != null) {
     extension {
-      url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
-      extension {
-        url = "ombCategory"
-        valueCoding {
-          //http://hl7.org/fhir/us/core/STU4/ValueSet-omb-ethnicity-category.html
-          system = "urn:oid:2.16.840.1.113883.6.238"
-          code = "2135-2" // assumes that only hispanic or latino codes are code-able
-        }
-      }
-      extension {
-        url = "detailed"
-        valueCoding {
-          // see http://hl7.org/fhir/us/core/STU4/ValueSet-detailed-ethnicity.html
-          system = "urn:oid:2.16.840.1.113883.6.238"
-          code = firstEthnicity[CODE]
-        }
-      }
       extension {
         url = "text"
         valueString = firstEthnicity[Ethnicity.NAME_MULTILINGUAL_ENTRIES].find { final def me ->
