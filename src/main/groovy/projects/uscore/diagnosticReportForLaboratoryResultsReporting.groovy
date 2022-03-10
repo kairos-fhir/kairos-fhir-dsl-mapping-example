@@ -34,6 +34,11 @@ diagnosticReport {
   }
 
   id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
+
+  meta {
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab")
+  }
+
   language = lang
   status = DiagnosticReport.DiagnosticReportStatus.UNKNOWN
 
