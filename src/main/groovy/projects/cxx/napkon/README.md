@@ -10,3 +10,4 @@ Examples for the [NAPKON](https://napkon.de/) usecase*
 * [Hannover Biobank](https://www.mhh.de/institute-zentren-forschungseinrichtungen/hannover-unified-biobank-hub)
 * [DZHK](https://dzhk.de)
 * [ZeBanC](https://biobank.charite.de)
+* [ibdw](https://www.ukw.de/interdisziplinaere-einrichtungen/interdisziplinaere-biomaterial-und-datenbank-wuerzburg/startseite/)
