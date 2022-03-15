@@ -86,6 +86,7 @@ patient {
   final def firstEthnicity = context.source[patient().patientContainer().ethnicities()].find { final def ethnicity -> ethnicity != null }
   if (firstEthnicity != null) {
     extension {
+      url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
       extension {
         url = "text"
         valueString = firstEthnicity[Ethnicity.NAME_MULTILINGUAL_ENTRIES].find { final def me ->

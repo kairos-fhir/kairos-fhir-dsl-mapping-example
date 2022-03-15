@@ -1,0 +1,13 @@
+{
+  "resourceType": "Organization",
+  "id": "1",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+  },
+  "identifier": [ {
+    "system": "https://fhir.centraxx.de/system/organizationUnit",
+    "value": "CentraXX"
+  } ],
+  "active": true,
+  "name": "CENTRAXX"
+}

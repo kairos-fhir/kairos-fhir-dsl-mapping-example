@@ -1,0 +1,238 @@
+{
+  "resourceType": "Patient",
+  "id": "1",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">jzzjzzvzvv <b>VVVJQVJZVP </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>NEWPAT1</td></tr><tr><td>Date of birth</td><td><span>01 Januar 2021</span></td></tr></tbody></table></div>"
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "text",
+      "valueString": "Europäer"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "TEST_ID"
+      } ]
+    },
+    "value": "NEWPAT1"
+  }, {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "US_CORE_1"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "vvvjqvjzvp",
+    "given": [ "jzzjzzvzvv" ]
+  }, {
+    "use": "maiden",
+    "family": "zpvzpjvzvz",
+    "given": [ "jzzjzzvzvv" ]
+  } ],
+  "gender": "male",
+  "birthDate": "2021-01-01"
+}
+{
+  "resourceType": "Patient",
+  "id": "573",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">vpjzpjjvvv <b>PJVVSSZJVVQ </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>ImportExport</td></tr><tr><td>Date of birth</td><td><span>01 Januar 2022</span></td></tr></tbody></table></div>"
+  },
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "ImportExport"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "pjvvßzjvvq",
+    "given": [ "vpjzpjjvvv" ]
+  }, {
+    "use": "maiden",
+    "family": "jvxvvvjzjv",
+    "given": [ "vpjzpjjvvv" ]
+  } ],
+  "gender": "other",
+  "birthDate": "2022-01-01"
+}
+{
+  "resourceType": "Patient",
+  "id": "574",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">zßvjvzvjzz <b>VJJSSJJJZZP </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>US_CORE_2</td></tr><tr><td>Date of birth</td><td><span>31 Dezember 1880</span></td></tr></tbody></table></div>"
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "text",
+      "valueString": "Europäer"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "US_CORE_2"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "vjjßjjjzzp",
+    "given": [ "zßvjvzvjzz" ]
+  }, {
+    "use": "maiden",
+    "family": "vßjßvjzjjv",
+    "given": [ "zßvjvzvjzz" ]
+  } ],
+  "gender": "male",
+  "birthDate": "1880-12-31",
+  "deceasedDateTime": "1997-01-01T00:00:00.000+01:00"
+}
+{
+  "resourceType": "Patient",
+  "id": "575",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">ppvzzzvjzv <b>JVJPYVPVPJ </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>US_CORE_3</td></tr><tr><td>Date of birth</td><td><span>01 Januar 1966</span></td></tr></tbody></table></div>"
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "text",
+      "valueString": "Hispanic or Latino"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "US_CORE_3"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "jvjpyvpvpj",
+    "given": [ "ppvzzzvjzv" ]
+  }, {
+    "use": "maiden",
+    "family": "vvvvzyzvzv",
+    "given": [ "ppvzzzvjzv" ]
+  } ],
+  "gender": "female",
+  "birthDate": "1966-01-01"
+}
+{
+  "resourceType": "Patient",
+  "id": "576",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">jvzvvvzvpj <b>VPPVVZVSSVV </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>US_CORE_4</td></tr><tr><td>Date of birth</td><td><span>01 Januar 1973</span></td></tr></tbody></table></div>"
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "text",
+      "valueString": "Hispanic or Latino"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "US_CORE_4"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "vppvvzvßvv",
+    "given": [ "jvzvvvzvpj" ]
+  }, {
+    "use": "maiden",
+    "family": "vvjvpvvvjj",
+    "given": [ "jvzvvvzvpj" ]
+  } ],
+  "gender": "other",
+  "birthDate": "1973-01-01"
+}
+{
+  "resourceType": "Patient",
+  "id": "578",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">jvvvßzvpzj <b>VPZYPPVVJJ </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>IMPORT1</td></tr><tr><td>Date of birth</td><td><span>01 Januar 1988</span></td></tr></tbody></table></div>"
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+    "extension": [ {
+      "url": "text",
+      "valueString": "Europäer"
+    } ]
+  } ],
+  "identifier": [ {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "TEST_ID"
+      } ]
+    },
+    "value": "IMPORT1"
+  }, {
+    "type": {
+      "coding": [ {
+        "system": "https://fhir.centraxx.de/system/idContainerType",
+        "code": "US_CORE_ID"
+      } ]
+    },
+    "value": "US_CORE_IMP"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "vpzyppvvjj",
+    "given": [ "jvvvßzvpzj" ]
+  }, {
+    "use": "maiden",
+    "family": "jjvqpzßjqv",
+    "given": [ "jvvvßzvpzj" ]
+  } ],
+  "gender": "male",
+  "birthDate": "1988-01-01"
+}

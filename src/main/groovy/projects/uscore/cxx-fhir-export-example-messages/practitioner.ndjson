@@ -1,0 +1,34 @@
+{
+  "resourceType": "Practitioner",
+  "id": "1",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+  },
+  "identifier": [ {
+    "system": "urn:centraxx",
+    "value": "1c2b513f-007b-4c5d-a5af-4083b58037df"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "Peters",
+    "given": [ "Horst" ],
+    "prefix": [ "DR" ]
+  } ]
+}
+{
+  "resourceType": "Practitioner",
+  "id": "12",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+  },
+  "identifier": [ {
+    "system": "urn:centraxx",
+    "value": "3f1177bc-2448-4ba3-9e87-8756ee01c669"
+  } ],
+  "name": [ {
+    "use": "official",
+    "family": "Pomfrey",
+    "given": [ "Poppy" ],
+    "prefix": [ "DR" ]
+  } ]
+}
