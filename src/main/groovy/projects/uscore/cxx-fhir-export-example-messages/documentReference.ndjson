@@ -78,3 +78,43 @@
     } ]
   }
 }
+{
+  "resourceType": "DocumentReference",
+  "id": "73",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference" ]
+  },
+  "identifier": [ {
+    "system": "https://fhir.centraxx.de/system/document/documentId",
+    "value": "3242315"
+  } ],
+  "status": "current",
+  "type": {
+    "coding": [ {
+      "system": "https://fhir.centraxx.de/system/document/category",
+      "code": "CI",
+      "display": "Kontaktinformationen"
+    } ]
+  },
+  "category": [ {
+    "coding": [ {
+      "system": "https://fhir.centraxx.de/system/mappingType",
+      "code": "PATIENTMAPPING"
+    } ]
+  } ],
+  "subject": {
+    "reference": "Patient/574"
+  },
+  "date": "2022-03-15T17:42:25.120+01:00",
+  "content": [ {
+    "attachment": {
+      "contentType": "unknown",
+      "url": "http://centraxx.de/whatever.pdf"
+    }
+  } ],
+  "context": {
+    "encounter": [ {
+      "reference": "Encounter/16"
+    } ]
+  }
+}

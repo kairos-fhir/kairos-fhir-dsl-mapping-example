@@ -9,8 +9,9 @@ import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.codesystems.DataAbsentReason
 
+import static de.kairos.fhir.centraxx.metamodel.BinaryFile.CONTENT_PARTS
+import static de.kairos.fhir.centraxx.metamodel.BinaryFile.CONTENT_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.documentMapping
-
 /**
  * Represents a CXX DocumentMapping.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-documentreference.html
@@ -71,10 +72,20 @@ documentReference {
 
   date = context.source[documentMapping().finding().creationDate()]
 
+  final def binaryFile = context.source[documentMapping().finding().binaryFile()]
+  final String link = context.source[documentMapping().finding().url()]
   content {
-    attachment {
-      contentType = context.source[documentMapping().finding().binaryFile().contentType()]
-      data = (context.source[documentMapping().finding().binaryFile().contentParts()] as List).getAt(BinaryFilePart.CONTENT)
+    if (binaryFile) {
+      attachment {
+        contentType = binaryFile[CONTENT_TYPE]
+        data = (binaryFile[CONTENT_PARTS] as List)[BinaryFilePart.CONTENT]
+      }
+    }
+    else {
+      attachment {
+        contentType = "unknown"
+        url = link
+      }
     }
   }
 
