@@ -16,9 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.documentMapping
  * Represents a CXX DocumentMapping.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-documentreference.html
  *
- * TODO: work in progress
- *
- * @author Mike Wähnert
+ * @author Mike Wähnert, Jonas Küttner
  * @since v.1.14.0, CXX.v.2022.1.0
  */
 
@@ -81,7 +79,7 @@ documentReference {
         data = (binaryFile[CONTENT_PARTS] as List)[BinaryFilePart.CONTENT]
       }
     }
-    else {
+    else if (link) {
       attachment {
         contentType = "unknown"
         url = link
