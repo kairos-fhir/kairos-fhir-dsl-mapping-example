@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 goal {
 
-  if ("US_CORE_GOAL" != context.source[laborMapping().laborFinding().laborMethod().code()]){
+  if ("US_CORE_GOAL" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
   }
 
@@ -27,16 +27,15 @@ goal {
     profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal")
   }
 
-  final def lblvDescription = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find{
+  final def lblvDescription = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_GOAL_DESCRIPTION"
   }
-
 
   description {
     text = (lblvDescription[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
   }
 
-  final def lblvLifecycleStatus = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find{
+  final def lblvLifecycleStatus = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
     final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_GOAL_LIFECYCLE_STATUS"
   }
 

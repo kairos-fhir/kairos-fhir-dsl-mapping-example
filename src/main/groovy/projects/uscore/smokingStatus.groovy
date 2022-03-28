@@ -70,7 +70,7 @@ observation {
     valueCodeableConcept {
       coding {
         system = "http://snomed.info/sct"
-        code = entry[CODE]
+        code = entry[CODE] as String
         display = entry[NAME_MULTILINGUAL_ENTRIES].find {
           final def ml -> ml[LANG] = lang
         }?.getAt(VALUE)

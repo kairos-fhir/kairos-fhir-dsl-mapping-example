@@ -69,7 +69,6 @@ provenance {
       coding {
         system = "http://terminology.hl7.org/CodeSystem/provenance-participant-type"
         code = "author"
-
       }
     }
   }
