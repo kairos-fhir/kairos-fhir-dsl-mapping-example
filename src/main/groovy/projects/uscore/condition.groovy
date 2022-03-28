@@ -19,15 +19,15 @@ condition {
 
     verificationStatus {
         coding {
-            system = " http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"
             code = matchVerificationStatusToDiagnosisCertainty(context.source[diagnosis().diagnosisCertainty()] as String)
         }
     }
 
     clinicalStatus {
-        coding {
-            system = "http://terminology.hl7.org/CodeSystem/condition-clinical"
-            code = "NI"
+        extension {
+            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            valueCode = "unknown"
         }
     }
 
