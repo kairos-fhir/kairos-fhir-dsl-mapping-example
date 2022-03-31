@@ -1,0 +1,88 @@
+{
+  "resourceType": "Observation",
+  "id": "52361",
+  "meta": {
+    "profile": [
+      "https://fhir.centraxx.de/StructureDefinition/Observation"
+    ]
+  },
+  "status": "unknown",
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/finding/shortname",
+        "code": "US Core Goal_31.03.2022 14:17:27 imported"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/1"
+  },
+  "effectiveDateTime": "2022-03-02T11:37:09+01:00",
+  "method": {
+    "coding": [
+      {
+        "system": "https://fhir.centraxx.de/system/laborMethod",
+        "version": "1",
+        "code": "US_CORE_GOAL",
+        "display": "US Core Goal"
+      }
+    ]
+  },
+  "component": [
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_GOAL_DESCRIPTION",
+            "display": "Goal Description"
+          }
+        ]
+      },
+      "valueString": "The Description"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_GOAL_LIFECYCLE_STATUS",
+            "display": "Goal Lifecycle Status"
+          }
+        ]
+      },
+      "valueString": "The Lifecycle Status"
+    },
+    {
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString": "STRING"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.centraxx.de/system/laborValue",
+            "code": "US_CORE_GOAL_DUEDATE",
+            "display": "Goal DueDate"
+          }
+        ]
+      },
+      "valueString": "2022-03-31T00:00:00"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "resourceType": "Condition",
+  "id": "1",
+  "category": [ {
+      "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "encounter-diagnosis",
+          "display": "Encounter Diagnosis"
+        } ]
+    } ],
+  "code": {
+    "coding": [ {
+        "system": "urn:centraxx:CodeSystem/IcdCatalog-14",
+        "version": "code",
+        "code": "C25.0",
+        "display": "Verdauungsorgane;\nPankreas;\nPankreaskopf"
+      } ]
+  },
+  "subject": {
+    "reference": "Patient/12"
+  },
+  "encounter": {
+    "reference": "Encounter/2"
+  },
+  "onsetDateTime": "2022-02-14",
+  "recordedDate": "2022-02-14T10:35:24+01:00",
+  "recorder": {
+    "reference": "Person/1"
+  }
+}
+{
+  "resourceType": "Condition",
+  "id": "3",
+  "identifier": [ {
+      "value": "1"
+    } ],
+  "category": [ {
+      "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "encounter-diagnosis",
+          "display": "Encounter Diagnosis"
+        } ]
+    } ],
+  "code": {
+    "coding": [ {
+        "system": "urn:centraxx:CodeSystem/IcdCatalog-15",
+        "version": "code",
+        "code": "A00.1",
+        "display": "Infektiöse Darmkrankheiten;\nCholera;\nCholera durch Vibrio cholerae O:1, Biovar eltor"
+      } ]
+  },
+  "subject": {
+    "reference": "Patient/11"
+  },
+  "encounter": {
+    "reference": "Encounter/3"
+  },
+  "onsetDateTime": "2022-03-17",
+  "recordedDate": "2022-03-17T14:43:14+01:00",
+  "recorder": {
+    "reference": "Person/1"
+  }
+}
