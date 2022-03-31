@@ -45,8 +45,12 @@ goal {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
+  final def lblvDueDate = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
+    final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_GOAL_DUE_DATE"
+  }
+
   target {
-    dueDate = new Date()
+    dueDate = (lblvDueDate[CATALOG_ENTRY_VALUE] as List)[0][CODE] as String
   }
 
 }
