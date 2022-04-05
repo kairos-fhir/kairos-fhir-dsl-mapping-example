@@ -8,9 +8,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 immunization {
 
   // just a showcase to retrieve cxx data from a crf
-  def crfItems = context.source[studyVisitItem().crf().items()]
-  List<String> crfItemVaccineDates = new ArrayList<>()
-  crfItems.each { def crfItem ->
+  final def crfItems = context.source[studyVisitItem().crf().items()]
+  final List<String> crfItemVaccineDates = new ArrayList<>()
+  crfItems.each { final def crfItem ->
     crfItemVaccineDates.add(crfItem[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
   }
 
