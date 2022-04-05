@@ -1,0 +1,34 @@
+{
+  "resourceType": "Observation",
+  "id": "182",
+  "meta": {
+    "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal"]
+  },
+  "description": {
+    "text": "The Goal's Description"
+  },
+  "lifecycleStatus": "active",
+  "subject": {
+    "reference": "Patient/1"
+  },
+  "target": {
+    "dueDate": "2022-03-31T00:00:00"
+  }
+}
+{
+  "resourceType": "Observation",
+  "id": "516",
+  "meta": {
+    "profile": ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal"]
+  },
+  "description": {
+    "text": "A description of the goal"
+  },
+  "lifecycleStatus": "planned",
+  "subject": {
+    "reference": "Patient/3"
+  },
+  "target": {
+    "dueDate": "2022-04-29T00:00:00"
+  }
+}
