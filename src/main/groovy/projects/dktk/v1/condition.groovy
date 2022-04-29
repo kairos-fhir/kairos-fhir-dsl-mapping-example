@@ -52,7 +52,7 @@ condition {
 
   code {
     coding {
-      system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+      system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
       code = context.source["icdEntry.code"] as String
       version = context.source["icdEntry.catalogue.catalogueVersion"]
     }

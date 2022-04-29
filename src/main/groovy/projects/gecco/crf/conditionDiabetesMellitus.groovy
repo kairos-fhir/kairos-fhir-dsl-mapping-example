@@ -80,7 +80,7 @@ condition {
         final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
         if (ICDcode) {
           coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+            system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
             version = "2020"
             code = ICDcode
           }

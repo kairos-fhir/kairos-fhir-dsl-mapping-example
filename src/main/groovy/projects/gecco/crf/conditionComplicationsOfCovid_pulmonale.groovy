@@ -90,7 +90,7 @@ condition {
         final def ICDcode = item[CatalogEntry.CODE] as String
         if (ICDcode == "COV_JA") {
           coding {
-            system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+            system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
             version = "2020"
             code = "J18.9"
           }
