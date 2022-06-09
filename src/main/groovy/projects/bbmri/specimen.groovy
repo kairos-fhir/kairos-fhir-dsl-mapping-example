@@ -1,5 +1,8 @@
 package projects.bbmri
 
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
@@ -26,16 +29,20 @@ specimen {
     profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
   }
 
-  context.source["idContainer"]?.each { final idc ->
+  final def idc = context.source[sample().idContainer()].find {
+    "EXLIQUID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  if (idc) {
     identifier {
-      value = idc["psn"]
+      value = idc[IdContainer.PSN]
       type {
         coding {
           system = "urn:centraxx"
-          code = idc["idContainerType"]?.getAt("code")
+          code = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
         }
       }
-      system = "urn:centraxx"
+      system = "https://dktk.dkfz.de/fhir/NamingSystem/exliquid-specimen"
     }
   }
 
