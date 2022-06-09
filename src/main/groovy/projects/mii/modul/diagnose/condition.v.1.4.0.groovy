@@ -75,7 +75,7 @@ condition {
         valueCode = context.source[diagnosis().parent()] as boolean ? context.source[diagnosis().icdEntry().code()] : null
         version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
       }
-      system = "http://fhir.de/CodeSystem/dimdi/icd-10-gm"
+      system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
       version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
       code = context.source[diagnosis().icdEntry().code()] as String
     }
