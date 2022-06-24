@@ -1,0 +1,16 @@
+{
+    "gender": "MALE",
+    "maritalStatus": "GS",
+    "birthdate": "1922-01-01T00:00:00.000+01:00",
+    "oid": "101",
+    "psns": {
+        "MPI": "2022-06-24",
+        "PATIENTID": "pat-4711",
+        "GTDS": "gtds-1"
+    },
+    "bloodGroup": "0",
+    "organization": [
+        "STUDY_CENTER_2",
+        "CentraXX"
+    ]
+}
