@@ -1,12 +1,11 @@
-package projects.cxx.v2
+package projects.databox
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Diagnosis
- * @author Mike Wähnert
- * @since v.1.6.0, CXX.v.3.17.1.7
+ * Represented by CXX Diagnosis
+ * @author Marvin Schmidtke
  */
 condition {
 

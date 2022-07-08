@@ -1,4 +1,4 @@
-package projects.mii.modul.fall
+package projects.databox
 
 import de.kairos.fhir.centraxx.metamodel.Diagnosis
 import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
@@ -8,10 +8,10 @@ import de.kairos.fhir.centraxx.metamodel.StayType
 import org.hl7.fhir.r4.model.Encounter
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
+
 /**
- * represented bz CCX Episode
- * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * Represented by CXX Episode
+ * @author Marvin Schmidtke
  * hints:
  * identifier visit number: the MII profile requires a "Aufnahmenummer" as identifier. Therefore a specific Episode ID
  * must be defined in CentraXX (with code "VISIT_NUMBER" in this example)
@@ -25,7 +25,7 @@ encounter {
   id = "Encounter/" + context.source[episode().id()]
 
   //Created Episode Id in CXX called visit number
-  final def visit_number = context.source[episode().idContainer()]?.find { idc ->
+  final def visit_number = context.source[episode().idContainer()]?.find { final idc ->
     "EPISODEID" == idc[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
   }
 
@@ -34,7 +34,7 @@ encounter {
       type {
         coding {
           system = "urn:centraxx"
-		  code = "episodeId"
+          code = "episodeId"
         }
       }
       value = visit_number[EpisodeIdContainer.PSN]
@@ -42,10 +42,10 @@ encounter {
     }
   }
 
-  def typeOfStay = context.source[episode().stayType()]?.getAt(StayType.CODE)
+  final def typeOfStay = context.source[episode().stayType()]?.getAt(StayType.CODE)
   if (typeOfStay) {
     class_ {
-      def codeDisplay = getTypeOfStayCode(typeOfStay)
+      final def codeDisplay = getTypeOfStayCode(typeOfStay)
       system = "http://terminology.hl7.org/CodeSystem/v2-0004"
       code = codeDisplay[0]
       display = codeDisplay[1]
@@ -55,9 +55,9 @@ encounter {
       system = "http://terminology.hl7.org/CodeSystem/v2-0004"
       code = "U"
       display = "Unknown"
-	}
+    }
   }
-  def medDepartment = context.source[episode().medDepartment()]
+  final def medDepartment = context.source[episode().medDepartment()]
   if (medDepartment) {
     serviceType {
       coding {
@@ -102,11 +102,11 @@ encounter {
   }
 
   status = Encounter.EncounterStatus.UNKNOWN
-  
+
 }
 
 
-static List getTypeOfStayCode(Object cxxTypeOfStay) {
+static List getTypeOfStayCode(final Object cxxTypeOfStay) {
   switch (cxxTypeOfStay) {
     case "AH-001":
       return ["O", "Outpatient"]

@@ -1,4 +1,4 @@
-package projects.cxx.v2
+package projects.databox
 
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
@@ -19,15 +19,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
- * @author Mike Wähnert
- * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
+ * Represented by CXX LaborMapping
+ * @author Marvin Schmidtke
  * TODO: extend example for Enumerations and RadioOptionGroups
  * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
  * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
  */
 observation {
-  def whitelistFindingCodes = ["RADIOLOGYFINDING", "MOLPATH_MUTATIONDIAGNOSIS", "MICROBIOLOGYFINDING","MOLPATH_LYMPHOMDIAGNOSIS","LEGACY_MP","MOLPATH_FISH","MOLPATH_PATHOGEN","MOLPATH_ENDOPREDICT"]
+  final def whitelistFindingCodes = ["RADIOLOGYFINDING", "MOLPATH_MUTATIONDIAGNOSIS", "MICROBIOLOGYFINDING", "MOLPATH_LYMPHOMDIAGNOSIS", "LEGACY_MP", "MOLPATH_FISH", "MOLPATH_PATHOGEN", "MOLPATH_ENDOPREDICT"]
   if(!whitelistFindingCodes.contains(context.source[laborMapping().laborFinding().laborMethod().code()] as String)){
     return
   }
@@ -48,7 +47,7 @@ observation {
   }
 
 
-  def episode = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find { it[LaborMapping.EPISODE] != null }
+  final def episode = context.source[laborFindingLaborValue().laborFinding().laborMappings()].find { it[LaborMapping.EPISODE] != null }
   if (episode) {
     encounter {
       reference = "Encounter/" + episode[Episode.ID]

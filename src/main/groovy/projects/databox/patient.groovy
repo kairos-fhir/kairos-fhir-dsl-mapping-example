@@ -1,4 +1,4 @@
-package projects.cxx.v2
+package projects.databox
 
 
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -11,8 +11,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
- * @author Mike Wähnert
- * @since v.1.5.0, CXX.v.3.17.1.5
+ * @author Marvin Schmidtke
  */
 patient {
 

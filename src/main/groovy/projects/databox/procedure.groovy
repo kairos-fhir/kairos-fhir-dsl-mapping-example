@@ -1,4 +1,4 @@
-package projects.mii.modul.prozedur
+package projects.databox
 
 import de.kairos.fhir.centraxx.metamodel.enums.Localization
 import org.hl7.fhir.r4.model.Procedure
@@ -7,12 +7,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 
 /**
  * Represented by CXX MedProcedure
- * Specified by https://simplifier.net/medizininformatikinitiative-modulprozeduren/prozedur v.2.0.0
- * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @author Marvin Schmidtke
  * TODO: bodysite: is it actually monitored in CXX?
  */
-
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]
 
@@ -25,10 +22,10 @@ procedure {
     coding {
       system = "urn:centraxx:CodeSystem/OpsCatalog-" + context.source[medProcedure().opsEntry().catalogue().id()]
       version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
-      code = context.source[medProcedure().opsEntry().code()] as String      
+      code = context.source[medProcedure().opsEntry().code()] as String
     }
   }
-  
+
 
   performedDateTime {
     date = normalizeDate(context.source[medProcedure().procedureDate().date()] as String)
@@ -44,12 +41,12 @@ procedure {
   subject {
     reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
   }
-  
+
   encounter {
     reference = "Encounter/" + context.source[medProcedure().episode().id()]
   }
-  
-  }
+
+}
 
 /**
  * removes milli seconds and time zone.
@@ -60,7 +57,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapCategory(String opsCode) {
+static String mapCategory(final String opsCode) {
   final char firstChar = opsCode.charAt(0)
   switch (firstChar) {
     case "1": return "103693007"
@@ -73,7 +70,7 @@ static String mapCategory(String opsCode) {
   }
 }
 
-static String mapLocalisation(Localization cxxLocalization) {
+static String mapLocalisation(final Localization cxxLocalization) {
   switch (cxxLocalization) {
     case Localization.LEFT: return "L"
     case Localization.RIGHT: return "R"
