@@ -29,12 +29,12 @@ specimen {
 static String getPatientId(final String mpi) {
   final String cacheFilePath = "C:\\Users\\u1089116\\centraxx-home\\groovy-cache\\mpiToFhirId.json"
   final Map<String, String> mpiToFhirId = loadCache(cacheFilePath);
-  final String fhirId = mpiToFhirId.computeIfAbsent(mpi, { final k -> queryFhirIdFomDiz(mpi) })
+  final String fhirId = mpiToFhirId.computeIfAbsent(mpi, { final k -> queryFhirIdFromDiz(mpi) })
   persistCache(cacheFilePath, mpiToFhirId)
   return fhirId
 }
 
-static String queryFhirIdFomDiz(final String mpi) {
+static String queryFhirIdFromDiz(final String mpi) {
   Thread.sleep(1000) // simulate a long running task
   return UUID.randomUUID().toString()
 }
