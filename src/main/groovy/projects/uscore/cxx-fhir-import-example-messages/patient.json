@@ -1,11 +1,6 @@
 {
   "resourceType": "Patient",
   "id": "578",
-  "meta": {
-    "profile": [
-      "https://fhir.centraxx.de/StructureDefinition/Patient"
-    ]
-  },
   "extension": [
     {
       "url": "https://fhir.centraxx.de/extension/patient/ethnicities",

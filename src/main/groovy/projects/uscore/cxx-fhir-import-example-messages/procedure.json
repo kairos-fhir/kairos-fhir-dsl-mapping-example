@@ -1,11 +1,6 @@
 {
   "resourceType": "Procedure",
   "id": "1",
-  "meta": {
-    "profile": [
-      "https://fhir.centraxx.de/StructureDefinition/Procedure"
-    ]
-  },
   "status": "unknown",
   "code": {
     "coding": [

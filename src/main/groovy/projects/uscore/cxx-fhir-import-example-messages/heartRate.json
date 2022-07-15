@@ -1,11 +1,6 @@
 {
   "resourceType": "Observation",
   "id": "125",
-  "meta": {
-    "profile": [
-      "https://fhir.centraxx.de/StructureDefinition/Observation"
-    ]
-  },
   "status": "unknown",
   "code": {
     "coding": [
