@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - DEGREES_CELSIUS</Value>
+        <Value>°C</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Grad Celsius</Value>
+        <Value>°C</Value>
       </NameMultilingualEntries>
       <Code>DEGREES_CELSIUS</Code>
       <Used>false</Used>

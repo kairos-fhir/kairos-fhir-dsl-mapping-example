@@ -7,12 +7,12 @@
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>(en) - BODY_MASS_INDEX</Value>
+        <Lang>kg/m²</Lang>
+        <Value>Kilogram per square meter</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Kilogramm pro Quadratmeter</Value>
+        <Value>kg/m²</Value>
       </NameMultilingualEntries>
       <Code>KG_PER_M2</Code>
       <Used>false</Used>

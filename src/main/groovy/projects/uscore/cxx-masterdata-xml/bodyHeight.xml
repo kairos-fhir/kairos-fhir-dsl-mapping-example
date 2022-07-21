@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Zentimeter</Value>
+        <Value>cm</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>centi metre</Value>
+        <Value>cm</Value>
       </NameMultilingualEntries>
       <Code>CENTI_METRE</Code>
       <Used>false</Used>

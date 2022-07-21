@@ -1,120 +1,183 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
-    <Source>CENTRAXX</Source>
-    <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-    <ExportDate>2022-03-31T14:52:14.712+02:00</ExportDate>
-    <CatalogueData>
-        <FlexibleDataSetCatalogueItem>
-            <Code>US_CORE_GOAL</Code>
-            <NameMultilingualEntries>
-                <Lang>en</Lang>
-                <Value>US Core Goal</Value>
-            </NameMultilingualEntries>
-            <NameMultilingualEntries>
-                <Lang>de</Lang>
-                <Value>US Core Goal</Value>
-            </NameMultilingualEntries>
-            <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/11" DisplayName="Goal Lifecycle Status">US_CORE_GOAL_LIFECYCLE_STATUS</FlexibleValueRef>
-                <Required>false</Required>
-            </FlexibleValueComplexRefs>
-            <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/10" DisplayName="Goal Description">US_CORE_GOAL_DESCRIPTION</FlexibleValueRef>
-                <Required>false</Required>
-            </FlexibleValueComplexRefs>
-            <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/13" DisplayName="Goal DueDate">US_CORE_GOAL_DUEDATE</FlexibleValueRef>
-                <Required>false</Required>
-            </FlexibleValueComplexRefs>
-            <Systemwide>true</Systemwide>
-            <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-            <Category>GENERAL</Category>
-            <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/12">
-                <Name>US Core Goal</Name>
-                <Version>6</Version>
-                <SyncId>2eddc5e7-e1fc-4aff-bca2-b2e00e28de49</SyncId>
-            </CrfTemplateRef>
-            <Version>6</Version>
-            <SyncId>eea9c5b3-d6ea-49e9-b6bd-4b96a06b109f</SyncId>
-        </FlexibleDataSetCatalogueItem>
-        <CrfTemplate>
-            <Name>US Core Goal</Name>
-            <CrfTemplateSection>
-                <Name>GOAL</Name>
-                <NameMultilingualEntries>
-                    <Lang>de</Lang>
-                    <Value>GOAL</Value>
-                </NameMultilingualEntries>
-                <NameMultilingualEntries>
-                    <Lang>en</Lang>
-                    <Value>GOAL</Value>
-                </NameMultilingualEntries>
-                <Code>GOAL</Code>
-                <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/11" DisplayName="Goal Lifecycle Status">US_CORE_GOAL_LIFECYCLE_STATUS</LaborValue>
-                    <LowerRow>0</LowerRow>
-                    <LowerColumn>0</LowerColumn>
-                    <UpperRow>0</UpperRow>
-                    <UpperColumn>0</UpperColumn>
-                    <Mandatory>false</Mandatory>
-                    <VisibleCaption>true</VisibleCaption>
-                    <FieldType>LABORVALUE</FieldType>
-                    <TabIndex>0</TabIndex>
-                    <ReadOnly>false</ReadOnly>
-                    <Pseudomized>false</Pseudomized>
-                    <OnsetEvent>false</OnsetEvent>
-                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
-                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
-                    <SyncId>95257f96-edbb-40fb-aa73-7a12d375433e</SyncId>
-                </CrfTemplateField>
-                <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/10" DisplayName="Goal Description">US_CORE_GOAL_DESCRIPTION</LaborValue>
-                    <LowerRow>1</LowerRow>
-                    <LowerColumn>0</LowerColumn>
-                    <UpperRow>1</UpperRow>
-                    <UpperColumn>0</UpperColumn>
-                    <Mandatory>false</Mandatory>
-                    <VisibleCaption>true</VisibleCaption>
-                    <FieldType>LABORVALUE</FieldType>
-                    <TabIndex>0</TabIndex>
-                    <ReadOnly>false</ReadOnly>
-                    <Pseudomized>false</Pseudomized>
-                    <OnsetEvent>false</OnsetEvent>
-                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
-                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
-                    <SyncId>acc950f2-b1c5-45fe-aaa4-7f1fc922b32c</SyncId>
-                </CrfTemplateField>
-                <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/13" DisplayName="Goal DueDate">US_CORE_GOAL_DUEDATE</LaborValue>
-                    <LowerRow>2</LowerRow>
-                    <LowerColumn>0</LowerColumn>
-                    <UpperRow>2</UpperRow>
-                    <UpperColumn>0</UpperColumn>
-                    <Mandatory>false</Mandatory>
-                    <VisibleCaption>true</VisibleCaption>
-                    <FieldType>LABORVALUE</FieldType>
-                    <TabIndex>0</TabIndex>
-                    <ReadOnly>false</ReadOnly>
-                    <Pseudomized>false</Pseudomized>
-                    <OnsetEvent>false</OnsetEvent>
-                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
-                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
-                    <SyncId>9cb06720-96fb-4c1d-aec9-50aef4ce38f0</SyncId>
-                </CrfTemplateField>
-                <Height>3</Height>
-                <Width>1</Width>
-                <Position>0</Position>
-                <CrfSectionType>PLAIN</CrfSectionType>
-                <IsChangeable>true</IsChangeable>
-                <SyncId>aaa763dd-a0d1-4da1-acae-6d47602aaf6a</SyncId>
-            </CrfTemplateSection>
-            <TemplateType>LABORMETHOD</TemplateType>
-            <Version>6</Version>
-            <EntityStatus>ACTIVE</EntityStatus>
-            <Global>false</Global>
-            <MultipleUse>false</MultipleUse>
-            <Active>false</Active>
-            <SyncId>2eddc5e7-e1fc-4aff-bca2-b2e00e28de49</SyncId>
-        </CrfTemplate>
-    </CatalogueData>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2022.2.1-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-07-21T12:40:55.052Z</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleLongStringValue>
+        <Code>US_CORE_GOAL_DESCRIPTION</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>(de) - US_CORE_GOAL_DESCRIPTION</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - US_CORE_GOAL_DESCRIPTION</Value>
+        </NameMultilingualEntries>
+        <SyncId>b705849d-2ca4-4627-aa8b-4a007328fbb8</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleLongStringValue>
+      <FlexibleDateValue>
+        <Code>US_CORE_GOAL_DUEDATE</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>(de) - US_CORE_GOAL_DUEDATE</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - US_CORE_GOAL_DUEDATE</Value>
+        </NameMultilingualEntries>
+        <SyncId>b42b6a99-e5b5-4fc7-a726-6a2ea028145d</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleDateValue>
+      <FlexibleStringValue>
+        <Code>US_CORE_GOAL_LIFECYCLE_STATUS</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>(de) - US_CORE_GOAL_LIFECYCLE_STATUS</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - US_CORE_GOAL_LIFECYCLE_STATUS</Value>
+        </NameMultilingualEntries>
+        <SyncId>ac8c8551-5542-43a4-8105-827e8f93571d</SyncId>
+        <UserEntries>
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem>
+      <Code>US_CORE_GOAL</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Goal</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Goal</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/37" DisplayName="(en) - US_CORE_GOAL_LIFECYCLE_STATUS">
+          US_CORE_GOAL_LIFECYCLE_STATUS
+        </FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueLongString/40" DisplayName="(en) - US_CORE_GOAL_DESCRIPTION">
+          US_CORE_GOAL_DESCRIPTION
+        </FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/39" DisplayName="(en) - US_CORE_GOAL_DUEDATE">US_CORE_GOAL_DUEDATE
+        </FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/19">
+        <Name>US Core Goal</Name>
+        <Version>6</Version>
+        <SyncId>2eddc5e7-e1fc-4aff-bca2-b2e00e28de49</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>eea9c5b3-d6ea-49e9-b6bd-4b96a06b109f</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>US Core Goal</Name>
+      <CrfTemplateSection>
+        <Name>GOAL</Name>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>GOAL</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>GOAL</Value>
+        </NameMultilingualEntries>
+        <Code>GOAL</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/37" DisplayName="(en) - US_CORE_GOAL_LIFECYCLE_STATUS">
+            US_CORE_GOAL_LIFECYCLE_STATUS
+          </LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>95257f96-edbb-40fb-aa73-7a12d375433e</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueLongString/40" DisplayName="(en) - US_CORE_GOAL_DESCRIPTION">
+            US_CORE_GOAL_DESCRIPTION
+          </LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>acc950f2-b1c5-45fe-aaa4-7f1fc922b32c</SyncId>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/39" DisplayName="(en) - US_CORE_GOAL_DUEDATE">US_CORE_GOAL_DUEDATE</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <DefaultDateValue>
+            <Date>2022-07-21T12:40:32.963Z</Date>
+            <Precision>EXACT</Precision>
+          </DefaultDateValue>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>9cb06720-96fb-4c1d-aec9-50aef4ce38f0</SyncId>
+        </CrfTemplateField>
+        <Height>3</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>aaa763dd-a0d1-4da1-acae-6d47602aaf6a</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>6</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <InactivatedOn>2022-07-21T10:09:16.053Z</InactivatedOn>
+      <SyncId>2eddc5e7-e1fc-4aff-bca2-b2e00e28de49</SyncId>
+    </CrfTemplate>
+  </CatalogueData>
+  <EffectData/>
 </CentraXXDataExchange>

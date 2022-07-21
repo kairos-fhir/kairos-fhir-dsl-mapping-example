@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Millimeter Hg</Value>
+        <Value>mmHg</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - MM_HG</Value>
+        <Value>mmHg</Value>
       </NameMultilingualEntries>
       <Code>MM_HG</Code>
       <Used>false</Used>
@@ -64,7 +64,7 @@
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - BLOOD_PRESSURE</Value>
+        <Value>US Core Pressure</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck systolisch">BLOOD_PRESSURE_SYS</FlexibleValueRef>

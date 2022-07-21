@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>per minute</Value>
+        <Value>/min</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - /min</Value>
+        <Value>/min</Value>
       </NameMultilingualEntries>
       <Code>PER_MINUTE</Code>
       <Used>false</Used>
@@ -27,7 +27,7 @@
         </NameMultilingualEntries>
         <NameMultilingualEntries>
           <Lang>en</Lang>
-          <Value>(en) - Respiratory rate</Value>
+          <Value>Respiratory rate</Value>
         </NameMultilingualEntries>
         <SyncId>bf18a247-e495-4c14-b3c5-abcb802fdeb5</SyncId>
         <UserEntries>

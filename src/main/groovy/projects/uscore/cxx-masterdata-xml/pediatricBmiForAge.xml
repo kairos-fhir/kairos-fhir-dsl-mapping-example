@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - PERCENT</Value>
+        <Value>%</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Prozent</Value>
+        <Value>%</Value>
       </NameMultilingualEntries>
       <Code>PERCENT</Code>
       <Used>false</Used>

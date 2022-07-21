@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - PERCENT</Value>
+        <Value>%</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Prozent</Value>
+        <Value>%</Value>
       </NameMultilingualEntries>
       <Code>PERCENT</Code>
       <Used>false</Used>
@@ -21,11 +21,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - LITRE_PER_MINUTE</Value>
+        <Value>l/min</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Liter pro Minute</Value>
+        <Value>l/min</Value>
       </NameMultilingualEntries>
       <Code>LITRE_PER_MINUTE</Code>
       <Used>false</Used>

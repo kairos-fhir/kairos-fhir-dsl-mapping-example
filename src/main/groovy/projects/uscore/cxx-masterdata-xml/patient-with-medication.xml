@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+    <ExportDate>2022-07-21T13:24:19.060+02:00</ExportDate>
+    <EffectData>
+        <PatientDataSet FhirId="Patient/192" ImportModus="CREATE_OR_UPDATE">
+            <Source>CENTRAXX</Source>
+            <IDContainer>
+                <FlexibleID isUpdateAllowed="false">
+                    <key>MPI</key>
+                    <value>10</value>
+                </FlexibleID>
+            </IDContainer>
+            <OrganisationUnitRefs RefUrl="/rest/export/catalogdata/OrganizationUnit/1" DisplayName="CENTRAXX">CentraXX</OrganisationUnitRefs>
+            <Medication>
+                <Code>PZN-1</Code>
+                <Name>Aspirin</Name>
+                <FillerOrderNumber>FILLER-ORDERNUM-1</FillerOrderNumber>
+                <PlacerOrderNumber>PLACER-ORDERNUM-1</PlacerOrderNumber>
+                <ServiceType>VER</ServiceType>
+                <ObservationBegin>
+                    <Date>2022-07-21T13:22:35.160+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ObservationBegin>
+                <ObservationEnd>
+                    <Date>2022-07-21T13:22:35.160+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ObservationEnd>
+                <ResultDate>
+                    <Date>2022-07-21T13:22:35.160+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ResultDate>
+                <ResultStatus>EM</ResultStatus>
+                <Prescription>true</Prescription>
+                <Dosis>500</Dosis>
+                <UnitTypeRef>mg</UnitTypeRef>
+                <ApplicationForm>oral</ApplicationForm>
+                <Notes>notes on the medication</Notes>
+                <MethodOfApplication>swallow</MethodOfApplication>
+                <DosisSchema>1-0-1</DosisSchema>
+                <Agent>acetylsalicylic acid</Agent>
+                <AgentGroup>Nonsteroidal anti-inflammatory drug</AgentGroup>
+                <isDose>400</isDose>
+                <trgDose>600</trgDose>
+                <deviationDose>100</deviationDose>
+                <trgDate>2022-07-21T13:22:35.160+02:00</trgDate>
+                <Transcriptionist>transcriptionist</Transcriptionist>
+                <TranscriptionDate>2022-07-21T13:22:35.160+02:00</TranscriptionDate>
+                <PrescribedBy>prescribedBy</PrescribedBy>
+                <ApplicationMedium>pill</ApplicationMedium>
+                <Quantity>2.00000000</Quantity>
+                <OrdinanceReleaseForm>wednesday - for one week</OrdinanceReleaseForm>
+                <OrdinanceReleaseMethod>telephone</OrdinanceReleaseMethod>
+            </Medication>
+            <PatientStatus>
+                <Active>true</Active>
+            </PatientStatus>
+            <IsVirtual>false</IsVirtual>
+        </PatientDataSet>
+    </EffectData>
+</CentraXXDataExchange>

@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>per minute</Value>
+        <Value>/min</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - /min</Value>
+        <Value>/min</Value>
       </NameMultilingualEntries>
       <Code>PER_MINUTE</Code>
       <Used>false</Used>

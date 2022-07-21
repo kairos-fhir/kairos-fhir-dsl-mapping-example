@@ -8,11 +8,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>Kilogramm</Value>
+        <Value>kg</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>kilo gramm</Value>
+        <Value>kg</Value>
       </NameMultilingualEntries>
       <Code>KILOGRAMM</Code>
       <Used>false</Used>
