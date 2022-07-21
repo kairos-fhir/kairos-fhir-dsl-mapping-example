@@ -2,30 +2,30 @@ How to release
 ==============
 
 * If you have permissions. ;)
-* For example v.1.16.0.
+* For example v.1.17.0.
 
 # Checks
 
 1. Resolve or release SNAPSHOT dependencies before, especially the fhir-dsl lib. Major versions should use the same version number as the fhir DSL.
-   e.g. `<kairos-fhir-dsl.version>1.16.0-SNAPSHOT</kairos-fhir-dsl.version>`
-   becomes `<kairos-fhir-dsl.version>1.16.0</kairos-fhir-dsl.version>`
-2. Deploy the FHIR-DSL version to release to GitHub packages and make sure, that v.1.16.0 is available.
+   e.g. `<kairos-fhir-dsl.version>1.17.0-SNAPSHOT</kairos-fhir-dsl.version>`
+   becomes `<kairos-fhir-dsl.version>1.17.0</kairos-fhir-dsl.version>`
+2. Deploy the FHIR-DSL version to release to GitHub packages and make sure, that v.1.17.0 is available.
 3. Push the updated How-To documents.
 
 # Release
 
-4. Create the bugfix branch, the release is the first bugfix version 1.16.0. Bugfixes will increase last version number 1.16.1, 1.16.2, etc.
+4. Create the bugfix branch, the release is the first bugfix version 1.17.0. Bugfixes will increase last version number 1.17.1, 1.17.2, etc.
 
 ``` 
-mvn release:branch -DbranchName="bugfix-1.16" 
+mvn release:branch -DbranchName="bugfix-1.17" 
 ```
 
-The upcoming new version is `1.17.0-SNAPSHOT`.
+The upcoming new version is `1.18.0-SNAPSHOT`.
 
 6. Switch to the branch release branch and perform QA etc.
 
 ```
-git checkout bugfix-1.16
+git checkout bugfix-1.17
 ```
 
 7. Create the release tag
