@@ -7,10 +7,7 @@ import org.hl7.fhir.r4.model.Identifier
 import org.hl7.fhir.r4.model.Patient
 
 /**
- * Transforms a patient bundle. In CXX the user selects always a single patient from the repository connect FHIR search result to be staged,
- * merged and imported to CentraXX. Therefore all bundles should contain only one source patient resource.
- * It is possible to transform multiple resources together, but it should result in exactly one patient bundle entry.
- * All other resources of all bundles of all scripts will be stored to the first patient. Other patients are ignored.
+ * Transforms a patient bundle.
  * @author Mike Wähnert
  * @since v.1.7.0, CXX.v.2022.3.0
  */
