@@ -1,5 +1,6 @@
 package repoconnect
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.Encounter
 
@@ -25,7 +26,7 @@ bundle {
                     value = sourceId
                     type {
                       coding {
-                        system = "urn:centraxx"
+                        system = FhirUrls.System.IdContainerType.BASE_URL
                         code = "EPISODEID"
                       }
                     }

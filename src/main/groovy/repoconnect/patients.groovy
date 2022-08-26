@@ -1,6 +1,6 @@
 package repoconnect
 
-
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
@@ -37,7 +37,7 @@ bundle {
                     value = sourceIdentifier.value
                     type {
                       coding {
-                        system = "urn:centraxx"
+                        system = FhirUrls.System.IdContainerType.BASE_URL
                         code = "PATIENTID"
                       }
                     }
