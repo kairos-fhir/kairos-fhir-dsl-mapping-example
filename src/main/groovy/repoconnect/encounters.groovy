@@ -18,6 +18,7 @@ bundle {
           entry {
             resource {
               encounter {
+                id = sourceEncounter.getId()
                 final String sourceId = sourceEncounter.getIdElement().getIdPart()
                 if (sourceId != null) {
                   identifier {
