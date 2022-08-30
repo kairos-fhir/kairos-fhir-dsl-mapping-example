@@ -21,20 +21,32 @@ bundle {
           entry {
             resource {
               patient {
+
                 final HumanName sourceName = sourcePatient.getNameFirstRep()
                 humanName {
-                  family = sourceName.family
+                  family = sourceName.getFamily()
                   sourceName.given.each {
                     given(it.getValue())
                   }
                 }
+
                 gender = sourcePatient.getGender()
                 birthDate = sourcePatient.getBirthDateElement()
+
+                identifier {
+                  value = sourcePatient.getIdElement().getIdPart()
+                  type {
+                    coding {
+                      system = FhirUrls.System.IdContainerType.BASE_URL
+                      code = "MPI"
+                    }
+                  }
+                }
 
                 final Identifier sourceIdentifier = sourcePatient.getIdentifier().find { (it.system == "http://www.alpha-hospital.alp/patient-id") }
                 if (sourceIdentifier != null) {
                   identifier {
-                    value = sourceIdentifier.value
+                    value = sourceIdentifier.getValue()
                     type {
                       coding {
                         system = FhirUrls.System.IdContainerType.BASE_URL
@@ -43,6 +55,7 @@ bundle {
                     }
                   }
                 }
+
                 generalPractitioner {
                   identifier {
                     value = "CENTRAXX"
