@@ -21,6 +21,7 @@ bundle {
           entry {
             resource {
               patient {
+                id = sourcePatient.getId()
 
                 final HumanName sourceName = sourcePatient.getNameFirstRep()
                 humanName {

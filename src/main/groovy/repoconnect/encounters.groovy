@@ -5,7 +5,7 @@ import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.Encounter
 
 /**
- * Transforms a encounter bundle.
+ * Transforms encounter bundles.
  * @author Mike Wähnert
  * @since v.1.7.0, CXX.v.2022.3.0
  */
@@ -19,7 +19,8 @@ bundle {
           entry {
             resource {
               encounter {
-                id = sourceEncounter.getId()
+                id = sourceEncounter.getId() // important for references in other resources
+
                 final String sourceId = sourceEncounter.getIdElement().getIdPart()
                 if (sourceId != null) {
                   identifier {
@@ -32,6 +33,7 @@ bundle {
                     }
                   }
                 }
+                subject = sourceEncounter.getSubject()
                 period = sourceEncounter.getPeriod()
                 serviceProvider {
                   identifier {

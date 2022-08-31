@@ -8,7 +8,7 @@ import org.hl7.fhir.r4.model.Quantity
 import org.hl7.fhir.r4.model.Specimen
 
 /**
- * Transforms a specimen bundle.
+ * Transforms a specimen bundles.
  * @author Mike Wähnert
  * @since v.1.7.0, CXX.v.2022.3.0
  */
@@ -37,6 +37,7 @@ bundle {
                   }
                 }
 
+                subject = sourceSpecimen.getSubject()
                 final String snomedSpecimenType = findSnomedSpecimenType(sourceSpecimen)
                 final String cxxSampleTypeCode = mapToCxxSampleType(snomedSpecimenType);
                 if (cxxSampleTypeCode != null) {
@@ -80,6 +81,6 @@ private static String mapToCxxSampleType(final String snomedSpecimenType) {
   } else if (snomedSpecimenType == "87612001") { //Blood (substance)
     return "BLD" //Blood
   } else {
-    return null;
+    return null //TODO add other mappings
   }
 }
