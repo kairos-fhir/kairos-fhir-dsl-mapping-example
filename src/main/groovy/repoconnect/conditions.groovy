@@ -42,6 +42,9 @@ bundle {
                   }
                 }
 
+                subject = sourceCondition.getSubject()
+                encounter = sourceCondition.getEncounter()
+
                 // onsetDateTime is mandatory and business key
                 if (sourceCondition.hasOnsetDateTimeType()) {
                   onsetDateTime = sourceCondition.getOnsetDateTimeType();
@@ -53,10 +56,8 @@ bundle {
                   onsetDateTime = new Date()
                 }
 
-                subject = sourceCondition.getSubject()
                 recordedDate = sourceCondition.getRecordedDateElement()
                 note = sourceCondition.getNote();
-                encounter = sourceCondition.getEncounter()
               }
             }
           }
