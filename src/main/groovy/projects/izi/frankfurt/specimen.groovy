@@ -67,7 +67,7 @@ specimen {
   }
 
   final def patIdContainer = context.source[sample().patientContainer().idContainer()]?.find {
-    "SID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "PaIdTMP" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
   if (patIdContainer) {
