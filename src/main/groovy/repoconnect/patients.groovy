@@ -31,7 +31,10 @@ bundle {
                   }
                 }
 
-                gender = sourcePatient.getGender()
+                if (sourcePatient.hasGender()) {
+                  gender = sourcePatient.getGender()
+                }
+
                 birthDate = sourcePatient.getBirthDateElement()
 
                 identifier {
