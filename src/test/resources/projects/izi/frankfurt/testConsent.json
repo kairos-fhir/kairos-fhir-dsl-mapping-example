@@ -1,0 +1,344 @@
+
+  {
+    "id": 133,
+    "creationdate": "2022-09-05T16:46:10.523+02:00",
+    "patientcontainer": {
+      "id": 353,
+      "creationdate": "2022-09-05T16:46:17.147+02:00",
+      "patientId": 107,
+      "attributes": [],
+      "anonymousId": 8612938029538921782,
+      "organisationUnits": [
+        {
+          "id": 1,
+          "creationdate": "2021-12-21T12:23:55.697+01:00",
+          "code": "CentraXX",
+          "syncId": "52CC2644-5AD5-4AF8-BE05-F0D69843C082"
+        }
+      ],
+      "idContainer": [
+        {
+          "id": 346,
+          "creationdate": "2022-09-05T16:46:17.207+02:00",
+          "psn": "2022-09-05",
+          "tentative": false,
+          "idContainerType": {
+            "id": 2,
+            "creationdate": "2021-12-21T12:23:55.713+01:00",
+            "syncId": "DC3DBB9F-7AEC-4556-926E-21E716317C9B",
+            "name": "MPI",
+            "code": "MPI",
+            "decisive": true,
+            "editable": true,
+            "mandatory": false,
+            "pseudonym": false,
+            "system": true,
+            "kind": "PATIENT",
+            "allowUpdateForSync": false,
+            "isBlinded": false
+          }
+        }
+      ],
+      "patientStatus": {
+        "active": true
+      }
+    },
+    "consentType": {
+      "id": 35,
+      "creationdate": "2022-08-26T09:49:26.060+02:00",
+      "syncId": "24d0990d-8ec0-4cf4-a6b6-96d225ea11f2",
+      "code": "Studie-HAAR-BLUT-DROGEN",
+      "flexiStudy": {
+        "id": 133,
+        "creationdate": "2022-07-19T10:21:29.933+02:00",
+        "profile": {
+          "id": 124,
+          "creationdate": "2022-07-19T10:02:45.953+02:00",
+          "code": "BASE",
+          "syncId": "09353407-3b43-48a9-a8e1-1b3c27f58299",
+          "crfTemplate": {
+            "id": 1429,
+            "creationdate": "2022-07-19T10:02:45.953+02:00",
+            "entityStatus": "ACTIVE",
+            "name": "CRF_BASE_19072022_100246_051",
+            "active": false,
+            "version": 0,
+            "multipleUse": false,
+            "type": "STUDYPROFILE",
+            "global": false,
+            "cxxId": 186,
+            "syncId": "a8cf396f-cbf2-4906-a19f-97ecac182e32"
+          }
+        },
+        "code": "INHIBIT",
+        "syncId": "7f9036c7-354d-4966-aaf5-1e1860acd944",
+        "complete": true,
+        "lastChangeOn": "2022-07-19T12:43:22.127+02:00",
+        "status": "DRAFT",
+        "closed": false,
+        "proposalAllowed": true
+      },
+      "nameMultilingualEntries2": [
+        {
+          "id": 31285,
+          "creationdate": "2022-08-26T09:49:26.060+02:00",
+          "relatedTable": "CONSENTTYPE",
+          "relatedColumn": "NAME",
+          "relatedOid": 35,
+          "lang": "de",
+          "value": "Studie-HAAR-BLUT-DROGEN",
+          "modifiedOn": "2022-08-26T09:49:26.060+02:00",
+          "system": false,
+          "entityStatus": "ACTIVE"
+        },
+        {
+          "id": 31286,
+          "creationdate": "2022-08-26T09:49:26.060+02:00",
+          "relatedTable": "CONSENTTYPE",
+          "relatedColumn": "NAME",
+          "relatedOid": 35,
+          "lang": "en",
+          "value": "(en) - Studie-HAAR-BLUT-DROGEN",
+          "modifiedOn": "2022-08-26T09:49:26.060+02:00",
+          "system": false,
+          "entityStatus": "ACTIVE"
+        }
+      ],
+      "descMultilingualEntries2": [],
+      "policies": [
+        {
+          "id": 1,
+          "creationdate": "2022-08-26T09:48:48.793+02:00",
+          "consentableObject": "SAMPLE",
+          "consentableAction": {
+            "id": 1,
+            "creationdate": "2022-08-26T09:47:51.387+02:00",
+            "syncId": "5ca3ae3a-ea83-41a0-abdd-12338c8c6012",
+            "code": "BLD",
+            "nameMultilingualEntries2": [
+              {
+                "id": 31282,
+                "creationdate": "2022-08-26T09:47:51.390+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 1,
+                "lang": "en",
+                "value": "(en) - BLD",
+                "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              },
+              {
+                "id": 31281,
+                "creationdate": "2022-08-26T09:47:51.390+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 1,
+                "lang": "de",
+                "value": "Möchten Sie Blutproben zur Forschung freigeben",
+                "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              }
+            ]
+          },
+          "syncId": "237739f2-5efe-43c7-8200-c8cdcdf3a72f",
+          "entityDeleteableOnRevocation": false,
+          "entityLockableOnRevocation": false,
+          "position": 0
+        },
+        {
+          "id": 2,
+          "creationdate": "2022-08-26T09:48:55.057+02:00",
+          "consentableObject": "SAMPLE",
+          "consentableAction": {
+            "id": 2,
+            "creationdate": "2022-08-26T09:48:12.473+02:00",
+            "syncId": "56834c71-422b-4d2e-96e3-45df111836f5",
+            "code": "Hautlkrebs",
+            "nameMultilingualEntries2": [
+              {
+                "id": 31284,
+                "creationdate": "2022-08-26T09:48:12.473+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 2,
+                "lang": "en",
+                "value": "(en) - HAAR",
+                "modifiedOn": "2022-08-26T09:48:12.473+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              },
+              {
+                "id": 31283,
+                "creationdate": "2022-08-26T09:48:12.473+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 2,
+                "lang": "de",
+                "value": "Möchten Sie Hautlkrebs einwilligen?",
+                "modifiedOn": "2022-08-26T11:01:17.347+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              }
+            ]
+          },
+          "syncId": "98fdc463-7376-40bc-8d57-da08b704c283",
+          "entityDeleteableOnRevocation": false,
+          "entityLockableOnRevocation": false,
+          "position": 1
+        }
+      ],
+      "system": false,
+      "entityStatus": "ACTIVE"
+    },
+    "signedOn": {
+      "date": "2020-09-05T00:00:00.000+02:00",
+      "precision": "DAY"
+    },
+    "validFrom": {
+      "date": "2021-09-05T00:00:00.000+02:00",
+      "precision": "DAY"
+    },
+    "validUntil": {
+      "date": "2022-09-05T00:00:00.000+02:00",
+      "precision": "DAY"
+    },
+    "revocation": {
+      "id": 2,
+      "creationdate": "2022-09-05T16:57:30.007+02:00",
+      "revokePartsOnly": true,
+      "signedOn": "2022-09-04T00:00:00.000+02:00",
+      "revocationElements": [
+        {
+          "id": 1,
+          "creationdate": "2022-08-26T09:48:48.793+02:00",
+          "consentableObject": "SAMPLE",
+          "consentableAction": {
+            "id": 1,
+            "creationdate": "2022-08-26T09:47:51.387+02:00",
+            "syncId": "5ca3ae3a-ea83-41a0-abdd-12338c8c6012",
+            "code": "BLD",
+            "nameMultilingualEntries2": [
+              {
+                "id": 31282,
+                "creationdate": "2022-08-26T09:47:51.390+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 1,
+                "lang": "en",
+                "value": "(en) - BLD",
+                "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              },
+              {
+                "id": 31281,
+                "creationdate": "2022-08-26T09:47:51.390+02:00",
+                "relatedTable": "CONSENTABLEACTION",
+                "relatedColumn": "NAME",
+                "relatedOid": 1,
+                "lang": "de",
+                "value": "Möchten Sie Blutproben zur Forschung freigeben",
+                "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+                "system": false,
+                "entityStatus": "ACTIVE"
+              }
+            ]
+          },
+          "syncId": "237739f2-5efe-43c7-8200-c8cdcdf3a72f",
+          "entityDeleteableOnRevocation": false,
+          "entityLockableOnRevocation": false,
+          "position": 0
+        }
+      ],
+      "notes": "revoke info"
+    },
+    "consentElements": [
+      {
+        "id": 1,
+        "creationdate": "2022-08-26T09:48:48.793+02:00",
+        "consentableObject": "SAMPLE",
+        "consentableAction": {
+          "id": 1,
+          "creationdate": "2022-08-26T09:47:51.387+02:00",
+          "syncId": "5ca3ae3a-ea83-41a0-abdd-12338c8c6012",
+          "code": "BLD",
+          "nameMultilingualEntries2": [
+            {
+              "id": 31282,
+              "creationdate": "2022-08-26T09:47:51.390+02:00",
+              "relatedTable": "CONSENTABLEACTION",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "lang": "en",
+              "value": "(en) - BLD",
+              "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            },
+            {
+              "id": 31281,
+              "creationdate": "2022-08-26T09:47:51.390+02:00",
+              "relatedTable": "CONSENTABLEACTION",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "lang": "de",
+              "value": "Möchten Sie Blutproben zur Forschung freigeben",
+              "modifiedOn": "2022-08-26T09:47:51.390+02:00",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            }
+          ]
+        },
+        "syncId": "237739f2-5efe-43c7-8200-c8cdcdf3a72f",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "position": 0
+      },
+      {
+        "id": 2,
+        "creationdate": "2022-08-26T09:48:55.057+02:00",
+        "consentableObject": "SAMPLE",
+        "consentableAction": {
+          "id": 2,
+          "creationdate": "2022-08-26T09:48:12.473+02:00",
+          "syncId": "56834c71-422b-4d2e-96e3-45df111836f5",
+          "code": "Hautlkrebs",
+          "nameMultilingualEntries2": [
+            {
+              "id": 31284,
+              "creationdate": "2022-08-26T09:48:12.473+02:00",
+              "relatedTable": "CONSENTABLEACTION",
+              "relatedColumn": "NAME",
+              "relatedOid": 2,
+              "lang": "en",
+              "value": "(en) - HAAR",
+              "modifiedOn": "2022-08-26T09:48:12.473+02:00",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            },
+            {
+              "id": 31283,
+              "creationdate": "2022-08-26T09:48:12.473+02:00",
+              "relatedTable": "CONSENTABLEACTION",
+              "relatedColumn": "NAME",
+              "relatedOid": 2,
+              "lang": "de",
+              "value": "Möchten Sie Hautlkrebs einwilligen?",
+              "modifiedOn": "2022-08-26T11:01:17.347+02:00",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            }
+          ]
+        },
+        "syncId": "98fdc463-7376-40bc-8d57-da08b704c283",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "position": 1
+      }
+    ],
+    "consentPartsOnly": true,
+    "declined": false,
+    "notes": "bemerkung2"
+  }
