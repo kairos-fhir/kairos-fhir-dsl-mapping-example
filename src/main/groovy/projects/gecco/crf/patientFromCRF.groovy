@@ -80,7 +80,7 @@ patient {
   active = context.source[studyVisitItem().studyMember().patientContainer().patientStatus()]
 
   final def crfItemGender = context.source[studyVisitItem().crf().items()].find {
-    "COV_GECCO_GESCHLECHT_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
+    "COV_GECCO_Geschlecht_GEBURT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
   if (crfItemGender) {
     crfItemGender[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE]?.each { final gen ->
