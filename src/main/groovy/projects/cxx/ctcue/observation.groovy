@@ -54,7 +54,7 @@ observation {
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
     final idContainer = lflv.getAt(LaborValue.IDCONTAINERS)?.find {final idContainer ->
-      idContainer.getAt(ID_CONTAINER_TYPE) == "LOINC"
+      idContainer[ID_CONTAINER_TYPE]?.getAt(CODE) == "LOINC"
     }
     if (idContainer == null){
       return
@@ -67,11 +67,12 @@ observation {
         }
         lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idc ->
           coding {
-            system = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
+            system = idc[ID_CONTAINER_TYPE]?.getAt(CODE) == "LOINC" ? "http://loinc.org" : idc[ID_CONTAINER_TYPE]?.getAt(CODE)
             code = idc[PSN] as String
           }
         }
       }
+
 
       if (isNumeric(lflv)) {
         valueQuantity {
