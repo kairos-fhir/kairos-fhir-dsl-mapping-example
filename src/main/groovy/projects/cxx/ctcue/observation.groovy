@@ -53,16 +53,22 @@ observation {
   }
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
+    final idContainer = lflv.getAt(LaborValue.IDCONTAINERS)?.find {final idContainer ->
+      idContainer.getAt(ID_CONTAINER_TYPE) == "LOINC"
+    }
+    if (idContainer == null){
+      return
+    }
     component {
       code {
         coding {
           system = FhirUrls.System.LaborValue.BASE_URL
           code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(CODE) as String
         }
-        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
+        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idc ->
           coding {
-            system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
-            code = idContainer[PSN] as String
+            system = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
+            code = idc[PSN] as String
           }
         }
       }
