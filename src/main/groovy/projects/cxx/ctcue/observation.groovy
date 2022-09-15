@@ -16,6 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
@@ -52,23 +53,22 @@ observation {
     }
   }
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
-    final idContainer = lflv.getAt(LaborValue.IDCONTAINERS)?.find {final idContainer ->
-      idContainer[ID_CONTAINER_TYPE]?.getAt(CODE) == "LOINC"
+  // filter for labor values that are annotated with a LOINC code
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { final lflv ->
+    lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.IDCONTAINERS]?.any { final idc ->
+      idc?.getAt(ID_CONTAINER_TYPE)?.getAt(CODE)?.equals("LOINC")
     }
-    if (idContainer == null){
-      return
-    }
+  }.each { final lflv ->
     component {
       code {
         coding {
           system = FhirUrls.System.LaborValue.BASE_URL
           code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(CODE) as String
         }
-        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idc ->
+        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
           coding {
-            system = idc[ID_CONTAINER_TYPE]?.getAt(CODE) == "LOINC" ? "http://loinc.org" : idc[ID_CONTAINER_TYPE]?.getAt(CODE)
-            code = idc[PSN] as String
+            system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)?.equals("LOINC") ? "http://loinc.org" : idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
+            code = idContainer[PSN] as String
           }
         }
       }
