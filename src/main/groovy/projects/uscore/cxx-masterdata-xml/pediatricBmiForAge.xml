@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:24:47.705+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T17:01:00.071+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>%</Value>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>%</Value>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
       </NameMultilingualEntries>
       <Code>PERCENT</Code>
       <Used>false</Used>
@@ -30,9 +31,20 @@
           <Value>Pädiatrischer BMI für Alter</Value>
         </NameMultilingualEntries>
         <SyncId>0f71b4a7-cce3-48cd-b11e-447007e7cb48</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>59576-9</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
@@ -41,12 +53,12 @@
     <FlexibleDataSetCatalogueItem>
       <Code>US_CORE_PEDIATRIC_BMI_FOR_AGE</Code>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>US Core Pädiatrischer BMI für Alter</Value>
-      </NameMultilingualEntries>
-      <NameMultilingualEntries>
         <Lang>en</Lang>
         <Value>US Core Pediatric BMI for Age</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pädiatrischer BMI für Alter</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/258" DisplayName="Pädiatrischer BMI für Alter">PEDIATRIC_BMI_FOR_AGE</FlexibleValueRef>
@@ -68,12 +80,12 @@
       <CrfTemplateSection>
         <Name>PEDIATRIC_BMI</Name>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Pädiatrischer BMI für Alter</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Pediatric BMI for Age</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Pädiatrischer BMI für Alter</Value>
         </NameMultilingualEntries>
         <Code>PEDIATRIC_BMI</Code>
         <CrfTemplateField>
@@ -108,6 +120,18 @@
       <Active>false</Active>
       <SyncId>40213d59-7abf-4b2d-806d-8a70bef3b568</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

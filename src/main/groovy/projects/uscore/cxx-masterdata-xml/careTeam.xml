@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-28T16:16:34.138+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T15:20:27.511+02:00</ExportDate>
   <CatalogueData>
     <FlexibleValueCatalogueItem>
       <FlexibleCatalogValue>
         <Code>FHIR_CARE_TEAM_STATUS</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>FHIR Care Team Status</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>FHIR Care Team Status</Value>
         </NameMultilingualEntries>
         <SyncId>87fd28d2-d382-42c9-a536-d8a479808ab8</SyncId>
@@ -21,6 +22,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_CARE_TEAM</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/84">
           <Code>FHIR_CARE_TEAM_STATUS</Code>
@@ -42,6 +49,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_CARE_TEAM</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTMANY</ChoiseType>
         <MasterDataCatalogRef RefUrl="/rest/export/catalogdata/MasterDataCatalog/83" DisplayName="Team">CARE_TEAM</MasterDataCatalogRef>
       </FlexibleCatalogValue>
@@ -49,11 +62,11 @@
     <FlexibleDataSetCatalogueItem>
       <Code>US_CORE_CARE_TEAM</Code>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
+        <Lang>en</Lang>
         <Value>US Core Care Team</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
+        <Lang>de</Lang>
         <Value>US Core Care Team</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
@@ -75,82 +88,16 @@
       <Version>2</Version>
       <SyncId>ead084bb-4227-45a1-a672-1e59043cdcbe</SyncId>
     </FlexibleDataSetCatalogueItem>
-    <AttendingDoctor>
-      <ContactAddress>
-        <City>Hogsmead</City>
-        <Country>GB</Country>
-        <Phone1>032471625</Phone1>
-        <Phone2>124514252</Phone2>
-        <PoBox>Eulerei</PoBox>
-        <Street>Hogs street</Street>
-        <StreetNo>2134</StreetNo>
-        <Zipcode>777</Zipcode>
-        <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Poppy Pomfrey</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Poppy Pomfrey</Value>
-        </NameMultilingualEntries>
-        <ContactPersonFirstName>Poppy</ContactPersonFirstName>
-        <ContactPersonLastName>Pomfrey</ContactPersonLastName>
-        <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
-        <Institute>Hogwarts Schule für Hexerei und Zauberei</Institute>
-        <Position>Head of Healing</Position>
-        <SyncId>3f1177bc-2448-4ba3-9e87-8756ee01c669</SyncId>
-        <Building>Krankenflügel</Building>
-        <Floor>2</Floor>
-        <Room>123</Room>
-        <CxxContactId>4r9724123e</CxxContactId>
-      </ContactAddress>
-      <SyncId>b871b9a2-7cca-4e63-86cf-d9f5d0222b35</SyncId>
-    </AttendingDoctor>
-    <AttendingDoctor>
-      <ContactAddress>
-        <City>Berlin</City>
-        <Country>DE</Country>
-        <Email>horst.peters@example.com</Email>
-        <Fax>lalkcwcw</Fax>
-        <Mobile>02231212</Mobile>
-        <Phone1>012783213</Phone1>
-        <Phone2>0183912933</Phone2>
-        <Street>Straße</Street>
-        <StreetNo>421</StreetNo>
-        <Zipcode>39123</Zipcode>
-        <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Horst Peters</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Horst Peters</Value>
-        </NameMultilingualEntries>
-        <ContactPersonFirstName>Horst</ContactPersonFirstName>
-        <ContactPersonLastName>Peters</ContactPersonLastName>
-        <ContactPersonTitleRef RefUrl="/rest/export/catalogdata/Title/3" DisplayName="Dr.">DR</ContactPersonTitleRef>
-        <WebSite>horst.de</WebSite>
-        <Institute>Institut für Biologie HU-Berlin</Institute>
-        <Department>Facility Management</Department>
-        <Position>Boss</Position>
-        <SyncId>1c2b513f-007b-4c5d-a5af-4083b58037df</SyncId>
-        <Building>MB-67</Building>
-        <Floor>3</Floor>
-        <Room>231</Room>
-        <CxxContactId>PETERS_HORST</CxxContactId>
-      </ContactAddress>
-      <SyncId>ef22117c-0262-414f-93ea-fdf812fc948b</SyncId>
-    </AttendingDoctor>
     <CrfTemplate>
       <Name>US Core Care Team</Name>
       <CrfTemplateSection>
         <Name>CARE_TEAM</Name>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>Care Team</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>Care Team</Value>
         </NameMultilingualEntries>
         <Code>CARE_TEAM</Code>
@@ -201,6 +148,7 @@
       <Global>false</Global>
       <MultipleUse>false</MultipleUse>
       <Active>false</Active>
+      <InactivatedOn>2022-03-01T14:18:52.943+01:00</InactivatedOn>
       <SyncId>dd627ca4-2cf3-4035-9f4a-95fd3e06b09d</SyncId>
     </CrfTemplate>
     <CustomCatalog>
@@ -219,11 +167,11 @@
       <CustomCatalogEntry>
         <Code>proposed</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>Proposed</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>Proposed</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
@@ -270,11 +218,11 @@
       <CustomCatalogEntry>
         <Code>inactive</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>Inactive</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>Inactive</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
@@ -287,11 +235,11 @@
       <CustomCatalogEntry>
         <Code>entered-in-error</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>Entered In Error</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>Entered In Error</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
@@ -302,6 +250,9 @@
         <SyncId>abb5204e-1ba3-4ae4-9286-ac8951fa578d</SyncId>
       </CustomCatalogEntry>
       <SyncId>d4511b7e-6fa7-4a7c-8a68-6ac86de76918</SyncId>
+      <UserEntries>
+        <Systemwide>true</Systemwide>
+      </UserEntries>
     </CustomCatalog>
     <LaborValueGroup>
       <Code>US_CORE_CARE_TEAM</Code>
@@ -317,11 +268,11 @@
     </LaborValueGroup>
     <MasterDataCatalog>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
+        <Lang>en</Lang>
         <Value>Team</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
+        <Lang>de</Lang>
         <Value>Team</Value>
       </NameMultilingualEntries>
       <Code>CARE_TEAM</Code>
@@ -341,6 +292,7 @@
           </AttendingDoctorRef>
         </ValueReference>
         <IsCategory>false</IsCategory>
+        <SyncId>EB01A693-15CD-4611-82DD-40CD19E58E4A</SyncId>
       </MasterDataCatalogEntry>
       <MasterDataCatalogEntry>
         <ValueReference>
@@ -356,6 +308,7 @@
           </AttendingDoctorRef>
         </ValueReference>
         <IsCategory>false</IsCategory>
+        <SyncId>F3D61B18-AE81-40EA-A781-2CA6369C5C15</SyncId>
       </MasterDataCatalogEntry>
       <SortAlphabetical>true</SortAlphabetical>
       <SyncId>9cdeb7c6-983a-48cf-b6bb-0fd5206b43e4</SyncId>

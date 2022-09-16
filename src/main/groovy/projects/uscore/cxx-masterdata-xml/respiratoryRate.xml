@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:29:58.191+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T17:10:59.275+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>/min</Value>
+        <Value>per minute</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>/min</Value>
+        <Value>(en) - /min</Value>
       </NameMultilingualEntries>
       <Code>PER_MINUTE</Code>
       <Used>false</Used>
@@ -22,17 +23,28 @@
       <FlexibleDecimalValue>
         <Code>RESPIRATORY_RATE</Code>
         <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - Respiratory rate</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Respiratorische Rate</Value>
         </NameMultilingualEntries>
-        <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Respiratory rate</Value>
-        </NameMultilingualEntries>
         <SyncId>bf18a247-e495-4c14-b3c5-abcb802fdeb5</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>9279-1</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/30" DisplayName="per minute">PER_MINUTE</UnitTypeRef>
@@ -108,6 +120,18 @@
       <Active>false</Active>
       <SyncId>57bde951-0da0-4fd8-ae80-e9942983dae3</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

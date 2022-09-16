@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:19:20.075+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T16:44:53.889+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>mmHg</Value>
+        <Lang>en</Lang>
+        <Value>(en) - MM_HG</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>mmHg</Value>
+        <Lang>de</Lang>
+        <Value>Millimeter Hg</Value>
       </NameMultilingualEntries>
       <Code>MM_HG</Code>
       <Used>false</Used>
@@ -23,16 +24,27 @@
         <Code>BLOOD_PRESSURE_DIA</Code>
         <NameMultilingualEntries>
           <Lang>de</Lang>
-          <Value>Blutdruck diastolisch</Value>
+          <Value>Blutdruck (diastolisch)</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Blood Pressure Diastolic</Value>
         </NameMultilingualEntries>
         <SyncId>f15c6e50-232c-4d54-a103-73fb7c0596ba</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>8462-4</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/27" DisplayName="Millimeter Hg">MM_HG</UnitTypeRef>
@@ -40,17 +52,28 @@
       <FlexibleDecimalValue>
         <Code>BLOOD_PRESSURE_SYS</Code>
         <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Blutdruck (systolisch)</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Blood Pressure systolic</Value>
         </NameMultilingualEntries>
-        <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Blutdruck systolisch</Value>
-        </NameMultilingualEntries>
         <SyncId>9b144a99-1e20-434a-a8b0-3502ffa062eb</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>8480-6</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/27" DisplayName="Millimeter Hg">MM_HG</UnitTypeRef>
@@ -64,14 +87,14 @@
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>US Core Pressure</Value>
+        <Value>(en) - BLOOD_PRESSURE</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
-        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck systolisch">BLOOD_PRESSURE_SYS</FlexibleValueRef>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck (systolisch)">BLOOD_PRESSURE_SYS</FlexibleValueRef>
         <Required>false</Required>
       </FlexibleValueComplexRefs>
       <FlexibleValueComplexRefs>
-        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck diastolisch">BLOOD_PRESSURE_DIA</FlexibleValueRef>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck (diastolisch)">BLOOD_PRESSURE_DIA</FlexibleValueRef>
         <Required>false</Required>
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
@@ -99,7 +122,7 @@
         </NameMultilingualEntries>
         <Code>BLOOD_PRESSURE</Code>
         <CrfTemplateField>
-          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck systolisch">BLOOD_PRESSURE_SYS</LaborValue>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/252" DisplayName="Blutdruck (systolisch)">BLOOD_PRESSURE_SYS</LaborValue>
           <LowerRow>0</LowerRow>
           <LowerColumn>0</LowerColumn>
           <UpperRow>0</UpperRow>
@@ -116,7 +139,7 @@
           <SyncId>97ebbd4d-a001-4115-b0fc-bc4ddcb4b9f0</SyncId>
         </CrfTemplateField>
         <CrfTemplateField>
-          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck diastolisch">BLOOD_PRESSURE_DIA</LaborValue>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/253" DisplayName="Blutdruck (diastolisch)">BLOOD_PRESSURE_DIA</LaborValue>
           <LowerRow>1</LowerRow>
           <LowerColumn>0</LowerColumn>
           <UpperRow>1</UpperRow>
@@ -147,6 +170,18 @@
       <Active>false</Active>
       <SyncId>85b5cfaf-fcca-4773-b22d-4de18e8671f5</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:20:08.824+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T16:45:56.950+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>kg/m²</Lang>
-        <Value>Kilogram per square meter</Value>
+        <Lang>en</Lang>
+        <Value>(en) - BODY_MASS_INDEX</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>kg/m²</Value>
+        <Value>Kilogramm pro Quadratmeter</Value>
       </NameMultilingualEntries>
       <Code>KG_PER_M2</Code>
       <Used>false</Used>
@@ -22,17 +23,28 @@
       <FlexibleDecimalValue>
         <Code>BODY_MASS_INDEX</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Body Mass Index</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Body-Mass-Index</Value>
         </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Mass Index</Value>
+        </NameMultilingualEntries>
         <SyncId>64bf1034-99e1-4676-ae90-d11fa7f924e7</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>39156-5</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/29" DisplayName="Kilogramm pro Quadratmeter">KG_PER_M2</UnitTypeRef>
@@ -41,12 +53,12 @@
     <FlexibleDataSetCatalogueItem>
       <Code>US_CORE_BMI</Code>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>US Core Body-Mass-Index</Value>
-      </NameMultilingualEntries>
-      <NameMultilingualEntries>
         <Lang>en</Lang>
         <Value>US Core Body Mass Index</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Body-Mass-Index</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/255" DisplayName="Body-Mass-Index">BODY_MASS_INDEX</FlexibleValueRef>
@@ -68,12 +80,12 @@
       <CrfTemplateSection>
         <Name>BMI</Name>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Body Mass Index</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Body-Mass-Index</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Body Mass Index</Value>
         </NameMultilingualEntries>
         <Code>BMI</Code>
         <CrfTemplateField>
@@ -108,6 +120,18 @@
       <Active>false</Active>
       <SyncId>c27aca4b-9c99-4432-a502-40e8b10c521f</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

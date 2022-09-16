@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-22T18:51:19.788+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T15:30:32.639+02:00</ExportDate>
   <CatalogueData>
     <FlexibleValueCatalogueItem>
       <FlexibleStringValue>
@@ -29,11 +30,11 @@
       <FlexibleStringValue>
         <Code>DEVICE_LOT_NUMBER</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>lotNumber</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>lotNumber</Value>
         </NameMultilingualEntries>
         <SyncId>d7df16ed-027f-4c48-8c50-2b2c403b472c</SyncId>
@@ -41,22 +42,34 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMPLANTABLE_DEVICE</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleStringValue>
       <FlexibleDateValue>
         <Code>DEVICE_MANUFACTURE_DATE</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Herstelldatum</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Manufacture Date</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Herstelldatum</Value>
         </NameMultilingualEntries>
         <SyncId>5134e8d2-58c0-4630-9c41-51d44dc454d2</SyncId>
         <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/32" DisplayName="US Core Implantable Device">US_CORE_IMPLANTABLE_DEVICE</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMPLANTABLE_DEVICE</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleDateValue>
       <FlexibleDateValue>
         <Code>DEVICE_EXPIRATION_DATE</Code>
@@ -105,15 +118,21 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMPLANTABLE_DEVICE</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleStringValue>
       <FlexibleCatalogValue>
         <Code>DEVICE_TYPE</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>US Core Device Kind</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>US Core Device Kind</Value>
         </NameMultilingualEntries>
         <SyncId>c4578c5e-cd98-414c-8439-1662447ee234</SyncId>
@@ -121,6 +140,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMPLANTABLE_DEVICE</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/63">
           <Code>FHIR_DEVICE_KINDS</Code>
@@ -168,7 +193,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>OTHER</Category>
+      <Category>GENERAL</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/256">
         <Name>US Core Implantable Device</Name>
         <Version>0</Version>
@@ -182,12 +207,12 @@
       <CrfTemplateSection>
         <Name>IMPLANTABLE_DEVICE</Name>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Implantierbares Gerät</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Implantable Device</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Implantierbares Gerät</Value>
         </NameMultilingualEntries>
         <Code>IMPLANTABLE_DEVICE</Code>
         <CrfTemplateField>
@@ -335,24 +360,24 @@
     <CustomCatalog>
       <Code>FHIR_DEVICE_KINDS</Code>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
+        <Lang>de</Lang>
         <Value>FHIR Device kinds</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
+        <Lang>en</Lang>
         <Value>FHIR Device kinds</Value>
       </NameMultilingualEntries>
-      <DescMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>http://hl7.org/fhir/ValueSet/device-kind
-
-          Soll alle Codes  aus SNOMED CT mit Konzept  a 49062001 (Device)</Value>
-      </DescMultilingualEntries>
       <DescMultilingualEntries>
         <Lang>en</Lang>
         <Value>http://hl7.org/fhir/ValueSet/device-kind
 
           Should include all SNOMED CT codes where concept is-a 49062001 (Device)</Value>
+      </DescMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>http://hl7.org/fhir/ValueSet/device-kind
+
+          Soll alle Codes  aus SNOMED CT mit Konzept  a 49062001 (Device)</Value>
       </DescMultilingualEntries>
       <CatalogUsage>MEASURE</CatalogUsage>
       <Version>1</Version>
@@ -384,6 +409,9 @@
         <SyncId>fd77155a-d207-4b77-9906-515f4f545ccf</SyncId>
       </CustomCatalogEntry>
       <SyncId>1b77cb76-2f56-40a0-b77a-f12177425848</SyncId>
+      <UserEntries>
+        <Systemwide>true</Systemwide>
+      </UserEntries>
     </CustomCatalog>
     <LaborValueGroup>
       <Code>US_CORE_IMPLANTABLE_DEVICE</Code>

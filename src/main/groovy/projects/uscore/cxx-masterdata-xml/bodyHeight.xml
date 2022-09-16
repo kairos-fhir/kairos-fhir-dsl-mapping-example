@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:20:43.681+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T16:48:38.953+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>cm</Value>
+        <Lang>en</Lang>
+        <Value>centi metre</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>cm</Value>
+        <Lang>de</Lang>
+        <Value>Zentimeter</Value>
       </NameMultilingualEntries>
       <Code>CENTI_METRE</Code>
       <Used>false</Used>
@@ -30,9 +31,20 @@
           <Value>Körpergröße</Value>
         </NameMultilingualEntries>
         <SyncId>324cc942-c85b-4b36-8c92-6f7afc5cdcc1</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>8302-2</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/5" DisplayName="Zentimeter">CENTI_METRE</UnitTypeRef>
@@ -41,12 +53,12 @@
     <FlexibleDataSetCatalogueItem>
       <Code>US_CORE_BODY_HEIGHT</Code>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>US Core Body Height</Value>
-      </NameMultilingualEntries>
-      <NameMultilingualEntries>
         <Lang>de</Lang>
         <Value>US Core Körpergröße</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Body Height</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/2" DisplayName="Körpergröße">BODY_HEIGHT</FlexibleValueRef>
@@ -68,12 +80,12 @@
       <CrfTemplateSection>
         <Name>BODY_HEIGHT</Name>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>Körpergröße</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>Body Height</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Körpergröße</Value>
         </NameMultilingualEntries>
         <Code>BODY_HEIGHT</Code>
         <CrfTemplateField>
@@ -108,6 +120,18 @@
       <Active>false</Active>
       <SyncId>ac401cc5-7880-426f-aa75-ea9ba0c3a61e</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

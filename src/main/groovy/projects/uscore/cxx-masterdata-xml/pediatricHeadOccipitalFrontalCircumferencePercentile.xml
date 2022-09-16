@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:26:21.622+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T17:05:37.897+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>%</Value>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>%</Value>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
       </NameMultilingualEntries>
       <Code>PERCENT</Code>
       <Used>false</Used>
@@ -30,9 +31,20 @@
           <Value>Pediatric Occipital Frontal Circumference Percentile</Value>
         </NameMultilingualEntries>
         <SyncId>2cb38d48-8a7e-40fc-9202-e4324dd7c2fd</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>8289-1</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
@@ -68,12 +80,12 @@
       <CrfTemplateSection>
         <Name>OCCIPITAL_FRONTAL_CIRC</Name>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Pediatric Occipital Frontal Circumference Percentile</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Pädiatrischer Okziptal-Frontaler Umfang Perzentil</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Pediatric Occipital Frontal Circumference Percentile</Value>
         </NameMultilingualEntries>
         <Code>OCCIPITAL_FRONTAL_CIRC</Code>
         <CrfTemplateField>
@@ -108,6 +120,18 @@
       <Active>false</Active>
       <SyncId>97bd811d-b1d5-49b6-a887-40c18d7ddb1a</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

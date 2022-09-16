@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:23:13.637+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T16:56:56.922+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>cm</Value>
+        <Lang>en</Lang>
+        <Value>centi metre</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>cm</Value>
+        <Lang>de</Lang>
+        <Value>Zentimeter</Value>
       </NameMultilingualEntries>
       <Code>CENTI_METRE</Code>
       <Used>false</Used>
@@ -29,10 +30,29 @@
           <Lang>en</Lang>
           <Value>Head Circumference</Value>
         </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Misst Umfang des Kopfes</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Measures circumference of head</Value>
+        </DescMultilingualEntries>
         <SyncId>8f444dd1-df67-48ff-8e47-ab87b16855de</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>9843-4</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/5" DisplayName="Zentimeter">CENTI_METRE</UnitTypeRef>
@@ -68,12 +88,12 @@
       <CrfTemplateSection>
         <Name>HEAD_CIRCUMFERENCE</Name>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Head Circumference</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Kopfumfang</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Head Circumference</Value>
         </NameMultilingualEntries>
         <Code>HEAD_CIRCUMFERENCE</Code>
         <CrfTemplateField>
@@ -108,6 +128,18 @@
       <Active>false</Active>
       <SyncId>d9d4d03c-8c19-4550-ba73-df6f409d12a3</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

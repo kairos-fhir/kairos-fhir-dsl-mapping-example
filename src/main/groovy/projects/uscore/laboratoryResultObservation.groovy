@@ -2,6 +2,7 @@ package projects.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
+import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
@@ -39,6 +40,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
 final def lang = "de"
 observation {
   if (context.source[laborFindingLaborValue().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR.toString()) {
+    return
+  }
+
+  final boolean isUsCore = context.source[laborFindingLaborValue().laborValue().idContainers()]?.any {
+    final def idc -> idc[IdContainer.ID_CONTAINER_TYPE][CODE].equals("US_CORE_FHIR_EXPORT_DISCRIMINATOR")
+  }
+
+  if (isUsCore) {
     return
   }
 

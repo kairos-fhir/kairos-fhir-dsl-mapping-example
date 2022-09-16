@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-22T18:53:14.263+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T17:28:26.508+02:00</ExportDate>
   <CatalogueData>
     <FlexibleValueCatalogueItem>
       <FlexibleCatalogValue>
@@ -21,6 +22,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMMUNIZATION</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/54" DisplayName="US Core Immunization Status Reason">US_CORE_IMMUNIZATION_STATUS_REASON</ValueListRef>
       </FlexibleCatalogValue>
@@ -39,6 +46,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMMUNIZATION</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/53" DisplayName="US Core Immunization Status">US_CORE_IMMUNIZTION_STATUS</ValueListRef>
       </FlexibleCatalogValue>
@@ -57,6 +70,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMMUNIZATION</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleBooleanValue>
       <FlexibleDateValue>
         <Code>US_CORE_IMMUNIZATION_DATE</Code>
@@ -73,16 +92,22 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_IMMUNIZATION</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleDateValue>
       <FlexibleCatalogValue>
         <Code>US_CORE_VACCINE_CODE</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>(en) - US_CORE_VACCINE_CODE</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>US Core Vaccine Code</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>(en) - US_CORE_VACCINE_CODE</Value>
         </NameMultilingualEntries>
         <SyncId>1188a12b-7f31-4fc5-b290-04213f26f8a2</SyncId>
         <UserEntries>
@@ -124,7 +149,7 @@
       </FlexibleValueComplexRefs>
       <Systemwide>true</Systemwide>
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
-      <Category>OTHER</Category>
+      <Category>GENERAL</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/255">
         <Name>US Core Immunization</Name>
         <Version>0</Version>
@@ -338,6 +363,19 @@
         <Position>-1</Position>
         <SyncId>b2431e56-43bc-4690-b4fb-fcf07ae54f0b</SyncId>
       </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>COVID19</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Covid19</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Covid 19</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>b6dc8b24-47fa-405c-805e-01060815bf64</SyncId>
+      </CustomCatalogEntry>
       <SortAlphabetical>true</SortAlphabetical>
       <SyncId>0a1bd8c6-92e4-4425-ad59-eee62449d921</SyncId>
     </ValueList>
@@ -425,12 +463,12 @@
     <LaborValueGroup>
       <Code>US_CORE_IMMUNIZATION</Code>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>(en) - US_CORE_IMMUNIZATION</Value>
-      </NameMultilingualEntries>
-      <NameMultilingualEntries>
         <Lang>de</Lang>
         <Value>US Core Immunization</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>(en) - US_CORE_IMMUNIZATION</Value>
       </NameMultilingualEntries>
       <SyncId>16114051-0ce0-42a4-b963-60fb6548d6ac</SyncId>
     </LaborValueGroup>

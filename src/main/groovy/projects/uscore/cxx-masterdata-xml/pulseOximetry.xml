@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-16T10:28:59.145+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T17:08:57.323+02:00</ExportDate>
   <CatalogueData>
     <UnityCatalogueItem>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
-        <Value>%</Value>
+        <Lang>de</Lang>
+        <Value>Prozent</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>%</Value>
+        <Lang>en</Lang>
+        <Value>(en) - PERCENT</Value>
       </NameMultilingualEntries>
       <Code>PERCENT</Code>
       <Used>false</Used>
@@ -21,11 +22,11 @@
     <UnityCatalogueItem>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>l/min</Value>
+        <Value>(en) - LITRE_PER_MINUTE</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>l/min</Value>
+        <Value>Liter pro Minute</Value>
       </NameMultilingualEntries>
       <Code>LITRE_PER_MINUTE</Code>
       <Used>false</Used>
@@ -35,17 +36,28 @@
       <FlexibleDecimalValue>
         <Code>O2_CONC_INHALED</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>Oxygen concentration</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>Sauerstoffkonzentration</Value>
         </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Oxygen concentration</Value>
+        </NameMultilingualEntries>
         <SyncId>b12f0b22-b0a1-475a-9788-633a6686cb53</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>3150-0</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/31" DisplayName="Prozent">PERCENT</UnitTypeRef>
@@ -61,9 +73,20 @@
           <Value>Sauerstoff Flussrate</Value>
         </NameMultilingualEntries>
         <SyncId>4fc8d105-1fb2-4d2b-ac9a-ef7ca54d057e</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/53" DisplayName="US Core Vital Signs">US_CORE_VITAL_SIGNS</LaborValueGroupRef>
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>LOINC</key>
+            <value>3151-8</value>
+          </FlexibleID>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_VITAL_SIGNS</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <LowerPrecision>CLOSED</LowerPrecision>
         <UpperPrecision>CLOSED</UpperPrecision>
         <UnitTypeRef RefUrl="/rest/export/catalogdata/Unity/32" DisplayName="Liter pro Minute">LITRE_PER_MINUTE</UnitTypeRef>
@@ -72,12 +95,12 @@
     <FlexibleDataSetCatalogueItem>
       <Code>US_CORE_PULSE_OXIMETRY</Code>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
-        <Value>US Core Pulsoximetrie</Value>
-      </NameMultilingualEntries>
-      <NameMultilingualEntries>
         <Lang>en</Lang>
         <Value>US Core Pulse Oximetry</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Pulsoximetrie</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/261" DisplayName="Sauerstoff Flussrate">O2_FLOW_INHALED</FlexibleValueRef>
@@ -160,6 +183,18 @@
       <Active>false</Active>
       <SyncId>94be8733-7b29-41ef-9a0d-bc2330f51d10</SyncId>
     </CrfTemplate>
+    <LaborValueGroup>
+      <Code>US_CORE_VITAL_SIGNS</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>US Core Vital Signs</Value>
+      </NameMultilingualEntries>
+      <SyncId>98988d19-d4bd-4870-afc2-a3c8c73573ce</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>

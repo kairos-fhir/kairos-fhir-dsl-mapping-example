@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange
-    xmlns="http://www.kairos-med.de">
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
-  <SourceVersion>2022.1.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2022-02-28T12:04:07.785+01:00</ExportDate>
+  <SourceVersion>2022.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2022-09-16T15:19:04.722+02:00</ExportDate>
   <CatalogueData>
     <FlexibleValueCatalogueItem>
       <FlexibleLongStringValue>
@@ -21,6 +22,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_CARE_PLAN</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
       </FlexibleLongStringValue>
       <FlexibleCatalogValue>
         <Code>US_CORE_CARE_PLAN_INTENT</Code>
@@ -37,6 +44,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_CARE_PLAN</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/75">
           <Code>FHIR_CARE_PLAN_INTENT</Code>
@@ -58,6 +71,12 @@
         <UserEntries>
           <Systemwide>true</Systemwide>
         </UserEntries>
+        <LaborValueIDContainer>
+          <FlexibleID isUpdateAllowed="false">
+            <key>US_CORE_FHIR_EXPORT_DISCRIMINATOR</key>
+            <value>US_CORE_CARE_PLAN</value>
+          </FlexibleID>
+        </LaborValueIDContainer>
         <ChoiseType>SELECTONE</ChoiseType>
         <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/74">
           <Code>FHIR_REQUEST_STATUS</Code>
@@ -103,11 +122,11 @@
       <CrfTemplateSection>
         <Name>CARE_PLAN</Name>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
+          <Lang>de</Lang>
           <Value>Care Plan</Value>
         </NameMultilingualEntries>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
+          <Lang>en</Lang>
           <Value>Care Plan</Value>
         </NameMultilingualEntries>
         <Code>CARE_PLAN</Code>
@@ -263,6 +282,9 @@
         <SyncId>d41021a9-2596-4223-9f82-ef50044eb374</SyncId>
       </CustomCatalogEntry>
       <SyncId>18e2cb7d-547b-4ecd-ad14-2a4059e96e6d</SyncId>
+      <UserEntries>
+        <Systemwide>true</Systemwide>
+      </UserEntries>
     </CustomCatalog>
     <CustomCatalog>
       <Code>FHIR_REQUEST_STATUS</Code>
@@ -401,15 +423,18 @@
         <SyncId>141d508e-12b7-4895-975e-1b430c9b3624</SyncId>
       </CustomCatalogEntry>
       <SyncId>e1a26e76-8360-4527-a606-5539d4b19c72</SyncId>
+      <UserEntries>
+        <Systemwide>true</Systemwide>
+      </UserEntries>
     </CustomCatalog>
     <LaborValueGroup>
       <Code>US_CORE_CARE_PLAN</Code>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
+        <Lang>en</Lang>
         <Value>US Core Care Plan</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
+        <Lang>de</Lang>
         <Value>US Core Care Plan</Value>
       </NameMultilingualEntries>
       <SyncId>28d866c5-5101-4cf6-adfc-9dd1f0b20cb3</SyncId>
