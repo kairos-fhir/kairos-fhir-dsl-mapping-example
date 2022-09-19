@@ -1,0 +1,27 @@
+{
+  "resourceType": "Bundle",
+  "id": "cac49587-5e5c-4a41-91a4-70f931aa4de7",
+  "entry": [ {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "TwinA-1",
+      "gender": "male",
+      "birthDate": "2000-01-01"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Patient/TwinA-1"
+    }
+  }, {
+    "resource": {
+      "resourceType": "Patient",
+      "id": "TwinB-1",
+      "gender": "female",
+      "birthDate": "2000-01-01"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Patient/TwinB-1"
+    }
+  } ]
+}
