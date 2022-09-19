@@ -38,12 +38,14 @@ patient {
   final def crfItemEthn = context.source[studyVisitItem().crf().items()].find {
     "COV_GECCO_ETHNISCHE_ZUGEHOERIGKEIT" == it[CrfItem.TEMPLATE]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(LaborValue.CODE)
   }
-  if (crfItemEthn[CrfItem.CATALOG_ENTRY_VALUE] != [] && crfItemEthn) {
-    extension {
-      url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
-      valueCoding {
-        system = "http://snomed.info/sct"
-        code = mapEthnicityCode(crfItemEthn[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE] as String)
+  if (crfItemEthn) {
+    crfItemEthn[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE]?.each { final ethn ->
+      extension {
+        url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
+        valueCoding {
+          system = "http://snomed.info/sct"
+          code = mapEthnicityCode(ethn as String)
+        }
       }
     }
   }
