@@ -27,7 +27,7 @@ specimen {
 }
 
 static String getPatientId(final String mpi) {
-  final String cacheFilePath = "C:\\Users\\u1089116\\centraxx-home\\groovy-cache\\mpiToFhirId.json"
+  final String cacheFilePath = "C:/centraxx-home/groovy-cache/mpiToFhirId.json"
   final Map<String, String> mpiToFhirId = loadCache(cacheFilePath);
   final String fhirId = mpiToFhirId.computeIfAbsent(mpi, { final k -> queryFhirIdFromDiz(mpi) })
   persistCache(cacheFilePath, mpiToFhirId)

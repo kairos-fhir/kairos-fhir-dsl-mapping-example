@@ -29,7 +29,7 @@ patient {
     jsonObject.organization.add(orgUnit[OrganisationUnit.CODE] as String)
   }
 
-  final File file = new File('C:/Users/u1089116/centraxx-home/fhir-custom-export/experiment', 'Patient-' + jsonObject.oid + '.json')
+  final File file = new File('C:/centraxx-home/fhir-custom-export/experiment', 'Patient-' + jsonObject.oid + '.json')
   file.write(JsonOutput.prettyPrint(JsonOutput.toJson(jsonObject)), "UTF-8")
 }
 
