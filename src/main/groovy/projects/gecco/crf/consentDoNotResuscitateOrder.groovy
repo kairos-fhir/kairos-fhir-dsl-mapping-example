@@ -10,7 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
  * Represented by a CXX StudyVisitItem
- * Specified by https://simplifier.net/forschungsnetzcovid-19/donotresuscitateorder
+ * Specified by https://simplifier.net/guide/GermanCoronaConsensusDataSet-ImplementationGuide-1.0.5/Home/GECCOCore/AnamnesisRiskfactors/Resuscitationstatus.guide.md?version=current
  * @author Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
  */
@@ -56,6 +56,10 @@ consent {
 
     patient {
       reference = "Patient/Patient-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+    }
+
+    policy {
+      uri = "https://www.aerzteblatt.de/archiv/65440/DNR-Anordnungen-Das-fehlende-Bindeglied"
     }
 
     provision {
