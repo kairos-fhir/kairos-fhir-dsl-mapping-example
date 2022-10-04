@@ -16,7 +16,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
@@ -74,78 +73,77 @@ observation {
   }
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
-    component {
-      code {
-        coding {
-          system = "urn:centraxx"
-          code = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(CODE) as String
-        }
-        lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
+    final String laborValueCode = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(CODE) as String
+    if (isCimdKenzusatzdaten(laborValueCode)) {
+      component {
+        code {
           coding {
-            system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
-            code = idContainer[PSN] as String
+            system = "urn:centraxx"
+
+            code = laborValueCode
           }
-        }
-      }
 
-      if (isNumeric(lflv)) {
-        valueQuantity {
-          value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
-          unit = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
-        }
-      }
-      if (isBoolean(lflv)) {
-        valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
-      }
-
-      if (isDate(lflv)) {
-        valueDateTime {
-          date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      }
-
-      if (isTime(lflv)) {
-        valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
-      }
-
-      if (isString(lflv)) {
-        valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
-      }
-
-      if (isCatalog(lflv)) {
-        valueCodeableConcept {
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+          lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
             coding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
+              system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
+              code = idContainer[PSN] as String
             }
           }
-          lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
-            coding {
-              system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
-            }
+        }
+
+        if (isNumeric(lflv)) {
+          valueQuantity {
+            value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+            unit = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
           }
-          // example for master data catalog entries of blood group
-          lflv[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final entry ->
-            final def bloodGroup = entry[ValueReference.BLOOD_GROUP_VALUE]
-            if (bloodGroup != null) {
+        } else if (isBoolean(lflv)) {
+          valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
+        } else if (isDate(lflv)) {
+          valueDateTime {
+            date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
+          }
+        } else if (isTime(lflv)) {
+          valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+        } else if (isString(lflv)) {
+          valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
+        } else if (isCatalog(lflv)) {
+          valueCodeableConcept {
+            lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = FhirUrls.System.Patient.BloodGroup.BASE_URL
-                code = bloodGroup?.getAt(CODE) as String
+                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+                code = entry[CODE] as String
               }
             }
-
-            // example for master data catalog entries of attending doctor
-            final def attendingDoctor = entry[ValueReference.ATTENDING_DOCTOR_VALUE]
-            if (attendingDoctor != null) {
+            lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
               coding {
-                system = FhirUrls.System.AttendingDoctor.BASE_URL
-                // CXX uses the reference embedded in a coding to support multi selects
-                code = "Practitioner/" + attendingDoctor?.getAt(AbstractCatalog.ID) as String
+                system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+                code = entry[CODE] as String
+              }
+            }
+            // example for master data catalog entries of blood group
+            lflv[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final entry ->
+              final def bloodGroup = entry[ValueReference.BLOOD_GROUP_VALUE]
+              if (bloodGroup != null) {
+                coding {
+                  system = FhirUrls.System.Patient.BloodGroup.BASE_URL
+                  code = bloodGroup?.getAt(CODE) as String
+                }
+              }
+
+              // example for master data catalog entries of attending doctor
+              final def attendingDoctor = entry[ValueReference.ATTENDING_DOCTOR_VALUE]
+              if (attendingDoctor != null) {
+                coding {
+                  system = FhirUrls.System.AttendingDoctor.BASE_URL
+                  // CXX uses the reference embedded in a coding to support multi selects
+                  code = "Practitioner/" + attendingDoctor?.getAt(AbstractCatalog.ID) as String
+                }
               }
             }
           }
+        } else {
+          final String msg = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) + " not implemented yet."
+          System.out.println(msg)
         }
       }
     }
@@ -187,4 +185,21 @@ static boolean isCatalog(final Object lflv) {
 
 static boolean isOptionGroup(final Object lflv) {
   return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
+}
+
+static boolean isCimdKenzusatzdaten(final String laborValueCode) {
+  return ["ITEM_VISITENDATUM",
+          "ITEM_RAUCHERSTATUS",
+          "ITEM_BMI",
+          "ITEM_PACKYEARS",
+          "ITEM_RAUCHER_SEIT",
+          "CIMD_EINSCHLUSSDIAGNOSE_LISTE",
+          "ITEM_AUFGEHOERT_AB",
+          "NUECHTERNSTATUS_HUB",
+          "ITEM_DIAGNOSE_BEGLEITERKRANKUNG",
+          "CIMD_AKTUELLE_MEDIKATION",
+          "CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC",
+          "CIMD_MEDIKATION_FREITEXTFELD",
+          "ITEM_POSITION_BEI_BLUTENTNAHME",
+          "ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST"].contains(laborValueCode)
 }
