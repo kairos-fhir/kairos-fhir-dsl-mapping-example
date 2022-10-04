@@ -33,16 +33,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toNumType(context.source["sampleType.code"])
-    }
-    if (context.source["sampleType.sprecCode"]) {
-      coding += context.translateBuiltinConcept("sprec3_bbmri_sampletype", context.source["sampleType.sprecCode"])
-      coding {
-        system = "https://doi.org/10.1089/bio.2017.0109"
-        code = context.source["sampleType.sprecCode"]
-      }
-    } else {
-      coding += context.translateBuiltinConcept("centraxx_bbmri_samplekind", context.source["sampleType.kind"] ?: "")
+      code = context.source["sampleType.code"]
     }
   }
 
@@ -88,7 +79,7 @@ specimen {
   container {
     if (context.source["receptable"]) {
       identifier {
-        value = toReceptType(context.source["receptable.code"])
+        value = context.source["receptable.code"]
         system = "urn:centraxx"
       }
 
@@ -248,7 +239,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.STOCK_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source["stockProcessing.code"] as String)
+            code = context.source["stockProcessing.code"] as String
           }
         }
       }
@@ -263,7 +254,7 @@ specimen {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING
           valueCoding {
             system = "urn:centraxx"
-            code = toNUMProcessing(context.source["secondProcessing.code"] as String)
+            code = context.source["secondProcessing.code"] as String
           }
         }
       }
@@ -277,64 +268,3 @@ specimen {
   }
 }
 
-static String toNumType(final Object sourceType) {
-  return sourceType
-  /* switch (sourceType) {
-     case "BAL":
-       return "NUM_bal"
-     case "ZZZ(nab)":
-       return "NUM_abstrich"
-     case "ZZZ(pbm)":
-       return "NUM_pbmc"
-     case "SAL":
-       return "NUM_speichel"
-     case ["SPT", "SPT(ind)"]:
-       return "NUM_sputum"
-     case "ZZZ(usd)":
-       return "NUM_urins"
-     default:
-       return sourceType
-   } */
-}
-
-static String toReceptType(final Object sourceType) {
-  switch (sourceType) {
-    case "FX2D003ScT":
-      return "0_2_ML_FLUIDX_KRYO"
-    default:
-      return sourceType
-  }
-}
-
-static String toNUMProcessing(final String sourceProcessing) {
-  return sourceProcessing
-  /* if (sourceProcessing.startsWith("A"))
-     return "Sprec-A"
-   if (sourceProcessing.startsWith("B"))
-     return "Sprec-B"
-   if (sourceProcessing.startsWith("C"))
-     return "Sprec-C"
-   if (sourceProcessing.startsWith("D"))
-     return "Sprec-D"
-   if (sourceProcessing.startsWith("E"))
-     return "Sprec-E"
-   if (sourceProcessing.startsWith("F"))
-     return "Sprec-F"
-   if (sourceProcessing.startsWith("G"))
-     return "Sprec-G"
-   if (sourceProcessing.startsWith("H"))
-     return "Sprec-H"
-   if (sourceProcessing.startsWith("I"))
-     return "Sprec-I"
-   if (sourceProcessing.startsWith("J"))
-     return "Sprec-J"
-   if (sourceProcessing.startsWith("M"))
-     return "Sprec-M"
-   if (sourceProcessing.startsWith("N"))
-     return "Sprec-N"
-   if (sourceProcessing.startsWith("X"))
-     return "Sprec-X"
-   if (sourceProcessing.startsWith("Z"))
-     return "Sprec-Z" */
-
-}
