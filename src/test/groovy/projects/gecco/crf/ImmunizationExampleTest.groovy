@@ -27,7 +27,7 @@ class ImmunizationExampleTest extends AbstractDslBuilderTest {
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here
-    Map<String, Object> testDataMap = createTestData()
+    final Map<String, Object> testDataMap = createTestData()
 
     // when: run your script
     final Immunization immunization = (Immunization) runner.run(new Context(testDataMap))
@@ -37,7 +37,7 @@ class ImmunizationExampleTest extends AbstractDslBuilderTest {
   }
 
   static Map<String, Object> createTestData() {
-    List<Map<String, Object>> list = asList(
+    final List<Map<String, Object>> list = asList(
         singletonMap(CrfItem.DATE_VALUE,
             singletonMap(PrecisionDate.DATE, "2021-07-03")),
         singletonMap(CrfItem.DATE_VALUE,
