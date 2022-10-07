@@ -50,7 +50,7 @@ condition {
   }
 
   onsetDateTime {
-    date = context.source[diagnosis().diagnosisDate().date()]
+    date = normalizeDate(context.source[diagnosis().diagnosisDate().date()] as String)
   }
 
   final String multipleCodingSymbol = mapUsage(context.source[diagnosis().icdEntry().usage()] as String)
@@ -109,3 +109,12 @@ static String mapUsage(final String usage){
       return null
   }
 }*/
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
