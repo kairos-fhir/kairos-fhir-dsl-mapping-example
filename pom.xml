@@ -4,7 +4,7 @@
 
   <groupId>de.kairos</groupId>
   <artifactId>kairos-fhir-dsl-mapping-example</artifactId>
-  <version>1.17.0</version>
+  <version>1.17.1-SNAPSHOT</version>
   <description>This project contains kairos-fhir-dsl example mappings for the CentraXX FHIR custom export interface.</description>
   <url>https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example</url>
   <organization>
@@ -24,7 +24,7 @@
   <scm>
     <connection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</connection>
     <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</developerConnection>
-    <tag>kairos-fhir-dsl-mapping-example-1.17.0</tag>
+    <tag>bugfix-1.17</tag>
   </scm>
 
   <dependencies>
