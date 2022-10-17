@@ -23,8 +23,8 @@ procedure {
 
   category {
     coding {
-      system = "urn:dktk:dataelement:34:2"
-      code = "ST"
+      system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTTherapieartCS"
+      code = "ST" //Strahlentherapie
     }
   }
 

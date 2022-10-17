@@ -24,8 +24,8 @@ procedure {
 
   category {
     coding {
-      system = "urn:dktk:dataelement:33:2"
-      code = "OP"
+      system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTTherapieartCS"
+      code = "OP" //Operation
     }
   }
 

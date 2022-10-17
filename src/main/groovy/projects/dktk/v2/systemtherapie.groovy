@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -25,6 +24,13 @@ medicationStatement {
   }
 
   status = MedicationStatement.MedicationStatementStatus.UNKNOWN
+
+  category {
+    coding {
+      system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTTherapieartCS"
+      code = findCategoryByProtocolCode(context.source[systemTherapy().protocolTypeDict().code()] as String)
+    }
+  }
 
   identifier {
     value = context.source[systemTherapy().systemTherapyId()]
@@ -55,4 +61,46 @@ medicationStatement {
       }
     }
   }
+}
+
+static String findCategoryByProtocolCode(final String protocolCode) {
+  if (protocolCode == null) {
+    return "SO" // Sonstiges
+  }
+  // Active Surveillance
+  if ("a".equalsIgnoreCase(protocolCode)) {
+    return "AS"
+  }
+  // Bisphosphonate, Chemotherapie, Mono-Chemotherapie, Poly-Chemotherapie, Regionale Perfusion
+  else if (containsIgnoreCase(["bp", "c", "ch", "cm", "cp", "cr"], protocolCode)) {
+    return "CH"
+  }
+  // Hormontherapie
+  else if (containsIgnoreCase(["h", "ho"], protocolCode)) {
+    return "HO"
+  }
+  // Immun- und Antikörpertherapie, Immuntherapie o.n.A., Immunchemotherapie, Immun- und Antikörpertherapie,Unspezifische Immuntherapie
+  else if (containsIgnoreCase(["i", "ic", "im", "is", "iu"], protocolCode)) {
+    return "IM"
+  }
+  // Knochenmark-/Stammzelltransplantation, Knochenmarktransplantation, Konditionierung für KMT
+  else if (containsIgnoreCase(["k", "km"], protocolCode)) {
+    return "KM"
+  }
+  // Wait and see
+  else if (containsIgnoreCase(["w", "ws"], protocolCode)) {
+    return "WS"
+  }
+  // Zielgerichtete Substanzen
+  else if (containsIgnoreCase(["z", "zs"], protocolCode)) {
+    return "ZS"
+  }
+  // Sonstiges, Unbekannt
+  else {
+    return "SO"
+  }
+}
+
+static boolean containsIgnoreCase(final List<String> codeList, final String codeToCheck) {
+  return codeList.stream().anyMatch({ it.equalsIgnoreCase(codeToCheck) })
 }
