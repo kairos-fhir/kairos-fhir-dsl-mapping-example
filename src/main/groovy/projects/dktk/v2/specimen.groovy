@@ -1,12 +1,10 @@
 package projects.dktk.v2
 
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
-import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
-import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX AbstractSample
  *
@@ -28,17 +26,20 @@ specimen {
     profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
   }
 
-  //TODO map one CXX ID to the Exliquid ID
-  context.source[abstractSample().idContainer()]?.each { final idc ->
+  final def idc = context.source[sample().idContainer()].find {
+    "EXLIQUID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  if (idc) {
     identifier {
-      value = idc[PSN]
+      value = idc[IdContainer.PSN]
       type {
         coding {
           system = "urn:centraxx"
-          code = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
+          code = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
         }
       }
-      system = "urn:centraxx"
+      system = "https://dktk.dkfz.de/fhir/NamingSystem/exliquid-specimen"
     }
   }
 
@@ -91,7 +92,7 @@ specimen {
   }
 
   receivedTime {
-    date = context.source[abstractSample().samplingDate().date()]
+    date = normalizeDate(context.source[abstractSample().samplingDate().date()] as String)
   }
 
   final def ucum = context.conceptMaps.builtin("centraxx_ucum")
@@ -127,16 +128,16 @@ specimen {
     }
   }
 
-//  if (context.source["organisationUnit"]) {
+//  if (context.source[abstractSample().organisationUnit()]) {
 //    extension {
 //      url = "https://fhir.bbmri.de/StructureDefinition/Custodian"
 //      valueReference {
-//        reference = "Organization/" + context.source["organisationUnit.id"]
+//        reference = "Organization/" + context.source[abstractSample().organisationUnit().id()]
 //      }
 //    }
 //  }
 
-  if (context.source[abstractSample().diagnosis()]) {
+  if (context.source[sample().diagnosis()]) {
     extension {
       url = "https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis"
       valueCodeableConcept {
@@ -305,4 +306,8 @@ static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {
           "g-dna",
           "rna",
           "derivative-other"].stream().anyMatch({ it.equalsIgnoreCase(sampleTypeCode) })
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
 }
