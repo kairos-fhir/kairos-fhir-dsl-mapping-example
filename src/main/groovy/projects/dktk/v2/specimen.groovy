@@ -28,6 +28,7 @@ specimen {
     profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
   }
 
+  //TODO map one CXX ID to the Exliquid ID
   context.source[abstractSample().idContainer()]?.each { final idc ->
     identifier {
       value = idc[PSN]
@@ -44,14 +45,19 @@ specimen {
   status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
   type {
-    // First coding has the CXX sample type code. If you miss a mapping, this code might help you to identify the source value.
+    // 0. First coding is the CXX sample type code. If mapping is missing, this code might help to identify the source value.
     coding {
       system = "urn:centraxx"
       code = context.source[abstractSample().sampleType().code()]
     }
-
-    // If the CXX sample type contains a SPREC code, mapping against lvl 2 otherwise against lvl1 codes of BBMRI SampleMaterialType is tried.
-    if (context.source[abstractSample().sampleType().sprecCode()]) {
+    // 1. Without mapping, if CXX code and BBMRI code is the same.
+    if (isBbmriSampleTypeCode(context.source[abstractSample().sampleType().code()] as String)) {
+      coding {
+        system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
+        code = context.source[abstractSample().sampleType().code()]
+      }
+    } // 2. CXX sample type SPREC => BBMRI SampleMaterialType.
+    else if (context.source[abstractSample().sampleType().sprecCode()]) {
       final String bbmriCode = sprecToBbmriSampleType(context.source[abstractSample().sampleType().sprecCode()] as String)
       if (bbmriCode != null) {
         coding {
@@ -63,16 +69,7 @@ specimen {
         system = "https://doi.org/10.1089/bio.2017.0109"
         code = context.source[abstractSample().sampleType().sprecCode()]
       }
-    }
-    // common cases without mapping
-    else if (["DNA", "cf-dna", " g-dna",
-              "blood-plasma", "plasma-edta", "plasma-citrat", "plasma-heparin", "plasma-cell-free", "plasma-other"
-    ].contains(context.source[abstractSample().sampleType().code()] as String)) {
-      coding {
-        system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
-        code = context.source[abstractSample().sampleType().code()]
-      }
-    } else {
+    } else { // 3. CXX sample kind => BBMRI SampleMaterialType.
       final String bbmriCode = sampleKindToBbmriSampleType(context.source[abstractSample().sampleType().kind()] as String)
       if (bbmriCode != null) {
         coding {
@@ -271,5 +268,41 @@ static String sampleKindToBbmriSampleType(final String sampleKind) {
   } else if (sampleKind == "LIQUID") {
     return "liquid-other"
   }
-  return "derivative-other"
+  return "derivative-other" // eg CXX cells
+}
+
+static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {
+  return ["whole-blood",
+          "bone-marrow",
+          "buffy-coat",
+          "dried-whole-blood",
+          "peripheral-blood-cells-vital",
+          "blood-plasma",
+          "plasma-edta",
+          "plasma-citrat",
+          "plasma-heparin",
+          "plasma-cell-free",
+          "plasma-other",
+          "blood-serum",
+          "ascites",
+          "csf-liquor",
+          "saliva",
+          "stool-faeces",
+          "urine",
+          "swab",
+          "liquid-other",
+          "tissue-ffpe",
+          "tumor-tissue-ffpe",
+          "normal-tissue-ffpe",
+          "other-tissue-ffpe",
+          "tissue-frozen",
+          "tumor-tissue-frozen",
+          "normal-tissue-frozen",
+          "other-tissue-frozen",
+          "tissue-other",
+          "dna",
+          "cf-dna",
+          "g-dna",
+          "rna",
+          "derivative-other"].contains(sampleTypeCode)
 }
