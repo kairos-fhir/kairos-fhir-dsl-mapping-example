@@ -54,7 +54,7 @@ specimen {
     if (isBbmriSampleTypeCode(context.source[abstractSample().sampleType().code()] as String)) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
-        code = context.source[abstractSample().sampleType().code()]
+        code = (context.source[abstractSample().sampleType().code()] as String).toLowerCase()
       }
     } // 2. CXX sample type SPREC => BBMRI SampleMaterialType.
     else if (context.source[abstractSample().sampleType().sprecCode()]) {
@@ -304,5 +304,5 @@ static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {
           "cf-dna",
           "g-dna",
           "rna",
-          "derivative-other"].contains(sampleTypeCode)
+          "derivative-other"].stream().anyMatch({ it.equalsIgnoreCase(sampleTypeCode) })
 }
