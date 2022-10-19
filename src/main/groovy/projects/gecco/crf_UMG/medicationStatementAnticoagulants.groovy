@@ -91,6 +91,10 @@ static String matchResponseToATC(final String resp) {
       return "B01AA04"
     case ("COV_DOAK"):
       return "B01AE"
+    case ("COV_HGW_NEIN"):
+      return ""
+    case ("COV_SONSTIGE"):
+      return ""
     default: null
   }
 }

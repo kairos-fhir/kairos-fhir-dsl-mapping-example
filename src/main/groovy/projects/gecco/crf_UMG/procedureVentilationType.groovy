@@ -63,8 +63,25 @@ procedure {
     }
 
     performedDateTime {
-      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-      precision = TemporalPrecisionEnum.DAY.toString()
+      crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def CXXCode = item[CatalogEntry.CODE] as String
+        if (CXXCode == "COV_NEIN"){
+          extension{
+            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            valueCode = "not-performed"
+          }
+        } else if (CXXCode == "COV_NA"){
+          extension{
+            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            valueCode = "not-applicable"
+          }
+        }
+        else{
+          date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+          precision = TemporalPrecisionEnum.DAY.toString()
+        }
+      }
+
     }
   }
 }
@@ -76,15 +93,16 @@ static String normalizeDate(final String dateTimeString) {
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_NEIN"):
-      return "not-performed"
+      return "53950000"
     case ("COV_NHFST"):
-      return "371907003:425391005=426854004"
+      return "371907003"
     case ("COV_NIB"):
       return "428311008"
     case ("COV_INVASIVE_BEATMUNG"):
       return "40617009:425391005=26412008"
     case ("COV_TRACHEOTOMIE"):
       return "40617009:425391005=129121000"
-    default: null
+    case ("COV_NA"):
+      return "53950000"
   }
 }

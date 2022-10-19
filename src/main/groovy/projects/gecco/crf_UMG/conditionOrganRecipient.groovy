@@ -78,7 +78,7 @@ condition {
     }
 
     code {
-      crfItemOrgan[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      /*crfItemOrgan[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
         if (ICDcode) {
           coding {
@@ -87,7 +87,7 @@ condition {
             code = ICDcode
           }
         }
-      }
+      }*/
       crfItemOrgan[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
@@ -105,7 +105,7 @@ condition {
     }
   }
 }
-
+/*
 static String matchResponseToICD(final String resp) {
   switch (resp) {
     case ("COV_HERZ"):
@@ -130,7 +130,7 @@ static String matchResponseToICD(final String resp) {
       return "Z94.6"
     default: null
   }
-}
+}*/
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {

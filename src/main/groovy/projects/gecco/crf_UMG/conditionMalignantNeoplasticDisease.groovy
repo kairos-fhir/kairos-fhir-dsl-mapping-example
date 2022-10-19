@@ -63,12 +63,22 @@ condition {
       }
     }
     crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-      final def verificationStatusCode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
-      if (verificationStatusCode) {
+      final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
+      if (VERcode == "261665006") {
+        extension {
+          url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
+          valueCodeableConcept {
+            coding {
+              system = "http://snomed.info/sct"
+              code = "261665006"
+            }
+          }
+        }
+      } else if (["410594000", "410605003"].contains(VERcode)) {
         verificationStatus {
-          coding{
+          coding {
             system = "http://snomed.info/sct"
-            code = verificationStatusCode
+            code = VERcode
           }
           coding {
             system = "http://terminology.hl7.org/CodeSystem/condition-ver-status"

@@ -76,7 +76,7 @@ condition {
 
 
     code {
-      crfItemLung[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      /*crfItemLung[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
         if (ICDcode) {
           coding {
@@ -85,7 +85,7 @@ condition {
             code = ICDcode
           }
         }
-      }
+      }*/
       crfItemLung[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
@@ -103,7 +103,7 @@ condition {
   }
 }
 
-
+/*
 static String matchResponseToICD(final String resp) {
   switch (resp) {
     case ("COV_ASTHMA"):
@@ -128,7 +128,7 @@ static String matchResponseToICD(final String resp) {
       return "Unknown"
     default: null
   }
-}
+}*/
 
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
@@ -151,6 +151,8 @@ static String matchResponseToSNOMED(final String resp) {
     case ("COV_UNBEKANNT"):
       return "413839001" //Generic chronic lung disease
     case ("COV_NEIN"):
+      return "413839001" //Generic chronic lung disease
+    case ("COV_ANDERE"):
       return "413839001" //Generic chronic lung disease
     default: null
   }

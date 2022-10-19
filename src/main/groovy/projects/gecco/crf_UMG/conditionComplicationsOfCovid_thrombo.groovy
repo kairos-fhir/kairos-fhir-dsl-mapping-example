@@ -88,7 +88,7 @@ condition {
   }
   code {
     if (crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-      crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      /*crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = matchResponseToICD(item[CatalogEntry.CODE] as String)
         if (ICDcode) {
           coding {
@@ -97,7 +97,7 @@ condition {
             code = ICDcode
           }
         }
-      }
+      }*/
       crfItemThrombo[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
         if (SNOMEDcode) {
@@ -114,7 +114,7 @@ condition {
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_HGW_NEIN"):
-      return "116223007"
+      return "439127006"
     case ("COV_VENOESE_THROMBOSE"):
       return "439127006"
     case ("COV_LUNGENARTERIENEMBOLIE"):
@@ -123,12 +123,10 @@ static String matchResponseToSNOMED(final String resp) {
       return "230690007"
     case ("COV_MYOKARDINFARKT"):
       return "22298006"
-    case ("COV_ANDERE"):
-      return ""
     default: null
   }
 }
-
+/*
 static String matchResponseToICD(final String resp) {
   switch (resp) {
     case ("COV_VENOESE_THROMBOSE"):
@@ -141,7 +139,7 @@ static String matchResponseToICD(final String resp) {
       return "I21.9"
     default: null
   }
-}
+}*/
 
 
 static String matchResponseToVerificationStatus(final String resp) {

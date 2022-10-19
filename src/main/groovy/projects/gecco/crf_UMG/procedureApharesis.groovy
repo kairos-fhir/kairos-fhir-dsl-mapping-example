@@ -53,11 +53,11 @@ procedure {
     }
 
     code {
-      coding {
+      /*coding {
         system = "http://fhir.de/CodeSystem/dimdi/ops"
         code = "8-82"
         version = "2021"
-      }
+      } */
       coding {
         system = "http://snomed.info/sct"
         code = "127788007"

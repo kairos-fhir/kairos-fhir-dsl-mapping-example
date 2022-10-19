@@ -89,24 +89,24 @@ condition {
   }
   code {
     if (crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-      crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      /*crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = item[CatalogEntry.CODE] as String
-        //if (ICDcode == "COV_JA") {
+        if (ICDcode) {
           coding {
             system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
             version = "2020"
             code = "A41.9"
           }
-        //}
-      }
+        }
+      }*/
       crfItemBlutinfekt[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = item[CatalogEntry.CODE] as String
-        //if (SNOMEDcode == "COV_JA") {
+        if (SNOMEDcode) {
           coding {
             system = "http://snomed.info/sct"
             code = "434156008"
           }
-        //}
+        }
       }
     }
   }

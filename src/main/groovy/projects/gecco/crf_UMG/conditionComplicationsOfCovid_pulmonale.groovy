@@ -86,19 +86,19 @@ condition {
   }
   code {
     if (crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-      crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      /*crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def ICDcode = item[CatalogEntry.CODE] as String
-        if (ICDcode == "COV_JA") {
+        if (ICDcode) {
           coding {
             system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
             version = "2020"
             code = "J18.9"
           }
         }
-      }
+      }*/
       crfItemCoinfect[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def SNOMEDcode = item[CatalogEntry.CODE] as String
-        if (SNOMEDcode == "COV_JA") {
+        if (SNOMEDcode) {
           coding {
             system = "http://snomed.info/sct"
             code = "128601007"
