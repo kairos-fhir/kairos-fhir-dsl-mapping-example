@@ -80,9 +80,12 @@ immunization {
   crfItemVaccineDates?.each { final dates ->
     final def vaccDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
     if (vaccDateCode == "COV_GECCO_DAT_covid19f-dataelement-2.2211") {
-      final String vDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
-      if (vDs) {
-        vaccDateList.add(vDs)
+      final String vDs_date_value = dates[CrfItem.DATE_VALUE]
+      if (vDs_date_value){
+        final String vDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
+        if (vDs) {
+          vaccDateList.add(vDs)
+        }
       }
     }
   }

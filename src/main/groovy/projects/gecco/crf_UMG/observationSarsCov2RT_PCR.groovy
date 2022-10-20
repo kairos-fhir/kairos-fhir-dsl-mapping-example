@@ -116,10 +116,14 @@ observation {
   crfItemPCRDates?.each { final dates ->
     final def pcrDateCode = dates[CrfItem.TEMPLATE][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
     if (pcrDateCode == "COV_UMG_FOLGEABSTRICH_VOM") {
-      final String tDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
-      if (tDs) {
-        pcrDateList.add(tDs)
+      final String tDs_date_value = dates[CrfItem.DATE_VALUE]
+      if (tDs_date_value){
+        final String tDs = normalizeDate(dates[CrfItem.DATE_VALUE][PrecisionDate.DATE] as String)
+        if (tDs) {
+          pcrDateList.add(tDs)
+        }
       }
+
     }
   }
 

@@ -61,7 +61,7 @@ consent {
     // When this Consent was issued / created / indexed. - Comments: This is not the time of the original consent, but the time that this statement was made or derived.
     // Gibt wohl besser dafuer geeignetes Quelldatenelement (bisher noch nicht so tief in alle verfügbaren ECRF Felder geschaut)
     //dateTime = new DateTimeType(normalizeDate(context.source[studyVisitItem().studyMember().patientContainer().creationDate()] as String))
-    dateTime = new DateTimeType(normalizeDate(context.source[studyVisitItem().dataEntryCrfs().creationDate()] as String))
+    dateTime = new DateTimeType(normalizeDate(context.source[studyVisitItem().creationDate()] as String))
 
     policy {
       uri = "https://www.aerzteblatt.de/archiv/65440/DNR-Anordnungen-Das-fehlende-Bindeglied"
@@ -106,5 +106,12 @@ static String mapDNR(final String resp) {
  * @return the result might be something like "1989-01-15"
  */
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
+  if (dateTimeString){
+    if (dateTimeString.length() >= 10){
+      return dateTimeString.substring(0, 10)
+    }
+  }
+  else{
+    return dateTimeString
+  }
 }
