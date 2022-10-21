@@ -5,6 +5,8 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.Extension
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
@@ -31,41 +33,47 @@ medicationStatement {
     return
   }
   if (crfItemThera[CrfItem.CATALOG_ENTRY_VALUE] != []) {
-    id = "MedicationStatement/AntiCoagulation-" + context.source[studyVisitItem().id()]
+    final def item_value = crfItemThera[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE]
+    if (item_value != "COV_HGW_NEIN"){
+      id = "MedicationStatement/AntiCoagulation-" + context.source[studyVisitItem().id()]
 
-    meta {
-      source = "https://fhir.centraxx.de"
-      profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy-anticoagulants"
-    }
-
-
-    crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-      final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
-      if (STATUScode) {
-        status = STATUScode
+      meta {
+        source = "https://fhir.centraxx.de"
+        profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/pharmacological-therapy-anticoagulants"
       }
-    }
 
-    medication {
-      medicationCodeableConcept {
-        crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-          final def ATCcode = matchResponseToATC(item[CatalogEntry.CODE] as String)
-          if (ATCcode) {
-            coding {
-              system = "http://fhir.de/CodeSystem/dimdi/atc"
-              code = ATCcode
+
+      crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        final def STATUScode = matchResponseToSTATUS(item[CatalogEntry.CODE] as String)
+        if (STATUScode) {
+          status = STATUScode
+        }
+      }
+
+      medication {
+        medicationCodeableConcept {
+          crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+            final def ATCcode = matchResponseToATC(item[CatalogEntry.CODE] as String)
+            if (ATCcode) {
+              coding {
+                system = "http://fhir.de/CodeSystem/dimdi/atc"
+                code = ATCcode
+              }
             }
           }
         }
       }
-    }
+      if (getMedicationCodeableConcept().getCoding().isEmpty()) {
+        getMedicationCodeableConcept().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+      }
 
-    subject {
-      reference = "Patient/UMG-CXX-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
-    }
-    effectiveDateTime {
-      date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
-      precision = TemporalPrecisionEnum.SECOND.toString()
+      subject {
+        reference = "Patient/UMG-CXX-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      }
+      effectiveDateTime {
+        date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
+        precision = TemporalPrecisionEnum.SECOND.toString()
+      }
     }
   }
 }
@@ -91,11 +99,8 @@ static String matchResponseToATC(final String resp) {
       return "B01AA04"
     case ("COV_DOAK"):
       return "B01AE"
-    case ("COV_HGW_NEIN"):
-      return ""
     case ("COV_SONSTIGE"):
-      return ""
-    default: null
+      return null
   }
 }
 

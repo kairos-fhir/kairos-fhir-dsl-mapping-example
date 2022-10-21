@@ -5,6 +5,9 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.DateTimeType
+import org.hl7.fhir.r4.model.Extension
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
@@ -38,7 +41,9 @@ procedure {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/respiratory-therapies"
     }
 
-    status = "unknown"
+    crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      status = matchResponseToStatus(item[CatalogEntry.CODE] as String)
+    }
 
     category {
       coding {
@@ -56,6 +61,12 @@ procedure {
             code = SNOMEDcode
           }
         }
+        else {
+          extension{
+            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+            valueCode = "not-applicable"
+          }
+        }
       }
     }
     subject {
@@ -65,23 +76,26 @@ procedure {
     performedDateTime {
       crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
         final def CXXCode = item[CatalogEntry.CODE] as String
-        if (CXXCode == "COV_NEIN"){
-          extension{
-            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-            valueCode = "not-performed"
-          }
-        } else if (CXXCode == "COV_NA"){
-          extension{
-            url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-            valueCode = "not-applicable"
-          }
-        }
-        else{
+        if (!["COV_NEIN","COV_NA"].contains(CXXCode)){
           date = normalizeDate(context.source[studyVisitItem().crf().creationDate()] as String)
           precision = TemporalPrecisionEnum.DAY.toString()
         }
       }
+    }
 
+
+    crfItemRespThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+      final def CXXCode = item[CatalogEntry.CODE] as String
+      if (CXXCode == "COV_NEIN"){
+        DateTimeType dateTimeType = new DateTimeType()
+        dateTimeType.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("not-performed")))
+        setPerformedDateTime(dateTimeType)
+      }
+      else if (CXXCode == "COV_NA"){
+        DateTimeType dateTimeType = new DateTimeType()
+        dateTimeType.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("not-applicable")))
+        setPerformedDateTime(dateTimeType)
+      }
     }
   }
 }
@@ -104,5 +118,22 @@ static String matchResponseToSNOMED(final String resp) {
       return "40617009:425391005=129121000"
     case ("COV_NA"):
       return "53950000"
+  }
+}
+
+static String matchResponseToStatus(final String resp) {
+  switch (resp) {
+    case ("COV_NEIN"):
+      return "not-done"
+    case ("COV_NHFST"):
+      return "in-progress"
+    case ("COV_NIB"):
+      return "in-progress"
+    case ("COV_INVASIVE_BEATMUNG"):
+      return "in-progress"
+    case ("COV_TRACHEOTOMIE"):
+      return "in-progress"
+    case ("COV_NA"):
+      return "unknown"
   }
 }

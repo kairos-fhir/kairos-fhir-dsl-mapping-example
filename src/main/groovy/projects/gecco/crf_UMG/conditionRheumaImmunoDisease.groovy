@@ -100,6 +100,14 @@ condition {
             code = SNOMEDcode
           }
         }
+        else {
+          coding {
+            extension{
+              url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              valueCode = "unsupported"
+            }
+          }
+        }
       }
     }
 

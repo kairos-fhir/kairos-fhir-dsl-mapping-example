@@ -40,17 +40,6 @@ condition {
       profile "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/malignant-neoplastic-disease"
     }
 
-    extension {
-      url = "https://simplifier.net/forschungsnetzcovid-19/uncertaintyofpresence"
-      valueCodeableConcept {
-        coding {
-          system = "http://snomed.info/sct"
-          code = "261665006"
-        }
-      }
-    }
-
-
     crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def clinicalStatusCode = matchResponseToClinicalStatus(item[CatalogEntry.CODE] as String)
       if (clinicalStatusCode) {

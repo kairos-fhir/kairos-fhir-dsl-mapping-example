@@ -5,7 +5,10 @@ import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.MedicationStatement
+import org.hl7.fhir.r4.model.Narrative
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
@@ -45,14 +48,22 @@ medicationStatement {
       medicationCodeableConcept {
         crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
           final def ATCcode = matchResponseToATC(item[CatalogEntry.CODE] as String)
+          final def Othercode = matchResponseToOther(item[CatalogEntry.CODE] as String)
+
           if (ATCcode) {
             coding {
               system = "http://fhir.de/CodeSystem/dimdi/atc"
               code = ATCcode
             }
           }
+          else if (Othercode){
+            coding {
+              system = "https://www.netzwerk-universitaetsmedizin.de/fhir/CodeSystem/ecrf-parameter-codes"
+              code = Othercode
+            }
+          }
         }
-        crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
+        /*crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
           final def SNOMEDcode = matchResponseToSNOMED(item[CatalogEntry.CODE] as String)
           if (SNOMEDcode) {
             coding {
@@ -60,17 +71,12 @@ medicationStatement {
               code = SNOMEDcode
             }
           }
-        }
-        crfItemThera[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
-          final def Othercode = matchResponseToOther(item[CatalogEntry.CODE] as String)
-          if (Othercode) {
-            coding {
-              system = "1.2.276.0.76.5.498"
-              code = Othercode
-            }
-          }
-        }
+        }*/
       }
+    }
+
+    if (getMedicationCodeableConcept().getCoding().isEmpty()) {
+      getMedicationCodeableConcept().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
     }
 
     subject {
@@ -140,7 +146,7 @@ static String matchResponseToATC(final String resp) {
     default: null
   }
 }
-
+/*
 static String matchResponseToSNOMED(final String resp) {
   switch (resp) {
     case ("COV_HYDROXYVITAMIN_D"):
@@ -187,7 +193,7 @@ static String matchResponseToSNOMED(final String resp) {
       return "764877006"
     default: null
   }
-}
+}*/
 
 
 static String matchResponseToOther(final String resp) {

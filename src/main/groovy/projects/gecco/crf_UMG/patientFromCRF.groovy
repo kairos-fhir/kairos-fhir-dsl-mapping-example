@@ -63,11 +63,25 @@ patient {
   }
   if (crfItemEthn) {
     crfItemEthn[CrfItem.CATALOG_ENTRY_VALUE][CatalogEntry.CODE]?.each { final ethn ->
-      extension {
-        url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
-        valueCoding {
-          system = "http://snomed.info/sct"
-          code = mapEthnicityCode(ethn as String)
+      final def ethnicity = mapEthnicityCode(ethn as String)
+      if (ethnicity){
+        extension {
+          url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
+          valueCoding {
+            system = "http://snomed.info/sct"
+            code = ethnicity
+          }
+        }
+      }
+      else {
+        extension {
+          url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/ethnic-group"
+          valueCoding {
+            extension{
+              url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              valueCode = "unsupported"
+            }
+          }
         }
       }
     }
@@ -157,7 +171,7 @@ static String mapEthnicityCode(final String ethnicity) {
     case "COV_186019001":
       return "26242008"
     default:
-      return "261665006"
+      return null
   }
 }
 

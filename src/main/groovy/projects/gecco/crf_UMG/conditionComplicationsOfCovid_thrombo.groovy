@@ -123,7 +123,8 @@ static String matchResponseToSNOMED(final String resp) {
       return "230690007"
     case ("COV_MYOKARDINFARKT"):
       return "22298006"
-    default: null
+    case ("COV_ANDERE"):
+      return "439127006"
   }
 }
 /*

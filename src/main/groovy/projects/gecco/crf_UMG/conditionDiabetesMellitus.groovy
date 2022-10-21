@@ -94,6 +94,14 @@ condition {
             code = SNOMEDcode
           }
         }
+        else{
+          coding{
+            extension{
+              url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              valueCode = "not-applicable"
+            }
+          }
+        }
       }
     }
 
@@ -123,8 +131,8 @@ static String matchResponseToSNOMED(final String resp) {
       return "44054006"
     case ("COV_TYP3"):
       return "8801005"
-    case ("COV_UNBEKANNT"):
-      return "73211009" //generic code for diabetes
+    //case ("COV_NA"):
+    //  return "73211009" //generic code for diabetes
     case ("COV_NEIN"):
       return "73211009" //generic code for diabetes
     default: null
@@ -135,7 +143,7 @@ static String matchResponseToVerificationStatus(final String resp) {
   switch (resp) {
     case null:
       return null
-    case ("COV_UNBEKANNT"):
+    case ("OV_NA"):
       return "261665006"
     case ("COV_NEIN"):
       return "410594000"
@@ -146,7 +154,7 @@ static String matchResponseToVerificationStatusHL7(final String resp) {
   switch (resp) {
     case null:
       return null
-    case ("COV_UNBEKANNT"):
+    case ("COV_NA"):
       return "unconfirmed"
     case ("COV_NEIN"):
       return "refuted"
