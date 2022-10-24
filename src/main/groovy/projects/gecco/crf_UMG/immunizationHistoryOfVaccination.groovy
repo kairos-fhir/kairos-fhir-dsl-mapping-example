@@ -5,6 +5,9 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.DateTimeType
+import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.Immunization
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -71,6 +74,11 @@ immunization {
     }
   }
 
+  if (getVaccineCode().getCoding().isEmpty()) {
+    getVaccineCode().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+  }
+
+
   final def crfItemVaccineDates = context.source[studyVisitItem().crf().items()]
   if (!crfItemVaccineDates || crfItemVaccineDates == []) {
     return
@@ -91,8 +99,17 @@ immunization {
   }
 
   //Date of last vaccination --> "Date of full immunization
-  occurrenceDateTime {
-    date = selectMostRecentDate(vaccDateList)
+  def final vaccDdate = selectMostRecentDate(vaccDateList)
+  if (vaccDdate){
+    occurrenceDateTime {
+      date = vaccDdate
+    }
+  }
+
+  if (!getOccurrenceDateTime()) {
+    DateTimeType dateTimeType = new DateTimeType()
+    dateTimeType.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("not-performed")))
+    setOccurrenceDateTime(dateTimeType)
   }
 }
 

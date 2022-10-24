@@ -6,6 +6,9 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.DateTimeType
+import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
@@ -107,6 +110,10 @@ observation {
     }
   }
 
+  if (getValueCodeableConcept().getCoding().isEmpty()) {
+    getValueCodeableConcept().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+  }
+
   final def crfItemPCRDates = context.source[studyVisitItem().crf().items()]
   if (!crfItemPCRDates || crfItemPCRDates == []) {
     return
@@ -123,14 +130,23 @@ observation {
           pcrDateList.add(tDs)
         }
       }
-
     }
   }
 
   //Date of last test--> most relevant
-  effectiveDateTime {
-    date = selectMostRecentDate(pcrDateList)
+  def final pcrDdate = selectMostRecentDate(pcrDateList)
+  if (pcrDdate){
+    effectiveDateTime {
+      date = pcrDdate
+    }
   }
+
+  if (!getEffectiveDateTime()) {
+    DateTimeType dateTimeType = new DateTimeType()
+    dateTimeType.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("not-performed")))
+    setEffectiveDateTime(dateTimeType)
+  }
+
 
 
 
