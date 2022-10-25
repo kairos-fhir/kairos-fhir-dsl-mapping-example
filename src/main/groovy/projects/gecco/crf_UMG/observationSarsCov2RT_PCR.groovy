@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.Observation
@@ -111,7 +112,9 @@ observation {
   }
 
   if (getValueCodeableConcept().getCoding().isEmpty()) {
-    getValueCodeableConcept().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+    Coding coding = new Coding()
+    coding.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+    getValueCodeableConcept().addCoding(coding)
   }
 
   final def crfItemPCRDates = context.source[studyVisitItem().crf().items()]
@@ -155,7 +158,7 @@ observation {
 static String mapDiscSNOMED(final String discharge) {
   switch (discharge) {
     default:
-      return null
+      return "419984006"
     case "COV_POSITIV":
       return "260373001"
     case "COV_NEGATIV":

@@ -6,6 +6,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.Immunization
@@ -75,7 +76,9 @@ immunization {
   }
 
   if (getVaccineCode().getCoding().isEmpty()) {
-    getVaccineCode().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+    Coding coding = new Coding()
+    coding.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+    getVaccineCode().addCoding(coding)
   }
 
 

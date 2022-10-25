@@ -6,6 +6,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.MedicationStatement
 import org.hl7.fhir.r4.model.Narrative
@@ -76,7 +77,9 @@ medicationStatement {
     }
 
     if (getMedicationCodeableConcept().getCoding().isEmpty()) {
-      getMedicationCodeableConcept().addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+      Coding coding = new Coding()
+      coding.addExtension(new Extension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unsupported")))
+      getMedicationCodeableConcept().addCoding(coding)
     }
 
     subject {
