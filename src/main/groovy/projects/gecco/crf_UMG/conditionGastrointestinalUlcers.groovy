@@ -42,7 +42,7 @@ condition {
     crfItemUlcer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
       if (VERcode == "261665006") {
-        extension {
+        modifierExtension {
           url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/uncertainty-of-presence"
           valueCodeableConcept {
             coding {

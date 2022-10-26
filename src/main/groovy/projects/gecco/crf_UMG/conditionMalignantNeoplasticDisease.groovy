@@ -54,7 +54,7 @@ condition {
     crfItemCancer[CrfItem.CATALOG_ENTRY_VALUE]?.each { final item ->
       final def VERcode = matchResponseToVerificationStatus(item[CatalogEntry.CODE] as String)
       if (VERcode == "261665006") {
-        extension {
+        modifierExtension {
           url = "https://www.netzwerk-universitaetsmedizin.de/fhir/StructureDefinition/uncertainty-of-presence"
           valueCodeableConcept {
             coding {
@@ -118,7 +118,7 @@ static String matchResponseToVerificationStatus(final String resp) {
       return "410605003"
     case ("COV_REMISSION"):
       return "410605003"
-    case ("COV_NO"):
+    case ("COV_NEIN"):
       return "410594000"
     case ("COV_UNKNOWN"):
       return "261665006"
@@ -131,7 +131,7 @@ static String matchResponseToVerificationStatusHL7(final String resp) {
       return "confirmed"
     case ("COV_REMISSION"):
       return "confirmed"
-    case ("COV_NO"):
+    case ("COV_NEIN"):
       return "refuted"
     case ("COV_UNKNOWN"):
       return "unconfirmed"

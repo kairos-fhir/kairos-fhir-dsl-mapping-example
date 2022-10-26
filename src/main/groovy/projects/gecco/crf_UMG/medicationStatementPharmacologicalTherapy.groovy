@@ -202,7 +202,7 @@ static String matchResponseToSNOMED(final String resp) {
 static String matchResponseToOther(final String resp) {
   switch (resp) {
     case ("COV_STEROIDS_KLEINER_5MG"):
-      return "steroids-st"
+      return "steroids-lt"
     case ("COV_STEROIDS_GROESSER_5MG"):
       return "steroids-gt"
     default: null
