@@ -48,7 +48,6 @@ patient {
 
       final String patientRef = bundleEntryComponent.getFullUrl()
       final String uuid = UUID.randomUUID().toString()
-      println(patientRef)
       patientBundlePathMap.put(patientRef, uuid)
       writeToFile(exportDir, patientBundle, uuid)
     }
@@ -58,9 +57,7 @@ patient {
   for (final String otherFile : otherFiles) {
     final List<BundleEntryComponent> bundleEntryComponents = loadBundle(exportDir, otherFile).getEntry()
     for (final BundleEntryComponent bundleEntryComponent : bundleEntryComponents) {
-      System.println(bundleEntryComponent.hasResource())
       final String ref = getReference(bundleEntryComponent.getResource())
-      System.out.println(ref)
       addToAggregate(exportDir, patientBundlePathMap.get(ref), bundleEntryComponent)
     }
   }
