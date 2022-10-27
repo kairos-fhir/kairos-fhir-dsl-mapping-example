@@ -1,9 +1,10 @@
-package projects.cxx.custom.bundle
+package main.groovy.projects.cxx.custom.aggregate
 
 import ca.uhn.fhir.context.FhirContext
 import org.apache.commons.io.output.FileWriterWithEncoding
 import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent
+import org.hl7.fhir.r4.model.Condition
 import org.hl7.fhir.r4.model.Encounter
 import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.Procedure
@@ -39,14 +40,15 @@ patient {
 
   // load all Patient bundles and initialize a new bundle for each and write it to disk
   for (final String patientFile : patientFiles) {
-    final List<BundleEntryComponent> bundleEntryComponents = loadBundle(exportDir, patientFile).entry
+    final List<BundleEntryComponent> bundleEntryComponents = loadBundle(exportDir, patientFile).getEntry()
 
     for (final BundleEntryComponent bundleEntryComponent : bundleEntryComponents) {
       final Bundle patientBundle = new Bundle()
       patientBundle.addEntry(bundleEntryComponent)
 
-      final def patientRef = bundleEntryComponent.getFullUrl()
-      final def uuid = UUID.randomUUID().toString()
+      final String patientRef = bundleEntryComponent.getFullUrl()
+      final String uuid = UUID.randomUUID().toString()
+      println(patientRef)
       patientBundlePathMap.put(patientRef, uuid)
       writeToFile(exportDir, patientBundle, uuid)
     }
@@ -54,10 +56,11 @@ patient {
 
   // load all other resource bundles and add them to the corresponding patient bundle
   for (final String otherFile : otherFiles) {
-    final List<BundleEntryComponent> bundleEntryComponents = loadBundle(exportDir, otherFile).entry
+    final List<BundleEntryComponent> bundleEntryComponents = loadBundle(exportDir, otherFile).getEntry()
     for (final BundleEntryComponent bundleEntryComponent : bundleEntryComponents) {
-      //TODO: bundleEntryComponent.resource returns false
-      final String ref = getReference(bundleEntryComponent.resource)
+      System.println(bundleEntryComponent.hasResource())
+      final String ref = getReference(bundleEntryComponent.getResource())
+      System.out.println(ref)
       addToAggregate(exportDir, patientBundlePathMap.get(ref), bundleEntryComponent)
     }
   }
@@ -98,7 +101,7 @@ static getReference(final Resource resource) {
     return ((Specimen) resource).getSubject()?.getReference()
   }
   if (resource.getResourceType() == ResourceType.Condition) {
-    return ((Specimen) resource).getSubject()?.getReference()
+    return ((Condition) resource).getSubject()?.getReference()
   }
   if (resource.getResourceType() == ResourceType.Encounter) {
     return ((Encounter) resource).getSubject()?.getReference()

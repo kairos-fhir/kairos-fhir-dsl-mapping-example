@@ -28,7 +28,7 @@
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
-      "transformByTemplate": "patientbundle",
+      "transformByTemplate": "aggregate",
       "exportToFhirResource": "Patient"
     }
   ]
