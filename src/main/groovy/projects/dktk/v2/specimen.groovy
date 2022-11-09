@@ -3,17 +3,19 @@ package projects.dktk.v2
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractSample.PARENT
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  *
- * Specified by https://simplifier.net/bbmri.de/specimen
+ * Specified by https://simplifier.net/oncology/exliquidspecimen-duplicate-2
  *
  * hints:
  * The DKTK oncology profiles does not contain a separate specimen, instead of the BBMRI specimen should be used. Unfortunately,
  * the BBMRI specifies another Organization (https://simplifier.net/bbmri.de/collection) than the DKTK oncology, which is much different.
  * To avoid conflicts between both organization profiles, the specimen collection extension has been removed.
+ * 2022-11-09: The specimen profile is switched to https://simplifier.net/oncology/exliquidspecimen-duplicate-2
  *
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
@@ -23,7 +25,7 @@ specimen {
   id = "Specimen/" + context.source[abstractSample().id()]
 
   meta {
-    profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
+    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-ExliquidSpecimen"
   }
 
   final def idc = context.source[sample().idContainer()].find {
@@ -39,7 +41,7 @@ specimen {
           code = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
         }
       }
-      system = "https://dktk.dkfz.de/fhir/NamingSystem/exliquid-specimen"
+      system = "http://dktk.dkfz.de/fhir/sid/exliquid-specimen"
     }
   }
 
@@ -88,6 +90,12 @@ specimen {
   if (context.source[abstractSample().episode()]) {
     encounter {
       reference = "Encounter/" + context.source[abstractSample().episode().id()]
+    }
+  }
+
+  if (context.source[PARENT] != null) {
+    parent {
+      reference = "Specimen/" + context.source[sample().parent().id()]
     }
   }
 
