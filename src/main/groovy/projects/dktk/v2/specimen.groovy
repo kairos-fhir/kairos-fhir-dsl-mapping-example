@@ -6,6 +6,7 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.PARENT
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX AbstractSample
  *
@@ -15,7 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * The DKTK oncology profiles does not contain a separate specimen, instead of the BBMRI specimen should be used. Unfortunately,
  * the BBMRI specifies another Organization (https://simplifier.net/bbmri.de/collection) than the DKTK oncology, which is much different.
  * To avoid conflicts between both organization profiles, the specimen collection extension has been removed.
- * 2022-11-09: The specimen profile is switched to https://simplifier.net/oncology/exliquidspecimen-duplicate-2
+ * 2022-11-09: The specimen profile is only switched to https://simplifier.net/oncology/exliquidspecimen-duplicate-2 for sample with exliquid ID
  *
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
@@ -24,12 +25,16 @@ specimen {
 
   id = "Specimen/" + context.source[abstractSample().id()]
 
-  meta {
-    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-ExliquidSpecimen"
-  }
-
   final def idc = context.source[sample().idContainer()].find {
     "EXLIQUID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  meta {
+    if (idc) {
+      profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-ExliquidSpecimen"
+    } else {
+      profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-OncoSpecimen"
+    }
   }
 
   if (idc) {
