@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.kairos</groupId>
@@ -46,7 +47,7 @@
   <repositories>
     <repository>
       <id>centraxx</id>
-      <url>http://nexus.kairosbochum.de/repository/centraxx</url>
+      <url>https://nexus.kairosbochum.de/repository/centraxx</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -56,7 +57,7 @@
     </repository>
     <repository>
       <id>centraxx-snapshots</id>
-      <url>http://nexus.kairosbochum.de/repository/centraxx-snapshots</url>
+      <url>https://nexus.kairosbochum.de/repository/centraxx-snapshots</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -66,7 +67,7 @@
     </repository>
     <repository>
       <id>central</id>
-      <url>http://nexus.kairosbochum.de/repository/maven-central</url>
+      <url>https://nexus.kairosbochum.de/repository/maven-central</url>
     </repository>
     <repository>
       <id>maven-central</id>
@@ -82,7 +83,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>central</id>
-      <url>http://nexus.kairosbochum.de/repository/maven-central</url>
+      <url>https://nexus.kairosbochum.de/repository/maven-central</url>
     </pluginRepository>
     <pluginRepository>
       <id>maven-central</id>
