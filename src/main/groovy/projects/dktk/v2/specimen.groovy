@@ -48,9 +48,15 @@ specimen {
       }
       system = "http://dktk.dkfz.de/fhir/sid/exliquid-specimen"
     }
-  }
 
-  status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
+    status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
+
+    if (context.source[PARENT] != null) {
+      parent {
+        reference = "Specimen/" + context.source[sample().parent().id()]
+      }
+    }
+  }
 
   type {
     // 0. First coding is the CXX sample type code. If mapping is missing, this code might help to identify the source value.
@@ -95,12 +101,6 @@ specimen {
   if (context.source[abstractSample().episode()]) {
     encounter {
       reference = "Encounter/" + context.source[abstractSample().episode().id()]
-    }
-  }
-
-  if (context.source[PARENT] != null) {
-    parent {
-      reference = "Specimen/" + context.source[sample().parent().id()]
     }
   }
 
