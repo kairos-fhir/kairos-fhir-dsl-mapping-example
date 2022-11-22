@@ -297,7 +297,7 @@ specimen {
 
     collection {
         collectedDateTime {
-//      date = context.source[sample().samplingDate().date()]
+            date = context.source[sample().samplingDate().date()]
             quantity {
                 switch (context.source[sample().sampleType().code()]) {
                     case "PAXGEN":
