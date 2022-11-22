@@ -112,7 +112,7 @@ specimen {
         receptionDate = context.source[sample().parent().parent().receiptDate().date()]
     }
     if (receptionDate != null && receptionDate < "2022-03-01T23:59:59+01:00") {
-        System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
+//        System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
         return
     }
 
