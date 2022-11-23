@@ -184,7 +184,7 @@ observation {
   }
 }
 
-private static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {
+static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {
   return types.contains(laborValue?.getAt(LaborValue.D_TYPE) as LaborValueDType)
 }
 
@@ -212,12 +212,12 @@ static boolean isString(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
 }
 
-static boolean isCatalog(final Object lflv) {
-  return isDTypeOf(lflv, [LaborValueDType.CATALOG])
+static boolean isCatalog(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.CATALOG])
 }
 
-static boolean isOptionGroup(final Object lflv) {
-  return isDTypeOf(lflv, [LaborValueDType.OPTIONGROUP])
+static boolean isOptionGroup(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
 }
 
 static boolean isCimdKenzusatzdaten(final String laborValueCode) {
