@@ -100,26 +100,17 @@ observation {
             value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
             unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
           }
-        }
-        if (isBoolean(laborValue)) {
+        } else if (isBoolean(laborValue)) {
           valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
-        }
-
-        if (isDate(laborValue)) {
+        } else if (isDate(laborValue)) {
           valueDateTime {
             date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
           }
-        }
-
-        if (isTime(laborValue)) {
+        } else if (isTime(laborValue)) {
           valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
-        }
-
-        if (isString(laborValue)) {
+        } else if (isString(laborValue)) {
           valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
-        }
-
-        if (isEnumeration(laborValue)) {
+        } else if (isEnumeration(laborValue)) {
           valueCodeableConcept {
             lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
               coding {
@@ -134,9 +125,7 @@ observation {
               }
             }
           }
-        }
-
-        if (isOptionGroup(laborValue)) {
+        } else if (isOptionGroup(laborValue)) {
           valueCodeableConcept {
             lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
               coding {
@@ -151,9 +140,7 @@ observation {
               }
             }
           }
-        }
-
-        if (isCatalog(laborValue)) {
+        } else if (isCatalog(laborValue)) {
           valueCodeableConcept {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
@@ -189,7 +176,7 @@ observation {
             }
           }
         } else {
-          final String msg = lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) + " not implemented yet."
+          final String msg = laborValue?.getAt(LaborValue.D_TYPE) + " not implemented yet."
           System.out.println(msg)
         }
       }
