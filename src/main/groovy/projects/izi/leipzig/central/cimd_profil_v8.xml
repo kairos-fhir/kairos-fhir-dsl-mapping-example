@@ -18,7 +18,7 @@
                     <Value>Visitendatum</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -34,12 +34,12 @@
                     <Value>Raucherstatus (ITEM)</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTONE</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/230" DisplayName="Raucherstatus (ITEM)">WL_ITEM_RAUCHERSTATUS</ValueListRef>
+                <ValueListRef>WL_ITEM_RAUCHERSTATUS</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleDecimalValue>
                 <Code>ITEM_PACKYEARS</Code>
@@ -52,7 +52,7 @@
                     <Value>ITEM_PACKYEARS</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -70,7 +70,7 @@
                     <Value>Aufgehört ab:</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -86,7 +86,7 @@
                     <Value>Raucher seit</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -102,7 +102,7 @@
                     <Value>BMI (Body-Mass-Index)</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -120,7 +120,7 @@
                     <Value>Medikation Freitextfeld</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
@@ -136,12 +136,12 @@
                     <Value>Aktuelle Medikation: benutzerdefinierte Liste</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTMANY</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/216" DisplayName="Begleitmedikation (ITEM)">WL_ITEM_BEGLEITMEDIKATION</ValueListRef>
+                <ValueListRef>WL_ITEM_BEGLEITMEDIKATION</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleCatalogValue>
                 <Code>NUECHTERNSTATUS_HUB</Code>
@@ -154,12 +154,12 @@
                     <Value>Nüchternstatus</Value>
                 </NameMultilingualEntries>
                 
-				<LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+				<LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTONE</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/26" DisplayName="Nüchternstatus(HUB, Basisdatensatz)">WL_NUECHTERNSTATUS_HUB</ValueListRef>
+                <ValueListRef>WL_NUECHTERNSTATUS_HUB</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleCatalogValue>
                 <Code>CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</Code>
@@ -172,12 +172,12 @@
                     <Value>Aktuelle Medikation: Wirkstoffklassen ATC</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTMANY</ChoiseType>
-                <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/3">
+                <UserDefinedCatalogRef>
                     <Code>ATC_CLASSLIST</Code>
                     <Version>2018</Version>
                 </UserDefinedCatalogRef>
@@ -193,12 +193,12 @@
                     <Value>Diagnose Begleiterkrankung</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTMANY</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/215" DisplayName="Diagnose Begleiterkrankung (ITEM)">WL_ITEM_DIAGNOSE_BEGLEITERKRANKUNG</ValueListRef>
+                <ValueListRef>WL_ITEM_DIAGNOSE_BEGLEITERKRANKUNG</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleCatalogValue>
                 <Code>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</Code>
@@ -211,12 +211,12 @@
                     <Value>Staubinde unmittelbar nach Bluteinfluss gelöst?</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTONE</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/89" DisplayName="Ja, Nein, Unbekannt Liste (HUB, Basisdatensatz)">WL_HUB_JA_NEIN_UNKNOWN</ValueListRef>
+                <ValueListRef>WL_HUB_JA_NEIN_UNKNOWN</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleCatalogValue>
                 <Code>CIMD_EINSCHLUSSDIAGNOSE_LISTE</Code>
@@ -229,12 +229,12 @@
                     <Value>Einschlussdiagnose Liste</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTMANY</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/246" DisplayName="Einschlussdiagnose Liste">WL_CIMD_EINSCHLUSSDIAGNOSE_LISTE</ValueListRef>
+                <ValueListRef>WL_CIMD_EINSCHLUSSDIAGNOSE_LISTE</ValueListRef>
             </FlexibleCatalogValue>
             <FlexibleCatalogValue>
                 <Code>ITEM_POSITION_BEI_BLUTENTNAHME</Code>
@@ -247,12 +247,12 @@
                     <Value>Position bei Blutentnahme</Value>
                 </NameMultilingualEntries>
                 
-                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/66" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
                 <UserEntries>
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <ChoiseType>SELECTONE</ChoiseType>
-                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/214" DisplayName="Position bei Blutentnahme (ITEM)">WL_ITEM_POSITION_BEI_BLUTENTNAHME</ValueListRef>
+                <ValueListRef>WL_ITEM_POSITION_BEI_BLUTENTNAHME</ValueListRef>
             </FlexibleCatalogValue>
         </FlexibleValueCatalogueItem>
         <FlexibleDataSetCatalogueItem>
@@ -266,71 +266,71 @@
                 <Value>CIMD Kernzusatzdaten</Value>
             </NameMultilingualEntries>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/976" DisplayName="Visitendatum">ITEM_VISITENDATUM</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_VISITENDATUM</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/975" DisplayName="Raucherstatus (ITEM)">ITEM_RAUCHERSTATUS</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_RAUCHERSTATUS</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/952" DisplayName="BMI (Body-Mass-Index) (,_)">ITEM_BMI</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_BMI</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/1031" DisplayName="Packyears (,_ _)">ITEM_PACKYEARS</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_PACKYEARS</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/1034" DisplayName="Raucher seit">ITEM_RAUCHER_SEIT</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_RAUCHER_SEIT</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1043" DisplayName="Einschlussdiagnose Liste">CIMD_EINSCHLUSSDIAGNOSE_LISTE</FlexibleValueRef>
+                <FlexibleValueRef>CIMD_EINSCHLUSSDIAGNOSE_LISTE</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/1035" DisplayName="Aufgehört ab">ITEM_AUFGEHOERT_AB</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_AUFGEHOERT_AB</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/116" DisplayName="Nüchternstatus">NUECHTERNSTATUS_HUB</FlexibleValueRef>
+                <FlexibleValueRef>NUECHTERNSTATUS_HUB</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/958" DisplayName="diagnostizierte Begleiterkrankung/en">ITEM_DIAGNOSE_BEGLEITERKRANKUNG</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1047" DisplayName="Aktuelle Medikation: benutzerdefinierte Liste">CIMD_AKTUELLE_MEDIKATION</FlexibleValueRef>
+                <FlexibleValueRef>CIMD_AKTUELLE_MEDIKATION</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1048" DisplayName="Aktuelle Medikation: Wirkstoffklassen ATC">CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</FlexibleValueRef>
+                <FlexibleValueRef>CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/1041" DisplayName="Medikation Freitextfeld (nur wenn in PZN, ATC und in der benutzerdefinierte Liste nicht vorhanden)">CIMD_MEDIKATION_FREITEXTFELD</FlexibleValueRef>
+                <FlexibleValueRef>CIMD_MEDIKATION_FREITEXTFELD</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/956" DisplayName="Position bei Blutentnahme">ITEM_POSITION_BEI_BLUTENTNAHME</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_POSITION_BEI_BLUTENTNAHME</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/957" DisplayName="Staubinde unmittelbar nach Bluteinfluss gelöst?">ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</FlexibleValueRef>
+                <FlexibleValueRef>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</FlexibleValueRef>
                 <Required>true</Required>
             </FlexibleValueComplexRefs>
             <Systemwide>true</Systemwide>
             <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
             <Category>GENERAL</Category>
-            <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/366">
+            <CrfTemplateRef>
                 <Name>CIMD Kernzusatzdaten</Name>
                 <Version>8</Version>
-                
+
             </CrfTemplateRef>
             <!--<Version>8</Version>-->
-            <!---->
+
         </FlexibleDataSetCatalogueItem>
         <CrfTemplate>
             <Name>CIMD Kernzusatzdaten</Name>
@@ -346,7 +346,7 @@
                 </NameMultilingualEntries>
                 <Code>CIMD_Klinische_Daten</Code>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/976" DisplayName="Visitendatum">ITEM_VISITENDATUM</LaborValue>
+                    <LaborValue>ITEM_VISITENDATUM</LaborValue>
                     <LowerRow>0</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>0</UpperRow>
@@ -367,7 +367,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/975" DisplayName="Raucherstatus (ITEM)">ITEM_RAUCHERSTATUS</LaborValue>
+                    <LaborValue>ITEM_RAUCHERSTATUS</LaborValue>
                     <LowerRow>0</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>0</UpperRow>
@@ -384,7 +384,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/952" DisplayName="BMI (Body-Mass-Index) (,_)">ITEM_BMI</LaborValue>
+                    <LaborValue>ITEM_BMI</LaborValue>
                     <LowerRow>1</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>1</UpperRow>
@@ -401,7 +401,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/1031" DisplayName="Packyears (,_ _)">ITEM_PACKYEARS</LaborValue>
+                    <LaborValue>ITEM_PACKYEARS</LaborValue>
                     <LowerRow>1</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>1</UpperRow>
@@ -418,7 +418,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/1034" DisplayName="Raucher seit">ITEM_RAUCHER_SEIT</LaborValue>
+                    <LaborValue>ITEM_RAUCHER_SEIT</LaborValue>
                     <LowerRow>2</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>2</UpperRow>
@@ -439,7 +439,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1043" DisplayName="Einschlussdiagnose Liste">CIMD_EINSCHLUSSDIAGNOSE_LISTE</LaborValue>
+                    <LaborValue>CIMD_EINSCHLUSSDIAGNOSE_LISTE</LaborValue>
                     <LowerRow>3</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>3</UpperRow>
@@ -456,7 +456,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/1035" DisplayName="Aufgehört ab">ITEM_AUFGEHOERT_AB</LaborValue>
+                    <LaborValue>ITEM_AUFGEHOERT_AB</LaborValue>
                     <LowerRow>3</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>3</UpperRow>
@@ -477,7 +477,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/116" DisplayName="Nüchternstatus">NUECHTERNSTATUS_HUB</LaborValue>
+                    <LaborValue>NUECHTERNSTATUS_HUB</LaborValue>
                     <LowerRow>4</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>4</UpperRow>
@@ -494,7 +494,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/958" DisplayName="diagnostizierte Begleiterkrankung/en">ITEM_DIAGNOSE_BEGLEITERKRANKUNG</LaborValue>
+                    <LaborValue>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</LaborValue>
                     <LowerRow>4</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>4</UpperRow>
@@ -511,7 +511,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1047" DisplayName="Aktuelle Medikation: benutzerdefinierte Liste">CIMD_AKTUELLE_MEDIKATION</LaborValue>
+                    <LaborValue>CIMD_AKTUELLE_MEDIKATION</LaborValue>
                     <LowerRow>5</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>5</UpperRow>
@@ -528,7 +528,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1048" DisplayName="Aktuelle Medikation: Wirkstoffklassen ATC">CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</LaborValue>
+                    <LaborValue>CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</LaborValue>
                     <LowerRow>5</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>5</UpperRow>
@@ -545,7 +545,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/1041" DisplayName="Medikation Freitextfeld (nur wenn in PZN, ATC und in der benutzerdefinierte Liste nicht vorhanden)">CIMD_MEDIKATION_FREITEXTFELD</LaborValue>
+                    <LaborValue>CIMD_MEDIKATION_FREITEXTFELD</LaborValue>
                     <LowerRow>6</LowerRow>
                     <LowerColumn>1</LowerColumn>
                     <UpperRow>6</UpperRow>
@@ -580,7 +580,7 @@
                 </NameMultilingualEntries>
                 <Code>CIMD_INFORMATION_ZUR_BLUTENTNAHME</Code>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/956" DisplayName="Position bei Blutentnahme">ITEM_POSITION_BEI_BLUTENTNAHME</LaborValue>
+                    <LaborValue>ITEM_POSITION_BEI_BLUTENTNAHME</LaborValue>
                     <LowerRow>0</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>0</UpperRow>
@@ -597,7 +597,7 @@
                     
                 </CrfTemplateField>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/957" DisplayName="Staubinde unmittelbar nach Bluteinfluss gelöst?">ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</LaborValue>
+                    <LaborValue>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</LaborValue>
                     <LowerRow>1</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>1</UpperRow>
