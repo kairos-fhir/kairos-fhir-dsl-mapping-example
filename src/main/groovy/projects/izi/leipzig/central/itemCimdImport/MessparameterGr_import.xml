@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.3</SourceVersion>
+    <ExportDate>2022-09-29T16:37:51.801+02:00</ExportDate>
+    <CatalogueData>
+	<LaborValueGroup>
+            <Code>CIMD_KLINISCHE_DATEN</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>CIMD Klinische Daten</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CIMD Klinische Daten</Value>
+            </NameMultilingualEntries>
+            <SyncId>E8A11D89-56AB-4654-ABCC-8B3C5F2F3393</SyncId>
+        </LaborValueGroup>
+    </CatalogueData>
+</CentraXXDataExchange>

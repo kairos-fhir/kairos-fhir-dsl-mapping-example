@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.9.0.11</SourceVersion>
+    <CatalogueData>
+<CustomCatalog>
+            <Code>ATC_CLASSLIST</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (ATC_CLASSLIST)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>ATC-Klassen (HIB,Gastro)</Value>
+            </NameMultilingualEntries>
+            <CatalogUsage>CLINICAL_INFO</CatalogUsage>
+            <Version>2018</Version>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <CustomCatalogEntry>
+                <Code>A01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stomatologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stomatologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel bei Säure Bedingten Erkrankungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel bei Säure Bedingten Erkrankungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel bei funktionellen Gastrointestinalen Störungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel bei funktionellen Gastrointestinalen Störungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiemetika und Mittel gegen Übelkeit</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antiemetika Und Mittel gegen Übelkeit</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A05</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gallen- und Lebertherapie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gallen- und Lebertherapie</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A06</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel gegen Obstipation</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel gegen Obstipation</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A07</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antidiarrhoika und Intestinale Antiphlogistika/Antiinfektiva</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antidiarrhoika und Intestinale Antiphlogistika/Antiinfektiva</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A08</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiadiposita, exkl. Diätetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antiadiposita, exkl. Diätetika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A09</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Digestiva, inkl. enzyme</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Digestiva, inkl. enzyme</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A10</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antidiabetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antidiabetika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A11</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Vitamine</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Vitamine</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A12</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mineralstoffe</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mineralstoffe</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A13</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Tonika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Tonika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A14</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Anabolika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Anabolika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A15</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Appetit Stimulierende Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Appetit Stimulierende Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A16</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Mittel Für Das Alimentäre System und den Stoffwechsel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Mittel für das Alimentäre System und den Stoffwechsel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antithrombotische Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antithrombotische Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antihämorrhagika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antihämorrhagika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antianämika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antianämika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B05</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Blutersatz Mittel und Perfusionslösungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>BlutersatzMittel und Perfusionslösungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B06</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Hämatologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Hämatologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C01</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Herztherapie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Herztherapie</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C02</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antihypertensiva</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antihypertensiva</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C03</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Diuretika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Diuretika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C04</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Periphere Vasodilatatoren</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Periphere Vasodilatatoren</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C05</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Vasoprotektoren</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Vasoprotektoren</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C06</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Herz- und KreislaufMittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Herz- und KreislaufMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C07</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Beta-Adrenozeptorantagonisten</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Beta-Adrenozeptorantagonisten</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C08</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Calciumkanalblocker</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Calciumkanalblocker</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C09</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel mit Wirkung auf das Renin-Angiotensin-System</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel mit Wirkung Auf Das Renin-Angiotensin-System</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C10</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel, die den Lipidstoffwechsel Beeinflussen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel, die den Lipidstoffwechsel Beeinflussen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D01</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antimykotika zur dermatologischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antimykotika zur dermatologischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D02</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Emollientia und HautschutzMittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Emollientia und HautschutzMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Zubereitungen zur Behandlung Von Wunden und Geschwüren</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zubereitungen zur Behandlung von Wunden und Geschwüren</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D04</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antipruriginosa, inkl. Antihistaminika, Anästhetika Etc.</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antipruriginosa, inkl. Antihistaminika, Anästhetika etc.</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D05</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antipsoriatika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antipsoriatika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D06</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antibiotika und Chemotherapeutika zur dermatologischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antibiotika und Chemotherapeutika zur dermatologischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D07</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Corticosteroide, dermatologische Zubereitungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Corticosteroide, dermatologische Zubereitungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D08</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiseptika und desinfektionsMittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antiseptika und desinfektionsMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D09</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Medizinische Verbände</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Medizinische Verbände</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D10</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>AkneMittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Akne Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D11</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Dermatika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere dermatika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>G01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gynäkologische Antiinfektiva und Antiseptika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gynäkologische Antiinfektiva und Antiseptika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>G02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Gynäkologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Gynäkologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>G03</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Sexualhormone und Modulatoren des Genitalsystems</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Sexualhormone und Modulatoren des Genitalsystems</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>G04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Urologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Urologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>H01</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Hypophysen- und Hypothalamushormone und Analoga</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Hypophysen- und Hypothalamushormone und Analoga</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>H02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Corticosteroide zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Corticosteroide zur systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>H03</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Schilddrüsentherapie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Schilddrüsentherapie</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>H04</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Pankreashormone</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Pankreashormone</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>H05</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Calciumhomöostase</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Calciumhomöostase</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antibiotika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antibiotika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antimykotika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antimykotika zur Systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J04</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel gegen Mykobakterien</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel gegen Mykobakterien</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J05</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antivirale Mittel zur systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antivirale Mittel zur systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J06</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Immunsera und Immunglobuline</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Immunsera und Immunglobuline</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>J07</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Impfstoffe</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Impfstoffe</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antineoplastische Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antineoplastische Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L02</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Endokrine Therapie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>endokrine Therapie</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Immunstimulanzien</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Immunstimulanzien</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Immunsuppressiva</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Immunsuppressiva</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiphlogistika und Antirheumatika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antiphlogistika und Antirheumatika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Topische Mittel gegen Gelenk- und Muskelschmerzen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Topische Mittel gegen Gelenk- und Muskelschmerzen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Muskelrelaxanzien</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Muskelrelaxanzien</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gichtmittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>GichtMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M05</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel zur Behandlung von Knochenerkrankungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel zur Behandlung von Knochenerkrankungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>M09</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Mittel gegen Störungen des Muskel- und Skelettsystems</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Mittel gegen Störungen des Muskel- und Skelettsystems</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Anästhetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Anästhetika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Analgetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Analgetika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antiepileptika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiepileptika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antiparkinson Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>AntiparkinsonMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N05</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Psycholeptika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Psycholeptika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N06</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Psychoanaleptika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Psychoanaleptika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>N07</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Mittel für das Nervensystem</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Mittel für das Nervensystem</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>P01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel gegen Protozoen-Erkrankungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel gegen Protozoen-Erkrankungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>P02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Anthelmintika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Anthelmintika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>P03</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel gegen Ektoparasiten, inkl. Antiscabiosa, Insektizide und Repellenzien</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel gegen Ektoparasiten, inkl. Antiscabiosa, Insektizide und Repellenzien</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Rhinologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Rhinologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Hals- und Rachentherapeutika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Hals- und Rachentherapeutika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Mittel bei Obstruktiven Atemwegserkrankungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Mittel bei Obstruktiven Atemwegserkrankungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Brusteinreibungen und andere Inhalate</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Brusteinreibungen und Andere Inhalate</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R05</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Husten- und ErkältungsMittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Husten- und Erkältungsmittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R06</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antihistaminika zur systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antihistaminika zur systemischen Anwendung</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>R07</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Andere Mittel für den Respirationstrakt</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Andere Mittel für den Respirationstrakt</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>S01</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Ophthalmika*</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Ophthalmika*</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>S02</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Otologika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Otologika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>S03</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Ophthalmologische und Otologische Zubereitungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Ophthalmologische und Otologische Zubereitungen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V01</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergene</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergene</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V03</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Alle übrigen therapeutischen Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Alle übrigen therapeutischen Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V04</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Diagnostika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Diagnostika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V06</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allgemeine Diätetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allgemeine Diätetika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V07</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Alle übrigen Nichttherapeutischen Mittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Alle übrigen nicht therapeutischen Mittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V08</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Kontrastmittel</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>KontrastMittel</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V09</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Radiodiagnostika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Radiodiagnostika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V10</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Radiotherapeutika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Radiotherapeutika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V20</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Wundverbände</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Wundverbände</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V60</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Homöopathika und Anthroposophika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Homöopathika und Anthroposophika</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V70</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Rezepturen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Rezepturen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>V90</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Sondergruppen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Sondergruppen</Value>
+                </NameMultilingualEntries>
+            </CustomCatalogEntry>
+        </CustomCatalog>
+	</CatalogueData>
+</CentraXXDataExchange>
