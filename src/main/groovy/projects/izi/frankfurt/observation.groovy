@@ -27,7 +27,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
-  final def isIziRelevant = "ITEM_KLINISCHE_DATEN" == context.source[laborMapping().laborFinding().laborMethod().code()]
+  final def isIziRelevant = "CIMD_KERNZUSATZDATEN" == context.source[laborMapping().laborFinding().laborMethod().code()]
   if (!(isIziRelevant)) {
     return
   }
