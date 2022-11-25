@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.4-SNAPSHOT</SourceVersion>
+    <ExportDate>2022-11-25T18:53:29.683+01:00</ExportDate>
+    <CatalogueData>
+        <FlexibleValueCatalogueItem>
+            <FlexibleCatalogValue>
+                <Code>ABWEICHUNGEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ABWEICHUNGEN)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Abweichungen</Value>
+                </NameMultilingualEntries>
+                <SyncId>453d0e1a-82f0-40f3-8d20-ae01dbe8acdb</SyncId>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/521">
+                    <Code>ABWEICHUNGEN</Code>
+                    <Version>1</Version>
+                </UserDefinedCatalogRef>
+            </FlexibleCatalogValue>
+        </FlexibleValueCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

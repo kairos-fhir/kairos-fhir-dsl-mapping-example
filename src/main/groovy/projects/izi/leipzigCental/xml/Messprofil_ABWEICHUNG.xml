@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.4-SNAPSHOT</SourceVersion>
+    <ExportDate>2022-11-25T18:56:07.116+01:00</ExportDate>
+    <CatalogueData>
+        <FlexibleDataSetCatalogueItem>
+            <Code>ABWEICHUNGEN</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Abweichungen</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Abweichungen</Value>
+            </NameMultilingualEntries>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">ABWEICHUNGEN</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <Systemwide>true</Systemwide>
+            <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+            <Category>GENERAL</Category>
+            <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/1258">
+                <Name>Abweichungen</Name>
+                <Version>0</Version>
+                <SyncId>6ca7800a-65ec-4a5c-b5d3-a994c95c918e</SyncId>
+            </CrfTemplateRef>
+            <Version>1</Version>
+            <SyncId>338b618b-624f-4ab3-a5f4-f55318562980</SyncId>
+        </FlexibleDataSetCatalogueItem>
+        <CrfTemplate>
+            <Name>Abweichungen</Name>
+            <CrfTemplateSection>
+                <Name>ABWEICHUNGEN</Name>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Abweichungen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ABWEICHUNGEN)</Value>
+                </NameMultilingualEntries>
+                <Code>ABWEICHUNGEN</Code>
+                <CrfTemplateField>
+                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">ABWEICHUNGEN</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    <SyncId>4d7b8a04-f8a0-44b1-ac6f-7c81c195a133</SyncId>
+                </CrfTemplateField>
+                <Height>1</Height>
+                <Width>1</Width>
+                <Position>0</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                <SyncId>26e3a14d-540d-46be-9238-c20eb2a2ab20</SyncId>
+            </CrfTemplateSection>
+            <TemplateType>LABORMETHOD</TemplateType>
+            <Version>0</Version>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <Global>false</Global>
+            <MultipleUse>false</MultipleUse>
+            <Active>false</Active>
+            <SyncId>6ca7800a-65ec-4a5c-b5d3-a994c95c918e</SyncId>
+        </CrfTemplate>
+    </CatalogueData>
+</CentraXXDataExchange>
