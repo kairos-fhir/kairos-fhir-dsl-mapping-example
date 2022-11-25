@@ -85,7 +85,7 @@ observation {
         code {
           coding {
             system = "urn:centraxx"
-            code = laborValueCode
+            code = mapLocalToCentralLabValueCode(laborValueCode)
           }
           laborValue?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
             coding {
@@ -226,7 +226,7 @@ static boolean isCimdKenzusatzdaten(final String laborValueCode) {
           "ITEM_BMI",
           "ITEM_PACKYEARS",
           "ITEM_RAUCHER_SEIT",
-          "CIMD_EINSCHLUSSDIAGNOSE_LISTE",
+          "CIMD_EINSCHLUSSDIAGNOSE",
           "ITEM_AUFGEHOERT_AB",
           "NUECHTERNSTATUS_HUB",
           "ITEM_DIAGNOSE_BEGLEITERKRANKUNG",
@@ -235,4 +235,11 @@ static boolean isCimdKenzusatzdaten(final String laborValueCode) {
           "CIMD_MEDIKATION_FREITEXTFELD",
           "ITEM_POSITION_BEI_BLUTENTNAHME",
           "ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST"].contains(laborValueCode)
+}
+
+static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
+  if (localLaborValueCode == null) {
+    return null
+  }
+  return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
 }
