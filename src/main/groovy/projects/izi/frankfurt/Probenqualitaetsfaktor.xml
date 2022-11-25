@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>2022.3.3</SourceVersion>
+    <ExportDate>2022-11-25T09:44:43.763+01:00</ExportDate>
+    <CatalogueData>
+        <IdType>
+            <Code>SAMPLEQF</Code>
+            <Name>Probenqualitätsfaktor</Name>
+            <Editable>true</Editable>
+            <Kind>SAMPLE</Kind>
+            <Decisive>false</Decisive>
+            <Pseudonym>false</Pseudonym>
+            <Mandatory>false</Mandatory>
+            <RegularExpression>A|B|C</RegularExpression>
+            <SyncId>4bfbd8f8-78c6-48b3-8564-ded5cc498186</SyncId>
+            <UserEntries>
+                <Systemwide>true</Systemwide>
+            </UserEntries>
+        </IdType>
+    </CatalogueData>
+</CentraXXDataExchange>
