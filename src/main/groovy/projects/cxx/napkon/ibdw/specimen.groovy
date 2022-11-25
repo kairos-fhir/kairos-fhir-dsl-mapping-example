@@ -74,12 +74,10 @@ specimen {
     }
 
     // 3. Filter Existing Storage Location assigned
-//    if ("swisslabProben" == context.source[sample().sampleLocation().locationId()]) {
-//        return
-//    }
     Boolean sampleExists = ("swisslabProben" != context.source[sample().sampleLocation().locationId()])
 
     // 4. Filter samples that are still existing and have not been retrieved (no sampleAbstraction)
+    // TODO: Modify to check for existing sampleAbstraction as soon as available in a future CXX release
     String sampleType = context.source[sample().sampleType().code()]
     final restAmount = context.source[sample().restAmount().amount()]
 
@@ -103,18 +101,18 @@ specimen {
     }
 
     // 5a. Filter samples older than specified date
-    String receptionDate = ""
-    if (category == SampleCategory.MASTER) {
-        receptionDate = context.source[sample().receiptDate().date()]
-    } else if (category == SampleCategory.ALIQUOTGROUP) {
-        receptionDate = context.source[sample().parent().receiptDate().date()]
-    } else if (category == SampleCategory.DERIVED) {
-        receptionDate = context.source[sample().parent().parent().receiptDate().date()]
-    }
-    if (receptionDate != null && receptionDate < "2022-03-01T23:59:59+01:00") {
-//        System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
-        return
-    }
+//    String receptionDate = ""
+//    if (category == SampleCategory.MASTER) {
+//        receptionDate = context.source[sample().receiptDate().date()]
+//    } else if (category == SampleCategory.ALIQUOTGROUP) {
+//        receptionDate = context.source[sample().parent().receiptDate().date()]
+//    } else if (category == SampleCategory.DERIVED) {
+//        receptionDate = context.source[sample().parent().parent().receiptDate().date()]
+//    }
+//    if (receptionDate != null && receptionDate < "2022-03-01T23:59:59+01:00") {
+////        System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
+//        return
+//    }
 
     // 6. Filter OrgUnit
     String orgUnit = ""
@@ -144,7 +142,7 @@ specimen {
     } as Map<String, Object>
 
     // 7: cross-mapping of the ids of MASTER samples. The sample id of the ibdw is provided as external sampled id to NUM.
-    // The external sample id of ibdw is provided as sample id to NUM.
+    // The external sample id (NAPKONSMP) of ibdw is provided as sample id to NUM.
     if (context.source[sample().sampleCategory()] as SampleCategory == SampleCategory.MASTER) {
         idContainersMap.each { final String idContainerCode, final Object idContainer ->
             if (idContainer) {
@@ -191,6 +189,8 @@ specimen {
     if (context.source[sample().repositionDate()]) {
         extension {
             url = FhirUrls.Extension.Sample.REPOSITION_DATE
+            // Storage of PAXgene samples is done in three steps: RT -> -20°C freezer -> -80°C freezer
+            // repositionDate of storage in -20°C can only be calculated to 3h after receiptDate
             final long paxGeneRTStorageTime = 3 * 3600 * 1000
             // valueDateTime = context.source[sample().repositionDate().date()]
             switch (context.source[sample().sampleType().code()]) {
