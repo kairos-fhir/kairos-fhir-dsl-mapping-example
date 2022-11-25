@@ -226,11 +226,12 @@ static boolean isCimdKenzusatzdaten(final String laborValueCode) {
           "ITEM_BMI",
           "ITEM_PACKYEARS",
           "ITEM_RAUCHER_SEIT",
-          "CIMD_EINSCHLUSSDIAGNOSE",
+          "ITEM_EINSCHLUSSDIAGNOSE",
           "ITEM_AUFGEHOERT_AB",
           "NUECHTERNSTATUS_HUB",
           "ITEM_DIAGNOSE_BEGLEITERKRANKUNG",
           "CIMD_AKTUELLE_MEDIKATION",
+          "ITEM_AKTUELLE_MEDIKATION",
           "CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC",
           "CIMD_MEDIKATION_FREITEXTFELD",
           "ITEM_POSITION_BEI_BLUTENTNAHME",
@@ -241,5 +242,6 @@ static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
   if (localLaborValueCode == null) {
     return null
   }
+
   return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
 }
