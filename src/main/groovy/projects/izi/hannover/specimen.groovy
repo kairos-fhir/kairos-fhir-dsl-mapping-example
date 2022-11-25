@@ -56,6 +56,22 @@ specimen {
     }
   }
 
+  final def idSampleQf = context.source[ID_CONTAINER]?.find {
+    "SAMPLEQF" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  if (idSampleQf) {
+    identifier {
+      value = idSampleQf[PSN]
+      type {
+        coding {
+          system = "urn:centraxx"
+          code = idSampleQf[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+        }
+      }
+    }
+  }
+
   status = context.source[sample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
   type {
