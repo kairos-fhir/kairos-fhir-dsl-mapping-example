@@ -745,7 +745,7 @@
                     <Systemwide>true</Systemwide>
                 </UserEntries>
                 <LowerValue>-1.0000</LowerValue>
-                <UpperValue>-40.0000</UpperValue>
+                <UpperValue>40.0000</UpperValue>
                 <LowerPrecision>CLOSED</LowerPrecision>
                 <UpperPrecision>CLOSED</UpperPrecision>
             </FlexibleIntegerValue>
