@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.2.10</SourceVersion>
+    <ExportDate>2022-11-25T10:51:50.708+01:00</ExportDate>
+    <CatalogueData>
+        <FlexibleValueCatalogueItem>
+            <FlexibleDateValue>
+                <Code>ITEM_VISITENDATUM</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Visitendatum</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Visitendatum</Value>
+                </NameMultilingualEntries>
+                <SyncId>fdf4af82-bc4e-4208-bde3-6272abc5b251</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_RAUCHERSTATUS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Raucherstatus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Raucherstatus (ITEM)</Value>
+                </NameMultilingualEntries>
+                <SyncId>7f6525c6-e21c-4272-82d7-93737981522a</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/3" DisplayName="Raucherstatus (ITEM)">WL_ITEM_RAUCHERSTATUS</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_PACKYEARS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ITEM_PACKYEARS</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Packyears (,_ _)</Value>
+                </NameMultilingualEntries>
+                <SyncId>d5c53375-6d4e-4a73-b342-332023ddb849</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleDecimalValue>
+            <FlexibleDateValue>
+                <Code>ITEM_AUFGEHOERT_AB</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aufgehört ab</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aufgehört ab:</Value>
+                </NameMultilingualEntries>
+                <SyncId>15222059-0db8-4225-aa3a-0227a46e7ad9</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleDateValue>
+                <Code>ITEM_RAUCHER_SEIT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Raucher seit:</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Raucher seit</Value>
+                </NameMultilingualEntries>
+                <SyncId>dba3c7e5-8714-428d-b878-ab8f0951706b</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_BMI</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>BMI (Body-Mass-Index)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>BMI (Body-Mass-Index) (,_)</Value>
+                </NameMultilingualEntries>
+                <SyncId>f0e635fc-0faf-4a59-b070-324bf8bbc26b</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleDecimalValue>
+            <FlexibleStringValue>
+                <Code>CIMD_MEDIKATION_FREITEXTFELD</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Medikation Freitextfeld (nur wenn in ATC und in der benutzerdefinierte Liste nicht vorhanden)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Medikation Freitextfeld (nur wenn in ATC und in der benutzerdefinierte Liste nicht vorhanden)</Value>
+                </NameMultilingualEntries>
+                <SyncId>aacbadd1-cd9a-420b-a13b-cdeb52833c69</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleStringValue>
+            <FlexibleCatalogValue>
+                <Code>CIMD_AKTUELLE_MEDIKATION</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aktuelle Medikation: benutzerdefinierte Liste</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aktuelle Medikation: benutzerdefinierte Liste</Value>
+                </NameMultilingualEntries>
+                <SyncId>b93887bd-e7c3-4bb5-8a18-391243530493</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/6" DisplayName="Begleitmedikation (ITEM)">WL_ITEM_BEGLEITMEDIKATION</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>NUECHTERNSTATUS_HUB</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nüchternstatus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nüchternstatus</Value>
+                </NameMultilingualEntries>
+                <SyncId>a9da447c-fd73-4342-b90a-0dc0eac2614f</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/5" DisplayName="Nüchternstatus(HUB, Basisdatensatz)">WL_NUECHTERNSTATUS_HUB</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aktuelle Medikation: Wirkstoffklassen ATC</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aktuelle Medikation: Wirkstoffklassen ATC</Value>
+                </NameMultilingualEntries>
+                <SyncId>8fe82945-b99b-48d5-ad45-f83e956dc3d7</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/2">
+                    <Code>ATC_CLASSLIST</Code>
+                    <Version>2018</Version>
+                </UserDefinedCatalogRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>diagnostizierte Begleiterkrankung/en</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Diagnose Begleiterkrankung</Value>
+                </NameMultilingualEntries>
+                <SyncId>caaf9ab9-b01b-4bd5-8a2e-a4b984a0a1ba</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/8" DisplayName="Diagnose Begleiterkrankung (ITEM)">WL_ITEM_DIAGNOSE_BEGLEITERKRANKUNG</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Staubinde unmittelbar nach Bluteinfluss gelöst?</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Staubinde unmittelbar nach Bluteinfluss gelöst?</Value>
+                </NameMultilingualEntries>
+                <SyncId>d0da2bba-6e80-41f1-becd-728620cd2786</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/4" DisplayName="Ja, Nein, Unbekannt Liste (HUB, Basisdatensatz)">WL_HUB_JA_NEIN_UNKNOWN</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_POSITION_BEI_BLUTENTNAHME</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Position bei Blutentnahme</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Position bei Blutentnahme</Value>
+                </NameMultilingualEntries>
+                <SyncId>c0eb8146-7119-4a0c-9587-a7c2cf8f86de</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/9" DisplayName="Position bei Blutentnahme (ITEM)">WL_ITEM_POSITION_BEI_BLUTENTNAHME</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_EINSCHLUSSDIAGNOSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Einschlussdiagnose</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Einschlussdiagnose</Value>
+                </NameMultilingualEntries>
+                <SyncId>a3650970-7fd9-4875-beb1-2ebdd977e833</SyncId>
+                <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/1" DisplayName="CIMD Klinische Daten">CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/12" DisplayName="Einschlussdiagnose (ICD-Code) (ITEM)">WL_ITEM_EINSCHLUSSDIAGNOSE_ICD_CODE</ValueListRef>
+            </FlexibleCatalogValue>
+        </FlexibleValueCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>
