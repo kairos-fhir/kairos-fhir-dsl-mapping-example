@@ -27,7 +27,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
-  final def isIziRelevant = "ITEM_KLINISCHE_DATEN" == context.source[laborMapping().laborFinding().laborMethod().code()]
+  final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
+  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN", "ABWEICHUNGEN"].contains(laborMethodCode)
   if (!(isIziRelevant)) {
     return
   }
@@ -69,7 +70,7 @@ observation {
     coding {
       system = "urn:centraxx"
       version = context.source[laborMapping().laborFinding().laborMethod().version()]
-      code = "CIMD_KERNZUSATZDATEN"
+      code = laborMethodCode == "ITEM_KLINISCHE_DATEN" ? "CIMD_KERNZUSATZDATEN" : "ABWEICHUNGEN"
     }
   }
 
@@ -80,7 +81,7 @@ observation {
         : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
-    if (isCimdKenzusatzdaten(laborValueCode)) {
+    if (isIziRelevantLaborValue(laborValueCode)) {
       component {
         code {
           coding {
@@ -220,7 +221,7 @@ static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
 }
 
-static boolean isCimdKenzusatzdaten(final String laborValueCode) {
+static boolean isIziRelevantLaborValue(final String laborValueCode) {
   return ["ITEM_VISITENDATUM",
           "ITEM_RAUCHERSTATUS",
           "ITEM_BMI",
@@ -235,7 +236,8 @@ static boolean isCimdKenzusatzdaten(final String laborValueCode) {
           "CIMD_AKTUELLE_MEDIKATION_WIRKSTOFFKLASSEN_ATC",
           "CIMD_MEDIKATION_FREITEXTFELD",
           "ITEM_POSITION_BEI_BLUTENTNAHME",
-          "ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST"].contains(laborValueCode)
+          "ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST",
+          "ABWEICHUNGEN"].contains(laborValueCode)
 }
 
 static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
