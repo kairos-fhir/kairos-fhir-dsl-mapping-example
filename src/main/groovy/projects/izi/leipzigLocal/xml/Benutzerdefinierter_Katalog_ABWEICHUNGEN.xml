@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.4-SNAPSHOT</SourceVersion>
+    <ExportDate>2022-11-25T18:49:00.345+01:00</ExportDate>
+    <CatalogueData>
+        <CustomCatalog>
+            <Code>ABWEICHUNGEN</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (ABWEICHUNGEN)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Abweichungen</Value>
+            </NameMultilingualEntries>
+            <CatalogUsage>GENERAL</CatalogUsage>
+            <Version>1</Version>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <CustomCatalogEntry>
+                <Code>A_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (A_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aliquotierung - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>f3211ee1-931d-4ee7-8b7f-ef50005f9ec8</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A_KEINE_D_KRYOROEHRCHEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (A_KEINE_D_KRYOROEHRCHEN)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aliquotierung - Keine 2D Kryoröhrchen</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>7bdcd783-beb5-42e9-b4cf-e958f63c5518</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>A_VERMISCHUNG_UEBERSTÄNDE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (A_VERMISCHUNG_UEBERSTÄNDE)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aliquotierung - Vermischung der Überstände</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>74b77d77-28c0-474f-bdf5-94ba5cddd78c</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L_ABWEICHUNG_KUEHLKETTE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (L_ABWEICHUNG_KUEHLKETTE)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lagerung - Abweichung Kühlkette (bei Ein-/Umlagerung)</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>c4a00fbf-bdc2-4eb8-b1fa-047b3a1365b1</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L_ABWEICHUNG_LAGERTEMPERATUR</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (L_ABWEICHUNG_LAGERTEMPERATUR)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lagerung - Abweichende Lagertemperatur</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>78085d8f-84d5-4ec0-bda6-29ebd47de9e3</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Lagerung - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lagerung - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>cd9dedfc-da6e-49a5-9314-cb563cc4ac4c</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L_DISKONTINUIERLICHE_TEMPERATURUEBERWACHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (L_DISKONTINUIERLICHE_TEMPERATURUEBERWACHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lagerung - Diskontinuierliche Temperaturüberwachung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>f4f8b73e-2f69-466a-9de1-a06333dc7f4b</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>L_TTF_UEBERSCHRITTEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>(L_TTF_UEBERSCHRITTEN)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lagerung - TTF überschritten</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>bb5ede99-6683-417e-a139-43ba4b0b6359</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PBMC_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PBMC_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>PBMCs - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>b6e1e063-8857-45d6-ad4c-aaf0da04ca52</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PBMC_ABWEICHUNG_EINFRIERPROZESS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PBMC_ABWEICHUNG_EINFRIERPROZESS)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>PBMCs - Abweichung beim Einfrierprozess</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>29e40050-7f5a-47a2-b24a-43edd424ad4c</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PBMC_ABWEICHUNG_ZELLZAHLBEREICH</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PBMC_ABWEICHUNG_ZELLZAHLBEREICH)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>PBMCs - Abweichung vom optimalen Zellzahlbereich</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>b9b941c4-9616-4c32-86c3-23b60a65b348</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PBMC_ZELLVIABILITAET</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PBMC_ZELLVIABILITAET)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>PBMCs - Zellviabilität &lt; 90%</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>f7e0f418-2e46-4289-9198-751f274318df</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PN_ABWEICHENDE_LAGERTEMP_TRANSPORT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PN_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probennahme - Abweichende Lagertemperatur bis zum Transport</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>d28049eb-c634-4051-b62d-aa0117217441</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PN_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PN_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probennahme - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>713f5f6d-7001-4466-bd94-59cbee581901</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PN_ENTNAHMEZEITPUNKT_NICHT_DOKUMENTIERT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PN_ENTNAHMEZEITPUNKT_NICHT_DOKUMENTIERT)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probennahme - Entnahmezeitpunkt nicht dokumentiert</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>a305cdb7-bfd6-4be6-8c81-07bc6d115e41</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PN_REIHENFOLGE_MISSACHTET</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PN_REIHENFOLGE_MISSACHTET)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probennahme - Reihenfolge der Entnahmeröhrchen nicht eingehalten</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>bf726e7c-70fd-423a-811c-dbcd9f9be623</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PN_STAUBINDE_NICHT_GELOEST</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PN_STAUBINDE_NICHT_GELOEST)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probennahme - Staubinde nicht unmittelbar nach Bluteinfluss gelöst</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>97168931-19c7-4973-a32f-38ec0451854b</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PZ_ABWEICHUNG_FUELLSTAND</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PZ_ABWEICHUNG_FUELLSTAND)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probenzustand bei Laboreingang - Abweichung Füllstand</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>f751ae0c-e756-408e-a6d7-8236f2b8678f</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PZ_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PZ_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probenzustand bei Laboreingang - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>582a1645-59d9-4577-91ec-383ba2da56a2</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PZ_ROEHRCHEN_BESCHAEDIGT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PZ_ROEHRCHEN_BESCHAEDIGT)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probenzustand bei Laboreingang - Röhrchen beschädigt</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>39e88f0f-1350-4a19-adc1-739cb7807001</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>PZ_STANDZEIT_MISSACHTET</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (PZ_STANDZEIT_MISSACHTET)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Probenzustand bei Laboreingang - Standzeit nicht eingehalten</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>84f0738c-c76e-4c52-b172-e2c7db1f8e70</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>VT_ABWEICHENDE_TRANSPORTTEMP</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (VT_ABWEICHENDE_TRANSPORTTEMP)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Verpackung/Transport - Abweichende Transporttemperatur</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>ee1c700b-ba05-41be-b6e4-661ecfac7a07</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>VT_ABWEICHENDE_TRANSPORTZEIT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (VT_ABWEICHENDE_TRANSPORTZEIT)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Verpackung/Transport - Abweichende Transportzeit</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>5863ca8d-9279-4b0b-a1b9-af23abab2279</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>VT_ABWEICHENDE_TRANSPRTPOSITION</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (VT_ABWEICHENDE_TRANSPRTPOSITION)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Verpackung/Transport - Abweichende Transportposition</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>d38555be-a700-4d45-8e8a-83760f6ee8ac</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>VT_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (VT_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Verpackung/Transport - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>3025e53d-bcc4-423d-a1f9-d6bfee590e92</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>VT_SPEZ_TRANSPORTGEFAESS_MISSACHTET</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (VT_SPEZ_TRANSPORTGEFAESS_MISSACHTET)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Verpackung/Transport - Spezifikation des Transportgefäßes nicht eingehalten</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>aa76c9c2-3626-42aa-b759-70fc4a1c1da1</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Z_ABWEICHENDE_ZENTRIFUGATIONSZEIT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (Z_ABWEICHENDE_ZENTRIFUGATIONSZEIT)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zentrifugation - Abweichende Zentrifugationszeit</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>4cb6df60-c3f1-4a35-ab73-6d2fb6e0d785</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Z_ABWEICHNDE_G_ZAHL</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (Z_ABWEICHNDE_G_ZAHL)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zentrifugation - Abweichende g-Zahl</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>8119fd77-d687-49c1-b849-20c511aa8e81</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Z_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (Z_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zentrifugation - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>74666b8b-b470-4f64-9335-594bb8ff7c02</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Z_TTC_UEBERSCHRITTEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (Z_TTC_UEBERSCHRITTEN)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zentrifugation - TTC überschritten</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>5ca39986-e8c7-440c-b8bb-13bfff6740d4</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ZNPV_ANDERE_ABWEICHUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ZNPV_ANDERE_ABWEICHUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zustand der Probe nach Verarbeitung  - andere Abweichung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>16e1b523-906b-44f3-8075-8cde29ea89c6</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ZPNV_HAEMOLYTISCH</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ZPNV_HAEMOLYTISCH)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zustand der Probe nach Verarbeitung  - Hämolytisch</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>10af9321-c40c-4351-918b-7ee79ac8eb8e</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ZPNV_LIPAEMISCH</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ZPNV)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zustand der Probe nach Verarbeitung  - lipämisch</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>b52cbc16-87e0-4fcc-9fed-c3b919252995</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ZPNV_ROEHRCHEN_BESCHAEDIGT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ZPNV_ROEHRCHEN_BESCHAEDIGT)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zustand der Probe nach Verarbeitung  - Röhrchen beschädigt</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>6b4fa11c-cf16-4b2c-9ddd-60a197157fe4</SyncId>
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ZPNV_UNVOLLSTAENDIGE_PHASENTRENNUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unnamed (ZPNV_UNVOLLSTAENDIGE_PHASENTRENNUNG)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Zustand der Probe nach Verarbeitung  - Unvollständige Phasentrennung</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                <SyncId>d526cbdf-7645-49a7-adf8-ff7d5f7a04ea</SyncId>
+            </CustomCatalogEntry>
+            <SyncId>1ba19202-342a-4498-b5ef-8ca6785c232a</SyncId>
+        </CustomCatalog>
+    </CatalogueData>
+</CentraXXDataExchange>

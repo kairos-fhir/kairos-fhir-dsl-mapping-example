@@ -1,0 +1,3269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.3</SourceVersion>
+    <ExportDate>2022-10-13T16:47:05.173+02:00</ExportDate>
+    <CatalogueData>
+        <UnityCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>%</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>%</Value>
+            </NameMultilingualEntries>
+            <Code>Percent</Code>
+            <Used>false</Used>
+            
+        </UnityCatalogueItem>
+        <FlexibleValueCatalogueItem>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FVC_POST_LYSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FVC post Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FVC post Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_ASTHMA_STEP</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Step der Asthma-Therapie (nach GINA)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Step der Asthma-Therapie (nach GINA)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_ASTHMA_BEHANDLUNGSSTUFE</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_GESAMT_IGE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gesamt-IgE in IU/mL</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gesamt-IgE in IU/mL</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_BIRKE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Birke</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Birke</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>GECCO_COVID-19_VISITE</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_AKTUELLE_MEDIKATION</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aktuelle Medikation</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aktuelle Medikation</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef>WL_ITEM_BEGLEITMEDIKATION</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_PACKYEARS</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Packyears (,_ _)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ITEM_PACKYEARS</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_KNAEUELGRAS</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Knäuelgras, gemeines (Dactylis glomerata)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Knäuelgras, gemeines (Dactylis glomerata)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleDateValue>
+                <Code>ITEM_RAUCHER_SEIT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Raucher seit:</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Raucher seit</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_BMI</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>BMI (Body-Mass-Index) (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>BMI (Body-Mass-Index)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_WEGERICH</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Wegerich (Ribwort)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Wegerich (Ribwort)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_CLADOSPORIUM_HERBARUM</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Cladosporium Herbarum</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Cladosporium Herbarum</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>NUECHTERNSTATUS_HUB</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nüchternstatus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nüchternstatus</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_NUECHTERNSTATUS_HUB</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FEV1_PRE_LYSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FEV1 pre Lyse in %</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FEV1 pre Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>Pferd</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Pferd</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Pferd</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>diagnostizierte Begleiterkrankung/en</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Diagnose Begleiterkrankung</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef>WL_ITEM_DIAGNOSE_BEGLEITERKRANKUNG</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Staubinde unmittelbar nach Bluteinfluss gelöst?</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Staubinde unmittelbar nach Bluteinfluss gelöst?</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_HUB_JA_NEIN_UNKNOWN</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_EINSCHLUSSDIAGNOSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Einschlussdiagnose</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Einschlussdiagnose</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef>WL_ITEM_EINSCHLUSSDIAGNOSE_ICD_CODE</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_ROGGEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Roggen</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Roggen</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_GRAESER_MIX</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gräser-Mix</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gräser-Mix</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_BAEUME_MIX</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Bäume-Mix</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Bäume-Mix</Value>
+                </NameMultilingualEntries>
+                
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FVC_PRE_LYSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FVC pre Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FVC pre Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_COPD_DLCO</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>COPD DLCO in %, hb-korrigiert (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>COPD DLCO in %, hb-korrigiert (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_BEIFUSS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Beifuß (Mugwort)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Beifuß (Mugwort)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>GECCO_COVID-19_VISITE</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_EXAZERBATIONSRISIKO</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Exazerbationsrisiko</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Exazerbationsrisiko</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_EXAZERBATIONSRISIKO</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_RESIDUALVOLUMEN</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Residualvolumen (RV) in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Residualvolumen (RV) in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_REVERSIBILITAET_IN_PROZENT</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Reversibilität in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Reversibilität in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_COPD_STADIUM</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stadium nach GOLD</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stadium nach GOLD</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_COPD_STADIUM</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_HUND</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Hund</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Hund</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleDateValue>
+                <Code>ITEM_VISITENDATUM</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Visitendatum</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Visitendatum</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_RAUCHERSTATUS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Raucherstatus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Raucherstatus (ITEM)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_RAUCHERSTATUS</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_mMRC_Dyspnoe_Scale</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>mMRC_Dyspnoe_Scale</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>mMRC_Dyspnoe_Scale</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_mMRC_Dyspnoe_Scale</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDateValue>
+                <Code>ITEM_AUFGEHOERT_AB</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aufgehört ab</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aufgehört ab:</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+            </FlexibleDateValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_EOSINOPHILE_RELATIVE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Eosinophile relativ % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Eosinophile relativ % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_EOSINOPHILE_ABSOLUT</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Eosinophile G/L (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Eosinophile G/L (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleDecimalValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FEV1_POST_LYSE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FEV1 post Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FEV1 post Lyse in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_KATZE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Katze</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Katze</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_CAT_SUMMENSCORE</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CAT_Summenscore</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ITEM_CAT_SUMMENSCORE</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_AMBROSIA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Ambrosia (Ragweed)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Ambrosia (Ragweed)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_D_PTERONYSSINUS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>D. pteronyssinus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>D. pteronyssinus</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_ALLERGIE_KLINISCH_RELEVANTE_SYMPTOMATIK</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergie - Klinisch relevante Symptomatik</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergie - Klinisch relevante Symptomatik</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTMANY</ChoiseType>
+                <ValueListRef>WL_ITEM_ALLERGIE_KLINISCH_RELEVANTE_SYMPTOMPATIK</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FEV1FVC_POST</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FEV1/FVC post (,_ _)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FEV1/FVC in % post (,_ _)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_ALTERNARIA_ALTERNATA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Alternaria alternata</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Alternaria alternata</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_POSITION_BEI_BLUTENTNAHME</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Position bei Blutentnahme</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Position bei Blutentnahme</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>CIMD_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_POSITION_BEI_BLUTENTNAHME</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_FEV1FVC_PRE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>FEV1/FVC pre (,_ _)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>FEV1/FVC in % pre (,_ _)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_D_FARINAE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>D. farinae</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>D. farinae</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+            <FlexibleDecimalValue>
+                <Code>ITEM_TOTALE_LUNGENKAPAZITAET</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Totale Lungenkapazität (TLC) in % (,_)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Totale Lungenkapazität (TLC) in % (,_)</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+                <UnitTypeRef>Percent</UnitTypeRef>
+            </FlexibleDecimalValue>
+            <FlexibleCatalogValue>
+                <Code>ITEM_ALLERGISCHES_ASTHMA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergisches Asthma?</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergisches Asthma?</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <ChoiseType>SELECTONE</ChoiseType>
+                <ValueListRef>WL_ITEM_ALLERGISCHES_ASTHMA</ValueListRef>
+            </FlexibleCatalogValue>
+            <FlexibleIntegerValue>
+                <Code>ITEM_ASPERGILLUS_FUMIGATUS</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Aspergillus fumigatus</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Aspergillus fumigatus</Value>
+                </NameMultilingualEntries>
+                
+                <LaborValueGroupRef>ITEM_KLINISCHE_DATEN</LaborValueGroupRef>
+                <UserEntries>
+                    <Systemwide>true</Systemwide>
+                </UserEntries>
+                <LowerValue>-1.0000</LowerValue>
+                <UpperValue>40.0000</UpperValue>
+                <LowerPrecision>CLOSED</LowerPrecision>
+                <UpperPrecision>CLOSED</UpperPrecision>
+            </FlexibleIntegerValue>
+        </FlexibleValueCatalogueItem>
+        <FlexibleDataSetCatalogueItem>
+            <Code>ITEM_KLINISCHE_DATEN</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>ITEM HeLD klinische Daten</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>ITEM HeLD klinische Daten</Value>
+            </NameMultilingualEntries>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_VISITENDATUM</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_RAUCHERSTATUS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_BMI</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_PACKYEARS</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_EINSCHLUSSDIAGNOSE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_RAUCHER_SEIT</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>NUECHTERNSTATUS_HUB</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_AUFGEHOERT_AB</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_AKTUELLE_MEDIKATION</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_EOSINOPHILE_RELATIVE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_EOSINOPHILE_ABSOLUT</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_GESAMT_IGE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FEV1_PRE_LYSE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FVC_PRE_LYSE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FEV1FVC_PRE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FEV1_POST_LYSE</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FVC_POST_LYSE</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_FEV1FVC_POST</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_REVERSIBILITAET_IN_PROZENT</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_COPD_STADIUM</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_mMRC_Dyspnoe_Scale</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_EXAZERBATIONSRISIKO</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_CAT_SUMMENSCORE</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_TOTALE_LUNGENKAPAZITAET</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_RESIDUALVOLUMEN</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_COPD_DLCO</FlexibleValueRef>
+                <Required>false</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ALLERGISCHES_ASTHMA</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ASTHMA_STEP</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_GRAESER_MIX</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_KNAEUELGRAS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ROGGEN</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_BAEUME_MIX</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_BIRKE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_BEIFUSS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_WEGERICH</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_AMBROSIA</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_D_PTERONYSSINUS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_D_FARINAE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_HUND</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_KATZE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>Pferd</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ASPERGILLUS_FUMIGATUS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ALTERNARIA_ALTERNATA</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_CLADOSPORIUM_HERBARUM</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_ALLERGIE_KLINISCH_RELEVANTE_SYMPTOMATIK</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_POSITION_BEI_BLUTENTNAHME</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <ParticipantRef>kersting</ParticipantRef>
+            <ParticipantRef>nizhegor</ParticipantRef>
+            <ParticipantRef>prokein</ParticipantRef>
+            <OrganisationUnitRef>ITEM_TEST</OrganisationUnitRef>
+            <ParticipantRef>vollands</ParticipantRef>
+            <OrganisationUnitRef>P-2175-ITM</OrganisationUnitRef>
+            <Systemwide>false</Systemwide>
+            <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+            <Category>GENERAL</Category>
+            <CrfTemplateRef>
+                <Name>ITEM HeLD klinische Daten</Name>
+                <Version>37</Version>
+                
+            </CrfTemplateRef>
+            <!--<Version>37</Version>-->
+            
+        </FlexibleDataSetCatalogueItem>
+        <CrfTemplate>
+            <Name>ITEM HeLD klinische Daten</Name>
+            <CrfTemplateSection>
+                <Name>Klinische Daten</Name>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Klinische Daten (Basisdaten)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Klinische Daten</Value>
+                </NameMultilingualEntries>
+                <Code>Klinische Daten</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_VISITENDATUM</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <DefaultDateValue>
+                        <Date>2022-08-23T00:00:00</Date>
+                        <Precision>DAY</Precision>
+                    </DefaultDateValue>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_RAUCHERSTATUS</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_BMI</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_PACKYEARS</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_EINSCHLUSSDIAGNOSE</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_RAUCHER_SEIT</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <DefaultDateValue>
+                        <Date>2022-08-01T00:00:00</Date>
+                        <Precision>MONTH</Precision>
+                    </DefaultDateValue>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>NUECHTERNSTATUS_HUB</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_AUFGEHOERT_AB</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <DefaultDateValue>
+                        <Date>2022-08-01T00:00:00</Date>
+                        <Precision>MONTH</Precision>
+                    </DefaultDateValue>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_AKTUELLE_MEDIKATION</LaborValue>
+                    <LowerRow>4</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>4</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_DIAGNOSE_BEGLEITERKRANKUNG</LaborValue>
+                    <LowerRow>4</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>4</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>5</Height>
+                <Width>2</Width>
+                <Position>0</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>Labor</Name>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Labor</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Labor</Value>
+                </NameMultilingualEntries>
+                <Code>Labor</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_EOSINOPHILE_RELATIVE</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_EOSINOPHILE_ABSOLUT</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_GESAMT_IGE</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>3</Height>
+                <Width>1</Width>
+                <Position>1</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>LuFu</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>LuFu</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>LuFu</Value>
+                </NameMultilingualEntries>
+                <Code>LuFu</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FEV1_PRE_LYSE</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FVC_PRE_LYSE</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FEV1FVC_PRE</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FEV1_POST_LYSE</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FVC_POST_LYSE</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_FEV1FVC_POST</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_REVERSIBILITAET_IN_PROZENT</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>4</Height>
+                <Width>2</Width>
+                <Position>2</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>COPD Klinische Angaben</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>COPD Klinische Angaben</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>COPD Klinische Angaben</Value>
+                </NameMultilingualEntries>
+                <Code>COPD Klinische Angaben</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_COPD_STADIUM</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_mMRC_Dyspnoe_Scale</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_EXAZERBATIONSRISIKO</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_CAT_SUMMENSCORE</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>2</Height>
+                <Width>2</Width>
+                <Position>3</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>COPD Bodyplethysmographie</Name>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>COPD Bodyplethysmographie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>COPD Bodyplethysmographie</Value>
+                </NameMultilingualEntries>
+                <Code>COPD Bodyplethysmographie</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_TOTALE_LUNGENKAPAZITAET</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_RESIDUALVOLUMEN</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>2</Height>
+                <Width>1</Width>
+                <Position>4</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>COPD DLCO in %, hb-korrigiert</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>COPD DLCO in %, hb-korrigiert</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>COPD DLCO in %, hb-korrigiert</Value>
+                </NameMultilingualEntries>
+                <Code>COPD DLCO in %, hb-korrigiert</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_COPD_DLCO</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>false</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>1</Height>
+                <Width>1</Width>
+                <Position>5</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>ITEM_Klinische_Daten</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Klinische Daten:</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Asthma Klinische Daten</Value>
+                </NameMultilingualEntries>
+                <Code>ITEM_Klinische_Daten</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ALLERGISCHES_ASTHMA</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ASTHMA_STEP</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>2</Height>
+                <Width>1</Width>
+                <Position>6</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>Allergie (Prick-Test) - klinisch relevante Allergene</Name>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergie (Prick-Test) - klinisch relevante Allergene  - Quaddelgröße in mm (0-40; -1 nicht durchgeführt)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergie (Prick-Test) - klinisch relevante Allergene</Value>
+                </NameMultilingualEntries>
+                <Code>Allergie (Prick-Test) - klinisch relevante Allergene</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_GRAESER_MIX</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_KNAEUELGRAS</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ROGGEN</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_BAEUME_MIX</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_BIRKE</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_BEIFUSS</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_WEGERICH</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_AMBROSIA</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_D_PTERONYSSINUS</LaborValue>
+                    <LowerRow>4</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>4</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_D_FARINAE</LaborValue>
+                    <LowerRow>4</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>4</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_HUND</LaborValue>
+                    <LowerRow>5</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>5</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_KATZE</LaborValue>
+                    <LowerRow>5</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>5</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>Pferd</LaborValue>
+                    <LowerRow>6</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>6</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ASPERGILLUS_FUMIGATUS</LaborValue>
+                    <LowerRow>6</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>6</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ALTERNARIA_ALTERNATA</LaborValue>
+                    <LowerRow>7</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>7</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_CLADOSPORIUM_HERBARUM</LaborValue>
+                    <LowerRow>7</LowerRow>
+                    <LowerColumn>1</LowerColumn>
+                    <UpperRow>7</UpperRow>
+                    <UpperColumn>1</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>8</Height>
+                <Width>2</Width>
+                <Position>7</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>Symptomatik</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergie - Klinisch relevante Symptomatik:</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergie - Klinisch relevante Symptomatik:</Value>
+                </NameMultilingualEntries>
+                <Code>Symptomatik</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_ALLERGIE_KLINISCH_RELEVANTE_SYMPTOMATIK</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>1</Height>
+                <Width>1</Width>
+                <Position>8</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <CrfTemplateSection>
+                <Name>Information zur Blutentnahme</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Information zur Blutentnahme</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Information zur Blutentnahme</Value>
+                </NameMultilingualEntries>
+                <Code>Information zur Blutentnahme</Code>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_POSITION_BEI_BLUTENTNAHME</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                    <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+                    <MultilingualValueAllowed>false</MultilingualValueAllowed>
+                    
+                </CrfTemplateField>
+                <Height>2</Height>
+                <Width>1</Width>
+                <Position>9</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+                
+            </CrfTemplateSection>
+            <TemplateType>LABORMETHOD</TemplateType>
+            <Version>37</Version>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <Global>false</Global>
+            <MultipleUse>false</MultipleUse>
+            <Active>false</Active>
+            
+        </CrfTemplate>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Raucherstatus (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Raucherstatus (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_RAUCHERSTATUS</Code>
+            <CustomCatalogEntry>
+                <Code>Ex-Raucher</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Ex-Raucher</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Ex-Raucher</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Nichtraucher</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nichtraucher</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nichtraucher</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Raucher</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Raucher</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Raucher</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>unbekannt</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>unbekannt</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unbekannt</Value>
+                </NameMultilingualEntries>
+                <Position>3</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (WL_ITEM_EINSCHLUSSDIAGNOSE_ICD_CODE) (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Einschlussdiagnose (ICD-Code) (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_EINSCHLUSSDIAGNOSE_ICD_CODE</Code>
+            <CustomCatalogEntry>
+                <Code>Allergie</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Allergie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Allergie</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Asthma</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Asthma</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Asthma</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>COPD</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>COPD</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>COPD</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Gesund</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gesund</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gesund</Value>
+                </NameMultilingualEntries>
+                <Position>3</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Asthma Behandlungsstufe (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Asthma Behandlungsstufe (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_ASTHMA_BEHANDLUNGSSTUFE</Code>
+            <CustomCatalogEntry>
+                <Code>nicht zutreffend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <Position>5</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Stufe 1</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stufe 1</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stufe 1</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Stufe 2</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stufe 2</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stufe 2</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Stufe 3</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stufe 3</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stufe 3</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Stufe 4</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stufe 4</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stufe 4</Value>
+                </NameMultilingualEntries>
+                <Position>3</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Stufe 5</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Stufe 5</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Stufe 5</Value>
+                </NameMultilingualEntries>
+                <Position>4</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Allergie - Klinisch relevante Symptomatik (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Allergie - Klinisch relevante Symptomatik (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_ALLERGIE_KLINISCH_RELEVANTE_SYMPTOMPATIK</Code>
+            <CustomCatalogEntry>
+                <Code>Früh (Jan-Apr)</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Früh (Jan-Apr)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Früh (Jan-Apr)</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ganzjährig</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>ganzjährig</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ganzjährig</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Spät (Mai-Sep)</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Spät (Mai-Sep)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Spät (Mai-Sep)</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>mMRC_Dyspnoe_Scale (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>mMRC_Dyspnoe_Scale (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_mMRC_Dyspnoe_Scale</Code>
+            <CustomCatalogEntry>
+                <Code>0</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>0</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>0</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>1</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>1</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>1</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>2</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>2</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>2</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>3</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>3</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>3</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>4</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>4</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>4</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>nicht zutreffend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Nüchternstatus(HUB)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Nüchternstatus(HUB, Basisdatensatz)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_NUECHTERNSTATUS_HUB</Code>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Ob der Probenspender in den letzten 12h vor Probenentnahme nüchtern war. GBA-Suchdatensatz</Value>
+            </DescMultilingualEntries>
+            <CustomCatalogEntry>
+                <Code>Nicht erhoben</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nicht erhoben</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nicht erhoben</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Nicht nüchtern</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nicht nüchtern</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nicht nüchtern</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Nüchtern</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Nüchtern</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Nüchtern (min. 8 Std.)</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Allergisches Asthma (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Allergisches Asthma (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_ALLERGISCHES_ASTHMA</Code>
+            <CustomCatalogEntry>
+                <Code>ja</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>ja</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ja</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>nein</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nein</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nein</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>nicht zutreffend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Diagnose Begleiterkrankung (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Diagnose Begleiterkrankung (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_DIAGNOSE_BEGLEITERKRANKUNG</Code>
+            <CustomCatalogEntry>
+                <Code>Adipositas (BMI &gt; 29.9)</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Adipositas (BMI &gt; 29.9)</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Adipositas (BMI &gt; 29.9)</Value>
+                </NameMultilingualEntries>
+                <Position>4</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Bluthochdruck</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Bluthochdruck</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Bluthochdruck</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Diabetes</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Diabetes</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Diabetes</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Fettstoffwechselstörung</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Fettstoffwechselstörung</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Fettstoffwechselstörung</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Gefäßerkrankung/KHK</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Gefäßerkrankung/KHK</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Gefäßerkrankung/KHK</Value>
+                </NameMultilingualEntries>
+                <Position>3</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Keine</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Keine</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Keine</Value>
+                </NameMultilingualEntries>
+                <Position>5</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Position bei Blutentnahme (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Position bei Blutentnahme (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_POSITION_BEI_BLUTENTNAHME</Code>
+            <CustomCatalogEntry>
+                <Code>liegend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>liegend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>liegend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>sitzend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>sitzend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>sitzend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>unbekannt</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>unbekannt</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unbekannt</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Exazerbationsrisiko (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Exazerbationsrisiko (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_EXAZERBATIONSRISIKO</Code>
+            <CustomCatalogEntry>
+                <Code>A</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>A</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>A</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>B</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>B</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>B</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>C</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>C</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>C</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>D</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>D</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>D</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>nicht zutreffend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Yes_No_Unknown</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Ja, Nein, Unbekannt Liste (HUB, Basisdatensatz)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_HUB_JA_NEIN_UNKNOWN</Code>
+            <CustomCatalogEntry>
+                <Code>no</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nein</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>no</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>unknown</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>unbekannt</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>unknown</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>yes</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>yes</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>ja</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>COPD Stadium (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>COPD Stadium (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_COPD_STADIUM</Code>
+            <CustomCatalogEntry>
+                <Code>0</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>0</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>0</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>I</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>I</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>II</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>II</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>II</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>II (2)</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>III</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>III</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>III</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>IV</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>IV</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>IV</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>nicht zutreffend</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>nicht zutreffend</Value>
+                </NameMultilingualEntries>
+                <Position>-1</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>true</SortAlphabetical>
+            
+        </ValueList>
+        <ValueList>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Begleitmedikation (ITEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Begleitmedikation (ITEM)</Value>
+            </NameMultilingualEntries>
+            <Code>WL_ITEM_BEGLEITMEDIKATION</Code>
+            <CustomCatalogEntry>
+                <Code>Antidiabetika</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antidiabetika</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antidiabetika</Value>
+                </NameMultilingualEntries>
+                <Position>12</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Antihypertensiva</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antihypertensiva</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antihypertensiva</Value>
+                </NameMultilingualEntries>
+                <Position>10</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Antikoagulanzien</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Antikoagulanzien</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Antikoagulanzien</Value>
+                </NameMultilingualEntries>
+                <Position>13</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Biologicals</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Biologicals</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Biologicals</Value>
+                </NameMultilingualEntries>
+                <Position>9</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Hormonale Ersatztherapie</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Hormonale Ersatztherapie</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Hormonale Ersatztherapie</Value>
+                </NameMultilingualEntries>
+                <Position>14</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Hormonale Kontrazeption</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Hormonale Kontrazeption</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Hormonale Kontrazeption</Value>
+                </NameMultilingualEntries>
+                <Position>15</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>ICS</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>ICS</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>ICS</Value>
+                </NameMultilingualEntries>
+                <Position>3</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Keine</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Keine</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Keine</Value>
+                </NameMultilingualEntries>
+                <Position>16</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>LABA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>LABA</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>LABA</Value>
+                </NameMultilingualEntries>
+                <Position>1</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>LAMA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>LAMA</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>LAMA</Value>
+                </NameMultilingualEntries>
+                <Position>2</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Lipidsenker</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Lipidsenker</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Lipidsenker</Value>
+                </NameMultilingualEntries>
+                <Position>11</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Montelukast</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Montelukast</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Montelukast</Value>
+                </NameMultilingualEntries>
+                <Position>7</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Oral steroids</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Oral steroids</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Oral steroids</Value>
+                </NameMultilingualEntries>
+                <Position>6</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Over the counter anti-allergic treatment</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Over the counter anti-allergic treatment</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Over the counter anti-allergic treatment</Value>
+                </NameMultilingualEntries>
+                <Position>0</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>Roflumilast</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>Roflumilast</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>Roflumilast</Value>
+                </NameMultilingualEntries>
+                <Position>8</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>SABA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>SABA</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>SABA</Value>
+                </NameMultilingualEntries>
+                <Position>4</Position>
+                
+            </CustomCatalogEntry>
+            <CustomCatalogEntry>
+                <Code>SAMA</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>SAMA</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>SAMA</Value>
+                </NameMultilingualEntries>
+                <Position>5</Position>
+                
+            </CustomCatalogEntry>
+            <SortAlphabetical>false</SortAlphabetical>
+            
+        </ValueList>
+        <LaborValueGroup>
+            <Code>ITEM_KLINISCHE_DATEN</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>ITEM Klinische Daten</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>ITEM Klinische Daten</Value>
+            </NameMultilingualEntries>
+            
+        </LaborValueGroup>
+        <LaborValueGroup>
+            <Code>GECCO_COVID-19_VISITE</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>GECCO Visite-Datensatz (COVID-19)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>GECCO Basis-Datensatz (COVID-19)</Value>
+            </NameMultilingualEntries>
+            
+        </LaborValueGroup>
+        <LaborValueGroup>
+            <Code>CIMD_KLINISCHE_DATEN</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>CIMD Klinische Daten</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CIMD Klinische Daten</Value>
+            </NameMultilingualEntries>
+            
+        </LaborValueGroup>
+    </CatalogueData>
+    <EffectData/>
+</CentraXXDataExchange>

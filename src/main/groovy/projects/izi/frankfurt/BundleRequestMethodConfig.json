@@ -1,0 +1,14 @@
+{
+  "description": "This configuration specifies for each FHIR resource type the HTTP method, which is used in exported the FHIR bundle. Not all HTTP method might be supported on all resources. This depends on the target system. E.g. the Blaze store (v.8.0) only accepts PUT requests. CentraXX uses PUT for create or update by logical FHIR ID, POST for create or update by natural identifier (only for Patient, Specimen yet). If a resource is not configured, PUT is used as default. The configuration can be changed during runtime without CentraXX restart.",
+  "resourceTypeToHttpMethod": {
+    "Patient": "PUT",
+    "Specimen": "PUT",
+    "Condition": "PUT",
+    "Encounter": "PUT",
+    "Observation": "PUT",
+    "Procedure": "PUT",
+    "Organization": "PUT",
+    "MedicationStatement": "PUT",
+    "ClinicalImpression": "PUT"
+  }
+}

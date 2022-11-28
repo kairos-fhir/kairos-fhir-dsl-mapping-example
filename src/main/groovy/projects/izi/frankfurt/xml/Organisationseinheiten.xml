@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>2022.3.3</SourceVersion>
+    <ExportDate>2022-11-25T13:56:38.889+01:00</ExportDate>
+    <CatalogueData>
+        <OrganisationUnitCatalogueItem>
+            <Code>FRANKFURT</Code>
+            <OrganisationUnitEntries>
+                <Name>Frankfurt</Name>
+                <Lang>de</Lang>
+            </OrganisationUnitEntries>
+            <OrganisationUnitEntries>
+                <Name>(en) - FRANKFURT</Name>
+                <Lang>en</Lang>
+            </OrganisationUnitEntries>
+            <SyncId>729c3df8-3b0d-4328-9960-806073b353d2</SyncId>
+        </OrganisationUnitCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

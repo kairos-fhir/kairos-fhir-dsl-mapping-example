@@ -1,4 +1,4 @@
-package projects.izi.frankfurt
+package projects.izi.leipzigLocal
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
@@ -49,7 +49,7 @@ observation {
   }
 
   final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
-    "PaIdTMP" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
+    "SID" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (patIdContainer) {
@@ -243,7 +243,7 @@ static boolean isIziRelevantLaborValue(final String laborValueCode) {
 static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
   if (localLaborValueCode == null) {
     return null
-}
+  }
 
   return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
 }
