@@ -4,7 +4,6 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
@@ -22,8 +21,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
  * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
- * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
- * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
+ *
+ * HINTS:
+ * - The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
+ * - LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
+ * - Catalog system URLS without logical FHIR ID (e.g. instead of with code or version) are implemented since
+ * CXX.v.3.18.2.11, CXX.v.3.18.3.8, CXX.v.3.18.4, CXX.v.2022.1.5, CXX.v.2022.2.5, CXX.v.2022.3.5, CXX.v.2022.4.0
+ * - Before those versions, an static ID type mapping for each catalog and value list of each source system is necessary in the target system.
  */
 observation {
 
@@ -121,7 +125,7 @@ observation {
             }
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
                 code = entry[CODE] as String
               }
             }
@@ -136,7 +140,7 @@ observation {
             }
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
                 code = entry[CODE] as String
               }
             }
@@ -145,13 +149,13 @@ observation {
           valueCodeableConcept {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
                 code = entry[CODE] as String
               }
             }
             lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+                system = "urn:centraxx:CodeSystem/IcdCatalog" // uses always the last ICD 10 catalog version in the target system
                 code = entry[CODE] as String
               }
             }

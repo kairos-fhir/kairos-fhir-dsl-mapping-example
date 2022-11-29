@@ -1,33 +1,43 @@
 package projects.izi.leipzigLocal
 
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Diagnosis
- * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @author Franzy Hohnstaedter, Mike Wähnert
+ * @since v.1.6.0, CXX.v.3.17.1.7
+ *
+ * HINTS:
+ *  - Catalog system URLS without logical FHIR ID (e.g. instead of with code or version) are implemented since
+ *  CXX.v.3.18.2.11, CXX.v.3.18.3.8, CXX.v.3.18.4, CXX.v.2022.1.5, CXX.v.2022.2.5, CXX.v.2022.3.5, CXX.v.2022.4.0
+ * - Before those versions, an static ID type mapping for each catalog and value list of each source system is necessary in the target system.
  */
 condition {
 
-  id = "Condition/" + context.source["id"]
+  id = "Condition/" + context.source[diagnosis().id()]
 
-  final def patIdContainer = context.source["patientcontainer.idContainer"]?.find {
-    "SID" == it["idContainerType"]?.getAt("code")
+  final def patIdContainer = context.source[diagnosis().patientContainer().idContainer()]?.find {
+    "SID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
   if (patIdContainer) {
     subject {
       identifier {
-        value = patIdContainer["psn"]
+        value = patIdContainer[IdContainer.PSN]
         type {
           coding {
             system = "urn:centraxx"
-            code = patIdContainer["idContainerType"]?.getAt("code") as String
+            code = patIdContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE) as String
           }
         }
       }
     }
   }
 
-  final def diagnosisId = context.source["diagnosisId"]
+  final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {
       value = diagnosisId
@@ -40,7 +50,7 @@ condition {
     }
   }
 
-  final def clinician = context.source["clinician"]
+  final def clinician = context.source[diagnosis().clinician()]
   if (clinician) {
     recorder {
       identifier {
@@ -50,17 +60,15 @@ condition {
   }
 
   onsetDateTime {
-    date = context.source["diagnosisDate.date"]
+    date = context.source[diagnosis().diagnosisDate().date()]
   }
 
   code {
     coding {
-      system = "urn:centraxx:CodeSystem/IcdCatalog-" + context.source["icdEntry.catalogue.id"]
-      code = context.source["icdEntry.code"] as String
-      version = context.source["icdEntry.kind"]
-      display = context.source["icdEntry.name"]
+      system = "urn:centraxx:CodeSystem/IcdCatalog" // uses always the last ICD 10 catalog version in the target system
+      code = context.source[diagnosis().icdEntry().code()] as String
+      version = context.source[diagnosis().icdEntry().kind()]
     }
   }
-
 }
 
