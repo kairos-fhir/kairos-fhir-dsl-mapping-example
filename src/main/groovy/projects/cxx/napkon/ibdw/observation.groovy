@@ -1,6 +1,5 @@
 package projects.cxx.napkon.ibdw
 
-
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -25,8 +24,6 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.NUMERIC_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.TIME_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX LaborMapping
  * @author Jonas Küttner, Mike Wähnert
@@ -84,7 +81,7 @@ observation {
 
   // Observation date from sample reception timestamp
   // Observation label from laborFinding timestamp
-  Date observationDate =  isoDateFormat.parse(context.source[laborMapping().sample().receiptDate().date()] as String)
+  final Date observationDate =  isoDateFormat.parse(context.source[laborMapping().sample().receiptDate().date()] as String)
   String observationCode = ""
   if (observationDate) {
   	observationCode = "Biomaterial-Zentrifugation_" + extSampleId[SampleIdContainer.PSN] + "_" + numDateFormat.format(observationDate)

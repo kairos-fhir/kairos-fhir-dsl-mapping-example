@@ -1,18 +1,15 @@
-
+package projects.cxx.napkon.ibdw
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
-import org.slf4j.ILoggerFactory
 
 import java.text.SimpleDateFormat
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX AbstractSample
  * @author Jonas Küttner, Mike Wähnert
@@ -74,11 +71,11 @@ specimen {
     }
 
     // 3. Filter Existing Storage Location assigned
-    Boolean sampleExists = ("swisslabProben" != context.source[sample().sampleLocation().locationId()])
+    final Boolean sampleExists = ("swisslabProben" != context.source[sample().sampleLocation().locationId()])
 
     // 4. Filter samples that are still existing and have not been retrieved (no sampleAbstraction)
     // TODO: Modify to check for existing sampleAbstraction as soon as available in a future CXX release
-    String sampleType = context.source[sample().sampleType().code()]
+    final String sampleType = context.source[sample().sampleType().code()]
     final restAmount = context.source[sample().restAmount().amount()]
 
     //ALIQUOT
@@ -133,7 +130,7 @@ specimen {
     }
 
     final def idContainerCodeMap = ["SAMPLEID": "EXTSAMPLEID", "NAPKONSMP": "SAMPLEID"]
-    final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { String idContainerCode, String _ ->
+    final Map<String, Object> idContainersMap = idContainerCodeMap.collectEntries { final String idContainerCode, final String _ ->
         return [
                 (idContainerCode): context.source[sample().idContainer()]?.find { final def entry ->
                     idContainerCode == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
@@ -195,10 +192,10 @@ specimen {
             // valueDateTime = context.source[sample().repositionDate().date()]
             switch (context.source[sample().sampleType().code()]) {
                 case "PAXGEN":
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-                    String receiptDate = context.source[sample().receiptDate().date()]
+                  final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+                  final String receiptDate = context.source[sample().receiptDate().date()]
                     if (receiptDate) {
-                        Date tmpDate = dateFormat.parse(context.source[sample().receiptDate().date()] as String)
+                        final Date tmpDate = dateFormat.parse(context.source[sample().receiptDate().date()] as String)
                         valueDateTime = dateFormat.format(new Date(tmpDate.getTime() + paxGeneRTStorageTime))
                     } else {
                         valueDateTime = context.source[sample().repositionDate().date()]
