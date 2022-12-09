@@ -30,11 +30,7 @@ specimen {
   }
 
   meta {
-    if (idc) {
-      profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-ExliquidSpecimen"
-    } else {
       profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-OncoSpecimen"
-    }
   }
 
   if (idc) {
@@ -125,12 +121,6 @@ specimen {
       identifier {
         value = context.source[abstractSample().receptable().code()]
         system = "urn:centraxx"
-      }
-
-      capacity {
-        value = context.source[abstractSample().receptable().size()]
-        unit = ucum.translate(context.source[abstractSample().restAmount().unit()] as String)?.code
-        system = "http://unitsofmeasure.org"
       }
     }
 
