@@ -11,7 +11,10 @@ import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
+import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import org.hl7.fhir.r4.model.Observation
+
+import java.text.SimpleDateFormat
 
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.BOOLEAN_VALUE
@@ -32,17 +35,67 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * for the import.
  */
 observation {
+  // 0. Filter patients
+  //final def patientList = ["lims_643282707", "lims_745748710"]
+  //final def currentPatientId = context.source[laborMapping().relatedPatient().idContainer()]?.find {
+  //  "NAPKON" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  //}
+  //final boolean belongsToExcludedPatient = patientList.contains(currentPatientId[IdContainer.PSN])
+//
+  //if (belongsToExcludedPatient) {
+  //  return
+  //}
+
+  // Filter sample category
+  final SampleCategory category = context.source[laborMapping().sample().sampleCategory()] as SampleCategory
 
   final boolean isSampleMapping = LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType
   final boolean isDzhkMethod = ["DZHKFLAB"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
   if (!(isSampleMapping && isDzhkMethod)) {
     return
   }
+  
+  final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+  final SimpleDateFormat numDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
 
   final def extSampleId = context.source[laborMapping().sample().idContainer()]?.find { final def entry ->
     "NAPKONSMP" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
+  
+  if (!extSampleId) {
+    return
+  }
 
+  // Filter samples older than specified date
+  String sampleReceptionDate = ""
+  if (category == SampleCategory.MASTER) {
+    sampleReceptionDate = context.source[laborMapping().sample().receiptDate().date()]
+  } else if (category == SampleCategory.ALIQUOTGROUP) {
+    sampleReceptionDate = context.source[laborMapping().sample().parent().receiptDate().date()]
+  } else if (category == SampleCategory.DERIVED) {
+    sampleReceptionDate = context.source[laborMapping().sample().parent().parent().receiptDate().date()]
+  }
+  if (sampleReceptionDate < "2022-03-01T23:59:59+01:00") {
+    return
+  }
+
+  // Observation date from sample reception timestamp
+  // Observation label from laborFinding timestamp
+  final Date observationDate =  isoDateFormat.parse(context.source[laborMapping().sample().receiptDate().date()] as String)
+  String observationCode = ""
+  if (observationDate) {
+  	observationCode = "Biomaterial-Zentrifugation_" + extSampleId[SampleIdContainer.PSN] + "_" + numDateFormat.format(observationDate)
+  }
+  else {
+	// Do not create observation if observationDate is NULL
+	return
+  }
+
+  // Update resource - ignore missing elements
+//  extension {
+//    url = FhirUrls.Extension.UPDATE_WITH_OVERWRITE
+//    valueBoolean = false
+//  }
 
   id = "Observation/" + context.source[laborMapping().id()]
 
@@ -50,11 +103,11 @@ observation {
 
   code {
     coding {
+	  code = observationCode
       system = "urn:centraxx"
-      code = context.source[laborMapping().laborFinding().shortName()] as String
     }
   }
-
+  
   final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
     "NAPKON" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
@@ -90,7 +143,7 @@ observation {
     }
   }
 
-  effectiveDateTime = context.source[laborMapping().laborFinding().findingDate().date()]
+  effectiveDateTime = observationDate
 
   method {
     coding {

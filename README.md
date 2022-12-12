@@ -61,6 +61,10 @@ Detailed instructions to the interface and its DSL can be found in the [German h
     * Add your new scripts.
     * Add a meaningful README.md file describing the purpose, sources, participants and CXX version.
     * Create a pull request with your changes against our master branch.
+    * If possible, please follow the existing basic coding standards:
+      * use 2 spaces for indent / tab size
+      * use final keyword wherever possible
+      * prefer explicit typization instead of the untyped def keyword
 * If you discover errors or bugs in existing scripts, we would be happy to receiving a notices in the form of e-mails, issues or pull requests.
 
 # License
