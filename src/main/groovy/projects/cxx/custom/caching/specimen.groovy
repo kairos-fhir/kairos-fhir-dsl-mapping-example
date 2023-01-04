@@ -1,4 +1,4 @@
-package projects.cxx.caching
+package projects.cxx.custom.caching
 
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType

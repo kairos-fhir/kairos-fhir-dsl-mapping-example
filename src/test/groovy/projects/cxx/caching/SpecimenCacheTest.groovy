@@ -22,7 +22,7 @@ class SpecimenCacheTest extends AbstractDslBuilderTest {
   void testThatCSortingFindsLastDate() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/test/resources/projects/cxx/caching/specimen.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/cxx/custom/caching/specimen.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // when: run your script with test data
