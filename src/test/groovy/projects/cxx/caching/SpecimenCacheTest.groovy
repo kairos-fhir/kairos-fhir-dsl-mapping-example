@@ -8,6 +8,7 @@ import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import org.hl7.fhir.r4.model.Specimen
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 import static org.junit.jupiter.api.Assertions.assertEquals
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals
 class SpecimenCacheTest extends AbstractDslBuilderTest {
 
   @Test
+  @Disabled("Create cache file first")
   void testThatCSortingFindsLastDate() throws IOException {
 
     // given: select your groovy script to test
