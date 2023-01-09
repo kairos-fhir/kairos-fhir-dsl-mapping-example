@@ -1,4 +1,4 @@
-package main.groovy.projects.cxx.custom.aggregate
+package projects.cxx.custom.aggregate
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import org.hl7.fhir.r4.model.Observation

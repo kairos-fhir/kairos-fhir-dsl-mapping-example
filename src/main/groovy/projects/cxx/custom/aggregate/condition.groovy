@@ -1,4 +1,4 @@
-package main.groovy.projects.cxx.custom.aggregate
+package projects.cxx.custom.aggregate
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 

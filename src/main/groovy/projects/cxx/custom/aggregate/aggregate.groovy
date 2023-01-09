@@ -1,4 +1,4 @@
-package main.groovy.projects.cxx.custom.aggregate
+package projects.cxx.custom.aggregate
 
 import ca.uhn.fhir.context.FhirContext
 import org.apache.commons.io.output.FileWriterWithEncoding
