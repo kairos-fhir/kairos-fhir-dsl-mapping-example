@@ -1,10 +1,10 @@
 package projects.cxx.custom.dbconnection
 
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
-import groovy.sql.Sql
 
 import javax.sql.DataSource
 import java.lang.reflect.Method
+import java.sql.ResultSet
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
@@ -18,7 +18,11 @@ patient {
   final String oid = context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   id = "Patient/" + oid
-  gender = loadGenderFromDb(oid)
+
+  final def genderFromDb = loadGenderFromDb(oid)
+  if (genderFromDb != null) {
+    gender = genderFromDb
+  }
 }
 
 static String loadGenderFromDb(final String oid) {
@@ -36,16 +40,22 @@ static String queryFromDb(final String OID) {
   final Class beanClass = cl.loadClass("com.microsoft.sqlserver.jdbc.SQLServerDataSource")
   final DataSource dataSource = beanClass.getDeclaredConstructor().newInstance() as DataSource
 
-  // TODO: set connection string and credentials
+  // TODO: Set connection string and credentials. IMPORTANT: Use TLS encrypted connection in production!
   invoke(dataSource, "setURL", "jdbc:sqlserver://localhost:1433;databaseName=KAIROS_SPRING;encrypt=false")
   invoke(dataSource, "setUser", "username")
   invoke(dataSource, "setPassword", "password")
-  final def sql = new Sql(dataSource)
+
+  final ResultSet rs = dataSource.getConnection()
+      .createStatement()
+      .executeQuery("select GENDER_TYPE from CENTRAXX_PATIENTMASTERDATA_ANO  where PATIENTCONTAINER = " + OID)
 
   try {
-    return sql.firstRow("select GENDER_TYPE from CENTRAXX_PATIENTMASTERDATA_ANO  where PATIENTCONTAINER = " + OID).get("GENDER_TYPE")
-  } finally {
-    sql.close()
+    while (rs.next()) {
+      return rs.getString("GENDER_TYPE")
+    }
+  }
+  finally {
+    rs.close()
   }
 }
 
