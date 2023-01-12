@@ -5,7 +5,7 @@
     <ExportDate>2022-11-25T18:56:07.116+01:00</ExportDate>
     <CatalogueData>
         <FlexibleDataSetCatalogueItem>
-            <Code>ABWEICHUNGEN</Code>
+            <Code>CIMD_ABWEICHUNGEN</Code>
             <NameMultilingualEntries>
                 <Lang>de</Lang>
                 <Value>Abweichungen</Value>
@@ -41,7 +41,7 @@
                     <Lang>en</Lang>
                     <Value>unnamed (ABWEICHUNGEN)</Value>
                 </NameMultilingualEntries>
-                <Code>ABWEICHUNGEN</Code>
+                <Code>CIMD_ABWEICHUNGEN</Code>
                 <CrfTemplateField>
                     <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">ABWEICHUNGEN</LaborValue>
                     <LowerRow>0</LowerRow>
