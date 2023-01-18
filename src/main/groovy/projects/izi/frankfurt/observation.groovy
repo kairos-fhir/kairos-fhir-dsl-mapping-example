@@ -28,7 +28,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
-  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN", "ABWEICHUNGEN"].contains(laborMethodCode)
+  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN", "CIMD_ABWEICHUNGEN"].contains(laborMethodCode)
   if (!(isIziRelevant)) {
     return
   }
@@ -70,7 +70,7 @@ observation {
     coding {
       system = "urn:centraxx"
       version = context.source[laborMapping().laborFinding().laborMethod().version()]
-      code = laborMethodCode == "ITEM_KLINISCHE_DATEN" ? "CIMD_KERNZUSATZDATEN" : "ABWEICHUNGEN"
+      code = laborMethodCode == "ITEM_KLINISCHE_DATEN" ? "CIMD_KERNZUSATZDATEN" : "CIMD_ABWEICHUNGEN"
     }
   }
 
@@ -237,7 +237,7 @@ static boolean isIziRelevantLaborValue(final String laborValueCode) {
           "CIMD_MEDIKATION_FREITEXTFELD",
           "ITEM_POSITION_BEI_BLUTENTNAHME",
           "ITEM_STAUBINDE_UNMITTELBAR_NACH_BLUTEINFLUSS_GELOEST",
-          "ABWEICHUNGEN"].contains(laborValueCode)
+          "CIMD_ABWEICHUNGEN"].contains(laborValueCode)
 }
 
 static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {

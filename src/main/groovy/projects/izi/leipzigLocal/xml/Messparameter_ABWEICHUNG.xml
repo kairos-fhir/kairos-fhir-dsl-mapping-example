@@ -6,7 +6,7 @@
     <CatalogueData>
         <FlexibleValueCatalogueItem>
             <FlexibleCatalogValue>
-                <Code>ABWEICHUNGEN</Code>
+                <Code>CIMD_ABWEICHUNGEN</Code>
                 <NameMultilingualEntries>
                     <Lang>en</Lang>
                     <Value>unnamed (ABWEICHUNGEN)</Value>
@@ -21,7 +21,7 @@
                 </UserEntries>
                 <ChoiseType>SELECTMANY</ChoiseType>
                 <UserDefinedCatalogRef RefUrl="/rest/export/catalogdata/Catalog/521">
-                    <Code>ABWEICHUNGEN</Code>
+                    <Code>CIMD_ABWEICHUNGEN</Code>
                     <Version>1</Version>
                 </UserDefinedCatalogRef>
             </FlexibleCatalogValue>
