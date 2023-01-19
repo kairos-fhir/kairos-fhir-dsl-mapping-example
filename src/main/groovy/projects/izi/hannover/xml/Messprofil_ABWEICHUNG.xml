@@ -15,7 +15,7 @@
                 <Value>Abweichungen</Value>
             </NameMultilingualEntries>
             <FlexibleValueComplexRefs>
-                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">ABWEICHUNGEN</FlexibleValueRef>
+                <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">CIMD_ABWEICHUNGEN</FlexibleValueRef>
                 <Required>false</Required>
             </FlexibleValueComplexRefs>
             <Systemwide>true</Systemwide>
@@ -43,7 +43,7 @@
                 </NameMultilingualEntries>
                 <Code>CIMD_ABWEICHUNGEN</Code>
                 <CrfTemplateField>
-                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">ABWEICHUNGEN</LaborValue>
+                    <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/1213" DisplayName="Abweichungen">CIMD_ABWEICHUNGEN</LaborValue>
                     <LowerRow>0</LowerRow>
                     <LowerColumn>0</LowerColumn>
                     <UpperRow>0</UpperRow>
