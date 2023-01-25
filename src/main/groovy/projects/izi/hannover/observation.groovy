@@ -125,7 +125,9 @@ observation {
             }
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
             }
@@ -140,7 +142,9 @@ observation {
             }
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
             }
@@ -149,7 +153,9 @@ observation {
           valueCodeableConcept {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
-                system = "urn:centraxx:CodeSystem/ValueList#c." + entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
+                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
             }
