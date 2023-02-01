@@ -1,5 +1,6 @@
 package projects.izi.leipzigLocal
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
@@ -18,6 +19,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 condition {
 
   id = "Condition/" + context.source[diagnosis().id()]
+
+  extension {
+    url = FhirUrls.Extension.UPDATE_WITH_OVERWRITE
+    valueBoolean = false
+  }
 
   final def patIdContainer = context.source[diagnosis().patientContainer().idContainer()]?.find {
     "SID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
@@ -50,25 +56,21 @@ condition {
     }
   }
 
-  final def clinician = context.source[diagnosis().clinician()]
-  if (clinician) {
-    recorder {
-      identifier {
-        display = clinician
-      }
-    }
-  }
-
   onsetDateTime {
     date = context.source[diagnosis().diagnosisDate().date()]
   }
 
+  recordedDate {
+    date = context.source[diagnosis().creationDate()]
+  }
+
   code {
     coding {
-      system = "urn:centraxx:CodeSystem/IcdCatalog" // uses always the last ICD 10 catalog version in the target system
+      system = "urn:centraxx:CodeSystem/IcdCatalog#v.2020"
       code = context.source[diagnosis().icdEntry().code()] as String
       version = context.source[diagnosis().icdEntry().kind()]
     }
   }
+
 }
 
