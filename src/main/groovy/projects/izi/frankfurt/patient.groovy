@@ -1,6 +1,6 @@
 package projects.izi.frankfurt
 
-
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 
@@ -36,9 +36,17 @@ patient {
   if (context.source[GENDER_TYPE]) {
     gender = mapGender(context.source[GENDER_TYPE] as GenderType)
   }
-  birthDate = normalizeDate(context.source[patientMasterDataAnonymous().birthdate().date()] as String)
+
+  if (context.source[patientMasterDataAnonymous().birthdate()]) {
+    birthDate {
+      date = context.source[patientMasterDataAnonymous().birthdate().date()]
+      precision = TemporalPrecisionEnum.YEAR.name()
+    }
+  }
+
   deceasedDateTime = "UNKNOWN" != context.source[patientMasterDataAnonymous().dateOfDeath().precision()] ?
       context.source[patientMasterDataAnonymous().dateOfDeath().date()] : null
+
   generalPractitioner {
     identifier {
       value = "FRANKFURT"
@@ -54,8 +62,4 @@ static def mapGender(final GenderType genderType) {
     case GenderType.UNKNOWN: return "unknown"
     default: return "other"
   }
-}
-
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
 }
