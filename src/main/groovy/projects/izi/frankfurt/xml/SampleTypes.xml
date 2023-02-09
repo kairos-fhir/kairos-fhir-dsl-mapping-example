@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-09T14:15:12.156+01:00</ExportDate>
+    <CatalogueData>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum</Value>
+            </NameMultilingualEntries>
+            <Code>SER</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SER</SprecCode>
+            <SyncId>EA1C166D-145A-412B-B0DE-41692159CEE8</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA Vollblut</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA</Value>
+            </NameMultilingualEntries>
+            <Code>EDTA</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BLD</SprecCode>
+            <SyncId>9A774339-D3C1-4D4A-B290-FDA5546F2551</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXGene</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PAXGene</Value>
+            </NameMultilingualEntries>
+            <Code>PAX</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BLD</SprecCode>
+            <SyncId>1A03371F-4854-4FD2-A280-38EB45270C7B</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Citrat Blut</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Citrat Plasma</Value>
+            </NameMultilingualEntries>
+            <Code>CIT_PL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL1</SprecCode>
+            <SyncId>2E53418E-1C98-4AB9-9CE3-041F2ADFD76F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PBMC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PBMC</Value>
+            </NameMultilingualEntries>
+            <Code>PBMC</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CEL</SprecCode>
+            <SyncId>8A5DF0A7-88FE-4B14-A932-67C77771537F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urin</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin</Value>
+            </NameMultilingualEntries>
+            <Code>URIN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>URN</SprecCode>
+            <SyncId>056B91E6-B274-49D1-B365-9A9F969C1ED2</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl</Value>
+            </NameMultilingualEntries>
+            <Code>STL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>STL</SprecCode>
+            <SyncId>20CB9E93-E840-4DA3-B12E-B9C44C0AC703</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (STL_STAB)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl mit DNA Stabilisator</Value>
+            </NameMultilingualEntries>
+            <Code>STL_STAB</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>STL</SprecCode>
+            <SyncId>D3A49B56-47F4-4EB1-89AF-F1EAB02F3371</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (EDTA_PL)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA Plasma</Value>
+            </NameMultilingualEntries>
+            <Code>EDTA_PL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL1</SprecCode>
+            <SyncId>BCFE2D42-6631-4AF4-9A27-A09332113EAE</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (CPT_PL)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CPT Plasma</Value>
+            </NameMultilingualEntries>
+            <Code>CPT_PL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL1</SprecCode>
+            <SyncId>952553E4-00CA-4BB3-B578-AEC56D278DF0</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (ccfDNA_PL)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXgene Blood ccfDNA Plasma</Value>
+            </NameMultilingualEntries>
+            <Code>ccfDNA_PL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL2</SprecCode>
+            <SyncId>24E44818-EEC5-4389-903B-8219FF7F4640</SyncId>
+        </SampleTypeCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

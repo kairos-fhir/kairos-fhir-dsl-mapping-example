@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-09T14:15:12.156+01:00</ExportDate>
+    <CatalogueData>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL</Value>
+            </NameMultilingualEntries>
+            <Code>LVL_300</Code>
+            <Size>100.00</Size>
+            <SprecCode>W</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>64BE178F-3F77-44AC-9243-6148315BF7C3</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum Gel 4,7</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel 4,7 ml Sarstedt Monovette</Value>
+            </NameMultilingualEntries>
+            <Code>SER_GEL_4_7</Code>
+            <Size>4.70</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>DB4ABD01-6A46-4DBB-A48D-F2C2C207E13B</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryo_Sarstedt</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml Serum</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_SER</Code>
+            <Size>1.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>5A436455-A376-4CF0-BB39-A70DA8D88C00</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cryo-Sarstedt 2ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryo-Sarstedt</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BB PBMC</Value>
+            </DescMultilingualEntries>
+            <Code>CRYO_SAR_2</Code>
+            <Size>1.00</Size>
+            <SprecCode>C</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>54D340C5-38B4-43C7-8FF4-588E2D1DC5CE</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette</Value>
+            </NameMultilingualEntries>
+            <Code>EDTA_7_5</Code>
+            <Size>7.50</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>023B1108-D450-465A-BA99-5EB002E74958</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin 3,2ml Sarstedt Monovette</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BB Urin</Value>
+            </NameMultilingualEntries>
+            <Code>URIN_3_2</Code>
+            <Size>3.20</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>22B1EDEB-42A3-4961-B79D-8BABE4C22455</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl</Value>
+            </NameMultilingualEntries>
+            <Code>STU_CONV</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>682B4BF6-3099-41BD-BF08-768499F79F14</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl mit Stabilisator</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl mit Stabilisator</Value>
+            </NameMultilingualEntries>
+            <Code>STU_STAB_CONV</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>0745D288-BBD1-40D8-9D3B-B83E94983C65</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>RNA Tempus</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>RNA Tempus 2,5ml</Value>
+            </NameMultilingualEntries>
+            <Code>RNA_TEMP_2_5</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>8E60040E-45FA-4738-80FC-9C49320FB351</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum Gel 9</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel 9ml Sarstedt Monovette</Value>
+            </NameMultilingualEntries>
+            <Code>SER_GEL_9</Code>
+            <Size>9.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>84816905-BF56-41E6-9600-6A657695CEAF</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Citrat 10ml Sarstedt Monovette</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Citrat</Value>
+            </NameMultilingualEntries>
+            <Code>CIT_10</Code>
+            <Size>10.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>129F5997-A2F1-4D20-AFFB-9CAF19F43B85</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA Vacutainer</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 5ml Vacutainer</Value>
+            </NameMultilingualEntries>
+            <Code>EDTA_VAC_5</Code>
+            <Size>5.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>1B331353-09DD-4EA6-A86A-ABBAEF7EA672</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 Serum</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 Serum</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquote</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5BAEC793-12BC-4D46-963E-03BE47923F71</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 1000 Serum</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 1000 Serum</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BB Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_1000_SE</Code>
+            <Size>1000.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>153A8468-564B-43EE-B015-9519FF817BAD</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 1000 Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 1000 Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BB Plasma 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_1000_PL</Code>
+            <Size>1000.00</Size>
+            <SprecCode>A</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>70842710-4F12-48D1-AEB6-E2B81C067468</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstadt 2ml XCIT</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml XCIT</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>XCIT Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_XCIT</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>0BBE7747-FA33-4FBD-A7FC-94DC8EBDFA6C</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml XPL</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstadt 2ml XPL</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>XPL Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_XPL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>A95F288C-3DD1-426D-9C1B-E84CDBB9D278</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml PAN</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 2ml PAN</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAN Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_PAN</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>1299C36D-17D4-45A1-905E-3733A82C5053</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstadt 2ml SSC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml SSC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>SSC Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_SSC</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>CF61D9C3-A75F-4B31-B637-F5A9F5F40FF2</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstaedt 2ml XPL Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml XPL Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>XPL Plasma 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_XPL_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>DE915EAD-26E1-4572-95D4-98E93ADF835A</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml PAN Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 2ml PAN Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAN Plasma 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_PAN_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>2EE90593-EBD3-4ED7-9600-B09900E73424</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette XCIT</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette XCIT</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA Xciting</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_XCIT</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>93B0FA4B-1F1C-45ED-9E3F-C925C968B81E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5mlk Sarstedt Monovette XPLORE</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette XPLORE</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA Xplore</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_XPL</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>107FBD60-F1E3-40F4-9B04-007733DCD592</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette PANORA</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette PANORA</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA Panora</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_PAN</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>4BE9E4FA-24E0-46A5-ADE6-B094F3B90370</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette SSC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette SSC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA SSC</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_SSC</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>CF14C09D-3FFE-4AEB-A36B-8AD886CF8A33</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 XCIT Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 XCIT Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot XCITING 0,1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_XCIT_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>C7D107B3-EA9A-439C-9855-1C057A59455F</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 XPL Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 XPL Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot XPLORE 0,1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_XPL_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>D517466B-6894-4527-82B5-C1E13041E695</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 PAN Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 PAN Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot PANORA 0,1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_PAN_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>CC2D5208-3806-4F18-AE30-0D3CACFBAA18</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 SSC Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 SSC Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot SSC 0,1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_SSC_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>F9CF2D33-AA87-4631-90B4-F8A07D6D0080</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstadt 2ml SSC Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstadt 2ml SSC Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>SSC Plasma 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_SSC_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>C5E90D5C-FDBE-4344-B97A-C18DFB080BAE</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstadt 2ml Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstadt 2ml Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BB Plasma 1ml (alt)</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>8B3F31D2-BF4E-414C-8A6C-473C6A6782C8</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 AMA Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 AMA Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot AMARA 0,1ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_AMA_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>S</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>CF40A95A-2F3E-4B59-A173-59C59F6F100E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 5ml AMA</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 5ml AMA</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>AMARA Serum 5ml Ausgangsprobe</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_5_AMA</Code>
+            <Size>5.00</Size>
+            <SprecCode>J</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>FF2C7215-D209-434C-B4FB-E475D1C36F3E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CIMD 2000 Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>CIMD 2000 Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Plasma isoliert aus ccfDNA-Röhrchen</Value>
+            </DescMultilingualEntries>
+            <Code>CIMD_2000_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>A</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>4CBC9578-0E19-4B9D-A685-1562B1EE72E1</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5ml Sarstedt Monovette ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>C97202B8-77F7-4DE1-A5DD-7AE8ABF6B891</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml ACC Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 2ml AC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>AcceleRAte Serum 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_ACC_SE</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>97A80E6F-0760-4600-B22F-5C26ECBBEA9A</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 ACC Se</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 ACC Se</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Aliquot AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_300_ACC_SE</Code>
+            <Size>300.00</Size>
+            <SprecCode>W</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>95E4836F-C34A-48AB-8532-2126D5BFAC61</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>STU_CONV_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>J</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>8BD6B0A6-F000-466F-9726-970DAB04E60D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl mit Stabilisator ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl mit Stabilisator ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl mit Stabilisator AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>STU_STAB_CONV_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>J</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>67890F41-E9D6-4F38-842D-F776A13E73AF</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>RNA PAXgene ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>RNA PAXgene ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>RNA PAXgene AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>RNA_TEMP_2_5_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>ED54F9DF-9B12-45DC-9841-8A0E06CB9AB5</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryo-Sarstedt 2ml ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cryo-Sarstedt 2ml ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PBMC AcceleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>CRYO_SAR_2_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>C</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>ACDAB122-7EB1-4A98-AF66-7FFC93771412</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin 3,2ml Sarstedt Monovette ACC</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urin 3,2ml Sarstedt Monovette ACC</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin AcelleRAte</Value>
+            </DescMultilingualEntries>
+            <Code>URIN_3_2_ACC</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>09BFBD04-87C3-4D7D-8AA5-E60F1D45AD52</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2ml ACC PLasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 2ml ACC PLasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>AcceleRAte Plasma 1ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_ACC_PL</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>456DED40-60C5-4EE3-B296-BEA0B46E9527</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer CPT Sodium Heparin 8ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer CPT Sodium Heparin 8ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BB Primärcontainer PBMC</Value>
+            </DescMultilingualEntries>
+            <Code>CPT_HEP_8</Code>
+            <Size>8.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>489F1E47-370D-435C-A4D8-0077FB929443</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 1000 ORGA Plasma</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 1000 ORGA Plasma</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>OrgaProtect Plasma 1ml; 0,5ml</Value>
+            </DescMultilingualEntries>
+            <Code>LVL_1000_ORGA_PL</Code>
+            <Size>1.00</Size>
+            <SprecCode>A</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>1E193DE8-4587-4CF3-B44E-9006A664DB22</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>UTK-Sarstedt 2 ml VAL PLASMA</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>UTK-Sarstedt 2 ml VAL PLASMA</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>VAL Plasma 1 ml</Value>
+            </DescMultilingualEntries>
+            <Code>UTK_SAR_2_VAL_Plasma</Code>
+            <Size>2.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>91E04408-CCD5-41C0-9699-5F3F374E2C64</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>LVL 300 VAL Serum</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>LVL 300 VAL Serum</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>VAL Serum 0,1 ml</Value>
+            </DescMultilingualEntries>
+            <Code>VAL_Serum 100</Code>
+            <Size>100.00</Size>
+            <SprecCode>W</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5939479F-1A84-4BAC-BC84-CF4AEBE1DFB6</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stuhl VAL</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl VAL</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>VAL Stuhl</Value>
+            </DescMultilingualEntries>
+            <Code>STU_CONV_VAL</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>09990B6A-560F-4C57-8359-F402F8D6207B</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA 7,5 ml Sarstedt Monovette VAL</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA 7,5 ml Sarstedt Monovette VAL</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA VAL</Value>
+            </DescMultilingualEntries>
+            <Code>EDTA_7_5_VAL</Code>
+            <Size>7.50</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>CD9DEA31-F7D7-48C2-8BC7-7A617E8C3198</SyncId>
+        </SampleReceptableCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>
