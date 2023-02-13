@@ -15,8 +15,11 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -63,12 +66,14 @@ observation {
         : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
+    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
 
     component {
       code {
         coding {
           system = FhirUrls.System.LaborValue.BASE_URL
           code = laborValueCode
+          display = laborValueDisplay
         }
         laborValue?.getAt(LaborValue.IDCONTAINERS)?.each { final idContainer ->
           coding {
