@@ -12,6 +12,12 @@
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation",
       "exportDeleteEnable": false
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "procedureLaborMapping",
+      "exportToFhirResource": "Procedure",
+      "exportDeleteEnable": false
     }
   ]
 }

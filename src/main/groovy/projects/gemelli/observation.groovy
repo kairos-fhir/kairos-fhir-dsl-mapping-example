@@ -31,6 +31,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
+  if ("Gemelli-Procedure" == context.source[laborMapping().laborFinding().laborMethod().code()]) {
+    return // exported by procedureLaborMapping.groovy
+  }
+
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
