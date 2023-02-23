@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-03T14:53:52.785+01:00</ExportDate>
+    <CatalogueData>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 4.9 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 4.9 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 13/90 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt - 13/90 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono049</Code>
+            <Size>4900.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>C2120BE2-92BB-4802-A4D5-209E8F313ABF</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Paxgene 2.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Paxgene 2.5 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD Paxgene , RNA-stabilization and isolation, 2.5 ml + 6.9ml additiv, 16/100 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD Paxgene , RNA-stabilization and isolation, 2.5 ml + 6.9ml additiv, 16/100 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDPax025</Code>
+            <Size>9400.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>7607AFA8-971C-4DEC-9E25-8045FF23EEE5</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Matrix 2D Tube 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 0.3 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D003ScT</Code>
+            <Size>300.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5F976F16-5E0C-46EE-BC95-86581E3112D9</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 0.5 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Matrix 2D Tube 0.5 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 0.5 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D005ScT</Code>
+            <Size>500.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>474B775A-4208-44AD-AA98-8C366F072B09</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 1.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Matrix 2D Tube 1.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 1.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D010ScT</Code>
+            <Size>1000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>7DCC17D0-3458-4FC0-B0DF-1CD143908996</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Matrix 2D Tube 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 2.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D020ScT</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>1421B44F-BF8A-424B-8350-92D50AA263E2</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 5.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Matrix 2D Tube 5.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 5.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D050ScT</Code>
+            <Size>5000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>AE483225-ED14-43EB-8EA4-3E6CCAAAAB3B</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 9.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 9.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 16/92 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt - 16/92 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono090</Code>
+            <Size>9000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>EC64B8A8-365B-41D2-966A-F7A6B824CC65</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube Matrix 2D 5.0 ml, Pathotube</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 5.0 ml, Pathotube</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 5.0 ml, Pathotube</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D050Pat</Code>
+            <Size>5000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>0BB97EE4-7E77-4C71-A326-FA141447E881</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube Matrix 2D 12.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 12.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 12.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D120ScT</Code>
+            <Size>12000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>8F173531-9EB4-41EB-9178-D1365EE02BA8</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 1.8 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube Matrix 2D 1.8 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Matrix 2D 1.8 ml, Screwtop
+Artikelnummer: #1025# 
+Auf dem Gefäß steht leider NUNC drauf!</Value>
+            </DescMultilingualEntries>
+            <Code>Ma2D018ScT</Code>
+            <Size>1800.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>100728D1-12B3-4409-B78B-C73058086005</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube FluidX 2D 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 0.3 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>FX2D003ScT</Code>
+            <Size>300.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>0EC50C1B-CB01-4B2D-BE89-08932BB49196</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Centrifuge Tube 15 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Centrifuge 15 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Centrifuge Tube 15 ml - 17 mm Durchmesser</Value>
+            </DescMultilingualEntries>
+            <Code>Centr150</Code>
+            <Size>15000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>CFB8C012-1D41-4156-AA11-27EED81C9ABC</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Centrifuge 50 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Centrifuge Tube 50 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Centrifuge Tube 50 ml - 30 mm Durchmesser</Value>
+            </DescMultilingualEntries>
+            <Code>Centr500</Code>
+            <Size>50000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>7047F16A-A2C2-4D9E-86A9-919EAC8A6D0F</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Cryo 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryovial 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cryovial 1.0 ml - Cryovial mit Schraubdeckel Firma Biozym</Value>
+            </DescMultilingualEntries>
+            <Code>Bz010ScT</Code>
+            <Size>1000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>6BE5F033-03EA-43C3-95D4-D71F9757BBD0</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryovial 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Cryo 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cryovial 2.0 ml - Cryovial mit Schraubdeckel Firma Biozym</Value>
+            </DescMultilingualEntries>
+            <Code>Bz020ScT</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>1C046295-088E-4D08-B64D-4BE75F4C4BA5</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Cryo 3.7 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cryovial 3.7 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cryovial 3.7 ml - Cryovial mit Schraubdeckel Firma Biozym</Value>
+            </DescMultilingualEntries>
+            <Code>Bz037ScT</Code>
+            <Size>3700.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>367EBD8A-4DE5-4F80-9227-2DAE943BF5CE</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube Embryonen</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Embryonen Tube</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Embryonen-Tube für Minitank Tierlabor</Value>
+            </DescMultilingualEntries>
+            <Code>EmTu</Code>
+            <Size>1.00</Size>
+            <SprecCode>F</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>4F4E3A8D-EFF4-488A-9ADA-656FEECA39D3</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube FluidX 2D Tube 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 2.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>FX2D020ScT</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>F1D98F92-1F0F-4FE5-BB19-AA38C53D1199</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube FluidX 2D 6.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 6.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 6.0 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>FX2D060ScT</Code>
+            <Size>6000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5EF450D5-44F8-4EEC-B044-FD59D594D6EE</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 0.7 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube FluidX 2D 0.7 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube FluidX 2D 0.7 ml, Screwtop</Value>
+            </DescMultilingualEntries>
+            <Code>FX2D007ScT</Code>
+            <Size>700.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>A45FACED-D437-4444-AA44-43241DA7EFE2</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 7.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 7.5 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 15/92 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt - 15/92</Value>
+            </DescMultilingualEntries>
+            <Code>StMono075</Code>
+            <Size>7500.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>110AB4D0-4C3D-4E8C-9269-DFAA29D0C20A</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 2.7</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 2.7 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt 2.7 ml - 11/66 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt 2.7 ml - 11/66 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono027</Code>
+            <Size>2700.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>70774E93-BF4C-42A9-A07D-4A60ABB336A0</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Vacutainer 10.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Vacutainer 10.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD 10ml, 16/100 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD 10ml, 16/100 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDVac100</Code>
+            <Size>10000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5CDB2E6C-518F-4F85-BCC1-36844CF17D82</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 1.2 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 1.2 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 6/88 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt - 6/88 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono012</Code>
+            <Size>1200.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>BE9F60C3-888E-4C93-9DEE-C8847B82903C</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Vacutainer 6.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Vacutainer 6.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD 6ml, 13/100 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD 6ml, 13/100 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDVac060</Code>
+            <Size>6000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>82411018-FB74-4018-84B9-E8A52190F59E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Urin 10 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Urin 10 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Urin Sarstedt - 15/102 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 15/102 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMonoUri100</Code>
+            <Size>10000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>C0C484FD-D655-4B20-BBA8-1AFBE9E53B10</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sarstedt Stuhlroehre 16.5/101 mm</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sarstedt Stool Tube</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhlroehrchen Sarstedt, mit integriertem Loeffel, 16.5/101 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stool tube Sarstedt, including faeces spoon 16.5/101 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StSTL101</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>CF8222AD-E4C2-4CDB-8FBE-6FC64CDC4FA0</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD CPT 8.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD CPT 8.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD Natrium Heparin CPT 8.0 ml, 16/125 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD Natrium Heparin CPT 8.0 ml, 16/125 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDCPT080</Code>
+            <Size>8000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>CC0A538C-CBA0-4E4B-8373-5F2751CE850C</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette TruCulture 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette TruCulture 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>TruCulture Tubes Myriad RBM, integrated whole blood culture system, 11/66 mm</Value>
+            </DescMultilingualEntries>
+            <Code>TruCult010</Code>
+            <Size>2700.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>3C5DF431-5461-4D4E-AD23-8363349A0A0E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Vacutainer 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Vacutainer 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD 2.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD 2.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDVac020</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>077E208E-60C6-4442-A762-A557BC07A49C</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Vacutainer 3.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Vacutainer 3.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD 3.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD 3.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDVac030</Code>
+            <Size>3000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>FFB30460-0CCC-4A4D-8918-496B105319ED</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>BD Vacutainer 4.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>BD Vacutainer 4.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Vacutainer BD 4.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Vacutainer BD 4.0 ml, 13/75 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BDVac040</Code>
+            <Size>4000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>D00A19F3-F471-4092-97EE-0B22E7ECF5AD</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 4.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 4.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt 4.0 ml - 13/65 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt 4.0 ml - 13/65 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono040</Code>
+            <Size>4000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>DDC05744-CC9F-4082-8352-9CBFCE108340</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 2.6 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 2.6 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt 2.6 ml - 13/65 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Sarstedt 2.6 ml - 13/65 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono026</Code>
+            <Size>2600.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>708774BC-F578-4111-B2A9-71C871A10F23</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Originalcontainer</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Originalcontainer</Value>
+            </NameMultilingualEntries>
+            <Code>ORG</Code>
+            <SprecCode>Z</SprecCode>
+            <SyncId>C4FF71D3-725D-4EAE-8D0F-A70141D1CF68</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Eppendorf 1.5ml, safe-lock</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Eppendorf 1.5ml, safe-lock</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Eppendorf 1.5ml, safe-lock</Value>
+            </DescMultilingualEntries>
+            <Code>Eppi015SL</Code>
+            <Size>1500.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>E3B24513-9D38-4EA3-A687-A762F26FFAEC</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>NUNC 1.8 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 1.8 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 1.8 ml</Value>
+            </DescMultilingualEntries>
+            <Code>NUNC018</Code>
+            <Size>1800.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>912998D9-A99D-4279-AC8B-C8D71803060E</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Swab (Mastaswab) 12 /175 mm</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Swab (Mastaswab) 12 /175 mm</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Abstrichtupfer mit Röhrchen, Mastaswab, Masta Group #MD559</Value>
+            </DescMultilingualEntries>
+            <Code>Swab12175</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>1D84638F-842E-4934-8459-081594DC284F</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>NUNC 2.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 2.0 ml</Value>
+            </DescMultilingualEntries>
+            <Code>NUNC020</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>F0345941-A89B-4469-BD99-1F68AFB3FC3B</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sarstedt Stool Tube 20/76 mm</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sarstedt Stuhlroehre 20/76 mm</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhlroehrchen Sarstedt, mit integriertem Loeffel, 20/76 mm</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stool tube Sarstedt, including faeces spoon 20/76 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StSTL76</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>CA686413-02AD-4D70-8756-C1BF14451564</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 8.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 8.5 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 15/92 mm 8,5ml</Value>
+            </DescMultilingualEntries>
+            <Code>StMono085</Code>
+            <Size>8500.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>91BFF573-D887-4450-9A35-F732D590FE8A</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Urin 8.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette Urin 8.5 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt - 15/92 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMonoUri085</Code>
+            <Size>8500.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>3B94D138-7D79-4B1C-B04B-D639B64B034D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Beutel 2l</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bag 2l</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Beutel diverse, z.B. für Urin, Bauchwasser, etc</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bag various,e.g. for urine, ascites, etc</Value>
+            </DescMultilingualEntries>
+            <Code>BAG2Lit</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>B93D14C9-AF22-4334-8967-F984B5B1252D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monovette 1.6 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette 1.6 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monovette Sarstedt 1.6 ml - 11/66 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StMono016</Code>
+            <Size>1600.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5FDDC499-7FF2-4CED-BBDD-4CF30644923A</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biosepar Stuhlröhre 19/57</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biosepar Stuhlroehre 19/57</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhlroehrchen Biosepar 19/57 mm</Value>
+            </DescMultilingualEntries>
+            <Code>BsSTL57</Code>
+            <Size>6000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>002F1E2D-56EB-40CC-91CD-8B59FE6D11B2</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Durchstech Tube Glas 1.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>crimp vial glas 1.5 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>crimp vial 1.5 ml 11,6/32 mm CL wide label falcon ND 11 (Cat. No VWRI548-0004)</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Durchstechtube 1.5 ml 11,6/32 mm CL wide label falcon ND 11 (Cat. No VWRI548-0004)</Value>
+            </DescMultilingualEntries>
+            <Code>VWRCri015</Code>
+            <Size>1.00</Size>
+            <SprecCode>D</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>A760A40D-F882-421B-91BE-8B3A11477E8D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Norgen Biotek 10.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Norgen Biotek 10.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Norgen Biotek cf-DNA/cf-RNA  in 10 mL Tubes 10.0, 16/100 mm</Value>
+            </DescMultilingualEntries>
+            <Code>NoBiot100</Code>
+            <Size>10000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>938370F4-B2B5-4975-B54E-D9DF74B56A70</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube LVL 2D 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube LVL 2D 2.0 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <Code>LV2D020ScT</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>76836086-950B-459E-AE6A-2663FB63A439</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Salivette</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Salivette</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sarstedt Salivette, 16.8/97 mm</Value>
+            </DescMultilingualEntries>
+            <Code>StSali001</Code>
+            <Size>1.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>B3A36AC3-6435-4D1B-90E1-0D87D24423C4</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 4.5 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>NUNC 4.5ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 4.5ml</Value>
+            </DescMultilingualEntries>
+            <Code>NUNC045</Code>
+            <Size>4500.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>CA367252-0CDC-4A31-936A-93674508977D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>OCT (Optimal Cutting Temperature)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>OCT (Optimal Cutting Temperature)</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>OCT Block on cork in freezebag</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>OCT Block on cork in freezebag</Value>
+            </DescMultilingualEntries>
+            <Code>OCT</Code>
+            <Size>1.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>08AC8A37-AC45-43ED-BBEB-BF58CA9402DB</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>NUNC 3.6 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 3.6 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 379189 Durchmesser 12,5 mm, Länge 72 mm</Value>
+            </DescMultilingualEntries>
+            <Code>NUNC036</Code>
+            <Size>3600.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>3F51DBFA-BA84-4A0B-94A2-113BE5E758E7</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Eppendorf 0.5ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Eppendorf 0.5ml</Value>
+            </NameMultilingualEntries>
+            <Code>Eppi005</Code>
+            <Size>500.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>A0C732DF-2949-40E6-98E2-2597E6C0026F</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Streck cf DNA BCT Tube 10ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Streck cf DNA BCT Tube 10ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cell-Free DNA BCT® #218961</Value>
+            </DescMultilingualEntries>
+            <Code>SRVac100</Code>
+            <Size>10000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5BF44487-CCE3-48DB-9A1D-4C803AF7C651</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>NUNC 1.0 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>NUNC 1.0 ml</Value>
+            </DescMultilingualEntries>
+            <Code>NUNC010</Code>
+            <Size>1000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>656B0186-D7F9-43C3-8091-6F8DBFD8F1A6</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>block, RT</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Block, RT</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Gewebeblock, 1 Stück, Lagerung bei Raumtemperatur</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>tissueblock, 1 peace, Sstorage at roomtemperatur</Value>
+            </DescMultilingualEntries>
+            <Code>PathoBlock</Code>
+            <Size>1.00</Size>
+            <SprecCode>P</SprecCode>
+            <Volume>PC</Volume>
+            <SyncId>90A5EE5F-874B-49EB-9021-12609428B1C7</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bag 0.5l</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Beutel 0.5l</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Beutel, z.B. Blutspende</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bag, e.g. blood donation</Value>
+            </DescMultilingualEntries>
+            <Code>BAG500mLit</Code>
+            <Size>500.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>ML</Volume>
+            <SyncId>667F602C-C845-440B-94E5-CE46F4B4EA00</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Schraubröhre 30ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sarstedt Screw cap tube 30ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sarstedt Schraubröhre, #62.555.001, 30 ml, 30/84 mm, PP</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sarstedt Screw cap tube, #62.555.001, 30 ml, 30/84 mm, PP</Value>
+            </DescMultilingualEntries>
+            <Code>StScrew300</Code>
+            <Size>300.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>EE1C0451-4C12-43DF-B0DE-DC9D764B2FE2</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube LVL 2D 1.0 ml, Screwtop|</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube LVL 2D 0.5 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>x</Value>
+            </DescMultilingualEntries>
+            <Code>LV2D005ScT</Code>
+            <Size>500.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>5A8466FD-464D-4201-BE16-BABDBD0E1A1D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube LVL 2D 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube LVL 2D 0.3 ml, Screwtop</Value>
+            </NameMultilingualEntries>
+            <Code>LV2D003ScT</Code>
+            <Size>300.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <HexColorCode>#3333ff</HexColorCode>
+            <SyncId>AF96A21B-E74D-4D3C-8855-63FBE06BF25D</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>ColliPee Urin 30 ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>ColliPee Urin 30 ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin Monovette von Novosanis, ColliPee 30ml, N00055</Value>
+            </DescMultilingualEntries>
+            <Code>ColliPee030</Code>
+            <Size>3000.00</Size>
+            <SprecCode>Y</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>88BD6E3E-1EB7-43E9-9444-607F2740C210</SyncId>
+        </SampleReceptableCatalogueItem>
+        <SampleReceptableCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Eppendorf 2.0ml</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Eppendorf 2.0ml</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>*</Value>
+            </DescMultilingualEntries>
+            <Code>Eppi020</Code>
+            <Size>2000.00</Size>
+            <SprecCode>Z</SprecCode>
+            <Volume>MICL</Volume>
+            <SyncId>1274D7DB-576C-4C25-8144-9403DA557358</SyncId>
+        </SampleReceptableCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

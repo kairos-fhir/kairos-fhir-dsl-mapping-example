@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-03T15:07:57.802+01:00</ExportDate>
+    <CatalogueData>
+        <SprecTissueCollectionType>
+            <Code>A06</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Autopsy &lt; 6 h postmortem (A06)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Autopsie &lt; 6 h postmortem (A06)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>A06a</SprecCode>
+            <SyncId>4A2B9E61-8454-408C-B9FD-995314B4C1FD</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>A12</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Autopsy 6-12 h postmortem (A12)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Autopsie 6-12 h postmortem (A12)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>A12</SprecCode>
+            <SyncId>0B101832-CC1D-4E71-B4AC-9C57B785DD00</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>A24</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Autopsie 12-24 h postmortem (A24)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Autopsy 12-24 h postmortem (A24)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>A24</SprecCode>
+            <SyncId>05459AF8-6679-4AD5-B401-85A8BBC50880</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>A48</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Autopsie 24-48 h postmortem (A48)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Autopsy 24-48 h postmortem (A48)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>A48</SprecCode>
+            <SyncId>D43DFFD5-D34B-40C6-B6F6-BC785295DC5F</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>A72</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Autopsy 48-72 h postmortem (A72)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Autopsie 48-72 h postmortem (A72)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>A72</SprecCode>
+            <SyncId>6509FD6A-55EA-46C9-9834-D53C624DF226</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>BCM</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biopsie in Kulturmedium (BCM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biopsy in culture media (BCM)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>BCM</SprecCode>
+            <SyncId>0643E061-BD18-40A0-9464-56F3E50CE077</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>BPS</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biopsie (BPS)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biopsy (BPS)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>BPS</SprecCode>
+            <SyncId>BE89FF78-569B-43C0-B706-F53388B33317</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>BSL</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biopsy in normal saline or phosphate buffered saline (BSL)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biopsie in normaler Kochsalzösung oder phosphatgepufferter Kochsalzlösung (BSL)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>BSL</SprecCode>
+            <SyncId>E8421EF1-912F-4421-861F-33B48FF6BF3A</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>BTM</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biospie in Gewebe Niedrigtemperatur Transportmedium (BTM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biopsy in tissue low temperature transport media (BTM)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>BTM</SprecCode>
+            <SyncId>803C8427-6CE7-4A51-A7C1-100393F28AB2</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>FNA</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Feinnadelaspiration (FNA)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Fine needle aspirate (FNA)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>FNA</SprecCode>
+            <SyncId>8F4D6E85-A5AE-4B6A-8B91-A7CB8494EB1A</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>PUN</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Punction (PUN)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Punktion (PUN)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PUN</SprecCode>
+            <SyncId>706BB0AC-7E13-4F17-865C-B675097BCA2D</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>SCM</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Surgical excision in culture media (SCM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Chirurgische Entfernung in Kulturmedium (SCM)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SCM</SprecCode>
+            <SyncId>1A61162F-579F-431E-92BC-D9254B348190</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>SRG</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Chirurgische Entfernung (SRG)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Surgical excision (SRG)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SRG</SprecCode>
+            <SyncId>B04FC40C-F456-4C5E-B5E4-2A760790C9D0</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>SSL</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Surgical excision in normal saline or phosphate buffered saline (SSL)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Chirurgische Entfernung in normaler Kochsalzlösung oder phosphatgepufferter Kochsalzlösung (SSL)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SSL</SprecCode>
+            <SyncId>07925DB9-B123-453C-BE93-6E2F75DF4A39</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>STM</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Surgical excision in tissue low temperature transport media (STM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Chirurgische Entfernung in Gewebe Niedrigtemperatur Transportmedium  (STM)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>STM</SprecCode>
+            <SyncId>C600763B-1CA8-4B7B-ABC4-63BB9A363371</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>VAC</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Chirurgische Entfernung in Vakuumcontainer (VAC)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Surgical excision in vacuum container (VAC)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>VAC</SprecCode>
+            <SyncId>EF7A9341-64A3-4340-B521-916BCE9E8719</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>SWB</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Swab (SWB)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tupfer (SWB)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SWB</SprecCode>
+            <SyncId>5B0874D8-6102-45EB-A37C-B5368CD47AD8</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>ZZZ</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Other (ZZZ)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Andere Art (ZZZ)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>CBCC3EA0-3137-4EE4-849E-D1CB3600DCDB</SyncId>
+        </SprecTissueCollectionType>
+        <SprecTissueCollectionType>
+            <Code>XXX</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Unbekannt (XXX)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (XXX)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>A443BB08-77BC-435C-A242-3A1BDFF2D824</SyncId>
+        </SprecTissueCollectionType>
+		<SprecTissueCollectionType>
+            <Code>BPS(bro)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biopsie Bronchien (BPS(bro))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biopsy bronchial (BPS(bro))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>BPS</SprecCode>
+            <SyncId>5348069D-B40A-48F1-AC36-02C5FDFC4469</SyncId>
+        </SprecTissueCollectionType>
+    </CatalogueData>
+</CentraXXDataExchange>

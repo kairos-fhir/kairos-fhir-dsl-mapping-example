@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-03T15:06:36.883+01:00</ExportDate>
+    <CatalogueData>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>non-buffered formalin [FOR]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Formalin, nicht gepuffert [FOR]</Value>
+            </NameMultilingualEntries>
+            <Code>FOR</Code>
+            <StockTypeSPRECCode>FOR</StockTypeSPRECCode>
+            <SyncId>5179B07F-4884-457E-9A92-1F95D99A56F0</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Nicht- Aldehyd mit Essigsäure [ACA]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Non-aldehyde with acetic acid [ACA]</Value>
+            </NameMultilingualEntries>
+            <Code>ACA</Code>
+            <StockTypeSPRECCode>ACA</StockTypeSPRECCode>
+            <SyncId>8D3CE71D-9505-410A-BA4A-9981C062F6EE</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aldehyde-basiert [ALD]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Aldehyde-based [ALD]</Value>
+            </NameMultilingualEntries>
+            <Code>ALD</Code>
+            <StockTypeSPRECCode>ALD</StockTypeSPRECCode>
+            <SyncId>D4E1616E-A7E1-4ABB-A3F1-EDCF849F0A0E</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Allprotect tissue reagent [ALL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Allprotect tissue reagent [ALL]</Value>
+            </NameMultilingualEntries>
+            <Code>ALL</Code>
+            <StockTypeSPRECCode>ALL</StockTypeSPRECCode>
+            <SyncId>B037C900-E2A5-42FF-B3CA-8239DD3D97EC</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Alkohol-basiert [ETH]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Alcohol-based [ETH]</Value>
+            </NameMultilingualEntries>
+            <Code>ETH</Code>
+            <StockTypeSPRECCode>ETH</StockTypeSPRECCode>
+            <SyncId>5C8CC938-2B14-4096-999C-820F57448DB1</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Hitzestabilisierung [HST]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Heat stabilization [HST]</Value>
+            </NameMultilingualEntries>
+            <Code>HST</Code>
+            <StockTypeSPRECCode>HST</StockTypeSPRECCode>
+            <SyncId>6DA47A90-FB43-472E-B5C3-E155B0E53F3B</SyncId>
+        </StockTypeCatalogueItem>
+		<StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Non-aldehyde based without acetic acid [NAA]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Nicht- Aldehyd basierend ohne Essigsäure [NAA]</Value>
+            </NameMultilingualEntries>
+            <Code>NAA</Code>
+            <StockTypeSPRECCode>NAA</StockTypeSPRECCode>
+            <SyncId>619B8CDE-46EB-4368-839D-8323F8818F8C</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Formalin, neutral gepuffert [NBF]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Neutral buffered formalin [NBF]</Value>
+            </NameMultilingualEntries>
+            <Code>NBF</Code>
+            <StockTypeSPRECCode>NBF</StockTypeSPRECCode>
+            <SyncId>F9F301A3-6A30-445D-BA88-4716CEA31422</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Optimum cutting temperature medium [OCT]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Optimale mittlere Schneidetemperatur [OCT]</Value>
+            </NameMultilingualEntries>
+            <Code>OCT</Code>
+            <StockTypeSPRECCode>OCT</StockTypeSPRECCode>
+            <SyncId>8557AFA7-5616-4BBD-99E1-CBE9EA065C17</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PAXgene tissue [PXT]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXgene Gewebe [PXT]</Value>
+            </NameMultilingualEntries>
+            <Code>PXT</Code>
+            <StockTypeSPRECCode>PXT</StockTypeSPRECCode>
+            <SyncId>74023335-C0D7-41DB-91B8-94C577156B07</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>RNA later [RNL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>RNA later [RNL]</Value>
+            </NameMultilingualEntries>
+            <Code>RNL</Code>
+            <StockTypeSPRECCode>RNL</StockTypeSPRECCode>
+            <SyncId>0E989AFF-529C-49AE-AE85-27AD346C5F63</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Snap freezing [SNP]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Schockgefrieren [SNP]</Value>
+            </NameMultilingualEntries>
+            <Code>SNP</Code>
+            <StockTypeSPRECCode>SNP</StockTypeSPRECCode>
+            <SyncId>0AFEF875-5AAA-4805-BE8A-084CEFCCCB04</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Unbekannt [XXX]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Unknown [XXX]</Value>
+            </NameMultilingualEntries>
+            <Code>XXX</Code>
+            <StockTypeSPRECCode>XXX</StockTypeSPRECCode>
+            <SyncId>28886C35-D3F6-4F3E-BC6A-54FEEF0D1904</SyncId>
+        </StockTypeCatalogueItem>
+        <StockTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Andere [ZZZ]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Other [ZZZ]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ</Code>
+            <StockTypeSPRECCode>ZZZ</StockTypeSPRECCode>
+            <SyncId>6002AD89-50D7-4D5D-ADD7-091E7BA42F65</SyncId>
+        </StockTypeCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

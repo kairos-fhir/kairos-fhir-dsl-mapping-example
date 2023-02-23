@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-03T14:59:18.238+01:00</ExportDate>
+    <CatalogueData>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Blut, Vollblut [BLD]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Blood, whole [BLD]</Value>
+            </NameMultilingualEntries>
+            <Code>BLD</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BLD</SprecCode>
+            <SyncId>1E1C2817-20FB-4B0D-955D-18DD7C74FEBC</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bone [ZZZ(bon)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Knochen [ZZZ(bon)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(bon)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>BON</SprecCode>
+            <SyncId>717C2429-C6CD-48C5-BF1C-675E22732436</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin, zufällig (spot) [URN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urine, random (spot) [URN]</Value>
+            </NameMultilingualEntries>
+            <Code>URN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>URN</SprecCode>
+            <SyncId>C4B798D1-856C-4B11-B2DC-F8D25B93997F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Fruchtwasser [AMN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Amniotic fluid [AMN]</Value>
+            </NameMultilingualEntries>
+            <Code>AMN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>AMN</SprecCode>
+            <SyncId>FC018135-7D84-4B2C-8ADC-9C808946558E</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Ascites fluid [ASC]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aszites-Flüssigkeit [ASC]</Value>
+            </NameMultilingualEntries>
+            <Code>ASC</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ASC</SprecCode>
+            <SyncId>2C73041F-6E1E-4DE7-8379-03EAFD7D24E9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage [BAL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage [BAL]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BAL</SprecCode>
+            <SyncId>E368D9DC-AE47-4DC6-8BD3-40466EEEAAAA</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Buffy coat, ohne Ficoll, unvital [BFF]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Buffy coat, unficolled, non viable [BFF]</Value>
+            </NameMultilingualEntries>
+            <Code>BFF</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BFF</SprecCode>
+            <SyncId>D6445AA2-0351-4137-89AC-FBD31D8A8FEB</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Breast milk [BMK]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Muttermilch [BMK]</Value>
+            </NameMultilingualEntries>
+            <Code>BMK</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BMK</SprecCode>
+            <SyncId>FEC9F211-56AD-4124-A8EA-609F10D8E765</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, Mundschleimhaut [BUC]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, buccal [BUC]</Value>
+            </NameMultilingualEntries>
+            <Code>BUC</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BUC</SprecCode>
+            <SyncId>D3CF6F94-5C2A-40AD-B1CB-6F77014D131B</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Buffy coat, unficolled, viable [BUF]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Buffy coat, ohne Ficoll, vital [BUF]</Value>
+            </NameMultilingualEntries>
+            <Code>BUF</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BUF</SprecCode>
+            <SyncId>8460CB21-FAD6-4CC0-A1D9-D67AD48AEB64</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, ficoll mononuclear, viable [CEL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, ficoll isoliert, mononukleär, vital [CEL]</Value>
+            </NameMultilingualEntries>
+            <Code>CEL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CEL</SprecCode>
+            <SyncId>7CB7D830-D8F3-40D7-AE6C-CC5D19C04842</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, frisch, nicht von Blut (flüssig) [CEN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, fresh, from non blood specimen type (fluid) [CEN]</Value>
+            </NameMultilingualEntries>
+            <Code>CEN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CEN</SprecCode>
+            <SyncId>0927BEAD-0ADB-4A63-8DB8-11B767FD7E98</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from non blood specimen type, viable (fluid) [CLN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, nicht von Blut, vital (flüssig) [CLN]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>DD1F79BA-CED2-4000-8ED4-293DFEFD555A</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Blood, cord [CRD]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Blut, Nabelschnur [CRD]</Value>
+            </NameMultilingualEntries>
+            <Code>CRD</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CRD</SprecCode>
+            <SyncId>EA8CCC49-8534-45E2-9693-31FCE6F6727F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cerebrospinal-Flüssigkeit [CSF]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cerebrospinal Fluid [CSF]</Value>
+            </NameMultilingualEntries>
+            <Code>CSF</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CSF</SprecCode>
+            <SyncId>ADA24504-6FFD-41CA-AC98-FD0310EB8B3B</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Blut, getrocknetes Vollblut [DWB]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Blood, dried whole [DWB]</Value>
+            </NameMultilingualEntries>
+            <Code>DWB</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>DWB</SprecCode>
+            <SyncId>565A1628-CEF6-424C-9FA3-9EAE57782BA2</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from fine needle aspirate [FNA]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen von Feinnadel Aspiraten [FNA]</Value>
+            </NameMultilingualEntries>
+            <Code>FNA</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>FNA</SprecCode>
+            <SyncId>E88651EF-66F0-40D6-A12E-CCF8F903FC00</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Haar [HAR]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Hair [HAR]</Value>
+            </NameMultilingualEntries>
+            <Code>HAR</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>HAR</SprecCode>
+            <SyncId>880FFBD1-39AD-4030-B824-9190B949DD69</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen von Laser Capture Gewebe Microdissection [LCM]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from laser capture microdissected tissue [LCM]</Value>
+            </NameMultilingualEntries>
+            <Code>LCM</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>LCM</SprecCode>
+            <SyncId>69CE837F-2613-4DDF-B28C-5A15C905702D</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Nasal washing [NAS]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Nasenspülung [NAS]</Value>
+            </NameMultilingualEntries>
+            <Code>NAS</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>NAS</SprecCode>
+            <SyncId>DD80BFE3-A656-4A24-8609-2F941FEC2ED7</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, ficoll isoliert, mononukleär, unvital [PEL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, ficoll mononuclear, non viable [PEL]</Value>
+            </NameMultilingualEntries>
+            <Code>PEL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PEL</SprecCode>
+            <SyncId>B2E0259D-95B6-45E4-B0C3-8DFFFF83B90F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, nicht von Blut, unvital (flüssig) [PEN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from non blood specimen type, non viable (fluid) [PEN]</Value>
+            </NameMultilingualEntries>
+            <Code>PEN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PEN</SprecCode>
+            <SyncId>15721DA2-9AD8-4744-968D-E6F109D2DA24</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Pleural Fluid [PFL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Pleural-Flüssigkeit [PFL]</Value>
+            </NameMultilingualEntries>
+            <Code>PFL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PFL</SprecCode>
+            <SyncId>90EC7F39-0554-4F44-BDB2-94BDFC0C7932</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Plasma, single spun [PL1]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Plasma, einmal zentrifugiert [PL1]</Value>
+            </NameMultilingualEntries>
+            <Code>PL1</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL1</SprecCode>
+            <SyncId>2F212216-06B6-4BCD-9951-2E19EC54C6B7</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Plasma, doppelt zentrifugiert [PL2]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Plasma, double spun [PL2]</Value>
+            </NameMultilingualEntries>
+            <Code>PL2</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL2</SprecCode>
+            <SyncId>3C7C0250-922F-447E-BA53-3B4B6036256F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Placenta [PLC]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Plazenta [PLC]</Value>
+            </NameMultilingualEntries>
+            <Code>PLC</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>PLC</SprecCode>
+            <SyncId>8621915C-5F1F-4DA3-89BE-444AF3D90446</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, red blood [RBC]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, Erytrocyten [RBC]</Value>
+            </NameMultilingualEntries>
+            <Code>RBC</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>RBC</SprecCode>
+            <SyncId>6C25F70E-6E9A-4094-A83E-89009DEE86AE</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Speichel, Salvia [SAL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Saliva [SAL]</Value>
+            </NameMultilingualEntries>
+            <Code>SAL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SAL</SprecCode>
+            <SyncId>EF10A0AA-6F83-4971-90D5-335C041F0D9F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Semen [SEM]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sperma, Semen [SEM]</Value>
+            </NameMultilingualEntries>
+            <Code>SEM</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SEM</SprecCode>
+            <SyncId>82FE45AF-11E7-408C-8374-4EC403C86E62</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum [SER]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum [SER]</Value>
+            </NameMultilingualEntries>
+            <Code>SER</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SER</SprecCode>
+            <MaterialCode>01</MaterialCode>
+            <SyncId>DFA77DAA-E869-429D-8763-76BC0CBDE7BD</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sputum, Auswurf [SPT]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sputum [SPT]</Value>
+            </NameMultilingualEntries>
+            <Code>SPT</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SPT</SprecCode>
+            <SyncId>182DD0D9-E6FC-4044-AE56-5121A3586FC8</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Stuhl [STL]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Stool [STL]</Value>
+            </NameMultilingualEntries>
+            <Code>STL</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>STL</SprecCode>
+            <SyncId>2EF15FF5-D440-4BC4-B0C6-0D9342023DA9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Synovial fluid [SYN]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Gelenk-Flüssigkeit [SYN]</Value>
+            </NameMultilingualEntries>
+            <Code>SYN</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SYN</SprecCode>
+            <SyncId>0A45D759-6E67-44F9-9648-21529316A395</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Gewebe, zerkleinert, unvital [TCM]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tissue, disrupted, non viable [TCM]</Value>
+            </NameMultilingualEntries>
+            <Code>TCM</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>TCM</SprecCode>
+            <SyncId>5A677A1A-97E9-4F8D-B250-64E5C39D3CC3</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tränen [TER]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tears [TER]</Value>
+            </NameMultilingualEntries>
+            <Code>TER</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>TER</SprecCode>
+            <SyncId>01CE7288-F85E-4139-A1AC-80E61F20E8E1</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tissue, solid [TIS]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Gewebe, solide [TIS]</Value>
+            </NameMultilingualEntries>
+            <Code>TIS</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>TIS</SprecCode>
+            <SyncId>5BD26788-F57B-4293-BF14-64EA4D9AD670</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tumor [TIS(tum)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tumor [TIS(tum)]</Value>
+            </NameMultilingualEntries>
+            <Code>TIS(tum)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>TIS</SprecCode>
+            <SyncId>3340969C-EA4B-4961-8EB9-08801732342C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin, 24 Stunden [U24]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urine, 24h [U24]</Value>
+            </NameMultilingualEntries>
+            <Code>U24</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>U24</SprecCode>
+            <SyncId>041E7564-4944-40EA-B1E6-8958B8DE8E14</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from non blood specimen type, viable (solid) [CLN(tis)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, nicht von Blut, vital (fest) [CLN(tis)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(tis)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>69C66E9C-1A0E-4578-9CAC-7C0B791BEDAC</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from non blood specimen type, non viable (solid) [PEN(tis)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, nicht von Blut, unvital (fest) [PEN(tis)]</Value>
+            </NameMultilingualEntries>
+            <Code>PEN(tis)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>PEN</SprecCode>
+            <SyncId>4AD4753C-3E97-4B90-B41F-1E4380332016</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellkulturüberstand [ZZZ(cus)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Culture Supernatant [ZZZ(cus)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(cus)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>C6113303-70A0-41B9-AD0D-64E49F118424</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Dialysate [ZZZ(dls)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Dialysat [ZZZ(dls)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(dls)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>0E61B0FF-1EEC-4FEC-AB93-3816C208872E</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>DNA [ZZZ(dna)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>DNA [ZZZ(dna)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(dna)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>BE90EB30-6C93-4B85-B8BC-441823D72961</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Mikroorganismus [ZZZ(mor)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Microorganism [ZZZ(mor)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(mor)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>66AA07E1-779F-4A00-AC27-9ACBD68CA58B</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urine, first morning [URM]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin, Morgenurin [URM]</Value>
+            </NameMultilingualEntries>
+            <Code>URM</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>URM</SprecCode>
+            <SyncId>508E4729-9D16-4435-9586-EFA3EA32E7F5</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urine, timed [URT]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin, zeitlich festgelegter Urin [URT]</Value>
+            </NameMultilingualEntries>
+            <Code>URT</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>URT</SprecCode>
+            <SyncId>864AAAB4-252D-4A9E-9D8B-0D8E48868451</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Biofilm [ZZZ(bif)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Biofilm [ZZZ(bif)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(bif)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>F740BF08-2327-4D0A-A480-31FBEC83FBB3</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Blut, Restblut ohne Plasma [ZZZ(bwp)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Blood, whole without plasma [ZZZ(bwp)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(bwp)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>4C275D75-E51C-4177-84FD-3848A3804592</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, fresh, from non blood specimen type (solid) [CEN(tis)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, frisch, nicht von Blut (fest) [CEN(tis)]</Value>
+            </NameMultilingualEntries>
+            <Code>CEN(tis)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CEN</SprecCode>
+            <SyncId>12C2EF40-3BAB-487E-9467-9750DD69C0AC</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Organ [ZZZ(ogn)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Organ (whole) [ZZZ(ogn)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(ogn)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>TIS</SprecCode>
+            <SyncId>F3E6AABC-6869-4D9E-8716-FD3AF45DA492</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, blood mononuclear (PBMC), viable [ZZZ(pbm)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, PBMC, vital [ZZZ(pbm)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(pbm)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>F666F917-9D65-458E-B36C-5705EE866424</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Pleural-Flüssigkeitssediment [ZZZ(pld)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Pleural Fluid Sediment [ZZZ(pld)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(pld)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PFL</SprecCode>
+            <SyncId>A093E9F1-8684-4254-97DC-E7ED4CAAC3A8</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>RNA [ZZZ(rna)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>RNA [ZZZ(rna)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(rna)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>799F42EB-03F4-4282-9E80-8006400D8D9C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>throat rinsing water [ZZZ(trw)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Rachenspülwasser [ZZZ(trw)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(trw)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>DF1AB8A3-3F8E-46C9-AB6F-40E3D1F6D4EE</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tracheal secretion [ZZZ(tsc)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Trachealsekret, Luftröhrensekret [ZZZ(tsc)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(tsc)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>CFFC9CAB-95DC-4CC0-9E2F-4CE20737DA2B</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sputum, Auswurf, induziert [SPT(ind)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sputum, induced [SPT(ind)]</Value>
+            </NameMultilingualEntries>
+            <Code>SPT(ind)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SPT</SprecCode>
+            <SyncId>E8BC93BA-2684-48B9-8027-9F1DADD7D54F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchial secretion [ZZZ(bsc)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchialsekret [ZZZ(bsc)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(bsc)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>63FB7239-36BE-4658-AA9F-761F05630CBB</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Unbekannt [ZZZ(unk)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Unbekannt</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(unk)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>3BBB0E6D-37B6-4BED-8FB0-E50920B3F5BC</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Urine sediment [ZZZ(usd)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Urin Sediment [ZZZ(usd)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(usd)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>0CCC6E20-F6F1-4E78-80E2-D4DF205140EA</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aszites-Flüssigkeit Zellen  [ASC(cel)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Ascites fluid cells [ASC(cel)]</Value>
+            </NameMultilingualEntries>
+            <Code>ASC(cel)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ASC</SprecCode>
+            <SyncId>449B884F-8141-4966-B4A7-27348D2C5FBD</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aszites-Flüssigkeit Überstand  [ASC(spn)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Ascites fluid supernatant [ASC(spn)]</Value>
+            </NameMultilingualEntries>
+            <Code>ASC(spn)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ASC</SprecCode>
+            <SyncId>C90EBD90-E13F-4D32-9F41-1CC3B5C6A29F</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>cfDNA [ZZZ(cfd)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>cfDNA [ZZZ(cfd)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(cfd)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>D0B52DCA-4452-4D3A-AABF-EF2AB6AD0B17</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Adherent Cells, viable [CLN(adh)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Adherente Zellen, vital [CLN(adh)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(adh)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>25FA049D-E9CB-4DF7-8B5C-9CCB5C05812E</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Aqueous humor(fluid) [ZZZ(aqh)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aqueous humor(fluid) [ZZZ(aqh)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(aqh)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>21719C94-6EDE-42E9-BD3C-7B3E7E77001C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Aspirat, nasal [ZZZ(nai)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Aspirat, nasal [ZZZ(nai)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(nai)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>55FC4A1B-EDFF-4CF1-A454-A0655679806A</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bone marrow [BMA]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Knochenmark [BMA]</Value>
+            </NameMultilingualEntries>
+            <Code>BMA</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BMA</SprecCode>
+            <SyncId>50AE329A-C322-4888-B814-EA8F72B355F7</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bacteria from Stool [STL(bac)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bakterien aus Stuhl [STL(bac)]</Value>
+            </NameMultilingualEntries>
+            <Code>STL(bac)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>3939B593-FAFF-44B4-A6A9-CCA758D7B535</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen, PBMC, unvital [ZZZ(pbu)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells, blood mononuclear (PBMC), nonviable [ZZZ(pbu)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(pbu)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>8D7A4E88-D9D0-4F7C-9EA7-4FB1783B7E78</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bakterien</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bacteria</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(bac)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>D5B8FACA-F63F-4886-AD16-5F41C8BEECFB</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Swab nasal [ZZZ(nab)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>xxx Abstrich, nasal [ZZZ(nab)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(nab)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>PEN</SprecCode>
+            <SyncId>A6A13443-D983-41CC-B495-5ECD03F0D0D9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PII cells, viable [CLN(pii)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PII Zellen, vital [CLN(pii)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(pii)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>1A6A893B-1ADA-4F24-9327-2DBFC240B50C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Homogenisierte Zellen, vital [CLN(hom)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Homogenate Cells, viable [CLN(hom)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(hom)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>6AA4BB65-1793-4599-9339-F94E0F440D99</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>fibroblasts viable cube [CLN(fic)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Fibroblasten viable cube [CLN(fic)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(fic)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>64EB0B97-16B6-462C-9B0F-1BE481F7BFB9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>fibroblasts viable PII-Isolation [CLN(fpi)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Fibroblasten viable PII-Isolation [CLN(fpi)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(fpi)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>F3977948-59CF-485C-B4F1-E25AC78DBC73</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Atemwegsbasalzellen, lebend [CLN(abc)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>airway basal cells, viable [CLN(abc)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(abc)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>DF6D8BF4-1BC1-40AC-8050-B22FC406B4E4</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tumorzellen, vital [CLN(tum)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tumorcells, vital [CLN(tum)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(tum)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>EF0F2FE1-8735-4788-878A-4ADAEDAF5FC2</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CD4 CD8 T-cells touched, vital [ZZZ(cd4)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>CD3 T cells, viable [ZZZ(cd3)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(cd4)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>5D344E74-5F04-4736-8C58-703BD9F5F85A</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Monocyten, viable [ZZZ(mon]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Monocyten, vital [ZZZ(mon]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(mon)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>FD292512-78B5-46B4-BDC6-9C9B552D459E</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>culture supernatant lung slices [ZZZ(csl)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kulturüberstand Lungenschnitt [ZZZ(csl)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(csl)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>E9F03197-CE02-4E21-8D77-EA4EA8F419F6</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Fluid and Cells [BAL(fac)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Fluid and Cells [BAL(fac)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(fac)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BAL</SprecCode>
+            <SyncId>6865A2E6-1649-42A5-BCF8-13070673C56E</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Fluid w/o Cells [BAL(fwc)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Fluid w/o Cells [BAL(fwc)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(fwc)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BAL</SprecCode>
+            <SyncId>22D788E0-F945-414A-AB80-61A9D4420F72</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Cells in DMSO, viable [BAL(cdm)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Cells in DMSO, viable [BAL(cdm)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(cdm)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>B0CE4F24-3706-4063-8880-DD19D489741C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Cells in Qiazol, viable [BAL(ciq)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Cells in Qiazol, viable [BAL(ciq)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(ciq)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>16B20FAE-7840-45A5-A2D3-E183AA34A433</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Native Cells, viable [BAL(ncs)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Native Cells, viable [BAL(ncs)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(ncs)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>3FE5F62B-6CAC-4D16-9393-C7FBA48DEC82</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cerebrospinal-Fluid sediment/cells [CSF(sed)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Cerebrospinal-Flüssigkeit Sediment/Zellen [CSF(sed)]</Value>
+            </NameMultilingualEntries>
+            <Code>CSF(sed)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CSF</SprecCode>
+            <SyncId>CC07CAA3-EAA7-4227-AB53-8420C3E5FCB1</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kulturüberstand von 3D Organoiden [ZZZ(cso)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>culture supernatant of 3D organoids [ZZZ(cso)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(cso)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>BE4A867E-A0DD-446F-A230-D189892B2FB7</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Sputum Zellen [SPT(cel)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (SPT(sed))</Value>
+            </NameMultilingualEntries>
+            <Code>SPT(cel)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>SPT</SprecCode>
+            <SyncId>4068C312-47B7-45CA-9C54-4E1FA9050105</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage Fluid rest [BAL(flr)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Fluid rest [BAL(flr)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(flr)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BAL</SprecCode>
+            <SyncId>368D449F-3137-4B59-96E0-42A1DA84D2AB</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>precision-cut lung slices PCLS (TIS(pls))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Präzisions-Lungenschnitt PCLS  (TIS(pls))</Value>
+            </NameMultilingualEntries>
+            <Code>TIS(pls)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>TIS</SprecCode>
+            <SyncId>C85C7D47-6F42-4624-9A58-ABC813FB78CB</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchosorption [ZZZ(brs)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>bronchosorption [ZZZ(brs)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(brs)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>4489F901-70A8-4ECD-9D29-718A47FCFDF1</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Nasosorption [ZZZ(nas)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Nasosorption [ZZZ(nas)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(nas)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>A60906EA-770E-4CCA-81D3-53F7D69B3E13</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Knochenmark DNA [BMA(dna)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bonemarrow DNA (BMA(dna)])</Value>
+            </NameMultilingualEntries>
+            <Code>BMA(dna)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>3C28A928-865F-4983-A7D6-2C0AEDEF783C</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Bronchoalveolar lavage Proteinlysate aus Zellen  [BAL(cpl)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bronchoalveolar lavage protein lysates from cells  [BAL(cpl)]</Value>
+            </NameMultilingualEntries>
+            <Code>BAL(cpl)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>BAL</SprecCode>
+            <SyncId>5EA8F779-4A0C-43BF-92E6-EAF786934CA9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Fibroblastes cube Protein lysates [CLN(fcp)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Fibroblasten cube Proteinlysat [CLN(fcp)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(fcp)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>F4E78B50-299A-48D6-BD3C-42D6AD329520</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Fibroblasten PII-Isolation Proteinlysat [CLN(fpp)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Fibroblasts PII-Isolation Protein lysates [CLN(fpp)]</Value>
+            </NameMultilingualEntries>
+            <Code>CLN(fpp)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>4E973237-D656-4F37-9FED-AF31E1FD477A</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>DNA from solid samples [ZZZ(sdn)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Festproben DNA [ZZZ(sdn)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(sdn)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>8D519413-EBB6-4BF3-97F1-BBE68EDE0147</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tumor DNA [ZZZ(tdn)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tumor DNA [ZZZ(tdn)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(tdn)</Code>
+            <Kind>TISSUE</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>C33C506F-9FB5-4085-8BAA-57507BCD1A3D</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Knochenmark Stammzellen [BMA(stc)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Bonemarrow Stem Cells [BMA(stc)]</Value>
+            </NameMultilingualEntries>
+            <Code>BMA(stc)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>BE1B07E7-4DFC-49EA-8294-66709126AED9</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Granulocytes (ZZZ(gra))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Granulozyten [ZZZ(gra)]</Value>
+            </NameMultilingualEntries>
+            <Code>ZZZ(gra)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>f781da19-dff7-40b8-b7b4-c5840a1d2649</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Plasma, single spun from cordblood [CRD(pl1)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Plasma, einmal zentrifugiert aus Nabelschnurblut [CRD(pl1)]</Value>
+            </NameMultilingualEntries>
+            <Code>CRD(pl1)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>PL1</SprecCode>
+            <SyncId>283d62f8-d307-4fb0-b98e-f3779550caf7</SyncId>
+        </SampleTypeCatalogueItem>
+        <SampleTypeCatalogueItem>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zellen aus Muttermilch, vital [BMK(cln)]</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cells from breast milk, viable [BMK(cln))]</Value>
+            </NameMultilingualEntries>
+            <Code>BMK(cln)</Code>
+            <Kind>LIQUID</Kind>
+            <SprecCode>CLN</SprecCode>
+            <SyncId>46e47f13-2b13-4420-83e8-7591930fe77e</SyncId>
+        </SampleTypeCatalogueItem>
+    </CatalogueData>
+</CentraXXDataExchange>

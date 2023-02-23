@@ -30,7 +30,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.USE_SPREC
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME_DATE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX AbstractSample
  * @author Mike Wähnert

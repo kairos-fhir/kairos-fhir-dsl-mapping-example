@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-02-03T14:59:41.648+01:00</ExportDate>
+    <CatalogueData>
+        <SprecLiquidPrimaryContainer>
+            <Code>ACD</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Acid citrate dextrose (ACD)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zitronensäure Dextrose (ACD)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ACD</SprecCode>
+            <SyncId>1B5D2EF5-F9BD-4744-A7F8-A65B8E1EBE83</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ADD</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Additives (ADD)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Additive (ADD)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ADD</SprecCode>
+            <SyncId>81DA5D8C-088E-4BFA-9CDC-F780098DCAA9</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>CAT</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Röhrchen ohne Gerinnungsaktivator (CAT)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum tube without clot activator (CAT)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>CAT</SprecCode>
+            <SyncId>93F46720-9146-4481-AA64-EF5A897B3C2F</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>CPD</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Citrate phosphate dextrose (CPD)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zitrat Phosphat Dextrose (CPD)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>CPD</SprecCode>
+            <SyncId>6FC8257B-D84C-4151-BE9A-1F23CE28608D</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>CPT</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Cell Preparation Tube Heparin (CPT)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zell-Präparations-Röhrchen Heparin (CPT)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>CPH</SprecCode>
+            <SyncId>D1E168D4-6F4E-4D44-B7B7-555C78BDB36B</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>EDG</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>EDTA und Gel (EDG)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>EDTA and gel (EDG)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>EDG</SprecCode>
+            <SyncId>96336A9F-04C0-479D-9AAD-EC7D12FA8936</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>HEP</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Lithium-Heparin (HEP)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Lithium heparin (HEP)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>HEP</SprecCode>
+            <SyncId>EB81C59B-744E-4DA3-A827-A77BF08E4253</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>HIR</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Hirudin (HIR)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Hirudin (HIR)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>HIR</SprecCode>
+            <SyncId>074F4AC8-CB63-4C70-B7C9-5F5C07DAEE98</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>LHG</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Lithium Heparin und Gel (LHG)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Lithium heparin and gel (LHG)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>LHG</SprecCode>
+            <SyncId>82A78E50-9385-45F9-87FE-4490BFFCDEB2</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ORG</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Oragene Sammelbehälter oder verwandte (ORG)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Oragene collection container or equivalent (ORG)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ORG</SprecCode>
+            <SyncId>6C4BC22B-E3DB-42E0-8DF6-9B8D17504589</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PAX</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PAXgene® blood RNA+ (PAX)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXgene® Blut-RNA+ (PAX)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PAX</SprecCode>
+            <SyncId>811D53A6-68F5-4684-B78F-EF92E6D18DFF</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PED</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kalium EDTA (PED)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Potassium EDTA (PED)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PED</SprecCode>
+            <SyncId>F363249A-81E6-41EC-9E1D-7985BCE89443</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PET</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Polyethylen Röhrchen steril (PET)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Polyethylene tube sterile (PET)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PET</SprecCode>
+            <SyncId>0B959F98-F473-468A-A0C1-3122DABF9E04</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PI1</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>S8820 protease inhibitor tablets or equivalent (PI1)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>S8820 Proteaseinhibitortabletten oder verwandte (PI1)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PI1</SprecCode>
+            <SyncId>41B3B829-858F-4EAF-8D62-56834F725F91</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PIX</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Protease inhibitors (PIX)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Proteasehemmer (PIX)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PIX</SprecCode>
+            <SyncId>C6B8AE8F-0F82-4780-9EA3-18044504F5D1</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PPS</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Polypropylen-Röhren, steril (PPS)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Polypropylene tube sterile (PPS)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PPS</SprecCode>
+            <SyncId>F32D8C48-13F1-45DF-9630-317944F9F1A8</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PXD</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PAXgene® blood DNA (PXD)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXgene® blut DNA (PXD)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PXD</SprecCode>
+            <SyncId>E60A79CB-3580-404B-BAE0-DADD75E94A72</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PXR</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PAXgene® bone marrow RNA (PXR)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>PAXgene® Knochenmark RNA (PXR)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>PXR</SprecCode>
+            <SyncId>A4F771A0-D725-4CCF-9B0E-4EBC8933FC22</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SCI</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Natriumzitrat (SCI)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sodium citrate (SCI)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SCI</SprecCode>
+            <SyncId>82DEBF42-E65E-42F8-8931-593B90593059</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SED</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sodium EDTA (SED)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Natrium-EDTA (SED)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SED</SprecCode>
+            <SyncId>0C7650B8-E048-4AA8-BFAB-12998E48F4B8</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SHP</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sodium heparin (SHP)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Natrium Heparin (SHP)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SHP</SprecCode>
+            <SyncId>ADD23E30-B076-4B80-B8ED-9A7D6A749E29</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SPO</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Natriumfluorid/Kaliumoxalat (SPO)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Sodium fluoride/potassium oxalate (SPO)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SPO</SprecCode>
+            <SyncId>DF34A0F9-1519-41AD-8E47-14FC0D2D9CA7</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SST</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum-Trennröhrchen mit Gerinnungsaktivator (SST)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum separator tube with clot activator (SST)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SST</SprecCode>
+            <SyncId>F3886151-08DB-4F1A-B452-892C70E7D32C</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>TEM</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tempus® tube (TEM)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tempus® Röhre (TEM)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>TEM</SprecCode>
+            <SyncId>213040A9-B87A-4E74-8D18-BD04C2E26179</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>TRC</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Spurenelemente (TRC)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Trace elements tube (TRC)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>TRC</SprecCode>
+            <SyncId>BD3391A8-9789-42A5-BD37-B4301E775689</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>XXX</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Unbekannt (XXX)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Unknown (XXX)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>XXX</SprecCode>
+            <SyncId>C8496C42-A6EF-4D43-A448-900B26192182</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ZZZ</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Other (ZZZ)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Anderer Typ (ZZZ)</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>82A7B60C-9291-4AA8-BB4C-DEF9D854E4F0</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ZZZ(tnl)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>TruCulture Null-Tubes(ZZZ(tnl))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>TruCulture Null-Tubes (ZZZ(tnl))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>8A81E0B5-7893-48CB-9BED-53B95EA2A582</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ZZZ(tls)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>TruCulture LPS+SE-B (Lipopolysaccharide + Staphylococcal Enterotoxin type B) (ZZZ(tls))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>TruCulture LPS+SE-B (Lipopolysaccharide + Staphylococcal Enterotoxin type B) (ZZZ(tls))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>A574615F-EEC2-4009-AC33-ED5A631586F0</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SST(gel)</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum Gel with clot activator(SST(gel))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel mit Gerinnungsaktivator (SST(gel))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SST</SprecCode>
+            <SyncId>0C192728-57F4-49FF-AD8C-CD3B24B1B385</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>CPT(ctr)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Zell-Präparationsröhrchen Citrat (CPT(ctr))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>cell preparation tube citrat (CPT(ctr))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>CPT</SprecCode>
+            <SyncId>D50CB6E7-4280-44A7-983C-B8580ECA82FD</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SCK(dna)</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Tube with cf-DNA Stabilizer (SCK)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Tube mit cf-DNA Stabilisierer (SCK(dna))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>SCK</SprecCode>
+            <SyncId>BE1C1C54-CD67-438A-B91B-FC0ACE729050</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PED(pve)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kalium EDTA Portalvene (PED(pve))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Potassium EDTA portalvein (PED(pve))</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kalium EDTA mit Blut aus der Portalvene *</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PED Tube filled with blood fro portal vein</Value>
+            </DescMultilingualEntries>
+            <SprecCode>PED</SprecCode>
+            <SyncId>042927BC-A25F-46B3-A8E4-F5C2A31D6464</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>PED(lve)</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Potassium EDTA Hepatic vein (PED(lve))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kalium EDTA Lebervene (PED(lve))</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>PED Tube filled  with blood from Hepatic vein</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Kalium EDTA mit Blut aus der Lebervene *</Value>
+            </DescMultilingualEntries>
+            <SprecCode>PED</SprecCode>
+            <SyncId>87032568-9C66-4DA5-A5AD-7B2A187FEED8</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SST(glv)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel mit Gerinnungsaktivator Lebervene (SST(glv))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum Gel with clot activator hepatic vein (SST(glv))</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>SST-gel Tube filled with blood from Hepatic vein</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel mit Blut aus der Lebervene</Value>
+            </DescMultilingualEntries>
+            <SprecCode>SST</SprecCode>
+            <SyncId>e15d688a-18a1-40a1-8f74-43b632b77558</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>SST(gpv)</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel mit Gerinnungsaktivator Portalvene (SST(gpv))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Serum gel with clot activator portal vein</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Serum Gel mit Blut aus der Portalvene</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>SST-gel Tube filled with blood from portal vein</Value>
+            </DescMultilingualEntries>
+            <SprecCode>SST</SprecCode>
+            <SyncId>d7222a0b-14c6-4196-8ea6-84c651b3e98f</SyncId>
+        </SprecLiquidPrimaryContainer>
+        <SprecLiquidPrimaryContainer>
+            <Code>ZZZ(eth)</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Ethanol (ZZZ(eth))</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Ethanol (ZZZ(eth))</Value>
+            </NameMultilingualEntries>
+            <SprecCode>ZZZ</SprecCode>
+            <SyncId>274557aa-2fe2-4dbc-9a4b-039534e012db</SyncId>
+        </SprecLiquidPrimaryContainer>
+    </CatalogueData>
+</CentraXXDataExchange>
