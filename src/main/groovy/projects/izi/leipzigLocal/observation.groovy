@@ -74,7 +74,7 @@ observation {
     coding {
       system = "urn:centraxx"
       version = context.source[laborMapping().laborFinding().laborMethod().version()]
-      code = "CIMD_KERNZUSATZDATEN"
+      code = laborMethodCode
     }
   }
 
@@ -126,7 +126,7 @@ observation {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
                 final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
-                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                final String catalogKind = isUserDefinedCatalog(catalogCode) ? "Catalog" : "ValueList"
                 system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
@@ -143,7 +143,7 @@ observation {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
                 final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
-                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                final String catalogKind = isUserDefinedCatalog(catalogCode) ? "Catalog" : "ValueList"
                 system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
@@ -154,7 +154,7 @@ observation {
             lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
               coding {
                 final String catalogCode = entry[CatalogEntry.CATALOG]?.getAt(CODE)
-                final String catalogKind = catalogCode == "CIMD_ABWEICHUNGEN" ? "Catalog" : "ValueList"
+                final String catalogKind = isUserDefinedCatalog(catalogCode) ? "Catalog" : "ValueList"
                 system = "urn:centraxx:CodeSystem/" + catalogKind + "#c." + catalogCode
                 code = entry[CODE] as String
               }
@@ -256,4 +256,8 @@ static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
   }
 
   return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
+}
+
+static boolean isUserDefinedCatalog(final String catalogCode) {
+  return ["CIMD_ABWEICHUNGEN", "ATC_CLASSLIST"].contains(catalogCode)
 }
