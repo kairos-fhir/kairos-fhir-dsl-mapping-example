@@ -14,9 +14,11 @@
             <Mandatory>false</Mandatory>
             <RegularExpression>A|B|C</RegularExpression>
             <SyncId>4bfbd8f8-78c6-48b3-8564-ded5cc498186</SyncId>
-            <UserEntries>
+
+          <!-- CXX4 only -->
+          <!--<UserEntries>
                 <Systemwide>true</Systemwide>
-            </UserEntries>
+            </UserEntries>-->
         </IdType>
     </CatalogueData>
 </CentraXXDataExchange>

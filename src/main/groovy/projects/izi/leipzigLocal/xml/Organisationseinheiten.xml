@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
-    <Source>CENTRAXX</Source>
-    <SourceVersion>2022.3.3</SourceVersion>
-    <ExportDate>2022-11-25T13:56:38.889+01:00</ExportDate>
-    <CatalogueData>
-        <OrganisationUnitCatalogueItem>
-            <Code>Leipzig</Code>
-            <OrganisationUnitEntries>
-                <Name>Leipzig</Name>
-                <Lang>de</Lang>
-            </OrganisationUnitEntries>
-            <OrganisationUnitEntries>
-                <Name>Leipzig</Name>
-                <Lang>en</Lang>
-            </OrganisationUnitEntries>
-            <SyncId>253d6f01-c02e-4b15-bad1-56f1d942f8d9</SyncId>
-        </OrganisationUnitCatalogueItem>
-    </CatalogueData>
+  <Source>CENTRAXX</Source>
+  <SourceVersion>3.18.3.10</SourceVersion>
+  <ExportDate>2023-03-02T12:07:29.535+01:00</ExportDate>
+  <CatalogueData>
+    <OrganisationUnitCatalogueItem>
+      <Code>BIMS_IZI</Code>
+      <OrganisationUnitEntries>
+        <Name>BIMS IZI</Name>
+        <Lang>de</Lang>
+      </OrganisationUnitEntries>
+      <OrganisationUnitEntries>
+        <Name>BIMS IZI</Name>
+        <Lang>en</Lang>
+      </OrganisationUnitEntries>
+      <SyncId>E14B0365-D41D-4766-9FCF-06888476DC63</SyncId>
+    </OrganisationUnitCatalogueItem>
+    <OrganisationUnitCatalogueItem>
+      <Code>RIBOLUTION</Code>
+      <ParentRef>BIMS_IZI</ParentRef>
+      <OrganisationUnitEntries>
+        <Name>Ribolution</Name>
+        <Lang>de</Lang>
+      </OrganisationUnitEntries>
+      <OrganisationUnitEntries>
+        <Name>Ribolution</Name>
+        <Lang>en</Lang>
+      </OrganisationUnitEntries>
+      <SyncId>CBCCA53C-7E10-4864-B667-7B3C72F791AA</SyncId>
+    </OrganisationUnitCatalogueItem>
+    <OrganisationUnitCatalogueItem>
+      <Code>BIOBANK_IZI</Code>
+      <ParentRef>BIMS_IZI</ParentRef>
+      <OrganisationUnitEntries>
+        <Name>Biobank IZI</Name>
+        <Lang>de</Lang>
+      </OrganisationUnitEntries>
+      <OrganisationUnitEntries>
+        <Name>Biobank IZI</Name>
+        <Lang>en</Lang>
+      </OrganisationUnitEntries>
+      <SyncId>B16FD0E6-358D-4DFA-BB00-316E944F6676</SyncId>
+    </OrganisationUnitCatalogueItem>
+    <OrganisationUnitCatalogueItem>
+      <Code>CED</Code>
+      <ParentRef>BIOBANK_IZI</ParentRef>
+      <OrganisationUnitEntries>
+        <Name>CED</Name>
+        <Lang>de</Lang>
+      </OrganisationUnitEntries>
+      <OrganisationUnitEntries>
+        <Name>CED</Name>
+        <Lang>en</Lang>
+      </OrganisationUnitEntries>
+      <SyncId>0391BA53-A9A6-4C48-85B9-9626995C056E</SyncId>
+    </OrganisationUnitCatalogueItem>
+  </CatalogueData>
 </CentraXXDataExchange>
