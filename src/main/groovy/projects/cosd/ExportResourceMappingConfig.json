@@ -32,8 +32,18 @@
       "exportToFhirResource": "Procedure"
     },
     {
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "histology",
+      "exportToFhirResource": "Observation"
+    },
+    {
       "selectFromCxxEntity": "METASTASIS",
       "transformByTemplate": "metastasis",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "TNM",
+      "transformByTemplate": "tnm",
       "exportToFhirResource": "Observation"
     },
     {
