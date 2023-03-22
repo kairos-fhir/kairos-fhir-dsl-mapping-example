@@ -35,6 +35,11 @@
       "selectFromCxxEntity": "METASTASIS",
       "transformByTemplate": "metastasis",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "progress",
+      "exportToFhirResource": "ClinicalImpression"
     }
   ]
 }
