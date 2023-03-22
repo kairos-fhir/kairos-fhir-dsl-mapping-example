@@ -8,10 +8,6 @@ import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 /**
  * Represented by a CXX Metastasis
- * Specified by https://simplifier.net/oncology/fernmetastasen-duplicate-2
- * hints:
- *  Reference to focus condition has been added additionally, because a reverse reference is not possible yet.
- *
  * @author Mike Wähnert
  * @since CXX.v.3.18.1.21, CXX.v.3.18.2
  */
