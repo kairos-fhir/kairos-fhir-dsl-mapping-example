@@ -42,10 +42,18 @@ condition {
   }
 
   code {
-    coding {
-      system = context.source[diagnosis().icdEntry().catalogue().name()]
-      code = context.source[diagnosis().icdEntry().code()] as String
-      version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
+    if (context.source[diagnosis().icdEntry()]) {
+      coding {
+        system = context.source[diagnosis().icdEntry().catalogue().name()]
+        code = context.source[diagnosis().icdEntry().code()] as String
+        version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
+      }
+    }
+
+    if (context.source[diagnosis().diagnosisCode()]) {
+      coding {
+        code = context.source[diagnosis().diagnosisCode()] as String
+      }
     }
   }
 }

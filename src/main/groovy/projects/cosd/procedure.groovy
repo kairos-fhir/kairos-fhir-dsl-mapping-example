@@ -13,10 +13,18 @@ procedure {
   status = Procedure.ProcedureStatus.UNKNOWN
 
   code {
-    coding {
-      system = context.source[medProcedure().opsEntry().catalogue().name()]
-      version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
-      code = context.source[medProcedure().opsEntry().code()] as String
+    if (context.source[medProcedure().opsEntry()]) {
+      coding {
+        system = context.source[medProcedure().opsEntry().catalogue().name()]
+        version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
+        code = context.source[medProcedure().opsEntry().code()] as String
+      }
+    }
+
+    if (context.source[medProcedure().procedureCode()]) {
+      coding {
+        code = context.source[medProcedure().procedureCode()] as String
+      }
     }
   }
 
