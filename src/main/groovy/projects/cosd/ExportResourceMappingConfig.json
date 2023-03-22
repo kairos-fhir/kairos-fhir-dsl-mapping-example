@@ -30,6 +30,11 @@
       "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
       "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "METASTASIS",
+      "transformByTemplate": "metastasis",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
