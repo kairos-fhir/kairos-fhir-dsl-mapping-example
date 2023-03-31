@@ -1,4 +1,4 @@
-package projects.cosd
+package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
@@ -45,6 +45,23 @@ patient {
     }
   }
 
+  humanName {
+    use = "official"
+    family = context.source[patient().lastName()]
+    given context.source[patient().firstName()] as String
+    prefix context.source[patient().title().descMultilingualEntries()]?.find { final def me ->
+      me[MultilingualEntry.LANG] == "en"
+    }?.getAt(MultilingualEntry.VALUE) as String
+  }
+
+  if (context.source[patient().birthName()]) {
+    humanName {
+      use = "maiden"
+      family = context.source[patient().birthName()]
+      given context.source[patient().firstName()] as String
+    }
+  }
+
   if (context.source[GENDER_TYPE]) {
     gender = mapGender(context.source[GENDER_TYPE] as GenderType)
   }
@@ -52,7 +69,7 @@ patient {
   if (context.source[patientMasterDataAnonymous().birthdate().date()]) {
     birthDate {
       date = context.source[patientMasterDataAnonymous().birthdate().date()]
-      precision = TemporalPrecisionEnum.YEAR.toString()
+      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 

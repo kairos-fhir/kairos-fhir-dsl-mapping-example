@@ -1,4 +1,4 @@
-package projects.cosd
+package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls

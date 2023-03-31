@@ -1,4 +1,4 @@
-package projects.cosd
+package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.Procedure
