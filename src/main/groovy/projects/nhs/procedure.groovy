@@ -15,7 +15,7 @@ procedure {
   code {
     if (context.source[medProcedure().opsEntry()]) {
       coding {
-        system = context.source[medProcedure().opsEntry().catalogue().name()]
+        system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().opsEntry().catalogue().name()]
         version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
         code = context.source[medProcedure().opsEntry().code()] as String
       }

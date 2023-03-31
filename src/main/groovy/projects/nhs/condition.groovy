@@ -44,7 +44,7 @@ condition {
   code {
     if (context.source[diagnosis().icdEntry()]) {
       coding {
-        system = context.source[diagnosis().icdEntry().catalogue().name()]
+        system = "https://fhir.centraxx.de/system/" + context.source[diagnosis().icdEntry().catalogue().name()]
         code = context.source[diagnosis().icdEntry().code()] as String
         version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
       }
