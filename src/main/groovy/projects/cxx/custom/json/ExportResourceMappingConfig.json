@@ -5,6 +5,11 @@
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen"
     }
   ]
 }
