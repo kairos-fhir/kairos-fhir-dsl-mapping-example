@@ -1,12 +1,14 @@
 ![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue_iqvia.png "Kairos Logo")
 
-BBMRI.de / GBA Mappings*
-======================
+BBMRI.de / GBA Mappings* for RWTH cBMB
+======================================
 
 * Profile definitions: https://simplifier.net/bbmri.de
 * Mappings can be used to export to a [samply blaze](https://github.com/samply/blaze) store
-  to be found by the [BBMRI Sample Locator](https://samplelocator.bbmri.de) 
-* This project has the same scope as v1, but shows examples with the newer context source navigation paths.
+  to be found by the [BBMRI Sample Locator](https://samplelocator.bbmri.de)
+
+RWTH cBMB uses the FHIR custom export only for some selected data points, that are documented by a CXX system.
+Other data points are added by other export processes from other biobanking systems.
 
 ---
 *With the kind support from 
