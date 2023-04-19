@@ -39,6 +39,14 @@ procedure {
     }
   }
 
+  performedDateTime {
+    if (context.source[surgery().therapyStart()]) {
+      date = context.source[surgery().therapyStart()]
+    } else if (context.source[surgery().therapyEnd()]) {
+      date = context.source[surgery().therapyEnd()]
+    }
+  }
+
   if (context.source[surgery().tumour()]) {
     reasonReference {
       reference = "Condition/" + context.source[surgery().tumour().centraxxDiagnosis().id()]
