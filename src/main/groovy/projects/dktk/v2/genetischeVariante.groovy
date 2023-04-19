@@ -1,5 +1,6 @@
 package projects.dktk.v2
 
+
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
@@ -45,11 +46,9 @@ observation {
     }
   }
 
-
   subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
-
 
   final String focusReference = getFocusReference(
       context.source[laborMapping().mappingType()] as LaborMappingType,
