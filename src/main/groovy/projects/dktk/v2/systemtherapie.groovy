@@ -23,6 +23,10 @@ medicationStatement {
     profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-MedicationStatement-Systemtherapie"
   }
 
+  identifier {
+    value = context.source[systemTherapy().systemTherapyId()]
+  }
+
   status = MedicationStatement.MedicationStatementStatus.UNKNOWN
 
   category {
@@ -32,8 +36,10 @@ medicationStatement {
     }
   }
 
-  identifier {
-    value = context.source[systemTherapy().systemTherapyId()]
+  medication {
+    medicationCodeableConcept {
+      text = context.source[systemTherapy().description()] as String
+    }
   }
 
   subject {
@@ -43,6 +49,15 @@ medicationStatement {
   if (context.source[systemTherapy().episode()]) {
     context_ {
       reference = "Encounter/" + context.source[systemTherapy().episode().id()]
+    }
+  }
+
+  effectivePeriod {
+    start {
+      date = context.source[systemTherapy().therapyStart()]
+    }
+    end {
+      date = context.source[systemTherapy().therapyEnd()]
     }
   }
 
@@ -58,6 +73,19 @@ medicationStatement {
       valueCoding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
         code = context.source[systemTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+      }
+    }
+  }
+
+  if (context.source[systemTherapy().protocolTypeDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SystemischeTherapieProtokoll"
+      valueCodeableConcept {
+        coding {
+          // see http://fhir.org/guides/stats/codesystem-hl7.org.nz.fhir.ig.cca-sact-regimen-code.html
+          system = "https://standards.digital.health.nz/ns/sact-regimen-code"
+          code = context.source[systemTherapy().protocolTypeDict()]
+        }
       }
     }
   }
