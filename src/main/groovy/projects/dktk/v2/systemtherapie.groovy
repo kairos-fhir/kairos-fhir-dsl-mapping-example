@@ -1,5 +1,6 @@
 package projects.dktk.v2
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -55,9 +56,11 @@ medicationStatement {
   effectivePeriod {
     start {
       date = context.source[systemTherapy().therapyStart()]
+      precision = TemporalPrecisionEnum.DAY.name()
     }
     end {
       date = context.source[systemTherapy().therapyEnd()]
+      precision = TemporalPrecisionEnum.DAY.name()
     }
   }
 
