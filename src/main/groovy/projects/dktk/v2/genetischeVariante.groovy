@@ -78,7 +78,7 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    if (laborValueCode.equalsIgnoreCase("MolMarkerValue")) {
+    if (laborValueCode.equalsIgnoreCase("Genetische Variante")) {//TODO
       valueCodeableConcept {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/GenetischeVarianteCS"
