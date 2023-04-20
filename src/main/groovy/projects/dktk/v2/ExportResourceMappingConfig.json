@@ -105,6 +105,11 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "genetischeVariante",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "todUrsache",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
