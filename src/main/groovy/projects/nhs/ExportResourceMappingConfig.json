@@ -47,6 +47,16 @@
       "exportToFhirResource": "Observation"
     },
     {
+      "selectFromCxxEntity": "ANN_ARBOR",
+      "transformByTemplate": "annArbor",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
+      "transformByTemplate": "otherClassification",
+      "exportToFhirResource": "Observation"
+    },
+    {
       "selectFromCxxEntity": "PROGRESS",
       "transformByTemplate": "progress",
       "exportToFhirResource": "ClinicalImpression"
