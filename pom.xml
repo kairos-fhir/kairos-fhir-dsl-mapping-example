@@ -19,6 +19,7 @@
     <kairos-fhir-dsl.version>1.20.0</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.8.2</junit-jupiter.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <findbugs.version>3.0.2</findbugs.version>
   </properties>
 
   <scm>
@@ -39,6 +40,12 @@
       <artifactId>junit-jupiter</artifactId>
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>${findbugs.version}</version>
     </dependency>
 
   </dependencies>
