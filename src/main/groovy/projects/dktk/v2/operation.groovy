@@ -1,6 +1,6 @@
 package projects.dktk.v2
 
-
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
@@ -37,6 +37,15 @@ procedure {
     encounter {
       reference = "Encounter/" + context.source[surgery().episode().id()]
     }
+  }
+
+  performedDateTime {
+    if (context.source[surgery().therapyStart()]) {
+      date = context.source[surgery().therapyStart()]
+    } else if (context.source[surgery().therapyEnd()]) {
+      date = context.source[surgery().therapyEnd()]
+    }
+    precision = TemporalPrecisionEnum.DAY.name()
   }
 
   if (context.source[surgery().tumour()]) {

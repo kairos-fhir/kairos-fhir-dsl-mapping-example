@@ -59,6 +59,7 @@ observation {
         version = "32"
         code = context.source[histology().icdEntry().code()] as String
       }
+      text = context.source[histology().icdEntry().preferredLong()] as String
     }
   }
 

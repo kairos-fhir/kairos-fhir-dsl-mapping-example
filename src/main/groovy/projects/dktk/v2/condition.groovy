@@ -3,6 +3,7 @@ package projects.dktk.v2
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Diagnosis
  * Specified by https://simplifier.net/oncology/primaerdiagnose
@@ -57,7 +58,7 @@ condition {
 
   code {
     coding {
-      if (multipleCodingSymbol != null){
+      if (multipleCodingSymbol != null) {
         extension {
           url = "http://fhir.de/StructureDefinition/icd-10-gm-mehrfachcodierungs-kennzeichen"
           valueCoding {
@@ -71,6 +72,7 @@ condition {
       code = context.source[diagnosis().icdEntry().code()] as String
       version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
     }
+    text = context.source[diagnosis().icdEntry().preferredLong()] as String
   }
 
   context.source[diagnosis().samples()]?.each { final sample ->
@@ -83,8 +85,8 @@ condition {
   }
 }
 
-static String mapUsage(final String usage){
-  switch (usage){
+static String mapUsage(final String usage) {
+  switch (usage) {
     case "optional":
       return "!"
     case "aster":

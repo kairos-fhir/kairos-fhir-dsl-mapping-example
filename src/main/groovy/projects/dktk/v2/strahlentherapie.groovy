@@ -1,11 +1,10 @@
 package projects.dktk.v2
 
-
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
-
 /**
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
@@ -35,6 +34,17 @@ procedure {
   if (context.source[radiationTherapy().episode()]) {
     encounter {
       reference = "Encounter/" + context.source[radiationTherapy().episode().id()]
+    }
+  }
+
+  performedPeriod {
+    start {
+      date = context.source[radiationTherapy().therapyStart()]
+      precision = TemporalPrecisionEnum.DAY.name()
+    }
+    end {
+      date = context.source[radiationTherapy().therapyEnd()]
+      precision = TemporalPrecisionEnum.DAY.name()
     }
   }
 
