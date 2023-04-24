@@ -8,7 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.flexiFlagItem
 /**
  * Represented by a CXX FlexiFlagItem
  * @author Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.20.0, CXX.v.3.18.3.14, CXX.v.3.18.4, CXX.v.2023.1.1, CXX.v.2023.2.0
+ * @since KAIROS-FHIR-DSL.v.1.20.0, CXX.v.2023.1.1, CXX.v.2023.2.0
  */
 flag {
 
