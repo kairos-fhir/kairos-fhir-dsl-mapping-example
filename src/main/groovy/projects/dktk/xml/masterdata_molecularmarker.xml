@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.11.2.1</SourceVersion>
+    <CatalogueData>	
+        <FlexibleValueCatalogueItem>
+			<FlexibleDateValue>
+                <Code>CCP_MOLECULAR_MARKER_DATE</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>CCP Molecular Marker Date</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CCP Molecular Marker Date</Value>
+                </NameMultilingualEntries>
+            </FlexibleDateValue>
+            <FlexibleStringValue>
+                <Code>CCP_MOLECULAR_MARKER_NAME</Code>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CCP Molekularer Marker Name</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>CCP Molecular Marker Name</Value>
+                </NameMultilingualEntries>
+            </FlexibleStringValue>
+            <FlexibleStringValue>
+                <Code>CCP_MOLECULAR_MARKER_STATUS</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>CCP Molecular Marker Status</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CCP Molekularer Marker Status</Value>
+                </NameMultilingualEntries>
+            </FlexibleStringValue>
+            <FlexibleStringValue>
+                <Code>CCP_MOLECULAR_MARKER_ADDITIONAL</Code>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>CCP Molecular Marker Additional Documentation</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CCP Molekularer Marker Zusätzliche Dokumentation</Value>
+                </NameMultilingualEntries>
+            </FlexibleStringValue>
+        </FlexibleValueCatalogueItem>
+        <FlexibleDataSetCatalogueItem>
+            <Code>CCP_MOLECULAR_MARKER</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CCP Molekularer Marker</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>CCP Molecular Marker</Value>
+            </NameMultilingualEntries>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>CCP_MOLECULAR_MARKER_DATE</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>CCP_MOLECULAR_MARKER_NAME</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>CCP_MOLECULAR_MARKER_STATUS</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <FlexibleValueComplexRefs>
+                <FlexibleValueRef>CCP_MOLECULAR_MARKER_ADDITIONAL</FlexibleValueRef>
+                <Required>true</Required>
+            </FlexibleValueComplexRefs>
+            <Systemwide>false</Systemwide>
+            <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+            <Category>GENERAL</Category>
+            <CrfTemplateRef>
+                <Name>CCP_MOLECULAR_MARKER_TEMPLATE</Name>
+                <Version>0</Version>
+            </CrfTemplateRef>
+            <Version>1</Version>
+        </FlexibleDataSetCatalogueItem>
+		<CrfTemplate>
+            <Name>CCP_MOLECULAR_MARKER_TEMPLATE</Name>
+            <CrfTemplateSection>
+                <Name>CCP Parameters</Name>
+                <NameMultilingualEntries>
+                    <Lang>en</Lang>
+                    <Value>CCP Parameters</Value>
+                </NameMultilingualEntries>
+                <NameMultilingualEntries>
+                    <Lang>de</Lang>
+                    <Value>CCP Parameter</Value>
+                </NameMultilingualEntries>
+                <Code>CCP_MOLECULAR_MARKER</Code>
+                <CrfTemplateField>
+                    <LaborValue>CCP_MOLECULAR_MARKER_DATE</LaborValue>
+                    <LowerRow>0</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>0</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>      
+					<DefaultDateValue>
+                        <Date>2019-08-23T00:00:00.000+02:00</Date>
+                        <Precision>DAY</Precision>
+                    </DefaultDateValue>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TooltipMultilingualEntries>
+                        <Lang>en</Lang>
+                        <Value>Date of the data collection of the molecular marker</Value>
+                    </TooltipMultilingualEntries>
+                    <TooltipMultilingualEntries>
+                        <Lang>de</Lang>
+                        <Value>Datum der Datenerhebung des molekularen Markers</Value>
+                    </TooltipMultilingualEntries>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>CCP_MOLECULAR_MARKER_NAME</LaborValue>
+                    <LowerRow>1</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>1</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TooltipMultilingualEntries>
+                        <Lang>en</Lang>
+                        <Value>Designation of the molecular marker</Value>
+                    </TooltipMultilingualEntries>
+                    <TooltipMultilingualEntries>
+                        <Lang>de</Lang>
+                        <Value>Bezeichnung des molekularen Markers</Value>
+                    </TooltipMultilingualEntries>                    
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>CCP_MOLECULAR_MARKER_STATUS</LaborValue>
+                    <LowerRow>2</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>2</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TooltipMultilingualEntries>
+                        <Lang>en</Lang>
+                        <Value>Condition or state of the molecular marker (e.g. c.1397G>T, wildtype, mutation...)</Value>
+                    </TooltipMultilingualEntries>
+                    <TooltipMultilingualEntries>
+                        <Lang>de</Lang>
+                        <Value>Zustand oder Status des molekularen Markers (z.B. c.1397G>T, Wildtyp, Mutation...)</Value>
+                    </TooltipMultilingualEntries>
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                </CrfTemplateField>
+                <CrfTemplateField>
+                    <LaborValue>CCP_MOLECULAR_MARKER_ADDITIONAL</LaborValue>
+                    <LowerRow>3</LowerRow>
+                    <LowerColumn>0</LowerColumn>
+                    <UpperRow>3</UpperRow>
+                    <UpperColumn>0</UpperColumn>
+                    <Mandatory>true</Mandatory>
+                    <VisibleCaption>true</VisibleCaption>
+                    <FieldType>LABORVALUE</FieldType>
+                    <TooltipMultilingualEntries>
+                        <Lang>en</Lang>
+                        <Value>Additional or alternative dokumentation of the molecular marker (e.g. B-RAF and CKIT inconspicuous, KRAS codon12….
+)</Value>
+                    </TooltipMultilingualEntries>
+                    <TooltipMultilingualEntries>
+                        <Lang>de</Lang>
+                        <Value>Zusätzliche oder alternative Dokumentation des molekularen MArkers (z.B. B-RAF und CKIT unauffällig, KRAS codon12….
+)</Value>
+                    </TooltipMultilingualEntries>                    
+                    <TabIndex>0</TabIndex>
+                    <ReadOnly>false</ReadOnly>
+                    <Pseudomized>false</Pseudomized>
+                    <OnsetEvent>false</OnsetEvent>
+                </CrfTemplateField>
+                <Height>4</Height>
+                <Width>1</Width>
+                <Position>0</Position>
+                <CrfSectionType>PLAIN</CrfSectionType>
+                <IsChangeable>true</IsChangeable>
+            </CrfTemplateSection>
+            <TemplateType>LABORMETHOD</TemplateType>
+            <Version>0</Version>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <Global>false</Global>
+            <MultipleUse>false</MultipleUse>
+            <Active>false</Active>
+        </CrfTemplate>
+     </CatalogueData>
+</CentraXXDataExchange>
