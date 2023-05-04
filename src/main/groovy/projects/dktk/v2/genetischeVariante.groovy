@@ -1,9 +1,10 @@
 package projects.dktk.v2
 
-
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
@@ -17,14 +18,16 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @author Mike Wähnert
  * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
  *
- * TODO:
- *  Set codes of CXX LaborMethod and LaborValues for the values to export
- *  The script assumes that all values are stored with LaborValueType String. If other types are needed, the export has to be extended.
+ * Based on the measurement profile, which has been specified by the CCP-IT group in ../xml/masterdata_molecularmarker.xml
+ * It does not cover the specified FHIR observation component slices like Amino-acid-change, DNA-change, etc.
+ * It does not specify any LOINC codes.
+ * this scrip assumes that the measurement parameter
+ * * CCP_MOLECULAR_MARKER_STATUS represents GenetischeVarianteCS
+ * * CCP_MOLECULAR_MARKER_NAME represents a name from http://www.genenames.org
  */
 observation {
 
-  // TODO: set code of mole marker lab method
-  if ("MolMarker" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
+  if ("CCP_MOLECULAR_MARKER" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
     return
   }
 
@@ -78,7 +81,7 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    if (laborValueCode.equalsIgnoreCase("Genetische Variante")) {//TODO
+    if (laborValueCode.equalsIgnoreCase("CCP_MOLECULAR_MARKER_STATUS")) {
       valueCodeableConcept {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/GenetischeVarianteCS"
@@ -87,26 +90,33 @@ observation {
       }
     }
 
-
     final String loincCode = getLoincCode(laborValueCode)
-    if (loincCode == null) {
-      return
-    }
+
 
     component {
       code {
-        coding {
-          system = "http://loinc.org"
-          code = loincCode
+        if (loincCode != null) {
+          coding {
+            system = "http://loinc.org"
+            code = loincCode
+          }
+        }
+        coding { // CXX code as a second coding is exported, if no loinc code exists.
+          system = FhirUrls.System.LaborValue.BASE_URL
+          code = laborValueCode
         }
       }
 
-      if (laborValueCode == "GeneNomenclature") { //TODO set code
+      if (laborValueCode == "CCP_MOLECULAR_MARKER_NAME") {
         valueCodeableConcept {
           coding {
             system = "http://www.genenames.org"
             code = lflv[LaborFindingLaborValue.STRING_VALUE] as String
           }
+        }
+      } else if (laborValueCode == "CCP_MOLECULAR_MARKER_DATE") {
+        valueDateTime {
+          date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
         }
       } else { // other component are strings
         valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
@@ -128,7 +138,8 @@ static String getFocusReference(final LaborMappingType mappingType, final String
 }
 
 static String getLoincCode(final String laborValueCode) {
-  if (laborValueCode.equalsIgnoreCase("GeneNomenclature")) return "48018-6"
+  if (laborValueCode.equalsIgnoreCase("CCP_MOLECULAR_MARKER_NAME")) return "48018-6" // GeneNomenclature
+  // TODO: with the current profile is no mapping possible
   else if (laborValueCode.equalsIgnoreCase("Amino-acid-change")) return "48005-3"
   else if (laborValueCode.equalsIgnoreCase("DNA-change")) return "81290-9"
   else if (laborValueCode.equalsIgnoreCase("RefSeq-NCBI")) return "81248-7"

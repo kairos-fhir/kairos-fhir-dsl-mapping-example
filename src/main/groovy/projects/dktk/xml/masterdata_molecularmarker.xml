@@ -179,15 +179,11 @@
           <FieldType>LABORVALUE</FieldType>
           <TooltipMultilingualEntries>
             <Lang>en</Lang>
-            <Value>Additional or alternative dokumentation of the molecular marker (e.g. B-RAF and CKIT inconspicuous, KRAS codon12….
-              )
-            </Value>
+            <Value>Additional or alternative dokumentation of the molecular marker (e.g. B-RAF and CKIT inconspicuous, KRAS codon12….)</Value>
           </TooltipMultilingualEntries>
           <TooltipMultilingualEntries>
             <Lang>de</Lang>
-            <Value>Zusätzliche oder alternative Dokumentation des molekularen MArkers (z.B. B-RAF und CKIT unauffällig, KRAS codon12….
-              )
-            </Value>
+            <Value>Zusätzliche oder alternative Dokumentation des molekularen MArkers (z.B. B-RAF und CKIT unauffällig, KRAS codon12….)</Value>
           </TooltipMultilingualEntries>
           <TabIndex>0</TabIndex>
           <ReadOnly>false</ReadOnly>
