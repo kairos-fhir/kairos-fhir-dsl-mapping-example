@@ -1,12 +1,8 @@
-package projects.izi.hannover
+package projects.izi.frankfurt
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.ConsentPolicy
-import de.kairos.fhir.centraxx.metamodel.ConsentableAction
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import org.hl7.fhir.r4.model.Coding
-import org.hl7.fhir.r4.model.Consent
 
 import java.text.SimpleDateFormat
 
@@ -19,11 +15,20 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  * @since KAIROS-FHIR-DSL.v.1.16.0, CXX.v.2022.2.0
  * HINT: binary file attachments are not needed and not supported yet.
  */
-
 consent {
 
-  final def consentCode = context.source[consent().consentType().code()]
-  if (consentCode != "BIOBANK") { // TODO: change to necessary code
+  final Map<String, String> localToCentralType = [
+      //Frankfurt ITMP => Leipzig IZI Central
+      "PATIENTCOSENTV2.4"  : "Broad_Consent",
+      "PATIENTCONSENT2.5"  : "Broad_Consent",
+      "CIMD_CONSENT"       : "CIMD_Consent",
+      // Hannover HUB => Leipzig IZI Central
+      "ConsentDefaultStudy": "Study_Consent",
+      "ConsentCIMD"        : "CIMD_Consent"]
+
+  final String localConsentTypeCode = context.source[consent().consentType().code()]
+  final String centralConsentTypeCode = localToCentralType.get(localConsentTypeCode);
+  if (centralConsentTypeCode == null) {
     return // no export
   }
 
@@ -58,65 +63,13 @@ consent {
 
     purpose {
       system = FhirUrls.System.Consent.Type.BASE_URL
-      code = context.source[consent().consentType().code()] as String
-    }
-
-    // add consent parts
-    final def consentElements = context.source[consent().consentType().policies()]
-    for (final policy in consentElements) {
-      getProvision().add(new Consent.provisionComponent()
-          .addPurpose(new Coding()
-              .setSystem(FhirUrls.System.Consent.Action.BASE_URL)
-              .setCode(policy[ConsentPolicy.CONSENTABLE_ACTION][ConsentableAction.CODE] as String)))
-    }
-
-
-    // permit partly
-    final boolean isPartsOnly = context.source[consent().consentPartsOnly()]
-    final boolean isDeclined = context.source[consent().declined()]
-    if (isPartsOnly) {
-      for (final policy in context.source[consent().consentElements()]) {
-        getProvision().find {
-          it.getPurposeFirstRep().getCode() == policy[ConsentPolicy.CONSENTABLE_ACTION][ConsentableAction.CODE]
-        }?.setType(Consent.ConsentProvisionType.PERMIT)
-      }
-    } else if (isDeclined) {
-      provision.each { it.setType(Consent.ConsentProvisionType.PERMIT) }
-    }
-
-    // revocation
-    if (context.source[consent().revocation()]) {
-      final boolean isRevokePartsOnly = context.source[consent().revocation().revokePartsOnly()]
-      extension {
-        url = FhirUrls.Extension.Consent.REVOCATION
-        extension {
-          url = FhirUrls.Extension.Consent.Revocation.REVOCATION_PARTLY
-          valueBoolean = isRevokePartsOnly
-        }
-
-        if (context.source[consent().revocation().signedOn()]) {
-          extension {
-            url = FhirUrls.Extension.Consent.Revocation.REVOCATION_DATE
-            valueDateTime = context.source[consent().revocation().signedOn()]
-          }
-        }
-      }
-
-      //revoke partly
-      if (isRevokePartsOnly && isPartsOnly) {
-        final def revocationElements = context.source[consent().revocation().revocationElements()]
-        for (final def policy : revocationElements) {
-          getProvision().find {
-            it.getPurposeFirstRep().getCode() == policy[ConsentPolicy.CONSENTABLE_ACTION][ConsentableAction.CODE]
-          }?.setType(Consent.ConsentProvisionType.DENY)
-        }
-      } else {
-        provision.each { it.setType(Consent.ConsentProvisionType.DENY) }
-      }
+      code = centralConsentTypeCode
     }
   }
 
-  final String interpretedStatus = getStatus(validUntil as String)
+  final boolean isDeclined = context.source[consent().declined()]
+  final boolean isCompleteRevoked = context.source[consent().revocation()] != null && !context.source[consent().revocation().revokePartsOnly()]
+  final String interpretedStatus = getStatus(isDeclined, isCompleteRevoked, validUntil as String)
   status = interpretedStatus
 
   final boolean hasFlexiStudy = context.source[consent().consentType().flexiStudy()] != null
@@ -159,21 +112,6 @@ consent {
     valueString = context.source[consent().notes()]
   }
 
-// TODO fix initializing
-//  if (context.source[consent().binaryFile()]) {
-//    extension {
-//      url = FhirUrls.Extension.Consent.FILE
-//      valueAttachment {
-//        contentType = context.source[consent().binaryFile().contentType()]
-//        final def filePart = context.source[consent().binaryFile().contentParts()].find { it[BinaryFilePart.CONTENT] != null }
-//        if (filePart) {
-//          data {
-//            value = filePart[BinaryFilePart.CONTENT] as byte[]
-//          }
-//        }
-//      }
-//    }
-//  }
 
   if (context.source[consent().revocation()] && context.source[consent().revocation().notes()]) {
     extension {
@@ -181,26 +119,17 @@ consent {
       valueString = context.source[consent().revocation().notes()]
     }
   }
-
-// TODO fix initializing
-//  if (context.source[consent().revocation()] && context.source[consent().revocation().binaryFile()]) {
-//    extension {
-//      url = FhirUrls.Extension.Consent.Revocation.REVOCATION_FILE
-//      valueAttachment {
-//        contentType = context.source[consent().revocation().binaryFile().contentType()]
-//        final def filePart = context.source[consent().binaryFile().contentParts()].find { it[BinaryFilePart.CONTENT] != null }
-//        if (filePart) {
-//          data {
-//            value = filePart[BinaryFilePart.CONTENT] as byte[]
-//          }
-//        }
-//      }
-//    }
-//  }
-
 }
 
-static String getStatus(final String validFromDate) {
+static String getStatus(final boolean isDeclined, final boolean isCompleteRevoked, final String validFromDate) {
+  if (isDeclined) {
+    return "rejected"
+  }
+
+  if (isCompleteRevoked) {
+    return "inactive"
+  }
+
   if (!validFromDate) {
     return "active"
   }

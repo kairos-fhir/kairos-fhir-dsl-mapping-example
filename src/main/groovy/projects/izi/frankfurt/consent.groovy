@@ -15,7 +15,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  * @since KAIROS-FHIR-DSL.v.1.16.0, CXX.v.2022.2.0
  * HINT: binary file attachments are not needed and not supported yet.
  */
-
 consent {
 
   final Map<String, String> localToCentralType = [
@@ -68,7 +67,9 @@ consent {
     }
   }
 
-  final String interpretedStatus = getStatus(validUntil as String)
+  final boolean isDeclined = context.source[consent().declined()]
+  final boolean isCompleteRevoked = context.source[consent().revocation()] != null && !context.source[consent().revocation().revokePartsOnly()]
+  final String interpretedStatus = getStatus(isDeclined, isCompleteRevoked, validUntil as String)
   status = interpretedStatus
 
   final boolean hasFlexiStudy = context.source[consent().consentType().flexiStudy()] != null
@@ -120,7 +121,15 @@ consent {
   }
 }
 
-static String getStatus(final String validFromDate) {
+static String getStatus(final boolean isDeclined, final boolean isCompleteRevoked, final String validFromDate) {
+  if (isDeclined) {
+    return "rejected"
+  }
+
+  if (isCompleteRevoked) {
+    return "inactive"
+  }
+
   if (!validFromDate) {
     return "active"
   }
