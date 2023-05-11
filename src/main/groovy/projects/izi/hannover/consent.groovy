@@ -1,4 +1,4 @@
-package projects.izi.frankfurt
+package projects.izi.hannover
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.ConsentPolicy
@@ -30,7 +30,7 @@ consent {
   id = "Consent/Consent-" + context.source[consent().id()]
 
   final def patIdContainer = context.source[diagnosis().patientContainer().idContainer()]?.find {
-    "PaIdTMP" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "SID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
   if (patIdContainer) {

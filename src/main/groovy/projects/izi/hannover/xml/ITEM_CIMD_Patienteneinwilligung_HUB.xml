@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.7</SourceVersion>
+    <ExportDate>2023-04-14T13:01:48.631+02:00</ExportDate>
+    <CatalogueData>
+        <ConsentType>
+            <Code>ConsentDefaultStudy</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Einwilligung Studie (allgemein)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Study Consent (general)</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Einwilligung liegt in Verantwortung des Gatekeepers, weitere Details zur Einwilligung sind der HUB nicht bekannt, die HUB setzt eine Einwilligung durch den Patienten voraus</Value>
+            </DescMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Gatekeeper is responsible for consent, HUB is not informed about consent details, HUB assumes that included patients consented</Value>
+            </DescMultilingualEntries>
+            <System>false</System>
+            <SyncId>B8DEA4E6-C7E1-461E-B220-6B7EB94D1C8B</SyncId>
+        </ConsentType>
+        <ConsentType>
+            <Code>ConsentCIMD</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Einwilligung CIMD Biobank</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>Consent CIMD Biobank</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CIMD Biobank Standorte: 
+Fraunhofer-Institut für Molekularbiologie und Angewandte Oekologie IME, Frankfurt am Main
+Fraunhofer-Institut für Zelltherapie und Immunologie IZI, Leipzig
+Fraunhofer-Institut für Toxikologie und Experimentelle Medizin ITEM, Hannover</Value>
+            </DescMultilingualEntries>
+            <System>false</System>
+            <SyncId>b5c63e20-7f25-429c-976d-9d945cf1cb6b</SyncId>
+        </ConsentType>
+    </CatalogueData>
+</CentraXXDataExchange>
