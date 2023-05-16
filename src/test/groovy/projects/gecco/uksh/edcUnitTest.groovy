@@ -61,5 +61,14 @@ observation {
       system = "http://unitsofmeasure.org"
       code = crfItemHeight[CrfItem.EDC_VALUE_UNIT] as String
     }
+
+    referenceRange {
+      low {
+        value = crfItemHeight[CrfItem.LOWER_RANGE_NUMERIC] as Number
+      }
+      high {
+        value = crfItemHeight[CrfItem.UPPER_RANGE_NUMERIC] as Number
+      }
+    }
   }
 }
