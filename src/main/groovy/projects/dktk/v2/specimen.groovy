@@ -10,13 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
  * Represented by a CXX AbstractSample
  *
- * Specified by https://simplifier.net/oncology/exliquidspecimen-duplicate-2
- *
- * hints:
- * The DKTK oncology profiles does not contain a separate specimen, instead of the BBMRI specimen should be used. Unfortunately,
- * the BBMRI specifies another Organization (https://simplifier.net/bbmri.de/collection) than the DKTK oncology, which is much different.
- * To avoid conflicts between both organization profiles, the specimen collection extension has been removed.
- * 2022-11-09: The specimen profile is only switched to https://simplifier.net/oncology/exliquidspecimen-duplicate-2 for sample with exliquid ID
+ * Specified by https://simplifier.net/oncology/oncospecimen
  *
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
