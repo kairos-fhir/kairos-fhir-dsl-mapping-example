@@ -102,7 +102,7 @@ observation {
 
         if (isNumeric(laborValue)) {
           valueQuantity {
-            value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+            value = sanitizeScale(lflv[LaborFindingLaborValue.NUMERIC_VALUE])
             unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
           }
         } else if (isBoolean(laborValue)) {
@@ -256,4 +256,8 @@ static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
   }
 
   return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
+}
+
+static Object sanitizeScale(final Object numeric) {
+  return numeric == null ? null : new BigDecimal(numeric.toString()).stripTrailingZeros()
 }

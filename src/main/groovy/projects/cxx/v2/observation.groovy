@@ -91,7 +91,7 @@ observation {
 
       if (isNumeric(laborValue)) {
         valueQuantity {
-          value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+          value = sanitizeScale(lflv[LaborFindingLaborValue.NUMERIC_VALUE])
           unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
         }
       } else if (isBoolean(laborValue)) {
@@ -211,4 +211,8 @@ static boolean isCatalog(final Object laborValue) {
 
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
+}
+
+static Object sanitizeScale(final Object numeric) {
+  return numeric == null ? null : new BigDecimal(numeric.toString()).stripTrailingZeros()
 }
