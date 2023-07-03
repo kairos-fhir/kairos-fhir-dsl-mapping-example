@@ -78,7 +78,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toNumType(context.source[sample().sampleType().code()])
+      code = mapSampleType(context.source[sample().sampleType().code()])
     }
   }
 
@@ -124,7 +124,7 @@ specimen {
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toSampleReceptacleType(context.source[sample().receptable().code()])
+        value = mapSampleReceptacleType(context.source[sample().receptable().code()])
         system = "urn:centraxx"
       }
 
@@ -343,7 +343,7 @@ specimen {
   }
 }
 
-static String toNumType(final Object sourceType) {
+static String mapSampleType(final Object sourceType) {
   switch (sourceType) {
     case "ccfDNA_PL": return "PL2"
     case "CIT_PL": return "PL1"
@@ -360,23 +360,57 @@ static String toNumType(final Object sourceType) {
   }
 }
 
-static String toSampleReceptacleType(final Object sourceReceptacle) {
+static String mapSampleReceptacleType(final Object sourceReceptacle) {
   switch (sourceReceptacle) {
-    case "CPT_HEP_8": return "BDCPT080"
-    case "RNA_TEMP_2_5": return "BDVac100"
+    case "LVL_300": return "LV2D003ScT"
+    case "SER_GEL_4_7": return "StMono047"
     case "STU_CONV": return "StSTL101"
-    case "EDTA_7_5": return "7_5_ML_BLUTROEHRCHEN"
-    case "URIN_3_2": return "URIN_3_2"
-    case "STU_STAB_CONV": return "STU_STAB_CONV"
-    case "CIT_10": return "CIT_10"
-    case "SER_GEL_4_7": return "SER_GEL_4_7"
-    case "UTK_SAR_2_SER": return "UTK_SAR_2_SER"
-    case "UTK_SAR_2_PL": return "UTK_SAR_2_PL"
-    case "CRYO_SAR_2": return "CRYO_SAR_2"
-    case "SER_GEL_9": return "SER_GEL_9"
-    case "LVL_300_SE": return "LVL_300_SE"
-    case "LVL_1000_SE": return "LVL_1000_SE"
-    case "LVL_1000_PL": return "LVL_1000_PL"
+    case "STU_STAB_CONV": return "CanSTL_STAB"
+    case "CRYO_SAR_2": return "2_ML_KRYO"
+    case "EDTA_7_5": return "StMono075"
+    case "UTK_SAR_2_SER": return "2_ML_KRYO"
+    case "RNA_TEMP_2_5": return "BDPax025"
+    case "URIN_3_2": return "StMonoUri032"
+    case "URIN_3_2_ACC": return "StMonoUri032"
+    case "STU_CONV_ACC": return "StSTL101"
+    case "CIT_10": return sourceReceptacle //wird nicht eingelagert
+    case "UTK_SAR_5_AMA": return sourceReceptacle //wird nicht gemappt
+    case "RNA_TEMP_2_5_ACC": return "BDPax025"
+    case "CRYO_SAR_2_ACC": return "2_ML_KRYO"
+    case "EDTA_7_5_ACC": return "StMono075"
+    case "LVL_1000_ORGA_PL": return "LV2D010ScT"
+    case "VAL_Serum 100": return sourceReceptacle //wird nicht eingelagert
+    case "CIMD_2000_PL": return "2_ML_KRYO"
+    case "CPT_HEP_8": return "BDCPT080"
+    case "LVL_300_AMA_SE": return "LV2D003ScT"
+    case "UTK_SAR_2_ACC_PL": return "2_ML_KRYO"
+    case "SER_GEL_9": return "StMono090"
+    case "UTK_SAR_2_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_XPL": return "2_ML_KRYO"
+    case "STU_STAB_CONV_ACC": return "CanSTL_STAB"
+    case "UTK_SAR_2_ACC_SE": return "2_ML_KRYO"
+    case "STU_CONV_VAL": return sourceReceptacle //wird nicht eingelagert
+    case "UTK_SAR_2_VAL_Plasma": return sourceReceptacle //wird nicht eingelagert
+    case "LVL_300_ACC_SE": return "LV2D003ScT"
+    case "EDTA_7_5_VAL": return "StMono075"
+    case "EDTA_7_5_XCIT": return "StMono075"
+    case "EDTA_7_5_XPL": return "StMono075"
+    case "EDTA_7_5_PAN": return "StMono075"
+    case "EDTA_7_5_SSC": return "StMono075"
+    case "LVL_300_XCIT_SE": return "LV2D003ScT"
+    case "LVL_300_CPL_SE": return "LV2D003ScT"
+    case "UTK_SAR_2_PAN_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_SSC_PL": return "2_ML_KRYO"
+    case "LVL_300_SSC_SE": return "LV2D003ScT"
+    case "LVL_300_PAN_SE": return "LV2D003ScT"
+    case "EDTA_VAC_5": return "ORG"
+    case "LVL_300_SE": return "LV2D003ScT"
+    case "LVL_1000_SE": return "LV2D010ScT"
+    case "UTK_SAR_2_XPL_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_SSC": return "2_ML_KRYO"
+    case "LVL_1000_PL": return "LV2D010ScT"
+    case "UTK_SAR_2_PAN": return "2_ML_KRYO"
+    case "UTK_SAR_2_XCIT": return "2_ML_KRYO"
     default: return sourceReceptacle
   }
 }
