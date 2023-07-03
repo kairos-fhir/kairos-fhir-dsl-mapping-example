@@ -4,27 +4,26 @@
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
-      "exportToFhirResource": "Patient"
+      "exportToFhirResource": "Patient",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "SAMPLE",
       "transformByTemplate": "specimen",
-      "exportToFhirResource": "Specimen"
-    },
-    {
-      "selectFromCxxEntity": "DIAGNOSIS",
-      "transformByTemplate": "condition",
-      "exportToFhirResource": "Condition"
+      "exportToFhirResource": "Specimen",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "CONSENT",
       "transformByTemplate": "consent",
-      "exportToFhirResource": "Consent"
+      "exportToFhirResource": "Consent",
+      "exportDeleteEnable": "true"
     }
   ]
 }
