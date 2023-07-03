@@ -27,7 +27,7 @@ consent {
       "ConsentCIMD"        : "CIMD_Consent"]
 
   final String localConsentTypeCode = context.source[consent().consentType().code()]
-  final String centralConsentTypeCode = localToCentralType.get(localConsentTypeCode);
+  final String centralConsentTypeCode = localToCentralType.getOrDefault(localConsentTypeCode, "Broad_Consent");
   if (centralConsentTypeCode == null) {
     return // no export
   }
