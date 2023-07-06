@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>3.18.3.7</SourceVersion>
+  <ExportDate>2023-04-14T13:01:48.631+02:00</ExportDate>
+  <CatalogueData>
+    <ConsentType>
+      <Code>Study_Consent</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Einwilligung Studie (allgemein)</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Study Consent (general)</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Projekt-spezifischer Consent (Study_Consent)</Value>
+      </DescMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Projekt-spezifischer Consent (Study_Consent)</Value>
+      </DescMultilingualEntries>
+      <System>false</System>
+    </ConsentType>
+    <ConsentType>
+      <Code>CIMD_Consent</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Einwilligung CIMD Biobank</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Consent CIMD Biobank</Value>
+      </NameMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>CIMD Biobank Standorte:
+          Fraunhofer-Institut für Molekularbiologie und Angewandte Oekologie IME, Frankfurt am Main
+          Fraunhofer-Institut für Zelltherapie und Immunologie IZI, Leipzig
+          Fraunhofer-Institut für Toxikologie und Experimentelle Medizin ITEM, Hannover
+        </Value>
+      </DescMultilingualEntries>
+      <System>false</System>
+    </ConsentType>
+    <ConsentType>
+      <Code>Broad_Consent</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Broad Consent</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Broad Consent</Value>
+      </NameMultilingualEntries>
+      <System>false</System>
+    </ConsentType>
+  </CatalogueData>
+</CentraXXDataExchange>
