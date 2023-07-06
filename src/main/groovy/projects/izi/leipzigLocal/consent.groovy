@@ -1,4 +1,4 @@
-package projects.izi.frankfurt
+package projects.izi.leipzigLocal
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainer
@@ -19,12 +19,15 @@ consent {
 
   final Map<String, String> localToCentralType = [
       //Frankfurt ITMP => Leipzig IZI Central
-      "PATIENTCOSENTV2.4"  : "Broad_Consent",
-      "PATIENTCONSENT2.5"  : "Broad_Consent",
-      "CIMD_CONSENT"       : "CIMD_Consent",
-      // Hannover HUB => Leipzig IZI Central
-      "ConsentDefaultStudy": "Study_Consent",
-      "ConsentCIMD"        : "CIMD_Consent"]
+      "CIMD EINWILLIGUNG"  : "CIMD_Consent",
+      "BB_EINWILLIGUNG"    : "Broad_Consent",
+      "ACC_ EINWILLIGUNG"  : "Study_Consent",
+      "SIL_EINWILLIGUNG"   : "Study_Consent",
+      "AG_EINWILLIGUNG"    : "Study_Consent",
+      "ORG_EINWILLIGUNG"   : "Study_Consent",
+      // Hannover HUB => Leipzig IZI Central (Broad_Consent is the default for all other local consent types.)
+      "ConsentCIMD"        : "CIMD_Consent",
+      "ConsentDefaultStudy": "Study_Consent"]
 
   final String localConsentTypeCode = context.source[consent().consentType().code()]
   final String centralConsentTypeCode = localToCentralType.get(localConsentTypeCode);
