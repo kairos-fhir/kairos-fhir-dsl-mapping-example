@@ -1,4 +1,4 @@
-package projects.izi.frankfurt
+package projects.izi.hannover
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainer
