@@ -19,15 +19,18 @@ consent {
 
   final Map<String, String> localToCentralType = [
       //Frankfurt ITMP => Leipzig IZI Central
-      "CIMD EINWILLIGUNG"  : "CIMD_Consent",
-      "BB_EINWILLIGUNG"    : "Broad_Consent",
-      "ACC_ EINWILLIGUNG"  : "Study_Consent",
-      "SIL_EINWILLIGUNG"   : "Study_Consent",
-      "AG_EINWILLIGUNG"    : "Study_Consent",
-      "ORG_EINWILLIGUNG"   : "Study_Consent",
+      "CIMD EINWILLIGUNG"      : "CIMD_Consent",
+      "BB_EINWILLIGUNG"        : "Broad_Consent",
+      "ACC_ EINWILLIGUNG"      : "Study_Consent", // the space is intended!
+      "SIL_EINWILLIGUNG"       : "Study_Consent",
+      "AG_EINWILLIGUNG"        : "Study_Consent",
+      "ORG_EINWILLIGUNG"       : "Study_Consent",
       // Hannover HUB => Leipzig IZI Central (Broad_Consent is the default for all other local consent types.)
-      "ConsentCIMD"        : "CIMD_Consent",
-      "ConsentDefaultStudy": "Study_Consent"]
+      "ConsentCIMD"            : "CIMD_Consent", // same for IZI local
+      "ConsentDefaultStudy"    : "Study_Consent",
+      //Leipzig IZI Local => Leipzig IZI Central
+      "BC"                     : "Broad_Consent",
+      "ABGESTUFTE_EINWILLIGUNG": "Study_Consent"]
 
   final String localConsentTypeCode = context.source[consent().consentType().code()]
   final String centralConsentTypeCode = localToCentralType.getOrDefault(localConsentTypeCode, "Broad_Consent");
