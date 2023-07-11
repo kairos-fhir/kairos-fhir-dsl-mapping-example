@@ -18,7 +18,7 @@ condition {
   }
 
   encounter {
-    reference = "Encounter" + context.source[diagnosis().episode().id()]
+    reference = "Encounter/" + context.source[diagnosis().episode().id()]
   }
 
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
