@@ -41,12 +41,6 @@ observation {
     reference = "Patient/" + context.source[metastasis().patientContainer().id()]
   }
 
-  if (context.source[metastasis().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[metastasis().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[metastasis().date()] as String)
   }

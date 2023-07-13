@@ -31,12 +31,6 @@ procedure {
     reference = "Patient/" + context.source[radiationTherapy().patientContainer().id()]
   }
 
-  if (context.source[radiationTherapy().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[radiationTherapy().episode().id()]
-    }
-  }
-
   performedPeriod {
     start {
       date = context.source[radiationTherapy().therapyStart()]

@@ -33,12 +33,6 @@ procedure {
     reference = "Patient/" + context.source[surgery().patientContainer().id()]
   }
 
-  if (context.source[surgery().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[surgery().episode().id()]
-    }
-  }
-
   performedDateTime {
     if (context.source[surgery().therapyStart()]) {
       date = context.source[surgery().therapyStart()]

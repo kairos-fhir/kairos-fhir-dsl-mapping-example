@@ -46,12 +46,6 @@ observation {
     reference = "Patient/" + context.source[tnm().patientContainer().id()]
   }
 
-  if (context.source[tnm().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[tnm().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[tnm().date()] as String)
   }

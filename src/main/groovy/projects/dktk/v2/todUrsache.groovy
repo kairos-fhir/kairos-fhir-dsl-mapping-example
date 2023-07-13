@@ -44,12 +44,6 @@ observation {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
-  if (context.source[diagnosis().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[diagnosis().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = context.source[diagnosis().diagnosisDate().date()]
     precision = TemporalPrecisionEnum.DAY.name()

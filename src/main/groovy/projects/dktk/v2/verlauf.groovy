@@ -31,12 +31,6 @@ clinicalImpression {
     reference = "Patient/" + context.source[progress().patientContainer().id()]
   }
 
-  if (context.source[progress().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[progress().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[progress().examinationDate()] as String)
   }

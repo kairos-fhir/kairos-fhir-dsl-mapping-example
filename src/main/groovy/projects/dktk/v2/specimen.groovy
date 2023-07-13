@@ -92,12 +92,6 @@ specimen {
     reference = "Patient/" + context.source[abstractSample().patientContainer().id()]
   }
 
-  if (context.source[abstractSample().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[abstractSample().episode().id()]
-    }
-  }
-
   receivedTime {
     date = normalizeDate(context.source[abstractSample().samplingDate().date()] as String)
   }

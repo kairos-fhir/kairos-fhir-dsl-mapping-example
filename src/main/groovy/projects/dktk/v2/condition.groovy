@@ -22,12 +22,6 @@ condition {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
-  if (context.source[diagnosis().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[diagnosis().episode().id()]
-    }
-  }
-
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {

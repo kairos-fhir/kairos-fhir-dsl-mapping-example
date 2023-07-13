@@ -47,12 +47,6 @@ medicationStatement {
     reference = "Patient/" + context.source[systemTherapy().patientContainer().id()]
   }
 
-  if (context.source[systemTherapy().episode()]) {
-    context_ {
-      reference = "Encounter/" + context.source[systemTherapy().episode().id()]
-    }
-  }
-
   effectivePeriod {
     start {
       date = context.source[systemTherapy().therapyStart()]

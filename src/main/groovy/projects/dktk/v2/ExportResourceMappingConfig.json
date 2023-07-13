@@ -12,11 +12,6 @@
       "exportToFhirResource": "Patient"
     },
     {
-      "selectFromCxxEntity": "EPISODE",
-      "transformByTemplate": "fall",
-      "exportToFhirResource": "Encounter"
-    },
-    {
       "selectFromCxxEntity": "SAMPLE",
       "transformByTemplate": "specimen",
       "exportToFhirResource": "Specimen"

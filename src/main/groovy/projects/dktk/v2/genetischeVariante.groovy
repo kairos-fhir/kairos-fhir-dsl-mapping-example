@@ -63,12 +63,6 @@ observation {
     }
   }
 
-  if (context.source[laborMapping().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[laborMapping().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
@@ -133,7 +127,6 @@ static String getFocusReference(final LaborMappingType mappingType, final String
   if (LaborMappingType.PATIENTLABORMAPPING == mappingType) return "Patient/" + relatedOid
   else if (LaborMappingType.SAMPLELABORMAPPING == mappingType) return "Specimen/" + relatedOid
   else if (LaborMappingType.DIAGNOSIS == mappingType) return "Condition/" + relatedOid
-  else if (LaborMappingType.EPISODE == mappingType) return "Encounter/" + relatedOid
   else return null;
 }
 
