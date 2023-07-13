@@ -14,6 +14,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  *
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
+ *
+ * Hints:
+ *  * CCP-IT 2023-07-13: Always export aliquots with parent references
+ *
  */
 specimen {
 
@@ -24,7 +28,7 @@ specimen {
   }
 
   meta {
-      profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-OncoSpecimen"
+    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Specimen-OncoSpecimen"
   }
 
   if (idc) {
@@ -38,13 +42,13 @@ specimen {
       }
       system = "http://dktk.dkfz.de/fhir/sid/exliquid-specimen"
     }
+  }
 
-    status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
+  status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
-    if (context.source[PARENT] != null) {
-      parent {
-        reference = "Specimen/" + context.source[sample().parent().id()]
-      }
+  if (context.source[PARENT] != null) {
+    parent {
+      reference = "Specimen/" + context.source[sample().parent().id()]
     }
   }
 
