@@ -5,6 +5,7 @@ DKTK Oncology Mappings*
 
 * Profile definitions: https://simplifier.net/oncology
 * Mappings can be used to export to a samply blaze store: https://github.com/samply/blaze
+* The changelog can be found here: [CHANGELOG.md](CHANGELOG.md).
 
 ---
 *With the kind support from  [CCP IT working group of DKTK/DKFZ](https://dktk.dkfz.de/en/clinical-platform/working-groups-partners/ccp-it).
