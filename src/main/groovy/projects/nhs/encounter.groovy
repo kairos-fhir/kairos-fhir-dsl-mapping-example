@@ -2,7 +2,9 @@ package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
+import org.hl7.fhir.r4.model.Reference
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
@@ -85,6 +87,12 @@ encounter {
   if (context.source[episode().habitation()]) {
     serviceProvider {
       reference = "Organization/" + context.source[episode().habitation().id()]
+    }
+  }
+
+  context.source[episode().patientTransfers()].each { final pt->
+    location {
+      setLocation(new Reference("Location/PT-" + pt[PatientTransfer.ID]))
     }
   }
 }

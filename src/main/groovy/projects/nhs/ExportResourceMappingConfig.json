@@ -60,6 +60,11 @@
       "selectFromCxxEntity": "PROGRESS",
       "transformByTemplate": "progress",
       "exportToFhirResource": "ClinicalImpression"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_TRANSFER",
+      "transformByTemplate": "location",
+      "exportToFhirResource": "Location"
     }
   ]
 }
