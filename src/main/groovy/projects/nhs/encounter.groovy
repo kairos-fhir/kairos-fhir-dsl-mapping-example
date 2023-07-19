@@ -4,7 +4,6 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
-import org.hl7.fhir.r4.model.Reference
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
@@ -90,9 +89,11 @@ encounter {
     }
   }
 
-  context.source[episode().patientTransfers()].each { final pt->
+  for (final pt in context.source[episode().patientTransfers()]) {
     location {
-      setLocation(new Reference("Location/PT-" + pt[PatientTransfer.ID]))
+      location {
+        reference = "Location/PT-" + pt[PatientTransfer.ID]
+      }
     }
   }
 }

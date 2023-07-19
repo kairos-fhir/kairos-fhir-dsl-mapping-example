@@ -1,6 +1,7 @@
 package projects.nhs
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientTransfer
 
@@ -19,6 +20,8 @@ location {
       code = "PATIENT_TRANSFER"
     }
   }
+
+  name = createName(context.source)
 
   if (context.source[patientTransfer().habitation()]) {
     managingOrganization {
@@ -52,22 +55,30 @@ location {
         }
       }
     }
-
-    if (context.source[patientTransfer().bed()]) {
-      extension {
-        url = FhirUrls.Extension.PatientTransfer.Location.BED
-        valueCoding {
-          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().bed().catalog().id()]
-          code = context.source[patientTransfer().bed().code()]
-        }
-      }
-    }
     if (context.source[patientTransfer().floor()]) {
       extension {
         url = FhirUrls.Extension.PatientTransfer.Location.FLOOR
         valueCoding {
           system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().floor().catalog().id()]
           code = context.source[patientTransfer().floor().code()]
+        }
+      }
+    }
+    if (context.source[patientTransfer().room()]) {
+      extension {
+        url = FhirUrls.Extension.PatientTransfer.Location.ROOM
+        valueCoding {
+          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().room().catalog().id()]
+          code = context.source[patientTransfer().room().code()]
+        }
+      }
+    }
+    if (context.source[patientTransfer().bed()]) {
+      extension {
+        url = FhirUrls.Extension.PatientTransfer.Location.BED
+        valueCoding {
+          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().bed().catalog().id()]
+          code = context.source[patientTransfer().bed().code()]
         }
       }
     }
@@ -82,15 +93,6 @@ location {
         }
       }
     }
-    if (context.source[patientTransfer().priorBed()]) {
-      extension {
-        url = FhirUrls.Extension.PatientTransfer.Location.BED
-        valueCoding {
-          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().priorBed().catalog().id()]
-          code = context.source[patientTransfer().priorBed().code()]
-        }
-      }
-    }
     if (context.source[patientTransfer().priorFloor()]) {
       extension {
         url = FhirUrls.Extension.PatientTransfer.Location.FLOOR
@@ -100,6 +102,35 @@ location {
         }
       }
     }
+    if (context.source[patientTransfer().priorRoom()]) {
+      extension {
+        url = FhirUrls.Extension.PatientTransfer.Location.ROOM
+        valueCoding {
+          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().priorRoom().catalog().id()]
+          code = context.source[patientTransfer().priorRoom().code()]
+        }
+      }
+    }
+    if (context.source[patientTransfer().priorBed()]) {
+      extension {
+        url = FhirUrls.Extension.PatientTransfer.Location.BED
+        valueCoding {
+          system = "urn:centraxx:CodeSystem/Catalog-" + context.source[patientTransfer().priorBed().catalog().id()]
+          code = context.source[patientTransfer().priorBed().code()]
+        }
+      }
+    }
   }
 }
 
+static String createName(final Fhir4Source contextSource) {
+  return ["Habitation": contextSource[patientTransfer().habitation().code()]
+          , "Floor"   : contextSource[patientTransfer().floor().code()]
+          , "Room"    : contextSource[patientTransfer().room().code()]
+          , "Bed"     : contextSource[patientTransfer().bed().code()]]
+      .entrySet().stream()
+      .filter { it.value != null }
+      .map { it.key + ":" + it.value }
+      .collect()
+      .join("=>")
+}
