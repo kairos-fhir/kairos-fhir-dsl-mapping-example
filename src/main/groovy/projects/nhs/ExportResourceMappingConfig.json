@@ -65,6 +65,11 @@
       "selectFromCxxEntity": "PATIENT_TRANSFER",
       "transformByTemplate": "location",
       "exportToFhirResource": "Location"
+    },
+    {
+      "selectFromCxxEntity": "CALENDAR_EVENT",
+      "transformByTemplate": "appointment",
+      "exportToFhirResource": "Appointment"
     }
   ]
 }
