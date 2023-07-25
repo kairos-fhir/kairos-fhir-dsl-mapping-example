@@ -174,6 +174,31 @@ specimen {
     }
   }
 
+  // Sample Location
+  if (context.source[sample().sampleLocation()]) {
+    extension {
+      url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
+      extension {
+        url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
+        valueString = context.source[sample().sampleLocation().locationPath()]
+      }
+      final Integer xPos = context.source[sample().xPosition()] as Integer
+      if (xPos) { // necessary, because groovy interprets 0 to false
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/xPosition"
+          valueInteger = xPos
+        }
+      }
+      final Integer yPos = context.source[sample().yPosition()] as Integer
+      if (yPos) {
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/yPosition"
+          valueInteger = yPos
+        }
+      }
+    }
+  }
+
   // SPREC Extensions
   extension {
     url = FhirUrls.Extension.SPREC
@@ -322,31 +347,6 @@ specimen {
         extension {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING_DATE
           valueDateTime = context.source[sample().secondProcessingDate().date()]
-        }
-      }
-    }
-
-    // Sample Location
-    if (context.source[sample().sampleLocation()]) {
-      extension {
-        url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
-        extension {
-          url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
-          valueString = context.source[sample().sampleLocation().locationPath()]
-        }
-        final Integer xPos = context.source[sample().xPosition()] as Integer
-        if (xPos) { // necessary, because groovy interprets 0 to false
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/xPosition"
-            valueInteger = xPos
-          }
-        }
-        final Integer yPos = context.source[sample().yPosition()] as Integer
-        if (yPos) {
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/yPosition"
-            valueInteger = yPos
-          }
         }
       }
     }
