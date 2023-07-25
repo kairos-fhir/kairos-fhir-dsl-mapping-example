@@ -174,6 +174,17 @@ specimen {
     }
   }
 
+  if (context.source[sample().organisationUnit()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+      valueReference {
+        identifier {
+          value = context.source[sample().organisationUnit().code()] as String
+        }
+      }
+    }
+  }
+
   // Sample Location
   if (context.source[sample().sampleLocation()]) {
     extension {

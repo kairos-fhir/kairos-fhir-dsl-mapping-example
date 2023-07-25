@@ -198,6 +198,17 @@ specimen {
     }
   }
 
+  if (context.source[sample().organisationUnit()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+      valueReference {
+        identifier {
+          value = context.source[sample().organisationUnit().code()] as String
+        }
+      }
+    }
+  }
+
   // SPREC Extensions
   extension {
     url = FhirUrls.Extension.SPREC
