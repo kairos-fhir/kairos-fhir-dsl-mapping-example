@@ -40,7 +40,7 @@ patient {
   if (context.source[patientMasterDataAnonymous().birthdate()]) {
     birthDate {
       date = context.source[patientMasterDataAnonymous().birthdate().date()]
-      precision = TemporalPrecisionEnum.YEAR.name()
+      precision = TemporalPrecisionEnum.MONTH.name()
     }
   }
 
