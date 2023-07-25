@@ -30,6 +30,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.USE_SPREC
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME_DATE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX AbstractSample
  * @author Mike Wähnert
@@ -159,6 +160,16 @@ specimen {
     extension {
       url = FhirUrls.Extension.Sample.DERIVAL_DATE
       valueDateTime = context.source[sample().derivalDate().date()]
+    }
+  }
+
+  if (context.source[sample().concentration()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.CONCENTRATION
+      valueQuantity {
+        value = context.source[sample().concentration().amount()]
+        unit = context.source[sample().concentration().unit()]
+      }
     }
   }
 

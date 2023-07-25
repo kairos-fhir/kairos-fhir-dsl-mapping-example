@@ -164,6 +164,16 @@ specimen {
     }
   }
 
+  if (context.source[sample().concentration()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.CONCENTRATION
+      valueQuantity {
+        value = context.source[sample().concentration().amount()]
+        unit = context.source[sample().concentration().unit()]
+      }
+    }
+  }
+
   // SPREC Extensions
   extension {
     url = FhirUrls.Extension.SPREC
