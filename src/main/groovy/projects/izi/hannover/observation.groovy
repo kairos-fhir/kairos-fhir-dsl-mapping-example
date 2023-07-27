@@ -37,7 +37,7 @@ observation {
     return
   }
 
-  id = "Observation/" + context.source[laborMapping().laborFinding().id()]
+  id = "Observation/" + context.source[laborMapping().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
 
