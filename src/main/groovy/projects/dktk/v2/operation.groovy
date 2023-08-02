@@ -35,9 +35,9 @@ procedure {
 
   performedDateTime {
     if (context.source[surgery().therapyStart()]) {
-      date = context.source[surgery().therapyStart()]
+      date = normalizeDate(context.source[surgery().therapyStart()] as String)
     } else if (context.source[surgery().therapyEnd()]) {
-      date = context.source[surgery().therapyEnd()]
+      date = normalizeDate(context.source[surgery().therapyEnd()] as String)
     }
     precision = TemporalPrecisionEnum.DAY.name()
   }
@@ -64,5 +64,14 @@ procedure {
       }
     }
   }
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 

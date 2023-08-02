@@ -64,7 +64,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
@@ -110,7 +110,7 @@ observation {
         }
       } else if (laborValueCode == "CCP_MOLECULAR_MARKER_DATE") {
         valueDateTime {
-          date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
+          date = normalizeDate(lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE) as String)
         }
       } else { // other component are strings
         valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
@@ -138,4 +138,13 @@ static String getLoincCode(final String laborValueCode) {
   else if (laborValueCode.equalsIgnoreCase("RefSeq-NCBI")) return "81248-7"
   else if (laborValueCode.equalsIgnoreCase("Ensembl-ID")) return "81249-5"
   else return null
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

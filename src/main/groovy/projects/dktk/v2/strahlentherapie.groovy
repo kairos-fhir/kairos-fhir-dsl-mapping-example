@@ -5,6 +5,7 @@ import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
+
 /**
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
@@ -33,11 +34,11 @@ procedure {
 
   performedPeriod {
     start {
-      date = context.source[radiationTherapy().therapyStart()]
+      date = normalizeDate(context.source[radiationTherapy().therapyStart()] as String)
       precision = TemporalPrecisionEnum.DAY.name()
     }
     end {
-      date = context.source[radiationTherapy().therapyEnd()]
+      date = normalizeDate(context.source[radiationTherapy().therapyEnd()] as String)
       precision = TemporalPrecisionEnum.DAY.name()
     }
   }
@@ -57,4 +58,13 @@ procedure {
       }
     }
   }
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

@@ -5,7 +5,6 @@ import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.systemTherapy
-
 /**
  * Represented by a CXX SystemTherapy
  * Specified by https://simplifier.net/oncology/systemtherapie
@@ -49,11 +48,11 @@ medicationStatement {
 
   effectivePeriod {
     start {
-      date = context.source[systemTherapy().therapyStart()]
+      date = normalizeDate(context.source[systemTherapy().therapyStart()] as String)
       precision = TemporalPrecisionEnum.DAY.name()
     }
     end {
-      date = context.source[systemTherapy().therapyEnd()]
+      date = normalizeDate(context.source[systemTherapy().therapyEnd()] as String)
       precision = TemporalPrecisionEnum.DAY.name()
     }
   }
@@ -128,4 +127,13 @@ static String findCategoryByProtocolCode(final String protocolCode) {
 
 static boolean containsIgnoreCase(final List<String> codeList, final String codeToCheck) {
   return codeList.stream().anyMatch({ it.equalsIgnoreCase(codeToCheck) })
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

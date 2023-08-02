@@ -45,7 +45,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = context.source[diagnosis().diagnosisDate().date()]
+    date = normalizeDate(context.source[diagnosis().diagnosisDate().date()] as String)
     precision = TemporalPrecisionEnum.DAY.name()
   }
 
@@ -73,4 +73,13 @@ observation {
 static void isTumorDiagnosis(final String icd10Code) {
   ["C", "D0", "D32", "D33", "D35.2", "D35.3", "D35.4", "D37", "D38", "D39",
    "D40", "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48"].stream().anyMatch { final codePrefix -> icd10Code.startsWith(codePrefix) }
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

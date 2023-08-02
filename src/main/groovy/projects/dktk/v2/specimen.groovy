@@ -1,5 +1,6 @@
 package projects.dktk.v2
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
@@ -94,12 +95,13 @@ specimen {
 
   receivedTime {
     date = normalizeDate(context.source[abstractSample().samplingDate().date()] as String)
+    precision = TemporalPrecisionEnum.DAY.name()
   }
 
   final def ucum = context.conceptMaps.builtin("centraxx_ucum")
   collection {
     collectedDateTime {
-      date = context.source[abstractSample().samplingDate().date()]
+      date = normalizeDate(context.source[abstractSample().samplingDate().date()] as String)
       quantity {
         value = context.source[abstractSample().initialAmount().amount()] as Number
         unit = ucum.translate(context.source[abstractSample().initialAmount().unit()] as String)?.code
@@ -303,6 +305,11 @@ static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {
           "derivative-other"].stream().anyMatch({ it.equalsIgnoreCase(sampleTypeCode) })
 }
 
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
