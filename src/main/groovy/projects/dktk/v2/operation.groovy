@@ -59,7 +59,7 @@ procedure {
     if (context.source[surgery().rClassificationLocalDict().code()]) {
       coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/LokaleBeurteilungResidualstatusCS"
-        version = context.source[surgery().rClassificationLocalDict()]
+        version = context.source[surgery().rClassificationLocalDict().version()]
         code = context.source[surgery().rClassificationLocalDict().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
       }
     }
