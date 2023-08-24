@@ -8,6 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX PatientMasterDataAnonymous
@@ -47,12 +48,19 @@ patient {
   deceasedDateTime = "UNKNOWN" != context.source[patientMasterDataAnonymous().dateOfDeath().precision()] ?
       context.source[patientMasterDataAnonymous().dateOfDeath().date()] : null
 
+  // 1. Labeled with a static OrgUnit
   generalPractitioner {
     identifier {
       value = "FRANKFURT"
     }
   }
 
+  // 2. Labeled with a all documented OrgUnits
+  generalPractitioner {
+    identifier {
+      value = context.source[sample().organisationUnit().code()] as String
+    }
+  }
 }
 
 static def mapGender(final GenderType genderType) {

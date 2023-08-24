@@ -203,7 +203,7 @@ specimen {
       url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
       valueReference {
         identifier {
-          value = context.source[sample().organisationUnit().code()] as String
+          value = "Hannover"
         }
       }
     }
