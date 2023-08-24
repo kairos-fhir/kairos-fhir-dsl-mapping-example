@@ -16,12 +16,13 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
-    <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <kairos-fhir-dsl.version>1.24.0</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.8.2</junit-jupiter.version>
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <gmavenplus-plugin.version>1.9.0</gmavenplus-plugin.version>
     <findbugs.version>3.0.2</findbugs.version>
+    <slf4j-simple.version>2.0.7</slf4j-simple.version>
   </properties>
 
   <scm>
@@ -48,6 +49,15 @@
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
       <version>${findbugs.version}</version>
+    </dependency>
+
+    <!-- Binding/provider for Simple implementation, which outputs all events to System.err. Only messages of level INFO and higher are printed.
+    This binding may be useful in the context of small applications. -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4j-simple.version}</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
