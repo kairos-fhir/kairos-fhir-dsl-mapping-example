@@ -80,6 +80,11 @@
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
       "exportToFhirResource": "MedicationAdministration"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }
