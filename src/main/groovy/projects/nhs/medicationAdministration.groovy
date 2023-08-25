@@ -1,10 +1,10 @@
 package projects.nhs
 
+import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
-import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
+import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
-import org.hl7.fhir.r4.model.MedicationRequest
+import org.hl7.fhir.r4.model.MedicationAdministration
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
@@ -14,19 +14,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * @author Mike Wähnert
  * @since v.1.25.0, CXX.v.2023.3.6
  */
-medicationRequest {
+medicationAdministration {
 
-  if (context.source[medication().serviceType()] != MedicationServiceType.VER.name()) {
+  if (context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
     return
   }
 
-  id = "MedicationRequest/" + context.source[medication().id()]
+  id = "MedicationAdministration/" + context.source[medication().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
-  }
-
-  status = MedicationRequest.MedicationRequestStatus.COMPLETED
+  status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
 
   subject {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
@@ -65,100 +61,25 @@ medicationRequest {
     }
   }
 
-  authoredOn {
-    date = context.source[medication().transcriptionDate()]
+  effectivePeriod {
+    start {
+      date = normalizeDate(context.source[medication().observationBegin().date()] as String)
+      final def beginPrecision = context.source[medication().observationBegin().precision()]
+      if (beginPrecision != null && beginPrecision != DatePrecision.UNKNOWN.name()) {
+        precision = convertPrecision(beginPrecision as String)
+      }
+    }
+    end {
+      date = normalizeDate(context.source[medication().observationEnd().date()] as String)
+      final def endPrecision = context.source[medication().observationEnd().precision()]
+      if (endPrecision != null && endPrecision != DatePrecision.UNKNOWN.name()) {
+        precision = convertPrecision(endPrecision as String)
+      }
+    }
   }
 
-  requester {
-    display = context.source[medication().prescribedBy()]
-  }
-
-  dosageInstruction {
+  dosage {
     text = context.source[medication().dosisSchema()] as String
-    additionalInstruction {
-      text = context.source[medication().ordinanceReleaseForm()] as String
-    }
-
-    // is dose
-    if (context.source[medication().isDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.IS.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().isDose()]
-        }
-      }
-    }
-
-    // target dose
-    if (context.source[medication().trgDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.TRG.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().trgDose()]
-        }
-      }
-    }
-
-    //deviation dose
-    if (context.source[medication().deviationDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.DEV.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().deviationDose()]
-        }
-      }
-    }
-
-    if (context.source[medication().dosis()] != null || context.source[medication().quantity()] != null) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.PRESCRIPTION.name()
-          }
-        }
-
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().dosis()]
-        }
-
-        doseQuantity {
-          value = sanitizeScale(context.source[medication().dosis()] as String)
-          unit = context.source[medication().unit().code()]
-        }
-
-        rateQuantity {
-          value = sanitizeScale(context.source[medication().quantity()] as String)
-        }
-      }
-    }
-
-    timing {
-      event {
-        date = context.source[medication().trgDate()]
-      }
-    }
-
-    asNeededBoolean = createAsNeededFromType(context.source[medication().resultStatus()] as String)
 
     route {
       coding {
@@ -172,6 +93,15 @@ medicationRequest {
         system = FhirUrls.System.Medication.APPLICATION_MEDIUM
         code = context.source[medication().applicationMedium()]
       }
+    }
+
+    dose {
+      value = sanitizeScale(context.source[medication().dosis()] as String)
+      unit = context.source[medication().unit().code()]
+    }
+
+    rateQuantity {
+      value = sanitizeScale(context.source[medication().quantity()] as String)
     }
   }
 
@@ -239,13 +169,26 @@ medicationRequest {
   }
 }
 
-static Boolean createAsNeededFromType(final String resultStatus) {
-  if (MedicationKind.BM.name() == resultStatus) {
-    return true;
-  } else if (MedicationKind.EM.name() == resultStatus) {
-    return false;
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static String convertPrecision(final String cxxPrecision) {
+  if (DatePrecision.EXACT.name() == cxxPrecision) {
+    return TemporalPrecisionEnum.MILLI.name()
+  } else if (DatePrecision.DAY.name() == cxxPrecision) {
+    return TemporalPrecisionEnum.DAY.name()
+  } else if (DatePrecision.MONTH.name() == cxxPrecision) {
+    return TemporalPrecisionEnum.MONTH.name()
+  } else if (DatePrecision.YEAR.name() == cxxPrecision) {
+    return TemporalPrecisionEnum.YEAR.name()
   } else {
-    return null
+    return DatePrecision.DAY
   }
 }
 
