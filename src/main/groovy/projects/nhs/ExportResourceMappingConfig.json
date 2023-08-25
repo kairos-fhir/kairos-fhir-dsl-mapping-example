@@ -70,6 +70,16 @@
       "selectFromCxxEntity": "CALENDAR_EVENT",
       "transformByTemplate": "appointment",
       "exportToFhirResource": "Appointment"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }
