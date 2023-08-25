@@ -22,10 +22,6 @@ medicationRequest {
 
   id = "MedicationRequest/" + context.source[medication().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest"
-  }
-
   status = MedicationRequest.MedicationRequestStatus.COMPLETED
 
   subject {
