@@ -6,6 +6,8 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
+import org.hl7.fhir.r4.model.CodeableConcept
+import org.slf4j.ILoggerFactory
 
 import java.text.SimpleDateFormat
 
@@ -33,13 +35,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 specimen {
     // 0. Filter patients
-//    final def patientList = ["lims_670161596"] //["lims_643282707", "lims_745748710"]
+//    final def patientList = ["lims_911069062"] //["lims_643282707", "lims_745748710"]
 //    final def currentPatientId = context.source[sample().patientContainer().idContainer()]?.find {
 //        "NAPKON" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
 //    }
 //    final boolean belongsToIncludedPatient = patientList.contains(currentPatientId[IdContainer.PSN])
 //
 //    if (!belongsToIncludedPatient) {
+//		System.out.println("Ignored patient: " + currentPatientId[IdContainer.PSN])
 //        return
 //    }
 
@@ -71,7 +74,10 @@ specimen {
     }
 
     // 3. Filter Existing Storage Location assigned
-    final Boolean sampleExists = ("swisslabProben" != context.source[sample().sampleLocation().locationId()])
+//    if ("swisslabProben" == context.source[sample().sampleLocation().locationId()]) {
+//        return
+//    }
+    Boolean sampleExists = ("swisslabProben" != context.source[sample().sampleLocation().locationId()])
 
     // 4. Filter samples that are still existing and have not been retrieved (no sampleAbstraction)
     // TODO: Modify to check for existing sampleAbstraction as soon as available in a future CXX release
@@ -106,8 +112,11 @@ specimen {
 //    } else if (category == SampleCategory.DERIVED) {
 //        receptionDate = context.source[sample().parent().parent().receiptDate().date()]
 //    }
-//    if (receptionDate != null && receptionDate < "2022-03-01T23:59:59+01:00") {
-////        System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
+//    
+//	//System.out.println("receptionDate for " + category + " sample " + context.source[sample().id()] + ": " + receptionDate)
+//
+//    if (receptionDate == null || receptionDate < "2023-01-01T00:00:00.000+01:00") {
+//        //System.out.println("sample ignored")
 //        return
 //    }
 
@@ -139,7 +148,7 @@ specimen {
     } as Map<String, Object>
 
     // 7: cross-mapping of the ids of MASTER samples. The sample id of the ibdw is provided as external sampled id to NUM.
-    // The external sample id (NAPKONSMP) of ibdw is provided as sample id to NUM.
+    // The external sample id of ibdw is provided as sample id to NUM.
     if (context.source[sample().sampleCategory()] as SampleCategory == SampleCategory.MASTER) {
         idContainersMap.each { final String idContainerCode, final Object idContainer ->
             if (idContainer) {
@@ -350,6 +359,10 @@ specimen {
             }
             system = "urn:centraxx"
         }
+    }
+
+    note {
+        text = context.source[sample().note()]
     }
 
     extension {
