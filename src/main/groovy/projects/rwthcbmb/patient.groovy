@@ -14,14 +14,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
-  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
+  final def idContainer = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
+    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
+  }
+
+  id = "Patient/" + idContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
 
   meta {
     profile "https://fhir.bbmri.de/StructureDefinition/Patient"
-  }
-
-  final def idContainer = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
-    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (idContainer) {

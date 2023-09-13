@@ -1,5 +1,10 @@
 package projects.rwthcbmb
 
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Diagnosis
  * Specified by https://simplifier.net/bbmri.de/condition
@@ -9,14 +14,18 @@ package projects.rwthcbmb
  */
 condition {
 
-  id = "Condition/" + context.source["id"]
+  id = "Condition/" + context.source[diagnosis().id()]
 
   meta {
     profile "https://fhir.bbmri.de/StructureDefinition/Condition"
   }
 
+  final def idContainer = context.source[diagnosis().patientContainer().idContainer()]?.find {
+    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
+  }
+
   subject {
-    reference = "Patient/" + context.source["patientcontainer.id"]
+    reference = "Patient/" + idContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   final def diagnosisId = context.source["diagnosisId"]

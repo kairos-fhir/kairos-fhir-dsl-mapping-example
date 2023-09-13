@@ -3,6 +3,7 @@ package projects.rwthcbmb
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
@@ -23,14 +24,14 @@ specimen {
     return  // all not master are filtered.
   }
 
-  id = "Specimen/" + context.source[abstractSample().id()]
+  final def idc = context.source[sample().idContainer()].find {
+    "Lab-ID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  id = "Specimen/" + idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
 
   meta {
     profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
-  }
-
-  final def idc = context.source[sample().idContainer()].find {
-    "EXLIQUID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
 
   if (idc) {
@@ -84,15 +85,20 @@ specimen {
     }
   }
 
-  subject {
-    reference = "Patient/" + context.source[abstractSample().patientContainer().id()]
+  final def idContainer = context.source[abstractSample().patientContainer().idContainer()]?.find {
+    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
-  if (context.source[abstractSample().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[abstractSample().episode().id()]
-    }
+  subject {
+    reference = "Patient/" + idContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
+
+  // disabled on 2023-09-13 because not needed yet
+//  if (context.source[abstractSample().episode()]) {
+//    encounter {
+//      reference = "Encounter/" + context.source[abstractSample().episode().id()]
+//    }
+//  }
 
   receivedTime {
     date = normalizeDate(context.source[abstractSample().samplingDate().date()] as String)
@@ -135,7 +141,7 @@ specimen {
     extension {
       url = "https://fhir.bbmri.de/StructureDefinition/Custodian"
       valueReference {
-        reference = "Organization/" + context.source[abstractSample().organisationUnit().id()]
+        reference = "Organization/" + context.source[abstractSample().organisationUnit().code()]
       }
     }
   }
