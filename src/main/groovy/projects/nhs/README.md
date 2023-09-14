@@ -3,7 +3,17 @@
 CXX to CXX Sync Mappings
 ========================
 
-Mappings can be used to export data in CXX profiles, which has been imported before by CXX-NHS interfaces. 
-The following data sets are supported: 
+Mappings can be used to export data in CXX profiles, which has been imported before by CXX-NHS interfaces.
+The following data sets are supported:
+
 * [Cancer Outcomes and Services Data set (COSD)](https://digital.nhs.uk/ndrs/data/data-sets/cosd)
 * [Systemic Anti-Cancer Therapy (SACT) data set](https://digital.nhs.uk/ndrs/data/data-sets/sact)
+
+# Change log
+
+## 2023-09-14
+
+### added
+
+* User defined catalog entries for condition and procedures
+* Display description of procedure and condition entries. 

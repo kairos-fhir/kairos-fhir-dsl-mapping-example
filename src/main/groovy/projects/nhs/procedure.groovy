@@ -3,6 +3,8 @@ package projects.nhs
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.Procedure
 
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 /**
  * Represented by CXX MedProcedure
@@ -18,12 +20,23 @@ procedure {
         system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().opsEntry().catalogue().name()]
         version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
         code = context.source[medProcedure().opsEntry().code()] as String
+        display = context.source[medProcedure().opsEntry().preferredLong()] as String
+      }
+    }
+
+    if (context.source[medProcedure().userDefinedCatalogEntry()]) {
+      coding {
+        system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().userDefinedCatalogEntry().catalog().code()]
+        version = context.source[medProcedure().userDefinedCatalogEntry().catalog().version()]
+        code = context.source[medProcedure().userDefinedCatalogEntry().code()] as String
+        display = context.source[medProcedure().userDefinedCatalogEntry().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE)
       }
     }
 
     if (context.source[medProcedure().procedureCode()]) {
       coding {
         code = context.source[medProcedure().procedureCode()] as String
+        display = context.source[medProcedure().procedureText()] as String
       }
     }
   }
