@@ -79,6 +79,7 @@ observation {
           coding {
             system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
             code = idContainer[PSN] as String
+            display = idContainer[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
           }
         }
       }
@@ -104,12 +105,14 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
         }
@@ -119,12 +122,14 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
         }
@@ -134,12 +139,14 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
           lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
+              display = entry[IcdEntry.PREFERRED_LONG] as String
             }
           }
           // example for master data catalog entries of blood group
@@ -149,6 +156,7 @@ observation {
               coding {
                 system = FhirUrls.System.Patient.BloodGroup.BASE_URL
                 code = bloodGroup?.getAt(CODE) as String
+                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
               }
             }
 

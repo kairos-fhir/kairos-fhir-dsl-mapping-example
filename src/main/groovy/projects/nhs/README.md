@@ -16,4 +16,4 @@ The following data sets are supported:
 ### added
 
 * User defined catalog entries for condition and procedures
-* Display description of procedure and condition entries. 
+* Display description of procedure, condition and observation catalog entries. 
