@@ -22,7 +22,7 @@ clinicalImpression {
     reference = "Patient/" + context.source[progress().patientContainer().id()]
   }
 
-  if (context.source[progress().episode()]) {
+  if (context.source[progress().episode()] != null && !["SACT", "COSD"].contains(context.source[progress().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[progress().episode().id()]
     }

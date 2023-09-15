@@ -5,7 +5,6 @@ import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.annArbor
-
 /**
  * Represented by a CXX AnnArbor classification
  * @author Mike Wähnert
@@ -28,7 +27,7 @@ observation {
     reference = "Patient/" + context.source[annArbor().patientContainer().id()]
   }
 
-  if (context.source[annArbor().episode()]) {
+  if (context.source[annArbor().episode()] != null && !["SACT", "COSD"].contains(context.source[annArbor().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[annArbor().episode().id()]
     }

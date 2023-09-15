@@ -28,7 +28,7 @@ medicationAdministration {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  if (context.source[medication().episode()]) {
+  if (context.source[medication().episode()] != null && !["SACT", "COSD"].contains(context.source[medication().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[medication().episode().id()]
     }

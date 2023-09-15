@@ -5,6 +5,7 @@ import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 /**
  * Represented by a CXX Metastasis
@@ -35,7 +36,7 @@ observation {
     reference = "Patient/" + context.source[metastasis().patientContainer().id()]
   }
 
-  if (context.source[metastasis().episode()]) {
+  if (context.source[metastasis().episode()]!= null && !["SACT", "COSD"].contains(context.source[laborMapping().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[metastasis().episode().id()]
     }

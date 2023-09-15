@@ -6,6 +6,7 @@ import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
  * Represented by CXX MedProcedure
  */
@@ -43,7 +44,7 @@ procedure {
 
   if (context.source[medProcedure().procedureDate().date()]) {
     performedDateTime {
-      date  = context.source[medProcedure().procedureDate().date()]
+      date = context.source[medProcedure().procedureDate().date()]
       precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
@@ -59,7 +60,9 @@ procedure {
     reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
   }
 
-  encounter {
-    reference = "Encounter/" + context.source[medProcedure().episode().id()]
+  if (!["SACT", "COSD"].contains(context.source[medProcedure().episode().entitySource()])) {
+    encounter {
+      reference = "Encounter/" + context.source[medProcedure().episode().id()]
+    }
   }
 }

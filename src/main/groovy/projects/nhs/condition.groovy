@@ -18,8 +18,10 @@ condition {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
-  encounter {
-    reference = "Encounter/" + context.source[diagnosis().episode().id()]
+  if (!["SACT", "COSD"].contains(context.source[diagnosis().episode().entitySource()])) {
+    encounter {
+      reference = "Encounter/" + context.source[diagnosis().episode().id()]
+    }
   }
 
   final def diagnosisId = context.source[diagnosis().diagnosisId()]

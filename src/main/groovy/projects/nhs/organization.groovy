@@ -26,8 +26,6 @@ organization {
 
   active = true
 
-  name = context.source[organizationUnit().nameMultilingualEntries()].find { final def me ->
-    me[LANG] == "en"
-  }?.getAt(VALUE) as String
+  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
 
 }

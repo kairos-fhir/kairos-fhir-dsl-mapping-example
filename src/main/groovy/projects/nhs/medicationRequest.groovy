@@ -7,7 +7,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.hl7.fhir.r4.model.MedicationRequest
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
 /**
  * Represents a CXX Medication
  *
@@ -28,7 +27,7 @@ medicationRequest {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  if (context.source[medication().episode()]) {
+  if (context.source[medication().episode()] != null && !["SACT", "COSD"].contains(context.source[medication().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[medication().episode().id()]
     }

@@ -20,7 +20,7 @@ diagnosticReport {
   if (!isExportRelevant) {
     return
   }
-  
+
   id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
 
   identifier {
@@ -44,7 +44,7 @@ diagnosticReport {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  if (context.source[laborMapping().episode()]) {
+  if (context.source[laborMapping().episode()] != null && !["SACT", "COSD"].contains(context.source[laborMapping().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[laborMapping().episode().id()]
     }

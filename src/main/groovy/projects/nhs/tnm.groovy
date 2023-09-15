@@ -36,7 +36,7 @@ observation {
     reference = "Patient/" + context.source[tnm().patientContainer().id()]
   }
 
-  if (context.source[tnm().episode()]) {
+  if (context.source[tnm().episode()] && !["SACT", "COSD"].contains(context.source[tnm().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[tnm().episode().id()]
     }
@@ -64,7 +64,7 @@ observation {
     component {
       if (context.source[tnm().praefixTDict()]) {
         extension {
-          url ="https://fhir.centraxx.de/extension/tnm/tPraefix"
+          url = "https://fhir.centraxx.de/extension/tnm/tPraefix"
           valueCoding {
             system = "https://fhir.centraxx.de/system/tnm/tPraefix"
             code = context.source[tnm().praefixTDict().code()] as String

@@ -16,4 +16,5 @@ The following data sets are supported:
 ### added
 
 * User defined catalog entries for condition and procedures
-* Display description of procedure, condition and observation catalog entries. 
+* Display description of procedure, condition and observation catalog entries.
+* Encountes for SACT/COSD are suppressed.

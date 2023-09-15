@@ -27,7 +27,7 @@ observation {
     reference = "Patient/" + context.source[otherClassification().patientContainer().id()]
   }
 
-  if (context.source[otherClassification().episode()]) {
+  if (context.source[otherClassification().episode()] != null && !["SACT", "COSD"].contains(context.source[otherClassification().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[otherClassification().episode().id()]
     }

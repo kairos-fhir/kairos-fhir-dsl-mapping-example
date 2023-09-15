@@ -32,7 +32,7 @@ observation {
     reference = "Patient/" + context.source[histology().patientContainer().id()]
   }
 
-  if (context.source[histology().episode()]) {
+  if (context.source[histology().episode()] != null && !["SACT", "COSD"].contains(context.source[histology().episode().entitySource()])) {
     encounter {
       reference = "Encounter/" + context.source[histology().episode().id()]
     }
