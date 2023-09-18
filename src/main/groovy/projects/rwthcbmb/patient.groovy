@@ -18,6 +18,10 @@ patient {
     "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
+  if (idContainer == null) {
+    return // If patient has no MPI, patient is not exported.
+  }
+
   id = "Patient/" + idContainer[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
 
   meta {
@@ -36,4 +40,3 @@ patient {
     }
   }
 }
-

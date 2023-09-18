@@ -1,12 +1,10 @@
 package projects.rwthcbmb
 
 import de.kairos.fhir.centraxx.metamodel.IdContainer
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
-
 /**
  * Represented by a CXX AbstractSample
  * Specified by https://simplifier.net/bbmri.de/specimen
@@ -21,14 +19,26 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 specimen {
 
   if (!"MASTER".equals(context.source["sampleCategory"])) {
-    return  // all not master are filtered.
+    return  // All not master are filtered.
+  }
+
+  final def idContainer = context.source[abstractSample().patientContainer().idContainer()]?.find {
+    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
+  }
+
+  if (idContainer == null) {
+    return // If sample belongs to a patient without MPI, sample is not exported.
   }
 
   final def idc = context.source[sample().idContainer()].find {
-    "Lab-ID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "Lab-ID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
-  id = "Specimen/" + idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  if (idc == null) {
+    return // If sample has no Lab-ID, sample is not exported.
+  }
+
+  id = "Specimen/" + idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
 
   meta {
     profile "https://fhir.bbmri.de/StructureDefinition/Specimen"
@@ -40,7 +50,7 @@ specimen {
       type {
         coding {
           system = "urn:centraxx"
-          code = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+          code = idc[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
         }
       }
       system = "https://dktk.dkfz.de/fhir/NamingSystem/exliquid-specimen"
@@ -83,10 +93,6 @@ specimen {
         }
       }
     }
-  }
-
-  final def idContainer = context.source[abstractSample().patientContainer().idContainer()]?.find {
-    "MPI" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   subject {
