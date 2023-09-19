@@ -21,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  *
  *
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.13.0, CXX.v.2023.3.0
  */
 encounter {
 
