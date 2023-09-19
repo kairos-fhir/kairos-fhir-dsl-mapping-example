@@ -26,7 +26,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 encounter {
 
   if (["SACT", "COSD"].contains(context.source[episode().entitySource()])) {
-    return //Encountes for SACT/COSD are suppressed.
+    return // Encounters for SACT/COSD are suppressed.
   }
 
   id = "Encounter/" + context.source[episode().id()]
