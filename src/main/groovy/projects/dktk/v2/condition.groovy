@@ -12,11 +12,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  */
 condition {
 
-  final String icdCode = context.source[diagnosis().icdEntry().code()]
-  if (!hasRelevantCode(icdCode)) { // diagnosis without C or D code are filtered
-    return
-  }
-
   id = "Condition/" + context.source[diagnosis().id()]
 
   meta {
@@ -68,7 +63,7 @@ condition {
         }
       }
       system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
-      code = icdCode as String
+      code = context.source[diagnosis().icdEntry().code()] as String
       version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
     }
     text = context.source[diagnosis().icdEntry().preferredLong()] as String
@@ -118,8 +113,4 @@ static String mapUsage(final String usage) {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
-}
-
-static boolean hasRelevantCode(final String icdCode) {
-  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }
