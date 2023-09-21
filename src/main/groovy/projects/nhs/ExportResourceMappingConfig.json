@@ -43,7 +43,7 @@
     },
     {
       "selectFromCxxEntity": "TNM",
-      "transformByTemplate": "tnm",
+      "transformByTemplate": "tnmSimple",
       "exportToFhirResource": "Observation"
     },
     {
