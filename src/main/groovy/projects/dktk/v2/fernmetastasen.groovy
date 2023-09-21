@@ -61,7 +61,7 @@ observation {
     }
   }
 
-  if (context.source[metastasis().tumour()]) {
+  if (context.source[metastasis().tumour()] && hasRelevantCode(context.source[metastasis().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[metastasis().tumour().centraxxDiagnosis().id()]
     }
@@ -75,4 +75,8 @@ observation {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }

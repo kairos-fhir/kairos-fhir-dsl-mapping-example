@@ -5,6 +5,7 @@ import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.systemTherapy
+
 /**
  * Represented by a CXX SystemTherapy
  * Specified by https://simplifier.net/oncology/systemtherapie
@@ -57,7 +58,7 @@ medicationStatement {
     }
   }
 
-  if (context.source[systemTherapy().tumour()]) {
+  if (context.source[systemTherapy().tumour()] && hasRelevantCode(context.source[systemTherapy().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     reasonReference {
       reference = "Condition/" + context.source[systemTherapy().tumour().centraxxDiagnosis().id()]
     }
@@ -136,4 +137,8 @@ static boolean containsIgnoreCase(final List<String> codeList, final String code
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }

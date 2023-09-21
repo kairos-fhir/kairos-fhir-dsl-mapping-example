@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
@@ -195,7 +194,7 @@ observation {
     }
   }
 
-  if (context.source[tnm().tumour()]) {
+  if (context.source[tnm().tumour()] && hasRelevantCode(context.source[tnm().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[tnm().tumour().centraxxDiagnosis().id()]
     }
@@ -218,4 +217,8 @@ static boolean isClinical(final Fhir4Source source) {
   final String prefixN = source[tnm().praefixNDict().code()]
   final String prefixM = source[tnm().praefixMDict().code()]
   return clinicalPrefix.equalsIgnoreCase(prefixT) && clinicalPrefix.equalsIgnoreCase(prefixN) && clinicalPrefix.equalsIgnoreCase(prefixM)
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }
