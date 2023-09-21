@@ -121,11 +121,17 @@ observation {
     sb.append(context.source[tnm().grading()])
   }
 
-  if (context.source[tnm().stadium()]) {
-    valueCodeableConcept {
+  valueCodeableConcept {
+    coding {
+      system = "https://fhir.centraxx.de/system/tnm/simple"
+      code = sb.toString()
+      version = context.source[tnm().version()]
+    }
+
+    if (context.source[tnm().stadium()]) {
       coding {
-        system = "https://fhir.centraxx.de/system/tnm/simple"
-        code = sb.toString()
+        system = "https://fhir.centraxx.de/system/tnm/stadium"
+        code = (context.source[tnm().stadium()] as String).trim()
         version = context.source[tnm().version()]
       }
     }
