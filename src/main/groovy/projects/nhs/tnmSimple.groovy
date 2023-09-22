@@ -81,7 +81,7 @@ observation {
     sb.append(context.source[tnm().n()])
   }
 
-  if (sb.append(context.source[tnm().certaintyN()])) {
+  if (context.source[tnm().certaintyN()]) {
     sb.append("C")
     sb.append(context.source[tnm().certaintyN()])
   }
@@ -126,7 +126,7 @@ observation {
   valueCodeableConcept {
     coding {
       system = "https://fhir.centraxx.de/system/tnm/simple"
-      code = sb.toString()
+      code = sb.toString().trim()
       version = context.source[tnm().version()]
     }
 
