@@ -11,10 +11,25 @@ The following data sets are supported:
 
 # Change log
 
+## 2023-09-21
+
+### added
+
+* regimenMediAdmin script
+
+### changed
+
+* Observation with combined TNM code (tnmSimple) instead of separated TNM
+* "FAKE" Encountes suppressed.
+
 ## 2023-09-14
 
 ### added
 
 * User defined catalog entries for condition and procedures
 * Display description of procedure, condition and observation catalog entries.
+
+### changed
+
 * Encountes for SACT/COSD are suppressed.
+

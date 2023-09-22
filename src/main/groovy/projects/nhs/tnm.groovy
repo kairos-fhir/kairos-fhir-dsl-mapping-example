@@ -1,9 +1,11 @@
 package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 
 /**
@@ -36,7 +38,7 @@ observation {
     reference = "Patient/" + context.source[tnm().patientContainer().id()]
   }
 
-  if (context.source[tnm().episode()] && !["SACT", "COSD"].contains(context.source[tnm().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[tnm().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[tnm().episode().id()]
     }
@@ -207,4 +209,17 @@ static boolean isClinical(final Fhir4Source source) {
   final String prefixN = source[tnm().praefixNDict().code()]
   final String prefixM = source[tnm().praefixMDict().code()]
   return clinicalPrefix.equalsIgnoreCase(prefixT) && clinicalPrefix.equalsIgnoreCase(prefixN) && clinicalPrefix.equalsIgnoreCase(prefixM)
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

@@ -1,12 +1,15 @@
 package projects.nhs
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.hl7.fhir.r4.model.MedicationRequest
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
+
 /**
  * Represents a CXX Medication
  *
@@ -27,7 +30,7 @@ medicationRequest {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  if (context.source[medication().episode()] != null && !["SACT", "COSD"].contains(context.source[medication().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[medication().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[medication().episode().id()]
     }
@@ -246,4 +249,17 @@ static Boolean createAsNeededFromType(final String resultStatus) {
 
 static BigDecimal sanitizeScale(final String numeric) {
   return numeric == null ? null : new BigDecimal(numeric).stripTrailingZeros()
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

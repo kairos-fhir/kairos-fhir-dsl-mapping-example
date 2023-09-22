@@ -1,10 +1,13 @@
 package projects.nhs
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.Observation
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.annArbor
+
 /**
  * Represented by a CXX AnnArbor classification
  * @author Mike Wähnert
@@ -27,7 +30,7 @@ observation {
     reference = "Patient/" + context.source[annArbor().patientContainer().id()]
   }
 
-  if (context.source[annArbor().episode()] != null && !["SACT", "COSD"].contains(context.source[annArbor().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[annArbor().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[annArbor().episode().id()]
     }
@@ -120,4 +123,17 @@ observation {
       }
     }
   }
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }
