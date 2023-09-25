@@ -1,4 +1,4 @@
-package projects.nhs
+package projects.patientfinder
 
 import common.AbstractDslBuilderTest
 import de.kairos.fhir.centraxx.metamodel.Episode
@@ -19,7 +19,7 @@ class TnmSimpleTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsNotFiltered() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/nhs/tnmSimple.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/tnmSimple.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here
@@ -37,7 +37,7 @@ class TnmSimpleTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsFilteredByEntitySource() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/nhs/tnmSimple.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/tnmSimple.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here
@@ -60,7 +60,7 @@ class TnmSimpleTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsFilteredByIdContainerPsn() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/nhs/tnmSimple.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/tnmSimple.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here

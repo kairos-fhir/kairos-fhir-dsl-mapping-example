@@ -1,4 +1,4 @@
-package projects.nhs
+package projects.patientfinder
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import org.hl7.fhir.r4.model.Appointment

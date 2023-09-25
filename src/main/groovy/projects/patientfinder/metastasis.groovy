@@ -1,4 +1,4 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
@@ -7,7 +7,6 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 
 /**

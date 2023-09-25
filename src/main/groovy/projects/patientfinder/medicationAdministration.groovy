@@ -1,4 +1,4 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
