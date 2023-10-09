@@ -1,8 +1,9 @@
 # Changelog
 
 2023-10-09
-* Condition ICD-O-3-T
-* Seitenlokalisation
+* Condition ICD-O-3-T added
+* Seitenlokalisation added
+* Intention OP (Procedure) added
 
 CCP-IT JF 2023-07-13:
 

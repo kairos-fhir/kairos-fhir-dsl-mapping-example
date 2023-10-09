@@ -25,7 +25,8 @@ procedure {
   category {
     coding {
       system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTTherapieartCS"
-      code = "OP" //Operation
+      code = "OP"
+      display = "Operation"
     }
   }
 
@@ -64,6 +65,20 @@ procedure {
       }
     }
   }
+
+  if (context.source[surgery().intentionDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-OPIntention"
+      valueCodeableConcept {
+        coding {
+          code = (context.source[surgery().intentionDict().code()] as String).toUpperCase()
+          version = context.source[surgery().intentionDict().version()]
+          display = context.source[surgery().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+        }
+      }
+    }
+  }
+
 }
 
 /**
