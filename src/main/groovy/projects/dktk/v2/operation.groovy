@@ -71,8 +71,8 @@ procedure {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-OPIntention"
       valueCodeableConcept {
         coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/OPIntentionCS"
           code = (context.source[surgery().intentionDict().code()] as String).toUpperCase()
-          version = context.source[surgery().intentionDict().version()]
           display = context.source[surgery().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
         }
       }
