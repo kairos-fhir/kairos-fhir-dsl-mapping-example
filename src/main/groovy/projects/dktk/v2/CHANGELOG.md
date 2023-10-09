@@ -6,6 +6,7 @@
 * Seitenlokalisation added
 * Intention OP: extension in operation.groovy added
 * Strahlentherapie Stellung zu operativer Therapie: extension in strahlentherapie.groovy added
+* Systemische Therapie Stellung zu operativer Therapie: extension in systemtherapie.groovy added
 
 CCP-IT JF 2023-07-13:
 
