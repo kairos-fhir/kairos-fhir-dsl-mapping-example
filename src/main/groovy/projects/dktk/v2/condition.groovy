@@ -69,6 +69,28 @@ condition {
     text = context.source[diagnosis().icdEntry().preferredLong()] as String
   }
 
+  // ICD-O-3 topography
+  final String catalogName = context.source[diagnosis().icdEntry().catalogue().name()]
+  if (catalogName != null && catalogName.contains("ICD-O-3")) {
+    bodySite {
+      coding {
+        system = "urn:oid:2.16.840.1.113883.6.43.1"
+        code = context.source[diagnosis().icdEntry().code()] as String
+        version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
+      }
+      text = context.source[diagnosis().icdEntry().preferredLong()] as String
+    }
+  }
+
+  if (context.source[diagnosis().diagnosisLocalisation()] != null) {
+    bodySite {
+      coding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SeitenlokalisationCS"
+        code = context.source[diagnosis().diagnosisLocalisation()] as String
+      }
+    }
+  }
+
   context.source[diagnosis().samples()]?.each { final sample ->
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Specimen"
