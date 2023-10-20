@@ -18,6 +18,16 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactCarePlan",
+      "exportToFhirResource": "CarePlan"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactMedicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation"
     },
@@ -90,16 +100,6 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "histoReport",
       "exportToFhirResource": "DiagnosticReport"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactCarePlan",
-      "exportToFhirResource": "CarePlan"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactMedicationAdministration",
-      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }
