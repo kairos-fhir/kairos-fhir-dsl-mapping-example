@@ -50,8 +50,16 @@ appointment {
     actor {
       reference = "Patient/" + context.source[calendarEvent().patientContainer().id()]
     }
-
     status = Appointment.ParticipationStatus.ACCEPTED
+  }
+
+  if (context.source[calendarEvent().attendingDoctor().id()]) {
+    participant {
+      actor {
+        reference = "Practitioner/" + context.source[calendarEvent().attendingDoctor().id()]
+      }
+      status = Appointment.ParticipationStatus.ACCEPTED
+    }
   }
 
   extension {

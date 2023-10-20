@@ -80,6 +80,14 @@ medicationAdministration {
     }
   }
 
+  if (context.source[medication().attendingDoctor()]) {
+    performer {
+      actor {
+        reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
+      }
+    }
+  }
+
   dosage {
     text = context.source[medication().dosisSchema()] as String
 

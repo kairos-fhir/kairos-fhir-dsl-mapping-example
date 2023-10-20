@@ -71,6 +71,12 @@ medicationRequest {
     display = context.source[medication().prescribedBy()]
   }
 
+  if (context.source[medication().attendingDoctor()]) {
+    performer {
+      reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
+    }
+  }
+
   dosageInstruction {
     text = context.source[medication().dosisSchema()] as String
     additionalInstruction {
@@ -235,6 +241,7 @@ medicationRequest {
       valueBoolean = context.source[medication().resultDate()]
     }
   }
+
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {
