@@ -90,6 +90,16 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "histoReport",
       "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactCarePlan",
+      "exportToFhirResource": "CarePlan"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactMedicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }
