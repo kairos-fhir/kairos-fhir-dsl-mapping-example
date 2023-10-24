@@ -1,4 +1,4 @@
-package projects.uscore
+package projects.patientfinder
 
 import org.hl7.fhir.r4.model.HumanName
 

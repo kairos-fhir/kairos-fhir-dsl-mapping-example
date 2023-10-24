@@ -12,6 +12,12 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitioner",
+      "exportToFhirResource": "Practitioner",
+      "exportDeleteEnable": false
+    },
+    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"

@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * Represents a CXX Medication
  *
  * @author Mike Wähnert
- * @since v.1.25.0, CXX.v.2023.3.6
+ * @since v.1.26.0, CXX.v.2023.5.0
  */
 medicationRequest {
 
