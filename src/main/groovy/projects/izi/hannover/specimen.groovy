@@ -7,28 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.COLD_ISCH_TIME
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.COLD_ISCH_TIME_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.ID_CONTAINER
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.PARENT
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SAMPLE_CATEGORY
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SAMPLE_KIND
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SECOND_PROCESSING
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SECOND_PROCESSING_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_FIXATION_TIME
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_FIXATION_TIME_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_POST_CENTRIFUGATION_DELAY
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_POST_CENTRIFUGATION_DELAY_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRE_CENTRIFUGATION_DELAY
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRE_CENTRIFUGATION_DELAY_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_PRIMARY_SAMPLE_CONTAINER
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SPREC_TISSUE_COLLECTION_TYPE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.STOCK_PROCESSING
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.STOCK_PROCESSING_DATE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.STOCK_TYPE
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.USE_SPREC
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME
-import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME_DATE
+import static de.kairos.fhir.centraxx.metamodel.AbstractSample.*
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
@@ -198,13 +177,11 @@ specimen {
     }
   }
 
-  if (context.source[sample().organisationUnit()]) {
-    extension {
-      url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
-      valueReference {
-        identifier {
-          value = "Hannover"
-        }
+  extension {
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+    valueReference {
+      identifier {
+        value = "Hannover"
       }
     }
   }
