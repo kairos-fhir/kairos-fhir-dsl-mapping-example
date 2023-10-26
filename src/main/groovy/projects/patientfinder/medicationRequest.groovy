@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * Represents a CXX Medication
  *
  * @author Mike Wähnert
- * @since v.1.25.0, CXX.v.2023.3.6
+ * @since v.1.26.0, CXX.v.2023.5.0
  */
 medicationRequest {
 
@@ -69,6 +69,12 @@ medicationRequest {
 
   requester {
     display = context.source[medication().prescribedBy()]
+  }
+
+  if (context.source[medication().attendingDoctor()]) {
+    performer {
+      reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
+    }
   }
 
   dosageInstruction {
@@ -235,6 +241,7 @@ medicationRequest {
       valueBoolean = context.source[medication().resultDate()]
     }
   }
+
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {

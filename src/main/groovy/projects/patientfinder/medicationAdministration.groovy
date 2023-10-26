@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * Represents a CXX Medication
  *
  * @author Mike Wähnert
- * @since v.1.25.0, CXX.v.2023.3.6
+ * @since v.1.26.0, CXX.v.2023.5
  */
 medicationAdministration {
 
@@ -76,6 +76,14 @@ medicationAdministration {
       final def endPrecision = context.source[medication().observationEnd().precision()]
       if (endPrecision != null && endPrecision != DatePrecision.UNKNOWN.name()) {
         precision = convertPrecision(endPrecision as String)
+      }
+    }
+  }
+
+  if (context.source[medication().attendingDoctor()]) {
+    performer {
+      actor {
+        reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
       }
     }
   }

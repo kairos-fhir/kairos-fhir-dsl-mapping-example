@@ -1,6 +1,7 @@
 package projects.patientfinder
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.enums.FhirAppointmentParticipantTypeEnum
 import org.hl7.fhir.r4.model.Appointment
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.calendarEvent
@@ -8,7 +9,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.calendarEvent
 /**
  * Represented by a CXX CalendarEvent of a Patient
  * @author Mike Wähnert
- * @since v.1.23.0, CXX.v.2023.3.3
+ * @since v.1.26.0, CXX.v.2023.5.0
  */
 appointment {
 
@@ -44,14 +45,28 @@ appointment {
     type {
       coding {
         system = FhirUrls.System.Calendar.PARTICIPANT_TYPE
-        code = "PATIENT"
+        code = FhirAppointmentParticipantTypeEnum.PATIENT.name()
       }
     }
     actor {
       reference = "Patient/" + context.source[calendarEvent().patientContainer().id()]
     }
-
     status = Appointment.ParticipationStatus.ACCEPTED
+  }
+
+  if (context.source[calendarEvent().attendingDoctor()]) {
+    participant {
+      type {
+        coding {
+          system = FhirUrls.System.Calendar.PARTICIPANT_TYPE
+          code = FhirAppointmentParticipantTypeEnum.ATTENDING_DOCTOR.name()
+        }
+      }
+      actor {
+        reference = "Practitioner/" + context.source[calendarEvent().attendingDoctor().id()]
+      }
+      status = Appointment.ParticipationStatus.ACCEPTED
+    }
   }
 
   extension {
