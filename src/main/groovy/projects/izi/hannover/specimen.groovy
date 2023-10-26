@@ -198,13 +198,11 @@ specimen {
     }
   }
 
-  if (context.source[sample().organisationUnit()]) {
-    extension {
-      url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
-      valueReference {
-        identifier {
-          value = "Hannover"
-        }
+  extension {
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+    valueReference {
+      identifier {
+        value = "Hannover"
       }
     }
   }
