@@ -1,5 +1,10 @@
 # Changelog
 
+2023-11-01
+
+* Surgery component codes as additional procedure/surgery codes added. The CCP-IT assumption is that all surgery components are documented on site
+  with OPS codes.
+
 2023-10-09
 
 * Condition ICD-O-3-T added
