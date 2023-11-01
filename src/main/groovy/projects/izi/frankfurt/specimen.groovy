@@ -1,6 +1,5 @@
 package projects.izi.frankfurt
 
-
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
@@ -174,13 +173,11 @@ specimen {
     }
   }
 
-  if (context.source[sample().organisationUnit()]) {
-    extension {
-      url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
-      valueReference {
-        identifier {
-          value = "FRANKFURT"
-        }
+  extension {
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+    valueReference {
+      identifier {
+        value = "FRANKFURT"
       }
     }
   }
