@@ -60,18 +60,26 @@ specimen {
       code = context.source[abstractSample().sampleType().code()]
     }
 
+
+    final String sampleKind = context.source[abstractSample().sampleType().kind()] as String
+    final String sampleTypeCode = context.source[abstractSample().sampleType().code()] as String
+    final String primaryContainer = context.source[abstractSample().sprecPrimarySampleContainer().code()] as String
+    final String stockType = context.source[abstractSample().stockType().code()] as String
+
     // 0. Site specific CXX sample type code => BBMRI SampleMaterialType.
-    final String bbmriCode0 = codeToSampleType(context.source[abstractSample().sampleType().code()] as String)
+    println(sampleTypeCode)
+    final String bbmriCode0 = codeToSampleType(sampleKind, sampleTypeCode, primaryContainer, stockType)
+    println(bbmriCode0)
     if (bbmriCode0 != null) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
         code = bbmriCode0
       }
     } // 1. Without mapping, if CXX code and BBMRI code is the same.
-    else if (isBbmriSampleTypeCode(context.source[abstractSample().sampleType().code()] as String)) {
+    else if (isBbmriSampleTypeCode(sampleTypeCode)) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
-        code = (context.source[abstractSample().sampleType().code()] as String).toLowerCase()
+        code = sampleTypeCode.toLowerCase()
       }
     } // 2. CXX sample type SPREC => BBMRI SampleMaterialType.
     else if (context.source[abstractSample().sampleType().sprecCode()]) {
@@ -87,7 +95,7 @@ specimen {
         code = context.source[abstractSample().sampleType().sprecCode()]
       }
     } else { // 3. CXX sample kind => BBMRI SampleMaterialType.
-      final String bbmriCode = sampleKindToBbmriSampleType(context.source[abstractSample().sampleType().kind()] as String)
+      final String bbmriCode = sampleKindToBbmriSampleType(sampleKind)
       if (bbmriCode != null) {
         coding {
           system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
@@ -259,18 +267,19 @@ static String sprecToBbmriSampleType(final String sprecCode) {
   ].contains(sprecCode)) {
     return "tissue-other"
   }
-  return null
+  return null // no match
 }
 
 static String sampleKindToBbmriSampleType(final String sampleKind) {
   if (sampleKind == null) {
     return null
-  } else if (sampleKind == "TISSUE") {
-    return "tissue-other"
-  } else if (sampleKind == "LIQUID") {
-    return "liquid-other"
   }
-  return "derivative-other" // eg CXX cells
+
+  switch (sampleKind) {
+    case "TISSUE": return "tissue-other"
+    case "LIQUID": return "liquid-other"
+    default: return "derivative-other" // eg CXX cells
+  }
 }
 
 static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {
@@ -318,32 +327,44 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String codeToSampleType(final String sampleTypeCode) {
+static String codeToSampleType(final String sampleKind, final String sampleTypeCode, final String primaryContainer, final String stockType) {
   if (null == sampleTypeCode) {
-    return null;
+    return null
   }
 
   switch (sampleTypeCode) {
-    case matchIgnoreCase(["BLD", "HEP", "HEP_EDTA", "CIT", "VBL", "whole - blood", "BLD", "VBL", "Vollblut"], sampleTypeCode): return "whole-blood"
-    case matchIgnoreCase(["KNM", "bone - marrow", "bone - marrow", "Knochenmark", "BMA", "EDTAKM"], sampleTypeCode): return "bone-marrow"
-    case matchIgnoreCase(["BUFFYCOAT", "BuffyCoat", "BUF", "buffy - coat", "BUFFYCOATNOTVIABLE"], sampleTypeCode): return "buffy-coat"
-    case matchIgnoreCase(["TBK", "BF"], sampleTypeCode): return "dried-whole-blood"
-    case matchIgnoreCase(["PBMC", "PBMC - nl", "PBMCs", "PBMC - l", "PEL"], sampleTypeCode): return "peripheral-blood-cells-vital"
-    case matchIgnoreCase(["PLA", "blood - plasma", "PL1", "Plasma", "blood - plasma", "PL1", "P", "Plasma", "PL1", "HEPAP", "P - cf", "EDTAFCPMA", "EDTA - APRPMA", "EP, CP", "EPPL2", "EPPL1", "HEPAPPBS"], sampleTypeCode): return "blood-plasma"
-    case matchIgnoreCase(["SER", "blood - serum", "Serum", "blood - serum"], sampleTypeCode): return "blood-serum"
-    case matchIgnoreCase(["ASC"], sampleTypeCode): return "ascites"
-    case matchIgnoreCase(["LQR", "CSF", "csf - liquor", "Liquor", "CSF", "csf - liquor", "LIQUOR"], sampleTypeCode): return "csf-liquor"
-    case matchIgnoreCase(["SPEICHEL", "SAL"], sampleTypeCode): return "saliva"
-    case matchIgnoreCase(["STL", "STLctr"], sampleTypeCode): return "stool-faeces"
-    case matchIgnoreCase(["URN", "urine", "Urin", "URN"], sampleTypeCode): return "urine"
-    case matchIgnoreCase([], sampleTypeCode): return "swab"
-    case matchIgnoreCase(["Granulozyten", "PELLET - L", "BUC", "BMA", "liquid - other", "LEUK", "CEN", "MOTH", "BMA", "LIQUID", "Flüssigprobe", "KMBLUT", "BMA", "BFF", "EDTA - ZB", "ZB", "MOTH"], sampleTypeCode): return "liquid-other"
-    case matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "NBF", "Paraffin(FFPE)"], sampleTypeCode): return "tissue-ffpe"
-    case matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "SNP", "Kryo / Frisch(FF)"], sampleTypeCode): return "tissue-frozen"
-    case matchIgnoreCase(["tissue - other", "NNB", "HE"], sampleTypeCode): return "tissue - other"
-    case matchIgnoreCase(["cDNA", "gDNA", "dna", "DNA", "CDNA ", "DNAAMP", "BLDCCFDNASTABIL"], sampleTypeCode): return " dna "
-    case matchIgnoreCase(["RNA", "BLDRNASTABIL"], sampleTypeCode): return "rna"
-    case matchIgnoreCase(["derivative - other"], sampleTypeCode): return "derivative-other"
+    case { matchIgnoreCase(["whole-blood", "BLD", "VBL", "Vollblut"], sampleTypeCode) }: return "whole-blood"
+    case { matchIgnoreCase(["KNM", "bone-marrow", "Knochenmark", "BMA", "EDTAKM"], sampleTypeCode) }: return "bone-marrow"
+    case { matchIgnoreCase(["BUFFYCOAT", "BuffyCoat", "BUF", "buffy-coat", "BUFFYCOATNOTVIABLE"], sampleTypeCode) }: return "buffy-coat"
+    case { matchIgnoreCase(["TBK", "BF"], sampleTypeCode) }: return "dried-whole-blood"
+    case { matchIgnoreCase(["PBMC", "PBMC-nl", "PBMCs", "PBMC-l", "PEL"], sampleTypeCode) }: return "peripheral-blood-cells-vital"
+    case {
+      matchIgnoreCase(["PLA", "blood-plasma", "PL1", "Plasma", "P", "HEPAP", "P-cf", "EDTAFCPMA", "EDTA-APRPMA", "EP, CP", "EPPL2", "EPPL1",
+                       "plasma-edta", "plasma-citrat", "plasma-heparin", "plasma-cell-free", "plasma-other", "HEPAPPBS"], sampleTypeCode)
+    }: return "blood-plasma"
+    case { matchIgnoreCase(["SER", "blood-serum", "Serum"], sampleTypeCode) }: return "blood-serum"
+    case { matchIgnoreCase(["ASC"], sampleTypeCode) }: return "ascites"
+    case { matchIgnoreCase(["LQR", "CSF", "csf-liquor", "Liquor"], sampleTypeCode) }: return "csf-liquor"
+    case { matchIgnoreCase(["SPEICHEL", "SAL"], sampleTypeCode) }: return "saliva"
+    case { matchIgnoreCase(["STL", "STLctr"], sampleTypeCode) }: return "stool-faeces"
+    case { matchIgnoreCase(["URN", "urine", "Urin"], sampleTypeCode) }: return "urine"
+    case { matchIgnoreCase([], sampleTypeCode) }: return "swab"
+    case {
+      matchIgnoreCase(["Granulozyten", "PELLET-L", "BUC", "BMA", "liquid-other", "LEUK", "CEN", "MOTH", "LIQUID", "Flüssigprobe", "KMBLUT", "BFF",
+                       "EDTA-ZB", "ZB"], sampleTypeCode)
+    }: return "liquid-other"
+    case {
+      matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
+                       "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "Paraffin(FFPE)"], sampleTypeCode)
+    }: return "tissue-ffpe"
+    case {
+      matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
+                       "BTM", "SMT", "TFL", "SNP", "Kryo / Frisch(FF)"], sampleTypeCode)
+    }: return "tissue-frozen"
+    case { matchIgnoreCase(["tissue-other", "NNB", "HE"], sampleTypeCode) }: return "tissue-other"
+    case { matchIgnoreCase(["cDNA", "gDNA", "dna", "DNA", "CDNA ", "DNAAMP", "BLDCCFDNASTABIL", "g-dna", "cf-dna"], sampleTypeCode) }: return "dna"
+    case { matchIgnoreCase(["RNA", "BLDRNASTABIL"], sampleTypeCode) }: return "rna"
+    case { matchIgnoreCase(["derivative-other"], sampleTypeCode) }: return "derivative-other"
     default: return null // no match
   }
 }
