@@ -1,5 +1,9 @@
 # Changelog
 
+2023-11-03
+
+* BBMRI SampleMaterialType mapped by site specific CXX SampleType codes
+
 2023-10-09
 
 * Condition ICD-O-3-T added

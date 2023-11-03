@@ -22,6 +22,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  */
 specimen {
 
+  final String sampleTypeCode = context.source[abstractSample().sampleType().code()] as String
+  if (sampleTypeCode == null || matchIgnoreCase(["TBL", "LES", "UBK", "ZZZ", "NRT"], sampleTypeCode)) {
+    return // null, "Leerschnitt", "Unbekannt" are filtered
+  }
+
   id = "Specimen/" + context.source[abstractSample().id()]
 
   final def idc = context.source[sample().idContainer()].find {
@@ -62,13 +67,12 @@ specimen {
 
 
     final String sampleKind = context.source[abstractSample().sampleType().kind()] as String
-    final String sampleTypeCode = context.source[abstractSample().sampleType().code()] as String
-    final String primaryContainer = context.source[abstractSample().sprecPrimarySampleContainer().code()] as String
+
     final String stockType = context.source[abstractSample().stockType().code()] as String
 
     // 0. Site specific CXX sample type code => BBMRI SampleMaterialType.
     println(sampleTypeCode)
-    final String bbmriCode0 = codeToSampleType(sampleKind, sampleTypeCode, primaryContainer, stockType)
+    final String bbmriCode0 = codeToSampleType(sampleTypeCode, stockType)
     println(bbmriCode0)
     if (bbmriCode0 != null) {
       coding {
@@ -327,7 +331,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String codeToSampleType(final String sampleKind, final String sampleTypeCode, final String primaryContainer, final String stockType) {
+static String codeToSampleType(final String sampleTypeCode, final String stockType) {
   if (null == sampleTypeCode) {
     return null
   }
