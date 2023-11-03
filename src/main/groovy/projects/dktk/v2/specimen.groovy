@@ -354,12 +354,14 @@ static String codeToSampleType(final String sampleKind, final String sampleTypeC
                        "EDTA-ZB", "ZB"], sampleTypeCode)
     }: return "liquid-other"
     case {
-      matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
-                       "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "Paraffin(FFPE)"], sampleTypeCode)
+      matchIgnoreCase(["Paraffin", "FFPE"], stockType) &&
+          matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
+                           "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
     }: return "tissue-ffpe"
     case {
-      matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
-                       "BTM", "SMT", "TFL", "SNP", "Kryo / Frisch(FF)"], sampleTypeCode)
+      matchIgnoreCase(["Kryo/Frisch", "FF"], stockType) &&
+          matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
+                           "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
     }: return "tissue-frozen"
     case { matchIgnoreCase(["tissue-other", "NNB", "HE"], sampleTypeCode) }: return "tissue-other"
     case { matchIgnoreCase(["cDNA", "gDNA", "dna", "DNA", "CDNA ", "DNAAMP", "BLDCCFDNASTABIL", "g-dna", "cf-dna"], sampleTypeCode) }: return "dna"
