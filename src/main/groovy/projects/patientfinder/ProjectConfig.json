@@ -72,7 +72,7 @@
   },
   "prettyPrintEnable": {
     "description": "Print style the HTTP message body.",
-    "value": true
+    "value": false
   },
   "exportFormat": {
     "description": "Exchange format of FHIR resources. See https://hl7.org/fhir/formats.html for details.",
