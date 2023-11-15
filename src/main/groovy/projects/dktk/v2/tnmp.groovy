@@ -66,9 +66,11 @@ observation {
       if (context.source[tnm().praefixTDict()]) {
         extension {
           url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-TNMcpuPraefix"
-          valueCoding {
-            system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
-            code = context.source[tnm().praefixTDict().code()] as String
+          valueCodeableConcept {
+            coding {
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
+              code = context.source[tnm().praefixTDict().code()] as String
+            }
           }
         }
       }
@@ -93,9 +95,11 @@ observation {
       if (context.source[tnm().praefixNDict()]) {
         extension {
           url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-TNMcpuPraefix"
-          valueCoding {
-            system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
-            code = context.source[tnm().praefixNDict().code()] as String
+          valueCodeableConcept {
+            coding {
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
+              code = context.source[tnm().praefixNDict().code()] as String
+            }
           }
         }
       }
@@ -120,9 +124,11 @@ observation {
       if (context.source[tnm().praefixMDict()]) {
         extension {
           url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-TNMcpuPraefix"
-          valueCoding {
-            system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
-            code = context.source[tnm().praefixMDict().code()] as String
+          valueCodeableConcept {
+            coding {
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
+              code = context.source[tnm().praefixMDict().code()] as String
+            }
           }
         }
       }
