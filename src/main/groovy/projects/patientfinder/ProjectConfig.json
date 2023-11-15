@@ -39,7 +39,7 @@
     "value": true
   },
   "exportFolder": {
-    "value": "C:/Users/u1089116/centraxx-home/fhir-custom-export/cosd"
+    "value": "C:/Users/u1089116/centraxx-home/fhir-custom-export/patientfinder"
   },
   "uploadToUrl": {
     "description": "If true, the scheduler will export to the specified  uploadUrl REST endpoint.",
