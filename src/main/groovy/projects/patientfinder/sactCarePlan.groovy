@@ -8,36 +8,36 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Transfroms CXX SACT_Profil to CarePlan
+ * Transforms CXX LaborFinding of the LaborMethod "SACT_Profil" to a FHIR CarePlan
  */
 carePlan {
 
-    if (context.source[laborMapping().laborFinding().laborMethod().code()] != "SACT_Profile") {
-        return
-    }
+  if (context.source[laborMapping().laborFinding().laborMethod().code()] != "SACT_Profile") {
+    return
+  }
 
-    id = "CarePlan/" + context.source[laborMapping().laborFinding().id()]
+  id = "CarePlan/" + context.source[laborMapping().laborFinding().id()]
 
-    context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { lflv ->
-        final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-                ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-                : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
-        final String laborValueCode = laborValue?.getAt(CODE) as String
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
+    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
+        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
+        : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+    final String laborValueCode = laborValue?.getAt(CODE) as String
 
-        if (laborValueCode.equals("Regimen")) {
-            identifier { value = lflv[LaborFindingLaborValue.STRING_VALUE] }
-        } else if (laborValueCode.equals("Date_Decision_To_Treat")) {
-            created {
-                date = lflv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
-            }
-        } else if (laborValueCode.equals("Start_Date_Of_Regimen")) {
-            period {
-                start {
-                    date = lflv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
-                }
-            }
+    if (laborValueCode.equals("Regimen")) {
+      identifier { value = lflv[LaborFindingLaborValue.STRING_VALUE] }
+    } else if (laborValueCode.equals("Date_Decision_To_Treat")) {
+      created {
+        date = lflv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+      }
+    } else if (laborValueCode.equals("Start_Date_Of_Regimen")) {
+      period {
+        start {
+          date = lflv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
         }
+      }
     }
+  }
 
 }
 

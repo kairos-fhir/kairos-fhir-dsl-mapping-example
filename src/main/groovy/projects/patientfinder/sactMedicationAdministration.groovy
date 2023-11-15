@@ -9,20 +9,21 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Transfroms CXX SACT_Profil to MedicationAdministration
+ * Transforms CXX LaborFinding of the LaborMethod "SACT_Profil" to a FHIR MedicationAdministration
  */
 medicationAdministration {
+
   if (context.source[laborMapping().laborFinding().laborMethod().code()] != "SACT_Profile") {
     return
   }
 
-  final String drugName = null;
-  final def dmpd = null;
-  final def actualDosePerAdministration = null;
-  final def unitOfMeasurementSnomed = null;
-  final def sactAdminRoute = null;
-  final def routeOfAdministrationSnomed = null;
-  final def adminDate = null;
+  final String drugName = null
+  final def dmpd = null
+  final def actualDosePerAdministration = null
+  final def unitOfMeasurementSnomed = null
+  final def sactAdminRoute = null
+  final def routeOfAdministrationSnomed = null
+  final def adminDate = null
 
   id = "MedicationAdministration/SACT-" + context.source[laborMapping().laborFinding().id()]
 
