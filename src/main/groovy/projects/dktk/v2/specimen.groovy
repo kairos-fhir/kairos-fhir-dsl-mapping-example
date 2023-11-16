@@ -337,7 +337,7 @@ static String codeToSampleType(final String sampleTypeCode, final String stockTy
   }
 
   switch (sampleTypeCode) {
-    case { matchIgnoreCase(["whole-blood", "BLD", "VBL", "Vollblut"], sampleTypeCode) }: return "whole-blood"
+    case { matchIgnoreCase(["whole-blood", "BLD", "VBL", "Vollblut", "TBL"], sampleTypeCode) }: return "whole-blood"
     case { matchIgnoreCase(["KNM", "bone-marrow", "Knochenmark", "BMA", "EDTAKM"], sampleTypeCode) }: return "bone-marrow"
     case { matchIgnoreCase(["BUFFYCOAT", "BuffyCoat", "BUF", "buffy-coat", "BUFFYCOATNOTVIABLE"], sampleTypeCode) }: return "buffy-coat"
     case { matchIgnoreCase(["TBK", "BF"], sampleTypeCode) }: return "dried-whole-blood"
@@ -358,12 +358,12 @@ static String codeToSampleType(final String sampleTypeCode, final String stockTy
                        "EDTA-ZB", "ZB"], sampleTypeCode)
     }: return "liquid-other"
     case {
-      matchIgnoreCase(["Paraffin", "FFPE"], stockType) &&
+      matchIgnoreCase(["Paraffin (FFPE)", "NBF"], stockType) &&
           matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
                            "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
     }: return "tissue-ffpe"
     case {
-      matchIgnoreCase(["Kryo/Frisch", "FF"], stockType) &&
+      matchIgnoreCase(["Kryo/Frisch (FF)", "SNP"], stockType) &&
           matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
                            "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
     }: return "tissue-frozen"

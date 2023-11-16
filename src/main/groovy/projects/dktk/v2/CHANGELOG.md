@@ -1,5 +1,13 @@
 # Changelog
 
+2023-11-2023
+
+* Further changes for "Kryo/Frisch (FF)", "Paraffin (FFPE)"
+* „SNP“ für Kryo/Frisch (Fixierungsart)
+* „NBF“ für FFPE (Fixierungsart)
+* „NRT“ für Tumorgewebe (Probenart)
+* „TBL“ für Vollblut (Probenart)
+
 2023-11-03
 
 * BBMRI SampleMaterialType mapped by site specific CXX SampleType codes
