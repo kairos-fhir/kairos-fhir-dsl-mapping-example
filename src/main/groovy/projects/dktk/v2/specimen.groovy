@@ -23,8 +23,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 specimen {
 
   final String sampleTypeCode = context.source[abstractSample().sampleType().code()] as String
-  if (sampleTypeCode == null || matchIgnoreCase(["TBL", "LES", "UBK", "ZZZ", "NRT"], sampleTypeCode)) {
-    return // null, "Leerschnitt", "Unbekannt" are filtered
+  if (matchIgnoreCase(["TBL", "LES", "UBK", "ZZZ", "NRT"], sampleTypeCode)) {
+    return //"Leerschnitt", "Unbekannt" are filtered
   }
 
   id = "Specimen/" + context.source[abstractSample().id()]
@@ -72,7 +72,7 @@ specimen {
 
     // 0. Site specific CXX sample type code => BBMRI SampleMaterialType.
     println(sampleTypeCode)
-    final String bbmriCode0 = codeToSampleType(sampleTypeCode, stockType)
+    final String bbmriCode0 = codeToSampleType(sampleTypeCode, stockType, sampleKind)
     println(bbmriCode0)
     if (bbmriCode0 != null) {
       coding {
@@ -331,7 +331,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String codeToSampleType(final String sampleTypeCode, final String stockType) {
+static String codeToSampleType(final String sampleTypeCode, final String stockType, final String sampleKindCode) {
   if (null == sampleTypeCode) {
     return null
   }
@@ -358,14 +358,15 @@ static String codeToSampleType(final String sampleTypeCode, final String stockTy
                        "EDTA-ZB", "ZB"], sampleTypeCode)
     }: return "liquid-other"
     case {
-      matchIgnoreCase(["Paraffin (FFPE)", "NBF"], stockType) &&
-          matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
-                           "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
+      matchIgnoreCase(["Paraffin (FFPE)", "Paraffin", "FFPE", "NBF"], stockType) &&
+              (matchIgnoreCase(["NRT", "NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
+                      ||
+                      matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
     }: return "tissue-ffpe"
     case {
-      matchIgnoreCase(["Kryo/Frisch (FF)", "SNP"], stockType) &&
-          matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM",
-                           "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
+      matchIgnoreCase(["Kryo/Frisch (FF)", "Kryo/Frisch", "FF", "SNP"], stockType) &&
+              (matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
+                      || matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
     }: return "tissue-frozen"
     case { matchIgnoreCase(["tissue-other", "NNB", "HE"], sampleTypeCode) }: return "tissue-other"
     case { matchIgnoreCase(["cDNA", "gDNA", "dna", "DNA", "CDNA ", "DNAAMP", "BLDCCFDNASTABIL", "g-dna", "cf-dna"], sampleTypeCode) }: return "dna"
