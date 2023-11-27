@@ -84,9 +84,9 @@ static boolean isFakeEpisode(final def episode) {
 
 static String createTnmSystem(final Fhir4Source source) {
   if (["SACT", "COSD"].contains(source[Tnm.ENTITY_SOURCE])) {
-    if ("c".equalsIgnoreCase(source[tnm().praefixTDict()] as String)) {
+    if ("c".equalsIgnoreCase(source[tnm().praefixTDict().code()] as String)) {
       return "https://fhir.centraxx.de/system/tnm/finalpretreatment"
-    } else if ("p".equalsIgnoreCase(source[tnm().praefixTDict()] as String)) {
+    } else if ("p".equalsIgnoreCase(source[tnm().praefixTDict().code()] as String)) {
       return "https://fhir.centraxx.de/system/tnm/integrated"
     }
     return "https://fhir.centraxx.de/system/tnm/simple"
