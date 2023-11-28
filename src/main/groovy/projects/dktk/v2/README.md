@@ -12,6 +12,10 @@ DKTK Oncology Mappings*
 
 # Changelog
 
+## 2028-11-2023
+
+* genetischeVariante: condition reference removed
+
 ## CCP-IT JF 2023-09-21:
 
 * Condition (Diagnoses) with an ICD10 code which starts not with c or d (which is not a tumor relevant diagnosis) is ignored.
