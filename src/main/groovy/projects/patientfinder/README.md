@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2023-11-29
+* histoReport laborMethod code changed
+* ExportResourceMappingConfig split between Hull and FNUSA to avoid useless LaborMapping queries 
+
 ## 2023-11-16
 
 * combined TNM for COSD/SACT changed for final treatment / integrated
