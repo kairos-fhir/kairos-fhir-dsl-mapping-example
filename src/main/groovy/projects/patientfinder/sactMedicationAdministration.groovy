@@ -11,6 +11,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * Transforms CXX LaborFinding of the LaborMethod "SACT_Profil" to a FHIR MedicationAdministration
  * @since CXX.v.2023.4.1, CXX.v.2023.5.0
+ *
+ * Hints:
+ *  This is a special mapping for Hull
+ *
  */
 medicationAdministration {
 
