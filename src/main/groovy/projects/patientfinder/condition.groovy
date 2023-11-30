@@ -1,10 +1,13 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Episode
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
@@ -18,7 +21,7 @@ condition {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
-  if (!["SACT", "COSD"].contains(context.source[diagnosis().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[diagnosis().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[diagnosis().episode().id()]
     }
@@ -70,4 +73,17 @@ condition {
       }
     }
   }
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

@@ -12,9 +12,24 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitioner",
+      "exportToFhirResource": "Practitioner"
+    },
+    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactCarePlan",
+      "exportToFhirResource": "CarePlan"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactMedicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
@@ -43,7 +58,7 @@
     },
     {
       "selectFromCxxEntity": "TNM",
-      "transformByTemplate": "tnm",
+      "transformByTemplate": "tnmSimple",
       "exportToFhirResource": "Observation"
     },
     {

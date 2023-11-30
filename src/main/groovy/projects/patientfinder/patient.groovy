@@ -1,6 +1,6 @@
-package projects.nhs
+package projects.patientfinder
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.Ethnicity
@@ -15,7 +15,6 @@ import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
-
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * Specified: http://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html
@@ -67,10 +66,7 @@ patient {
   }
 
   if (context.source[patientMasterDataAnonymous().birthdate().date()]) {
-    birthDate {
-      date = context.source[patientMasterDataAnonymous().birthdate().date()]
-      precision = TemporalPrecisionEnum.DAY.toString()
-    }
+    birthDate = normalizeDate(context.source[patientMasterDataAnonymous().birthdate().date()] as String)
   }
 
   deceasedDateTime = "UNKNOWN" != context.source[patientMasterDataAnonymous().dateOfDeath().precision()] ?
@@ -117,4 +113,8 @@ static def mapGender(final GenderType genderType) {
     case GenderType.UNKNOWN: return "unknown"
     default: return "other"
   }
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
 }

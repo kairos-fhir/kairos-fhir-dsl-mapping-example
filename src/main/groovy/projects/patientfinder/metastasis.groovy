@@ -1,12 +1,14 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Episode
 import org.hl7.fhir.r4.model.Observation
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
+
 /**
  * Represented by a CXX Metastasis
  * @author Mike Wähnert
@@ -36,7 +38,7 @@ observation {
     reference = "Patient/" + context.source[metastasis().patientContainer().id()]
   }
 
-  if (context.source[metastasis().episode()]!= null && !["SACT", "COSD"].contains(context.source[laborMapping().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[metastasis().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[metastasis().episode().id()]
     }
@@ -66,4 +68,17 @@ observation {
       reference = "Condition/" + context.source[metastasis().tumour().centraxxDiagnosis().id()]
     }
   }
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

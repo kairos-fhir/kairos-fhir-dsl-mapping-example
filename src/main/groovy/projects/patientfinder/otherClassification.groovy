@@ -1,8 +1,10 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Episode
 import org.hl7.fhir.r4.model.Observation
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.otherClassification
 
 /**
@@ -27,7 +29,7 @@ observation {
     reference = "Patient/" + context.source[otherClassification().patientContainer().id()]
   }
 
-  if (context.source[otherClassification().episode()] != null && !["SACT", "COSD"].contains(context.source[otherClassification().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[otherClassification().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[otherClassification().episode().id()]
     }
@@ -75,4 +77,17 @@ observation {
       text = context.source[otherClassification().comments()] as String
     }
   }
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

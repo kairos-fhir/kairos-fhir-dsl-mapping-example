@@ -1,16 +1,8 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
-import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.*
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
@@ -30,6 +22,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
  */
 observation {
+
+  if (context.source[laborMapping().laborFinding().laborMethod().code()] == "Histology") {
+    return
+  }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
@@ -51,11 +47,23 @@ observation {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
+
   method {
     coding {
       system = FhirUrls.System.LaborMethod.BASE_URL
       version = context.source[laborMapping().laborFinding().laborMethod().version()]
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
+    }
+  }
+
+  final def laborMethod = context.source[laborMapping().laborFinding().laborMethod().code()]
+
+  if (laborMethod.equals("SACT_Profile")) {
+    basedOn {
+      reference = "CarePlan/SACT-" + context.source[laborMapping().laborFinding().id()]
+    }
+    partOf {
+      reference = "MedicationAdministration/SACT-" + context.source[laborMapping().laborFinding().id()]
     }
   }
 
@@ -66,6 +74,12 @@ observation {
         : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
+
+    if (laborMethod.equals("SACT_Profile") && isMappedElseWhere(laborValueCode)) {
+      return
+    }
+
+
     final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
 
     component {
@@ -213,4 +227,39 @@ static boolean isCatalog(final Object laborValue) {
 
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
+}
+
+static boolean isMappedElseWhere(final String code) {
+  final boolean mappedInCarePlan = mappedInCarePlan(code)
+  final boolean mappedInMedAdmin = mappedInMedAdmin(code)
+  return mappedInCarePlan || mappedInMedAdmin
+}
+
+private static boolean mappedInMedAdmin(final String code) {
+  final List mappedInMedAdmin = ["Drug_Name",
+                                 "DM+D",
+                                 "Actual_Dose_Per_Administration",
+                                 "Unit_Of_Measurement_(SNOMED_CT_DM+D)",
+                                 "SACT_Administration_Route",
+                                 "Route_Of_Administration_(SNOMED_CT_DM+D)",
+                                 "Administration_Date"]
+  return code in mappedInMedAdmin
+}
+
+private static boolean mappedInCarePlan(final String code) {
+  final List mappedInCarePlan = ["Regimen", "Date_Decision_To_Treat", "Start_Date_Of_Regimen"]
+  return code in mappedInCarePlan
 }

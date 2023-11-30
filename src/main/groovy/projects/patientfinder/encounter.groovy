@@ -1,7 +1,8 @@
-package projects.nhs
+package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
 
@@ -25,8 +26,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  */
 encounter {
 
-  if (["SACT", "COSD"].contains(context.source[episode().entitySource()])) {
-    return // Encounters for SACT/COSD are suppressed.
+  if (isFakeEpisode(context.source)) {
+    return //filters Encounters with EncounterOID prefix FAKE_
   }
 
   id = "Encounter/" + context.source[episode().id()]
@@ -100,4 +101,17 @@ encounter {
       }
     }
   }
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

@@ -4,8 +4,9 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
-
 /**
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
@@ -24,7 +25,8 @@ procedure {
   category {
     coding {
       system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTTherapieartCS"
-      code = "ST" //Strahlentherapie
+      code = "ST"
+      display = "Strahlentherapie"
     }
   }
 
@@ -55,6 +57,18 @@ procedure {
       valueCoding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
         code = context.source[radiationTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+        display = context.source[radiationTherapy().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+      }
+    }
+  }
+
+  if (context.source[radiationTherapy().therapyKindDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
+      valueCoding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+        code = context.source[radiationTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+        display = context.source[radiationTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
       }
     }
   }

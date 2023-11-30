@@ -1,17 +1,20 @@
-package projects.nhs
+package projects.patientfinder
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.hl7.fhir.r4.model.MedicationRequest
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
+
 /**
  * Represents a CXX Medication
  *
  * @author Mike Wähnert
- * @since v.1.25.0, CXX.v.2023.3.6
+ * @since v.1.26.0, CXX.v.2023.5.0
  */
 medicationRequest {
 
@@ -27,7 +30,7 @@ medicationRequest {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  if (context.source[medication().episode()] != null && !["SACT", "COSD"].contains(context.source[medication().episode().entitySource()])) {
+  if (!isFakeEpisode(context.source[medication().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[medication().episode().id()]
     }
@@ -66,6 +69,12 @@ medicationRequest {
 
   requester {
     display = context.source[medication().prescribedBy()]
+  }
+
+  if (context.source[medication().attendingDoctor()]) {
+    performer {
+      reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
+    }
   }
 
   dosageInstruction {
@@ -232,6 +241,7 @@ medicationRequest {
       valueBoolean = context.source[medication().resultDate()]
     }
   }
+
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {
@@ -246,4 +256,17 @@ static Boolean createAsNeededFromType(final String resultStatus) {
 
 static BigDecimal sanitizeScale(final String numeric) {
   return numeric == null ? null : new BigDecimal(numeric).stripTrailingZeros()
+}
+
+static boolean isFakeEpisode(final def episode) {
+  if (episode == null) {
+    return true
+  }
+
+  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+    return true
+  }
+
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  return fakeId != null
 }

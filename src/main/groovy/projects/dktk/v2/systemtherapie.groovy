@@ -4,6 +4,8 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.systemTherapy
 
 /**
@@ -83,6 +85,30 @@ medicationStatement {
           system = "https://standards.digital.health.nz/ns/sact-regimen-code"
           code = context.source[systemTherapy().protocolTypeDict()]
         }
+      }
+    }
+  }
+
+  // Systemtherapie-Art => StellungZurOp
+  if (context.source[systemTherapy().therapyKindDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
+      valueCoding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+        code = context.source[systemTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+        display = context.source[systemTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+      }
+    }
+  }
+
+  // Systemtherapie-Typ => StellungZurOp
+  if (context.source[systemTherapy().therapyTypeDict()]) {
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
+      valueCoding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+        code = context.source[systemTherapy().therapyTypeDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+        display = context.source[systemTherapy().therapyTypeDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
       }
     }
   }
