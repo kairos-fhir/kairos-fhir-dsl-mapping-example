@@ -12,6 +12,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  */
 condition {
 
+  final String icdCode = context.source[diagnosis().icdEntry().code()]
+  if (!hasRelevantCode(icdCode)) { // diagnosis without C or D code are filtered
+    return
+  }
+
   id = "Condition/" + context.source[diagnosis().id()]
 
   meta {
@@ -63,7 +68,7 @@ condition {
         }
       }
       system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
-      code = context.source[diagnosis().icdEntry().code()] as String
+      code = icdCode as String
       version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
     }
     text = context.source[diagnosis().icdEntry().preferredLong()] as String
@@ -75,7 +80,7 @@ condition {
     bodySite {
       coding {
         system = "urn:oid:2.16.840.1.113883.6.43.1"
-        code = context.source[diagnosis().icdEntry().code()] as String
+        code = icdCode as String
         version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
       }
       text = context.source[diagnosis().icdEntry().preferredLong()] as String
