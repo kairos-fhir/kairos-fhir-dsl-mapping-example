@@ -126,7 +126,7 @@ static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> ty
 static String getFocusReference(final LaborMappingType mappingType, final String relatedOid) {
   if (LaborMappingType.PATIENTLABORMAPPING == mappingType) return "Patient/" + relatedOid
   else if (LaborMappingType.SAMPLELABORMAPPING == mappingType) return "Specimen/" + relatedOid
-  else return null;
+  else return null
 }
 
 static String getLoincCode(final String laborValueCode) {

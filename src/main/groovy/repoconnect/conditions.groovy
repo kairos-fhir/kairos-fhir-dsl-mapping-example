@@ -47,7 +47,7 @@ bundle {
 
                 // onsetDateTime is mandatory and business key
                 if (sourceCondition.hasOnsetDateTimeType()) {
-                  onsetDateTime = sourceCondition.getOnsetDateTimeType();
+                  onsetDateTime = sourceCondition.getOnsetDateTimeType()
                 } else if (sourceCondition.hasRecordedDate()) {
                   onsetDateTime = sourceCondition.getRecordedDateElement()
                 } else if (sourceCondition.getMeta().hasLastUpdated()) {
@@ -57,7 +57,7 @@ bundle {
                 }
 
                 recordedDate = sourceCondition.getRecordedDateElement()
-                note = sourceCondition.getNote();
+                note = sourceCondition.getNote()
               }
             }
           }

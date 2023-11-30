@@ -110,7 +110,7 @@ static String createTnmString(final Fhir4Source source) {
  */
 static String createCombinedTnmString(final Fhir4Source source) {
 
-  final StringBuilder sb = new StringBuilder();
+  final StringBuilder sb = new StringBuilder()
   if (source[tnm().ySymbol()]) {
     sb.append(source[tnm().ySymbol()])
   }
@@ -200,7 +200,7 @@ static String createCombinedTnmString(final Fhir4Source source) {
  */
 static String createCosdTnmString(final Fhir4Source source) {
 
-  final StringBuilder sb = new StringBuilder();
+  final StringBuilder sb = new StringBuilder()
   if (source[tnm().ySymbol()]) {
     sb.append(source[tnm().ySymbol()])
   }

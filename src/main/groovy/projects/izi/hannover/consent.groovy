@@ -33,7 +33,7 @@ consent {
       "ABGESTUFTE_EINWILLIGUNG": "Study_Consent"]
 
   final String localConsentTypeCode = context.source[consent().consentType().code()]
-  final String centralConsentTypeCode = localToCentralType.getOrDefault(localConsentTypeCode, "Broad_Consent");
+  final String centralConsentTypeCode = localToCentralType.getOrDefault(localConsentTypeCode, "Broad_Consent")
   if (centralConsentTypeCode == null) {
     return // no export
   }
