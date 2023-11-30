@@ -11,14 +11,17 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * represented by CXX LaborMapping
+ * Represented by CXX LaborMapping
  * @author Mike Wähnert
  * @since v.1.8.0, CXX.v.3.18.1
+ *
+ * Hints:
+ *  This is a special mapping for FNUSA.
  */
 diagnosticReport {
 
   final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
-  final boolean isExportRelevant = "HISTOL".equalsIgnoreCase(laborMethodCode)
+  final boolean isExportRelevant = "Histology".equalsIgnoreCase(laborMethodCode)
   if (!isExportRelevant) {
     return
   }

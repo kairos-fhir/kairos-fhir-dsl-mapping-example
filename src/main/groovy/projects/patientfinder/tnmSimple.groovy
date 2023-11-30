@@ -2,6 +2,8 @@ package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Tnm
+import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
@@ -41,92 +43,13 @@ observation {
     }
   }
 
-  final StringBuilder sb = new StringBuilder();
-  if (context.source[tnm().ySymbol()]) {
-    sb.append(context.source[tnm().ySymbol()])
-  }
-
-  if (context.source[tnm().recidivClassification()]) { // rSymbol
-    sb.append(context.source[tnm().recidivClassification()])
-  }
-
-  if (context.source[tnm().praefixTDict()]) {
-    sb.append(context.source[tnm().praefixTDict().code()])
-  }
-
-  if (context.source[tnm().t()]) {
-    sb.append("T")
-    sb.append(context.source[tnm().t()])
-  }
-
-  if (context.source[tnm().certaintyT()]) {
-    sb.append("C")
-    sb.append(context.source[tnm().certaintyT()])
-  }
-
-  if (context.source[tnm().multiple()]) {
-    sb.append("(")
-    sb.append(context.source[tnm().multiple()])
-    sb.append(")")
-  }
-
-  sb.append(" ")
-
-  if (context.source[tnm().praefixNDict()]) {
-    sb.append(context.source[tnm().praefixNDict().code()])
-  }
-
-  if (context.source[tnm().n()]) {
-    sb.append("N")
-    sb.append(context.source[tnm().n()])
-  }
-
-  if (context.source[tnm().certaintyN()]) {
-    sb.append("C")
-    sb.append(context.source[tnm().certaintyN()])
-  }
-  sb.append(" ")
-
-  if (context.source[tnm().praefixMDict()]) {
-    sb.append(context.source[tnm().praefixMDict().code()])
-  }
-
-  if (context.source[tnm().m()]) {
-    sb.append("M")
-    sb.append(context.source[tnm().m()])
-  }
-  if (context.source[tnm().certaintyM()]) {
-    sb.append("C")
-    sb.append(context.source[tnm().certaintyM()])
-  }
-
-  sb.append(" ")
-
-  if (context.source[tnm().l()]) {
-    sb.append("L")
-    sb.append(context.source[tnm().l()])
-  }
-  if (context.source[tnm().v()]) {
-    sb.append("V")
-    sb.append(context.source[tnm().v()])
-  }
-  if (context.source[tnm().pni()]) {
-    sb.append("Pn")
-    sb.append(context.source[tnm().pni()])
-  }
-  if (context.source[tnm().s()]) {
-    sb.append("S")
-    sb.append(context.source[tnm().s()])
-  }
-  if (context.source[tnm().grading()]) {
-    sb.append("G")
-    sb.append(context.source[tnm().grading()])
-  }
+  final String tnmSystem = createTnmSystem(context.source)
+  final String tnmString = createTnmString(context.source)
 
   valueCodeableConcept {
     coding {
-      system = "https://fhir.centraxx.de/system/tnm/simple"
-      code = sb.toString().trim()
+      system = tnmSystem
+      code = tnmString
       version = context.source[tnm().version()]
     }
 
@@ -158,3 +81,195 @@ static boolean isFakeEpisode(final def episode) {
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
 }
+
+static String createTnmSystem(final Fhir4Source source) {
+  if (["SACT", "COSD"].contains(source[Tnm.ENTITY_SOURCE])) {
+    if ("c".equalsIgnoreCase(source[tnm().praefixTDict().code()] as String)) {
+      return "https://fhir.centraxx.de/system/tnm/finalpretreatment"
+    } else if ("p".equalsIgnoreCase(source[tnm().praefixTDict().code()] as String)) {
+      return "https://fhir.centraxx.de/system/tnm/integrated"
+    }
+    return "https://fhir.centraxx.de/system/tnm/simple"
+  }
+  return {
+    return "https://fhir.centraxx.de/system/tnm/simple"
+  }
+}
+
+static String createTnmString(final Fhir4Source source) {
+  if (["SACT", "COSD"].contains(source[Tnm.ENTITY_SOURCE])) {
+    return createCosdTnmString(source)
+  }
+  return {
+    return createCombinedTnmString(source)
+  }
+}
+
+/**
+ * Creates a combined TNM string with all TNM parts
+ */
+static String createCombinedTnmString(final Fhir4Source source) {
+
+  final StringBuilder sb = new StringBuilder();
+  if (source[tnm().ySymbol()]) {
+    sb.append(source[tnm().ySymbol()])
+  }
+
+  if (source[tnm().recidivClassification()]) { // rSymbol
+    sb.append(source[tnm().recidivClassification()])
+  }
+
+  if (source[tnm().praefixTDict()]) {
+    sb.append(source[tnm().praefixTDict().code()])
+  }
+
+  if (source[tnm().t()]) {
+    sb.append("T")
+    sb.append(source[tnm().t()])
+  }
+
+  if (source[tnm().certaintyT()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyT()])
+  }
+
+  if (source[tnm().multiple()]) {
+    sb.append("(")
+    sb.append(source[tnm().multiple()])
+    sb.append(")")
+  }
+
+  sb.append(" ")
+
+  if (source[tnm().praefixNDict()]) {
+    sb.append(source[tnm().praefixNDict().code()])
+  }
+
+  if (source[tnm().n()]) {
+    sb.append("N")
+    sb.append(source[tnm().n()])
+  }
+
+  if (source[tnm().certaintyN()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyN()])
+  }
+  sb.append(" ")
+
+  if (source[tnm().praefixMDict()]) {
+    sb.append(source[tnm().praefixMDict().code()])
+  }
+
+  if (source[tnm().m()]) {
+    sb.append("M")
+    sb.append(source[tnm().m()])
+  }
+  if (source[tnm().certaintyM()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyM()])
+  }
+
+  sb.append(" ")
+
+  if (source[tnm().l()]) {
+    sb.append("L")
+    sb.append(source[tnm().l()])
+  }
+  if (source[tnm().v()]) {
+    sb.append("V")
+    sb.append(source[tnm().v()])
+  }
+  if (source[tnm().pni()]) {
+    sb.append("Pn")
+    sb.append(source[tnm().pni()])
+  }
+  if (source[tnm().s()]) {
+    sb.append("S")
+    sb.append(source[tnm().s()])
+  }
+  if (source[tnm().grading()]) {
+    sb.append("G")
+    sb.append(source[tnm().grading()])
+  }
+
+  return sb.toString().trim()
+}
+
+/**
+ * Creates a combined TNM string without prefixes
+ */
+static String createCosdTnmString(final Fhir4Source source) {
+
+  final StringBuilder sb = new StringBuilder();
+  if (source[tnm().ySymbol()]) {
+    sb.append(source[tnm().ySymbol()])
+  }
+
+  if (source[tnm().recidivClassification()]) { // rSymbol
+    sb.append(source[tnm().recidivClassification()])
+  }
+
+  if (source[tnm().t()]) {
+    sb.append("T")
+    sb.append(source[tnm().t()])
+  }
+
+  if (source[tnm().certaintyT()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyT()])
+  }
+
+  if (source[tnm().multiple()]) {
+    sb.append("(")
+    sb.append(source[tnm().multiple()])
+    sb.append(")")
+  }
+
+  sb.append(" ")
+
+  if (source[tnm().n()]) {
+    sb.append("N")
+    sb.append(source[tnm().n()])
+  }
+
+  if (source[tnm().certaintyN()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyN()])
+  }
+  sb.append(" ")
+
+  if (source[tnm().m()]) {
+    sb.append("M")
+    sb.append(source[tnm().m()])
+  }
+  if (source[tnm().certaintyM()]) {
+    sb.append("C")
+    sb.append(source[tnm().certaintyM()])
+  }
+
+  sb.append(" ")
+
+  if (source[tnm().l()]) {
+    sb.append("L")
+    sb.append(source[tnm().l()])
+  }
+  if (source[tnm().v()]) {
+    sb.append("V")
+    sb.append(source[tnm().v()])
+  }
+  if (source[tnm().pni()]) {
+    sb.append("Pn")
+    sb.append(source[tnm().pni()])
+  }
+  if (source[tnm().s()]) {
+    sb.append("S")
+    sb.append(source[tnm().s()])
+  }
+  if (source[tnm().grading()]) {
+    sb.append("G")
+    sb.append(source[tnm().grading()])
+  }
+
+  return sb.toString().trim()
+}
+

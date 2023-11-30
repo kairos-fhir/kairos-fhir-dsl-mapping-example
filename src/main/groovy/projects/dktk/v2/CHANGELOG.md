@@ -1,6 +1,6 @@
 # Changelog
 
-2023-11-2023
+2023-11-16
 
 * Further changes for "Kryo/Frisch (FF)", "Paraffin (FFPE)"
 * „SNP“ für Kryo/Frisch (Fixierungsart)
@@ -11,6 +11,11 @@
 2023-11-03
 
 * BBMRI SampleMaterialType mapped by site specific CXX SampleType codes
+
+2023-11-01
+
+* Surgery component codes as additional procedure/surgery codes added. The CCP-IT assumption is that all surgery components are documented on site
+  with OPS codes.
 
 2023-10-09
 
