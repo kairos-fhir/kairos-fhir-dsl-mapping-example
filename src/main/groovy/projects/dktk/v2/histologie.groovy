@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
@@ -57,7 +56,7 @@ observation {
     }
   }
 
-  if (context.source[histology().tumour()]) {
+  if (context.source[histology().tumour()] && hasRelevantCode(context.source[histology().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[histology().tumour().centraxxDiagnosis().id()]
     }
@@ -71,4 +70,8 @@ observation {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }
