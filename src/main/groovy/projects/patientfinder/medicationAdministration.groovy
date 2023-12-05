@@ -9,7 +9,6 @@ import org.hl7.fhir.r4.model.MedicationAdministration
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
 /**
  * Represents a CXX Medication
  *
@@ -18,7 +17,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  */
 medicationAdministration {
 
-  if (context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
+  if (context.source[medication().entitySource()] != "SACT" &&
+      context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
     return
   }
 
