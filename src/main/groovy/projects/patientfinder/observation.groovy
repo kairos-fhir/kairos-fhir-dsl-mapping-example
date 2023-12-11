@@ -23,6 +23,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
+  if (context.source[laborMapping().laborFinding().laborMethod().code()] == "Histology") {
+    return
+  }
+
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   status = Observation.ObservationStatus.UNKNOWN

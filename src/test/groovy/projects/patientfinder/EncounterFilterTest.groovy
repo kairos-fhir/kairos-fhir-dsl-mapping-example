@@ -68,7 +68,7 @@ class EncounterFilterTest extends AbstractDslBuilderTest {
   }
 
   static Map<String, Object> createValidTestData() {
-    final Map<String, Object> map = new HashMap<>();
+    final Map<String, Object> map = new HashMap<>()
     map.put(Episode.ID, "123")
     map.put(Episode.ENTITY_SOURCE, "CENTRAXX")
     map.put(Episode.ID_CONTAINER, [singletonMap(IdContainer.PSN, "123456")])

@@ -1,17 +1,19 @@
 package projects.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.SurgeryComponent
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
-
 /**
  * Represented by a CXX Surgery
  * OPS code for surgeries are not available in CXX
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
+ *
+ * SurgeryComponent export is available since CXX.v.3.18.3.17, CXX.v.3.18.4,CXX.v.2023.3.9, CXX.v.2023.4.2, CXX.v.2023.5.1, CXX.v.2023.6.0
  */
 procedure {
   id = "Procedure/Surgery-" + context.source[surgery().id()]
@@ -30,6 +32,20 @@ procedure {
     }
   }
 
+  code {
+    context.source[surgery().surgeryComponents()]?.each { final surgeryComponent ->
+      if (surgeryComponent[SurgeryComponent.CODE]) {
+        coding {
+          code = surgeryComponent[SurgeryComponent.CODE] as String
+          system = "http://fhir.de/CodeSystem/bfarm/ops"
+          if (surgeryComponent[SurgeryComponent.DATE]) {
+            version = getYear(surgeryComponent[SurgeryComponent.DATE] as String)
+          }
+        }
+      }
+    }
+  }
+
   subject {
     reference = "Patient/" + context.source[surgery().patientContainer().id()]
   }
@@ -43,7 +59,7 @@ procedure {
     precision = TemporalPrecisionEnum.DAY.name()
   }
 
-  if (context.source[surgery().tumour()]) {
+  if (context.source[surgery().tumour()] && hasRelevantCode(context.source[surgery().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     reasonReference {
       reference = "Condition/" + context.source[surgery().tumour().centraxxDiagnosis().id()]
     }
@@ -90,3 +106,10 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+}
+
+static String getYear(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 4) : null
+}

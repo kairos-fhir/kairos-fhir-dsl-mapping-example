@@ -45,7 +45,7 @@ procedure {
     }
   }
 
-  if (context.source[radiationTherapy().tumour()]) {
+  if (context.source[radiationTherapy().tumour()] && hasRelevantCode(context.source[radiationTherapy().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     reasonReference {
       reference = "Condition/" + context.source[radiationTherapy().tumour().centraxxDiagnosis().id()]
     }
@@ -81,4 +81,8 @@ procedure {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }
