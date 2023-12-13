@@ -23,8 +23,13 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
+      "transformByTemplate": "freeTextFilteredObservation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "freeTextDiagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
     },
     {
       "selectFromCxxEntity": "DIAGNOSIS",
@@ -85,11 +90,6 @@
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
       "exportToFhirResource": "MedicationAdministration"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "histoReport",
-      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }

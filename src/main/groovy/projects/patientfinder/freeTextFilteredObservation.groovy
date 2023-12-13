@@ -4,10 +4,10 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
@@ -19,6 +19,8 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
+import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
+import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
@@ -33,6 +35,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
+
+  final boolean isFreeText = ((String) laborMethod[CODE]).contains("_free_text")
+
+  if (isFreeText) {
+    return
+  }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
@@ -58,32 +66,20 @@ observation {
   method {
     coding {
       system = FhirUrls.System.LaborMethod.BASE_URL
-      version = context.source[laborMapping().laborFinding().laborMethod().version()]
-      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
+      version = laborMethod[LaborMethod.VERSION]
+      code = laborMethod[CODE] as String
     }
   }
 
-  if (laborMethod[CODE].equals("SACT_Profile")) {
-    basedOn {
-      reference = "CarePlan/SACT-" + context.source[laborMapping().laborFinding().id()]
-    }
-    partOf {
-      reference = "MedicationAdministration/SACT-" + context.source[laborMapping().laborFinding().id()]
-    }
-  }
-
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
+    final lflv -> !((String) lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]).toLowerCase().contains("_memo")
+  }.each { final lflv ->
 
     final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
         ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+        : lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
-
-    if (laborMethod[CODE].equals("SACT_Profile") && isMappedElseWhere(laborValueCode)) {
-      return
-    }
-
 
     final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
 
@@ -247,24 +243,5 @@ static boolean isFakeEpisode(final def episode) {
   return fakeId != null
 }
 
-static boolean isMappedElseWhere(final String code) {
-  final boolean mappedInCarePlan = mappedInCarePlan(code)
-  final boolean mappedInMedAdmin = mappedInMedAdmin(code)
-  return mappedInCarePlan || mappedInMedAdmin
-}
 
-private static boolean mappedInMedAdmin(final String code) {
-  final List mappedInMedAdmin = ["Drug_Name",
-                                 "DM+D",
-                                 "Actual_Dose_Per_Administration",
-                                 "Unit_Of_Measurement_(SNOMED_CT_DM+D)",
-                                 "SACT_Administration_Route",
-                                 "Route_Of_Administration_(SNOMED_CT_DM+D)",
-                                 "Administration_Date"]
-  return code in mappedInMedAdmin
-}
 
-private static boolean mappedInCarePlan(final String code) {
-  final List mappedInCarePlan = ["Regimen", "Date_Decision_To_Treat", "Start_Date_Of_Regimen"]
-  return code in mappedInCarePlan
-}
