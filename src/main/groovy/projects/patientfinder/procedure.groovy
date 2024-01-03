@@ -8,7 +8,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
-
 /**
  * Represented by CXX MedProcedure
  */
@@ -46,7 +45,7 @@ procedure {
 
   if (context.source[medProcedure().procedureDate().date()]) {
     performedDateTime {
-      date = context.source[medProcedure().procedureDate().date()]
+      date = normalizeDate(context.source[medProcedure().procedureDate().date()] as String)
       precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
@@ -80,4 +79,13 @@ static boolean isFakeEpisode(final def episode) {
 
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
