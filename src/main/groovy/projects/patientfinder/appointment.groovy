@@ -20,11 +20,11 @@ appointment {
     value = context.source[calendarEvent().eventId()]
   }
 
-  status = context.source[calendarEvent().isDone()] ? Appointment.AppointmentStatus.FULFILLED : Appointment.AppointmentStatus.BOOKED;
+  status = context.source[calendarEvent().isDone()] ? Appointment.AppointmentStatus.FULFILLED : Appointment.AppointmentStatus.BOOKED
 
   serviceCategory {
     coding {
-      system = FhirUrls.System.Calendar.Type.BASE_URL;
+      system = FhirUrls.System.Calendar.Type.BASE_URL
       code = context.source[calendarEvent().type()]
     }
   }

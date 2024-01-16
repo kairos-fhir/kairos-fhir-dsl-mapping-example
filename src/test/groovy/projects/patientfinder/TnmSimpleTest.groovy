@@ -85,7 +85,7 @@ class TnmSimpleTest extends AbstractDslBuilderTest {
     episodeMap.put(Episode.ENTITY_SOURCE, "CENTRAXX")
     episodeMap.put(Episode.ID_CONTAINER, [singletonMap(IdContainer.PSN, "123456")])
 
-    final Map<String, Object> map = new HashMap<>();
+    final Map<String, Object> map = new HashMap<>()
     map.put(Tnm.ID, "123")
     map.put(Tnm.EPISODE, episodeMap)
     return map

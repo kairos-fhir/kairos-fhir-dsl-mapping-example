@@ -39,7 +39,7 @@ bundle {
 
                 subject = sourceSpecimen.getSubject()
                 final String snomedSpecimenType = findSnomedSpecimenType(sourceSpecimen)
-                final String cxxSampleTypeCode = mapToCxxSampleType(snomedSpecimenType);
+                final String cxxSampleTypeCode = mapToCxxSampleType(snomedSpecimenType)
                 if (cxxSampleTypeCode != null) {
                   type {
                     coding {
@@ -72,7 +72,7 @@ private static String findSnomedSpecimenType(final Specimen sourceSpecimen) {
       }
     }
   }
-  return null;
+  return null
 }
 
 private static String mapToCxxSampleType(final String snomedSpecimenType) {

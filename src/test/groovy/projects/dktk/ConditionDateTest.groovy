@@ -2,6 +2,7 @@ package projects.dktk
 
 import common.AbstractDslBuilderTest
 import de.kairos.fhir.centraxx.metamodel.Diagnosis
+import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
@@ -31,6 +32,9 @@ class ConditionDateTest extends AbstractDslBuilderTest {
   }
 
   static Map<String, Object> createTestData() {
-    return singletonMap(Diagnosis.DIAGNOSIS_DATE, singletonMap(PrecisionDate.DATE, "1799-12-31T23:53:28.000+00:53:28"))
+    final Map<String, Object> testData = new HashMap<>()
+    testData.put(Diagnosis.DIAGNOSIS_DATE, singletonMap(PrecisionDate.DATE, "1799-12-31T23:53:28.000+00:53:28"))
+    testData.put(Diagnosis.ICD_ENTRY, singletonMap(IcdEntry.CODE, "C00.0"))
+    return testData
   }
 }

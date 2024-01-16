@@ -246,9 +246,9 @@ medicationRequest {
 
 static Boolean createAsNeededFromType(final String resultStatus) {
   if (MedicationKind.BM.name() == resultStatus) {
-    return true;
+    return true
   } else if (MedicationKind.EM.name() == resultStatus) {
-    return false;
+    return false
   } else {
     return null
   }

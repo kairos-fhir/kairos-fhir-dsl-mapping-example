@@ -7,7 +7,6 @@ import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
-
 /**
  * Represented by a CXX Surgery
  * OPS code for surgeries are not available in CXX
@@ -60,7 +59,7 @@ procedure {
     precision = TemporalPrecisionEnum.DAY.name()
   }
 
-  if (context.source[surgery().tumour()]) {
+  if (context.source[surgery().tumour()] && hasRelevantCode(context.source[surgery().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     reasonReference {
       reference = "Condition/" + context.source[surgery().tumour().centraxxDiagnosis().id()]
     }
@@ -107,7 +106,10 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+}
+
 static String getYear(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 4) : null
 }
-

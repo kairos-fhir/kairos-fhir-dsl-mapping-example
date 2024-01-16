@@ -1,28 +1,46 @@
 package projects.patientfinder
 
-import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.DiagnosticReport
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
+import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
+import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by CXX LaborMapping
+ * represented by CXX LaborMapping
  * @author Mike Wähnert
  * @since v.1.8.0, CXX.v.3.18.1
  *
- * Hints:
- *  This is a special mapping for FNUSA.
+ * This writes free text fields into a diagnostic report. if a LaborMethod code contains  '_free_text', all LabFinLabVals are
+ * concatenated in to a string. For other profiles, only LabFinLabVals with a LaborValue code that contains _MEMO are written
+ * in a concatenated string
  */
 diagnosticReport {
+  final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
 
-  final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
-  final boolean isExportRelevant = "Histology".equalsIgnoreCase(laborMethodCode)
-  if (!isExportRelevant) {
+  final boolean isFreeText = ((String) laborMethod[CODE]).contains("_free_text")
+
+  def labFinLabVals
+
+  if (isFreeText) {
+    labFinLabVals = (Collection) context.source[laborMapping().laborFinding().laborFindingLaborValues()]
+  } else {
+    labFinLabVals = context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
+      final lflv ->
+        ((String) lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE])
+            .toLowerCase()
+            .contains("_memo")
+    }
+  }
+
+  if (labFinLabVals.isEmpty()) {
     return
   }
 
@@ -38,8 +56,8 @@ diagnosticReport {
   code {
     coding {
       system = "urn:centraxx"
-      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()].find { final def entry ->
+      code = laborMethod[CODE] as String
+      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES].find { final def entry ->
         "en" == entry[MultilingualEntry.LANG]
       }?.getAt(MultilingualEntry.VALUE)
     }
@@ -67,13 +85,13 @@ diagnosticReport {
     reference = "Observation/" + context.source[laborMapping().laborFinding().id()]
   }
 
+  final def concatString = labFinLabVals.collect {
+    final lflv ->
+      "${lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]}: " +
+          "${lflv[LaborFindingLaborValue.STRING_VALUE]}"
+  }.join("\n\n")
 
-  // there is no field for an interpretation/conclusion of results in CXX. To export such, a measure parameter must
-  // be introduced in CXX.
-  final def interpretation = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "ZAVER" == it[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-  }
-  conclusion = interpretation ? interpretation[LaborFindingLaborValue.STRING_VALUE] : null
+  conclusion = concatString
 }
 
 static boolean isFakeEpisode(final def episode) {
@@ -88,3 +106,5 @@ static boolean isFakeEpisode(final def episode) {
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
 }
+
+

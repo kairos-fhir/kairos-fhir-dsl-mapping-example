@@ -14,8 +14,7 @@
     {
       "selectFromCxxEntity": "ATTENDING_DOCTOR",
       "transformByTemplate": "practitioner",
-      "exportToFhirResource": "Practitioner",
-      "exportDeleteEnable": false
+      "exportToFhirResource": "Practitioner"
     },
     {
       "selectFromCxxEntity": "EPISODE",
@@ -100,11 +99,6 @@
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "diagnosticReport",
-      "exportToFhirResource": "DiagnosticReport"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "histoReport",
       "exportToFhirResource": "DiagnosticReport"
     }
   ]
