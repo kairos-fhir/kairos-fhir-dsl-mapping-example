@@ -63,7 +63,6 @@ consent {
     }
   }
 
-  final def validFrom = context.source[consent().validFrom().date()]
   final def validUntil = context.source[consent().validUntil().date()]
 
   provision {
