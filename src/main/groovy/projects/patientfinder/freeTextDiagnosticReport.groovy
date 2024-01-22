@@ -87,8 +87,8 @@ diagnosticReport {
 
   final def concatString = labFinLabVals.collect {
     final lflv ->
-      "${lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]}: " +
-          "${lflv[LaborFindingLaborValue.STRING_VALUE]}"
+      "${lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]}:" +
+          (lflv[LaborFindingLaborValue.STRING_VALUE] ? " ${lflv[LaborFindingLaborValue.STRING_VALUE]}" : "")
   }.join("\n\n")
 
   conclusion = concatString

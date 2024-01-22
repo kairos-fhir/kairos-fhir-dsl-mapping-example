@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-01-22
+
+* Null values in diagnostic report conclusion removed.
+
 ## 2023-12-05
 
 * Exported all FNUSA SACT medications as MedicationAdministration
