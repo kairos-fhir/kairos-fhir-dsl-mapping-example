@@ -16,6 +16,8 @@ The following imported data sets are supported/tested:
 ## 2024-01-22
 
 * Null values in diagnostic report conclusion removed.
+* Diagnostic report conclusion extended to more data types
+* histoReport profile added to freeTextDiagnosticReport export
 
 ## 2023-12-05
 
@@ -37,10 +39,10 @@ The following imported data sets are supported/tested:
 ## 2023-09-21
 
 * Observation with combined TNM code (tnmSimple) instead of separated TNM
-* "FAKE" Encountes suppressed.
+* "FAKE" Encounters suppressed.
 
 ## 2023-09-14
 
 * User defined catalog entries for condition and procedures added
 * Display description of procedure, condition and observation catalog entries added.
-* Encountes for SACT/COSD are suppressed.
+* Encounters for SACT/COSD are suppressed.
