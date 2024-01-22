@@ -38,6 +38,11 @@ consent {
     return // no export
   }
 
+  final def validFrom = context.source[consent().validFrom().date()]
+  if (validFrom == null) {
+    return // no export with empty or unknown date
+  }
+
   id = "Consent/Consent-" + context.source[consent().id()]
 
   final def patIdContainer = context.source[diagnosis().patientContainer().idContainer()]?.find {
