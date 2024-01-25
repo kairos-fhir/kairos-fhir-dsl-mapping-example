@@ -16,3 +16,8 @@ IZI Sync*
 ---
 *With the kind support from  [Fraunhofer Institute for Cell Therapy and Immunology IZI](https://www.izi.fraunhofer.de/en.html).
 
+# Changelog
+
+## 2024-01-14
+
+* Filter added for consents with uknown or without validFrom date.

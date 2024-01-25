@@ -4,7 +4,10 @@ package projects.patientfinder
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -24,8 +27,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 diagnosticReport {
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
-
-  final boolean isFreeText = ((String) laborMethod[CODE]).contains("_free_text")
+  final String laborMethodCode = laborMethod[CODE]
+  final boolean isFreeText = laborMethodCode.contains("_free_text") || "Histology".equalsIgnoreCase(laborMethodCode)
 
   def labFinLabVals
 
@@ -56,7 +59,7 @@ diagnosticReport {
   code {
     coding {
       system = "urn:centraxx"
-      code = laborMethod[CODE] as String
+      code = laborMethodCode
       display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES].find { final def entry ->
         "en" == entry[MultilingualEntry.LANG]
       }?.getAt(MultilingualEntry.VALUE)
@@ -87,8 +90,19 @@ diagnosticReport {
 
   final def concatString = labFinLabVals.collect {
     final lflv ->
-      "${lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]}: " +
-          "${lflv[LaborFindingLaborValue.STRING_VALUE]}"
+      final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE]
+      if (isString(laborValue)) {
+        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.STRING_VALUE] ? " ${lflv[LaborFindingLaborValue.STRING_VALUE]}" : "")
+      } else if (isBoolean(laborValue)) {
+        return "${laborValue[CODE]}:" + " ${lflv[LaborFindingLaborValue.BOOLEAN_VALUE]}"
+      } else if (isDate(laborValue)) {
+        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE) ?
+            " ${lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)}" : "")
+      } else if (isNumeric(laborValue)) {
+        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.NUMERIC_VALUE] ? " ${lflv[LaborFindingLaborValue.NUMERIC_VALUE]}" : "")
+      } else {
+        return "${laborValue[CODE]}:" // assumes that catalog values are never used in these labor findings
+      }
   }.join("\n\n")
 
   conclusion = concatString
@@ -107,4 +121,38 @@ static boolean isFakeEpisode(final def episode) {
   return fakeId != null
 }
 
+static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {
+  return types.contains(laborValue?.getAt(LaborValue.D_TYPE) as LaborValueDType)
+}
 
+static boolean isBoolean(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.BOOLEAN])
+}
+
+static boolean isNumeric(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.INTEGER, LaborValueDType.DECIMAL, LaborValueDType.SLIDER])
+}
+
+static boolean isDate(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.DATE, LaborValueDType.LONGDATE])
+}
+
+static boolean isTime(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.TIME])
+}
+
+static boolean isEnumeration(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.ENUMERATION])
+}
+
+static boolean isString(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
+}
+
+static boolean isCatalog(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.CATALOG])
+}
+
+static boolean isOptionGroup(final Object laborValue) {
+  return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
+}
