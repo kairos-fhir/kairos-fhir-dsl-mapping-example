@@ -179,7 +179,7 @@ medicationRequest {
     }
   }
 
-  note {
+  reasonCode {
     text = context.source[medication().notes()] as String
   }
 
