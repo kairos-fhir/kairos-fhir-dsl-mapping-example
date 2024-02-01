@@ -53,9 +53,11 @@ encounter {
 
   status = Encounter.EncounterStatus.UNKNOWN
 
-  class_ {
-    system = "http://terminology.hl7.org/CodeSystem/v3-ActCode"
-    code = "unknown"
+  if (context.source[episode().stayType().code()]) {
+    class_ {
+      system = FhirUrls.System.Episode.StayType.BASE_URL
+      code = context.source[episode().stayType().code()]
+    }
   }
 
   type {
