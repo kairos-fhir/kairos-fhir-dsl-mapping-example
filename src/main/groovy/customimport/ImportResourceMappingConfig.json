@@ -1,0 +1,9 @@
+{
+  "description": "",
+  "mappings": [
+    {
+      "resourceType": "Patient",
+      "transformByTemplate": "patient"
+    }
+  ]
+}

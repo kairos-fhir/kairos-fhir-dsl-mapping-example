@@ -1,0 +1,8 @@
+{
+  "writeTransformedToFileSystem": {
+    "value": true
+  },
+  "transformedFolder": {
+    "value": "C:/applications/centraxx-home/fhir-custom-import-transformed"
+  }
+}
