@@ -1,8 +1,15 @@
 {
-  "writeTransformedToFileSystem": {
+  "description": "This configuration specifies for each FHIR custom import project all project-specific necessary properties. The configuration can be changed during runtime.",
+  "writeTransformedBundleToFileSystem": {
+    "description": "If true, the transformed Bundles will be written to file system. Helpful for debugging.",
     "value": true
   },
-  "transformedFolder": {
+  "transformedBundleFolder": {
+    "description": "The base path in which the transformed bundles will be written.",
     "value": "C:/applications/centraxx-home/fhir-custom-import-transformed"
+  },
+  "mapByStructureUrlEnable": {
+    "description": "If False, BundleEntry resource will be mapped to groovy template by ResourceType. Use this, if only one Profile for each Resource will be used. If True, the mapping will be done by using using the first entry in resource.meta.profile for mapping. If no entry will be given, the resource mapping will be used. If nor resource mapping exists, the bundle entry will be ignored.",
+    "value": false
   }
 }

@@ -1,5 +1,5 @@
 {
-  "description": "",
+  "description": "This configuration links a FHIR profile to a CXX FHIR resource (exportToFhirResource) by conversion through a transformation template (transformByTemplate).",
   "mappings": [
     {
       "resourceType": "Patient",
