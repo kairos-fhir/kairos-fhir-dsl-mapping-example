@@ -35,8 +35,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
-
-  final boolean isFreeText = ((String) laborMethod[CODE]).contains("_free_text")
+  final String laborMethodCode = laborMethod[CODE]
+  final boolean isFreeText = laborMethodCode.contains("_free_text") || "Histology".equalsIgnoreCase(laborMethodCode)
 
   if (isFreeText) {
     return
