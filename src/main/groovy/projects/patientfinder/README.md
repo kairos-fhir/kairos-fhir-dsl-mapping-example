@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-02-08
+
+* histology filtered from freeTextFilteredObservation export
+
 ## 2024-01-22
 
 * Null values in diagnostic report conclusion removed.
