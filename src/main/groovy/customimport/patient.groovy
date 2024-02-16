@@ -5,11 +5,15 @@ import org.hl7.fhir.r4.model.Patient
 
 /**
  * Transforms condition bundles.
- * @author Mike Wähnert
- * @since v.1.7.0, CXX.v.2022.3.0
+ * @author Jonas Küttner
+ * @since v.1.9.0, CXX.v.2024.1.0
  */
 bundle {
-  final Patient patient = context.resource as Patient
+  if (!context.bundleEntryComponent.hasResource()) {
+    return
+  }
+
+  final Patient patient = context.bundleEntryComponent.getResource() as Patient
 
   println(patient.generalPractitioner.reference.toString())
 
