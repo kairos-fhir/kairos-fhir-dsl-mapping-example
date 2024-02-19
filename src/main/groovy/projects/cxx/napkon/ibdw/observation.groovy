@@ -36,60 +36,66 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
   // 0. Filter patients
-  //final def patientList = ["lims_643282707", "lims_745748710"]
-  //final def currentPatientId = context.source[laborMapping().relatedPatient().idContainer()]?.find {
-  //  "NAPKON" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-  //}
-  //final boolean belongsToExcludedPatient = patientList.contains(currentPatientId[IdContainer.PSN])
+//  final def patientList = ["lims_768700553"] //, "lims_745748710"]
+//  final def currentPatientId = context.source[laborMapping().relatedPatient().idContainer()]?.find {
+//    "NAPKON" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+//  }
+//  final boolean belongsToExcludedPatient = patientList.contains(currentPatientId[IdContainer.PSN])
 //
-  //if (belongsToExcludedPatient) {
-  //  return
-  //}
+//  if (!belongsToExcludedPatient) {
+//    return
+//  }
 
   // Filter sample category
   final SampleCategory category = context.source[laborMapping().sample().sampleCategory()] as SampleCategory
 
   final boolean isSampleMapping = LaborMappingType.SAMPLELABORMAPPING == context.source[laborMapping().mappingType()] as LaborMappingType
-  final boolean isDzhkMethod = ["DZHKFLAB"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
-  if (!(isSampleMapping && isDzhkMethod)) {
+  final boolean isNumMethod = ["DZHKFLAB", 'NUM_PBMC_ISOLIERUNG'].contains(context.source[laborMapping().laborFinding().laborMethod().code()])
+  if (!(isSampleMapping && isNumMethod)) {
     return
   }
   
-  final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-  final SimpleDateFormat numDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
+//  final SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+//  final SimpleDateFormat numDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
 
-  final def extSampleId = context.source[laborMapping().sample().idContainer()]?.find { final def entry ->
+  // 2. Filter NAPKON-ID Mapping exists
+  String napkonMappingExists = ""
+  if (category == SampleCategory.MASTER) {
+    napkonMappingExists = context.source[laborMapping().sample().idContainer()]?.find { final def entry ->
+      "NAPKONSMP" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    }
+  }
+    final def extSampleId = context.source[laborMapping().sample().idContainer()]?.find { final def entry ->
     "NAPKONSMP" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
   }
   
-  if (!extSampleId) {
+  if (!napkonMappingExists) {
     return
   }
 
   // Filter samples older than specified date
-  String sampleReceptionDate = ""
-  if (category == SampleCategory.MASTER) {
-    sampleReceptionDate = context.source[laborMapping().sample().receiptDate().date()]
-  } else if (category == SampleCategory.ALIQUOTGROUP) {
-    sampleReceptionDate = context.source[laborMapping().sample().parent().receiptDate().date()]
-  } else if (category == SampleCategory.DERIVED) {
-    sampleReceptionDate = context.source[laborMapping().sample().parent().parent().receiptDate().date()]
-  }
-  if (sampleReceptionDate < "2022-03-01T23:59:59+01:00") {
-    return
-  }
+//  String receptionDate = ""
+//  if (category == SampleCategory.MASTER) {
+//    receptionDate = context.source[laborMapping().sample().receiptDate().date()]
+//  } else if (category == SampleCategory.ALIQUOTGROUP) {
+//    receptionDate = context.source[laborMapping().sample().parent().receiptDate().date()]
+//  } else if (category == SampleCategory.DERIVED) {
+//    receptionDate = context.source[laborMapping().sample().parent().parent().receiptDate().date()]
+//  }
+//  if (receptionDate == null || receptionDate < "2023-01-01T00:00:00.000+01:00") {
+//    return
+//  }
 
-  // Observation date from sample reception timestamp
-  // Observation label from laborFinding timestamp
-  final Date observationDate =  isoDateFormat.parse(context.source[laborMapping().sample().receiptDate().date()] as String)
-  String observationCode = ""
-  if (observationDate) {
-  	observationCode = "Biomaterial-Zentrifugation_" + extSampleId[SampleIdContainer.PSN] + "_" + numDateFormat.format(observationDate)
-  }
-  else {
-	// Do not create observation if observationDate is NULL
-	return
-  }
+//  println("observationDate: " + context.source[laborMapping().laborFinding().findingDate().date()])
+//  Date observationDate =  isoDateFormat.parse(context.source[laborMapping().laborFinding().findingDate().date()] as String)
+//  String observationCode = ""
+//  if (observationDate) {
+//  	observationCode = "Biomaterial-Zentrifugation_" + extSampleId[SampleIdContainer.PSN] + "_" + numDateFormat.format(observationDate)
+//  }
+//  else {
+//	// Do not create observation if observationDate is NULL
+//	return
+//  }
 
   // Update resource - ignore missing elements
 //  extension {
@@ -103,7 +109,8 @@ observation {
 
   code {
     coding {
-	  code = observationCode
+//	  code = observationCode
+	  code = context.source[laborMapping().laborFinding().shortName()] as String
       system = "urn:centraxx"
     }
   }
@@ -143,7 +150,9 @@ observation {
     }
   }
 
-  effectiveDateTime = observationDate
+//  effectiveDateTime = observationDate
+  effectiveDateTime = context.source[laborMapping().laborFinding().findingDate().date()]
+
 
   method {
     coding {
