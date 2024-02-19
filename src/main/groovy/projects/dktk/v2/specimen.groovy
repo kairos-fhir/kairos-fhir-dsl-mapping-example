@@ -3,6 +3,7 @@ package projects.dktk.v2
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.SampleIdContainer
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.PARENT
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
@@ -29,8 +30,20 @@ specimen {
 
   id = "Specimen/" + context.source[abstractSample().id()]
 
-  final def idc = context.source[sample().idContainer()].find {
+  def idc = context.source[sample().idContainer()].find {
     "EXLIQUID" == it[IdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+  }
+
+  if (!idc) {
+    idc = context.source[sample().parent().idContainer()]?.find { final def entry ->
+      "EXLIQUID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    }
+  }
+
+  if (!idc) {
+    idc = context.source[sample().parent().parent().idContainer()]?.find { final def entry ->
+      "EXLIQUID" == entry[SampleIdContainer.ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    }
   }
 
   meta {
@@ -55,6 +68,14 @@ specimen {
   if (context.source[PARENT] != null) {
     parent {
       reference = "Specimen/" + context.source[sample().parent().id()]
+      type = "PARENT"
+    }
+  }
+
+  if (context.source[PARENT]?.getAt(PARENT) != null) {
+    parent {
+      reference = "Specimen/" + context.source[sample().parent().parent().id()]
+      type = "PARENT-PARENT"
     }
   }
 
