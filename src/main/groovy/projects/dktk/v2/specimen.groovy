@@ -68,14 +68,6 @@ specimen {
   if (context.source[PARENT] != null) {
     parent {
       reference = "Specimen/" + context.source[sample().parent().id()]
-      type = "PARENT"
-    }
-  }
-
-  if (context.source[PARENT]?.getAt(PARENT) != null) {
-    parent {
-      reference = "Specimen/" + context.source[sample().parent().parent().id()]
-      type = "PARENT-PARENT"
     }
   }
 
