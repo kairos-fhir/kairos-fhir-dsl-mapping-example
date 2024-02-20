@@ -18,6 +18,10 @@ IZI Sync*
 
 # Changelog
 
+## 2024-02-19
+
+* Add UNKNOWN precision date extension in patient, specimen and observation
+
 ## 2024-01-14
 
-* Filter added for consents with uknown or without validFrom date.
+* Filter added for consents with unknown or without validFrom date.
