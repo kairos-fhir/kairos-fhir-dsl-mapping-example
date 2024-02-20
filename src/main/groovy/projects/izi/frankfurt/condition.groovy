@@ -71,6 +71,4 @@ condition {
       version = context.source[diagnosis().icdEntry().kind()]
     }
   }
-
 }
-
