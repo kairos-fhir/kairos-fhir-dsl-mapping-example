@@ -199,7 +199,7 @@ specimen {
     }
   }
 
-// Sample Location
+  // Sample Location
   if (context.source[sample().sampleLocation()]) {
     extension {
       url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
@@ -233,7 +233,7 @@ specimen {
     }
   }
 
-// SPREC Extensions
+  // SPREC Extensions
   extension {
     url = FhirUrls.Extension.SPREC
     extension {
