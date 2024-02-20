@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Consent
  * @author Mike Wähnert
