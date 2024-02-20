@@ -20,7 +20,7 @@ IZI Sync*
 
 ## 2024-02-19
 
-* Add UNKNOWN precision date extension in patient, specimen and observation
+* Add UNKNOWN precision date extensions in patient, specimen and observation, consent and condition added
 
 ## 2024-01-14
 
