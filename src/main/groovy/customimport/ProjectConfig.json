@@ -8,8 +8,12 @@
     "description": "The base path in which the transformed bundles will be written.",
     "value": "C:/applications/centraxx-home/fhir-custom-import-transformed"
   },
-  "mapByStructureUrlEnable": {
-    "description": "If False, BundleEntry resource will be mapped to groovy template by ResourceType. Use this, if only one Profile for each Resource will be used. If True, the mapping will be done by using using the first entry in resource.meta.profile for mapping. If no entry will be given, the resource mapping will be used. If nor resource mapping exists, the bundle entry will be ignored.",
-    "value": false
+  "sourceBundleFolder": {
+    "description": "The base path in which the source bundles will be written.",
+    "value": "C:/applications/centraxx-home/fhir-custom-import-source"
+  },
+  "writeSourceBundleToFileSystem": {
+    "description": "If true, the source Bundles will be written to file system. Helpful for debugging.",
+    "value": true
   }
 }
