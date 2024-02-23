@@ -1,0 +1,19 @@
+{
+  "description": "This configuration specifies for each FHIR custom import project all project-specific necessary properties. The configuration can be changed during runtime.",
+  "writeTransformedBundleToFileSystem": {
+    "description": "If true, the transformed Bundles will be written to file system. Helpful for debugging.",
+    "value": true
+  },
+  "transformedBundleFolder": {
+    "description": "The base path in which the transformed bundles will be written.",
+    "value": "C:/applications/centraxx-home/fhir-custom-import-transformed"
+  },
+  "sourceBundleFolder": {
+    "description": "The base path in which the source bundles will be written.",
+    "value": "C:/applications/centraxx-home/fhir-custom-import-source"
+  },
+  "writeSourceBundleToFileSystem": {
+    "description": "If true, the source Bundles will be written to file system. Helpful for debugging.",
+    "value": true
+  }
+}
