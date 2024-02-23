@@ -7,7 +7,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
-
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
@@ -71,6 +70,13 @@ condition {
         code = context.source[diagnosis().diagnosisCode()] as String
         display = context.source[diagnosis().diagnosisText()]
       }
+    }
+  }
+
+  final String diagNote = context.source[diagnosis().comments()] as String
+  if (diagNote) {
+    note {
+      text = diagNote
     }
   }
 }
