@@ -10,7 +10,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
  *
  * hints:
  *  Reference to a single specimen is not clearly determinable, because in CXX the reference might be histology 1->n diagnosis/tumor 1->n sample.
- *  Reference to hasMember is not available. There is no parent child hierarchy of histologies in CXX yet.
  *  Reference to focus condition has been added additionally, because a reverse reference is not possible yet.
  *
  * @author Mike Wähnert
@@ -59,6 +58,12 @@ observation {
   if (context.source[histology().tumour()] && hasRelevantCode(context.source[histology().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[histology().tumour().centraxxDiagnosis().id()]
+    }
+  }
+
+  if (context.source[histology().gradingDict()] != null) {
+    hasMember {
+      reference = "Observation/Grading-" + context.source[histology().id()]
     }
   }
 }

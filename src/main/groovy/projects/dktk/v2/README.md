@@ -12,6 +12,12 @@ DKTK Oncology Mappings*
 
 # Changelog
 
+## 2024-02-29
+
+* Reference to grading in histology hasMember added
+* Export order changed to make sure that grading is exported before histology
+* Unnecessary logging in specimen removed
+
 ## 2023-11-28
 
 * genetischeVariante: condition reference removed

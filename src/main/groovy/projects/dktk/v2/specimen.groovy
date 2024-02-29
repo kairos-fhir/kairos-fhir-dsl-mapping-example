@@ -65,15 +65,11 @@ specimen {
       code = context.source[abstractSample().sampleType().code()]
     }
 
-
     final String sampleKind = context.source[abstractSample().sampleType().kind()] as String
-
     final String stockType = context.source[abstractSample().stockType().code()] as String
 
     // 0. Site specific CXX sample type code => BBMRI SampleMaterialType.
-    println(sampleTypeCode)
     final String bbmriCode0 = codeToSampleType(sampleTypeCode, stockType, sampleKind)
-    println(bbmriCode0)
     if (bbmriCode0 != null) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"

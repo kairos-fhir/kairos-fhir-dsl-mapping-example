@@ -58,12 +58,12 @@
     },
     {
       "selectFromCxxEntity": "HISTOLOGY",
-      "transformByTemplate": "histologie",
+      "transformByTemplate": "grading",
       "exportToFhirResource": "Observation"
     },
     {
       "selectFromCxxEntity": "HISTOLOGY",
-      "transformByTemplate": "grading",
+      "transformByTemplate": "histologie",
       "exportToFhirResource": "Observation"
     },
     {
