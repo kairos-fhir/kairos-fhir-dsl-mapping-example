@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-03-11
+
+"histological and cytological findings" added to free text special transformation scripts
+
 ## 2024-02-08
 
 * histology filtered from freeTextFilteredObservation export

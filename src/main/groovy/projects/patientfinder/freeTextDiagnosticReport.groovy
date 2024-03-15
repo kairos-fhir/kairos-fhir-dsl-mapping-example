@@ -28,7 +28,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 diagnosticReport {
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
   final String laborMethodCode = laborMethod[CODE]
-  final boolean isFreeText = laborMethodCode.contains("_free_text") || "Histology".equalsIgnoreCase(laborMethodCode)
+  final boolean isFreeText = laborMethodCode.contains("_free_text") || "Histology".equalsIgnoreCase(laborMethodCode) || "histological and cytological findings".equalsIgnoreCase(laborMethodCode)
 
   def labFinLabVals
 

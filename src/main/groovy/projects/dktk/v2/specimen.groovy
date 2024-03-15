@@ -333,8 +333,8 @@ static String codeToSampleType(final String sampleTypeCode, final String stockTy
   }
 
   switch (sampleTypeCode) {
-    case { matchIgnoreCase(["whole-blood", "BLD", "VBL", "Vollblut", "TBL"], sampleTypeCode) }: return "whole-blood"
-    case { matchIgnoreCase(["KNM", "bone-marrow", "Knochenmark", "BMA", "EDTAKM"], sampleTypeCode) }: return "bone-marrow"
+    case { matchIgnoreCase(["whole-blood", "BLD", "VBL", "Vollblut", "TBL", "EDTA-PB", "Heparinblut"], sampleTypeCode) }: return "whole-blood"
+    case { matchIgnoreCase(["KNM", "bone-marrow", "Knochenmark", "BMA", "EDTAKM", "KM", "Knochenmark"], sampleTypeCode) }: return "bone-marrow"
     case { matchIgnoreCase(["BUFFYCOAT", "BuffyCoat", "BUF", "buffy-coat", "BUFFYCOATNOTVIABLE"], sampleTypeCode) }: return "buffy-coat"
     case { matchIgnoreCase(["TBK", "BF"], sampleTypeCode) }: return "dried-whole-blood"
     case { matchIgnoreCase(["PBMC", "PBMC-nl", "PBMCs", "PBMC-l", "PEL"], sampleTypeCode) }: return "peripheral-blood-cells-vital"
@@ -348,21 +348,24 @@ static String codeToSampleType(final String sampleTypeCode, final String stockTy
     case { matchIgnoreCase(["SPEICHEL", "SAL"], sampleTypeCode) }: return "saliva"
     case { matchIgnoreCase(["STL", "STLctr"], sampleTypeCode) }: return "stool-faeces"
     case { matchIgnoreCase(["URN", "urine", "Urin"], sampleTypeCode) }: return "urine"
-    case { matchIgnoreCase([], sampleTypeCode) }: return "swab"
+    case { matchIgnoreCase(["swab"], sampleTypeCode) }: return "swab"
     case {
       matchIgnoreCase(["Granulozyten", "PELLET-L", "BUC", "BMA", "liquid-other", "LEUK", "CEN", "MOTH", "LIQUID", "Flüssigprobe", "KMBLUT", "BFF",
-                       "EDTA-ZB", "ZB"], sampleTypeCode)
+                       "EDTA-ZB", "ZB", "Liquid_slides"], sampleTypeCode)
     }: return "liquid-other"
+    case { matchIgnoreCase(["FFPE"], sampleTypeCode) }: return "tissue-ffpe"
     case {
-      matchIgnoreCase(["Paraffin (FFPE)", "Paraffin", "FFPE", "NBF"], stockType) &&
-              (matchIgnoreCase(["NRT", "NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
-                      ||
-                      matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
+      matchIgnoreCase(["Paraffin (FFPE)", "Paraffin", "FFPE", "NBF"], stockType)
+          && (matchIgnoreCase(["NRT", "NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT",
+                               "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "NBF", "tumor-tissue-ffpe", "normal-tissue-ffpe", "other-tissue-ffpe"], sampleTypeCode)
+          || matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
     }: return "tissue-ffpe"
+    case { matchIgnoreCase(["Kryo"], sampleTypeCode) }: return "tissue-frozen"
     case {
-      matchIgnoreCase(["Kryo/Frisch (FF)", "Kryo/Frisch", "FF", "SNP"], stockType) &&
-              (matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW", "TM", "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
-                      || matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
+      matchIgnoreCase(["Kryo/Frisch (FF)", "Kryo/Frisch", "FF", "SNP"], stockType)
+          && (matchIgnoreCase(["NGW", "TIS", "TGW", "STUGEW", "NRT", "Tumorgewebe", "Normalgewebe", "RDT", "NNB", "PTM", "RZT", "LMT", "MMT", "GEW",
+                               "TM", "BTM", "SMT", "TFL", "SNP", "tumor-tissue-frozen", "normal-tissue-frozen", "other-tissue-frozen"], sampleTypeCode)
+          || matchIgnoreCase(["tissue", "gewebe", "gewebeprobe", "tissue sample"], sampleKindCode))
     }: return "tissue-frozen"
     case { matchIgnoreCase(["tissue-other", "NNB", "HE"], sampleTypeCode) }: return "tissue-other"
     case { matchIgnoreCase(["cDNA", "gDNA", "dna", "DNA", "CDNA ", "DNAAMP", "BLDCCFDNASTABIL", "g-dna", "cf-dna"], sampleTypeCode) }: return "dna"

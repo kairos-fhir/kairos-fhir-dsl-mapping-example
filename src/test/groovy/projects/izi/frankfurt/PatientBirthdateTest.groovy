@@ -7,6 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
+import org.hl7.fhir.r4.model.CodeType
 import org.hl7.fhir.r4.model.Patient
 import org.junit.jupiter.api.Test
 
@@ -17,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue
  * Example test to run groovy mapping scripts with assumed test data.
  */
 class PatientBirthdateTest extends AbstractDslBuilderTest {
-
 
   @Test
   void testThatBirthdateIsPopulated() {
@@ -52,7 +52,8 @@ class PatientBirthdateTest extends AbstractDslBuilderTest {
 
     // then: test your assertions
     assertTrue(patient.hasBirthDateElement())
-    assertTrue(patient.getBirthDateElement().hasExtension(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON))
+    final CodeType codeType = (CodeType) patient.getBirthDateElement().getExtensionByUrl(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON).getValue()
+    assertEquals("unknown",codeType.getValue())
   }
 
   static Map<String, Object> createBirthdayWithPrecisionDay() {

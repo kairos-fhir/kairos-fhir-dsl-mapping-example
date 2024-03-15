@@ -12,6 +12,10 @@ DKTK Oncology Mappings*
 
 # Changelog
 
+## 2024-03-14
+
+* Specimen sampleType mapping extended for Mainz requirements (CENTRAXX-19010)
+
 ## 2024-02-29
 
 * Reference to grading in histology hasMember added
