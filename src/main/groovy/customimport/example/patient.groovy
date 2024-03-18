@@ -1,4 +1,4 @@
-package customimport
+package customimport.example
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import org.hl7.fhir.r4.model.Bundle
