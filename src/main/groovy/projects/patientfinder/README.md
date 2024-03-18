@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-03-18
+
+* export delete enabled for FNUSA mappings
+
 ## 2024-03-11
 
 "histological and cytological findings" added to free text special transformation scripts
@@ -20,7 +24,7 @@ The following imported data sets are supported/tested:
 ## 2024-02-08
 
 * histology filtered from freeTextFilteredObservation export
-* procedures extended with category if surgical procedure detected. 
+* procedures extended with category if surgical procedure detected.
 
 ## 2024-01-22
 

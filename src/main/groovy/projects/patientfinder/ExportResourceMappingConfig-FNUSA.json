@@ -4,92 +4,110 @@
     {
       "selectFromCxxEntity": "ORGANIZATION_UNIT",
       "transformByTemplate": "organization",
-      "exportToFhirResource": "Organization"
+      "exportToFhirResource": "Organization",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
-      "exportToFhirResource": "Patient"
+      "exportToFhirResource": "Patient",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "ATTENDING_DOCTOR",
       "transformByTemplate": "practitioner",
-      "exportToFhirResource": "Practitioner"
+      "exportToFhirResource": "Practitioner",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
-      "exportToFhirResource": "Encounter"
+      "exportToFhirResource": "Encounter",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "freeTextFilteredObservation",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "freeTextDiagnosticReport",
-      "exportToFhirResource": "DiagnosticReport"
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "condition",
-      "exportToFhirResource": "Condition"
+      "exportToFhirResource": "Condition",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
-      "exportToFhirResource": "Procedure"
+      "exportToFhirResource": "Procedure",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "HISTOLOGY",
       "transformByTemplate": "histology",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "METASTASIS",
       "transformByTemplate": "metastasis",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "TNM",
       "transformByTemplate": "tnmSimple",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "ANN_ARBOR",
       "transformByTemplate": "annArbor",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "OTHER_CLASSIFICATION",
       "transformByTemplate": "otherClassification",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "PROGRESS",
       "transformByTemplate": "progress",
-      "exportToFhirResource": "ClinicalImpression"
+      "exportToFhirResource": "ClinicalImpression",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "PATIENT_TRANSFER",
       "transformByTemplate": "location",
-      "exportToFhirResource": "Location"
+      "exportToFhirResource": "Location",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "CALENDAR_EVENT",
       "transformByTemplate": "appointment",
-      "exportToFhirResource": "Appointment"
+      "exportToFhirResource": "Appointment",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationRequest",
-      "exportToFhirResource": "MedicationRequest"
+      "exportToFhirResource": "MedicationRequest",
+      "exportDeleteEnable": "true"
     },
     {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
-      "exportToFhirResource": "MedicationAdministration"
+      "exportToFhirResource": "MedicationAdministration",
+      "exportDeleteEnable": "true"
     }
   ]
 }
