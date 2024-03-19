@@ -25,6 +25,16 @@
       "selectFromCxxEntity": "FLEXI_FLAG_ITEM",
       "transformByTemplate": "flag",
       "exportToFhirResource": "Flag"
+    },
+    {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "episodeOfCare",
+      "exportToFhirResource": "EpisodeOfCare"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_INSURANCE",
+      "transformByTemplate": "coverage",
+      "exportToFhirResource": "Coverage"
     }
   ]
 }
