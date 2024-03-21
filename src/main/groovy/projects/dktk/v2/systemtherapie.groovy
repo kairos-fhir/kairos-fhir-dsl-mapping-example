@@ -83,7 +83,7 @@ medicationStatement {
         coding {
           // see http://fhir.org/guides/stats/codesystem-hl7.org.nz.fhir.ig.cca-sact-regimen-code.html
           system = "https://standards.digital.health.nz/ns/sact-regimen-code"
-          code = context.source[systemTherapy().protocolTypeDict()]
+          code = context.source[systemTherapy().protocolTypeDict()]?.getAt(CODE)?.toString()
         }
       }
     }
