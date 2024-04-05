@@ -12,6 +12,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
@@ -40,6 +41,12 @@ observation {
 
   if (isFreeText) {
     return
+  }
+
+  if (context.source[laborMapping().mappingType()].toString().equalsIgnoreCase(LaborMappingType.SAMPLELABORMAPPING.toString())) {
+    specimen {
+      reference = "Specimen/" + context.source[laborMapping().relatedOid()]
+    }
   }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]

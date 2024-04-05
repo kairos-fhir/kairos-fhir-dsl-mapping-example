@@ -1,12 +1,12 @@
 package projects.patientfinder
 
-
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.DiagnosticReport
 
@@ -15,7 +15,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * represented by CXX LaborMapping
  * @author Mike Wähnert
@@ -48,6 +47,12 @@ diagnosticReport {
   }
 
   id = "DiagnosticReport/" + context.source[laborMapping().laborFinding().id()]
+
+  if (context.source[laborMapping().mappingType()].toString().equalsIgnoreCase(LaborMappingType.SAMPLELABORMAPPING.toString())) {
+    specimen {
+      reference = "Specimen/" + context.source[laborMapping().relatedOid()]
+    }
+  }
 
   identifier {
     system = "urn:centraxx"
