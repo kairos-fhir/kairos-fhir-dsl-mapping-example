@@ -15,6 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
  * Represented by CXX MedProcedure
  * Exports extra data that is documented in a measurement profile with code ADDITIONAL_PROCEDURE_DATA
@@ -29,7 +30,7 @@ procedure {
   status = Procedure.ProcedureStatus.UNKNOWN
   //println(context.source)
 
-  final def mapping = context.source["laborMappings"].find {
+  final def mapping = context.source[medProcedure().laborMappings()].find {
     it[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "ADDITIONAL_PROCEDURE_DATA"
   }
 
