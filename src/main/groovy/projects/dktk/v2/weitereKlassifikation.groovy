@@ -21,6 +21,10 @@ observation {
 
   id = "Observation/OtherClassification-" + context.source[otherClassification().id()]
 
+  meta {
+    profile "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Observation-WeitereKlassifikation"
+  }
+
   status = Observation.ObservationStatus.UNKNOWN
 
   code {
