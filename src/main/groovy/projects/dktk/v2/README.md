@@ -12,6 +12,11 @@ DKTK Oncology Mappings*
 
 # Changelog
 
+##
+
+* ecog export added
+* weitereKlassifikation export added
+
 ## 2024-03-14
 
 * Specimen sampleType mapping extended for Mainz requirements (CENTRAXX-19010)

@@ -110,6 +110,11 @@
       "selectFromCxxEntity": "PROGRESS",
       "transformByTemplate": "ecog",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
+      "transformByTemplate": "weitereKlassifikation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
