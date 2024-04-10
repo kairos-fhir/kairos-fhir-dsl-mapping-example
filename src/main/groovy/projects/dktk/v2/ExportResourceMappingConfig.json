@@ -105,6 +105,11 @@
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "todUrsache",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "ecog",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
