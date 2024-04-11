@@ -119,7 +119,6 @@ diagnosticReport {
   }.findAll().unique()
 
   uniqueGroups.sort { it[CODE] }.each { final def group ->
-    println(group)
     category {
       coding {
         code = group[CODE]
