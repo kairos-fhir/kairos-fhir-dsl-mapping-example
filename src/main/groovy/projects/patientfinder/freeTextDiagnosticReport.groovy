@@ -4,6 +4,7 @@ import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborValueGroup
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
@@ -15,6 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * represented by CXX LaborMapping
  * @author Mike Wähnert
@@ -111,6 +113,20 @@ diagnosticReport {
   }.join("\n\n")
 
   conclusion = concatString
+
+  final def uniqueGroups = labFinLabVals.collect { final def lflv ->
+    return lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.GROUP]
+  }.findAll().unique()
+
+  uniqueGroups.sort { it[CODE] }.each { final def group ->
+    println(group)
+    category {
+      coding {
+        code = group[CODE]
+        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES].find()?.getAt(MultilingualEntry.VALUE)
+      }
+    }
+  }
 }
 
 static boolean isFakeEpisode(final def episode) {
