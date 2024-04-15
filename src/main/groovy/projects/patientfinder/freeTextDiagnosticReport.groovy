@@ -84,7 +84,7 @@ diagnosticReport {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
   issued {
@@ -121,8 +121,10 @@ diagnosticReport {
   uniqueGroups.sort { it[CODE] }.each { final def group ->
     category {
       coding {
-        code = group[CODE]
-        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES].find()?.getAt(MultilingualEntry.VALUE)
+        code = group[CODE] as String
+        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES] find { final def entry ->
+          "en" == entry[MultilingualEntry.LANG]
+        }?.getAt(MultilingualEntry.VALUE)
       }
     }
   }
@@ -175,4 +177,13 @@ static boolean isCatalog(final Object laborValue) {
 
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
