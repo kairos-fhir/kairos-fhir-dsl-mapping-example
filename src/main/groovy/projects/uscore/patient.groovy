@@ -3,7 +3,7 @@ package projects.uscore
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.Ethnicity
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 
@@ -11,6 +11,8 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -19,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  * Represented by a CXX PatientMasterDataAnonymous
  * Specified: http://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.32.0, CXX.v.2024.2.1
  *
  * Hints: Race, and birth sex ae no explicit fields in CXX. If needed, specify the field and add extensions similar to ethnicity.
  */
@@ -50,9 +52,7 @@ patient {
     use = "official"
     family = context.source[patient().lastName()]
     given context.source[patient().firstName()] as String
-    prefix context.source[patient().title().descMultilingualEntries()]?.find { final def me ->
-      me[MultilingualEntry.LANG] == "de"
-    }?.getAt(MultilingualEntry.VALUE) as String
+    prefix context.source[patient().title().multilinguals()]?.find { it[LANGUAGE] == "en" }?.getAt(Multilingual.DESCRIPTION) as String
   }
 
   if (context.source[patient().birthName()]) {
@@ -89,14 +89,11 @@ patient {
       url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
       extension {
         url = "text"
-        valueString = firstEthnicity[Ethnicity.NAME_MULTILINGUAL_ENTRIES].find { final def me ->
-          me[MultilingualEntry.LANG] == "de"
-        }?.getAt(MultilingualEntry.VALUE) as String
+        valueString = firstEthnicity[Ethnicity.MULTILINGUALS].find { it[LANGUAGE] == "en" }?.getAt(NAME) as String
       }
     }
   }
 }
-
 
 static String getLineString(final Map address) {
   final def keys = [PatientAddress.STREET, PatientAddress.STREETNO]
