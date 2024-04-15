@@ -88,7 +88,7 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
+    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { it[LANG] == "en" }?.getAt(VALUE) as String
 
     component {
       code {

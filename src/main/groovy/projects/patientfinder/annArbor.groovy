@@ -2,10 +2,11 @@ package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.annArbor
 
 /**
@@ -72,9 +73,7 @@ observation {
         coding {
           system = "https://fhir.centraxx.de/system/annArbor/extraDictionary"
           code = context.source[annArbor().extraDict().code()] as String
-          display = context.source[annArbor().extraDict().nameMultilingualEntries()].find { final def me ->
-            me[MultilingualEntry.LANG] == "en"
-          }?.getAt(MultilingualEntry.VALUE) as String
+          display = context.source[annArbor().extraDict().nameMultilingualEntries()].find { it[LANG] == "en" }?.getAt(VALUE) as String
         }
       }
     }
@@ -95,8 +94,8 @@ observation {
           system = "https://fhir.centraxx.de/system/annArbor/generalDictionary"
           code = context.source[annArbor().generalDict().code()] as String
           display = context.source[annArbor().generalDict().nameMultilingualEntries()].find { final def me ->
-            me[MultilingualEntry.LANG] == "en"
-          }?.getAt(MultilingualEntry.VALUE) as String
+            me[LANG] == "en"
+          }?.getAt(VALUE) as String
         }
       }
     }
@@ -117,8 +116,8 @@ observation {
           system = "https://fhir.centraxx.de/system/annArbor/infestationDictionary"
           code = context.source[annArbor().spleenDict().code()] as String
           display = context.source[annArbor().spleenDict().nameMultilingualEntries()].find { final def me ->
-            me[MultilingualEntry.LANG] == "en"
-          }?.getAt(MultilingualEntry.VALUE) as String
+            me[LANG] == "en"
+          }?.getAt(VALUE) as String
         }
       }
     }

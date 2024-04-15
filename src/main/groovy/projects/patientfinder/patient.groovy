@@ -1,10 +1,8 @@
 package projects.patientfinder
 
-
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.Ethnicity
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
@@ -13,6 +11,8 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -50,9 +50,7 @@ patient {
     use = "official"
     family = context.source[patient().lastName()]
     given context.source[patient().firstName()] as String
-    prefix context.source[patient().title().descMultilingualEntries()]?.find { final def me ->
-      me[MultilingualEntry.LANG] == "en"
-    }?.getAt(MultilingualEntry.VALUE) as String
+    prefix context.source[patient().title().descMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
   }
 
   if (context.source[patient().birthName()]) {
@@ -104,8 +102,8 @@ patient {
       extension {
         url = "text"
         valueString = firstEthnicity[Ethnicity.NAME_MULTILINGUAL_ENTRIES].find { final def me ->
-          me[MultilingualEntry.LANG] == "en"
-        }?.getAt(MultilingualEntry.VALUE) as String
+          me[LANG] == "en"
+        }?.getAt(VALUE) as String
       }
     }
   }
