@@ -5,16 +5,18 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueGroup
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ENTITY_SOURCE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -67,9 +69,7 @@ diagnosticReport {
     coding {
       system = "urn:centraxx"
       code = laborMethodCode
-      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES].find { final def entry ->
-        "en" == entry[MultilingualEntry.LANG]
-      }?.getAt(MultilingualEntry.VALUE)
+      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
     }
   }
 
@@ -122,9 +122,7 @@ diagnosticReport {
     category {
       coding {
         code = group[CODE] as String
-        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES] find { final def entry ->
-          "en" == entry[MultilingualEntry.LANG]
-        }?.getAt(MultilingualEntry.VALUE)
+        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
       }
     }
   }
@@ -135,7 +133,7 @@ static boolean isFakeEpisode(final def episode) {
     return true
   }
 
-  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+  if (["SACT", "COSD"].contains(episode[ENTITY_SOURCE])) {
     return true
   }
 
