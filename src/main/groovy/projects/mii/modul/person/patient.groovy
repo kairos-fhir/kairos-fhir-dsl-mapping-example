@@ -7,7 +7,7 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
-import de.kairos.fhir.centraxx.metamodel.PatientInsurances
+import de.kairos.fhir.centraxx.metamodel.PatientInsurance
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 
@@ -52,8 +52,8 @@ patient {
     }
   }
 
-  final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
-    CoverageType.T == it[PatientInsurances.COVERAGE_TYPE]
+  final def gkvInsurance = context.source[patient().patientContainer().PatientInsurance()]?.find {
+    CoverageType.T == it[PatientInsurance.COVERAGE_TYPE]
   }
 
   if (gkvInsurance) {
@@ -66,19 +66,19 @@ patient {
         }
       }
       system = "http://fhir.de/NamingSystem/gkv/kvid-10"
-      value = gkvInsurance[PatientInsurances.POLICE_NUMBER]
+      value = gkvInsurance[PatientInsurance.POLICE_NUMBER]
       assigner {
         identifier {
           use = "official"
           system = "http://fhir.de/NamingSystem/arge-ik/iknr"
-          value = gkvInsurance[PatientInsurances.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID)
+          value = gkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
       }
     }
   }
 
-  final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
-    CoverageType.C == it[PatientInsurances.COVERAGE_TYPE] || CoverageType.P == it[PatientInsurances.COVERAGE_TYPE]
+  final def pkvInsurance = context.source[patient().patientContainer().PatientInsurance()]?.find {
+    CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE]
   }
 
   if (pkvInsurance) {
@@ -90,9 +90,9 @@ patient {
           code = "PKV"
         }
       }
-      value = pkvInsurance[PatientInsurances.POLICE_NUMBER]
+      value = pkvInsurance[PatientInsurance.POLICE_NUMBER]
       assigner {
-        display = pkvInsurance[PatientInsurances.INSURANCE_COMPANY]?.getAt(InsuranceCompany.CONTACT_ADDRESS)?.getAt(ContactAddress.INSTITUTE)
+        display = pkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.CONTACT_ADDRESS)?.getAt(ContactAddress.INSTITUTE)
       }
     }
   }
