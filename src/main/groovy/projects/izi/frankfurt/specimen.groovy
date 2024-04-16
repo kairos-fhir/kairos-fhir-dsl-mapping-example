@@ -482,3 +482,20 @@ private static DateTimeType createUnknownDate() {
   unknownDate.addExtension().setUrl(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON).setValue(new CodeType("unknown"))
   return unknownDate
 }
+
+static String mapSampleType(final Object sourceType) {
+  switch (sourceType) {
+    case "ccfDNA_PL": return "PL2"
+    case "CIT_PL": return "PL1"
+    case "CPT_PL": return "PL1"
+    case "EDTA": return "BLD"
+    case "EDTA_PL": return "PL1"
+    case "PAX": return "BLD"
+    case "PBMC": return "ZZZ(pbm)"
+    case "SER": return "SER"
+    case "STL": return "STL"
+    case "STL_STAB": return "STL"
+    case "URIN": return "URN"
+    default: return sourceType
+  }
+}
