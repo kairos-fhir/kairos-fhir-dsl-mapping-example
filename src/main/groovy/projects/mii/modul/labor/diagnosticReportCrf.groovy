@@ -66,7 +66,7 @@ diagnosticReport {
 
   final def issuedDate = context.source[studyVisitItem().crf().lastChangedOn()]
   if (issuedDate) {
-    issued(issuedDate)
+    issued = issuedDate
   }
 
   context.source[studyVisitItem().crf().items()]?.each { final def item ->
