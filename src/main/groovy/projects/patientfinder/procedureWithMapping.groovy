@@ -8,6 +8,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.enums.ProcedureStatus
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -27,8 +28,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]
 
-  status = Procedure.ProcedureStatus.UNKNOWN
-  //println(context.source)
+  status = mapStatus(context.source[medProcedure().status()] as ProcedureStatus)
 
   final def mapping = context.source[medProcedure().laborMappings()].find {
     it[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "ADDITIONAL_PROCEDURE_DATA"
@@ -42,9 +42,6 @@ procedure {
     final def procedureType = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find {
       it[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == "IS_SURGICAL_PROCEDURE"
     }
-
-    println(departmentValue)
-    println(procedureType)
 
 
     if (departmentValue != null) {
@@ -142,3 +139,33 @@ static boolean isFakeEpisode(final def episode) {
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
+
+
+static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus){
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+    return Procedure.ProcedureStatus.COMPLETED
+  }
+  if (procedureStatus.equals(ProcedureStatus.PREPARATION)){
+    return Procedure.ProcedureStatus.PREPARATION
+  }
+  if (procedureStatus.equals(ProcedureStatus.IN_PROGRESS)){
+    return Procedure.ProcedureStatus.INPROGRESS
+  }
+  if (procedureStatus.equals(ProcedureStatus.NOT_DONE)){
+    return Procedure.ProcedureStatus.NOTDONE
+  }
+  if (procedureStatus.equals(ProcedureStatus.ON_HOLD)){
+    return Procedure.ProcedureStatus.ONHOLD
+  }
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+    return Procedure.ProcedureStatus.COMPLETED
+  }
+  if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)){
+    return Procedure.ProcedureStatus.ENTEREDINERROR
+  }
+  if (procedureStatus.equals(ProcedureStatus.UNKNOWN)){
+    return Procedure.ProcedureStatus.UNKNOWN
+  }
+  return Procedure.ProcedureStatus.UNKNOWN
+}
+
