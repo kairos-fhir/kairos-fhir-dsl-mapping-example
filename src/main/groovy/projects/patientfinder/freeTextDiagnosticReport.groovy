@@ -5,16 +5,18 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueGroup
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ENTITY_SOURCE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
+import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -67,9 +69,7 @@ diagnosticReport {
     coding {
       system = "urn:centraxx"
       code = laborMethodCode
-      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES].find { final def entry ->
-        "en" == entry[MultilingualEntry.LANG]
-      }?.getAt(MultilingualEntry.VALUE)
+      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
     }
   }
 
@@ -84,7 +84,7 @@ diagnosticReport {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
   issued {
@@ -121,8 +121,8 @@ diagnosticReport {
   uniqueGroups.sort { it[CODE] }.each { final def group ->
     category {
       coding {
-        code = group[CODE]
-        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES].find()?.getAt(MultilingualEntry.VALUE)
+        code = group[CODE] as String
+        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
       }
     }
   }
@@ -133,7 +133,7 @@ static boolean isFakeEpisode(final def episode) {
     return true
   }
 
-  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
+  if (["SACT", "COSD"].contains(episode[ENTITY_SOURCE])) {
     return true
   }
 
@@ -175,4 +175,13 @@ static boolean isCatalog(final Object laborValue) {
 
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

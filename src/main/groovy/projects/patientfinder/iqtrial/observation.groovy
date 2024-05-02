@@ -46,7 +46,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
     precision = TemporalPrecisionEnum.DAY.toString()
   }
 
@@ -267,4 +267,13 @@ private static boolean mappedInMedAdmin(final String code) {
 private static boolean mappedInCarePlan(final String code) {
   final List mappedInCarePlan = ["Regimen", "Date_Decision_To_Treat", "Start_Date_Of_Regimen"]
   return code in mappedInCarePlan
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

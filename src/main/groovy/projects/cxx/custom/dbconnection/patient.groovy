@@ -81,6 +81,6 @@ private static <T> void invoke(final DataSource dataSource, final String methodN
     }
   }
 
-  throw new NoSuchMethodException(dataSource.getClass() + "." + methodName + "(" + value.getClass() + ")")
+  throw new NoSuchMethodException(dataSource.getClass().toString() + "." + methodName + "(" + value.getClass().toString() + ")")
 }
 

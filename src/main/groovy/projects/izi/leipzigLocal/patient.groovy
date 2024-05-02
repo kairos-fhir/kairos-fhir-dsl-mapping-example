@@ -1,6 +1,7 @@
 package projects.izi.leipzigLocal
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 

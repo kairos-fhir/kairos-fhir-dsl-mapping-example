@@ -61,7 +61,7 @@ observation {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
     precision = TemporalPrecisionEnum.DAY.toString()
   }
 
@@ -88,7 +88,7 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
+    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { it[LANG] == "en" }?.getAt(VALUE) as String
 
     component {
       code {
@@ -248,6 +248,15 @@ static boolean isFakeEpisode(final def episode) {
 
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
 

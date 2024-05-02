@@ -13,6 +13,11 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-04-15
+
+* labor value groups as diagnostic report categories added
+* strange time zone offsets filtered in labor finding dates
+
 ## 2024-03-18
 
 * export delete enabled for FNUSA mappings

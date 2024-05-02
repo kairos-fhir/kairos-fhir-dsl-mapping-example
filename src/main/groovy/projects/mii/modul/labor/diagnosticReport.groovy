@@ -65,7 +65,7 @@ diagnosticReport {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
-  issued(context.source[laborMapping().laborFinding().creationDate()])
+  issued = context.source[laborMapping().laborFinding().creationDate()]
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()]?.each { final def lflv ->
     result {
