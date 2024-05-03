@@ -1,0 +1,58 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [ {
+    "fullUrl": "ResearchSubject/StudyMember-245",
+    "resource": {
+      "resourceType": "ResearchSubject",
+      "id": "StudyMember-245",
+      "meta": {
+        "profile": [
+          "https://fhir.centraxx.de/StructureDefinition/StudyMember"
+        ],
+        "tag": [
+          {
+            "system": "https://fhir.centraxx.de/system/cxxEntity",
+            "code": "StudyMember"
+          }
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.centraxx.de/extension/studyMember/studyCenter",
+          "valueCoding": {
+            "system": "https://fhir.centraxx.de/system/contactAddress/cxxContactId",
+            "code": "STUDY_CENTER1"
+          }
+        }
+      ],
+      "identifier": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code": "ANON"
+              }
+            ]
+          },
+          "system": "http://www.acme.com/identifiers/patient",
+          "value": "new Example"
+        }
+      ],
+      "status": "off-study",
+      "study": {
+        "reference": "ResearchStudy/1"
+      },
+      "individual": {
+        "reference": "Patient/501"
+      },
+      "actualArm": "Allgemein"
+
+    },
+    "request": {
+      "method": "PUT",
+      "url": "ResearchSubject/StudyMember-245"
+    }
+  } ]
+}
