@@ -1,6 +1,11 @@
 package projects.dktk.v2
 
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
@@ -101,6 +106,33 @@ condition {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Specimen"
       valueReference {
         reference = "Specimen/" + sample[ID]
+      }
+    }
+  }
+
+  context.source[diagnosis().laborMappings()]?.each { def lm ->
+    println(lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE))
+    if ("DKTK-Erweiterungen" == lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE)) {
+
+      lm?.getAt(LaborMapping.LABOR_FINDING)?.getAt(LaborFinding.LABOR_FINDING_LABOR_VALUES)?.each { final lflv ->
+
+        final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
+            ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
+            : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+
+        final String laborValueCode = laborValue?.getAt(CODE) as String
+        if (laborValueCode.equalsIgnoreCase("DKTK-Diagnosesicherung")) {
+          evidence {
+            code {
+              lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+                coding {
+                  system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/DiagnosesicherungCS"
+                  code = entry[CODE] as String
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
