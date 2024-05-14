@@ -115,6 +115,11 @@
       "selectFromCxxEntity": "OTHER_CLASSIFICATION",
       "transformByTemplate": "weitereKlassifikation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "ADVERSE_EFFECTS",
+      "transformByTemplate": "nebenwirkung",
+      "exportToFhirResource": "AdverseEvent"
     }
   ]
 }
