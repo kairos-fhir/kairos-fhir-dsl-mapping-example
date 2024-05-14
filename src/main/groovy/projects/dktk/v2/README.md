@@ -16,6 +16,7 @@ DKTK Oncology Mappings*
 
 * KAIROS-FHIR-DSL updated to 1.33.0
 * condition.evidence added
+* operation.groovy: procedure.complication added
 
 ## 2024-04-10
 
