@@ -14,6 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  * Specified by https://simplifier.net/oncology/primaerdiagnose
  * @author Mike Wähnert
  * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since CXX.v.3.18.3.X, CXX.v.2024.3.0 evidence based on the measurement profile xml/masterdata_diagnosesicherung.xml
  */
 condition {
 
@@ -100,7 +101,7 @@ condition {
       }
     }
   }
-
+  println("Samples:" + context.source[diagnosis().samples()])
   context.source[diagnosis().samples()]?.each { final sample ->
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Specimen"
@@ -111,7 +112,6 @@ condition {
   }
 
   context.source[diagnosis().laborMappings()]?.each { def lm ->
-    println(lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE))
     if ("DKTK-Erweiterungen" == lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE)) {
 
       lm?.getAt(LaborMapping.LABOR_FINDING)?.getAt(LaborFinding.LABOR_FINDING_LABOR_VALUES)?.each { final lflv ->
