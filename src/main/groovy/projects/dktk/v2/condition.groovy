@@ -112,7 +112,7 @@ condition {
   }
 
   context.source[diagnosis().laborMappings()]?.each { def lm ->
-    if ("DKTK-Erweiterungen" == lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE)) {
+    if ("DKTK-Diagnosesicherung" == lm[LaborMapping.LABOR_FINDING]?.getAt(LaborFinding.LABOR_METHOD)?.getAt(CODE)) {
 
       lm?.getAt(LaborMapping.LABOR_FINDING)?.getAt(LaborFinding.LABOR_FINDING_LABOR_VALUES)?.each { final lflv ->
 

@@ -120,6 +120,11 @@
       "selectFromCxxEntity": "ADVERSE_EFFECTS",
       "transformByTemplate": "nebenwirkung",
       "exportToFhirResource": "AdverseEvent"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "therapieempfehlung",
+      "exportToFhirResource": "CarePlan"
     }
   ]
 }

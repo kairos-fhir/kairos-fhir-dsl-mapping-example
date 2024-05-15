@@ -4,24 +4,25 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
   <Source>CENTRAXX</Source>
   <SourceVersion>2024.3.0-SNAPSHOT</SourceVersion>
-  <ExportDate>2024-05-13T17:52:44.750+02:00</ExportDate>
+  <ExportDate>2024-05-15T17:42:52.555+02:00</ExportDate>
   <CatalogueData>
     <FlexibleValueCatalogueItem>
       <FlexibleCatalogValue>
         <Code>DKTK-Diagnosesicherung</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>DKTK-Diagnosesicherung</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>(en) - DKTK-Diagnosesicherung</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>DKTK-Diagnosesicherung</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>de</Lang>
           <Value>https://simplifier.net/oncology/diagnosesicherungvs</Value>
         </DescMultilingualEntries>
         <SyncId>179f16d1-0b92-4be6-99c5-14a73f30f45a</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/572" DisplayName="DKTK-Diagnosesicherung">DKTK-Diagnosesicherung</LaborValueGroupRef>
         <UserEntries assignStrict="true">
           <Systemwide>true</Systemwide>
         </UserEntries>
@@ -30,14 +31,14 @@
       </FlexibleCatalogValue>
     </FlexibleValueCatalogueItem>
     <FlexibleDataSetCatalogueItem assignStrict="true">
-      <Code>DKTK-Erweiterungen</Code>
+      <Code>DKTK-Diagnosesicherung</Code>
       <NameMultilingualEntries>
         <Lang>en</Lang>
-        <Value>(en) - DKTK-Erweiterungen</Value>
+        <Value>DKTK diagnostic assurance</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
         <Lang>de</Lang>
-        <Value>DKTK-Erweiterungen</Value>
+        <Value>DKTK-Diagnosesicherung</Value>
       </NameMultilingualEntries>
       <FlexibleValueComplexRefs>
         <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/6033" DisplayName="DKTK-Diagnosesicherung">DKTK-Diagnosesicherung</FlexibleValueRef>
@@ -47,7 +48,7 @@
       <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
       <Category>GENERAL</Category>
       <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/4105">
-        <Name>DKTK-Erweiterungen</Name>
+        <Name>DKTK-Diagnosesicherung</Name>
         <Version>0</Version>
         <SyncId>1c7fc752-d211-450f-8af7-5db87d905807</SyncId>
       </CrfTemplateRef>
@@ -55,28 +56,28 @@
       <SyncId>3f9711cd-d504-4093-901b-9d636231003d</SyncId>
     </FlexibleDataSetCatalogueItem>
     <CrfTemplate>
-      <Name>DKTK-Erweiterungen</Name>
+      <Name>DKTK-Diagnosesicherung</Name>
       <CrfTemplateSection>
-        <Name>Abschnitt1</Name>
+        <Name>Abschnitt 1</Name>
         <Multilingual>
           <Language>en</Language>
           <LastModifiedOn>
-            <Date>2024-05-07T11:33:05.660+02:00</Date>
+            <Date>2024-05-15T14:25:40.420+02:00</Date>
             <Precision>EXACT</Precision>
           </LastModifiedOn>
           <EntityStatus>ACTIVE</EntityStatus>
-          <Name>Abschnitt1</Name>
+          <Name>Part 1</Name>
         </Multilingual>
         <Multilingual>
           <Language>de</Language>
           <LastModifiedOn>
-            <Date>2024-05-07T11:33:05.660+02:00</Date>
+            <Date>2024-05-15T14:25:40.420+02:00</Date>
             <Precision>EXACT</Precision>
           </LastModifiedOn>
           <EntityStatus>ACTIVE</EntityStatus>
-          <Name>Abschnitt1</Name>
+          <Name>Abschnitt 1</Name>
         </Multilingual>
-        <Code>Abschnitt1</Code>
+        <Code>Abschnitt 1</Code>
         <CrfTemplateField>
           <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/6033" DisplayName="DKTK-Diagnosesicherung">DKTK-Diagnosesicherung</LaborValue>
           <LowerRow>0</LowerRow>
@@ -97,7 +98,7 @@
           <NlpRelevant>false</NlpRelevant>
           <Eq5d5lRelevant>false</Eq5d5lRelevant>
         </CrfTemplateField>
-        <Height>5</Height>
+        <Height>1</Height>
         <Width>1</Width>
         <Position>0</Position>
         <CrfSectionType>PLAIN</CrfSectionType>
@@ -114,23 +115,23 @@
     </CrfTemplate>
     <ValueList>
       <NameMultilingualEntries>
-        <Lang>de</Lang>
+        <Lang>en</Lang>
         <Value>DiagnosesicherungVS</Value>
       </NameMultilingualEntries>
       <NameMultilingualEntries>
-        <Lang>en</Lang>
+        <Lang>de</Lang>
         <Value>DiagnosesicherungVS</Value>
       </NameMultilingualEntries>
       <Code>DiagnosesicherungVS</Code>
       <CustomCatalogEntry>
         <Code>1</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>1- Klinisch ohne tumorspezifische Diagnostik</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>1- Clinically without tumor-specific diagnostics</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>1- Klinisch ohne tumorspezifische Diagnostik</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>de</Lang>
@@ -146,12 +147,12 @@
       <CustomCatalogEntry>
         <Code>2</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>2 - Clinical</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>2 - Klinisch</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>2 - Clinical</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>en</Lang>
@@ -167,20 +168,20 @@
       <CustomCatalogEntry>
         <Code>4</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>4 - Specific tumor markers</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>4 - Spezifische Tumormarker</Value>
         </NameMultilingualEntries>
-        <DescMultilingualEntries>
+        <NameMultilingualEntries>
           <Lang>en</Lang>
-          <Value>Specific tumor markers</Value>
-        </DescMultilingualEntries>
+          <Value>4 - Specific tumor markers</Value>
+        </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>de</Lang>
           <Value>Spezifische Tumormarker</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Specific tumor markers</Value>
         </DescMultilingualEntries>
         <Position>-1</Position>
         <SyncId>5a7f4f8a-4992-4ece-ba7a-4004a396dac7</SyncId>
@@ -188,20 +189,20 @@
       <CustomCatalogEntry>
         <Code>5</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>5 - Zytologisch</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>5 - Cytological</Value>
         </NameMultilingualEntries>
-        <DescMultilingualEntries>
+        <NameMultilingualEntries>
           <Lang>de</Lang>
-          <Value>5 - Zytologisch: Untersuchung von Zellen aus primären Lokalisationen inklusive Flüssigkeitsaspirationen mittels Endoskopien oder Nadeln. Schließt mikroskopische Untersuchungen von peripheren Blutausstrichen und Ausstrichen von Beckenkammaspirationen ein.</Value>
-        </DescMultilingualEntries>
+          <Value>5 - Zytologisch</Value>
+        </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>en</Lang>
           <Value>5 - Cytological: Examination of cells from primary locations including fluid aspiration using endoscopies or needles. Includes microscopic examination of peripheral blood smears and iliac crest aspiration smears.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>5 - Zytologisch: Untersuchung von Zellen aus primären Lokalisationen inklusive Flüssigkeitsaspirationen mittels Endoskopien oder Nadeln. Schließt mikroskopische Untersuchungen von peripheren Blutausstrichen und Ausstrichen von Beckenkammaspirationen ein.</Value>
         </DescMultilingualEntries>
         <Position>-1</Position>
         <SyncId>a380a05f-3c3e-4c09-88d8-12e4db98d4e0</SyncId>
@@ -209,12 +210,12 @@
       <CustomCatalogEntry>
         <Code>6</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>6 - Histology of a metastasis.</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>6 - Histologie einer Metastase.</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>6 - Histology of a metastasis.</Value>
         </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>en</Lang>
@@ -230,20 +231,20 @@
       <CustomCatalogEntry>
         <Code>7</Code>
         <NameMultilingualEntries>
-          <Lang>en</Lang>
-          <Value>7 - Histological: Histology of the primary tumor</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>de</Lang>
           <Value>7 - Histologisch: Histologie des Primärtumors</Value>
         </NameMultilingualEntries>
-        <DescMultilingualEntries>
+        <NameMultilingualEntries>
           <Lang>en</Lang>
-          <Value>Histological: Histology of the primary tumor: Histological examination of tissue from the primary tumor including all sectioning techniques and bone marrow biopsies. This includes samples of the primary tumor from autopsies. Histological examination of tissue from a metastasis, including at autopsy.</Value>
-        </DescMultilingualEntries>
+          <Value>7 - Histological: Histology of the primary tumor</Value>
+        </NameMultilingualEntries>
         <DescMultilingualEntries>
           <Lang>de</Lang>
           <Value>Histologisch: Histologie des Primärtumors: Histologische Untersuchung von Gewebe des Primärtumors einschließlich aller Schnitttechniken und Knochenmarksbiopsien. Dies schließt Proben des Primärtumors aus Autopsien ein. Histologische Untersuchung des Gewebes aus einer Metastase, einschließlich bei Autopsie.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Histological: Histology of the primary tumor: Histological examination of tissue from the primary tumor including all sectioning techniques and bone marrow biopsies. This includes samples of the primary tumor from autopsies. Histological examination of tissue from a metastasis, including at autopsy.</Value>
         </DescMultilingualEntries>
         <Position>-1</Position>
         <SyncId>a1ab2ccf-1f8c-40f0-b000-8a118384b889</SyncId>
@@ -251,12 +252,12 @@
       <CustomCatalogEntry>
         <Code>9</Code>
         <NameMultilingualEntries>
-          <Lang>de</Lang>
-          <Value>9 - Unbekannt</Value>
-        </NameMultilingualEntries>
-        <NameMultilingualEntries>
           <Lang>en</Lang>
           <Value>9 - Unknown</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>9 - Unbekannt</Value>
         </NameMultilingualEntries>
         <Position>-1</Position>
         <SyncId>ce4face6-e1a1-42a5-96e0-ec8406de83d2</SyncId>
@@ -264,6 +265,18 @@
       <SortAlphabetical>true</SortAlphabetical>
       <SyncId>f5fa4fce-a5bb-4d94-b77f-3abd1c26da82</SyncId>
     </ValueList>
+    <LaborValueGroup>
+      <Code>DKTK-Diagnosesicherung</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>DKTK diagnostic assurance</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>DKTK-Diagnosesicherung</Value>
+      </NameMultilingualEntries>
+      <SyncId>da2b4ecb-394d-4839-a575-a71812c2e198</SyncId>
+    </LaborValueGroup>
   </CatalogueData>
   <EffectData/>
 </CentraXXDataExchange>
