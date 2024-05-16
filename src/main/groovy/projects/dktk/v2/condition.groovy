@@ -101,7 +101,7 @@ condition {
       }
     }
   }
-  println("Samples:" + context.source[diagnosis().samples()])
+
   context.source[diagnosis().samples()]?.each { final sample ->
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Specimen"
