@@ -96,7 +96,7 @@ observation {
           url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-TNMcpuPraefix"
           valueCodeableConcept {
             coding {
-              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixNCS"
               code = context.source[tnm().praefixNDict().code()] as String
             }
           }
@@ -110,7 +110,7 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMTCS"
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMNCS"
           code = (context.source[tnm().n()] as String).trim()
         }
       }
@@ -125,7 +125,7 @@ observation {
           url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-TNMcpuPraefix"
           valueCodeableConcept {
             coding {
-              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixTCS"
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMcpuPraefixMCS"
               code = context.source[tnm().praefixMDict().code()] as String
             }
           }
@@ -139,7 +139,7 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMTCS"
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMMCS"
           code = (context.source[tnm().m()] as String).trim()
         }
       }
