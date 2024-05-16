@@ -14,12 +14,6 @@
       "exportDeleteEnable": "true"
     },
     {
-      "selectFromCxxEntity": "ATTENDING_DOCTOR",
-      "transformByTemplate": "practitioner",
-      "exportToFhirResource": "Practitioner",
-      "exportDeleteEnable": "true"
-    },
-    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter",
@@ -50,54 +44,6 @@
       "exportDeleteEnable": "true"
     },
     {
-      "selectFromCxxEntity": "HISTOLOGY",
-      "transformByTemplate": "histology",
-      "exportToFhirResource": "Observation",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "METASTASIS",
-      "transformByTemplate": "metastasis",
-      "exportToFhirResource": "Observation",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "TNM",
-      "transformByTemplate": "tnmSimple",
-      "exportToFhirResource": "Observation",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "ANN_ARBOR",
-      "transformByTemplate": "annArbor",
-      "exportToFhirResource": "Observation",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
-      "transformByTemplate": "otherClassification",
-      "exportToFhirResource": "Observation",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "PROGRESS",
-      "transformByTemplate": "progress",
-      "exportToFhirResource": "ClinicalImpression",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "PATIENT_TRANSFER",
-      "transformByTemplate": "location",
-      "exportToFhirResource": "Location",
-      "exportDeleteEnable": "true"
-    },
-    {
-      "selectFromCxxEntity": "CALENDAR_EVENT",
-      "transformByTemplate": "appointment",
-      "exportToFhirResource": "Appointment",
-      "exportDeleteEnable": "true"
-    },
-    {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationRequest",
       "exportToFhirResource": "MedicationRequest",
@@ -107,6 +53,12 @@
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
       "exportToFhirResource": "MedicationAdministration",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen",
       "exportDeleteEnable": "true"
     }
   ]
