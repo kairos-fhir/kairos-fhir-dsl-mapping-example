@@ -78,13 +78,22 @@ observation {
     }
   }
 
+  final def specialism = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
+      .find { final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "Specialism" } // filter specialism
+
+  if (specialism != null) {
+    performer {
+      display = specialism[LaborFindingLaborValue.STRING_VALUE]
+    }
+  }
+
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
     final lflv -> !((String) lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE]).toLowerCase().contains("_memo")
+  }.findAll {
+    final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] != "Specialism" // filter specialism
   }.each { final lflv ->
 
-    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE] // from CXX.v.2022.3.0
+    final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
