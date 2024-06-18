@@ -128,7 +128,22 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "anzahlBefallenenLymphknoten",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "anzahlBefallenenSentinelLymphknoten",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "anzahlUntersuchtenLymphknoten",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "anzahlUntersuchtenSentinelLymphknoten",
       "exportToFhirResource": "Observation"
     }
   ]
