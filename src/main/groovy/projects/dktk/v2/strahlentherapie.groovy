@@ -1,12 +1,16 @@
 package projects.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.AbstractCode
+import de.kairos.fhir.centraxx.metamodel.AbstractGtdsDictionary
+import de.kairos.fhir.centraxx.metamodel.RadiationComponent
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
+
 /**
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
@@ -72,6 +76,39 @@ procedure {
       }
     }
   }
+
+  context.source[radiationTherapy().radiationComponents()].each { def rc ->
+    extension {
+      url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Bestrahlung"
+
+      if (rc[RadiationComponent.APPLICATION_KIND_DICT]) {
+        extension {
+          url = "Applikationsart"
+          valueCodeableConcept {
+            coding {
+              system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/ApplikationsartCS"
+              code = mapApplicationKind(rc[RadiationComponent.APPLICATION_KIND_DICT]?.getAt(CODE) as String)
+            }
+          }
+        }
+      }
+
+
+      if (rc[RadiationComponent.RADIATION_KIND_DICT]) {
+        extension {
+          url = "Strahlenart"
+          valueCodeableConcept {
+            coding {
+              system = "http://dktk.dkfz.de/fhir/onco/core/ValueSet/StrahlenartVS"
+              code = mapRadiationKind(rc[RadiationComponent.RADIATION_KIND_DICT]?.getAt(CODE) as String)
+            }
+          }
+        }
+      }
+
+
+    }
+  }
 }
 
 /**
@@ -85,4 +122,59 @@ static String normalizeDate(final String dateTimeString) {
 
 static boolean hasRelevantCode(final String icdCode) {
   return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+}
+
+static String mapRadiationKind(String gtdsDictionaryCode) {
+  if (gtdsDictionaryCode == null) return null
+  if (gtdsDictionaryCode.equalsIgnoreCase("uh")) return "UH"
+  if (gtdsDictionaryCode.equalsIgnoreCase("el")) return "EL"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ne")) return "NE"
+  if (gtdsDictionaryCode.equalsIgnoreCase("pn")) return "PN"
+  if (gtdsDictionaryCode.equalsIgnoreCase("si")) return "SI"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ro")) return "RO"
+  if (gtdsDictionaryCode.equalsIgnoreCase("co")) return "Co-60"
+  if (gtdsDictionaryCode.equalsIgnoreCase("so")) return "SO"
+  if (gtdsDictionaryCode.equalsIgnoreCase("lu-177")) return "Lu-177"
+  if (gtdsDictionaryCode.equalsIgnoreCase("j2")) return "J-131"
+  if (gtdsDictionaryCode.equalsIgnoreCase("yt")) return "Y-90"
+  if (gtdsDictionaryCode.equalsIgnoreCase("r2")) return "Ra-223"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ac-225")) return "Ac-225"
+  if (gtdsDictionaryCode.equalsIgnoreCase("sm")) return "Sm-153"
+  if (gtdsDictionaryCode.equalsIgnoreCase("tb-161")) return "Tb-161"
+  if (gtdsDictionaryCode.equalsIgnoreCase("s1")) return "Sr-89"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ir")) return "Ir-192"
+  if (gtdsDictionaryCode.equalsIgnoreCase("sonu")) return "SONU"
+  return gtdsDictionaryCode.toUpperCase() // without mapping
+}
+
+static String mapApplicationKind(String gtdsDictionaryCode) {
+  if (gtdsDictionaryCode == null) return null
+  if (gtdsDictionaryCode.equalsIgnoreCase("P")) return "P"
+  if (gtdsDictionaryCode.equalsIgnoreCase("PRCJ")) return "PRCJ"
+  if (gtdsDictionaryCode.equalsIgnoreCase("PRCN")) return "PRCN"
+  if (gtdsDictionaryCode.equalsIgnoreCase("K")) return "K"
+  if (gtdsDictionaryCode.equalsIgnoreCase("KHDR")) return "KHDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("KPDR")) return "KPDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("KLDR")) return "KLDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("I")) return "I"
+  if (gtdsDictionaryCode.equalsIgnoreCase("IHDR")) return "IHDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("IPDR")) return "IPDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ILDR")) return "ILDR"
+  if (gtdsDictionaryCode.equalsIgnoreCase("M")) return "M"
+  if (gtdsDictionaryCode.equalsIgnoreCase("MSIRT")) return "MSIRT"
+  if (gtdsDictionaryCode.equalsIgnoreCase("MPRRT")) return "MPRRT"
+  if (gtdsDictionaryCode.equalsIgnoreCase("S")) return "S"
+  if (gtdsDictionaryCode.equalsIgnoreCase("RCJ")) return "RCJ"
+  if (gtdsDictionaryCode.equalsIgnoreCase("RCN")) return "RCN"
+  if (gtdsDictionaryCode.equalsIgnoreCase("ST")) return "ST"
+  if (gtdsDictionaryCode.toUpperCase().contains("4D")) return "4D"
+  if (gtdsDictionaryCode.toUpperCase().contains("HDR")) return "HDR"
+  if (gtdsDictionaryCode.toUpperCase().contains("LDR")) return "LDR"
+  if (gtdsDictionaryCode.toUpperCase().contains("PDR")) return "PDR"
+  if (gtdsDictionaryCode.toUpperCase().contains("SIRT")) return "SIRT"
+  if (gtdsDictionaryCode.toUpperCase().contains("PRRT")) return "PRRT"
+  if (gtdsDictionaryCode.toUpperCase().contains("PSMA")) return "PSMA"
+  if (gtdsDictionaryCode.toUpperCase().contains("RJT")) return "RJT"
+  if (gtdsDictionaryCode.toUpperCase().contains("RIT")) return "RIT"
+  return gtdsDictionaryCode.toUpperCase() // without mapping
 }

@@ -20,6 +20,9 @@ DKTK Oncology Mappings*
     * anzahlUntersuchtenLymphknoten.groovy
     * anzahlUntersuchtenSentinelLymphknoten.groovy
 * TNM extended for additional category values L, V, Pn, S
+* Strahlentherapie
+    * Applikationsart (application kind)
+    * Strahlenart (radiation kind)
 
 ## 2024-05-14
 
