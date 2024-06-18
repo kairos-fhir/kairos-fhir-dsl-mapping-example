@@ -125,6 +125,11 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "therapieempfehlung",
       "exportToFhirResource": "CarePlan"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "anzahlUntersuchtenLymphknoten",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
