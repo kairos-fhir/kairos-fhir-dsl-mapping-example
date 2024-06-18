@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-06-06
+
+* Disabled diagnostic reports for Hull as long as Bahia has no data mapped to it.
+
 ## 2024-04-15
 
 * labor value groups as diagnostic report categories added
