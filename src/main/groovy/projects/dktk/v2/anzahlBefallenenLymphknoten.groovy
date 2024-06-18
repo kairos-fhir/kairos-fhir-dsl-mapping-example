@@ -1,8 +1,9 @@
 package projects.dktk.v2
 
-
+import de.kairos.fhir.centraxx.metamodel.AbstractCode
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import org.hl7.fhir.r4.model.Observation
 
@@ -19,6 +20,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   if ("DKTK-Lymphknoten" != context.source[laborMapping().laborFinding().laborMethod().code()]) {
+    return
+  }
+
+  def lflv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final lflv ->
+    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
+        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
+        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+    final String laborValueCode = laborValue?.getAt(CODE) as String
+    return laborValueCode.equalsIgnoreCase("LK_befallen")
+  }
+  if (lflv == null) {
     return
   }
 
@@ -62,19 +74,10 @@ observation {
     date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
-
-    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
-
-    final String laborValueCode = laborValue?.getAt(CODE) as String
-    if (laborValueCode.equalsIgnoreCase("LK_befallen")) {
-      valueQuantity {
-        value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
-      }
-    }
+  valueQuantity {
+    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
   }
+
 }
 
 static String getSpecimenReference(final LaborMappingType mappingType, final String relatedOid) {

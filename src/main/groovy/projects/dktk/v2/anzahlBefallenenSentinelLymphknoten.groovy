@@ -22,6 +22,17 @@ observation {
     return
   }
 
+  def lflv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final lflv ->
+    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
+        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
+        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+    final String laborValueCode = laborValue?.getAt(CODE) as String
+    return laborValueCode.equalsIgnoreCase("Sentinel_LK_befallen")
+  }
+  if (lflv == null) {
+    return
+  }
+
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   meta {
@@ -62,19 +73,10 @@ observation {
     date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
   }
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
-
-    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
-
-    final String laborValueCode = laborValue?.getAt(CODE) as String
-    if (laborValueCode.equalsIgnoreCase("Sentinel_LK_befallen")) {
-      valueQuantity {
-        value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
-      }
-    }
+  valueQuantity {
+    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
   }
+
 }
 
 static String getSpecimenReference(final LaborMappingType mappingType, final String relatedOid) {
