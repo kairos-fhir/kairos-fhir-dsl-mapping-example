@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
@@ -74,7 +73,7 @@ observation {
   }
 
   valueQuantity {
-    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
+    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as Integer
   }
 
 }

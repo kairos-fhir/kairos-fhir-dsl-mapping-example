@@ -74,7 +74,7 @@ observation {
   }
 
   valueQuantity {
-    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as String
+    value = lflv[LaborFindingLaborValue.NUMERIC_VALUE] as Integer
   }
 
 }
