@@ -12,6 +12,15 @@ DKTK Oncology Mappings*
 
 # Changelog
 
+## 2024-06-18
+
+* added Scripts:
+    * anzahlBefallenenLymphknoten.groovy
+    * anzahlBefallenenSentinelLymphknoten.groovy
+    * anzahlUntersuchtenLymphknoten.groovy
+    * anzahlUntersuchtenSentinelLymphknoten.groovy
+* TNM extended for additional category values L, V, Pn, S
+
 ## 2024-05-14
 
 * KAIROS-FHIR-DSL updated to 1.33.0
