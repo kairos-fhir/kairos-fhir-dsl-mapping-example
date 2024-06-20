@@ -1,9 +1,8 @@
 package projects.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.fhir.centraxx.metamodel.AbstractCode
-import de.kairos.fhir.centraxx.metamodel.AbstractGtdsDictionary
 import de.kairos.fhir.centraxx.metamodel.RadiationComponent
+import de.kairos.fhir.centraxx.metamodel.RadiationTarget
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -15,7 +14,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since CXX.v.2024.3.0
+ *
+ * Hints:
+ * * Not yet supported extensions: Boost
+ * * The dose units are free text fields in CXX, but only representations of a double will run through.
+ *
  */
 procedure {
   id = "Procedure/RadiationTherapy-" + context.source[radiationTherapy().id()]
@@ -55,6 +59,16 @@ procedure {
     }
   }
 
+  // Ende Grund
+  if (context.source[radiationTherapy().finalStateDict()]) {
+    outcome {
+      coding {
+        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/EndeGrundCS"
+        code = (context.source[radiationTherapy().finalStateDict().code()] as String)?.toUpperCase()
+      }
+    }
+  }
+
   if (context.source[radiationTherapy().intentionDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
@@ -81,6 +95,7 @@ procedure {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-Bestrahlung"
 
+      //Applikationsart
       if (rc[RadiationComponent.APPLICATION_KIND_DICT]) {
         extension {
           url = "Applikationsart"
@@ -93,7 +108,7 @@ procedure {
         }
       }
 
-
+      // Strahlenart
       if (rc[RadiationComponent.RADIATION_KIND_DICT]) {
         extension {
           url = "Strahlenart"
@@ -106,7 +121,56 @@ procedure {
         }
       }
 
+      if (rc[RadiationComponent.TARGETS]) {
+        extension {
+          url = "Zielgebiet"
+          valueCodeableConcept {
+            rc[RadiationComponent.TARGETS].each { def trg ->
+              coding {
+                system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/ZielgebietCS"
+                code = trg[RadiationTarget.TARGET_AREA] as String
+              }
+            }
+          }
+        }
+      }
 
+      if (rc[RadiationComponent.TARGETS]) {
+        extension {
+          url = "SeiteZielgebiet"
+          valueCodeableConcept {
+            rc[RadiationComponent.TARGETS].each { def trg ->
+              coding {
+                system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SeitenlokalisationCS"
+                code = (trg[RadiationTarget.SIDE_DICT]?.getAt(CODE) as String)?.toUpperCase()
+              }
+            }
+          }
+        }
+      }
+
+
+      // Einzeldosis + Einheit
+      if (rc[RadiationComponent.RADIATION_KIND_DICT]) {
+        extension {
+          url = "Einzeldosis"
+          valueQuantity {
+            value = rc[RadiationComponent.SINGLE_DOSE]
+            unit = mapUnit(rc[RadiationComponent.UNIT_DICT]?.getAt(CODE) as String)
+          }
+        }
+      }
+
+      // Gesamtdosis + Einheit
+      if (rc[RadiationComponent.RADIATION_KIND_DICT]) {
+        extension {
+          url = "Gesamtdosis"
+          valueQuantity {
+            value = rc[RadiationComponent.COMPLETE_DOSE]
+            unit = mapUnit(rc[RadiationComponent.UNIT_DICT]?.getAt(CODE) as String)
+          }
+        }
+      }
     }
   }
 }
@@ -147,7 +211,7 @@ static String mapRadiationKind(String gtdsDictionaryCode) {
   return gtdsDictionaryCode.toUpperCase() // without mapping
 }
 
-static String mapApplicationKind(String gtdsDictionaryCode) {
+static String mapApplicationKind(final String gtdsDictionaryCode) {
   if (gtdsDictionaryCode == null) return null
   if (gtdsDictionaryCode.equalsIgnoreCase("P")) return "P"
   if (gtdsDictionaryCode.equalsIgnoreCase("PRCJ")) return "PRCJ"
@@ -176,5 +240,14 @@ static String mapApplicationKind(String gtdsDictionaryCode) {
   if (gtdsDictionaryCode.toUpperCase().contains("PSMA")) return "PSMA"
   if (gtdsDictionaryCode.toUpperCase().contains("RJT")) return "RJT"
   if (gtdsDictionaryCode.toUpperCase().contains("RIT")) return "RIT"
+  return gtdsDictionaryCode.toUpperCase() // without mapping
+}
+
+static String mapUnit(final String gtdsDictionaryCode) {
+  if (gtdsDictionaryCode == null) return null
+  if (gtdsDictionaryCode.equalsIgnoreCase("gy")) return "Gy"
+  if (gtdsDictionaryCode.equalsIgnoreCase("gbq")) return "GBq"
+  if (gtdsDictionaryCode.equalsIgnoreCase("mbq")) return "MBq"
+  if (gtdsDictionaryCode.equalsIgnoreCase("kbq")) return "kBq"
   return gtdsDictionaryCode.toUpperCase() // without mapping
 }
