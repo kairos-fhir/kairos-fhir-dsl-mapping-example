@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>2024.3.0-SNAPSHOT</SourceVersion>
+    <ExportDate>2024-05-13T18:00:01.298+02:00</ExportDate>
+    <EffectData>
+        <PatientDataSet FhirId="Patient/6290085" ImportModus="CREATE_OR_UPDATE">
+            <Source>CENTRAXX</Source>
+            <IDContainer>
+                <FlexibleID isUpdateAllowed="false">
+                    <key>MPI</key>
+                    <value>Test-MPI-1</value>
+                </FlexibleID>
+            </IDContainer>
+            <Masterdata>
+                <FirstName>Beispiel</FirstName>
+                <LastName>Diagnosesicherung</LastName>
+                <PatientAddress/>
+            </Masterdata>
+            <Episode>
+                <Source>CENTRAXX</Source>
+                <EpisodeRef>7876429d-208d-4b2e-8d77-a9688a37b864</EpisodeRef>
+                <ValidFrom>
+                    <Date>2024-05-07T00:00:00.000+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ValidFrom>
+                <ValidUntil>
+                    <Date>2024-05-07T00:00:00.000+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ValidUntil>
+            </Episode>
+            <Episode>
+                <Source>CENTRAXX</Source>
+                <EpisodeRef>387f2ade-0b63-4253-842e-7ad2eacdc497</EpisodeRef>
+                <ValidFrom>
+                    <Date>2024-05-07T00:00:00.000+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ValidFrom>
+                <ValidUntil>
+                    <Date>2024-05-07T00:00:00.000+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </ValidUntil>
+            </Episode>
+            <Episode>
+                <Source>CENTRAXX</Source>
+                <EpisodeIDContainer>
+                    <FlexibleID isUpdateAllowed="false">
+                        <key>EPISODEID</key>
+                        <value>Test-E1</value>
+                    </FlexibleID>
+                </EpisodeIDContainer>
+                <EpisodeRef>e7e914a6-2720-4eff-9674-9f1f79516662</EpisodeRef>
+                <HabitationRef RefUrl="/rest/export/catalogdata/OrganizationUnit/1" DisplayName="CENTRAXX">CentraXX</HabitationRef>
+            </Episode>
+            <Diagnosis>
+                <Source>CENTRAXX</Source>
+                <Admission>false</Admission>
+                <DiagnosisCode>C18</DiagnosisCode>
+                <Text>Bösartige Neubildung des Kolons</Text>
+                <Discharge>false</Discharge>
+                <EpisodeRef>e7e914a6-2720-4eff-9674-9f1f79516662</EpisodeRef>
+                <Date>
+                    <Date>2024-05-07T00:00:00</Date>
+                    <Precision>DAY</Precision>
+                </Date>
+                <MedDepartment>false</MedDepartment>
+                <Permanent>false</Permanent>
+                <PostOperative>false</PostOperative>
+                <Transfer>false</Transfer>
+                <MainDiagnosis>true</MainDiagnosis>
+                <Tumour>
+                    <AccomplishedByRef RefUrl="/rest/export/catalogdata/Participant/1" DisplayName="Application setup user">admin</AccomplishedByRef>
+                    <Correction>false</Correction>
+                    <DiagnosisDate>
+                        <Date>2024-05-07T00:00:00.000+02:00</Date>
+                        <Precision>EXACT</Precision>
+                    </DiagnosisDate>
+                    <DiagnosisTextCatalogue>Bösartige Neubildung des Kolons</DiagnosisTextCatalogue>
+                    <EpisodeRef>e7e914a6-2720-4eff-9674-9f1f79516662</EpisodeRef>
+                    <ICD10>C18</ICD10>
+                    <InsuranceAccepted>false</InsuranceAccepted>
+                    <OrganisationUnitTypeRef>CentraXX</OrganisationUnitTypeRef>
+                    <PostcareAgreement>false</PostcareAgreement>
+                    <RelativesEnlighten>false</RelativesEnlighten>
+                    <TumorId>3506fb14-38a9-42b2-86d5-d14399e82acc</TumorId>
+                </Tumour>
+                <IcdEntryRef>
+                    <Code>C18</Code>
+                    <Kind>code</Kind>
+                    <IcdCatalogRef RefUrl="/rest/export/catalogdata/IcdCatalog/18">
+                        <Kind>ICD-General</Kind>
+                        <Version>2023-GM-DE</Version>
+                    </IcdCatalogRef>
+                </IcdEntryRef>
+                <FlexibleDataSetRef>31064</FlexibleDataSetRef>
+                <InitialDiagnosis>false</InitialDiagnosis>
+            </Diagnosis>
+            <OrganisationUnitRefs RefUrl="/rest/export/catalogdata/OrganizationUnit/1" DisplayName="CENTRAXX">CentraXX</OrganisationUnitRefs>
+            <PatientStatus>
+                <Active>true</Active>
+            </PatientStatus>
+            <IsVirtual>false</IsVirtual>
+        </PatientDataSet>
+        <FlexibleDataSetInstance>
+            <FlexibleDataSetTypeRef RefUrl="/rest/export/catalogdata/LaborMethod/2659" DisplayName="DKTK-Erweiterungen">DKTK-Erweiterungen</FlexibleDataSetTypeRef>
+            <InstanceName>DKTK-Erweiterungen_07.05.2024 11:33:18</InstanceName>
+            <Date>
+                <Date>2024-05-07T11:33:18.000+02:00</Date>
+                <Precision>EXACT</Precision>
+            </Date>
+            <EnumerationValue>
+                <FlexibleValueTypeRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/6033" DisplayName="DKTK-Diagnosesicherung">DKTK-Diagnosesicherung</FlexibleValueTypeRef>
+                <ValueIndex>0</ValueIndex>
+                <RecordedOn>
+                    <Date>2024-05-07T11:33:47.270+02:00</Date>
+                    <Precision>EXACT</Precision>
+                </RecordedOn>
+                <UserDefinedCatalogEntryRef>4</UserDefinedCatalogEntryRef>
+            </EnumerationValue>
+            <FlexibleDataSetInstanceRef>31064</FlexibleDataSetInstanceRef>
+        </FlexibleDataSetInstance>
+    </EffectData>
+</CentraXXDataExchange>

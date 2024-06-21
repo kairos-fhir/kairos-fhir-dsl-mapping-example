@@ -200,6 +200,78 @@ observation {
     }
   }
 
+  //TNM-L (Lymphgefäßinvasion)
+  if (context.source[tnm().l()]) {
+    component {
+      code {
+        coding {
+          system = "http://loinc.org"
+          code = "33739-4"
+        }
+      }
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMLKategorieCS"
+          code = context.source[tnm().l()] as String
+        }
+      }
+    }
+  }
+
+  //TNM-V (Veneninvasion)
+  if (context.source[tnm().v()]) {
+    component {
+      code {
+        coding {
+          system = "http://loinc.org"
+          code = "33740-2"
+        }
+      }
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMVKategorieCS"
+          code = context.source[tnm().v()] as String
+        }
+      }
+    }
+  }
+
+  //TNM-Pn (Perineuralinvasion)
+  if (context.source[tnm().pni()]) {
+    component {
+      code {
+        coding {
+          system = "http://loinc.org"
+          code = "92837-4"
+        }
+      }
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMPnKategorieCS"
+          code = context.source[tnm().pni()] as String
+        }
+      }
+    }
+  }
+
+  //TNM-S (Serumtumormarker)
+  if (context.source[tnm().s()]) {
+    component {
+      code {
+        coding {
+          system = "http://loinc.org"
+          code = "21924-6"
+        }
+      }
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/TNMSKategorieCS"
+          code = context.source[tnm().s()] as String
+        }
+      }
+    }
+  }
+
   if (context.source[tnm().tumour()] && hasRelevantCode(context.source[tnm().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[tnm().tumour().centraxxDiagnosis().id()]

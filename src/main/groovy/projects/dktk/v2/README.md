@@ -12,7 +12,31 @@ DKTK Oncology Mappings*
 
 # Changelog
 
-##
+## 2024-06-18
+
+* added Scripts:
+    * anzahlBefallenenLymphknoten.groovy
+    * anzahlBefallenenSentinelLymphknoten.groovy
+    * anzahlUntersuchtenLymphknoten.groovy
+    * anzahlUntersuchtenSentinelLymphknoten.groovy
+* TNM extended for additional category values L, V, Pn, S
+* strahlentherapie.groovy
+    * Applikationsart (application kind) (extension)
+    * Strahlenart (radiation kind) (extension)
+    * Zielgebiet (target area) (extension)
+    * SeiteZielgebiet (target side) (extension)
+    * Einzeldosis + Einheit (single dose) (extension)
+    * Gesamtdosis + Einheit (complete dose) (extension)
+    * Ende Grund (outcome)
+
+## 2024-05-14
+
+* KAIROS-FHIR-DSL updated to 1.33.0
+* condition.evidence added
+* operation.groovy: procedure.complication added
+* nebenwirkung.groovy for adverseEvents added
+
+## 2024-04-10
 
 * ecog export added
 * weitereKlassifikation export added
