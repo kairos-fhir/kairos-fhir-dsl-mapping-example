@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
  * Represented by a CXX RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
  * @author Mike Wähnert
- * @since CXX.v.2024.3.0
+ * @since CXX.v.3.18.3.21, CXX.v.2024.2.5, CXX.v.2024.3.0, FHIR-DSL-v.1.33.0
  *
  * Hints:
  * * Not yet supported extensions: Boost

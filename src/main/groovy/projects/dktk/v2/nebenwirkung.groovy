@@ -7,7 +7,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.adverseEffects
 
 /**
  * Represented by CXX AdverseEffect
- * @since CXX.v.2024.3.0
+ * @since CXX.v.3.18.3.21, CXX.v.2024.2.5, CXX.v.2024.3.0, FHIR-DSL-v.1.33.0
  */
 adverseEvent {
 
