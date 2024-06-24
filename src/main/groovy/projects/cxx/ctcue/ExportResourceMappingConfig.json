@@ -20,6 +20,16 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_METHOD",
+      "transformByTemplate": "questionnaire",
+      "exportToFhirResource": "Questionnaire"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "questionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse"
     }
   ]
 }
