@@ -18,6 +18,7 @@ import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 questionnaireResponse {
+
   id = "QuestionnaireResponse/" + context.source[laborMapping().laborFinding().id()]
 
   identifier {
@@ -72,7 +73,7 @@ questionnaireResponse {
           setValueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
         }
       } else if (isEnumeration(laborValue)) {
-        valueCodeableConcept {
+
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             answer {
               valueCoding {
@@ -91,9 +92,9 @@ questionnaireResponse {
               }
             }
           }
-        }
+
       } else if (isOptionGroup(laborValue)) {
-        valueCodeableConcept {
+
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             answer {
               valueCoding {
@@ -112,9 +113,9 @@ questionnaireResponse {
               }
             }
           }
-        }
+
       } else if (isCatalog(laborValue)) {
-        valueCodeableConcept {
+
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             answer {
               valueCoding {
@@ -133,7 +134,7 @@ questionnaireResponse {
               }
             }
           }
-        }
+
       } else {
         final String msg = laborValue?.getAt(LaborValue.D_TYPE) + " not implemented yet."
         System.out.println(msg)

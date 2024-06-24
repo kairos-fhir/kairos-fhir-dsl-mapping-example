@@ -25,11 +25,13 @@ questionnaire {
 
   firstSection[CrfTemplateSection.FIELDS].each { final def field ->
     item {
-      setLinkId(field[CrfTemplateField.LABOR_VALUE][LaborValue.CODE] as String)
+      setLinkId(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.CODE) as String)
 
       // assuming the question is stored as description
-      setText(field[CrfTemplateField.LABOR_VALUE][LaborValue.DESC_MULTILINGUAL_ENTRIES].find { it[MultilingualEntry.LANG] == "en" }[MultilingualEntry.VALUE] as String)
-      setType(mapToType(field[CrfTemplateField.LABOR_VALUE][LaborValue.D_TYPE] as LaborValueDType))
+      setText(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.DESC_MULTILINGUAL_ENTRIES)?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String)
+      if (field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)) {
+        setType(mapToType(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType))
+      }
     }
   }
 
@@ -37,20 +39,21 @@ questionnaire {
 
 // more possible, focusing on main types
 static mapToType(final LaborValueDType laborValueDType) {
+  if (laborValueDType == null) {
+    return null
+  }
+
   switch (laborValueDType) {
-    case LaborValueDType.BOOLEAN:
-      return Questionnaire.QuestionnaireItemType.BOOLEAN
-    case LaborValueDType.INTEGER:
-      return Questionnaire.QuestionnaireItemType.INTEGER
-    case LaborValueDType.DECIMAL:
-      return Questionnaire.QuestionnaireItemType.QUANTITY
-    case LaborValueDType.DATE || LaborValueDType.LONGDATE:
-      return Questionnaire.QuestionnaireItemType.DATETIME
-    case LaborValueDType.TIME:
-      return Questionnaire.QuestionnaireItemType.TIME
-    case LaborValueDType.CATALOG:
-      return Questionnaire.QuestionnaireItemType.CHOICE
-    case LaborValueDType.STRING || LaborValueDType.LONGSTRING:
-      return Questionnaire.QuestionnaireItemType.TEXT
+    case LaborValueDType.BOOLEAN: return Questionnaire.QuestionnaireItemType.BOOLEAN.toCode()
+    case LaborValueDType.INTEGER: return Questionnaire.QuestionnaireItemType.INTEGER.toCode()
+    case LaborValueDType.DECIMAL: return Questionnaire.QuestionnaireItemType.QUANTITY.toCode()
+    case LaborValueDType.SLIDER: return Questionnaire.QuestionnaireItemType.QUANTITY.toCode()
+    case LaborValueDType.DATE: return Questionnaire.QuestionnaireItemType.DATETIME.toCode()
+    case LaborValueDType.LONGDATE: return Questionnaire.QuestionnaireItemType.DATETIME.toCode()
+    case LaborValueDType.TIME: return Questionnaire.QuestionnaireItemType.TIME.toCode()
+    case LaborValueDType.CATALOG: return Questionnaire.QuestionnaireItemType.CHOICE.toCode()
+    case LaborValueDType.STRING: return Questionnaire.QuestionnaireItemType.TEXT.toCode()
+    case LaborValueDType.LONGSTRING: return Questionnaire.QuestionnaireItemType.TEXT.toCode()
+    default: println(laborValueDType.toString() + " not implemented")
   }
 }
