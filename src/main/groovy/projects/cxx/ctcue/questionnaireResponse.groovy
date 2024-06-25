@@ -25,7 +25,9 @@ questionnaireResponse {
     value = context.source[laborMapping().laborFinding().shortName()]
   }
 
-  setQuestionnaire("Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()])
+  questionnaire {
+    value = "Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()]
+  }
 
   // static, could be mapped as a param within the LaborFinding
   status = QuestionnaireResponse.QuestionnaireResponseStatus.INPROGRESS
@@ -34,7 +36,9 @@ questionnaireResponse {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  setAuthored(context.source[laborMapping().laborFinding().findingDate()])
+  authored {
+    date = context.source[laborMapping().laborFinding().findingDate().date()]
+  }
 
   // author (OrgUnit or Practitioner) has to be coded within the LaborFinding
 
@@ -45,7 +49,7 @@ questionnaireResponse {
       setLinkId(laborValue[CODE] as String)
 
       // assuming the question is stored as description
-      setText(laborValue[LaborValue.DESC_MULTILINGUAL_ENTRIES].find { it[LANG] == "en" }[VALUE] as String)
+      setText(laborValue[LaborValue.DESC_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String)
 
       if (isNumeric(laborValue)) {
         answer {
@@ -74,66 +78,66 @@ questionnaireResponse {
         }
       } else if (isEnumeration(laborValue)) {
 
-          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/UsageEntry"
-                code = entry[CODE] as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-              }
+        lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/UsageEntry"
+              code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-                code = entry[CODE] as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-              }
+        }
+        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
+        }
 
       } else if (isOptionGroup(laborValue)) {
 
-          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/UsageEntry"
-                code = entry[CODE] as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-              }
+        lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/UsageEntry"
+              code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-                code = entry[CODE] as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-              }
+        }
+        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
+        }
 
       } else if (isCatalog(laborValue)) {
 
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-                code = entry[CODE] as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-              }
+        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
           }
-          lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
-            answer {
-              valueCoding {
-                system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
-                code = entry[CODE] as String
-                display = entry[IcdEntry.PREFERRED_LONG] as String
-              }
+        }
+        lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
+          answer {
+            valueCoding {
+              system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[IcdEntry.PREFERRED_LONG] as String
             }
           }
+        }
 
       } else {
         final String msg = laborValue?.getAt(LaborValue.D_TYPE) + " not implemented yet."
