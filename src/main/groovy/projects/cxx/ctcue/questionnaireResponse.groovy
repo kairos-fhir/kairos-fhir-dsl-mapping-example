@@ -29,8 +29,11 @@ questionnaireResponse {
     value = "Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()]
   }
 
-  // static, could be mapped as a param within the LaborFinding
-  status = QuestionnaireResponse.QuestionnaireResponseStatus.INPROGRESS
+  def statusValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { def lflv ->
+    return "Questionnaire-Response-Status" == lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
+  }?.getAt(LaborFindingLaborValue.STRING_VALUE)
+
+  status = statusValue != null ? statusValue : QuestionnaireResponse.QuestionnaireResponseStatus.INPROGRESS
 
   subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
@@ -40,16 +43,15 @@ questionnaireResponse {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
-  // author (OrgUnit or Practitioner) has to be coded within the LaborFinding
+  // TODO: author (OrgUnit or Practitioner) has to be coded within the LaborMethod like the status
 
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final def lflv ->
-
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { def lflv ->
+    return "Questionnaire-Response-Status" != lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
+  }.each { final def lflv ->
     final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]
     item {
       setLinkId(laborValue[CODE] as String)
-
-      // assuming the question is stored as description
-      setText(laborValue[LaborValue.DESC_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String)
+      setText(laborValue[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String)
 
       if (isNumeric(laborValue)) {
         answer {

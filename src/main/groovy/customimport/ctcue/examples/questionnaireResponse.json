@@ -1,0 +1,106 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "QuestionnaireResponse/questionnaire-response-1",
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "id": "questionnaire-response-1",
+        "meta": {
+          "profile": [
+            "https://fhir.iqvia.com/patientfinder/StructureDefinition/pf-questionnaire-response"
+          ]
+        },
+        "identifier": {
+          "value": "questionnaire-response-example-1"
+        },
+        "extension": [
+          {
+            "url": "https://fhir.iqvia.com/patientfinder/extension/department-organization",
+            "valueReference": {
+              "reference": "Organization/department-1"
+            }
+          }
+        ],
+        "questionnaire": "#Questionnaire/questionnaire-example-1",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/6280096"
+        },
+        "authored": "2013-02-19T14:15:00Z",
+        "item": [
+          {
+            "linkId": "1",
+            "text": "Do you have allergies?",
+            "answer": [
+              {
+                "valueString": "I am allergic to cats"
+              }
+            ]
+          },
+          {
+            "linkId": "2",
+            "text": "What is your gender?",
+            "answer": [
+              {
+                "valueCoding": {
+                  "code": "M"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "3",
+            "text": "What is your date of birth?",
+            "answer": [
+              {
+                "valueDate": "1981-01-01"
+              }
+            ]
+          },
+          {
+            "linkId": "4",
+            "text": "What is your country of birth?",
+            "answer": [
+              {
+                "valueString": "The Netherlands"
+              }
+            ]
+          },
+          {
+            "linkId": "5",
+            "text": "What is your weight?",
+            "answer": [
+              {
+                "valueQuantity": {
+                  "value": 72,
+                  "unit": "kg"
+                }
+              }
+            ]
+          },
+          {
+            "linkId": "6",
+            "text": "What is your height?",
+            "answer": [
+              {
+                "valueQuantity": {
+                  "value": 1.8,
+                  "unit": "m"
+                }
+              }
+            ]
+          }
+        ],
+        "author": {
+          "reference": "Practitioner/practitioner-1"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "QuestionnaireResponse/questionnaire-response-1"
+      }
+    }
+  ]
+}
