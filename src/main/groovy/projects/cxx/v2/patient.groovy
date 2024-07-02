@@ -3,12 +3,14 @@ package projects.cxx.v2
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.RootEntities
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * @author Mike Wähnert
@@ -17,13 +19,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
-  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  final def idContainer = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
-    "COVID-19-PATIENTID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
-  }
+  id = "Patient/" + context.source[RootEntities.patpatientMasterDataAnonymous().patientContainer().id()]
 
-  if (idContainer) {
+//  final def idContainer = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.find {
+//    "MPI" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+//  }
+//
+//  if (idContainer) {
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()]?.each { def idContainer ->
     identifier {
       value = idContainer[PSN]
       type {
