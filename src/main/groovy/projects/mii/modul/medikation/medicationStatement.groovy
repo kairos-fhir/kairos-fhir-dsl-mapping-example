@@ -33,8 +33,10 @@ medicationStatement {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  context_ {
-    reference = "Encounter/" + context.source[medication().episode().id()]
+  if (context.source[medication().episode()]) {
+    context_ {
+      reference = "Encounter/" + context.source[medication().episode().id()]
+    }
   }
 
   effectiveDateTime = context.source[medication().trgDate()]
@@ -54,7 +56,6 @@ medicationStatement {
         code = context.source[medication().methodOfApplication()]
       }
     }
-
 
     doseAndRate {
       doseQuantity {

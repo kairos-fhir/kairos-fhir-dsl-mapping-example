@@ -11,3 +11,4 @@ Example mappings for the Medical Informatics Initiative (MII)
 ## 2024-07-04
 
 * medicationStatementWithAdministration fixed
+* null check for episodes in medicationStatement and medicationStatementWithAdministration added
