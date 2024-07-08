@@ -17,6 +17,10 @@ The following imported data sets are supported/tested:
 
 * Disabled diagnostic reports for Hull as long as Bahia has no data mapped to it.
 
+## 2024-07-08
+
+* Adjust example ProjectConfig.json for page size 10k and with another default export dir 
+
 ## 2024-04-15
 
 * labor value groups as diagnostic report categories added
