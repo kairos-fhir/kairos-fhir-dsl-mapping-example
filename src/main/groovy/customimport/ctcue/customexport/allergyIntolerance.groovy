@@ -1,4 +1,4 @@
-package customimport.ctcue.customexporte
+package customimport.ctcue.customexport
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -8,6 +8,7 @@ import org.hl7.fhir.r4.model.AllergyIntolerance
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represented by a CXX Histology
  * @author Mike Wähnert
@@ -48,7 +49,7 @@ allergyIntolerance {
   println(lflvCategory[STRING_VALUE])
   if (lflvCategory) {
     category {
-      lflvCategory[STRING_VALUE]
+      value = lflvCategory[STRING_VALUE] as String
     }
   }
 
@@ -73,7 +74,7 @@ allergyIntolerance {
     onsetDateTime {
       date = lflvOnsetStart[DATE_VALUE]
     }
-  } else {
+  } else if (lflvOnsetStart && lflvOnsetEnd) {
     onsetPeriod {
       start {
         date = lflvOnsetStart[DATE_VALUE]
