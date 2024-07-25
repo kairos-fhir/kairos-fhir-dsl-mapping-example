@@ -113,6 +113,20 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "AllergyIntolerance.code.coding.system"
+                    display = "AllergyIntolerance.code.coding.system"
+                  }
+                }
+
+                valueString = sourceAI.getCode().getCodingFirstRep().getSystem()
+              }
+
+              component {
+                extension = createLaborValueExtension(LaborValueType.STRING)
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
                     code = "AllergyIntolerance.code.coding.display"
                     display = "AllergyIntolerance.code.coding.display"
                   }
@@ -165,7 +179,7 @@ bundle {
                   }
                 }
 
-                valueString = sourceAI.getCategory().iterator().next().getValue().toString().toLowerCase()
+                valueString = sourceAI.getCategory().iterator().next().getValue().toCode()
               }
             }
 
@@ -190,8 +204,8 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.LaborValue.BASE_URL
-                    code = "AllergyIntolerance.onsetDatePeriod.end"
-                    display = "AllergyIntolerance.onsetDatePeriod.end"
+                    code = "AllergyIntolerance.onsetPeriod.end"
+                    display = "AllergyIntolerance.onsetPeriod.end"
                   }
                 }
 
@@ -206,8 +220,8 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.LaborValue.BASE_URL
-                    code = "AllergyIntolerance.onsetDatePeriod.start"
-                    display = "AllergyIntolerance.onsetDatePeriod.start"
+                    code = "AllergyIntolerance.onsetPeriod.start"
+                    display = "AllergyIntolerance.onsetPeriod.start"
                   }
                 }
 
@@ -250,6 +264,20 @@ bundle {
 
                 component {
                   extension = createLaborValueExtension(LaborValueType.STRING)
+
+                  code {
+                    coding {
+                      system = FhirUrls.System.LaborValue.BASE_URL
+                      code = "AllergyIntolerance.reaction.substance.coding.system"
+                      display = "AllergyIntolerance.reaction.substance.coding.system"
+                    }
+                  }
+
+                  valueString = sourceAI.getReactionFirstRep().getSubstance().getCodingFirstRep().getSystem()
+                }
+
+                component {
+                  extension = createLaborValueExtension(LaborValueType.STRING)
                   code {
                     coding {
                       system = FhirUrls.System.LaborValue.BASE_URL
@@ -276,6 +304,20 @@ bundle {
                   }
 
                   valueString = sourceAI.getReactionFirstRep().getManifestationFirstRep().getCodingFirstRep().getCode()
+                }
+
+                component {
+                  extension = createLaborValueExtension(LaborValueType.STRING)
+
+                  code {
+                    coding {
+                      system = FhirUrls.System.LaborValue.BASE_URL
+                      code = "AllergyIntolerance.reaction.manifestation.coding.system"
+                      display = "AllergyIntolerance.reaction.manifestation.coding.system"
+                    }
+                  }
+
+                  valueString = sourceAI.getReactionFirstRep().getManifestationFirstRep().getCodingFirstRep().getSystem()
                 }
 
                 component {
@@ -320,7 +362,7 @@ bundle {
                     }
                   }
 
-                  valueString = sourceAI.getReactionFirstRep().getSeverity().toString()
+                  valueString = sourceAI.getReactionFirstRep().getSeverity().toCode()
                 }
               }
             }
