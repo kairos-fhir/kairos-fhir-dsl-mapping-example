@@ -1,4 +1,4 @@
-package customimport.ctcue
+package customimport.ctcue.customimport
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
