@@ -1,4 +1,4 @@
-package projects.cxx.ctcue
+package customimport.ctcue.customexport
 
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
