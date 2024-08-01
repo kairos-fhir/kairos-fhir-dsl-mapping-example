@@ -110,6 +110,11 @@
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "todUrsache",
       "exportToFhirResource": "Observation"
+    },
+  	{
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "siopObservation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
