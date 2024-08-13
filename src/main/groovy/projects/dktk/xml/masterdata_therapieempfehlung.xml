@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2024.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2024-05-16T10:14:27.986+02:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleCatalogValue>
+        <Code>Therapieempfehlung</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Therapieempfehlung</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Therapy recommendation</Value>
+        </NameMultilingualEntries>
+        <SyncId>09425783-eb4d-4d85-8d85-7224bb7d3a55</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="DKTK-Tumorkonferenz">DKTK-Tumorkonferenz</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/1556" DisplayName="TherapieempfehlungVS">TherapieempfehlungVS</ValueListRef>
+      </FlexibleCatalogValue>
+      <FlexibleCatalogValue>
+        <Code>Therapieabweichung</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Tumor conference/therapy recommendation Therapy deviation at the request of the patient</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Tumorkonferenz/Therapieempfehlung Therapieabweichung auf Wunsch des Patienten</Value>
+        </NameMultilingualEntries>
+        <SyncId>089efbbc-eae5-4055-b5c8-1d6b782866f2</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="DKTK-Tumorkonferenz">DKTK-Tumorkonferenz</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/19" DisplayName="Ja, Nein, Unbekannt Liste (HUB, Basisdatensatz)">WL_HUB_JA_NEIN_UNKNOWN</ValueListRef>
+      </FlexibleCatalogValue>
+      <FlexibleStringValue>
+        <Code>Tumorkonferenz ID</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Tumorkonferenz ID</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Tumor conference ID</Value>
+        </NameMultilingualEntries>
+        <SyncId>260a77e8-30a0-4e9a-977f-009d850ac2ca</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="DKTK-Tumorkonferenz">DKTK-Tumorkonferenz</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleCatalogValue>
+        <Code>Status der Therapieempfehlung</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Status der Therapieempfehlung</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Therapy recommendation status</Value>
+        </NameMultilingualEntries>
+        <SyncId>02aca31f-e7f9-4e17-b3bf-071a408e33cc</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="DKTK-Tumorkonferenz">DKTK-Tumorkonferenz</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <ChoiseType>SELECTONE</ChoiseType>
+        <ValueListRef RefUrl="/rest/export/catalogdata/ValueList/1557" DisplayName="CarePlanActivityStatus">CarePlanActivityStatus</ValueListRef>
+      </FlexibleCatalogValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem assignStrict="true">
+      <Code>DKTK-Therapieempfehlung der Tumorkonferenz</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>DKTK-Therapieempfehlung der Tumorkonferenz</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>DKTK Therapy recommendation from the tumor conference</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/6043" DisplayName="Tumorkonferenz ID">Tumorkonferenz ID</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/6046" DisplayName="Status der Therapieempfehlung">Status der Therapieempfehlung</FlexibleValueRef>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/6044" DisplayName="Therapieempfehlung">Therapieempfehlung</FlexibleValueRef>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueCatalog/6045" DisplayName="Tumorkonferenz/Therapieempfehlung Therapieabweichung auf Wunsch des Patienten">Therapieabweichung</FlexibleValueRef>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/4116">
+        <Name>DKTK-Therapieempfehlung der Tumorkonferenz</Name>
+        <Version>2</Version>
+        <SyncId>d0965ce8-72a6-45f2-a289-766c3a48977b</SyncId>
+      </CrfTemplateRef>
+      <Version>2</Version>
+      <SyncId>b74432a0-62a5-415d-9c8a-7d2c966b1916</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>DKTK-Therapieempfehlung der Tumorkonferenz</Name>
+      <CrfTemplateSection>
+        <Name>Therapieempfehlung</Name>
+        <Multilingual>
+          <Language>en</Language>
+          <LastModifiedOn>
+            <Date>2024-05-15T14:21:43.397+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>Therapy recommendation</Name>
+        </Multilingual>
+        <Multilingual>
+          <Language>de</Language>
+          <LastModifiedOn>
+            <Date>2024-05-15T14:21:43.397+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>Therapieempfehlung</Name>
+        </Multilingual>
+        <Code>Therapieempfehlung</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/6043" DisplayName="Tumorkonferenz ID">Tumorkonferenz ID</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>5aba5071-cdbc-43cc-ae85-ca6a2cec6e4a</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <Height>2</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <SubSection>
+          <Name>1efc49cd-693b-4499-8b8d-48fd8ebecf0b</Name>
+          <Multilingual>
+            <Language>en</Language>
+            <LastModifiedOn>
+              <Date>2024-05-15T14:21:43.397+02:00</Date>
+              <Precision>EXACT</Precision>
+            </LastModifiedOn>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <Name>1efc49cd-693b-4499-8b8d-48fd8ebecf0b-en</Name>
+          </Multilingual>
+          <Multilingual>
+            <Language>de</Language>
+            <LastModifiedOn>
+              <Date>2024-05-15T14:21:43.397+02:00</Date>
+              <Precision>EXACT</Precision>
+            </LastModifiedOn>
+            <EntityStatus>ACTIVE</EntityStatus>
+            <Name>1efc49cd-693b-4499-8b8d-48fd8ebecf0b-de</Name>
+          </Multilingual>
+          <Code>1efc49cd-693b-4499-8b8d-48fd8ebecf0b</Code>
+          <CrfTemplateField>
+            <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/6045" DisplayName="Tumorkonferenz/Therapieempfehlung Therapieabweichung auf Wunsch des Patienten">Therapieabweichung</LaborValue>
+            <LowerRow>0</LowerRow>
+            <LowerColumn>1</LowerColumn>
+            <UpperRow>0</UpperRow>
+            <UpperColumn>1</UpperColumn>
+            <Mandatory>false</Mandatory>
+            <VisibleCaption>true</VisibleCaption>
+            <FieldType>LABORVALUE</FieldType>
+            <TabIndex>0</TabIndex>
+            <ReadOnly>false</ReadOnly>
+            <Pseudomized>false</Pseudomized>
+            <OnsetEvent>false</OnsetEvent>
+            <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+            <MultilingualValueAllowed>false</MultilingualValueAllowed>
+            <SyncId>6d3e605a-5c6e-49ab-8750-355734d7a1d3</SyncId>
+            <GraduationVisible>false</GraduationVisible>
+            <NlpRelevant>false</NlpRelevant>
+            <Eq5d5lRelevant>false</Eq5d5lRelevant>
+          </CrfTemplateField>
+          <CrfTemplateField>
+            <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/6046" DisplayName="Status der Therapieempfehlung">Status der Therapieempfehlung</LaborValue>
+            <LowerRow>0</LowerRow>
+            <LowerColumn>2</LowerColumn>
+            <UpperRow>0</UpperRow>
+            <UpperColumn>2</UpperColumn>
+            <Mandatory>false</Mandatory>
+            <VisibleCaption>true</VisibleCaption>
+            <FieldType>LABORVALUE</FieldType>
+            <TabIndex>0</TabIndex>
+            <ReadOnly>false</ReadOnly>
+            <Pseudomized>false</Pseudomized>
+            <OnsetEvent>false</OnsetEvent>
+            <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+            <MultilingualValueAllowed>false</MultilingualValueAllowed>
+            <SyncId>f4cb268e-8144-4272-89c4-0a5da9acb235</SyncId>
+            <GraduationVisible>false</GraduationVisible>
+            <NlpRelevant>false</NlpRelevant>
+            <Eq5d5lRelevant>false</Eq5d5lRelevant>
+          </CrfTemplateField>
+          <CrfTemplateField>
+            <LaborValue RefUrl="/rest/export/catalogdata/LaborValueCatalog/6044" DisplayName="Therapieempfehlung">Therapieempfehlung</LaborValue>
+            <LowerRow>0</LowerRow>
+            <LowerColumn>0</LowerColumn>
+            <UpperRow>0</UpperRow>
+            <UpperColumn>0</UpperColumn>
+            <Mandatory>false</Mandatory>
+            <VisibleCaption>true</VisibleCaption>
+            <FieldType>LABORVALUE</FieldType>
+            <TabIndex>0</TabIndex>
+            <ReadOnly>false</ReadOnly>
+            <Pseudomized>false</Pseudomized>
+            <OnsetEvent>false</OnsetEvent>
+            <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+            <MultilingualValueAllowed>false</MultilingualValueAllowed>
+            <SyncId>80f0f679-ba84-44b1-97f7-ba9337b438ef</SyncId>
+            <GraduationVisible>false</GraduationVisible>
+            <NlpRelevant>false</NlpRelevant>
+            <Eq5d5lRelevant>false</Eq5d5lRelevant>
+          </CrfTemplateField>
+          <Height>1</Height>
+          <Width>3</Width>
+          <Position>-1</Position>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <CrfSectionType>MULTIVALUE</CrfSectionType>
+          <IsChangeable>true</IsChangeable>
+          <ContentAlignment>HORIZONTAL</ContentAlignment>
+          <SyncId>4b63e86b-c2a6-47ca-9ee1-1350eb441e6f</SyncId>
+        </SubSection>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>2589b303-9e01-4940-ac22-0665cc54a4f0</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>2</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>d0965ce8-72a6-45f2-a289-766c3a48977b</SyncId>
+    </CrfTemplate>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Yes_No_Unknown</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Ja, Nein, Unbekannt Liste (HUB, Basisdatensatz)</Value>
+      </NameMultilingualEntries>
+      <Code>WL_HUB_JA_NEIN_UNKNOWN</Code>
+      <CustomCatalogEntry>
+        <Code>no</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>no</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>nein</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>B31C1F8D-8E28-459B-A96A-3BC7742FA015</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>unknown</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>unknown</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>unbekannt</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>6123198E-CE4B-4974-8934-9D6C5281FFAC</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>yes</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>ja</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>yes</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>86F7945A-6D81-4D34-832E-56A179B3D01E</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>1E726C9C-C5C3-45F4-A785-F269CAD677D8</SyncId>
+    </ValueList>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>CarePlanActivityStatus</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>CarePlanActivityStatus</Value>
+      </NameMultilingualEntries>
+      <Code>CarePlanActivityStatus</Code>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/83364</Value>
+      </DescMultilingualEntries>
+      <DescMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/83364</Value>
+      </DescMultilingualEntries>
+      <CustomCatalogEntry>
+        <Code>not-started</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>not-started</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Nicht angefangen</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care plan activity is planned but no action has yet been taken.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Maßnahmen zum Pflegeplan sind geplant, es wurden jedoch noch keine Maßnahmen ergriffen.</Value>
+        </DescMultilingualEntries>
+        <Position>0</Position>
+        <SyncId>18fec321-ac12-4033-95ec-e6f19f445372</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>scheduled</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Geplant</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Scheduled</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Es wurde ein Termin oder eine andere Buchung vereinbart, aber die Aktivität hat noch nicht begonnen.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Appointment or other booking has occurred but activity has not yet begun.</Value>
+        </DescMultilingualEntries>
+        <Position>1</Position>
+        <SyncId>7d6f2210-93ba-40df-ba20-89b7d81a50c2</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>in-progress</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>In Progress</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>In Bearbeitung</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care plan activity has been started but is not yet complete.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die Pflegeplanaktivität wurde begonnen, ist aber noch nicht abgeschlossen.</Value>
+        </DescMultilingualEntries>
+        <Position>2</Position>
+        <SyncId>6c05415f-6a48-4f8e-82c7-89db5dca77a9</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>on-hold</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Angehalten</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>On Hold</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die Aktivität des Pflegeplans wurde begonnen, wurde jedoch vorübergehend eingestellt und erwartet, dass sie zu einem späteren Zeitpunkt wieder aufgenommen wird.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care plan activity was started but has temporarily ceased with an expectation of resumption at a future time.</Value>
+        </DescMultilingualEntries>
+        <Position>3</Position>
+        <SyncId>13c77823-c59d-41ab-9b28-3672765a57e0</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>completed</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Abgeschlossen</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Completed</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die Aktivitäten des Pflegeplans wurden (mehr oder weniger) wie geplant durchgeführt.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care plan activity has been completed (more or less) as planned.</Value>
+        </DescMultilingualEntries>
+        <Position>4</Position>
+        <SyncId>2d18bf9d-19e4-4885-8a3d-f7d0e6bf7c86</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>cancelled</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Cancelled</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Abgebrochen</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The planned care plan activity has been withdrawn.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die geplante Pflegeplanaktivität wurde zurückgezogen.</Value>
+        </DescMultilingualEntries>
+        <Position>5</Position>
+        <SyncId>69ab0bbe-78a2-40f7-9cf6-218d5693151f</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>stopped</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Stopped</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Gestoppt</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die geplante Pflegeplanaktivität wurde vorzeitig beendet, nachdem die Aktivität begonnen wurde.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The planned care plan activity has been ended prior to completion after the activity was started.</Value>
+        </DescMultilingualEntries>
+        <Position>6</Position>
+        <SyncId>f3689435-9a21-4ad9-a756-c6d75d306b2d</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>unknown</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Unbekannt</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Unknown</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Der aktuelle Status der Aktivität des Pflegeplans ist nicht bekannt. Hinweis: Dieses Konzept ist nicht für „andere“ zu verwenden - es wird davon ausgegangen, dass einer der aufgelisteten Status zutrifft, aber das verfassende/ursprungsgebende System weiß nicht, welcher es ist.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>The current state of the care plan activity is not known. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which one.</Value>
+        </DescMultilingualEntries>
+        <Position>7</Position>
+        <SyncId>9d8ce0da-39fb-41f8-9e55-480f7deccb69</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>entered-in-error</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Entered in Error</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Fehlerhaft eingegeben</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Care plan activity was entered in error and voided.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Die Aktivität des Pflegeplans wurde irrtümlich eingegeben und storniert.</Value>
+        </DescMultilingualEntries>
+        <Position>8</Position>
+        <SyncId>98e19ac4-c4ab-4a51-b2db-7f838c559657</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>false</SortAlphabetical>
+      <SyncId>5564f827-2d92-42e5-a517-bb7c659bb274</SyncId>
+    </ValueList>
+    <ValueList>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Therapy recommendation VS</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>TherapieempfehlungVS</Value>
+      </NameMultilingualEntries>
+      <Code>TherapieempfehlungVS</Code>
+      <DescMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>https://simplifier.net/oncology/therapieempfehlungvs</Value>
+      </DescMultilingualEntries>
+      <CustomCatalogEntry>
+        <Code>CH</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Chemotherapie</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>chemotherapy</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>efd19d68-830e-415d-b5fe-0532f73d17d3</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>HO</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Hormone therapy</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Hormontherapie</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>8d7ca86c-9d03-4f3e-b05c-6f18f56bd4ce</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>IM</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Immun- und Antikörpertherapie</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Immuno and antibody therapy</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>9a9f6aa0-8c9c-4fed-a00c-5a391dd6063d</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>KM</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Knochenmarkstransplantation</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>bone marrow transplant</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>02a2e30f-769b-48f9-9791-923869a89696</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>WS</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Wait and see</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Wait and see</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>98274702-d6b4-40a8-a012-e58873e52b58</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>AS</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Active Surveillance</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Active Surveillance</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>1f6b64c0-2d91-4dfb-833c-cdf42c642c2a</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>ZS</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Zielgerichtete Substanzen</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Targeted substances</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>69e40121-c453-470e-aa18-ea4b904a4cc7</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>SO</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>others</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Sonstiges</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>ff62bc33-8844-42ae-b266-22f78d1d92d1</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>KW</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>no further tumor-specific therapy is recommended</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>keine weitere tumorspezifische Therapie empfohlen</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>198d39f9-5606-46a7-bd85-8c93a4249e02</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>ST</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Strahlentherapie</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>radiationtherapy</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>9c35c4ec-97d3-45b3-8231-3f0dd7961d02</SyncId>
+      </CustomCatalogEntry>
+      <CustomCatalogEntry>
+        <Code>OP</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>surgery</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Operation</Value>
+        </NameMultilingualEntries>
+        <Position>-1</Position>
+        <SyncId>7a535ba9-d17b-4503-926a-ae237b052b91</SyncId>
+      </CustomCatalogEntry>
+      <SortAlphabetical>true</SortAlphabetical>
+      <SyncId>fa0edb3e-725c-4363-80c7-7f0ffc4f99e5</SyncId>
+    </ValueList>
+    <LaborValueGroup>
+      <Code>DKTK-Tumorkonferenz</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>DKTK tumor conference</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>DKTK-Tumorkonferenz</Value>
+      </NameMultilingualEntries>
+      <SyncId>2849d8ab-775b-4e30-b307-c4c2e48510f1</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>

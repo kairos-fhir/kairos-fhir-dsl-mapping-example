@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2024.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2024-06-18T15:22:36.200+02:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleIntegerValue>
+        <Code>Sentinel_LK_untersucht</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Anzahl der untersuchten Sentinel-Lymphknoten</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Number of sentinel lymph nodes examined</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Gibt an, wie viele Sentinel-Lymphknoten untersucht wurden.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Indicates how many sentinel lymph nodes were examined.</Value>
+        </DescMultilingualEntries>
+        <SyncId>dc5d4d68-9156-4b8e-a669-08c325ec1eb1</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/73" DisplayName="DKTK-Lymphknoten">DKTK-Lymphknoten</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleIntegerValue>
+      <FlexibleIntegerValue>
+        <Code>Sentinel_LK_befallen</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Number of affected sentinel lymph nodes</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Anzahl der befallenen Sentinel-Lymphknoten</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Indicates how many sentinel lymph nodes are affected.</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Gibt an, wie viele Sentinel-Lymphknoten befallen sind.</Value>
+        </DescMultilingualEntries>
+        <SyncId>aa7e50a8-ffb3-4fcd-a1c8-537df1cf58a5</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/73" DisplayName="DKTK-Lymphknoten">DKTK-Lymphknoten</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleIntegerValue>
+      <FlexibleIntegerValue>
+        <Code>LK_befallen</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Anzahl der befallenen Lymphknoten</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Number of affected lymph nodes</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Indicates how many lymph nodes are affected (including sentinel).</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Gibt an, wie viele Lymphknoten befallen sind (einschließlich Sentinel).</Value>
+        </DescMultilingualEntries>
+        <SyncId>a3f3bb2e-b3aa-4690-b335-18ace1c450e7</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/73" DisplayName="DKTK-Lymphknoten">DKTK-Lymphknoten</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleIntegerValue>
+      <FlexibleIntegerValue>
+        <Code>LK_untersucht</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Number of lymph nodes examined</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Anzahl untersuchter Lymphknoten</Value>
+        </NameMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Indicates how many lymph nodes were examined (including sentinel).</Value>
+        </DescMultilingualEntries>
+        <DescMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Gibt an, wie viele Lymphknoten untersucht wurden (einschließlich Sentinel).</Value>
+        </DescMultilingualEntries>
+        <SyncId>49f1293d-34ba-48d8-b77c-938ece6bb8f5</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/73" DisplayName="DKTK-Lymphknoten">DKTK-Lymphknoten</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleIntegerValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem assignStrict="true">
+      <Code>DKTK-Lymphknoten</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>DKTK-Lymphknoten</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>DKTK lymph nodes</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueInteger/5978" DisplayName="Anzahl untersuchter Lymphknoten">LK_untersucht</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueInteger/5979" DisplayName="Anzahl der befallenen Lymphknoten">LK_befallen</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueInteger/5980" DisplayName="Anzahl der untersuchten Sentinel-Lymphknoten">Sentinel_LK_untersucht</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueInteger/5981" DisplayName="Anzahl der befallenen Sentinel-Lymphknoten">Sentinel_LK_befallen</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/3106">
+        <Name>DKTK-Lymphknoten</Name>
+        <Version>0</Version>
+        <SyncId>b3cf443b-fb73-4baa-850b-084bd74bfd8b</SyncId>
+      </CrfTemplateRef>
+      <Version>1</Version>
+      <SyncId>6dbf22b3-f0e6-4a84-8c35-55332aa74455</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>DKTK-Lymphknoten</Name>
+      <CrfTemplateSection>
+        <Name>Lymphknoten</Name>
+        <Multilingual>
+          <Language>de</Language>
+          <LastModifiedOn>
+            <Date>2024-06-18T15:17:13.037+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>Lymphknoten</Name>
+        </Multilingual>
+        <Multilingual>
+          <Language>en</Language>
+          <LastModifiedOn>
+            <Date>2024-06-18T15:17:13.037+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>DKTK lymph nodes</Name>
+        </Multilingual>
+        <Code>Lymphknoten</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueInteger/5978" DisplayName="Anzahl untersuchter Lymphknoten">LK_untersucht</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>1957a4bd-ee41-4495-af6b-34bbcd226b7c</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueInteger/5981" DisplayName="Anzahl der befallenen Sentinel-Lymphknoten">Sentinel_LK_befallen</LaborValue>
+          <LowerRow>3</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>3</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>71cf43bd-4d9d-4592-a1aa-fb9c144fe970</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueInteger/5979" DisplayName="Anzahl der befallenen Lymphknoten">LK_befallen</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>291a1ee4-0055-4413-80f0-eea49f422176</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueInteger/5980" DisplayName="Anzahl der untersuchten Sentinel-Lymphknoten">Sentinel_LK_untersucht</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>cd67f6f1-b204-4f10-a189-5cde6adc871f</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <Height>5</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>274fe91a-2f86-4dcf-b854-aabd0947d470</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>0</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>b3cf443b-fb73-4baa-850b-084bd74bfd8b</SyncId>
+    </CrfTemplate>
+    <LaborValueGroup>
+      <Code>DKTK-Lymphknoten</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>DKTK lymph nodes</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>DKTK-Lymphknoten</Value>
+      </NameMultilingualEntries>
+      <SyncId>b5af467f-df71-4416-8a76-e48308f9e3b3</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
