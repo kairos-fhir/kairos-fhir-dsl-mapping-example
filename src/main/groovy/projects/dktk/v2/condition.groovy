@@ -19,7 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 condition {
 
   final String icdCode = context.source[diagnosis().icdEntry().code()]
-  if (!hasRelevantCode(icdCode)) { // diagnosis without C or D code are filtered
+  if (!hasRelevantCode(icdCode)) { // diagnosis without C or D(0-49) code are filtered
     return
   }
 
@@ -175,5 +175,5 @@ static String normalizeDate(final String dateTimeString) {
 }
 
 static boolean hasRelevantCode(final String icdCode) {
-  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase() ==~ "D[0-4][0-9].{0,4}" )
 }

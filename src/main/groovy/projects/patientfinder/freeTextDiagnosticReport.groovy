@@ -1,5 +1,6 @@
 package projects.patientfinder
 
+
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
@@ -18,7 +19,6 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * represented by CXX LaborMapping
  * @author Mike Wähnert
@@ -95,7 +95,8 @@ diagnosticReport {
     reference = "Observation/" + context.source[laborMapping().laborFinding().id()]
   }
 
-  final def concatString = labFinLabVals.collect {
+  final def concatString = labFinLabVals.findAll{final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] != "Specialism"} // filter specialism
+      .collect {
     final lflv ->
       final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE]
       if (isString(laborValue)) {
@@ -113,6 +114,14 @@ diagnosticReport {
   }.join("\n\n")
 
   conclusion = concatString
+
+  final def specialism = labFinLabVals.find{final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "Specialism"} // filter specialism
+
+  if (specialism != null){
+    performer {
+      display = specialism[LaborFindingLaborValue.STRING_VALUE]
+    }
+  }
 
   final def uniqueGroups = labFinLabVals.collect { final def lflv ->
     return lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.GROUP]

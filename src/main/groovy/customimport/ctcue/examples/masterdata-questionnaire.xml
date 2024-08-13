@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange
+    xmlns="http://www.kairos-med.de"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+  <Source>CENTRAXX</Source>
+  <SourceVersion>2024.3.0-SNAPSHOT</SourceVersion>
+  <ExportDate>2024-06-25T15:53:45.218+02:00</ExportDate>
+  <CatalogueData>
+    <FlexibleValueCatalogueItem>
+      <FlexibleStringValue>
+        <Code>Questionnaire-Response-Status</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Questionnaire-Response-Status</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Questionnaire-Response-Status</Value>
+        </NameMultilingualEntries>
+        <SyncId>68adb9d2-7126-4a27-b71d-40359c8b0a1a</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleStringValue>
+        <Code>2</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>What is your gender?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>What is your gender?</Value>
+        </NameMultilingualEntries>
+        <SyncId>116afab9-008c-427c-9ecf-1eab06ef40cc</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleDecimalValue>
+        <Code>6</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>What is your height?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>What is your height?</Value>
+        </NameMultilingualEntries>
+        <SyncId>be40d932-19b6-4ad5-b3e8-27812c18e675</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleDecimalValue>
+      <FlexibleDateValue>
+        <Code>3</Code>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>What is your date of birth?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>What is your date of birth?</Value>
+        </NameMultilingualEntries>
+        <SyncId>26df5330-3b4e-4b75-b7fd-dfad24bcbd1a</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleDateValue>
+      <FlexibleStringValue>
+        <Code>4</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>What is your country of birth?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>What is your country of birth?</Value>
+        </NameMultilingualEntries>
+        <SyncId>3499216b-b21a-41f2-8e68-7710d3534f0f</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleStringValue>
+        <Code>1</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>Do you have allergies?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>Do you have allergies?</Value>
+        </NameMultilingualEntries>
+        <SyncId>5815af4f-5e44-4976-9cbe-6bf7a3b2f2b3</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+      </FlexibleStringValue>
+      <FlexibleDecimalValue>
+        <Code>5</Code>
+        <NameMultilingualEntries>
+          <Lang>en</Lang>
+          <Value>What is your weight?</Value>
+        </NameMultilingualEntries>
+        <NameMultilingualEntries>
+          <Lang>de</Lang>
+          <Value>What is your weight?</Value>
+        </NameMultilingualEntries>
+        <SyncId>2c93de6a-75b8-493f-89e0-ec112cc757ad</SyncId>
+        <LaborValueGroupRef RefUrl="/rest/export/catalogdata/LaborValueGroup/571" DisplayName="IQVIA-Patient-Finder">IQVIA-Patient-Finder</LaborValueGroupRef>
+        <UserEntries assignStrict="true">
+          <Systemwide>true</Systemwide>
+        </UserEntries>
+        <LowerPrecision>CLOSED</LowerPrecision>
+        <UpperPrecision>CLOSED</UpperPrecision>
+      </FlexibleDecimalValue>
+    </FlexibleValueCatalogueItem>
+    <FlexibleDataSetCatalogueItem assignStrict="true">
+      <Code>questionnaire-example-1</Code>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>Example of a Questionnaire with some questions</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>Example of a Questionnaire with some questions</Value>
+      </NameMultilingualEntries>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/6980" DisplayName="Questionnaire-Response-Status">Questionnaire-Response-Status</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/6973" DisplayName="Do you have allergies?">1</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/6979" DisplayName="What is your gender?">2</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDate/6975" DisplayName="What is your date of birth?">3</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueString/6976" DisplayName="What is your country of birth?">4</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/6977" DisplayName="What is your weight?">5</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <FlexibleValueComplexRefs>
+        <FlexibleValueRef RefUrl="/rest/export/catalogdata/LaborValueDecimal/6978" DisplayName="What is your height?">6</FlexibleValueRef>
+        <Required>false</Required>
+      </FlexibleValueComplexRefs>
+      <Systemwide>true</Systemwide>
+      <FlexibleDataSetType>MEASUREMENT</FlexibleDataSetType>
+      <Category>GENERAL</Category>
+      <CrfTemplateRef RefUrl="/rest/export/catalogdata/CrfTemplate/4107">
+        <Name>Example of a Questionnaire with some questions</Name>
+        <Version>4</Version>
+        <SyncId>159b4fbe-07bd-4b3f-b790-861ec40b2281</SyncId>
+      </CrfTemplateRef>
+      <Version>4</Version>
+      <SyncId>44bc9e67-3350-4de9-b244-b3a7204f858b</SyncId>
+    </FlexibleDataSetCatalogueItem>
+    <CrfTemplate>
+      <Name>Example of a Questionnaire with some questions</Name>
+      <CrfTemplateSection>
+        <Name>Section1</Name>
+        <Multilingual>
+          <Language>de</Language>
+          <LastModifiedOn>
+            <Date>2024-06-25T14:15:43.823+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>Section1</Name>
+        </Multilingual>
+        <Multilingual>
+          <Language>en</Language>
+          <LastModifiedOn>
+            <Date>2024-06-25T14:15:43.823+02:00</Date>
+            <Precision>EXACT</Precision>
+          </LastModifiedOn>
+          <EntityStatus>ACTIVE</EntityStatus>
+          <Name>Section1</Name>
+        </Multilingual>
+        <Code>Section1</Code>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/6977" DisplayName="What is your weight?">5</LaborValue>
+          <LowerRow>5</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>5</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>7377dfac-41e6-4b11-b1b1-0384ac741de0</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/6973" DisplayName="Do you have allergies?">1</LaborValue>
+          <LowerRow>1</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>1</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>333f1539-8fac-4f2a-b791-39ac1d919b76</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/6976" DisplayName="What is your country of birth?">4</LaborValue>
+          <LowerRow>4</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>4</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>684887d1-dfd5-4cf6-9e61-673d1a97196e</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/6979" DisplayName="What is your gender?">2</LaborValue>
+          <LowerRow>2</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>2</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>d2d29bf2-4ef5-4004-b70d-b818d3df4c6b</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDate/6975" DisplayName="What is your date of birth?">3</LaborValue>
+          <LowerRow>3</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>3</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <DefaultDateValue>
+            <Date>2024-06-25T15:35:47.317+02:00</Date>
+            <Precision>EXACT</Precision>
+          </DefaultDateValue>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>fe078dc0-214b-4ac8-b50b-cf8460a9679e</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueString/6980" DisplayName="Questionnaire-Response-Status">Questionnaire-Response-Status</LaborValue>
+          <LowerRow>0</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>0</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>95a74915-8ab3-4961-af64-e3c93ee02e4c</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <CrfTemplateField>
+          <LaborValue RefUrl="/rest/export/catalogdata/LaborValueDecimal/6978" DisplayName="What is your height?">6</LaborValue>
+          <LowerRow>6</LowerRow>
+          <LowerColumn>0</LowerColumn>
+          <UpperRow>6</UpperRow>
+          <UpperColumn>0</UpperColumn>
+          <Mandatory>false</Mandatory>
+          <VisibleCaption>true</VisibleCaption>
+          <FieldType>LABORVALUE</FieldType>
+          <TabIndex>0</TabIndex>
+          <ReadOnly>false</ReadOnly>
+          <Pseudomized>false</Pseudomized>
+          <OnsetEvent>false</OnsetEvent>
+          <CreateContactAddressAllowed>false</CreateContactAddressAllowed>
+          <MultilingualValueAllowed>false</MultilingualValueAllowed>
+          <SyncId>ea42b0ea-a9c6-4b8c-bd95-05d4dcad78de</SyncId>
+          <GraduationVisible>false</GraduationVisible>
+          <NlpRelevant>false</NlpRelevant>
+          <Eq5d5lRelevant>false</Eq5d5lRelevant>
+        </CrfTemplateField>
+        <Height>7</Height>
+        <Width>1</Width>
+        <Position>0</Position>
+        <CrfSectionType>PLAIN</CrfSectionType>
+        <IsChangeable>true</IsChangeable>
+        <SyncId>70eabd0d-cc06-4598-8c9f-2ee05b0edc12</SyncId>
+      </CrfTemplateSection>
+      <TemplateType>LABORMETHOD</TemplateType>
+      <Version>4</Version>
+      <EntityStatus>ACTIVE</EntityStatus>
+      <Global>false</Global>
+      <MultipleUse>false</MultipleUse>
+      <Active>false</Active>
+      <SyncId>159b4fbe-07bd-4b3f-b790-861ec40b2281</SyncId>
+    </CrfTemplate>
+    <LaborValueGroup>
+      <Code>IQVIA-Patient-Finder</Code>
+      <NameMultilingualEntries>
+        <Lang>de</Lang>
+        <Value>IQVIA-Patient-Finder</Value>
+      </NameMultilingualEntries>
+      <NameMultilingualEntries>
+        <Lang>en</Lang>
+        <Value>IQVIA-Patient-Finder</Value>
+      </NameMultilingualEntries>
+      <SyncId>e91273c8-3e9a-4aa5-a546-b78de711ce17</SyncId>
+    </LaborValueGroup>
+  </CatalogueData>
+  <EffectData/>
+</CentraXXDataExchange>
