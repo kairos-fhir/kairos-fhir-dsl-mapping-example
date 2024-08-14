@@ -31,8 +31,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
-  if (!context.source[laborMapping().laborFinding().laborMethod().code()].startsWith("PROFILE_SIOP")) {
-    return
+  def laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
+  if (laborMethodCode == null || !(laborMethodCode as String).startsWith("PROFILE_SIOP")) {
+      return
   }
   
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
