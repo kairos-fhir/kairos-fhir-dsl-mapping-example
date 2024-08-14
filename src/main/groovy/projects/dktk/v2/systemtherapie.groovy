@@ -69,9 +69,11 @@ medicationStatement {
   if (context.source[systemTherapy().intentionDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
-      valueCoding {
-        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
-        code = context.source[systemTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
+          code = context.source[systemTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+        }
       }
     }
   }
@@ -93,10 +95,12 @@ medicationStatement {
   if (context.source[systemTherapy().therapyKindDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
-      valueCoding {
-        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
-        code = context.source[systemTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
-        display = context.source[systemTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+      valueCodeableConcept {
+        coding {
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+          code = context.source[systemTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+          display = context.source[systemTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+        }
       }
     }
   }
@@ -105,10 +109,12 @@ medicationStatement {
   if (context.source[systemTherapy().therapyTypeDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
-      valueCoding {
+      valueCodeableConcept {
+        coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
         code = context.source[systemTherapy().therapyTypeDict()]?.getAt(CODE)?.toString()?.toUpperCase()
         display = context.source[systemTherapy().therapyTypeDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+        }
       }
     }
   }
