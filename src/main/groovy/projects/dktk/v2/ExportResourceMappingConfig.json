@@ -115,6 +115,11 @@
       "selectFromCxxEntity": "OTHER_CLASSIFICATION",
       "transformByTemplate": "weitereKlassifikation",
       "exportToFhirResource": "Observation"
+    },
+  	{
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "siopObservation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
