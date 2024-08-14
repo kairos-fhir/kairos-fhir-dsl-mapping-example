@@ -54,10 +54,12 @@ procedure {
   if (context.source[radiationTherapy().intentionDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
-      valueCoding {
+      valueCodeableConcept {
+        coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
         code = context.source[radiationTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
         display = context.source[radiationTherapy().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+      }
       }
     }
   }
@@ -65,10 +67,12 @@ procedure {
   if (context.source[radiationTherapy().therapyKindDict()]) {
     extension {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
-      valueCoding {
+      valueCodeableConcept {
+        coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
         code = context.source[radiationTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
         display = context.source[radiationTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+      }
       }
     }
   }
