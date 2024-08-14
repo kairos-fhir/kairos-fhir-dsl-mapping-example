@@ -36,7 +36,7 @@ provenance {
     final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_RECORDED"
   }
 
-  recorded = lblvRecorded;
+  recorded = lblvRecorded
 
   final def lblvOrganizations = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find() {
     final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_ORGANIZATION"

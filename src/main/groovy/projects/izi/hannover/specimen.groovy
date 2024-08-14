@@ -3,6 +3,8 @@ package projects.izi.hannover
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.DateTimeType
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
@@ -33,8 +35,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX AbstractSample
- * @author Mike Wähnert
+ * @author Franzy Hohnstaedter, Mike Wähnert
  * @since v.1.7.0, CXX.v.3.17.2
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  */
 specimen {
 
@@ -106,17 +109,32 @@ specimen {
   }
 
   receivedTime {
-    date = context.source[sample().receiptDate().date()]
+    if ("UNKNOWN" == context.source[sample().receiptDate().precision()]) {
+      extension {
+        url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+        valueCode = "unknown"
+      }
+    } else {
+      date = context.source[sample().receiptDate().date()]
+    }
   }
 
   collection {
     collectedDateTime {
-      date = context.source[sample().samplingDate().date()]
-      quantity {
-        value = context.source[sample().initialAmount().amount()] as Number
-        unit = context.source[sample().initialAmount().unit()]
-        system = "urn:centraxx"
+      if ("UNKNOWN" == context.source[sample().samplingDate().precision()]) {
+        extension {
+          url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+          valueCode = "unknown"
+        }
+      } else {
+        date = context.source[sample().samplingDate().date()]
       }
+    }
+
+    quantity {
+      value = context.source[sample().initialAmount().amount()] as Number
+      unit = context.source[sample().initialAmount().unit()]
+      system = "urn:centraxx"
     }
   }
 
@@ -152,14 +170,66 @@ specimen {
   if (context.source[sample().repositionDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.REPOSITION_DATE
-      valueDateTime = context.source[sample().repositionDate().date()]
+      if ("UNKNOWN" == context.source[sample().repositionDate().precision()]) {
+        valueDateTime = createUnknownDate()
+      } else {
+        valueDateTime = context.source[sample().repositionDate().date()]
+      }
     }
   }
 
   if (context.source[sample().derivalDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.DERIVAL_DATE
-      valueDateTime = context.source[sample().derivalDate().date()]
+      if ("UNKNOWN" == context.source[sample().derivalDate().precision()]) {
+        valueDateTime = createUnknownDate()
+      } else {
+        valueDateTime = context.source[sample().derivalDate().date()]
+      }
+    }
+  }
+
+  if (context.source[sample().concentration()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.CONCENTRATION
+      valueQuantity {
+        value = context.source[sample().concentration().amount()]
+        unit = context.source[sample().concentration().unit()]
+      }
+    }
+  }
+
+  // Sample Location
+  if (context.source[sample().sampleLocation()]) {
+    extension {
+      url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
+      extension {
+        url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
+        valueString = context.source[sample().sampleLocation().locationPath()]
+      }
+      final Integer xPos = context.source[sample().xPosition()] as Integer
+      if (xPos) { // necessary, because groovy interprets 0 to false
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/xPosition"
+          valueInteger = xPos
+        }
+      }
+      final Integer yPos = context.source[sample().yPosition()] as Integer
+      if (yPos) {
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/yPosition"
+          valueInteger = yPos
+        }
+      }
+    }
+  }
+
+  extension {
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+    valueReference {
+      identifier {
+        value = "Hannover"
+      }
     }
   }
 
@@ -170,16 +240,6 @@ specimen {
       url = FhirUrls.Extension.Sprec.USE_SPREC
       valueBoolean = context.source[USE_SPREC]
     }
-
-//    if (context.source["sprecCode"]) {
-//      extension {
-//        url = FhirUrls.Extension.Sprec.SPREC_CODE
-//        valueCoding {
-//          system = "https://doi.org/10.1089/bio.2017.0109"
-//          code = context.source[sample().sprecCode()]
-//        }
-//      }
-//    }
 
     //
     // SPREC TISSUE
@@ -206,7 +266,11 @@ specimen {
       if (context.source[WARM_ISCH_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.WARM_ISCH_TIME_DATE
-          valueDateTime = context.source[sample().warmIschTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().warmIschTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().warmIschTimeDate().date()]
+          }
         }
       }
       if (context.source[COLD_ISCH_TIME]) {
@@ -221,7 +285,11 @@ specimen {
       if (context.source[COLD_ISCH_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.COLD_ISCH_TIME_DATE
-          valueDateTime = context.source[sample().coldIschTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().coldIschTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().coldIschTimeDate().date()]
+          }
         }
       }
       if (context.source[STOCK_TYPE]) {
@@ -245,7 +313,11 @@ specimen {
       if (context.source[SPREC_FIXATION_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_FIXATION_TIME_DATE
-          valueDateTime = context.source[sample().sprecFixationTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecFixationTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecFixationTimeDate().date()]
+          }
         }
       }
     }
@@ -275,7 +347,11 @@ specimen {
       if (context.source[SPREC_PRE_CENTRIFUGATION_DELAY_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_PRE_CENTRIFUGATION_DELAY_DATE
-          valueDateTime = context.source[sample().sprecPreCentrifugationDelayDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecPreCentrifugationDelayDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecPreCentrifugationDelayDate().date()]
+          }
         }
       }
       if (context.source[SPREC_POST_CENTRIFUGATION_DELAY]) {
@@ -290,7 +366,11 @@ specimen {
       if (context.source[SPREC_POST_CENTRIFUGATION_DELAY_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_POST_CENTRIFUGATION_DELAY_DATE
-          valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecPostCentrifugationDelayDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+          }
         }
       }
       if (context.source[STOCK_PROCESSING]) {
@@ -305,7 +385,11 @@ specimen {
       if (context.source[STOCK_PROCESSING_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.STOCK_PROCESSING_DATE
-          valueDateTime = context.source[sample().stockProcessingDate().date()]
+          if ("UNKNOWN" == context.source[sample().stockProcessingDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().stockProcessingDate().date()]
+          }
         }
       }
       if (context.source[SECOND_PROCESSING]) {
@@ -320,34 +404,19 @@ specimen {
       if (context.source[SECOND_PROCESSING_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING_DATE
-          valueDateTime = context.source[sample().secondProcessingDate().date()]
-        }
-      }
-    }
-
-    // Sample Location
-    if (context.source[sample().sampleLocation()]) {
-      extension {
-        url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
-        extension {
-          url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
-          valueString = context.source[sample().sampleLocation().locationPath()]
-        }
-        final Integer xPos = context.source[sample().xPosition()] as Integer
-        if (xPos) { // necessary, because groovy interprets 0 to false
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/xPosition"
-            valueInteger = xPos
-          }
-        }
-        final Integer yPos = context.source[sample().yPosition()] as Integer
-        if (yPos) {
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/yPosition"
-            valueInteger = yPos
+          if ("UNKNOWN" == context.source[sample().secondProcessingDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().secondProcessingDate().date()]
           }
         }
       }
     }
   }
+}
+
+private static DateTimeType createUnknownDate() {
+  final DateTimeType unknownDate = new DateTimeType()
+  unknownDate.addExtension().setUrl(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON).setValue(new CodeType("unknown"))
+  return unknownDate
 }

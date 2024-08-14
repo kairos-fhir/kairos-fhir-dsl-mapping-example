@@ -1,9 +1,10 @@
 package projects.izi.frankfurt
 
-
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
+import org.hl7.fhir.r4.model.CodeType
+import org.hl7.fhir.r4.model.DateTimeType
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
@@ -34,8 +35,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
  * Represented by a CXX AbstractSample
- * @author Franzy Hohnstaedter
+ * @author Franzy Hohnstaedter, Mike Wähnert
  * @since v.1.7.0, CXX.v.3.17.2
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  */
 specimen {
 
@@ -78,7 +80,7 @@ specimen {
   type {
     coding {
       system = "urn:centraxx"
-      code = toNumType(context.source[sample().sampleType().code()])
+      code = mapSampleType(context.source[sample().sampleType().code()])
     }
   }
 
@@ -107,24 +109,39 @@ specimen {
   }
 
   receivedTime {
-    date = context.source[sample().receiptDate().date()]
+    if ("UNKNOWN" == context.source[sample().receiptDate().precision()]) {
+      extension {
+        url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+        valueCode = "unknown"
+      }
+    } else {
+      date = context.source[sample().receiptDate().date()]
+    }
   }
 
   collection {
     collectedDateTime {
-      date = context.source[sample().samplingDate().date()]
-      quantity {
-        value = context.source[sample().initialAmount().amount()] as Number
-        unit = context.source[sample().initialAmount().unit()]
-        system = "urn:centraxx"
+      if ("UNKNOWN" == context.source[sample().samplingDate().precision()]) {
+        extension {
+          url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+          valueCode = "unknown"
+        }
+      } else {
+        date = context.source[sample().samplingDate().date()]
       }
+    }
+
+    quantity {
+      value = context.source[sample().initialAmount().amount()] as Number
+      unit = context.source[sample().initialAmount().unit()]
+      system = "urn:centraxx"
     }
   }
 
   container {
     if (context.source[sample().receptable()]) {
       identifier {
-        value = toSampleReceptacleType(context.source[sample().receptable().code()])
+        value = mapSampleReceptacleType(context.source[sample().receptable().code()])
         system = "urn:centraxx"
       }
 
@@ -153,14 +170,66 @@ specimen {
   if (context.source[sample().repositionDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.REPOSITION_DATE
-      valueDateTime = context.source[sample().repositionDate().date()]
+      if ("UNKNOWN" == context.source[sample().repositionDate().precision()]) {
+        valueDateTime = createUnknownDate()
+      } else {
+        valueDateTime = context.source[sample().repositionDate().date()]
+      }
     }
   }
 
   if (context.source[sample().derivalDate()]) {
     extension {
       url = FhirUrls.Extension.Sample.DERIVAL_DATE
-      valueDateTime = context.source[sample().derivalDate().date()]
+      if ("UNKNOWN" == context.source[sample().derivalDate().precision()]) {
+        valueDateTime = createUnknownDate()
+      } else {
+        valueDateTime = context.source[sample().derivalDate().date()]
+      }
+    }
+  }
+
+  if (context.source[sample().concentration()]) {
+    extension {
+      url = FhirUrls.Extension.Sample.CONCENTRATION
+      valueQuantity {
+        value = context.source[sample().concentration().amount()]
+        unit = context.source[sample().concentration().unit()]
+      }
+    }
+  }
+
+  extension {
+    url = FhirUrls.Extension.Sample.ORGANIZATION_UNIT
+    valueReference {
+      identifier {
+        value = "FRANKFURT"
+      }
+    }
+  }
+
+  // Sample Location
+  if (context.source[sample().sampleLocation()]) {
+    extension {
+      url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
+      extension {
+        url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
+        valueString = context.source[sample().sampleLocation().locationPath()]
+      }
+      final Integer xPos = context.source[sample().xPosition()] as Integer
+      if (xPos) { // necessary, because groovy interprets 0 to false
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/xPosition"
+          valueInteger = xPos
+        }
+      }
+      final Integer yPos = context.source[sample().yPosition()] as Integer
+      if (yPos) {
+        extension {
+          url = "https://fhir.centraxx.de/extension/sample/yPosition"
+          valueInteger = yPos
+        }
+      }
     }
   }
 
@@ -197,7 +266,11 @@ specimen {
       if (context.source[WARM_ISCH_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.WARM_ISCH_TIME_DATE
-          valueDateTime = context.source[sample().warmIschTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().warmIschTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().warmIschTimeDate().date()]
+          }
         }
       }
       if (context.source[COLD_ISCH_TIME]) {
@@ -212,7 +285,11 @@ specimen {
       if (context.source[COLD_ISCH_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.COLD_ISCH_TIME_DATE
-          valueDateTime = context.source[sample().coldIschTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().coldIschTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().coldIschTimeDate().date()]
+          }
         }
       }
       if (context.source[STOCK_TYPE]) {
@@ -236,7 +313,11 @@ specimen {
       if (context.source[SPREC_FIXATION_TIME_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_FIXATION_TIME_DATE
-          valueDateTime = context.source[sample().sprecFixationTimeDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecFixationTimeDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecFixationTimeDate().date()]
+          }
         }
       }
     }
@@ -266,7 +347,11 @@ specimen {
       if (context.source[SPREC_PRE_CENTRIFUGATION_DELAY_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_PRE_CENTRIFUGATION_DELAY_DATE
-          valueDateTime = context.source[sample().sprecPreCentrifugationDelayDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecPreCentrifugationDelayDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecPreCentrifugationDelayDate().date()]
+          }
         }
       }
       if (context.source[SPREC_POST_CENTRIFUGATION_DELAY]) {
@@ -281,7 +366,11 @@ specimen {
       if (context.source[SPREC_POST_CENTRIFUGATION_DELAY_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SPREC_POST_CENTRIFUGATION_DELAY_DATE
-          valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+          if ("UNKNOWN" == context.source[sample().sprecPostCentrifugationDelayDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+          }
         }
       }
       if (context.source[STOCK_PROCESSING]) {
@@ -296,7 +385,11 @@ specimen {
       if (context.source[STOCK_PROCESSING_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.STOCK_PROCESSING_DATE
-          valueDateTime = context.source[sample().stockProcessingDate().date()]
+          if ("UNKNOWN" == context.source[sample().stockProcessingDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().stockProcessingDate().date()]
+          }
         }
       }
       if (context.source[SECOND_PROCESSING]) {
@@ -311,31 +404,10 @@ specimen {
       if (context.source[SECOND_PROCESSING_DATE]) {
         extension {
           url = FhirUrls.Extension.Sprec.SECOND_PROCESSING_DATE
-          valueDateTime = context.source[sample().secondProcessingDate().date()]
-        }
-      }
-    }
-
-    // Sample Location
-    if (context.source[sample().sampleLocation()]) {
-      extension {
-        url = "https://fhir.centraxx.de/extension/sample/sampleLocation"
-        extension {
-          url = "https://fhir.centraxx.de/extension/sample/sampleLocationPath"
-          valueString = context.source[sample().sampleLocation().locationPath()]
-        }
-        final Integer xPos = context.source[sample().xPosition()] as Integer
-        if (xPos) { // necessary, because groovy interprets 0 to false
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/xPosition"
-            valueInteger = xPos
-          }
-        }
-        final Integer yPos = context.source[sample().yPosition()] as Integer
-        if (yPos) {
-          extension {
-            url = "https://fhir.centraxx.de/extension/sample/yPosition"
-            valueInteger = yPos
+          if ("UNKNOWN" == context.source[sample().secondProcessingDate().precision()]) {
+            valueDateTime = createUnknownDate()
+          } else {
+            valueDateTime = context.source[sample().secondProcessingDate().date()]
           }
         }
       }
@@ -343,7 +415,75 @@ specimen {
   }
 }
 
-static String toNumType(final Object sourceType) {
+static String mapSampleReceptacleType(final Object sourceReceptacle) {
+  switch (sourceReceptacle) {
+    case "LVL_300": return "LV2D003ScT"
+    case "SER_GEL_4_7": return "StMono047"
+    case "STU_CONV": return "StSTL101"
+    case "STU_STAB_CONV": return "CanSTL_STAB"
+    case "CRYO_SAR_2": return "2_ML_KRYO"
+    case "EDTA_7_5": return "StMono075"
+    case "UTK_SAR_2_SER": return "2_ML_KRYO"
+    case "RNA_TEMP_2_5": return "BDPax025"
+    case "URIN_3_2": return "StMonoUri032"
+    case "URIN_3_2_ACC": return "StMonoUri032"
+    case "STU_CONV_ACC": return "StSTL101"
+    case "CIT_10": return sourceReceptacle //wird nicht eingelagert
+    case "UTK_SAR_5_AMA": return sourceReceptacle //wird nicht gemappt
+    case "RNA_TEMP_2_5_ACC": return "BDPax025"
+    case "CRYO_SAR_2_ACC": return "2_ML_KRYO"
+    case "EDTA_7_5_ACC": return "StMono075"
+    case "LVL_1000_ORGA_PL": return "LV2D010ScT"
+    case "VAL_Serum 100": return sourceReceptacle //wird nicht eingelagert
+    case "CIMD_2000_PL": return "2_ML_KRYO"
+    case "CPT_HEP_8": return "BDCPT080"
+    case "LVL_300_AMA_SE": return "LV2D003ScT"
+    case "UTK_SAR_2_ACC_PL": return "2_ML_KRYO"
+    case "SER_GEL_9": return "StMono090"
+    case "UTK_SAR_2_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_XPL": return "2_ML_KRYO"
+    case "STU_STAB_CONV_ACC": return "CanSTL_STAB"
+    case "UTK_SAR_2_ACC_SE": return "2_ML_KRYO"
+    case "STU_CONV_VAL": return sourceReceptacle //wird nicht eingelagert
+    case "UTK_SAR_2_VAL_Plasma": return sourceReceptacle //wird nicht eingelagert
+    case "LVL_300_ACC_SE": return "LV2D003ScT"
+    case "EDTA_7_5_VAL": return "StMono075"
+    case "EDTA_7_5_XCIT": return "StMono075"
+    case "EDTA_7_5_XPL": return "StMono075"
+    case "EDTA_7_5_PAN": return "StMono075"
+    case "EDTA_7_5_SSC": return "StMono075"
+    case "LVL_300_XCIT_SE": return "LV2D003ScT"
+    case "LVL_300_CPL_SE": return "LV2D003ScT"
+    case "UTK_SAR_2_PAN_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_SSC_PL": return "2_ML_KRYO"
+    case "LVL_300_SSC_SE": return "LV2D003ScT"
+    case "LVL_300_PAN_SE": return "LV2D003ScT"
+    case "EDTA_VAC_5": return "ORG"
+    case "LVL_300_SE": return "LV2D003ScT"
+    case "LVL_1000_SE": return "LV2D010ScT"
+    case "UTK_SAR_2_XPL_PL": return "2_ML_KRYO"
+    case "UTK_SAR_2_SSC": return "2_ML_KRYO"
+    case "LVL_1000_PL": return "LV2D010ScT"
+    case "UTK_SAR_2_PAN": return "2_ML_KRYO"
+    case "UTK_SAR_2_XCIT": return "2_ML_KRYO"
+    default: return sourceReceptacle
+  }
+}
+
+static String toPrimaryContainerType(final Object sourcePrimContainer) {
+  switch (sourcePrimContainer) {
+    case "K_PED": return "PED"
+    default: return sourcePrimContainer
+  }
+}
+
+private static DateTimeType createUnknownDate() {
+  final DateTimeType unknownDate = new DateTimeType()
+  unknownDate.addExtension().setUrl(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON).setValue(new CodeType("unknown"))
+  return unknownDate
+}
+
+static String mapSampleType(final Object sourceType) {
   switch (sourceType) {
     case "ccfDNA_PL": return "PL2"
     case "CIT_PL": return "PL1"
@@ -357,33 +497,5 @@ static String toNumType(final Object sourceType) {
     case "STL_STAB": return "STL"
     case "URIN": return "URN"
     default: return sourceType
-  }
-}
-
-static String toSampleReceptacleType(final Object sourceReceptacle) {
-  switch (sourceReceptacle) {
-    case "CPT_HEP_8": return "BDCPT080"
-    case "RNA_TEMP_2_5": return "BDVac100"
-    case "STU_CONV": return "StSTL101"
-    case "EDTA_7_5": return "7_5_ML_BLUTROEHRCHEN"
-    case "URIN_3_2": return "URIN_3_2"
-    case "STU_STAB_CONV": return "STU_STAB_CONV"
-    case "CIT_10": return "CIT_10"
-    case "SER_GEL_4_7": return "SER_GEL_4_7"
-    case "UTK_SAR_2_SER": return "UTK_SAR_2_SER"
-    case "UTK_SAR_2_PL": return "UTK_SAR_2_PL"
-    case "CRYO_SAR_2": return "CRYO_SAR_2"
-    case "SER_GEL_9": return "SER_GEL_9"
-    case "LVL_300_SE": return "LVL_300_SE"
-    case "LVL_1000_SE": return "LVL_1000_SE"
-    case "LVL_1000_PL": return "LVL_1000_PL"
-    default: return sourceReceptacle
-  }
-}
-
-static String toPrimaryContainerType(final Object sourcePrimContainer) {
-  switch (sourcePrimContainer) {
-    case "K_PED": return "PED"
-    default: return sourcePrimContainer
   }
 }

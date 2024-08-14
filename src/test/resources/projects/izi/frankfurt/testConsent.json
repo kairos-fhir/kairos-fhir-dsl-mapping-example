@@ -47,7 +47,7 @@
       "id": 35,
       "creationdate": "2022-08-26T09:49:26.060+02:00",
       "syncId": "24d0990d-8ec0-4cf4-a6b6-96d225ea11f2",
-      "code": "Studie-HAAR-BLUT-DROGEN",
+      "code": "BC",
       "flexiStudy": {
         "id": 133,
         "creationdate": "2022-07-19T10:21:29.933+02:00",
@@ -86,7 +86,7 @@
           "relatedColumn": "NAME",
           "relatedOid": 35,
           "lang": "de",
-          "value": "Studie-HAAR-BLUT-DROGEN",
+          "value": "BC",
           "modifiedOn": "2022-08-26T09:49:26.060+02:00",
           "system": false,
           "entityStatus": "ACTIVE"
@@ -98,7 +98,7 @@
           "relatedColumn": "NAME",
           "relatedOid": 35,
           "lang": "en",
-          "value": "(en) - Studie-HAAR-BLUT-DROGEN",
+          "value": "(en) - BC",
           "modifiedOn": "2022-08-26T09:49:26.060+02:00",
           "system": false,
           "entityStatus": "ACTIVE"
@@ -201,8 +201,7 @@
       "precision": "DAY"
     },
     "validUntil": {
-      "date": "2022-09-05T00:00:00.000+02:00",
-      "precision": "DAY"
+      "precision": "UNKNOWN"
     },
     "revocation": {
       "id": 2,

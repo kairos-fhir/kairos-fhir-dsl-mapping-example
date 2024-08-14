@@ -1,4 +1,4 @@
-package projects.izi.frankfurt
+package projects.izi.leipzigLocal
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainer
@@ -13,23 +13,35 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  * Represented by a CXX Consent
  * @author Mike Wähnert
  * @since KAIROS-FHIR-DSL.v.1.16.0, CXX.v.2022.2.0
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  * HINT: binary file attachments are not needed and not supported yet.
  */
 consent {
 
   final Map<String, String> localToCentralType = [
       //Frankfurt ITMP => Leipzig IZI Central
-      "PATIENTCOSENTV2.4"  : "Broad_Consent",
-      "PATIENTCONSENT2.5"  : "Broad_Consent",
-      "CIMD_CONSENT"       : "CIMD_Consent",
-      // Hannover HUB => Leipzig IZI Central
-      "ConsentDefaultStudy": "Study_Consent",
-      "ConsentCIMD"        : "CIMD_Consent"]
+      "CIMD EINWILLIGUNG"      : "CIMD_Consent",
+      "BB_EINWILLIGUNG"        : "Broad_Consent",
+      "ACC_ EINWILLIGUNG"      : "Study_Consent", // the space is intended!
+      "SIL_EINWILLIGUNG"       : "Study_Consent",
+      "AG_EINWILLIGUNG"        : "Study_Consent",
+      "ORG_EINWILLIGUNG"       : "Study_Consent",
+      // Hannover HUB => Leipzig IZI Central (Broad_Consent is the default for all other local consent types.)
+      "ConsentCIMD"            : "CIMD_Consent", // same for IZI local
+      "ConsentDefaultStudy"    : "Study_Consent",
+      //Leipzig IZI Local => Leipzig IZI Central
+      "BC"                     : "Broad_Consent",
+      "ABGESTUFTE_EINWILLIGUNG": "Study_Consent"]
 
   final String localConsentTypeCode = context.source[consent().consentType().code()]
-  final String centralConsentTypeCode = localToCentralType.get(localConsentTypeCode);
+  final String centralConsentTypeCode = localToCentralType.get(localConsentTypeCode)
   if (centralConsentTypeCode == null) {
     return // no export
+  }
+
+  final def validFrom = context.source[consent().validFrom().date()]
+  if (validFrom == null) {
+    return // no export with empty or unknown date
   }
 
   id = "Consent/Consent-" + context.source[consent().id()]
@@ -52,13 +64,21 @@ consent {
     }
   }
 
-  final def validFrom = context.source[consent().validFrom().date()]
   final def validUntil = context.source[consent().validUntil().date()]
 
   provision {
     period {
       start = validFrom
-      end = validUntil
+      if ("UNKNOWN" == context.source[consent().validUntil().precision()]) {
+        end {
+          extension {
+            url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+            valueCode = "unknown"
+          }
+        }
+      } else {
+        end = validUntil
+      }
     }
 
     purpose {
@@ -102,7 +122,14 @@ consent {
     verification {
       verified = true
       verificationDate {
-        date = context.source[consent().signedOn().date()]
+        if ("UNKNOWN" == context.source[consent().signedOn().precision()]) {
+          extension {
+            url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+            valueCode = "unknown"
+          }
+        } else {
+          date = context.source[consent().signedOn().date()]
+        }
       }
     }
   }
@@ -121,7 +148,7 @@ consent {
   }
 }
 
-static String getStatus(final boolean isDeclined, final boolean isCompleteRevoked, final String validFromDate) {
+static String getStatus(final boolean isDeclined, final boolean isCompleteRevoked, final String validUntilDate) {
   if (isDeclined) {
     return "rejected"
   }
@@ -130,11 +157,11 @@ static String getStatus(final boolean isDeclined, final boolean isCompleteRevoke
     return "inactive"
   }
 
-  if (!validFromDate) {
+  if (!validUntilDate) {
     return "active"
   }
 
-  final Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(validFromDate.substring(0, 10))
+  final Date fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(validUntilDate.substring(0, 10))
   final Date currDate = new Date()
   final int res = currDate <=> (fromDate)
   return res == 1 ? "inactive" : "active"

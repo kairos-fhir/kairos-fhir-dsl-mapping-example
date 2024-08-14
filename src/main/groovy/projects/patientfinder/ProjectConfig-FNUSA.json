@@ -1,0 +1,93 @@
+{
+  "scheduledExportEnable": {
+    "description": "If true, this project will export all filtered CXX patient data with the configured FHIR resources by the specified exportInterval.",
+    "value": false
+  },
+  "incrementalExportEnable": {
+    "description": "If true, this project will export filtered CXX patient data with the configured FHIR resources by a detected change after a centraxx transaction.",
+    "value": false
+  },
+  "incrementalDeleteExportEnable": {
+    "description": "If true, this project will export deletes of all mapped resources. CAUTION: Because the fhir export has no access to deleted data anymore, there is no transformation or filtering possible. All deleted entities are always exported by the FHIR ID based on the FHIR resource type and the CXX OID in the pattern \u0027resourceType/OID\u0027. e.g. Specimen/123 or Patient/456 . Make sure, your export transformation uses the same pattern.",
+    "value": false
+  },
+  "bulkExportEnable": {
+    "description": "If true, this project will export by the FHIR bulk export API. For detail, see https://hl7.org/fhir/uv/bulkdata/export.html",
+    "value": true
+  },
+  "description": "This configuration specifies for each FHIR custom export project all project-specific necessary properties. The configuration can not be changed during runtime. Restart CentraXX after each change!!!",
+  "patientFilterType": {
+    "description": "Filters the patients and its patient data by one of the following filter types with the following filter value: PATIENTSTUDY: Patient belongs to a specified study in the study register. The study has to be specified by \u0027{studyCode}${studyProfileCode}\u0027, e.g. COVID19$BASIC. CONSENTTYPE: Patient has a valid consent of the specified consent type (code). ORGUNIT: Patient has the specific organizational unit (code). FLEXIFLAGDEF: Patient has an universal attribute of the specified universal attribute type (code). IDTYPE: Patient has an ID of the specified ID type (code).",
+    "value": "IDTYPE"
+  },
+  "patientFilterValues": {
+    "description": "If the patient matches one of this filter values, it is transformed and exported.",
+    "value": [
+      "NationalID"
+    ]
+  },
+  "pageSize": {
+    "description": "The page size of a query in CentraXX, and resources in a FHIR bundle. The recommendation is to use smaller pages (e.g. 10 for CentraXX), if the target system has a transaction system or bigger pages if not (e.g. 500 for file export only or blaze store).",
+    "value": 10000
+  },
+  "exportInterval": {
+    "description": "Sets the export cron interval. Default is once a day.",
+    "value": "0 30 17 * * *"
+  },
+  "exportToFileSystem": {
+    "description": "If true, the scheduler will export to the specified file system exportFolder.",
+    "value": true
+  },
+  "exportFolder": {
+    "value": "E:/centraxx/fhir-custom-export/patientfinder"
+  },
+  "uploadToUrl": {
+    "description": "If true, the scheduler will export to the specified  uploadUrl REST endpoint.",
+    "value": false
+  },
+  "uploadUrl": {
+    "value": "http://localhost:9090/fhir"
+  },
+  "uploadUser": {
+    "description": "BasicAuth User name in the target system.",
+    "value": "admin"
+  },
+  "uploadPassword": {
+    "description": "BasicAuth Password in the target system.",
+    "value": "admin"
+  },
+  "sslTrustAllEnable": {
+    "description": "If true, all ssl/tls certificates are trusted, otherwise the the default java store is used for SSL/TLS verification.",
+    "value": false
+  },
+  "trustStoreEnable": {
+    "description": "If true, a separate truststore for verification is used, specified by .trustStore, .trustStorePassword.",
+    "value": false
+  },
+  "trustStore": {
+    "value": "C:/centraxx-home/fhir-custom-truststore.jks"
+  },
+  "trustStorePassword": {
+    "value": "changeit"
+  },
+  "prettyPrintEnable": {
+    "description": "Print style the HTTP message body.",
+    "value": false
+  },
+  "exportFormat": {
+    "description": "Exchange format of FHIR resources. See https://hl7.org/fhir/formats.html for details.",
+    "value": "NDJSON"
+  },
+  "fhirMessageLoggingEnable": {
+    "description": "If true, HTTP message requests are logged in CentraXX separately.",
+    "value": false
+  },
+  "fhirResponseLoggingEnable": {
+    "description": "If true, HTTP message responses are logged in CentraXX separately.",
+    "value": false
+  },
+  "fhirResponseValidationEnable": {
+    "description": "If true, the HTTP message responses is parsed and each response entry is validated against its FHIR response status. Even if the HTTP response status is 200 ok, the status of a single entry might be 400 (bad request). If the status is not 200 or 201, an error is logged.",
+    "value": false
+  }
+}

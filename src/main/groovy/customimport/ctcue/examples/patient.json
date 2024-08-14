@@ -1,0 +1,65 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Patient/patient-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-1",
+        "meta": {
+          "profile": [
+            "https://fhir.iqvia.com/patientfinder/StructureDefinition/pf-patient"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "patient-example-1"
+          }
+        ],
+        "name": [
+          {
+            "family": "Anyperson",
+            "given": [
+              "John",
+              "B."
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-555-5555",
+            "use": "home"
+          },
+          {
+            "system": "email",
+            "value": "john.anyperson@example.com"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1951-01-20",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "line": [
+              "123 Main St"
+            ],
+            "city": "Anytown",
+            "postalCode": "12345",
+            "country": "US"
+          }
+        ],
+        "generalPractitioner": [
+          {
+            "reference": "Practitioner/practitioner-1"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient/patient-1"
+      }
+    }
+  ]
+}

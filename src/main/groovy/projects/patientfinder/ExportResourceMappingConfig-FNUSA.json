@@ -1,0 +1,65 @@
+{
+  "description": "This configuration links a CentraXX entity (selectFromCxxEntity) to a FHIR resource (exportToFhirResource) by conversion through a transformation template (transformByTemplate). Only the template can be changed. The same entity can be configured to the same FHIR resource by multiple templates. The configuration can be changed during runtime without CentraXX restart. The mapping order is important, if the target system checks referential integrity (e.g. blaze store).",
+  "mappings": [
+    {
+      "selectFromCxxEntity": "ORGANIZATION_UNIT",
+      "transformByTemplate": "organization",
+      "exportToFhirResource": "Organization",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "patient",
+      "exportToFhirResource": "Patient",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "encounter",
+      "exportToFhirResource": "Encounter",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "freeTextFilteredObservation",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "freeTextDiagnosticReport",
+      "exportToFhirResource": "DiagnosticReport",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "condition",
+      "exportToFhirResource": "Condition",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "MED_PROCEDURE",
+      "transformByTemplate": "procedure",
+      "exportToFhirResource": "Procedure",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationAdministration",
+      "exportToFhirResource": "MedicationAdministration",
+      "exportDeleteEnable": "true"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen",
+      "exportDeleteEnable": "true"
+    }
+  ]
+}

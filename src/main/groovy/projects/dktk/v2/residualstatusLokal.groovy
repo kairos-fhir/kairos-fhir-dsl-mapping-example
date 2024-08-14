@@ -1,10 +1,9 @@
 package projects.dktk.v2
 
-import de.kairos.fhir.centraxx.metamodel.AbstractGtdsDictionary
-import de.kairos.fhir.centraxx.metamodel.RootEntities
+
 import org.hl7.fhir.r4.model.Observation
 
-import static de.kairos.fhir.centraxx.metamodel.AbstractGtdsDictionary.*
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
 
 /**
@@ -37,12 +36,6 @@ observation {
 
   subject {
     reference = "Patient/" + context.source[surgery().patientContainer().id()]
-  }
-
-  if (context.source[surgery().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[surgery().episode().id()]
-    }
   }
 
   effectiveDateTime {

@@ -1,0 +1,100 @@
+{
+  "description": "This configuration links a CentraXX entity (selectFromCxxEntity) to a FHIR resource (exportToFhirResource) by conversion through a transformation template (transformByTemplate). Only the template can be changed. The same entity can be configured to the same FHIR resource by multiple templates. The configuration can be changed during runtime without CentraXX restart. The mapping order is important, if the target system checks referential integrity (e.g. blaze store).",
+  "mappings": [
+    {
+      "selectFromCxxEntity": "ORGANIZATION_UNIT",
+      "transformByTemplate": "organization",
+      "exportToFhirResource": "Organization"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_MASTER",
+      "transformByTemplate": "patient",
+      "exportToFhirResource": "Patient"
+    },
+    {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitioner",
+      "exportToFhirResource": "Practitioner"
+    },
+    {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "encounter",
+      "exportToFhirResource": "Encounter"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactCarePlan",
+      "exportToFhirResource": "CarePlan"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "sactMedicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observation",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "condition",
+      "exportToFhirResource": "Condition"
+    },
+    {
+      "selectFromCxxEntity": "MED_PROCEDURE",
+      "transformByTemplate": "procedure",
+      "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "histology",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "METASTASIS",
+      "transformByTemplate": "metastasis",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "TNM",
+      "transformByTemplate": "tnmSimple",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "ANN_ARBOR",
+      "transformByTemplate": "annArbor",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
+      "transformByTemplate": "otherClassification",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PROGRESS",
+      "transformByTemplate": "progress",
+      "exportToFhirResource": "ClinicalImpression"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_TRANSFER",
+      "transformByTemplate": "location",
+      "exportToFhirResource": "Location"
+    },
+    {
+      "selectFromCxxEntity": "CALENDAR_EVENT",
+      "transformByTemplate": "appointment",
+      "exportToFhirResource": "Appointment"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
+    }
+  ]
+}

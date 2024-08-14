@@ -41,12 +41,6 @@ observation {
     reference = "Patient/" + context.source[metastasis().patientContainer().id()]
   }
 
-  if (context.source[metastasis().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[metastasis().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[metastasis().date()] as String)
   }
@@ -67,7 +61,7 @@ observation {
     }
   }
 
-  if (context.source[metastasis().tumour()]) {
+  if (context.source[metastasis().tumour()] && hasRelevantCode(context.source[metastasis().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     focus {
       reference = "Condition/" + context.source[metastasis().tumour().centraxxDiagnosis().id()]
     }
@@ -81,4 +75,8 @@ observation {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }

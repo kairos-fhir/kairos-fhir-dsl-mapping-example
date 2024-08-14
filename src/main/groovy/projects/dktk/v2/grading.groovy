@@ -49,12 +49,6 @@ observation {
     reference = "Patient/" + context.source[histology().patientContainer().id()]
   }
 
-  if (context.source[histology().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[histology().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[histology().date()] as String)
   }

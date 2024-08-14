@@ -19,8 +19,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
  * Represented by a CXX LaborMapping
- * @author Mike Wähnert
+ * @author Franzy Hohnstaedter, Mike Wähnert
  * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  *
  * HINTS:
  * - The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
@@ -37,7 +38,7 @@ observation {
     return
   }
 
-  id = "Observation/" + context.source[laborMapping().laborFinding().id()]
+  id = "Observation/" + context.source[laborMapping().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
 
@@ -49,7 +50,14 @@ observation {
   }
 
   effectiveDateTime {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
+    if ("UNKNOWN" == context.source[laborMapping().laborFinding().findingDate().precision()]) {
+      extension {
+        url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+        valueCode = "unknown"
+      }
+    } else {
+      date = context.source[laborMapping().laborFinding().findingDate().date()]
+    }
   }
 
   final def patIdContainer = context.source[laborMapping().relatedPatient().idContainer()]?.find {
@@ -102,14 +110,21 @@ observation {
 
         if (isNumeric(laborValue)) {
           valueQuantity {
-            value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+            value = sanitizeScale(lflv[LaborFindingLaborValue.NUMERIC_VALUE])
             unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
           }
         } else if (isBoolean(laborValue)) {
           valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
         } else if (isDate(laborValue)) {
           valueDateTime {
-            date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
+            if ("UNKNOWN" == lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.PRECISION)) {
+              extension {
+                url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+                valueCode = "unknown"
+              }
+            } else {
+              date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
+            }
           }
         } else if (isTime(laborValue)) {
           valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
@@ -256,4 +271,8 @@ static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
   }
 
   return localLaborValueCode.equals("ITEM_AKTUELLE_MEDIKATION") ? "CIMD_AKTUELLE_MEDIKATION" : localLaborValueCode
+}
+
+static Object sanitizeScale(final Object numeric) {
+  return numeric == null ? null : new BigDecimal(numeric.toString()).stripTrailingZeros()
 }

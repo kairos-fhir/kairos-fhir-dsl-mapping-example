@@ -40,7 +40,7 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
-                    code = sourceObservation.getCode().getCoding().find { it.getSystem() == "http://loinc.org" }.display;
+                    code = sourceObservation.getCode().getCoding().find { it.getSystem() == "http://loinc.org" }.display
                   }
                 }
 

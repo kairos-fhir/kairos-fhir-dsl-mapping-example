@@ -2,20 +2,22 @@ package projects.mii.modul.biobanking
 
 import de.kairos.fhir.centraxx.metamodel.AbstractIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Specimen
 
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
+
 /**
  * Represented by a CXX SAMPLE
  * Codings are custumized in CXX. Therefore, the code system is unknown. In this example the usage of snomed-ct is assumed to be used.
  * If other codings are used in the local CXX system, the code systems must be adjusted.
  * TODO: NOTE: The script was written while the corresponding FHIR profile on simplifier.net was still in draft state. Changes in the profile might require adjustments in the script.
  * @author Jonas Küttner
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.32.0, CXX.v.2024.2.1
  */
 specimen {
 
@@ -92,9 +94,7 @@ specimen {
         coding {
           system = "http://snomed.info/sct"
           code = context.source[sample().orgSample().code()]
-          display = context.source[sample().orgSample().nameMultilingualEntries()].find { final def entry ->
-            "de" == entry[MultilingualEntry.LANG]
-          }[MultilingualEntry.VALUE]
+          display = context.source[sample().orgSample().multilinguals()]?.find { it[LANGUAGE] == "de" }?.getAt(NAME)
         }
       }
     }

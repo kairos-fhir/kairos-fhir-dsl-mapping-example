@@ -1,6 +1,5 @@
 package projects.dktk.v2
 
-
 import org.hl7.fhir.r4.model.ClinicalImpression
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
@@ -31,17 +30,11 @@ clinicalImpression {
     reference = "Patient/" + context.source[progress().patientContainer().id()]
   }
 
-  if (context.source[progress().episode()]) {
-    encounter {
-      reference = "Encounter/" + context.source[progress().episode().id()]
-    }
-  }
-
   effectiveDateTime {
     date = normalizeDate(context.source[progress().examinationDate()] as String)
   }
 
-  if (context.source[progress().tumour()]) {
+  if (context.source[progress().tumour()] && hasRelevantCode(context.source[progress().tumour().centraxxDiagnosis().diagnosisCode()] as String)) {
     problem {
       reference = "Condition/" + context.source[progress().tumour().centraxxDiagnosis().id()]
     }
@@ -132,4 +125,8 @@ clinicalImpression {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static boolean hasRelevantCode(final String icdCode) {
+  return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
 }

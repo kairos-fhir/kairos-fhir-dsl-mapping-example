@@ -55,7 +55,7 @@ observation {
 
   // filter for labor values that are annotated with a LOINC code
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { final lflv ->
-    lflv[LaborFindingLaborValue.LABOR_VALUE][LaborValue.IDCONTAINERS]?.any { final idc ->
+    lflv[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.IDCONTAINERS)?.any { final idc ->
       idc?.getAt(ID_CONTAINER_TYPE)?.getAt(CODE)?.equals("LOINC")
     }
   }.each { final lflv ->

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CentraXXDataExchange xmlns="http://www.kairos-med.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kairos-med.de ../CentraXXExchange.xsd">
+    <Source>CENTRAXX</Source>
+    <SourceVersion>3.18.3.10</SourceVersion>
+    <ExportDate>2023-05-23T15:41:36.698+02:00</ExportDate>
+    <CatalogueData>
+        <ConsentType>
+            <Code>BC</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Broad Consent</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (BC)</Value>
+            </NameMultilingualEntries>
+            <System>false</System>
+            <SyncId>84B9492F-BF6C-49D5-BDE0-69A27EB59617</SyncId>
+        </ConsentType>
+        <ConsentType>
+            <Code>ABGESTUFTE_EINWILLIGUNG</Code>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Abgestufte Einwilligung</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (ABGESTUFTE_EINWILLIGUNG)</Value>
+            </NameMultilingualEntries>
+            <System>false</System>
+            <SyncId>DA5F9E0D-BB25-4953-AA65-55984388C041</SyncId>
+        </ConsentType>
+        <ConsentType>
+            <Code>ConsentCIMD</Code>
+            <NameMultilingualEntries>
+                <Lang>en</Lang>
+                <Value>unnamed (ConsentCIMD)</Value>
+            </NameMultilingualEntries>
+            <NameMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>Einwilligung CIMD Biobank</Value>
+            </NameMultilingualEntries>
+            <DescMultilingualEntries>
+                <Lang>de</Lang>
+                <Value>CIMD Biobank Standorte: 
+Fraunhofer-Institut für Molekularbiologie und Angewandte Oekologie IME, Frankfurt am Main
+Fraunhofer-Institut für Zelltherapie und Immunologie IZI, Leipzig
+Fraunhofer-Institut für Toxikologie und Experimentelle Medizin ITEM, Hannover</Value>
+            </DescMultilingualEntries>
+            <System>false</System>
+            <SyncId>BC1F6F24-FA23-4654-B6CB-B742D3D32F4F</SyncId>
+        </ConsentType>
+    </CatalogueData>
+</CentraXXDataExchange>

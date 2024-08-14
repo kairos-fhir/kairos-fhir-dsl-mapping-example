@@ -10,6 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
  * Represented by a CXX Diagnosis
  * @author Franzy Hohnstaedter, Mike Wähnert
  * @since v.1.6.0, CXX.v.3.17.1.7
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  *
  * HINTS:
  *  - Catalog system URLS without logical FHIR ID (e.g. instead of with code or version) are implemented since
@@ -57,7 +58,14 @@ condition {
   }
 
   onsetDateTime {
-    date = context.source[diagnosis().diagnosisDate().date()]
+    if ("UNKNOWN" == context.source[diagnosis().diagnosisDate().precision()]) {
+      extension {
+        url = FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON
+        valueCode = "unknown"
+      }
+    } else {
+      date = context.source[diagnosis().diagnosisDate().date()]
+    }
   }
 
   recordedDate {
@@ -71,6 +79,4 @@ condition {
       version = context.source[diagnosis().icdEntry().kind()]
     }
   }
-
 }
-

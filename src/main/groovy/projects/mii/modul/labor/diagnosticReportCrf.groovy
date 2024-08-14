@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfItem
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
+
 /**
  * Represented by a CXX StudyVisitItem
  * Specified by https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab
@@ -14,7 +15,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
  */
 diagnosticReport {
 
-  if (!context.source[studyVisitItem().crf()]){ return }
+  if (!context.source[studyVisitItem().crf()]) {
+    return
+  }
 
   id = "DiagnosticReport/SVI-" + context.source[studyVisitItem().id()]
 
@@ -56,8 +59,10 @@ diagnosticReport {
     reference = "Patient/" + context.source[studyVisitItem().studyMember().patientContainer().id()]
   }
 
-  encounter {
-    reference = context.source[studyVisitItem().episode()] ? "Encounter/" + context.source[studyVisitItem().episode().id()] : null
+  if (context.source[studyVisitItem().episode()]) {
+    encounter {
+      reference = "Encounter/" + context.source[studyVisitItem().episode().id()]
+    }
   }
 
   effectiveDateTime {
@@ -66,7 +71,7 @@ diagnosticReport {
 
   final def issuedDate = context.source[studyVisitItem().crf().lastChangedOn()]
   if (issuedDate) {
-    issued(issuedDate)
+    issued = issuedDate
   }
 
   context.source[studyVisitItem().crf().items()]?.each { final def item ->

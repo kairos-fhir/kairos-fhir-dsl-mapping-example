@@ -45,7 +45,7 @@ bundle {
                 encounter = sourceProcedure.getEncounter() // mandatory
 
                 if (sourceProcedure.hasPerformedDateTimeType()) {
-                  performedDateTime = sourceProcedure.getPerformedDateTimeType();
+                  performedDateTime = sourceProcedure.getPerformedDateTimeType()
                 } else if (sourceProcedure.hasPerformedPeriod()) {
                   performedDateTime = sourceProcedure.getPerformedPeriod().getStart()
                 } else if (sourceProcedure.getMeta().hasLastUpdated()) {
@@ -54,7 +54,7 @@ bundle {
                   performedDateTime = new Date()
                 }
 
-                note = sourceProcedure.getNote();
+                note = sourceProcedure.getNote()
               }
             }
           }

@@ -1,0 +1,61 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Questionnaire/questionnaire-1",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "questionnaire-1",
+        "meta": {
+          "profile": [
+            "https://fhir.iqvia.com/patientfinder/StructureDefinition/pf-questionnaire"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "questionnaire-example-1"
+          }
+        ],
+        "description": "Example of a Questionnaire with some questions1",
+        "status": "active",
+        "item": [
+          {
+            "linkId": "1",
+            "text": "Do you have allergies?",
+            "type": "string"
+          },
+          {
+            "linkId": "2",
+            "text": "What is your gender?",
+            "type": "choice"
+          },
+          {
+            "linkId": "3",
+            "text": "What is your date of birth?",
+            "type": "date"
+          },
+          {
+            "linkId": "4",
+            "text": "What is your country of birth?",
+            "type": "string"
+          },
+          {
+            "linkId": "5",
+            "text": "What is your weight?",
+            "type": "decimal"
+          },
+          {
+            "linkId": "6",
+            "text": "What is your height?",
+            "type": "decimal"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Questionnaire/questionnaire-1"
+      }
+    }
+  ]
+}
