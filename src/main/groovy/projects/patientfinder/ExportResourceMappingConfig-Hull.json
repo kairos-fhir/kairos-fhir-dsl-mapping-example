@@ -22,14 +22,14 @@
       "exportToFhirResource": "Encounter"
     },
     {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactCarePlan",
-      "exportToFhirResource": "CarePlan"
+      "selectFromCxxEntity": "LABOR_METHOD",
+      "transformByTemplate": "sactQuestionnaire",
+      "exportToFhirResource": "Questionnaire"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactMedicationAdministration",
-      "exportToFhirResource": "MedicationAdministration"
+      "transformByTemplate": "sactQuestionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
