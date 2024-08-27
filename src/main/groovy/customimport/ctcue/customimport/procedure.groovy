@@ -2,6 +2,7 @@ package customimport.ctcue.customimport
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueType
 import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.Extension
@@ -29,7 +30,7 @@ bundle {
 
         resource {
           procedure {
-            id = "unknown"
+            id = "Procedure-unknown"
 
             meta {
               tag {
@@ -44,8 +45,12 @@ bundle {
 
             // Code is mandatory in CXX and must be chosen from a CodeSystem
             // catalogs have to be created
+            // just put a dummy code here
             code {
-              coding.add(sourceP.getCode().getCodingFirstRep())
+              coding {
+                system = "urn:centraxx/CustomCatalog#c.DummyProcedureCodes"
+                code = "DummyCode"
+              }
             }
 
             //reference by identifier
@@ -55,7 +60,21 @@ bundle {
             performedDateTime = sourceP.getPerformed()
 
             //mandatory in CXX -> create Fake encounter
-            encounter = sourceP.getEncounter()
+            if (sourceP.hasEncounter()) {
+              encounter = sourceP.getEncounter()
+            } else {
+              encounter {
+                identifier {
+                  type {
+                    coding {
+                      system = FhirUrls.System.IdContainerType.BASE_URL
+                      code = "EPISODEID"
+                    }
+                  }
+                  value = "FakeEncounter-" + sourceP.getIdentifierFirstRep().getValue()
+                }
+              }
+            }
           }
         }
       }
@@ -109,7 +128,7 @@ bundle {
             category {
               coding {
                 system = FhirUrls.System.LaborMethod.Category.BASE_URL
-                code = "GENERAL"
+                code = LaborMethodCategory.OTHER as String
               }
             }
 
@@ -131,6 +150,20 @@ bundle {
               }
             }
 
+            component {
+              extension = createLaborValueExtension()
+
+              code {
+                coding {
+                  system = FhirUrls.System.LaborValue.BASE_URL
+                  code = "Procedure.status"
+                  display = "Procedure.status"
+                }
+              }
+
+              valueString = sourceP.getStatus().toCode()
+            }
+
 
             if (sourceP.hasPartOf()) {
               component {
@@ -139,8 +172,7 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.LaborValue.BASE_URL
-                    code = "PROCEDURE_PARENT"
-                    display = "Procedure parent"
+                    code = "Procedure.partOf"
                   }
                 }
 
@@ -155,15 +187,86 @@ bundle {
                 code {
                   coding {
                     system = FhirUrls.System.LaborValue.BASE_URL
-                    code = "PROCEDURE_CATEGORY"
-                    display = "Procedure catagegory"
+                    code = "Procedure.category.coding.system"
+                    display = "Procedure.category.coding.system"
+                  }
+                }
+
+                valueString = sourceP.getCategory().getCodingFirstRep().getSystem()
+              }
+
+              component {
+                extension = createLaborValueExtension()
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "Procedure.category.coding.code"
+                    display = "Procedure.category.coding.code"
                   }
                 }
 
                 valueString = sourceP.getCategory().getCodingFirstRep().getCode()
               }
+
+              component {
+                extension = createLaborValueExtension()
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "Procedure.category.coding.display"
+                    display = "Procedure.category.coding.display"
+                  }
+                }
+
+                valueString = sourceP.getCategory().getCodingFirstRep().getDisplay()
+              }
             }
 
+            if (sourceP.hasCode()) {
+              component {
+                extension = createLaborValueExtension()
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "Procedure.code.coding.system"
+                    display = "Procedure.code.coding.system"
+                  }
+                }
+
+                valueString = sourceP.getCode().getCodingFirstRep().getSystem()
+              }
+
+              component {
+                extension = createLaborValueExtension()
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "Procedure.code.coding.code"
+                    display = "Procedure.code.coding.code"
+                  }
+                }
+
+                valueString = sourceP.getCode().getCodingFirstRep().getCode()
+              }
+
+              component {
+                extension = createLaborValueExtension()
+
+                code {
+                  coding {
+                    system = FhirUrls.System.LaborValue.BASE_URL
+                    code = "Procedure.code.coding.display"
+                    display = "Procedure.code.coding.display"
+                  }
+                }
+
+                valueString = sourceP.getCode().getCodingFirstRep().getDisplay()
+              }
+            }
           }
         }
       }
@@ -218,7 +321,7 @@ bundle {
                 category {
                   coding {
                     system = FhirUrls.System.LaborMethod.Category.BASE_URL
-                    code = "GENERAL"
+                    code = LaborMethodCategory.OTHER as String
                   }
                 }
 
@@ -247,8 +350,7 @@ bundle {
                     code {
                       coding {
                         system = FhirUrls.System.LaborValue.BASE_URL
-                        code = "PROCEDURE_BODY_SITE_CODE"
-                        display = "Procedure body site code"
+                        code = "Procedure.bodySite.coding.code"
                       }
                     }
 
@@ -263,8 +365,7 @@ bundle {
                     code {
                       coding {
                         system = FhirUrls.System.LaborValue.BASE_URL
-                        code = "PROCEDURE_BODY_SITE_DISPLAY"
-                        display = "Procedure body site display"
+                        code = "Procedure.bodySite.coding.display"
                       }
                     }
 
@@ -289,12 +390,25 @@ bundle {
 
           resource {
             encounter {
-              id = "unknown"
-
+              id = "Encounter/unknown"
 
               identifier {
-                system = FhirUrls.System.Episode.CXX_EPISODE_ID
+                type {
+                  coding {
+                    system = FhirUrls.System.IdContainerType.BASE_URL
+                    code = "EPISODEID"
+                  }
+                }
                 value = "FakeEncounter-" + sourceP.getIdentifierFirstRep().getValue()
+              }
+
+              subject = sourceP.getSubject()
+
+              serviceProvider {
+                identifier {
+                  system = FhirUrls.System.ORGANIZATION_UNIT
+                  value = "CentraXX"
+                }
               }
 
               // this encounter class needs to be created; can be used to filter on export
