@@ -1,15 +1,16 @@
 package projects.patientfinder
 
+
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
+import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationRequest
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
 /**
  * Represents a CXX Medication
  *
@@ -255,7 +256,7 @@ static Boolean createAsNeededFromType(final String resultStatus) {
 }
 
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null ? null : new BigDecimal(numeric).stripTrailingZeros()
+  return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
 }
 
 static boolean isFakeEpisode(final def episode) {
