@@ -5,10 +5,12 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
+import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationAdministration
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
+
 /**
  * Represents a CXX Medication
  *
@@ -203,7 +205,7 @@ static String convertPrecision(final String cxxPrecision) {
 }
 
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null ? null : new BigDecimal(numeric).stripTrailingZeros()
+  return numeric == null || StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
 }
 
 static boolean isFakeEpisode(final def episode) {
