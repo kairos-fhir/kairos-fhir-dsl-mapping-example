@@ -205,7 +205,7 @@ static String convertPrecision(final String cxxPrecision) {
 }
 
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null || StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
+  return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
 }
 
 static boolean isFakeEpisode(final def episode) {
