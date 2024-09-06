@@ -9,6 +9,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
  * Represented by CXX MedProcedure
  */
@@ -42,6 +43,12 @@ procedure {
         code = context.source[medProcedure().procedureCode()] as String
         display = context.source[medProcedure().procedureText()] as String
       }
+    }
+  }
+
+  if (context.source[medProcedure().parent()]) {
+    partOf {
+      reference = "Procedure/" + context.source[medProcedure().parent().id()]
     }
   }
 
@@ -102,29 +109,29 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus){
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus) {
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
     return Procedure.ProcedureStatus.COMPLETED
   }
-  if (procedureStatus.equals(ProcedureStatus.PREPARATION)){
+  if (procedureStatus.equals(ProcedureStatus.PREPARATION)) {
     return Procedure.ProcedureStatus.PREPARATION
   }
-  if (procedureStatus.equals(ProcedureStatus.IN_PROGRESS)){
+  if (procedureStatus.equals(ProcedureStatus.IN_PROGRESS)) {
     return Procedure.ProcedureStatus.INPROGRESS
   }
-  if (procedureStatus.equals(ProcedureStatus.NOT_DONE)){
+  if (procedureStatus.equals(ProcedureStatus.NOT_DONE)) {
     return Procedure.ProcedureStatus.NOTDONE
   }
-  if (procedureStatus.equals(ProcedureStatus.ON_HOLD)){
+  if (procedureStatus.equals(ProcedureStatus.ON_HOLD)) {
     return Procedure.ProcedureStatus.ONHOLD
   }
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
     return Procedure.ProcedureStatus.COMPLETED
   }
-  if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)){
+  if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)) {
     return Procedure.ProcedureStatus.ENTEREDINERROR
   }
-  if (procedureStatus.equals(ProcedureStatus.UNKNOWN)){
+  if (procedureStatus.equals(ProcedureStatus.UNKNOWN)) {
     return Procedure.ProcedureStatus.UNKNOWN
   }
   return Procedure.ProcedureStatus.UNKNOWN
