@@ -1,7 +1,16 @@
 package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.ValueReference
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
@@ -78,6 +87,54 @@ condition {
     note {
       text = diagNote
     }
+  }
+
+  final def mapping = context.source[diagnosis().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Condition_profile"
+  }
+
+
+  if (mapping) {
+    final def lflvOnset = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.start"
+    }
+
+    onsetPeriod {
+      if (lflvOnset) {
+        start {
+          value = lflvOnset[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+        }
+      }
+
+      final def lflvEnd = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+        lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.end"
+      }
+
+      if (lflvEnd) {
+        end {
+          value = lflvEnd[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+        }
+      }
+    }
+
+    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.specialism"
+    }
+
+    if(lflvSpecialism){
+      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
+
+      if (valueRef) {
+        extension {
+          url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
+          valueReference {
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+          }
+        }
+      }
+
+    }
+
   }
 }
 
