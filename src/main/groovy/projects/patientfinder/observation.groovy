@@ -42,6 +42,10 @@ observation {
     return
   }
 
+  if ("Condition_profile".equalsIgnoreCase(laborMethod[CODE] as String)){
+    return
+  }
+
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
