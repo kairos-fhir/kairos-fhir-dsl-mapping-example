@@ -16,6 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
@@ -48,12 +49,6 @@ condition {
     }
   }
 
-  if (context.source[diagnosis().diagnosisDate().date()]) {
-    onsetDateTime {
-      date = context.source[diagnosis().diagnosisDate().date()]
-      precision = TemporalPrecisionEnum.DAY.toString()
-    }
-  }
 
   code {
     if (context.source[diagnosis().icdEntry()]) {
@@ -93,7 +88,6 @@ condition {
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Condition_profile"
   }
 
-
   if (mapping) {
     final def lflvOnset = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.start"
@@ -102,7 +96,7 @@ condition {
     onsetPeriod {
       if (lflvOnset) {
         start {
-          value = lflvOnset[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+          date = lflvOnset[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
         }
       }
 
@@ -112,18 +106,17 @@ condition {
 
       if (lflvEnd) {
         end {
-          value = lflvEnd[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+          date = lflvEnd[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
         }
       }
     }
 
     final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.specialism"
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "specialism"
     }
 
-    if(lflvSpecialism){
+    if (lflvSpecialism) {
       final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
-
       if (valueRef) {
         extension {
           url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
@@ -132,9 +125,12 @@ condition {
           }
         }
       }
-
     }
-
+  } else if (context.source[diagnosis().diagnosisDate().date()]) {
+    onsetDateTime {
+      date = context.source[diagnosis().diagnosisDate().date()]
+      precision = TemporalPrecisionEnum.DAY.toString()
+    }
   }
 }
 
