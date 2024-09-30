@@ -96,7 +96,7 @@ condition {
     onsetPeriod {
       if (lflvOnset) {
         start {
-          date = lflvOnset[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+          date = lflvOnset[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
         }
       }
 
@@ -106,7 +106,7 @@ condition {
 
       if (lflvEnd) {
         end {
-          date = lflvEnd[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+          date = lflvEnd[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
         }
       }
     }
