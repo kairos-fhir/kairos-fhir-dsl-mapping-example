@@ -36,6 +36,10 @@ condition {
     }
   }
 
+  recordedDate {
+    date = context.source[diagnosis().creationDate()]
+  }
+
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {
@@ -48,7 +52,6 @@ condition {
       }
     }
   }
-
 
   code {
     if (context.source[diagnosis().icdEntry()]) {
