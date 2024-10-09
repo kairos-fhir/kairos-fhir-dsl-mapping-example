@@ -48,11 +48,11 @@ allergyIntolerance {
   final def lflvOnsetStart = findLabFindLabVal(labFinLabVals, "Start")
   final def lflvOnsetEnd = findLabFindLabVal(labFinLabVals, "Finish")
 
-  if (lflvOnsetStart && !lflvOnsetEnd) {
+  if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (!lflvOnsetEnd || !lflvOnsetEnd[DATE_VALUE])) {
     onsetDateTime {
       date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
     }
-  } else if (lflvOnsetStart && lflvOnsetEnd) {
+  } else if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (lflvOnsetEnd && lflvOnsetEnd[DATE_VALUE])) {
     onsetPeriod {
       start {
         date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
@@ -64,7 +64,8 @@ allergyIntolerance {
   }
 
   final def lflvRecordedDate = findLabFindLabVal(labFinLabVals, "Record date")
-  if (lflvRecordedDate) {
+
+  if (lflvRecordedDate && lflvRecordedDate[DATE_VALUE]) {
     recordedDate = lflvRecordedDate[DATE_VALUE]
   }
 

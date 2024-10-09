@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-10-09
+
+* Fixed AllergyIntolerance script to avoid NPEs when DateValue is null in Finding
+
 ## 2024-10-08
 
 * Condition.recordedDate added
