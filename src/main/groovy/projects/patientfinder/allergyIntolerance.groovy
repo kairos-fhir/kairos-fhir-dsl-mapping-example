@@ -66,7 +66,7 @@ allergyIntolerance {
   final def lflvRecordedDate = findLabFindLabVal(labFinLabVals, "Record date")
 
   if (lflvRecordedDate && lflvRecordedDate[DATE_VALUE]) {
-    recordedDate = lflvRecordedDate[DATE_VALUE]
+    recordedDate = lflvRecordedDate[DATE_VALUE][PrecisionDate.DATE]
   }
 
   reaction {
