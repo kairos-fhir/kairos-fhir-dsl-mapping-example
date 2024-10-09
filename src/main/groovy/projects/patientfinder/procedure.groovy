@@ -1,7 +1,15 @@
 package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.ProcedureStatus
 import org.hl7.fhir.r4.model.Procedure
 
@@ -9,7 +17,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
-
 /**
  * Represented by CXX MedProcedure
  */
@@ -83,6 +90,27 @@ procedure {
   if (!isFakeEpisode(context.source[medProcedure().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[medProcedure().episode().id()]
+    }
+  }
+
+  final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Procedure_profile"
+  }
+
+  if(mapping){
+    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "performer.actor"
+    }
+
+    if (lflvSpecialism) {
+      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
+      if (valueRef) {
+        performer {
+          actor {
+            reference = "Practitioner/" +  valueRef[ValueReference.ATTENDING_DOCTOR_VALUE][AttendingDoctor.ID]
+          }
+        }
+      }
     }
   }
 }

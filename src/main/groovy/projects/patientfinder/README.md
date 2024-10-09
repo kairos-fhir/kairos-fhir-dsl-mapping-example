@@ -19,6 +19,7 @@ The following imported data sets are supported/tested:
 
 ## 2024-10-08
 
+* Added export of LaborMapping with LaborMethod code "Procedure_Profile" in medProcedure script.
 * Condition.recordedDate added
 
 ## 2024-06-06
