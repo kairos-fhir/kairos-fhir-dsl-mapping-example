@@ -17,7 +17,7 @@ allergyIntolerance {
 
   id = "AllergyIntolerance/" + context.source[laborMapping().laborFinding().id()]
 
-  final List labFinLabVals = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
+  final List labFinLabVals = context.source[laborMapping().laborFinding().laborFindingLaborValues()] as List
 
   final def lvClinicalStatus = findLabFindLabVal(labFinLabVals, "Allergen.Status")
   if (lvClinicalStatus) {
@@ -43,11 +43,11 @@ allergyIntolerance {
   final def lflvOnsetStart = findLabFindLabVal(labFinLabVals, "Start")
   final def lflvOnsetEnd = findLabFindLabVal(labFinLabVals, "Finish")
 
-  if (lflvOnsetStart && !lflvOnsetEnd) {
+  if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (!lflvOnsetEnd || !lflvOnsetEnd[DATE_VALUE])) {
     onsetDateTime {
       date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
     }
-  } else if (lflvOnsetStart && lflvOnsetEnd) {
+  } else if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (lflvOnsetEnd && lflvOnsetEnd[DATE_VALUE])) {
     onsetPeriod {
       start {
         date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
@@ -59,7 +59,8 @@ allergyIntolerance {
   }
 
   final def lflvRecordedDate = findLabFindLabVal(labFinLabVals, "Record date")
-  if (lflvRecordedDate) {
+
+  if (lflvRecordedDate && lflvRecordedDate[DATE_VALUE]) {
     recordedDate = lflvRecordedDate[DATE_VALUE]
   }
 
