@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-10-09
+* Fixed AllergyIntolerance script to avoid NPEs when DateValue is null in Finding
+
 ## 2024-06-06
 
 * Disabled diagnostic reports for Hull as long as Bahia has no data mapped to it.
