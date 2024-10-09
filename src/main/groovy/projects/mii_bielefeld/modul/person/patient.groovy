@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.39.0, CXX.v.2024.4.0
  */
 
 patient {
@@ -59,7 +59,7 @@ patient {
   }
 
   final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
-    CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType|| CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
+    CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
   }
 
   // PKV insurance identifier
@@ -143,18 +143,24 @@ patient {
     if (ad[PatientAddress.STREET]) { // normal address, Postfach address, extensions could be added
       address {
         type = "both"
-        city = ad[PatientAddress.CITY]
-        postalCode = ad[PatientAddress.ZIPCODE]
-        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE)
-        line(getLineString(ad as Map))
+        city { ad[PatientAddress.CITY] }
+        postalCode { ad[PatientAddress.ZIPCODE] }
+        country { ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) }
+        line { getLineString(ad as Map) }
       }
     } else if (ad[PatientAddress.PO_BOX]) { // Postfach address, extensions could be added
       address {
         type = "postal"
-        city = ad[PatientAddress.CITY]
-        postalCode = ad[PatientAddress.ZIPCODE]
-        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE)
-        line(ad[PatientAddress.PO_BOX] as String)
+        city { ad[PatientAddress.CITY] }
+        postalCode { ad[PatientAddress.ZIPCODE] }
+        country { ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) }
+        line {
+          value = ad[PatientAddress.PO_BOX] as String
+          extension {
+            url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-postBox"
+            value = ad[PatientAddress.PO_BOX] as String
+          }
+        }
       }
     }
   }
