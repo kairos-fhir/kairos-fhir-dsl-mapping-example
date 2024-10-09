@@ -14,7 +14,12 @@ The following imported data sets are supported/tested:
 # Change log
 
 ## 2024-10-09
+
 * Fixed AllergyIntolerance script to avoid NPEs when DateValue is null in Finding
+
+## 2024-10-08
+
+* Condition.recordedDate added
 
 ## 2024-06-06
 
@@ -22,7 +27,7 @@ The following imported data sets are supported/tested:
 
 ## 2024-07-08
 
-* Adjust example ProjectConfig.json for page size 10k and with another default export dir 
+* Adjust example ProjectConfig.json for page size 10k and with another default export dir
 
 ## 2024-04-15
 

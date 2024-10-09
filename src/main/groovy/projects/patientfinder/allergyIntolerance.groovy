@@ -9,6 +9,11 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
+/**
+ * Represented by a CXX LaborMapping
+ * @author Jonas Küttner
+ * @since CXX.v.2024.3.7, CXX.v.2024.4.0, kairos-fhir-dsl-1.35.0
+ */
 allergyIntolerance {
 
   if (!(context.source[laborMapping().laborFinding().laborMethod().code()] as String).equals("Allergen")) {

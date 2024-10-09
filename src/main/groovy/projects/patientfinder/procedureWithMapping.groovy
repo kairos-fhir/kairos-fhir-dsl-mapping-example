@@ -45,7 +45,7 @@ procedure {
 
 
     if (departmentValue != null) {
-      println(departmentValue[LaborFindingLaborValue.MULTI_VALUE_REFERENCES])
+      //println(departmentValue[LaborFindingLaborValue.MULTI_VALUE_REFERENCES])
       departmentValue[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].each { final def valRef ->
         performer {
           onBehalfOf {
