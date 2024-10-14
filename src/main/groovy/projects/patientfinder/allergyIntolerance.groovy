@@ -83,7 +83,6 @@ allergyIntolerance {
     final def lflvRecation = findLabFindLabVal(labFinLabVals, "Allergen.Reaction")
 
     if (lflvRecation) {
-
       manifestation {
         coding {
           code = lflvRecation[STRING_VALUE] as String
@@ -93,8 +92,9 @@ allergyIntolerance {
 
     final def lflvSeverity = findLabFindLabVal(labFinLabVals, "Allergen.Severity")
 
-    if (lflvSeverity) {
-      severity(filterSeverity(lflvSeverity[STRING_VALUE] as String))
+    final String aiSeverity = filterSeverity(lflvSeverity[STRING_VALUE] as String)
+    if (aiSeverity) {
+      severity(aiSeverity)
     }
   }
 
