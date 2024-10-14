@@ -55,10 +55,10 @@ allergyIntolerance {
   } else if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (lflvOnsetEnd && lflvOnsetEnd[DATE_VALUE])) {
     onsetPeriod {
       start {
-        date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
+        date = normalizeDate(lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE] as String)
       }
       end {
-        date = lflvOnsetEnd[DATE_VALUE][PrecisionDate.DATE]
+        date = normalizeDate(lflvOnsetEnd[DATE_VALUE][PrecisionDate.DATE] as String)
       }
     }
   }
@@ -66,7 +66,7 @@ allergyIntolerance {
   final def lflvRecordedDate = findLabFindLabVal(labFinLabVals, "Record date")
 
   if (lflvRecordedDate && lflvRecordedDate[DATE_VALUE]) {
-    recordedDate = lflvRecordedDate[DATE_VALUE][PrecisionDate.DATE]
+    recordedDate = normalizeDate(lflvRecordedDate[DATE_VALUE][PrecisionDate.DATE] as String)
   }
 
   reaction {
@@ -104,4 +104,13 @@ static def findLabFindLabVal(final List labFinLabVals, final String code) {
   return labFinLabVals.find {
     it[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE].equals(code)
   }
+}
+
+/**
+ * removes milli seconds and time zone.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15T00:00:00"
+ */
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
