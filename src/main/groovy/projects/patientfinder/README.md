@@ -13,6 +13,11 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-10-14
+
+* Added date normalization to allergyIntolerance
+* added filter to only allow value set codes for AllergyIntoleranceSeverity
+
 ## 2024-10-09
 
 * Fixed AllergyIntolerance script to avoid NPEs when DateValue is null in Finding

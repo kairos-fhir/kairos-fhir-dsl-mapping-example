@@ -4,6 +4,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import org.hl7.fhir.r4.model.AllergyIntolerance
 
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
@@ -93,7 +94,7 @@ allergyIntolerance {
     final def lflvSeverity = findLabFindLabVal(labFinLabVals, "Allergen.Severity")
 
     if (lflvSeverity) {
-      severity(lflvSeverity[STRING_VALUE] as String)
+      severity(filterSeverity(lflvSeverity[STRING_VALUE] as String))
     }
   }
 
@@ -113,4 +114,17 @@ static def findLabFindLabVal(final List labFinLabVals, final String code) {
  */
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+}
+
+static String filterSeverity(final String severity) {
+  if (!severity) {
+    return null
+  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.MILD.toCode())) {
+    return AllergyIntolerance.AllergyIntoleranceSeverity.MILD.toCode()
+  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.MODERATE.toCode())) {
+    return AllergyIntolerance.AllergyIntoleranceSeverity.MODERATE.toCode()
+  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.SEVERE.toCode())) {
+    return AllergyIntolerance.AllergyIntoleranceSeverity.SEVERE.toCode()
+  }
+  return null
 }
