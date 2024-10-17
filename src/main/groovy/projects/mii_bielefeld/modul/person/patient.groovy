@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
- * @since v.1.39.0, CXX.v.2024.4.0
+ * @since v.1.40.0, CXX.v.2024.4.0
  */
 
 patient {
