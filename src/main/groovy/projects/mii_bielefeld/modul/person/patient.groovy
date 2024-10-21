@@ -143,24 +143,18 @@ patient {
     if (ad[PatientAddress.STREET]) { // normal address, Postfach address, extensions could be added
       address {
         type = "both"
-        city { ad[PatientAddress.CITY] }
-        postalCode { ad[PatientAddress.ZIPCODE] }
-        country { ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) }
-        line { getLineString(ad as Map) }
+        city = ad[PatientAddress.CITY] as String
+        postalCode = ad[PatientAddress.ZIPCODE] as String
+        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) as String
+        line(getLineString(ad as Map))
       }
     } else if (ad[PatientAddress.PO_BOX]) { // Postfach address, extensions could be added
       address {
         type = "postal"
-        city { ad[PatientAddress.CITY] }
-        postalCode { ad[PatientAddress.ZIPCODE] }
-        country { ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) }
-        line {
-          value = ad[PatientAddress.PO_BOX] as String
-          extension {
-            url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-postBox"
-            value = ad[PatientAddress.PO_BOX] as String
-          }
-        }
+        city = ad[PatientAddress.CITY] as String
+        postalCode = ad[PatientAddress.ZIPCODE] as String
+        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) as String
+        line(ad[PatientAddress.PO_BOX] as String)
       }
     }
   }
