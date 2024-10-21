@@ -22,6 +22,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  * Requirements:
  * Custom Catalog for Encounter.status codes in CXX featuring the FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
  * Catalog for StayType with codes in CXX for FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
+ * CXX MeasurementProfile for called "EncounterProfile" with parameters:
+ * "Encounter.status" (SingleSelection from Encounter.status catalog)
  */
 
 encounter {

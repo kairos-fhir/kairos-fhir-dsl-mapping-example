@@ -4,12 +4,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX DIAGNOSIS
- * Specified by (stable release) https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose
- * Working draft (future release) https://simplifier.net/guide/MedizininformatikInitiative-ModulDiagnosen-ImplementationGuide/Condition
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.8.0, CXX.v.3.18.1
- * hints:
- * bodysite might not depicted in CXX
+ * @since v.1.40.0, CXX.v.2024.4.2
+ *
  */
 
 condition {

@@ -15,11 +15,17 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.LaborMapping.LABOR_FINDING
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
  * Represented by CXX MedProcedure
  * Specified by https://simplifier.net/medizininformatikinitiative-modulprozeduren/prozedur v.2.0.0
  * @author Jonas Küttner
  * @since v.1.40.0, CXX.v.2024.5.0, CXX.v.2024.4.2
+ * Requirements:
+ * Custom Catalog for Procedure.status codes in CXX featuring the FHIR valueset (http://hl7.org/fhir/ValueSet/event-status)
+ * CXX MeasurementProfile for called "ProcedureProfile" with parameters:
+ * "Procedure.performedPeriod.end" (Date)
+ * "Procedure.status" (SingleSelection from Procedure.status catalog)
  */
 
 procedure {
