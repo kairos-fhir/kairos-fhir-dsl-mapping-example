@@ -8,4 +8,4 @@
 * updated fhir-dsl to 1.40.0
 * set back the usage of address builder setters as extensions are not required as of now
 * added ExportResourceMappingConfig for FNUSA
-
+* added script for vital status base on CXX Finding
