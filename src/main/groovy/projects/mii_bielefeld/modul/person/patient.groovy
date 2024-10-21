@@ -130,13 +130,13 @@ patient {
     }
   }
 
-  birthDate = normalizeDate(context.source[patient().birthdate().date()] as String)
+  birt = context.source[patient().birthdate().date()]
 
   final def dateOfDeath = context.source[patient().dateOfDeath()]
 
   if (dateOfDeath) {
     deceasedBoolean = true
-    deceasedDateTime = normalizeDate(dateOfDeath[PrecisionDate.DATE] as String)
+    deceasedDateTime = dateOfDeath[PrecisionDate.DATE]
   }
 
   context.source[patient().addresses()]?.each { final ad ->
@@ -217,6 +217,3 @@ static String getMaritalStatusCode(final maritalStatus) {
   }
 }
 
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
-}
