@@ -22,8 +22,6 @@ patient {
 
   id = "Patient/" + context.source[patient().patientContainer().id()]
 
-  println(context.source)
-
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"
   }
@@ -34,11 +32,9 @@ patient {
     CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
   }
 
-  println(gkvInsurance)
-
   // id now completely configured by insurance.
   if (gkvInsurance) {
-    println("GKV Insurance")
+
     identifier {
       use = "official"
       type {
@@ -175,7 +171,6 @@ patient {
       }
     }
   }
-  println("done")
 }
 
 static String getLineString(final Map address) {

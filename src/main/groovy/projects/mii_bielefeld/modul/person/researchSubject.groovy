@@ -1,4 +1,4 @@
-package projects.mii.modul.person
+package projects.mii_bielefeld.modul.person
 
 import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.ResearchSubject
@@ -17,7 +17,6 @@ researchSubject {
 
   final def studyOid = context.source[patientStudy().flexiStudy().id()]
 
-  println(context.source)
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/ResearchSubject"
   }
@@ -26,8 +25,6 @@ researchSubject {
 
   status = patientStudyStatus != null ? ResearchSubject.ResearchSubjectStatus.fromCode(patientStudyStatus) : ResearchSubject.ResearchSubjectStatus.CANDIDATE  // messwert oder patient study status.
 
-  println("StudyMembers")
-  println(context.source[patientStudy().patientContainer().studyMembers()])
   final def studyMember = context.source[patientStudy().patientContainer().studyMembers()].find { final def sm ->
     sm[StudyMember.STUDY][ID] == studyOid
   }
