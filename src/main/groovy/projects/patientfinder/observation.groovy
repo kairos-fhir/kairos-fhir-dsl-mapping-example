@@ -12,6 +12,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
@@ -22,7 +23,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
@@ -33,6 +33,18 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
+
+  if (laborMethod[CODE] == "SACT_Profile"){
+    return
+  }
+
+  if ("Allergen".equalsIgnoreCase(laborMethod[CODE] as String)){
+    return
+  }
+
+  if ("Condition_profile".equalsIgnoreCase(laborMethod[CODE] as String)){
+    return
+  }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
@@ -54,21 +66,18 @@ observation {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
+  if (context.source[laborMapping().mappingType()] as LaborMappingType == LaborMappingType.SAMPLELABORMAPPING){
+    specimen {
+      reference = "Specimen/" + context.source[laborMapping().relatedOid()]
+    }
+  }
+
 
   method {
     coding {
       system = FhirUrls.System.LaborMethod.BASE_URL
       version = context.source[laborMapping().laborFinding().laborMethod().version()]
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-    }
-  }
-
-  if (laborMethod[CODE].equals("SACT_Profile")) {
-    basedOn {
-      reference = "CarePlan/SACT-" + context.source[laborMapping().laborFinding().id()]
-    }
-    partOf {
-      reference = "MedicationAdministration/SACT-" + context.source[laborMapping().laborFinding().id()]
     }
   }
 
@@ -79,11 +88,6 @@ observation {
         : lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
-
-    if (laborMethod[CODE].equals("SACT_Profile") && isMappedElseWhere(laborValueCode)) {
-      return
-    }
-
 
     final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
 
@@ -245,28 +249,6 @@ static boolean isFakeEpisode(final def episode) {
 
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
-}
-
-static boolean isMappedElseWhere(final String code) {
-  final boolean mappedInCarePlan = mappedInCarePlan(code)
-  final boolean mappedInMedAdmin = mappedInMedAdmin(code)
-  return mappedInCarePlan || mappedInMedAdmin
-}
-
-private static boolean mappedInMedAdmin(final String code) {
-  final List mappedInMedAdmin = ["Drug_Name",
-                                 "DM+D",
-                                 "Actual_Dose_Per_Administration",
-                                 "Unit_Of_Measurement_(SNOMED_CT_DM+D)",
-                                 "SACT_Administration_Route",
-                                 "Route_Of_Administration_(SNOMED_CT_DM+D)",
-                                 "Administration_Date"]
-  return code in mappedInMedAdmin
-}
-
-private static boolean mappedInCarePlan(final String code) {
-  final List mappedInCarePlan = ["Regimen", "Date_Decision_To_Treat", "Start_Date_Of_Regimen"]
-  return code in mappedInCarePlan
 }
 
 /**

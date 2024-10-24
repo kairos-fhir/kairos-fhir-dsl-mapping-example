@@ -1,7 +1,15 @@
 package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.ProcedureStatus
 import org.hl7.fhir.r4.model.Procedure
 
@@ -45,6 +53,12 @@ procedure {
     }
   }
 
+  if (context.source[medProcedure().parent()]) {
+    partOf {
+      reference = "Procedure/" + context.source[medProcedure().parent().id()]
+    }
+  }
+
   if (context.source[medProcedure().procedureDate().date()]) {
     performedDateTime {
       date = normalizeDate(context.source[medProcedure().procedureDate().date()] as String)
@@ -78,6 +92,27 @@ procedure {
       reference = "Encounter/" + context.source[medProcedure().episode().id()]
     }
   }
+
+  final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Procedure_profile"
+  }
+
+  if(mapping){
+    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "performer.actor"
+    }
+
+    if (lflvSpecialism) {
+      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
+      if (valueRef) {
+        performer {
+          actor {
+            reference = "Practitioner/" +  valueRef[ValueReference.ATTENDING_DOCTOR_VALUE][AttendingDoctor.ID]
+          }
+        }
+      }
+    }
+  }
 }
 
 static boolean isFakeEpisode(final def episode) {
@@ -102,29 +137,29 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus){
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus) {
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
     return Procedure.ProcedureStatus.COMPLETED
   }
-  if (procedureStatus.equals(ProcedureStatus.PREPARATION)){
+  if (procedureStatus.equals(ProcedureStatus.PREPARATION)) {
     return Procedure.ProcedureStatus.PREPARATION
   }
-  if (procedureStatus.equals(ProcedureStatus.IN_PROGRESS)){
+  if (procedureStatus.equals(ProcedureStatus.IN_PROGRESS)) {
     return Procedure.ProcedureStatus.INPROGRESS
   }
-  if (procedureStatus.equals(ProcedureStatus.NOT_DONE)){
+  if (procedureStatus.equals(ProcedureStatus.NOT_DONE)) {
     return Procedure.ProcedureStatus.NOTDONE
   }
-  if (procedureStatus.equals(ProcedureStatus.ON_HOLD)){
+  if (procedureStatus.equals(ProcedureStatus.ON_HOLD)) {
     return Procedure.ProcedureStatus.ONHOLD
   }
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)){
+  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
     return Procedure.ProcedureStatus.COMPLETED
   }
-  if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)){
+  if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)) {
     return Procedure.ProcedureStatus.ENTEREDINERROR
   }
-  if (procedureStatus.equals(ProcedureStatus.UNKNOWN)){
+  if (procedureStatus.equals(ProcedureStatus.UNKNOWN)) {
     return Procedure.ProcedureStatus.UNKNOWN
   }
   return Procedure.ProcedureStatus.UNKNOWN

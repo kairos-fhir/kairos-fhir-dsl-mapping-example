@@ -1,4 +1,4 @@
-![Kairos Logo](https://www.kairos.de/app/uploads/kairos-logo-blue_iqvia.png "Kairos Logo")
+![Kairos Logo](https://kairos.de/wp-content/uploads/2023/11/bildschirm_KAIROS_RGB_einfach-e1699976791799.png "Kairos Logo")
 
 Kairos CentraXX to CTcue PatientFinder Mappings
 ========================
@@ -13,13 +13,30 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-10-17
+* Added the export of MedicationRequest requester from LaborMapping
+
+## 2024-10-14
+
+* Added date normalization to allergyIntolerance
+* added filter to only allow value set codes for AllergyIntoleranceSeverity
+
+## 2024-10-09
+
+* Fixed AllergyIntolerance script to avoid NPEs when DateValue is null in Finding
+
+## 2024-10-08
+
+* Added export of LaborMapping with LaborMethod code "Procedure_Profile" in medProcedure script.
+* Condition.recordedDate added
+
 ## 2024-06-06
 
 * Disabled diagnostic reports for Hull as long as Bahia has no data mapped to it.
 
 ## 2024-07-08
 
-* Adjust example ProjectConfig.json for page size 10k and with another default export dir 
+* Adjust example ProjectConfig.json for page size 10k and with another default export dir
 
 ## 2024-04-15
 

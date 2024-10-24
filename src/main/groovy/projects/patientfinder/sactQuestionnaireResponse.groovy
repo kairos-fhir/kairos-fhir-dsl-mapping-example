@@ -1,7 +1,6 @@
-package projects.cxx.ctcue
+package projects.patientfinder
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -19,39 +18,31 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 questionnaireResponse {
 
+  if (!(context.source[laborMapping().laborFinding().laborMethod().code()] == "SACT_Profile")) {
+    return
+  }
+
   id = "QuestionnaireResponse/" + context.source[laborMapping().laborFinding().id()]
 
   identifier {
     value = context.source[laborMapping().laborFinding().shortName()]
   }
 
-  questionnaire {
-    value = "Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()]
-  }
+  questionnaire { value = "Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()] }
 
-  def statusValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { def lflv ->
-    return "Questionnaire-Response-Status" == lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
-  }?.getAt(LaborFindingLaborValue.STRING_VALUE)
-
-  status = statusValue != null ? statusValue : QuestionnaireResponse.QuestionnaireResponseStatus.INPROGRESS
+  status = QuestionnaireResponse.QuestionnaireResponseStatus.COMPLETED
 
   subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  authored {
-    date = context.source[laborMapping().laborFinding().findingDate().date()]
-  }
+  authored { date = context.source[laborMapping().laborFinding().findingDate().date()] }
 
-  // TODO: author (OrgUnit or Practitioner) has to be coded within the LaborMethod like the status
-
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { def lflv ->
-    return "Questionnaire-Response-Status" != lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
-  }.each { final def lflv ->
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final def lflv ->
     final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]
     item {
-      setLinkId(laborValue[CODE] as String)
-      setText(laborValue[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String)
+      linkId = laborValue[CODE] as String
+      text = laborValue[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == "en"}?.getAt(VALUE) as String
 
       if (isNumeric(laborValue)) {
         answer {
@@ -83,7 +74,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
               display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
@@ -92,7 +82,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
@@ -104,7 +93,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
               display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
@@ -113,7 +101,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
@@ -125,7 +112,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
             }
@@ -134,7 +120,6 @@ questionnaireResponse {
         lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
           answer {
             valueCoding {
-              system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[IcdEntry.PREFERRED_LONG] as String
             }
@@ -146,6 +131,7 @@ questionnaireResponse {
         System.out.println(msg)
       }
     }
+
   }
 
 }
@@ -185,3 +171,4 @@ static boolean isCatalog(final Object laborValue) {
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
 }
+

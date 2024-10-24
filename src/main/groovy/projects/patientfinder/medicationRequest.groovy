@@ -1,15 +1,23 @@
 package projects.patientfinder
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
+import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
+import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationRequest
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
 /**
  * Represents a CXX Medication
  *
@@ -242,6 +250,27 @@ medicationRequest {
     }
   }
 
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
+  }
+
+  if (mapping) {
+    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "requester"
+    }
+
+    if (lflvSpecialism) {
+      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
+      if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
+        performer {
+          requester {
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+          }
+        }
+      }
+    }
+  }
+
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {
@@ -255,7 +284,7 @@ static Boolean createAsNeededFromType(final String resultStatus) {
 }
 
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null ? null : new BigDecimal(numeric).stripTrailingZeros()
+  return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
 }
 
 static boolean isFakeEpisode(final def episode) {
