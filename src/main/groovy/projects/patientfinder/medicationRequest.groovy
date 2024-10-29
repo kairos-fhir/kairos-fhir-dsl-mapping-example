@@ -10,7 +10,6 @@ import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.ValueReference
-import de.kairos.fhir.centraxx.metamodel.enums.FhirDoseTypeEnum
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.apache.commons.lang3.StringUtils
@@ -18,6 +17,7 @@ import org.hl7.fhir.r4.model.MedicationRequest
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
+
 /**
  * Represents a CXX Medication
  *
@@ -75,10 +75,6 @@ medicationRequest {
     date = context.source[medication().transcriptionDate()]
   }
 
-  requester {
-    display = context.source[medication().prescribedBy()]
-  }
-
   if (context.source[medication().attendingDoctor()]) {
     performer {
       reference = "Practitioner/" + context.source[medication().attendingDoctor().id()]
@@ -91,67 +87,9 @@ medicationRequest {
       text = context.source[medication().ordinanceReleaseForm()] as String
     }
 
-    // is dose
-    if (context.source[medication().isDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.IS.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().isDose()]
-        }
-      }
-    }
-
-    // target dose
-    if (context.source[medication().trgDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.TRG.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().trgDose()]
-        }
-      }
-    }
-
-    //deviation dose
-    if (context.source[medication().deviationDose()]) {
-      doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.DEV.name()
-          }
-        }
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().deviationDose()]
-        }
-      }
-    }
 
     if (context.source[medication().dosis()] != null || context.source[medication().quantity()] != null) {
       doseAndRate {
-        type {
-          coding {
-            system = FhirUrls.System.Medication.DOSE_TYPE
-            code = FhirDoseTypeEnum.PRESCRIPTION.name()
-          }
-        }
-
-        extension {
-          url = FhirUrls.Extension.Medication.DOSE_VALUE
-          valueString = context.source[medication().dosis()]
-        }
 
         doseQuantity {
           value = sanitizeScale(context.source[medication().dosis()] as String)
@@ -191,65 +129,6 @@ medicationRequest {
     text = context.source[medication().notes()] as String
   }
 
-  if (context.source[medication().fillerOrderNumber()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.FON
-      valueString = context.source[medication().fillerOrderNumber()]
-    }
-  }
-
-  if (context.source[medication().placerOrderNumber()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.PON
-      valueString = context.source[medication().placerOrderNumber()]
-    }
-  }
-
-  if (context.source[medication().serviceType()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.TYPE
-      valueCoding {
-        system = FhirUrls.System.Medication.ServiceType.BASE_URL
-        code = context.source[medication().serviceType()]
-      }
-    }
-  }
-
-  if (context.source[medication().ordinanceReleaseMethod()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.ORDINANCE_RELEASE_METHOD
-      valueString = context.source[medication().ordinanceReleaseMethod()]
-    }
-  }
-
-  if (context.source[medication().transcriptionist()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.TRANSCRIPTIONIST
-      valueString = context.source[medication().transcriptionist()]
-    }
-  }
-
-  if (context.source[medication().prescribedBy()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.PRESCRIBER
-      valueString = context.source[medication().prescribedBy()]
-    }
-  }
-
-  if (context.source[medication().prescription()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.IS_PRESCRIPTION
-      valueBoolean = context.source[medication().prescription()]
-    }
-  }
-
-  if (context.source[medication().resultDate()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.RESULTDATE
-      valueBoolean = context.source[medication().resultDate()]
-    }
-  }
-
   final def mapping = context.source[medication().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
   }
@@ -262,10 +141,8 @@ medicationRequest {
     if (lflvSpecialism) {
       final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
       if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
-        performer {
-          requester {
-            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
-          }
+        requester {
+          reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
         }
       }
     }
