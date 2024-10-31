@@ -1,0 +1,417 @@
+{
+  "id": 929,
+  "creationdate": "2024-10-21T15:38:07.367+02:00",
+  "entitySource": "CENTRAXX",
+  "initialEntitySource": "CENTRAXX",
+  "episode": {
+    "id": 1701,
+    "creationdate": "2024-10-16T09:44:34.900+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "patientcontainer": {
+      "id": 577,
+      "creationdate": "2022-03-09T13:34:12.213+01:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "urlFragment": "BB7E9309-3914-4EF4-A967-8A109940AEF0",
+      "patientId": 9,
+      "attributes": [],
+      "anonymousId": 7055562257442039360,
+      "organisationUnits": [
+        {
+          "id": 1,
+          "creationdate": "2021-09-09T14:34:12.443+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "code": "CentraXX",
+          "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+          "meddepartments": null,
+          "nameMultilingualEntries2": [
+            {
+              "id": 1,
+              "creationdate": "2021-09-09T14:34:12.447+02:00",
+              "entitySource": "CENTRAXX",
+              "initialEntitySource": "CENTRAXX",
+              "relatedTable": "ORGUNIT",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "lang": "de",
+              "value": "CENTRAXX",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            },
+            {
+              "id": 2,
+              "creationdate": "2021-09-09T14:34:12.447+02:00",
+              "entitySource": "CENTRAXX",
+              "initialEntitySource": "CENTRAXX",
+              "relatedTable": "ORGUNIT",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "lang": "en",
+              "value": "CENTRAXX",
+              "system": false,
+              "entityStatus": "ACTIVE"
+            }
+          ],
+          "descMultilingualEntries2": null
+        }
+      ],
+      "ethnicities": null,
+      "idContainer": [
+        {
+          "id": 3294,
+          "creationdate": "2023-11-07T15:40:25.923+01:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "psn": "3243",
+          "tentative": false,
+          "idContainerType": {
+            "id": 895,
+            "creationdate": "2023-10-13T10:14:35.937+02:00",
+            "entitySource": "XMLIMPORT",
+            "initialEntitySource": "XMLIMPORT",
+            "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+            "name": "Spender ID",
+            "code": "SID",
+            "decisive": true,
+            "editable": true,
+            "mandatory": true,
+            "pseudonym": true,
+            "system": false,
+            "kind": "PATIENT",
+            "allowUpdateForSync": false,
+            "isBlinded": false,
+            "sampleCategories": null,
+            "uniqueness": "SYSTEM"
+          }
+        },
+        {
+          "id": 1259422,
+          "creationdate": "2024-10-08T15:17:10.143+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "psn": "123536321",
+          "tentative": false,
+          "idContainerType": {
+            "id": 3071,
+            "creationdate": "2024-10-07T17:04:11.423+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "syncId": "80c8781f-9dda-4368-98c0-d04382acbcc1",
+            "name": "PID",
+            "code": "Patient.identifier:pid",
+            "decisive": true,
+            "editable": true,
+            "mandatory": false,
+            "pseudonym": false,
+            "system": false,
+            "kind": "PATIENT",
+            "allowUpdateForSync": false,
+            "isBlinded": false,
+            "sampleCategories": null,
+            "uniqueness": "SYSTEM"
+          }
+        }
+      ],
+      "patientStatus": {
+        "active": true
+      },
+      "episode": null,
+      "sampleCount": null,
+      "studyMembers": null,
+      "patientStudies": null,
+      "laborMappings": null,
+      "documentMappings": null,
+      "flexiFlagItems": null,
+      "patientMasterDataAnonymous": null,
+      "tumors": null,
+      "diagnoses": null,
+      "progresses": null,
+      "medProcedures": null,
+      "medications": null,
+      "consents": null,
+      "preexistingIllnesses": null,
+      "patientInsurances": null
+    },
+    "episodeId": 51,
+    "validFrom": "2024-10-16T00:00:00.000+02:00",
+    "validUntil": "2024-10-25T00:00:00.000+02:00",
+    "habitation": {
+      "id": 1,
+      "creationdate": "2021-09-09T14:34:12.443+02:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "code": "CentraXX",
+      "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+      "meddepartments": null,
+      "nameMultilingualEntries2": [
+        {
+          "id": 1,
+          "creationdate": "2021-09-09T14:34:12.447+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "relatedTable": "ORGUNIT",
+          "relatedColumn": "NAME",
+          "relatedOid": 1,
+          "lang": "de",
+          "value": "CENTRAXX",
+          "system": false,
+          "entityStatus": "ACTIVE"
+        },
+        {
+          "id": 2,
+          "creationdate": "2021-09-09T14:34:12.447+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "relatedTable": "ORGUNIT",
+          "relatedColumn": "NAME",
+          "relatedOid": 1,
+          "lang": "en",
+          "value": "CENTRAXX",
+          "system": false,
+          "entityStatus": "ACTIVE"
+        }
+      ],
+      "descMultilingualEntries2": null
+    },
+    "stayType": {
+      "id": 1,
+      "creationdate": "2021-10-27T13:49:13.017+02:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "syncId": "308DCC2F-C2A4-443A-8DE1-BBE4C841AD30",
+      "code": "AMBULANT",
+      "isHotlineDefault": false,
+      "multilinguals": [
+        {
+          "id": 4790,
+          "creationdate": "2021-10-27T13:49:13.017+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "language": "de",
+          "lastModifiedOn": "2021-10-27T13:49:13.017+02:00",
+          "shortName": "Abmbulant",
+          "name": "Abmbulant"
+        },
+        {
+          "id": 4791,
+          "creationdate": "2021-10-27T13:49:13.017+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "language": "en",
+          "lastModifiedOn": "2021-10-27T13:49:13.017+02:00",
+          "shortName": "Ambulant",
+          "name": "Ambulant"
+        }
+      ]
+    },
+    "anonymousId": 5477107430682697871,
+    "attributes": null,
+    "idContainer": [
+      {
+        "id": 172,
+        "creationdate": "2024-10-16T09:44:34.900+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "psn": "2134567",
+        "tentative": false,
+        "idContainerType": {
+          "id": 3072,
+          "creationdate": "2024-10-16T09:43:47.117+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "syncId": "e31d1436-006b-428a-97bd-dfb280de8fee",
+          "name": "Encounter.id",
+          "code": "Encounter.id",
+          "decisive": true,
+          "editable": true,
+          "mandatory": false,
+          "pseudonym": false,
+          "system": false,
+          "kind": "EPISODE",
+          "allowUpdateForSync": false,
+          "isBlinded": false,
+          "sampleCategories": null,
+          "uniqueness": "SYSTEM"
+        }
+      }
+    ],
+    "laborMappings": null,
+    "patientTransfers": null,
+    "status": "UNKNOWN"
+  },
+  "patientcontainer": {
+    "id": 577,
+    "creationdate": "2022-03-09T13:34:12.213+01:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "urlFragment": "BB7E9309-3914-4EF4-A967-8A109940AEF0",
+    "patientId": 9,
+    "attributes": [],
+    "anonymousId": 7055562257442039360,
+    "organisationUnits": [
+      {
+        "id": 1,
+        "creationdate": "2021-09-09T14:34:12.443+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "code": "CentraXX",
+        "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+        "meddepartments": null,
+        "nameMultilingualEntries2": [
+          {
+            "id": 1,
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "relatedTable": "ORGUNIT",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "lang": "de",
+            "value": "CENTRAXX",
+            "system": false,
+            "entityStatus": "ACTIVE"
+          },
+          {
+            "id": 2,
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "relatedTable": "ORGUNIT",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "lang": "en",
+            "value": "CENTRAXX",
+            "system": false,
+            "entityStatus": "ACTIVE"
+          }
+        ],
+        "descMultilingualEntries2": null
+      }
+    ],
+    "ethnicities": null,
+    "idContainer": [
+      {
+        "id": 3294,
+        "creationdate": "2023-11-07T15:40:25.923+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "psn": "3243",
+        "tentative": false,
+        "idContainerType": {
+          "id": 895,
+          "creationdate": "2023-10-13T10:14:35.937+02:00",
+          "entitySource": "XMLIMPORT",
+          "initialEntitySource": "XMLIMPORT",
+          "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+          "name": "Spender ID",
+          "code": "SID",
+          "decisive": true,
+          "editable": true,
+          "mandatory": true,
+          "pseudonym": true,
+          "system": false,
+          "kind": "PATIENT",
+          "allowUpdateForSync": false,
+          "isBlinded": false,
+          "sampleCategories": null,
+          "uniqueness": "SYSTEM"
+        }
+      },
+      {
+        "id": 1259422,
+        "creationdate": "2024-10-08T15:17:10.143+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "psn": "123536321",
+        "tentative": false,
+        "idContainerType": {
+          "id": 3071,
+          "creationdate": "2024-10-07T17:04:11.423+02:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "syncId": "80c8781f-9dda-4368-98c0-d04382acbcc1",
+          "name": "PID",
+          "code": "Patient.identifier:pid",
+          "decisive": true,
+          "editable": true,
+          "mandatory": false,
+          "pseudonym": false,
+          "system": false,
+          "kind": "PATIENT",
+          "allowUpdateForSync": false,
+          "isBlinded": false,
+          "sampleCategories": null,
+          "uniqueness": "SYSTEM"
+        }
+      }
+    ],
+    "patientStatus": {
+      "active": true
+    },
+    "episode": null,
+    "sampleCount": null,
+    "studyMembers": null,
+    "patientStudies": null,
+    "laborMappings": null,
+    "documentMappings": null,
+    "flexiFlagItems": null,
+    "patientMasterDataAnonymous": null,
+    "tumors": null,
+    "diagnoses": null,
+    "progresses": null,
+    "medProcedures": null,
+    "medications": null,
+    "consents": null,
+    "preexistingIllnesses": null,
+    "patientInsurances": null
+  },
+  "diagnosisDate": {
+    "date": "2024-10-21T00:00:00.000+02:00",
+    "precision": "DAY"
+  },
+  "diagnosisCode": "A01.0",
+  "diagnosisText": "Typhus abdominalis",
+  "admission": false,
+  "transfer": false,
+  "discharge": false,
+  "meddepartment": false,
+  "postoperative": false,
+  "permanent": false,
+  "causeOfDeath": false,
+  "diagnosisId": "giufewop",
+  "icdEntry": {
+    "id": 252635,
+    "creationdate": "2021-04-09T08:06:51.093+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "kind": "code",
+    "catalogue": {
+      "id": 15,
+      "creationdate": "2021-04-09T08:06:50.997+02:00",
+      "entitySource": "XMLIMPORT",
+      "initialEntitySource": "XMLIMPORT",
+      "syncId": "BDAEB403-E69C-4475-93EF-44D46DF6ABC8",
+      "name": "ICD-10",
+      "releaseDate": "2020-09-18T00:00:00.000+02:00",
+      "catalogueVersion": "2021",
+      "catalogueKind": "ICD-General",
+      "validFrom": "2021-01-01T00:00:00.000+01:00",
+      "previous": 0
+    },
+    "parent": null,
+    "code": "A01.0",
+    "preferred": "Typhus abdominalis",
+    "preferredLong": "Infektiöse Darmkrankheiten;\nTyphus abdominalis und Paratyphus;\nTyphus abdominalis",
+    "unifiedCode": "A010"
+  },
+  "diagnosisCertainty": "Z",
+  "attestationDate": {
+    "date": "2024-10-24T00:00:00.000+02:00",
+    "precision": "DAY"
+  },
+  "samples": [],
+  "initialDiagnosis": false,
+  "laborMappings": []
+}

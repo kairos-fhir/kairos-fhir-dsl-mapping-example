@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.person
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.ResearchSubject

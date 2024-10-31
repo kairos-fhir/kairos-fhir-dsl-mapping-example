@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.person
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
@@ -8,6 +8,8 @@ import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.PatientInsurance
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
+import de.kairos.fhir.centraxx.metamodel.enums.GenderType
+import org.hl7.fhir.r4.model.Enumerations
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
@@ -80,53 +82,63 @@ patient {
   }
 
   // Pid (Patient.identifier:pid)
-  // identifier.system is hospital specific
-  final def pidContainer = context.source[patient().patientContainer().idContainer()].find { final def idc ->
-    "Patient.identifier:pid" == idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
-  }
-
-  if (pidContainer) {
+  // export all identifiers
+  context.source[patient().patientContainer().idContainer()].each { final def idContainer ->
     identifier {
       type {
         coding {
-          system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+          system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
           code = "MR"
         }
       }
-      system = "Site-specific-hospital" // needs to be configured
-      value = pidContainer[IdContainer.PSN]
+      system = idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+      value = idContainer[IdContainer.PSN]
     }
   }
+
 
   humanName {
     use = "official"
     family = context.source[patient().lastName()]
-    given = List.of(context.source[patient().firstName()] as String)
+    given(context.source[patient().firstName()] as String)
   }
 
   if (context.source[patient().birthName()]) {
     humanName {
       use = "maiden"
       family = context.source[patient().birthName()]
-      given = List.of(context.source[patient().firstName()] as String)
+      given(context.source[patient().firstName()] as String)
     }
   }
 
+  final GenderType genderType = context.source[patient().genderType()] as GenderType
   gender {
-    value = toGender(context.source[patient().genderType()])
-    if (value.toString() == "other") {
+    if (genderType == GenderType.MALE) {
+      value = Enumerations.AdministrativeGender.MALE
+    } else if (genderType == GenderType.FEMALE) {
+      value = Enumerations.AdministrativeGender.MALE
+    } else if (genderType == GenderType.UNKNOWN) {
+      value = Enumerations.AdministrativeGender.UNKNOWN
+    } else if (genderType == GenderType.UNDEFINED) {
+      value = Enumerations.AdministrativeGender.OTHER
       extension {
         url = "http://fhir.de/StructureDefinition/gender-amtlich-de"
-        valueCoding {
-          system = "http://fhir.de/CodeSystem/gender-amtlich-de"
-          code = "D"
-          display = "divers"
-        }
+        valueString = "X"
       }
+    } else if (genderType == GenderType.X) {
+      value = Enumerations.AdministrativeGender.OTHER
+      extension {
+        url = "http://fhir.de/StructureDefinition/gender-amtlich-de"
+        valueString = "D"
+      }
+    } else {
+      value = Enumerations.AdministrativeGender.OTHER
     }
   }
 
-  birt = context.source[patient().birthdate().date()]
+  if (context.source[patient().birthdate()] && context.source[patient().birthdate().date()]) {
+    birthDate = context.source[patient().birthdate().date()]
+  }
 
   final def dateOfDeath = context.source[patient().dateOfDeath()]
 
@@ -177,19 +189,6 @@ static String getLineString(final Map address) {
   final def keys = [PatientAddress.STREET, PatientAddress.STREETNO]
   final def addressParts = keys.collect { return address[it] }.findAll()
   return addressParts.findAll() ? addressParts.join(" ") : null
-}
-
-static def toGender(final Object cxx) {
-  switch (cxx) {
-    case 'MALE':
-      return "male"
-    case 'FEMALE':
-      return "female"
-    case 'UNKNOWN':
-      return "unknown"
-    default:
-      return "other"
-  }
 }
 
 static String getMaritalStatusCode(final maritalStatus) {

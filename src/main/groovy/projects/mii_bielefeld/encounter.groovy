@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.fall
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -14,7 +14,6 @@ import de.kairos.fhir.centraxx.metamodel.StayType
 import org.hl7.fhir.r4.model.Encounter
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
-
 /**
  * @author Jonas Küttner
  * @since kairos-fhir-dsl v.1.39.0, CXX v.2024.4.1, v.2024.5.0
@@ -34,12 +33,8 @@ encounter {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
   }
 
-  //Created Episode Id in CXX called visit number
-  final def encounterId = context.source[episode().idContainer()]?.find { final idc ->
-    "Encounter.id" == idc[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
-  }
-
-  if (encounterId) {
+  //Create Identifier for all episode Ids
+  context.source[episode().idContainer()]?.each { final def episodeIdContainer ->
     identifier {
       type {
         coding {
@@ -47,8 +42,8 @@ encounter {
           code = "VN"
         }
       }
-      value = encounterId[EpisodeIdContainer.PSN]
-      system = "urn:centraxx" // Haus-spezifisch
+      value = episodeIdContainer[EpisodeIdContainer.PSN]
+      system = episodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] // Haus-spezifisch // could be coded by the IdContainerType
     }
   }
 
@@ -61,7 +56,6 @@ encounter {
       display = stayType[StayType.MULTILINGUALS].find { final def ml -> ml[Multilingual.LANGUAGE] == "de" }?.getAt(Multilingual.SHORT_NAME)
     }
   }
-
 
   subject {
     reference = "Patient/" + context.source[episode().patientContainer().id()]

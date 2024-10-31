@@ -1,0 +1,190 @@
+package projects.mii_bielefeld
+
+import common.AbstractDslBuilderTest
+import de.kairos.fhir.centraxx.metamodel.Country
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
+import de.kairos.fhir.centraxx.metamodel.PatientAddress
+import de.kairos.fhir.centraxx.metamodel.PatientInsurance
+import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
+import de.kairos.fhir.dsl.r4.context.Context
+import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
+import groovy.json.JsonSlurper
+import org.hl7.fhir.r4.model.Address
+import org.hl7.fhir.r4.model.DateTimeType
+import org.hl7.fhir.r4.model.HumanName
+import org.hl7.fhir.r4.model.Identifier
+import org.hl7.fhir.r4.model.Patient
+import org.junit.jupiter.api.Assumptions
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
+
+import javax.annotation.Nonnull
+
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+import static org.junit.jupiter.api.Assertions.assertEquals
+import static org.junit.jupiter.api.Assertions.assertNotNull
+import static org.junit.jupiter.api.Assertions.assertNull
+import static org.junit.jupiter.api.Assertions.assertTrue
+
+class PatientExportScriptTest extends AbstractDslBuilderTest {
+  static Patient result
+  static Context context
+
+  @BeforeAll
+  static void setUp() {
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/mii_bielefeld/patient.groovy");
+    final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test");
+
+    context = new Context(createTestData())
+    result = (Patient) runner.run(context)
+  }
+
+  @Test
+  void testThatGKVIdentifierIsSet() {
+    final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
+      CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
+    }
+
+    Assumptions.assumeTrue(gkvInsurance != null)
+
+    final Identifier identifier = result.getIdentifier().find {
+      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "GKV")
+    }
+
+    assertNotNull(identifier)
+
+    assertEquals("http://fhir.de/sid/gkv/kvid-10", identifier.getSystem())
+    assertEquals(gkvInsurance[PatientInsurance.POLICE_NUMBER], identifier.getValue())
+
+    assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
+
+    assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
+        identifier.getAssigner().getIdentifier().getValue())
+
+    assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
+  }
+
+  @Test
+  void testThatPKVIdentifierIsSet() {
+    final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
+      CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
+    }
+
+    Assumptions.assumeTrue(pkvInsurance != null)
+
+    final Identifier identifier = result.getIdentifier().find {
+      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "PKV")
+    }
+
+    assertNotNull(identifier)
+
+    assertNull(identifier.getSystem())
+    assertEquals(pkvInsurance[PatientInsurance.POLICE_NUMBER], identifier.getValue())
+
+    assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
+
+    assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
+        identifier.getAssigner().getIdentifier().getValue())
+
+    assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
+  }
+
+  @Test
+  void testThatIdContainerIdentifiersAreExported() {
+    context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
+      final def identifier = result.getIdentifier().find {
+        it.hasSystem() && it.getSystem().equals(idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE])
+      }
+
+      assertNotNull(identifier)
+      assertTrue(identifier.hasType() && identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
+      assertEquals(idContainer[IdContainer.PSN], identifier.getValue())
+    }
+  }
+
+  @Test
+  void testThatPatientAddressesAreSet() {
+    context.source[patient().addresses()].each { final def patAd ->
+      Assumptions.assumingThat(patAd[PatientAddress.STREET] != null, {
+        final Address address = result.getAddress().find {
+          it.hasLine() &&
+              (!patAd[PatientAddress.STREET] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREET] as String)) &&
+              (!patAd[PatientAddress.STREETNO] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREETNO] as String)) &&
+              (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+              (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
+              (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
+        }
+
+        assertNotNull(address)
+        assertEquals(Address.AddressType.BOTH, address.getType())
+
+      })
+
+      Assumptions.assumingThat(patAd[PatientAddress.PO_BOX] != null, {
+        final Address address = result.getAddress().find {
+          it.hasLine() &&
+              (!patAd[PatientAddress.PO_BOX] in it.getLine().get(0)) &&
+              (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+              (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
+              (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
+        }
+        assertNotNull(address)
+        assertEquals(Address.AddressType.POSTAL, address.getType())
+      })
+    }
+  }
+
+  @Test
+  void testThatBirthDateIsSet() {
+    Assumptions.assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
+    assertNotNull(result.getBirthDate())
+    assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getValue(),
+        result.getBirthDate())
+  }
+
+  @Test
+  void testThatDeceasedDateIsSet() {
+    Assumptions.assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
+    assertNotNull(result.getDeceasedDateTimeType())
+    assertEquals(new DateTimeType(context.source[patient().dateOfDeath().date()] as String).getValue(),
+        result.getDeceasedDateTimeType().getValue())
+  }
+
+  @Test
+  void testThatNamesIsSet() {
+    Assumptions.assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
+
+    final HumanName name = result.getName().find {
+      it.use == HumanName.NameUse.OFFICIAL
+    }
+
+    assertNotNull(name)
+
+    Assumptions.assumeTrue(context.source[patient().firstName()] != name)
+    assertEquals(context.source[patient().firstName()], name.getGivenAsSingleString())
+
+    Assumptions.assumeTrue(context.source[patient().lastName()] != null)
+    assertEquals(context.source[patient().lastName()], name.getFamily())
+  }
+
+  @Test
+  void testThatBirthNamesIsSet() {
+    Assumptions.assumeTrue(context.source[patient().birthName()] != null)
+
+    final HumanName name = result.getName().find {
+      it.use == HumanName.NameUse.MAIDEN
+    }
+
+    assertNotNull(name)
+    assertEquals(context.source[patient().birthName()], name.getFamily())
+  }
+
+  @Nonnull
+  static Map<String, Object> createTestData() throws FileNotFoundException {
+    final FileInputStream is = new FileInputStream("src/test/resources/projects/mii_bielefeld/Patient.json");
+    return new JsonSlurper().parse(is) as Map<String, Object>
+  }
+}

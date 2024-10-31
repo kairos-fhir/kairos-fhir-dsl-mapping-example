@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.person
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
