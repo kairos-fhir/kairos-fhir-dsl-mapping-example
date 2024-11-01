@@ -1,4 +1,5 @@
-{
+[
+  {
   "id": 929,
   "creationdate": "2024-10-21T15:38:07.367+02:00",
   "entitySource": "CENTRAXX",
@@ -415,3 +416,4 @@
   "initialDiagnosis": false,
   "laborMappings": []
 }
+]

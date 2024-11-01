@@ -1,4 +1,4 @@
-{
+[{
   "id" : 2315,
   "initialEntitySource" : "CENTRAXX",
   "patientcontainer" : {
@@ -444,3 +444,4 @@
     "masterdata" : 1806
   } ]
 }
+]

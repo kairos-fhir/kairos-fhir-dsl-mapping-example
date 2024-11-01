@@ -1,4 +1,5 @@
- {
+[
+  {
   "id" : 47,
   "creationdate" : "2024-05-24T11:22:46.947+02:00",
   "entitySource" : "CENTRAXX",
@@ -190,3 +191,4 @@
     "recruitResults" : null
   }
 }
+]

@@ -57,8 +57,6 @@ researchSubject {
     reference = "Consent/" + context.source[patientStudy().consent().id()]
   }
 
-  assignedArm = context.source[patientStudy().studyArm().name()]
-
 
   final def memberFrom = context.source[patientStudy().memberFrom()]
   final def memberUntil = context.source[patientStudy().memberUntil()]

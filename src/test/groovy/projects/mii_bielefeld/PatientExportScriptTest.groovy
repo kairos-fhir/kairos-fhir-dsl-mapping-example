@@ -1,6 +1,8 @@
 package projects.mii_bielefeld
 
-import common.AbstractDslBuilderTest
+import common.AbstractGroovyScriptTest
+import common.GroovyScriptTest
+import common.TestResources
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -9,18 +11,12 @@ import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.PatientInsurance
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.dsl.r4.context.Context
-import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
-import groovy.json.JsonSlurper
 import org.hl7.fhir.r4.model.Address
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
 import org.hl7.fhir.r4.model.Patient
 import org.junit.jupiter.api.Assumptions
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-
-import javax.annotation.Nonnull
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -29,28 +25,21 @@ import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertNull
 import static org.junit.jupiter.api.Assertions.assertTrue
 
-class PatientExportScriptTest extends AbstractDslBuilderTest {
-  static Patient result
-  static Context context
+@TestResources(
+    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/patient.groovy",
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/Patient.json"
+)
+class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
 
-  @BeforeAll
-  static void setUp() {
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/mii_bielefeld/patient.groovy");
-    final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test");
-
-    context = new Context(createTestData())
-    result = (Patient) runner.run(context)
-  }
-
-  @Test
-  void testThatGKVIdentifierIsSet() {
+  @GroovyScriptTest
+  void testThatGKVIdentifierIsSet(final Context context, final Patient resource) {
     final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
 
     Assumptions.assumeTrue(gkvInsurance != null)
 
-    final Identifier identifier = result.getIdentifier().find {
+    final Identifier identifier = resource.getIdentifier().find {
       it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "GKV")
     }
 
@@ -67,15 +56,15 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
-  @Test
-  void testThatPKVIdentifierIsSet() {
+  @GroovyScriptTest
+  void testThatPKVIdentifierIsSet(final Context context, final Patient resource) {
     final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
 
     Assumptions.assumeTrue(pkvInsurance != null)
 
-    final Identifier identifier = result.getIdentifier().find {
+    final Identifier identifier = resource.getIdentifier().find {
       it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "PKV")
     }
 
@@ -92,10 +81,10 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
-  @Test
-  void testThatIdContainerIdentifiersAreExported() {
+  @GroovyScriptTest
+  void testThatIdContainerIdentifiersAreExported(final Context context, final Patient resource) {
     context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
-      final def identifier = result.getIdentifier().find {
+      final def identifier = resource.getIdentifier().find {
         it.hasSystem() && it.getSystem().equals(idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE])
       }
 
@@ -105,11 +94,11 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     }
   }
 
-  @Test
-  void testThatPatientAddressesAreSet() {
+  @GroovyScriptTest
+  void testThatPatientAddressesAreSet(final Context context, final Patient resource) {
     context.source[patient().addresses()].each { final def patAd ->
       Assumptions.assumingThat(patAd[PatientAddress.STREET] != null, {
-        final Address address = result.getAddress().find {
+        final Address address = resource.getAddress().find {
           it.hasLine() &&
               (!patAd[PatientAddress.STREET] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREET] as String)) &&
               (!patAd[PatientAddress.STREETNO] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREETNO] as String)) &&
@@ -124,7 +113,7 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
       })
 
       Assumptions.assumingThat(patAd[PatientAddress.PO_BOX] != null, {
-        final Address address = result.getAddress().find {
+        final Address address = resource.getAddress().find {
           it.hasLine() &&
               (!patAd[PatientAddress.PO_BOX] in it.getLine().get(0)) &&
               (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
@@ -137,27 +126,27 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     }
   }
 
-  @Test
-  void testThatBirthDateIsSet() {
+  @GroovyScriptTest
+  void testThatBirthDateIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
-    assertNotNull(result.getBirthDate())
+    assertNotNull(resource.getBirthDate())
     assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getValue(),
-        result.getBirthDate())
+        resource.getBirthDate())
   }
 
-  @Test
-  void testThatDeceasedDateIsSet() {
+  @GroovyScriptTest
+  void testThatDeceasedDateIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
-    assertNotNull(result.getDeceasedDateTimeType())
+    assertNotNull(resource.getDeceasedDateTimeType())
     assertEquals(new DateTimeType(context.source[patient().dateOfDeath().date()] as String).getValue(),
-        result.getDeceasedDateTimeType().getValue())
+        resource.getDeceasedDateTimeType().getValue())
   }
 
-  @Test
-  void testThatNamesIsSet() {
+  @GroovyScriptTest
+  void testThatNamesIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
 
-    final HumanName name = result.getName().find {
+    final HumanName name = resource.getName().find {
       it.use == HumanName.NameUse.OFFICIAL
     }
 
@@ -170,11 +159,11 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     assertEquals(context.source[patient().lastName()], name.getFamily())
   }
 
-  @Test
-  void testThatBirthNamesIsSet() {
+  @GroovyScriptTest
+  void testThatBirthNamesIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().birthName()] != null)
 
-    final HumanName name = result.getName().find {
+    final HumanName name = resource.getName().find {
       it.use == HumanName.NameUse.MAIDEN
     }
 
@@ -182,9 +171,4 @@ class PatientExportScriptTest extends AbstractDslBuilderTest {
     assertEquals(context.source[patient().birthName()], name.getFamily())
   }
 
-  @Nonnull
-  static Map<String, Object> createTestData() throws FileNotFoundException {
-    final FileInputStream is = new FileInputStream("src/test/resources/projects/mii_bielefeld/Patient.json");
-    return new JsonSlurper().parse(is) as Map<String, Object>
-  }
 }

@@ -1,4 +1,4 @@
-{
+[{
   "id": 1701,
   "creationdate": "2024-10-16T09:44:34.900+02:00",
   "entitySource": "CENTRAXX",
@@ -309,3 +309,4 @@
   ],
   "status": "UNKNOWN"
 }
+]

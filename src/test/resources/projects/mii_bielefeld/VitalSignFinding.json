@@ -1,4 +1,4 @@
-{
+[{
   "id" : 40618,
   "creationdate" : "2024-10-21T16:38:18.263+02:00",
   "entitySource" : "CENTRAXX",
@@ -442,3 +442,4 @@
   },
   "mappingType" : "PATIENTLABORMAPPING"
 }
+]
