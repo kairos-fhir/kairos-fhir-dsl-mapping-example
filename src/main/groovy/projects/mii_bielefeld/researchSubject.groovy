@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.person
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.ResearchSubject
@@ -9,7 +9,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
 /**
  * Represented by CXX StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
- * @author Mike Wähnert
+ * @author Jonas Küttner
  * @since v.1.38.0, CXX.v.2024.4.0
  */
 researchSubject {
@@ -52,13 +52,9 @@ researchSubject {
     reference = "Patient/" + context.source[patientStudy().patientContainer().id()]
   }
 
-
   consent {
     reference = "Consent/" + context.source[patientStudy().consent().id()]
   }
-
-  assignedArm = context.source[patientStudy().studyArm().name()]
-
 
   final def memberFrom = context.source[patientStudy().memberFrom()]
   final def memberUntil = context.source[patientStudy().memberUntil()]
