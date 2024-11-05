@@ -1,12 +1,13 @@
 package projects.mii_bielefeld
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Condition
 import org.hl7.fhir.r4.model.DateTimeType
+import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 import static org.junit.jupiter.api.Assertions.assertEquals
@@ -15,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/condition.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/Diagnosis.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/condition.json"
 )
-class ConditionExportScriptTest extends AbstractGroovyScriptTest<Condition> {
+class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void thatConditionCodeIsExported(final Context context, final Condition resource) {
     assertTrue(resource.hasCode())
 
@@ -31,7 +32,7 @@ class ConditionExportScriptTest extends AbstractGroovyScriptTest<Condition> {
     assertEquals(context.source[diagnosis().icdEntry().catalogue().catalogueVersion()], icdCoding.getVersion())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatRecordedDateIsSet(final Context context, final Condition resource) {
     assertTrue(resource.hasRecordedDate())
 
@@ -39,7 +40,7 @@ class ConditionExportScriptTest extends AbstractGroovyScriptTest<Condition> {
         resource.getRecordedDate())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatOnsetDateTimeIsSet(final Context context, final Condition resource) {
     assertTrue(resource.hasOnsetDateTimeType())
 
@@ -47,8 +48,11 @@ class ConditionExportScriptTest extends AbstractGroovyScriptTest<Condition> {
         resource.getOnsetDateTimeType().getValue())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatAssertedDateIsSet(final Context context, final Condition resource) {
+
+    Assumptions.assumeTrue(context.source[diagnosis().attestationDate()] && context.source[diagnosis().attestationDate().date()])
+
     assertTrue(resource.hasExtension("http://hl7.org/fhir/StructureDefinition/condition-assertedDate"))
 
     assertEquals(new DateTimeType(context.source[diagnosis().attestationDate().date()] as String).getValue(),
@@ -56,7 +60,7 @@ class ConditionExportScriptTest extends AbstractGroovyScriptTest<Condition> {
   }
 
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatSubjectIsSet(final Context context, final Condition resource) {
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[diagnosis().patientContainer().id()], resource.getSubject().getReference())

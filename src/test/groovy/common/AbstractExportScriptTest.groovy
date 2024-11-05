@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets
 import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class AbstractGroovyScriptTest<E extends DomainResource> {
+abstract class AbstractExportScriptTest<E extends DomainResource> {
 
   public static final String METHOD_SOURCE = "getTestData"
   private List<Arguments> mappingResults

@@ -1,7 +1,7 @@
 package projects.mii_bielefeld
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
@@ -27,11 +27,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/patient.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/Patient.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/patient.json"
 )
-class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
+class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatGKVIdentifierIsSet(final Context context, final Patient resource) {
     final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
@@ -56,7 +56,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
     assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatPKVIdentifierIsSet(final Context context, final Patient resource) {
     final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
@@ -81,7 +81,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
     assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatIdContainerIdentifiersAreExported(final Context context, final Patient resource) {
     context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
       final def identifier = resource.getIdentifier().find {
@@ -94,7 +94,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
     }
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatPatientAddressesAreSet(final Context context, final Patient resource) {
     context.source[patient().addresses()].each { final def patAd ->
       Assumptions.assumingThat(patAd[PatientAddress.STREET] != null, {
@@ -126,7 +126,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
     }
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatBirthDateIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
     assertNotNull(resource.getBirthDate())
@@ -134,7 +134,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
         resource.getBirthDate())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatDeceasedDateIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
     assertNotNull(resource.getDeceasedDateTimeType())
@@ -142,7 +142,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
         resource.getDeceasedDateTimeType().getValue())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatNamesIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
 
@@ -159,7 +159,7 @@ class PatientExportScriptTest extends AbstractGroovyScriptTest<Patient> {
     assertEquals(context.source[patient().lastName()], name.getFamily())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatBirthNamesIsSet(final Context context, final Patient resource) {
     Assumptions.assumeTrue(context.source[patient().birthName()] != null)
 
