@@ -6,20 +6,11 @@
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
     },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "vitalstatus",
-      "exportToFhirResource": "Observation"
-    },
+
     {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
-    },
-    {
-      "selectFromCxxEntity": "PATIENT_STUDY",
-      "transformByTemplate": "researchSubject",
-      "exportToFhirResource": "ResearchSubject"
     },
     {
       "selectFromCxxEntity": "DIAGNOSIS",
@@ -30,6 +21,26 @@
       "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
       "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "vitalstatus",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_STUDY",
+      "transformByTemplate": "researchSubject",
+      "exportToFhirResource": "ResearchSubject"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
+      "transformByTemplate": "observation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
