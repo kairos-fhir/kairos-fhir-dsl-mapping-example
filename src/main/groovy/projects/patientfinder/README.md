@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-11-06
+* moved telecom information from Patient.contact.telecom to Patient.telecom
+
 ## 2024-10-17
 * Added the export of MedicationRequest requester from LaborMapping
 
