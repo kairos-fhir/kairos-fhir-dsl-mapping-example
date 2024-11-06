@@ -1,7 +1,6 @@
-package projects.mii_bielefeld.modul.diagnose
+package projects.mii_bielefeld
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
-
 /**
  * Represented by a CXX DIAGNOSIS
  * @author Jonas Küttner, Mike Wähnert
@@ -20,6 +19,10 @@ condition {
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
     versionId = "2.0.0"
+  }
+
+  subject {
+    reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
   if (context.source[diagnosis().icdEntry()]) {

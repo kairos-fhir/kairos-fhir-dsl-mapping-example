@@ -1,4 +1,4 @@
-package projects.mii_bielefeld.modul.prozedur
+package projects.mii_bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
@@ -52,7 +52,7 @@ procedure {
   }
 
   subject {
-    reference = "Procedure/" + context.source[medProcedure().patientContainer().id()]
+    reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
   }
 
   // set EPA.procedureDate is mandatory

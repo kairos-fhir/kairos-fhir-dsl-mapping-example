@@ -81,8 +81,6 @@ diagnosticReport {
 
   conclusion = interpretation ? interpretation[LaborFindingLaborValue.STRING_VALUE] : null
 
-
-
 }
 
 static String normalizeDate(final String dateTimeString) {
