@@ -1,24 +1,51 @@
 package projects.mii_bielefeld
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
+import de.kairos.fhir.centraxx.metamodel.StudyMember
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.ResearchSubject
 import org.junit.jupiter.api.Assumptions
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/researchSubject.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/PatientStudy.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/researchSubject.json"
 )
-class PatientStudyExportScriptTest extends AbstractGroovyScriptTest<ResearchSubject> {
+class PatientStudyExportScriptTest extends AbstractExportScriptTest<ResearchSubject> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
+  void testThatIdentifierIsSet(final Context context, final ResearchSubject resource) {
+
+    Assumptions.assumeTrue(context.source[patientStudy().patientContainer().studyMembers()].find() != null, "no StudyMembers")
+
+
+    final def studyMember = context.source[patientStudy().patientContainer().studyMembers()].find { final def sm ->
+      sm[StudyMember.STUDY][ID] == context.source[patientStudy().flexiStudy().id()]
+    }
+
+    Assumptions.assumeTrue(studyMember != null, "No StudyMember for PatientStudy FlexiStudy found.")
+
+    assertTrue(resource.hasIdentifier())
+
+    assertTrue(resource.getIdentifierFirstRep().hasType())
+
+    assertTrue(resource.getIdentifierFirstRep().getType().hasCoding(
+        "http://terminology.hl7.org/CodeSystem/v2-0203",
+        "ANON"
+    ))
+
+    assertEquals(studyMember[StudyMember.STUDY_MEMBER_ID] as String, resource.getIdentifierFirstRep().getValue())
+
+  }
+
+  @ExportScriptTest
   void testThatPeriodIsSet(final Context context, final ResearchSubject resource) {
     Assumptions.assumeTrue(context.source[patientStudy().memberFrom()] || context.source[patientStudy().memberFrom()])
 
@@ -40,7 +67,7 @@ class PatientStudyExportScriptTest extends AbstractGroovyScriptTest<ResearchSubj
         })
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatStudyIsSet(final Context context, final ResearchSubject resource) {
     assertEquals(
         "ResearchStudy/" + context.source[patientStudy().flexiStudy().id()],
@@ -48,7 +75,7 @@ class PatientStudyExportScriptTest extends AbstractGroovyScriptTest<ResearchSubj
     )
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatPatientIsSet(final Context context, final ResearchSubject resource) {
     assertEquals(
         "Patient/" + context.source[patientStudy().patientContainer().id()],
@@ -56,7 +83,7 @@ class PatientStudyExportScriptTest extends AbstractGroovyScriptTest<ResearchSubj
     )
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatConsentIsSet(final Context context, final ResearchSubject resource) {
     assertEquals(
         "Consent/" + context.source[patientStudy().consent().id()],

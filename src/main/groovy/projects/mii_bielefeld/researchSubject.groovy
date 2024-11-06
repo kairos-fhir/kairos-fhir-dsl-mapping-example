@@ -1,11 +1,11 @@
 package projects.mii_bielefeld
 
+
 import de.kairos.fhir.centraxx.metamodel.StudyMember
 import org.hl7.fhir.r4.model.ResearchSubject
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
-
 /**
  * Represented by CXX StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
@@ -39,7 +39,7 @@ researchSubject {
           code = "ANON"
         }
       }
-      system = "urn:centraxx" // site specific
+      system = "urn:centraxx"
       value = studyMember[StudyMember.STUDY_MEMBER_ID]
     }
   }

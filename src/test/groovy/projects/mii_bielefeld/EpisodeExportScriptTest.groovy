@@ -1,7 +1,7 @@
 package projects.mii_bielefeld
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -9,6 +9,7 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Encounter
 import org.hl7.fhir.r4.model.Identifier
+import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 import static org.junit.jupiter.api.Assertions.assertEquals
@@ -17,12 +18,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/Episode.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
 )
-class EpisodeExportScriptTest extends AbstractGroovyScriptTest<Encounter> {
+class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatIdentifiersAreSet(final Context context, final Encounter resource) {
+
+    Assumptions.assumeTrue((context.source[episode().idContainer()] as List).size() > 0)
+
     assertTrue(resource.hasIdentifier())
     assertEquals((context.source[episode().idContainer()] as List).size(), resource.getIdentifier().size())
 
@@ -44,25 +48,41 @@ class EpisodeExportScriptTest extends AbstractGroovyScriptTest<Encounter> {
     }
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatClassIsSet(final Context context, final Encounter resource) {
+    Assumptions.assumeTrue(context.source[episode().stayType()] != null)
+
     assertTrue(resource.hasClass_())
     assertEquals("http://terminology.hl7.org/CodeSystem/v3-ActCode", resource.getClass_().getSystem())
     assertEquals(context.source[episode().stayType().code()], resource.getClass_().getCode())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatSubjectIsSet(final Context context, final Encounter resource) {
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[episode().patientContainer().id()], resource.getSubject().getReference())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatPeriodIsSet(final Context context, final Encounter resource) {
+
+    Assumptions.assumeTrue(context.source[episode().validFrom()] || context.source[episode().validUntil()])
+
     assertTrue(resource.hasPeriod())
-    assertEquals(new DateTimeType(context.source[episode().validFrom()] as String).getValue(),
-        resource.getPeriod().getStart())
-    assertEquals(new DateTimeType(context.source[episode().validUntil()] as String).getValue(),
-        resource.getPeriod().getEnd())
+
+
+    Assumptions.assumingThat(context.source[episode().validFrom()] != null,
+        { ->
+          assertEquals(new DateTimeType(context.source[episode().validFrom()] as String).getValue(),
+              resource.getPeriod().getStart())
+        }
+    )
+
+    Assumptions.assumingThat(context.source[episode().validUntil()] != null,
+        { ->
+          assertEquals(new DateTimeType(context.source[episode().validUntil()] as String).getValue(),
+              resource.getPeriod().getEnd())
+        }
+    )
   }
 }

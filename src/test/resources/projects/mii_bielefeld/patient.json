@@ -1,4 +1,4 @@
-[{
+[ {
   "id" : 2315,
   "initialEntitySource" : "CENTRAXX",
   "patientcontainer" : {
@@ -247,6 +247,51 @@
       "consentPartsOnly" : false,
       "declined" : false,
       "pseudonym" : false
+    }, {
+      "id" : 249,
+      "creationdate" : "2024-11-05T17:44:05.123+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "b6ff370e-cef1-42e8-8c66-04b7be22a96e",
+      "consentType" : {
+        "id" : 76,
+        "creationdate" : "2023-12-22T12:23:52.427+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+        "code" : "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+        "multilinguals" : [ {
+          "id" : 5433,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "en",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Study consent_NEW_CODE_BUDGET_TEST",
+          "name" : "Study consent_NEW_CODE_BUDGET_TEST"
+        }, {
+          "id" : 5432,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "de",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+          "name" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+        } ],
+        "flexiStudy" : null,
+        "policies" : null,
+        "system" : true,
+        "entityStatus" : "ACTIVE"
+      },
+      "validFrom" : {
+        "date" : "2024-11-04T00:00:00.000+01:00",
+        "precision" : "DAY"
+      },
+      "consentElements" : null,
+      "consentPartsOnly" : false,
+      "declined" : false,
+      "pseudonym" : false
     } ],
     "preexistingIllnesses" : null,
     "patientInsurances" : [ {
@@ -443,5 +488,4 @@
     "state" : null,
     "masterdata" : 1806
   } ]
-}
-]
+} ]

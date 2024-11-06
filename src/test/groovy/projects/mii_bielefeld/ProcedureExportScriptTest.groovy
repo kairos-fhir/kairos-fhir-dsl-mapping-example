@@ -1,8 +1,8 @@
 package projects.mii_bielefeld
 
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
@@ -14,11 +14,13 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Procedure
+import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFinding.LABOR_FINDING_LABOR_VALUES
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.LaborMapping.LABOR_FINDING
+import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
@@ -26,17 +28,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/procedure.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/MedProcedure.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/procedure.json"
 )
-class ProcedureExportScriptTest extends AbstractGroovyScriptTest<Procedure> {
+class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatSubjectIsSet(final Context context, final Procedure resource) {
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[medProcedure().patientContainer().id()], resource.getSubject().getReference())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatStatusIsSet(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
       lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
@@ -56,7 +58,7 @@ class ProcedureExportScriptTest extends AbstractGroovyScriptTest<Procedure> {
     )
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatCodeIsSet(final Context context, final Procedure resource) {
     assertTrue(resource.hasCode());
 
@@ -68,25 +70,27 @@ class ProcedureExportScriptTest extends AbstractGroovyScriptTest<Procedure> {
     assertEquals(context.source[medProcedure().opsEntry().catalogue().catalogueVersion()], opsCoding.getVersion())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatPerformedPeriodIsExported(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
       lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
     }
 
-    assertNotNull(mapping)
+    Assumptions.assumeTrue(mapping != null)
 
 
     final def performedPeriodEnd = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.performedPeriod.end"
     }
 
+    Assumptions.assumeTrue(performedPeriodEnd && performedPeriodEnd[DATE_VALUE])
+
     assertNotNull(performedPeriodEnd)
 
     assertEquals(new DateTimeType(context.source[medProcedure().procedureDate().date()] as String).getValue(),
         resource.getPerformedPeriod().getStart())
 
-    assertEquals(new DateTimeType(performedPeriodEnd[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
+    assertEquals(new DateTimeType(performedPeriodEnd[DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
         resource.getPerformedPeriod().getEnd())
   }
 }

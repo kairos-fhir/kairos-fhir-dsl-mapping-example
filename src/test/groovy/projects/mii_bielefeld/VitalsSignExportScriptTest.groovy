@@ -1,7 +1,7 @@
 package projects.mii_bielefeld
 
-import common.AbstractGroovyScriptTest
-import common.GroovyScriptTest
+import common.AbstractExportScriptTest
+import common.ExportScriptTest
 import common.TestResources
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -19,17 +19,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/vitalstatus.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/VitalSignFinding.json"
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/vitalstatus.json"
 )
-class VitalsSignExportScriptTest extends AbstractGroovyScriptTest<Observation> {
+class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatSatusIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     assertEquals(Observation.ObservationStatus.FINAL, resource.getStatus())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatCategoryIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     assertTrue(resource.hasCategory())
 
     assertTrue(resource.getCategory().any { final CodeableConcept codeableConcept ->
@@ -37,8 +41,10 @@ class VitalsSignExportScriptTest extends AbstractGroovyScriptTest<Observation> {
     })
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatCodeIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     assertTrue(resource.hasCode())
 
     assertTrue(resource.getCode().any {
@@ -46,14 +52,18 @@ class VitalsSignExportScriptTest extends AbstractGroovyScriptTest<Observation> {
     })
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatSubjectIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[laborMapping().relatedPatient().id()], resource.getSubject().getReference())
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatEffectiveDateTimeIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     Assumptions.assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
         context.source[laborMapping().laborFinding().findingDate().date()])
 
@@ -65,8 +75,10 @@ class VitalsSignExportScriptTest extends AbstractGroovyScriptTest<Observation> {
     )
   }
 
-  @GroovyScriptTest
+  @ExportScriptTest
   void testThatValueIsSet(final Context context, final Observation resource) {
+    checkLaborMethod(context)
+
     final lflvVS = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "Vitalstatus.valueCodeableConcept.coding.code"
     }
@@ -91,4 +103,7 @@ class VitalsSignExportScriptTest extends AbstractGroovyScriptTest<Observation> {
         })
   }
 
+  private static void checkLaborMethod(final Context context){
+    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
+  }
 }
