@@ -9,6 +9,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
+import de.kairos.fhir.dsl.r4.context.Context
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
@@ -38,19 +39,15 @@ final Map PROFILE_TYPES = [
  */
 medication {
 
-  if (context.source[medication().entitySource()] != "SACT" &&
-      context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
+  if (context.source[medication().entitySource()] != "SACT") {
     return
   }
 
-  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
-  }
+  final def mapping = getLaborMapping(context)
 
   final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   id = "Medication/" + context.source[medication().id()]
-
 
   code {
     coding {
@@ -92,7 +89,6 @@ medication {
         }
       }
     }
-
   }
 }
 
@@ -104,8 +100,6 @@ medication {
 static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
-
-
 
 static boolean isFakeEpisode(final def episode) {
   if (episode == null) {
@@ -135,5 +129,21 @@ static Map<String, Map> getLflvMap(final def mapping, final Map<String, String> 
     }
   }
   return lflvMap
+}
+
+static def getLaborMapping(final Context context){
+  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
+    return context.source[medication().laborMappings()].find { final def lm ->
+      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
+    }
+  }
+
+  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.VER) {
+    return context.source[medication().laborMappings()].find { final def lm ->
+      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
+    }
+  }
+
+  return null
 }
 

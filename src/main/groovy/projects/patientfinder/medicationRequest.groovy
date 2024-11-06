@@ -21,8 +21,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 /**
  * Represents a CXX Medication
  *
- * @author Mike Wähnert
- * @since v.1.26.0, CXX.v.2023.5.0
+ * @author Mike Wähnert, Jonas Küttner
+ * @since v.1.41.0, CXX.v.2024.2.0
  */
 medicationRequest {
 
@@ -38,36 +38,13 @@ medicationRequest {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
+  medicationReference {
+    reference = "Medication/" + context.source[medication().id()]
+  }
+
   if (!isFakeEpisode(context.source[medication().episode()])) {
     encounter {
       reference = "Encounter/" + context.source[medication().episode().id()]
-    }
-  }
-
-  medicationCodeableConcept {
-    coding {
-      system = FhirUrls.System.Medication.BASE_URL
-      code = context.source[medication().code()] as String
-      display = context.source[medication().name()] as String
-    }
-
-    if (context.source[medication().agent()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT
-        code = context.source[medication().agent()] as String
-      }
-    }
-    if (context.source[medication().agentGroup()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT_GROUP
-        code = context.source[medication().agentGroup()] as String
-      }
-    }
-    if (context.source[medication().methodOfApplication()]) {
-      coding {
-        system = FhirUrls.System.Medication.APPLICATION_METHOD
-        code = context.source[medication().methodOfApplication()] as String
-      }
     }
   }
 
@@ -102,9 +79,10 @@ medicationRequest {
       }
     }
 
+    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()])
     timing {
       event {
-        date = context.source[medication().trgDate()]
+        date = context.source[medication().observationBegin().date()]
       }
     }
 
@@ -116,17 +94,6 @@ medicationRequest {
         code = context.source[medication().applicationForm()]
       }
     }
-
-    method {
-      coding {
-        system = FhirUrls.System.Medication.APPLICATION_MEDIUM
-        code = context.source[medication().applicationMedium()]
-      }
-    }
-  }
-
-  reasonCode {
-    text = context.source[medication().notes()] as String
   }
 
   final def mapping = context.source[medication().laborMappings()].find { final def lm ->
@@ -147,7 +114,6 @@ medicationRequest {
       }
     }
   }
-
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {

@@ -9,6 +9,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.apache.commons.lang3.StringUtils
@@ -57,6 +58,10 @@ medicationAdministration {
 
   status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
 
+  medicationReference {
+    reference = "Medication/" + context.source[medication().id()]
+  }
+
   subject {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
@@ -67,47 +72,17 @@ medicationAdministration {
     }
   }
 
-  /*medicationCodeableConcept {
-    coding {
-      system = FhirUrls.System.Medication.BASE_URL
-      code = context.source[medication().code()] as String
-      display = context.source[medication().name()] as String
-    }
-
-    if (context.source[medication().agent()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT
-        code = context.source[medication().agent()] as String
-      }
-    }
-    if (context.source[medication().agentGroup()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT_GROUP
-        code = context.source[medication().agentGroup()] as String
-      }
-    }
-    if (context.source[medication().methodOfApplication()]) {
-      coding {
-        system = FhirUrls.System.Medication.APPLICATION_METHOD
-        code = context.source[medication().methodOfApplication()] as String
-      }
-    }
-  }*/
+  identifier {
+    value = context.source[medication().fillerOrderNumber()]
+  }
 
   effectivePeriod {
-    start {
-      date = normalizeDate(context.source[medication().observationBegin().date()] as String)
-      final def beginPrecision = context.source[medication().observationBegin().precision()]
-      if (beginPrecision != null && beginPrecision != DatePrecision.UNKNOWN.name()) {
-        precision = convertPrecision(beginPrecision as String)
-      }
+    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]){
+      start = context.source[medication().observationBegin().date()]
     }
-    end {
-      date = normalizeDate(context.source[medication().observationEnd().date()] as String)
-      final def endPrecision = context.source[medication().observationEnd().precision()]
-      if (endPrecision != null && endPrecision != DatePrecision.UNKNOWN.name()) {
-        precision = convertPrecision(endPrecision as String)
-      }
+
+    if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]){
+      end = context.source[medication().observationEnd().date()]
     }
   }
 
@@ -132,7 +107,7 @@ medicationAdministration {
     route {
       coding {
         system = FhirUrls.System.Medication.APPLICATION_FORM
-        code = context.source[medication().applicationForm()]
+        display = context.source[medication().applicationForm()]
       }
     }
 
