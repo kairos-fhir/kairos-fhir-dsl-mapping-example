@@ -1,6 +1,5 @@
 package projects.patientfinder
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
@@ -10,7 +9,6 @@ import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.Unity
-import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationAdministration
@@ -26,12 +24,12 @@ final String CONCENTRATION_STRENGTH = "concentration_strength"
 final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
 
 final Map PROFILE_TYPES = [
-  DOSAGE_SITE : LaborFindingLaborValue.STRING_VALUE,
-  DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT : LaborFindingLaborValue.STRING_VALUE,
-  VOLUMEINFUSED : LaborFindingLaborValue.NUMERIC_VALUE,
-  VOLUMEINFUSED_UOM : LaborFindingLaborValue.STRING_VALUE,
-  CONCENTRATION_STRENGTH : LaborFindingLaborValue.NUMERIC_VALUE,
-  CONCENTRATION_STRENGTH_UNIT : LaborFindingLaborValue.STRING_VALUE
+    (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
+    (DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT): LaborFindingLaborValue.STRING_VALUE,
+    (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
+    (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
+    (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
+    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -43,17 +41,17 @@ final Map PROFILE_TYPES = [
  */
 medicationAdministration {
 
-  id = "MedicationAdministration/" + context.source[medication().id()]
-
   if (context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
     return
   }
+
+  id = "MedicationAdministration/" + context.source[medication().id()]
 
   final def mapping = context.source[medication().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
   }
 
-  final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
 
@@ -99,7 +97,7 @@ medicationAdministration {
 
     if (lflvMap.containsKey(DOSAGE_SITE)){
       site {
-        text = lflvMap.get(DOSAGE_SITE) as String
+        text = lflvMap[DOSAGE_SITE] as String
       }
     }
 
@@ -118,7 +116,7 @@ medicationAdministration {
     rateQuantity {
       value = sanitizeScale(context.source[medication().quantity()] as String)
       if (lflvMap.containsKey(DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT)){
-        unit = lflvMap.get(DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT) as String
+        unit = lflvMap[DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT] as String
       }
     }
   }
@@ -138,20 +136,6 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String convertPrecision(final String cxxPrecision) {
-  if (DatePrecision.EXACT.name() == cxxPrecision) {
-    return TemporalPrecisionEnum.MILLI.name()
-  } else if (DatePrecision.DAY.name() == cxxPrecision) {
-    return TemporalPrecisionEnum.DAY.name()
-  } else if (DatePrecision.MONTH.name() == cxxPrecision) {
-    return TemporalPrecisionEnum.MONTH.name()
-  } else if (DatePrecision.YEAR.name() == cxxPrecision) {
-    return TemporalPrecisionEnum.YEAR.name()
-  } else {
-    return DatePrecision.DAY
-  }
-}
-
 static BigDecimal sanitizeScale(final String numeric) {
   return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
 }
@@ -169,18 +153,19 @@ static boolean isFakeEpisode(final def episode) {
   return fakeId != null
 }
 
-static Map<String, Map> getLflvMap(final def mapping, final Map<String, String> types){
-  final Map<String, Map> lflvMap = [:]
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
   if (!mapping) {
     return lflvMap
   }
 
   types.each { final String lvCode, final String lvType ->
-    final def lflv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
     }
-    if (lflv && lflv[lvType]) {
-      lflvMap[lvCode] = [key: lflv[lvType]]
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
     }
   }
   return lflvMap

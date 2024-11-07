@@ -25,6 +25,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * @since v.1.41.0, CXX.v.2024.2.0
  */
 medicationRequest {
+
   if (context.source[medication().serviceType()] != MedicationServiceType.VER.name()) {
     return
   }
