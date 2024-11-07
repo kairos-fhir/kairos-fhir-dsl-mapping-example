@@ -22,12 +22,12 @@ final String CONCENTRATION_STRENGTH = "concentration_strength"
 final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
 
 final Map PROFILE_TYPES = [
-    DOSAGE_SITE                         : LaborFindingLaborValue.STRING_VALUE,
-    DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT: LaborFindingLaborValue.STRING_VALUE,
-    VOLUMEINFUSED                       : LaborFindingLaborValue.NUMERIC_VALUE,
-    VOLUMEINFUSED_UOM                   : LaborFindingLaborValue.STRING_VALUE,
-    CONCENTRATION_STRENGTH              : LaborFindingLaborValue.NUMERIC_VALUE,
-    CONCENTRATION_STRENGTH_UNIT         : LaborFindingLaborValue.STRING_VALUE
+    (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
+    (DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT): LaborFindingLaborValue.STRING_VALUE,
+    (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
+    (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
+    (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
+    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -43,7 +43,7 @@ medication {
 
   final def mapping = getLaborMapping(context)
 
-  final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   code {
     coding {
@@ -80,8 +80,8 @@ medication {
     strength {
       if (lflvMap.containsKey(CONCENTRATION_STRENGTH)) {
         numerator {
-          value = lflvMap[CONCENTRATION_STRENGTH][LaborFindingLaborValue.NUMERIC_VALUE]
-          unit = lflvMap[CONCENTRATION_STRENGTH_UNIT][LaborFindingLaborValue.STRING_VALUE]
+          value = lflvMap[CONCENTRATION_STRENGTH]
+          unit = lflvMap[CONCENTRATION_STRENGTH_UNIT]
         }
       }
     }
@@ -110,18 +110,19 @@ static boolean isFakeEpisode(final def episode) {
   return fakeId != null
 }
 
-static Map<String, Map> getLflvMap(final def mapping, final Map<String, String> types) {
-  final Map<String, Map> lflvMap = [:]
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
   if (!mapping) {
     return lflvMap
   }
 
   types.each { final String lvCode, final String lvType ->
-    final def lflv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
     }
-    if (lflv && lflv[lvType]) {
-      lflvMap[lvCode] = [key: lflv[lvType]]
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
     }
   }
   return lflvMap
