@@ -43,8 +43,9 @@ final Map PROFILE_TYPES = [
  */
 medicationAdministration {
 
-  if (context.source[medication().entitySource()] != "SACT" &&
-      context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
+  id = "MedicationAdministration/" + context.source[medication().id()]
+
+  if (context.source[medication().serviceType()] != MedicationServiceType.GAB.name()) {
     return
   }
 
@@ -53,8 +54,6 @@ medicationAdministration {
   }
 
   final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
-
-  id = "MedicationAdministration/" + context.source[medication().id()]
 
   status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
 
