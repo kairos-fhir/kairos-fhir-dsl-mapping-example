@@ -39,15 +39,11 @@ final Map PROFILE_TYPES = [
  */
 medication {
 
-  if (context.source[medication().entitySource()] != "SACT") {
-    return
-  }
+  id = "Medication/" + context.source[medication().id()]
 
   final def mapping = getLaborMapping(context)
 
   final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
-
-  id = "Medication/" + context.source[medication().id()]
 
   code {
     coding {
