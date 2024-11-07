@@ -14,6 +14,7 @@ The following imported data sets are supported/tested:
 # Change log
 
 ## 2024-11-06
+* moved telecom information from Patient.contact.telecom to Patient.telecom
 * Removed unused fields from the MedicationRequest and MedicationAdministration scripts
 * added Medication script
 
