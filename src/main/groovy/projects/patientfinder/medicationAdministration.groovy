@@ -2,7 +2,14 @@ package projects.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborMethod
+import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.DatePrecision
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import org.apache.commons.lang3.StringUtils
@@ -11,11 +18,28 @@ import org.hl7.fhir.r4.model.MedicationAdministration
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
+final String DOSAGE_SITE = "dosage.site"
+final String DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT = "dosage.doseAndRate.rateQuantity.unit"
+final String VOLUMEINFUSED = "volumeinfused"
+final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
+final String CONCENTRATION_STRENGTH = "concentration_strength"
+final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
+
+final Map PROFILE_TYPES = [
+  DOSAGE_SITE : LaborFindingLaborValue.STRING_VALUE,
+  DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT : LaborFindingLaborValue.STRING_VALUE,
+  VOLUMEINFUSED : LaborFindingLaborValue.NUMERIC_VALUE,
+  VOLUMEINFUSED_UOM : LaborFindingLaborValue.STRING_VALUE,
+  CONCENTRATION_STRENGTH : LaborFindingLaborValue.NUMERIC_VALUE,
+  CONCENTRATION_STRENGTH_UNIT : LaborFindingLaborValue.STRING_VALUE
+]
+
+
 /**
  * Represents a CXX Medication
  *
  * @author Mike Wähnert
- * @since v.1.26.0, CXX.v.2023.5
+ * @since v.1.41.0, CXX.v.2024.4.1
  */
 medicationAdministration {
 
@@ -24,9 +48,19 @@ medicationAdministration {
     return
   }
 
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
+  }
+
+  final Map<String, Map> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
+
   id = "MedicationAdministration/" + context.source[medication().id()]
 
   status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
+
+  medicationReference {
+    reference = "Medication/" + context.source[medication().id()]
+  }
 
   subject {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
@@ -38,47 +72,17 @@ medicationAdministration {
     }
   }
 
-  medicationCodeableConcept {
-    coding {
-      system = FhirUrls.System.Medication.BASE_URL
-      code = context.source[medication().code()] as String
-      display = context.source[medication().name()] as String
-    }
-
-    if (context.source[medication().agent()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT
-        code = context.source[medication().agent()] as String
-      }
-    }
-    if (context.source[medication().agentGroup()]) {
-      coding {
-        system = FhirUrls.System.Medication.AGENT_GROUP
-        code = context.source[medication().agentGroup()] as String
-      }
-    }
-    if (context.source[medication().methodOfApplication()]) {
-      coding {
-        system = FhirUrls.System.Medication.APPLICATION_METHOD
-        code = context.source[medication().methodOfApplication()] as String
-      }
-    }
+  identifier {
+    value = context.source[medication().fillerOrderNumber()]
   }
 
   effectivePeriod {
-    start {
-      date = normalizeDate(context.source[medication().observationBegin().date()] as String)
-      final def beginPrecision = context.source[medication().observationBegin().precision()]
-      if (beginPrecision != null && beginPrecision != DatePrecision.UNKNOWN.name()) {
-        precision = convertPrecision(beginPrecision as String)
-      }
+    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]){
+      start = context.source[medication().observationBegin().date()]
     }
-    end {
-      date = normalizeDate(context.source[medication().observationEnd().date()] as String)
-      final def endPrecision = context.source[medication().observationEnd().precision()]
-      if (endPrecision != null && endPrecision != DatePrecision.UNKNOWN.name()) {
-        precision = convertPrecision(endPrecision as String)
-      }
+
+    if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]){
+      end = context.source[medication().observationEnd().date()]
     }
   }
 
@@ -93,27 +97,30 @@ medicationAdministration {
   dosage {
     text = context.source[medication().dosisSchema()] as String
 
-    route {
-      coding {
-        system = FhirUrls.System.Medication.APPLICATION_FORM
-        code = context.source[medication().applicationForm()]
+
+    if (lflvMap.containsKey(DOSAGE_SITE)){
+      site {
+        text = lflvMap.get(DOSAGE_SITE) as String
       }
     }
 
-    method {
+    route {
       coding {
-        system = FhirUrls.System.Medication.APPLICATION_MEDIUM
-        code = context.source[medication().applicationMedium()]
+        system = FhirUrls.System.Medication.APPLICATION_FORM
+        display = context.source[medication().applicationForm()]
       }
     }
 
     dose {
       value = sanitizeScale(context.source[medication().dosis()] as String)
-      unit = context.source[medication().unit().code()]
+      unit = context.source[medication().unit()]?.getAt(Unity.CODE)
     }
 
     rateQuantity {
       value = sanitizeScale(context.source[medication().quantity()] as String)
+      if (lflvMap.containsKey(DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT)){
+        unit = lflvMap.get(DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT) as String
+      }
     }
   }
 
@@ -121,64 +128,6 @@ medicationAdministration {
     text = context.source[medication().notes()] as String
   }
 
-  if (context.source[medication().fillerOrderNumber()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.FON
-      valueString = context.source[medication().fillerOrderNumber()]
-    }
-  }
-
-  if (context.source[medication().placerOrderNumber()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.PON
-      valueString = context.source[medication().placerOrderNumber()]
-    }
-  }
-
-  if (context.source[medication().serviceType()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.TYPE
-      valueCoding {
-        system = FhirUrls.System.Medication.ServiceType.BASE_URL
-        code = context.source[medication().serviceType()]
-      }
-    }
-  }
-
-  if (context.source[medication().ordinanceReleaseMethod()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.ORDINANCE_RELEASE_METHOD
-      valueString = context.source[medication().ordinanceReleaseMethod()]
-    }
-  }
-
-  if (context.source[medication().transcriptionist()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.TRANSCRIPTIONIST
-      valueString = context.source[medication().transcriptionist()]
-    }
-  }
-
-  if (context.source[medication().prescribedBy()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.PRESCRIBER
-      valueString = context.source[medication().prescribedBy()]
-    }
-  }
-
-  if (context.source[medication().prescription()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.IS_PRESCRIPTION
-      valueBoolean = context.source[medication().prescription()]
-    }
-  }
-
-  if (context.source[medication().resultDate()]) {
-    extension {
-      url = FhirUrls.Extension.Medication.RESULTDATE
-      valueBoolean = context.source[medication().resultDate()]
-    }
-  }
 }
 
 /**
@@ -220,3 +169,21 @@ static boolean isFakeEpisode(final def episode) {
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
 }
+
+static Map<String, Map> getLflvMap(final def mapping, final Map<String, String> types){
+  final Map<String, Map> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
+
+  types.each { final String lvCode, final String lvType ->
+    final def lflv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
+    }
+    if (lflv && lflv[lvType]) {
+      lflvMap[lvCode] = [key: lflv[lvType]]
+    }
+  }
+  return lflvMap
+}
+
