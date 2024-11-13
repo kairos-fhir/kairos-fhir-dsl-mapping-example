@@ -20,6 +20,9 @@ final String VOLUMEINFUSED = "volumeinfused"
 final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
 final String CONCENTRATION_STRENGTH = "concentration_strength"
 final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
+final String FREQUENCY = "frequency"
+final String REQUESTER = "requester"
+final String STRENGTHTEXT = "strengthtext"
 
 final Map PROFILE_TYPES = [
     (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
@@ -27,7 +30,10 @@ final Map PROFILE_TYPES = [
     (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
     (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
     (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
-    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE
+    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
+    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
+    (REQUESTER)                           : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
+    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -43,6 +49,7 @@ medication {
 
   final def mapping = getLaborMapping(context)
 
+  // export for administration
   final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   code {
@@ -53,7 +60,7 @@ medication {
     }
   }
 
-  if (medication().applicationMedium()){
+  if (medication().applicationMedium()) {
     form {
       coding {
         code = context.source[medication().applicationMedium()] as String
@@ -77,16 +84,29 @@ medication {
       }
     }
 
-    strength {
-      if (lflvMap.containsKey(CONCENTRATION_STRENGTH)) {
-        numerator {
-          value = lflvMap[CONCENTRATION_STRENGTH]
-          unit = lflvMap[CONCENTRATION_STRENGTH_UNIT]
+    if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
+      strength {
+        if (lflvMap.containsKey(CONCENTRATION_STRENGTH)) {
+          numerator {
+            value = lflvMap[CONCENTRATION_STRENGTH]
+            unit = lflvMap[CONCENTRATION_STRENGTH_UNIT]
+          }
+        }
+      }
+    }
+
+    if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.VER) {
+      strength {
+        if (lflvMap.containsKey(STRENGTHTEXT)) {
+          numerator {
+            code = lflvMap[STRENGTHTEXT] as String
+          }
         }
       }
     }
   }
 }
+
 
 /**
  * removes milli seconds and time zone.
@@ -128,7 +148,7 @@ static Map<String, Object> getLflvMap(final def mapping, final Map<String, Strin
   return lflvMap
 }
 
-static def getLaborMapping(final Context context){
+static def getLaborMapping(final Context context) {
   if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
     return context.source[medication().laborMappings()].find { final def lm ->
       lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"

@@ -12,8 +12,9 @@ import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationKind
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
-import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationRequest
+
+import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
@@ -24,6 +25,30 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * @author Mike Wähnert, Jonas Küttner
  * @since v.1.41.0, CXX.v.2024.2.0
  */
+
+final String DOSAGE_SITE = "dosage.site"
+final String DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT = "dosage.doseAndRate.rateQuantity.unit"
+final String VOLUMEINFUSED = "volumeinfused"
+final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
+final String CONCENTRATION_STRENGTH = "concentration_strength"
+final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
+final String FREQUENCY = "frequency"
+final String REQUESTER = "requester"
+final String STRENGTHTEXT = "strengthtext"
+
+final Map PROFILE_TYPES = [
+    (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
+    (DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT): LaborFindingLaborValue.STRING_VALUE,
+    (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
+    (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
+    (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
+    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
+    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
+    (REQUESTER)                           : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
+]
+
+
 medicationRequest {
 
   if (context.source[medication().serviceType()] != MedicationServiceType.VER.name()) {
@@ -31,6 +56,16 @@ medicationRequest {
   }
 
   id = "MedicationRequest/" + context.source[medication().id()]
+
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
+  }
+
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
+
+  identifier {
+    value = context.source[medication().fillerOrderNumber()]
+  }
 
   status = MedicationRequest.MedicationRequestStatus.COMPLETED
 
@@ -60,6 +95,7 @@ medicationRequest {
 
   dosageInstruction {
     text = context.source[medication().dosisSchema()] as String
+
     additionalInstruction {
       text = context.source[medication().ordinanceReleaseForm()] as String
     }
@@ -79,10 +115,11 @@ medicationRequest {
       }
     }
 
-    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()])
-    timing {
-      event {
-        date = context.source[medication().observationBegin().date()]
+    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) {
+      timing {
+        event {
+          date = context.source[medication().observationBegin().date()]
+        }
       }
     }
 
@@ -96,24 +133,33 @@ medicationRequest {
     }
   }
 
-  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
-  }
 
-  if (mapping) {
-    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "requester"
-    }
-
-    if (lflvSpecialism) {
-      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
-      if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
-        requester {
-          reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
-        }
+  if (lflvMap.containsKey(REQUESTER)) {
+    final def valueRef = lflvMap.get(REQUESTER).find()
+    if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
+      requester {
+        reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
       }
     }
   }
+}
+
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
+
+  types.each { final String lvCode, final String lvType ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
+    }
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
+    }
+  }
+  return lflvMap
 }
 
 static Boolean createAsNeededFromType(final String resultStatus) {
@@ -126,8 +172,13 @@ static Boolean createAsNeededFromType(final String resultStatus) {
   }
 }
 
+@Nullable
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
+  try {
+    return BigDecimal.valueOf(Double.parseDouble(numeric))
+  } catch (final NumberFormatException | NullPointerException ignored) {
+    return null
+  }
 }
 
 static boolean isFakeEpisode(final def episode) {
