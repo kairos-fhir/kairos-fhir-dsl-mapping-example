@@ -10,8 +10,9 @@ import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
-import org.apache.commons.lang3.StringUtils
 import org.hl7.fhir.r4.model.MedicationAdministration
+
+import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
@@ -22,6 +23,9 @@ final String VOLUMEINFUSED = "volumeinfused"
 final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
 final String CONCENTRATION_STRENGTH = "concentration_strength"
 final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
+final String FREQUENCY = "frequency"
+final String REQUESTER = "requester"
+final String STRENGTHTEXT = "strengthtext"
 
 final Map PROFILE_TYPES = [
     (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
@@ -29,7 +33,10 @@ final Map PROFILE_TYPES = [
     (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
     (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
     (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
-    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE
+    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
+    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
+    (REQUESTER)                           : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
+    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -104,6 +111,7 @@ medicationAdministration {
     route {
       coding {
         system = FhirUrls.System.Medication.APPLICATION_FORM
+        code = context.source[medication().applicationForm()]
         display = context.source[medication().applicationForm()]
       }
     }
@@ -136,8 +144,13 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
+@Nullable
 static BigDecimal sanitizeScale(final String numeric) {
-  return numeric == null || !StringUtils.isNumeric(numeric) ? null : new BigDecimal(numeric).stripTrailingZeros()
+  try {
+    return BigDecimal.valueOf(Double.parseDouble(numeric))
+  } catch (final NumberFormatException | NullPointerException ignored) {
+    return null
+  }
 }
 
 static boolean isFakeEpisode(final def episode) {
