@@ -63,8 +63,6 @@ medicationRequest {
 
   final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
-  println(lflvMap)
-
   identifier {
     value = context.source[medication().fillerOrderNumber()]
   }
@@ -137,9 +135,7 @@ medicationRequest {
 
 
   if (lflvMap.containsKey(REQUESTER)) {
-    println(lflvMap.containsKey(REQUESTER))
     final def valueRef = lflvMap.get(REQUESTER).find()
-    println(valueRef)
     if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
       requester {
         reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
