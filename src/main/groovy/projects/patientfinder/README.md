@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-11-19
+* added export of AttendingDoctor as participant in Encounter script
+* added usage of extensions in allergy intolerance script
+
 ## 2024-11-06
 * moved telecom information from Patient.contact.telecom to Patient.telecom
 * Removed unused fields from the MedicationRequest and MedicationAdministration scripts
