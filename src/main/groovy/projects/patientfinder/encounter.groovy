@@ -106,7 +106,7 @@ encounter {
   if (context.source[episode().attendingDoctor()]) {
     participant {
       individual {
-        reference = "Practitioner/" + context.source[episode().attendingDoctor()]
+        reference = "Practitioner/" + context.source[episode().attendingDoctor().id()]
       }
     }
   }
