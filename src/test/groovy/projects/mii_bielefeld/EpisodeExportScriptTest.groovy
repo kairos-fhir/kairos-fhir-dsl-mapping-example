@@ -3,6 +3,7 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.dsl.r4.context.Context
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
 
   @ExportScriptTest

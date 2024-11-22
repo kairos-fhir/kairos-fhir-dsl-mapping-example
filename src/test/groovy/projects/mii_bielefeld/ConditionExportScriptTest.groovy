@@ -3,6 +3,7 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Condition
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/condition.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/condition.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
 
   @ExportScriptTest

@@ -484,7 +484,10 @@
     "mobile" : "0124534323",
     "email" : "MajaJulia@example.me",
     "countryDescriptor" : "Deutschland (DE)",
-    "country" : null,
+    "country" : {
+      "id" : 1,
+      "iso2Code": "de"
+    },
     "state" : null,
     "masterdata" : 1806
   } ]

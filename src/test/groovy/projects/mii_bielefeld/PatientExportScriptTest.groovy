@@ -3,6 +3,8 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -29,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/patient.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/patient.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
@@ -53,7 +56,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
         identifier.getAssigner().getIdentifier().getValue())
 
-    assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
+    assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
   @ExportScriptTest
@@ -89,7 +92,10 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       }
 
       assertNotNull(identifier)
-      assertTrue(identifier.hasType() && identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
+      assertTrue(identifier.hasType())
+      assertTrue(identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
+      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL, idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]))
+
       assertEquals(idContainer[IdContainer.PSN], identifier.getValue())
     }
   }

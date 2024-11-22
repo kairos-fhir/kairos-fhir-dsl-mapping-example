@@ -1,5 +1,6 @@
 package projects.mii_bielefeld
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -49,7 +50,7 @@ patient {
       value = gkvInsurance[PatientInsurance.POLICE_NUMBER]
       assigner {
         identifier {
-          system = "http://fhir.de/NamingSystem/arge-ik/iknr"
+          system = "http://fhir.de/sid/arge-ik/iknr"
           value = gkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
       }
@@ -90,8 +91,12 @@ patient {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
           code = "MR"
         }
+        coding {
+          system = FhirUrls.System.IdContainerType.BASE_URL
+          code = idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+        }
       }
-      system = idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+      system = "https://fhir.centraxx.de/system/idContainer/psn"
       value = idContainer[IdContainer.PSN]
     }
   }
@@ -107,7 +112,6 @@ patient {
     humanName {
       use = "maiden"
       family = context.source[patient().birthName()]
-      given(context.source[patient().firstName()] as String)
     }
   }
 
