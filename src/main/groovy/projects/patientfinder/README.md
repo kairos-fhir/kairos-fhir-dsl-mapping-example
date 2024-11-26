@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-11-26
+* Update Specimen script for Hull
+
 ## 2024-11-19
 * added export of AttendingDoctor as participant in Encounter script
 * added usage of extensions in allergy intolerance script

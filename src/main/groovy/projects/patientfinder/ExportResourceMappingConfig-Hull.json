@@ -12,6 +12,11 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen"
+    },
+    {
       "selectFromCxxEntity": "ATTENDING_DOCTOR",
       "transformByTemplate": "practitioner",
       "exportToFhirResource": "Practitioner"
