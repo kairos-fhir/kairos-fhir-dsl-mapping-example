@@ -172,7 +172,7 @@
       "creationdate" : "2024-03-01T19:04:23.000+01:00",
       "entitySource" : "CENTRAXX",
       "initialEntitySource" : "CENTRAXX",
-      "sampleCount" : 0
+      "sampleCount" : 1
     },
     "studyMembers" : [ {
       "id" : 728,
@@ -864,7 +864,7 @@
       "creationdate" : "2024-03-01T19:04:23.000+01:00",
       "entitySource" : "CENTRAXX",
       "initialEntitySource" : "CENTRAXX",
-      "sampleCount" : 0
+      "sampleCount" : 1
     },
     "studyMembers" : [ {
       "id" : 728,

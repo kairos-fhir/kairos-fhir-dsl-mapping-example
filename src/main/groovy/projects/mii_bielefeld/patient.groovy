@@ -11,9 +11,10 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.Enumerations
+import org.hl7.fhir.r4.model.HumanName
+import org.hl7.fhir.r4.model.Identifier
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
-
 /**
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
@@ -39,7 +40,7 @@ patient {
   if (gkvInsurance) {
 
     identifier {
-      use = "official"
+      use = Identifier.IdentifierUse.OFFICIAL
       type {
         coding {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
@@ -65,7 +66,7 @@ patient {
 
   if (pkvInsurance) {
     identifier {
-      use = gkvInsurance ? "secondary" : "official"
+      use = gkvInsurance ? Identifier.IdentifierUse.SECONDARY : Identifier.IdentifierUse.SECONDARY
       type {
         coding {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
@@ -76,7 +77,7 @@ patient {
       assigner {
         identifier {
           system = "http://fhir.de/NamingSystem/arge-ik/iknr"
-          value = gkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
+          value = pkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
       }
     }
@@ -103,14 +104,14 @@ patient {
 
 
   humanName {
-    use = "official"
+    use = HumanName.NameUse.OFFICIAL
     family = context.source[patient().lastName()]
     given(context.source[patient().firstName()] as String)
   }
 
   if (context.source[patient().birthName()]) {
     humanName {
-      use = "maiden"
+      use = HumanName.NameUse.MAIDEN
       family = context.source[patient().birthName()]
     }
   }

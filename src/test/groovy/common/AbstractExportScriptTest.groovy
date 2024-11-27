@@ -65,7 +65,7 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
     mappingResults = contexts.collect {
       final Context context = new Context(it)
       final E resource = (E) runner.run(context)
-      if (validator != null) {
+      if (validator != null && resource.hasId()) {
         final ValidationResult result = validator.validateWithResult(resource)
         if (!result.isSuccessful()) {
           fail("Resource Validation failed:\n" +

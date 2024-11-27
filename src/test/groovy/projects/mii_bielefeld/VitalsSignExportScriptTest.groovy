@@ -3,6 +3,7 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/vitalstatus.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/vitalstatus.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   @ExportScriptTest
@@ -103,7 +105,7 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
         })
   }
 
-  private static void checkLaborMethod(final Context context){
+  private static void checkLaborMethod(final Context context) {
     Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
   }
 }

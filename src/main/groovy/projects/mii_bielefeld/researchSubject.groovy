@@ -6,6 +6,7 @@ import org.hl7.fhir.r4.model.ResearchSubject
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
+
 /**
  * Represented by CXX StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
@@ -14,7 +15,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
  */
 researchSubject {
 
-  id = "ResearchSubject/" + context.source[patientStudy().id()]
 
   final def studyOid = context.source[patientStudy().flexiStudy().id()]
 
@@ -25,23 +25,27 @@ researchSubject {
   final def patientStudyStatus = context.source[patientStudy().status()] as String
 
   status = patientStudyStatus != null ? ResearchSubject.ResearchSubjectStatus.fromCode(patientStudyStatus) : ResearchSubject.ResearchSubjectStatus.CANDIDATE
-  // messwert oder patient study status.
 
   final def studyMember = context.source[patientStudy().patientContainer().studyMembers()].find { final def sm ->
     sm[StudyMember.STUDY][ID] == studyOid
   }
 
-  if (studyMember) {
-    identifier {
-      type {
-        coding {
-          system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-          code = "ANON"
-        }
+  // PatientStudy must also have a study member, otherwise there is no identifier, which is mandatory for MII.
+  if (!studyMember) {
+    return
+  }
+
+  id = "ResearchSubject/" + context.source[patientStudy().id()]
+
+  identifier {
+    type {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+        code = "ANON"
       }
-      system = "urn:centraxx"
-      value = studyMember[StudyMember.STUDY_MEMBER_ID]
     }
+    system = "urn:centraxx"
+    value = studyMember[StudyMember.STUDY_MEMBER_ID]
   }
 
   study {

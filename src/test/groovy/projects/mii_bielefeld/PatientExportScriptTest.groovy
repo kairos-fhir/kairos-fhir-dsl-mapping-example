@@ -88,13 +88,18 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
   void testThatIdContainerIdentifiersAreExported(final Context context, final Patient resource) {
     context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
       final def identifier = resource.getIdentifier().find {
-        it.hasSystem() && it.getSystem().equals(idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE])
+        it.hasSystem() && "https://fhir.centraxx.de/system/idContainer/psn" == it.getSystem() && (idContainer[IdContainer.PSN] as String) == it.getValue()
       }
+
+      println(identifier.getType().getCoding().each {
+        println([it.getSystem(), it.getCode()])
+      })
 
       assertNotNull(identifier)
       assertTrue(identifier.hasType())
       assertTrue(identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
-      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL, idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]))
+      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL,
+          idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String))
 
       assertEquals(idContainer[IdContainer.PSN], identifier.getValue())
     }

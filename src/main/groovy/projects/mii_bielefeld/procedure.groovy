@@ -49,6 +49,14 @@ procedure {
         code = context.source[medProcedure().opsEntry().code()] as String
       }
     }
+
+    // if ops is used, a snomed-ct category has to be given, statically putting code for surgical procedure here for now
+    category {
+      coding {
+        system = "http://snomed.info/sct"
+        code = "387713003"
+      }
+    }
   }
 
   subject {

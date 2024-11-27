@@ -60,6 +60,7 @@ allergyIntolerance {
     }
   }
 
+
   if (lflvMap.containsKey(SEVERITY)) {
     criticality {
       extension {

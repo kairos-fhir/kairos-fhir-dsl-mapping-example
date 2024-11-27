@@ -4,6 +4,7 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -30,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/procedure.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/procedure.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
 
   @ExportScriptTest

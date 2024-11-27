@@ -1,5 +1,6 @@
 package projects.mii_bielefeld
 
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 /**
  * Represented by a CXX DIAGNOSIS
@@ -13,6 +14,7 @@ condition {
   if (!context.source[diagnosis().icdEntry()]) {
     return // only ICD 10 supported
   }
+
 
   id = "Condition/" + context.source[diagnosis().id()]
 
