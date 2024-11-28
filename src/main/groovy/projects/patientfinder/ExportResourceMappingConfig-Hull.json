@@ -7,6 +7,11 @@
       "exportToFhirResource": "Organization"
     },
     {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitioner",
+      "exportToFhirResource": "Practitioner"
+    },
+    {
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
