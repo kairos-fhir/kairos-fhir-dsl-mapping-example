@@ -90,6 +90,12 @@ medicationAdministration {
     }
   }
 
+  if(context.source[medication().parent()]){
+    request {
+      reference = "MedicationRequest/" + context.source[medication().parent().id()]
+    }
+  }
+
   if (context.source[medication().attendingDoctor()]) {
     performer {
       actor {

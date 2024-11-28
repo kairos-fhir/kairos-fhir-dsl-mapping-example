@@ -13,6 +13,12 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2024-11-29
+* Added practitioner script to HULL to export AttendingDoctors
+* added reference from MedicationAdministration to MedicationReequest
+* Added Export of ObservationEnd to MedicationAdmin timing.event 
+
+
 ## 2024-11-26
 * Update Specimen script for Hull
 

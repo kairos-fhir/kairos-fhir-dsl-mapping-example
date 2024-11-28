@@ -123,6 +123,14 @@ medicationRequest {
       }
     }
 
+    if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]) {
+      timing {
+        event {
+          date = context.source[medication().observationEnd().date()]
+        }
+      }
+    }
+
     asNeededBoolean = createAsNeededFromType(context.source[medication().resultStatus()] as String)
 
     route {
