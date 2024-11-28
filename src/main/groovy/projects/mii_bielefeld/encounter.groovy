@@ -1,5 +1,6 @@
 package projects.mii_bielefeld
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.EpisodeIdContainer
@@ -12,6 +13,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.StayType
 import org.hl7.fhir.r4.model.Encounter
+import org.hl7.fhir.r4.model.codesystems.DataAbsentReason
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 /**
@@ -41,9 +43,13 @@ encounter {
           system = "http://terminology.hl7.org/CodeSystem/v2-0203"
           code = "VN"
         }
+        coding {
+          system = FhirUrls.System.IdContainerType.BASE_URL
+          code = episodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+        }
       }
       value = episodeIdContainer[EpisodeIdContainer.PSN]
-      system = episodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] // Haus-spezifisch // could be coded by the IdContainerType
+      system = "https://fhir.centraxx.de/system/idContainer/psn"// Haus-spezifisch // could be coded by the IdContainerType
     }
   }
 
@@ -74,6 +80,16 @@ encounter {
   // Data from LaborMapping
   final def mapping = context.source[episode().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "EncounterProfile"
+  }
+
+  if (mapping == null){
+    status {
+      value = Encounter.EncounterStatus.UNKNOWN
+      extension {
+        url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+        valueCode = DataAbsentReason.ASKEDUNKNOWN.toCode()
+      }
+    }
   }
 
   if (mapping) {

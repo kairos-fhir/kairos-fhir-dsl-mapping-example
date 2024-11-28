@@ -1,5 +1,6 @@
 package projects.mii_bielefeld
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
@@ -10,14 +11,15 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.Enumerations
+import org.hl7.fhir.r4.model.HumanName
+import org.hl7.fhir.r4.model.Identifier
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
-
 /**
  * represented by CXX Patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
- * @since v.1.40.0, CXX.v.2024.4.0
+ * @since v.1.43.0, CXX.v.2024.5.0
  */
 
 patient {
@@ -38,7 +40,7 @@ patient {
   if (gkvInsurance) {
 
     identifier {
-      use = "official"
+      use = Identifier.IdentifierUse.OFFICIAL
       type {
         coding {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
@@ -49,7 +51,7 @@ patient {
       value = gkvInsurance[PatientInsurance.POLICE_NUMBER]
       assigner {
         identifier {
-          system = "http://fhir.de/NamingSystem/arge-ik/iknr"
+          system = "http://fhir.de/sid/arge-ik/iknr"
           value = gkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
       }
@@ -64,7 +66,7 @@ patient {
 
   if (pkvInsurance) {
     identifier {
-      use = gkvInsurance ? "secondary" : "official"
+      use = gkvInsurance ? Identifier.IdentifierUse.SECONDARY : Identifier.IdentifierUse.SECONDARY
       type {
         coding {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
@@ -75,7 +77,7 @@ patient {
       assigner {
         identifier {
           system = "http://fhir.de/NamingSystem/arge-ik/iknr"
-          value = gkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
+          value = pkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
       }
     }
@@ -90,24 +92,27 @@ patient {
           system = "http://fhir.de/CodeSystem/identifier-type-de-basis"
           code = "MR"
         }
+        coding {
+          system = FhirUrls.System.IdContainerType.BASE_URL
+          code = idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+        }
       }
-      system = idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+      system = "https://fhir.centraxx.de/system/idContainer/psn"
       value = idContainer[IdContainer.PSN]
     }
   }
 
 
   humanName {
-    use = "official"
+    use = HumanName.NameUse.OFFICIAL
     family = context.source[patient().lastName()]
     given(context.source[patient().firstName()] as String)
   }
 
   if (context.source[patient().birthName()]) {
     humanName {
-      use = "maiden"
+      use = HumanName.NameUse.MAIDEN
       family = context.source[patient().birthName()]
-      given(context.source[patient().firstName()] as String)
     }
   }
 

@@ -177,7 +177,7 @@
         "creationdate" : "2024-03-01T19:04:23.000+01:00",
         "entitySource" : "CENTRAXX",
         "initialEntitySource" : "CENTRAXX",
-        "sampleCount" : 0
+        "sampleCount" : 1
       },
       "studyMembers" : [ {
         "id" : 728,
@@ -944,7 +944,7 @@
       "creationdate" : "2024-03-01T19:04:23.000+01:00",
       "entitySource" : "CENTRAXX",
       "initialEntitySource" : "CENTRAXX",
-      "sampleCount" : 0
+      "sampleCount" : 1
     },
     "studyMembers" : [ {
       "id" : 728,
@@ -1516,7 +1516,7 @@
         "creationdate" : "2024-03-01T19:04:23.000+01:00",
         "entitySource" : "CENTRAXX",
         "initialEntitySource" : "CENTRAXX",
-        "sampleCount" : 0
+        "sampleCount" : 1
       },
       "studyMembers" : [ {
         "id" : 728,
@@ -1862,6 +1862,7 @@
       } ]
     },
     "episodeId" : 53,
+    "validFrom" : "2024-11-13T00:00:00.000+01:00",
     "habitation" : {
       "id" : 1,
       "creationdate" : "2021-09-09T14:34:12.443+02:00",
@@ -1933,11 +1934,40 @@
       } ],
       "descMultilingualEntries2" : [ ]
     },
+    "stayType" : {
+      "id" : 818,
+      "creationdate" : "2024-05-06T16:15:39.500+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "b68a2ffa-1536-4d79-a98f-cd73b8f8e04d",
+      "code" : "HH",
+      "isHotlineDefault" : false,
+      "multilinguals" : [ {
+        "id" : 5869,
+        "creationdate" : "2024-05-06T16:15:39.500+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "language" : "de",
+        "lastModifiedOn" : "2024-05-06T16:15:39.500+02:00",
+        "shortName" : "home health",
+        "name" : "home health"
+      }, {
+        "id" : 5870,
+        "creationdate" : "2024-05-06T16:15:39.500+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "language" : "en",
+        "lastModifiedOn" : "2024-05-06T16:15:39.500+02:00",
+        "shortName" : "(en) - HH",
+        "name" : "(en) - HH"
+      } ]
+    },
     "anonymousId" : 6098066483778569124,
     "attributes" : [ ],
     "idContainer" : [ ],
     "laborMappings" : null,
-    "patientTransfers" : [ ]
+    "patientTransfers" : [ ],
+    "status" : "PLANNED"
   },
   "patientcontainer" : {
     "id" : 3735,
@@ -2108,7 +2138,7 @@
       "creationdate" : "2024-03-01T19:04:23.000+01:00",
       "entitySource" : "CENTRAXX",
       "initialEntitySource" : "CENTRAXX",
-      "sampleCount" : 0
+      "sampleCount" : 1
     },
     "studyMembers" : [ {
       "id" : 728,

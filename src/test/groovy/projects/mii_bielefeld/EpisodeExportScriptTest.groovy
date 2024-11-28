@@ -3,8 +3,8 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.fhir.centraxx.metamodel.IdContainer
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Encounter
@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
 
   @ExportScriptTest
@@ -37,10 +38,9 @@ class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
           assertTrue(it.hasCoding("http://terminology.hl7.org/CodeSystem/v2-0203", "VN"))
         }
 
-
     resource.getIdentifier().each { final Identifier fhirIdentifier ->
       final def idc = context.source[episode().idContainer()].find {
-        it[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE].equals(fhirIdentifier.getSystem())
+        "https://fhir.centraxx.de/system/idContainer/psn".equals(fhirIdentifier.getSystem())
       }
 
       assertNotNull(idc)

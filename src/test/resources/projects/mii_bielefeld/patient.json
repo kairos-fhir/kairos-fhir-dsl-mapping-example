@@ -134,7 +134,7 @@
       "creationdate" : "2024-03-01T19:04:23.000+01:00",
       "entitySource" : "CENTRAXX",
       "initialEntitySource" : "CENTRAXX",
-      "sampleCount" : 0
+      "sampleCount" : 1
     },
     "studyMembers" : null,
     "patientStudies" : null,
@@ -483,9 +483,84 @@
     "fax" : "whatever that is",
     "mobile" : "0124534323",
     "email" : "MajaJulia@example.me",
-    "countryDescriptor" : "Deutschland (DE)",
-    "country" : null,
-    "state" : null,
+    "countryDescriptor" : "Germany (DE)",
+    "country" : {
+      "id" : 259,
+      "creationdate" : "2014-02-28T22:29:10.370+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "iso2Code" : "DE",
+      "iso3Code" : "DEU",
+      "countryId" : "D",
+      "nameMultilingualEntries2" : [ {
+        "id" : 7097,
+        "creationdate" : "2021-09-09T14:34:59.413+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "COUNTRY",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 259,
+        "lang" : "en",
+        "value" : "Germany",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      }, {
+        "id" : 7292,
+        "creationdate" : "2021-09-09T14:34:59.413+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "COUNTRY",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 259,
+        "lang" : "de",
+        "value" : "Deutschland",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      } ]
+    },
+    "state" : {
+      "id" : 3,
+      "creationdate" : "2014-02-28T22:33:26.857+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "name" : "Berlin",
+      "country" : {
+        "id" : 259,
+        "creationdate" : "2014-02-28T22:29:10.370+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "iso2Code" : "DE",
+        "iso3Code" : "DEU",
+        "countryId" : "D",
+        "nameMultilingualEntries2" : [ {
+          "id" : 7097,
+          "creationdate" : "2021-09-09T14:34:59.413+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "relatedTable" : "COUNTRY",
+          "relatedColumn" : "NAME",
+          "relatedOid" : 259,
+          "lang" : "en",
+          "value" : "Germany",
+          "system" : false,
+          "entityStatus" : "ACTIVE"
+        }, {
+          "id" : 7292,
+          "creationdate" : "2021-09-09T14:34:59.413+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "relatedTable" : "COUNTRY",
+          "relatedColumn" : "NAME",
+          "relatedOid" : 259,
+          "lang" : "de",
+          "value" : "Deutschland",
+          "system" : false,
+          "entityStatus" : "ACTIVE"
+        } ]
+      },
+      "code" : "DE-BE",
+      "shortcode" : "BE"
+    },
     "masterdata" : 1806
   } ]
 } ]

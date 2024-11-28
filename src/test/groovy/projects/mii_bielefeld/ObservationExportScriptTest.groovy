@@ -3,6 +3,7 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
@@ -28,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/observation.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/observation.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   // the code of the MII common measurement profile

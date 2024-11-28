@@ -62,9 +62,9 @@ Detailed instructions to the interface and its DSL can be found in the [German h
     * Add a meaningful README.md file describing the purpose, sources, participants and CXX version.
     * Create a pull request with your changes against our master branch.
     * If possible, please follow the existing basic coding standards:
-      * use 2 spaces for indent / tab size
-      * use final keyword wherever possible
-      * prefer explicit typization instead of the untyped def keyword
+        * use 2 spaces for indent / tab size
+        * use final keyword wherever possible
+        * prefer explicit typization instead of the untyped def keyword
 * If you discover errors or bugs in existing scripts, we would be happy to receiving a notices in the form of e-mails, issues or pull requests.
 
 # License
@@ -96,4 +96,80 @@ coding {
   system = "http://snomed.info/sct"
   code = "261665006"
 }
+
 ```
+
+## Testing
+
+The project supports testing of scripts using context maps that represent the CXX source data and the groovy script.
+The CXX test data needs to be provided as a json file, that contains an array if the maps for each Instance of a
+CXX entity. To instantiate a Test, create a Unit test that extends ```AbstractExportScriptTest``` and annotate the
+test class with the ```@TestResource``` annotation. The annotation takes two arguments ```groovyScriptPath```, and ```contextMapPath``` which
+are the paths to the groovy script to test and the json file with the CXX Entity map data, respectively
+
+``` 
+@TestResources(
+    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
+)
+class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {}
+```
+
+The AbstractExportScript test will load the context map and the groovy script and apply the script to the given map. The context map and the
+resulting resource are provided as argument and can be used in each test method to run assertions. For that
+annotate each test method with the ```@ExportScriptTest``` and declare with the method parameters like
+
+```
+@ExportScriptTest
+  void testThatClassIsSet(final Context context, final Encounter resource) {
+    Assumptions.assumeTrue(context.source[episode().stayType()] != null)
+
+    assertTrue(resource.hasClass_())
+    assertEquals("http://terminology.hl7.org/CodeSystem/v3-ActCode", resource.getClass_().getSystem())
+    assertEquals(context.source[episode().stayType().code()], resource.getClass_().getCode())
+  }
+```
+
+The test will then be run for each entry in the context map with the CXX entitiy instances.
+
+# Resource validation
+Additionally the HAPI validation can be used to validate the resulting resources against certain FHIR profiles.
+For that, the required FHIR packages need to be provided in a separate folder. The Test can then be annotated with the
+```@Validate``` annotation like:
+
+``` 
+@TestResources(
+    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
+    contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
+)
+@Validate(packageDir = "src/test/resources/fhirpackages")
+class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {}
+```
+The test will then load all package files from the given path an instantiate a HAPI validator. All resources that
+are created during the transformation, the validation will be run.
+
+If the validation fails, the whole test will fail with a ClassConfiguration error. The validation message with
+errors are displayed in the stack traces.
+
+Remember that for proper validation, you have to specify the profile a resource shall be compliant to in the meta element.
+
+# Where to get the test maps from 
+Currently, you would have to print the context map into the server log when testing with your local CXX/HDRP instance.
+For that in a script add the following line:
+
+```
+package projects.mii_bielefeld
+
+import com.fasterxml.jackson.databind.ObjectMapper
+
+condition {
+  new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(context.source)
+}
+```
+
+Of course, you can also write this to a custom file in the file system, if you do not want to spam the server log.
+
+# Considerations for validation
+The validation may fail, when the profiling declares fields as mandatory, which are optional in CXX and, therefore, may not be present.
+Here you will have to make sure that the test data in CXX is complete and compliant with the need for the FHIR profiling.
+

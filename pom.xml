@@ -22,6 +22,7 @@
     <gmavenplus-plugin.version>1.9.1</gmavenplus-plugin.version>
     <findbugs.version>3.0.2</findbugs.version>
     <slf4j-simple.version>1.7.36</slf4j-simple.version>
+    <hapi.fhir.version>5.7.0</hapi.fhir.version>
   </properties>
 
   <scm>
@@ -59,6 +60,27 @@
       <version>${slf4j-simple.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>ca.uhn.hapi.fhir</groupId>
+      <artifactId>hapi-fhir-structures-r4</artifactId>
+      <version>${hapi.fhir.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ca.uhn.hapi.fhir</groupId>
+      <artifactId>hapi-fhir-validation-resources-R4</artifactId>
+      <version>${hapi.fhir.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ca.uhn.hapi.fhir</groupId>
+      <artifactId>hapi-fhir-validation</artifactId>
+      <version>${hapi.fhir.version}</version>
+    </dependency>
+
 
   </dependencies>
 

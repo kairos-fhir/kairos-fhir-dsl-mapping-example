@@ -51,7 +51,7 @@ observation {
     value = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" + context.source[laborFindingLaborValue().laborFinding().laborFindingId()]
   }
 
-  status = Observation.ObservationStatus.FINAL
+  setStatus(Observation.ObservationStatus.FINAL)
 
   category {
     coding {

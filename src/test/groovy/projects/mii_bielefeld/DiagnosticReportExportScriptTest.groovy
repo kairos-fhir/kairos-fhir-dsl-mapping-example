@@ -3,12 +3,15 @@ package projects.mii_bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
+import common.Validate
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.DiagnosticReport
@@ -18,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertTrue
@@ -27,23 +30,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/diagnosticReport.groovy",
     contextMapsPath = "src/test/resources/projects/mii_bielefeld/diagnosticReport.json"
 )
+@Validate(packageDir = "src/test/resources/fhirpackages")
 class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<DiagnosticReport> {
 
 
   @ExportScriptTest
   void testThatIdentifierIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborFindingId()] != null)
+    Assumptions.assumeTrue(context.source[laborFinding().laborFindingId()] != null)
 
     assertTrue(resource.hasIdentifier())
 
     assertTrue(resource.getIdentifierFirstRep().hasType())
 
     assertTrue(resource.getIdentifierFirstRep().getType().hasCoding("http://terminology.hl7.org/CodeSystem/v2-0203", "FILL"))
-    assertEquals(context.source[laborMapping().laborFinding().laborFindingId()], resource.getIdentifierFirstRep().getValue())
-    assertEquals(FhirUrls.System.Finding.LABOR_FINDING_ID, resource.getIdentifierFirstRep().getSystem())
+    assertEquals(context.source[laborFinding().shortName()], resource.getIdentifierFirstRep().getValue())
+    assertEquals(FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME, resource.getIdentifierFirstRep().getSystem())
 
-    final def assigner = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
+    final def assigner = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.identifier.assigner"
     }
 
@@ -66,8 +70,9 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   @ExportScriptTest
   void testThatBasedOnIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
-    final List serviceRequestMappings = context.source[laborMapping().laborFinding().laborMappings()].findAll { final def mapping ->
-      mapping[laborMapping().MAPPING_TYPE] == "SERVICEREQUEST"
+
+    final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
+      mapping[LaborMapping.MAPPING_TYPE] as LaborMappingType == LaborMappingType.SERVICEREQUEST
     }
 
     serviceRequestMappings.forEach {
@@ -80,23 +85,26 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   void testThatEncounterIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    Assumptions.assumeTrue(context.source[laborMapping().episode()] != null, "No Episode on mapping")
+    final def lmEpisode = context.source[laborFinding().laborMappings()]
+        .find { final def lm -> lm[LaborMapping.EPISODE] != null }
+
+    Assumptions.assumeTrue(lmEpisode != null, "No Episode on mapping")
 
     assertTrue(resource.hasEncounter())
 
-    assertEquals("Encounter/" + context.source[laborMapping().episode().id()], resource.getEncounter().getReference())
+    assertEquals("Encounter/" + lmEpisode[LaborMapping.EPISODE][Episode.ID], resource.getEncounter().getReference())
   }
 
   @ExportScriptTest
   void testThatEffectiveIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
-        context.source[laborMapping().laborFinding().findingDate().date()], "Finding date is not given")
+    Assumptions.assumeTrue(context.source[laborFinding().findingDate()] &&
+        context.source[laborFinding().findingDate().date()], "Finding date is not given")
 
     assertTrue(resource.hasEffectiveDateTimeType())
 
-    assertEquals(new DateTimeType(context.source[laborMapping().laborFinding().findingDate().date()] as String).getValue(),
+    assertEquals(new DateTimeType(context.source[laborFinding().findingDate().date()] as String).getValue(),
         resource.getEffectiveDateTimeType().getValue())
 
   }
@@ -105,7 +113,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   void testThatIssuedIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    final def issuedLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
+    final def issuedLv = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.issued"
     }
 
@@ -127,7 +135,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   void testThatObservationReferencesAreSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
+    context.source[laborFinding().laborFindingLaborValues()].findAll {
       !["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
           .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE])
     }.each { final def lflv ->
@@ -139,7 +147,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
     }
 
 
-    context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll {
+    context.source[laborFinding().laborFindingLaborValues()].findAll {
       ["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
           .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String)
     }.each { final def lflv ->
@@ -155,7 +163,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   void testThatStatusIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    final def lflvStatus = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
+    final def lflvStatus = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.status"
     }
 
@@ -173,8 +181,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
         })
   }
 
-
   private static void checkLaborMethodCode(final Context context) {
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
+    Assumptions.assumeTrue(context.source[laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
   }
 }

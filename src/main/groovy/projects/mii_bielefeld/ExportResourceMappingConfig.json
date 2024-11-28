@@ -6,7 +6,6 @@
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
     },
-
     {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
@@ -23,9 +22,19 @@
       "exportToFhirResource": "Procedure"
     },
     {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "serviceRequest",
+      "exportToFhirResource": "ServiceRequest"
+    },
+    {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "vitalstatus",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "CONSENT",
+      "transformByTemplate": "consent",
+      "exportToFhirResource": "Consent"
     },
     {
       "selectFromCxxEntity": "PATIENT_STUDY",
@@ -33,7 +42,7 @@
       "exportToFhirResource": "ResearchSubject"
     },
     {
-      "selectFromCxxEntity": "LABOR_MAPPING",
+      "selectFromCxxEntity": "LABOR_FINDING",
       "transformByTemplate": "diagnosticReport",
       "exportToFhirResource": "DiagnosticReport"
     },
