@@ -19,7 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
  * represented by CXX LaborMapping
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/diagnosticreportlab
  * @author Jonas Küttner
- * @since v.1.41.0, CXX.v.2024.4.3
+ * @since v.1.43.0, CXX.v.2024.5.0
  */
 
 
