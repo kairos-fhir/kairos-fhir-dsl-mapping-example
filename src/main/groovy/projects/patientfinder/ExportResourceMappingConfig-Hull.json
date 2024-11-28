@@ -57,6 +57,11 @@
       "exportToFhirResource": "Procedure"
     },
     {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "allergyIntolerance",
+      "exportToFhirResource": "AllergyIntolerance"
+    },
+    {
       "selectFromCxxEntity": "HISTOLOGY",
       "transformByTemplate": "histology",
       "exportToFhirResource": "Observation"
