@@ -1,11 +1,6 @@
 package projects.mii_bielefeld
 
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.LaborFinding
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborMethod
-import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.*
 import de.kairos.fhir.centraxx.metamodel.enums.Localization
 import org.hl7.fhir.r4.model.Procedure
 
@@ -29,66 +24,70 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
  */
 
 procedure {
-  id = "Procedure/" + context.source[medProcedure().id()]
+    id = "Procedure/" + context.source[medProcedure().id()]
 
-  meta {
-    source = "urn:centraxx"
-    profile "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure"
-  }
-
-  // Data from LaborMapping
-  final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-    lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
-  }
-
-  if (context.source[medProcedure().opsEntry()]) {
-    code {
-      coding {
-        system = "http://fhir.de/CodeSystem/bfarm/ops"
-        version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()] as String
-        code = context.source[medProcedure().opsEntry().code()] as String
-      }
+    meta {
+        source = "urn:centraxx"
+        profile "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure"
     }
 
-    // if ops is used, a snomed-ct category has to be given, statically putting code for surgical procedure here for now
-    category {
-      coding {
-        system = "http://snomed.info/sct"
-        code = "387713003"
-      }
+    // Data from LaborMapping
+    final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
+        lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
-  }
 
-  subject {
-    reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
-  }
+    if (context.source[medProcedure().opsEntry()]) {
+        code {
+            coding {
+                system = "http://fhir.de/CodeSystem/bfarm/ops"
+                version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()] as String
+                code = context.source[medProcedure().opsEntry().code()] as String
+            }
+        }
 
-  // set EPA.procedureDate is mandatory
-  // set end date if given in mapping
-  performedPeriod {
-    start = context.source[medProcedure().procedureDate().date()]
+        // if ops is used, a snomed-ct category has to be given, statically putting code for surgical procedure here for now
+        category {
+            coding {
+                system = "http://snomed.info/sct"
+                code = "387713003"
+            }
+        }
+    }
+
+    subject {
+        reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
+    }
+
+    // set EPA.procedureDate is mandatory
+    // set end date if given in mapping
+    performedPeriod {
+        start = context.source[medProcedure().procedureDate().date()]
+        if (mapping) {
+            final def performedPeriodEnd = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+                lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.performedPeriod.end"
+            }
+
+            if (performedPeriodEnd && performedPeriodEnd[DATE_VALUE]) {
+                end = performedPeriodEnd[DATE_VALUE][PrecisionDate.DATE]
+            }
+        }
+    }
+
     if (mapping) {
-      final def performedPeriodEnd = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-        lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.performedPeriod.end"
-      }
+        final def procedureStatus = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+            lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.status"
+        }
 
-      if (performedPeriodEnd && performedPeriodEnd[DATE_VALUE]) {
-        end = performedPeriodEnd[DATE_VALUE][PrecisionDate.DATE]
-      }
-    }
-  }
-
-  if (mapping) {
-    final def procedureStatus = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.status"
-    }
-
-    if (procedureStatus && procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
-      status = procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CatalogEntry.CODE)
-    } else {
-      status = Procedure.ProcedureStatus.UNKNOWN
-    }
-  }
+        if (procedureStatus && procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
+            status = Procedure.ProcedureStatus.fromCode(
+                    (procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CatalogEntry.CODE) as String)
+                            .toLowerCase()
+            )
+        } else {
+            status = Procedure.ProcedureStatus.UNKNOWN
+        }
+    } else
+        status = Procedure.ProcedureStatus.NULL
 }
 
 /**
@@ -97,28 +96,28 @@ procedure {
  * @return the result might be something like "1989-01-15T00:00:00"
  */
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+    return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
 static String mapCategory(String opsCode) {
-  final char firstChar = opsCode.charAt(0)
-  switch (firstChar) {
-    case "1": return "103693007"
-    case "3": return "363679005"
-    case "5": return "387713003"
-    case "6": return "18629005"
-    case "8": return "277132007"
-    case "9": return "394841004"
-    default: return null
-  }
+    final char firstChar = opsCode.charAt(0)
+    switch (firstChar) {
+        case "1": return "103693007"
+        case "3": return "363679005"
+        case "5": return "387713003"
+        case "6": return "18629005"
+        case "8": return "277132007"
+        case "9": return "394841004"
+        default: return null
+    }
 }
 
 static String mapLocalisation(Localization cxxLocalization) {
-  switch (cxxLocalization) {
-    case Localization.LEFT: return "L"
-    case Localization.RIGHT: return "R"
-    case Localization.BOTH: return "B"
-    default: return null
-  }
+    switch (cxxLocalization) {
+        case Localization.LEFT: return "L"
+        case Localization.RIGHT: return "R"
+        case Localization.BOTH: return "B"
+        default: return null
+    }
 }
 
