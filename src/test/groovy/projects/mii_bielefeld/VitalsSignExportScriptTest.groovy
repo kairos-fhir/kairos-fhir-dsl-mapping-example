@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   @ExportScriptTest
-  void testThatSatusIsSet(final Context context, final Observation resource) {
+  void testThatStatusIsSet(final Context context, final Observation resource) {
     checkLaborMethod(context)
 
     assertEquals(Observation.ObservationStatus.FINAL, resource.getStatus())
@@ -67,13 +67,13 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
     checkLaborMethod(context)
 
     Assumptions.assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
-        context.source[laborMapping().laborFinding().findingDate().date()])
+            context.source[laborMapping().laborFinding().findingDate().date()])
 
     assertTrue(resource.hasEffectiveDateTimeType())
 
     assertEquals(
-        new DateTimeType(context.source[laborMapping().laborFinding().findingDate().date()] as String).getValue(),
-        resource.getEffectiveDateTimeType().getValue()
+            new DateTimeType(context.source[laborMapping().laborFinding().findingDate().date()] as String).getValue(),
+            resource.getEffectiveDateTimeType().getValue()
     )
   }
 
@@ -86,26 +86,26 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
     }
 
     Assumptions.assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-        { ->
-          assertTrue(resource.hasValueCodeableConcept())
-          assertTrue(resource.getValueCodeableConcept().hasCoding(
-              "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-              lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
-          ))
-        }
+            { ->
+              assertTrue(resource.hasValueCodeableConcept())
+              assertTrue(resource.getValueCodeableConcept().hasCoding(
+                      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+                      lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
+              ))
+            }
     )
 
     Assumptions.assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-        {
-          assertTrue(resource.hasValueCodeableConcept())
-          assertTrue(resource.getValueCodeableConcept().hasCoding(
-              "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-              "X"
-          ))
-        })
+            {
+              assertTrue(resource.hasValueCodeableConcept())
+              assertTrue(resource.getValueCodeableConcept().hasCoding(
+                      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+                      "X"
+              ))
+            })
   }
 
   private static void checkLaborMethod(final Context context) {
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
+    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MP_ObservationVitalstatus", "Not a MII MP_ObservationVitalstatus profile")
   }
 }
