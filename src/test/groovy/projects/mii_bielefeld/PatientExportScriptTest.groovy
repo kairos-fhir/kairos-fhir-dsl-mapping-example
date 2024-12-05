@@ -54,7 +54,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-        identifier.getAssigner().getIdentifier().getValue())
+            identifier.getAssigner().getIdentifier().getValue())
 
     assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
@@ -79,9 +79,9 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-        identifier.getAssigner().getIdentifier().getValue())
+            identifier.getAssigner().getIdentifier().getValue())
 
-    assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
+    assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
   @ExportScriptTest
@@ -98,10 +98,12 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       assertNotNull(identifier)
       assertTrue(identifier.hasType())
       assertTrue(identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
-      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL,
-          idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String))
 
       assertEquals(idContainer[IdContainer.PSN], identifier.getValue())
+
+      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL,
+              idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String))
+
     }
   }
 
@@ -111,11 +113,11 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       Assumptions.assumingThat(patAd[PatientAddress.STREET] != null, {
         final Address address = resource.getAddress().find {
           it.hasLine() &&
-              (!patAd[PatientAddress.STREET] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREET] as String)) &&
-              (!patAd[PatientAddress.STREETNO] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREETNO] as String)) &&
-              (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
-              (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
-              (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
+                  (!patAd[PatientAddress.STREET] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREET] as String)) &&
+                  (!patAd[PatientAddress.STREETNO] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREETNO] as String)) &&
+                  (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+                  (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
+                  (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
         }
 
         assertNotNull(address)
@@ -126,10 +128,10 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       Assumptions.assumingThat(patAd[PatientAddress.PO_BOX] != null, {
         final Address address = resource.getAddress().find {
           it.hasLine() &&
-              (!patAd[PatientAddress.PO_BOX] in it.getLine().get(0)) &&
-              (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
-              (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
-              (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
+                  (!patAd[PatientAddress.PO_BOX] in it.getLine().get(0)) &&
+                  (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+                  (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode()) &&
+                  (!patAd[PatientAddress.CITY] || patAd[PatientAddress.CITY] == it.getCity())
         }
         assertNotNull(address)
         assertEquals(Address.AddressType.POSTAL, address.getType())
@@ -142,7 +144,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     Assumptions.assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
     assertNotNull(resource.getBirthDate())
     assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getValue(),
-        resource.getBirthDate())
+            resource.getBirthDate())
   }
 
   @ExportScriptTest
@@ -150,7 +152,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     Assumptions.assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
     assertNotNull(resource.getDeceasedDateTimeType())
     assertEquals(new DateTimeType(context.source[patient().dateOfDeath().date()] as String).getValue(),
-        resource.getDeceasedDateTimeType().getValue())
+            resource.getDeceasedDateTimeType().getValue())
   }
 
   @ExportScriptTest

@@ -35,8 +35,9 @@ encounter {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
   }
 
-  //Create Identifier for all episode Ids
-  context.source[episode().idContainer()]?.each { final def episodeIdContainer ->
+  //Create Identifier for first episode Id
+  final def firstEpisodeIdContainer = context.source[episode().idContainer()]?.find { true }
+  if (firstEpisodeIdContainer) {
     identifier {
       type {
         coding {
@@ -45,13 +46,14 @@ encounter {
         }
         coding {
           system = FhirUrls.System.IdContainerType.BASE_URL
-          code = episodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+          code = firstEpisodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
         }
       }
-      value = episodeIdContainer[EpisodeIdContainer.PSN]
-      system = "https://fhir.centraxx.de/system/idContainer/psn"// Haus-spezifisch // could be coded by the IdContainerType
+      value = firstEpisodeIdContainer[EpisodeIdContainer.PSN]
+      system = "https://fhir.centraxx.de/system/idContainer/psn" // Haus-spezifisch // could be coded by the IdContainerType
     }
   }
+
 
   // the required system needs to be created as CXX MasterData
   final def stayType = context.source[episode().stayType()]

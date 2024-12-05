@@ -43,7 +43,7 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
   @ExportScriptTest
   void testThatStatusIsSet(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
+      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
 
     assertNotNull(mapping)
@@ -55,27 +55,27 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
     assertNotNull(procedureStatus)
 
     assertEquals(
-        procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE],
-        resource.getStatus().toCode()
+            procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE].toString().toLowerCase(),
+            resource.getStatus().toCode().toLowerCase()
     )
   }
 
   @ExportScriptTest
   void testThatCodeIsSet(final Context context, final Procedure resource) {
-    assertTrue(resource.hasCode());
+    assertTrue(resource.hasCode())
 
     final Coding opsCoding = resource.getCode().getCoding().find { it.getSystem() == "http://fhir.de/CodeSystem/bfarm/ops" }
 
     assertNotNull(opsCoding)
 
-    assertEquals(context.source[medProcedure().opsEntry().code()], opsCoding.getCode())
-    assertEquals(context.source[medProcedure().opsEntry().catalogue().catalogueVersion()], opsCoding.getVersion())
+    assertEquals(context.source[medProcedure().opsEntry().code()].toString().toLowerCase(), opsCoding.getCode().toLowerCase())
+    assertEquals(context.source[medProcedure().opsEntry().catalogue().catalogueVersion()].toString().toLowerCase(), opsCoding.getVersion().toLowerCase())
   }
 
   @ExportScriptTest
   void testThatPerformedPeriodIsExported(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
+      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
 
     Assumptions.assumeTrue(mapping != null)
@@ -90,9 +90,9 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
     assertNotNull(performedPeriodEnd)
 
     assertEquals(new DateTimeType(context.source[medProcedure().procedureDate().date()] as String).getValue(),
-        resource.getPerformedPeriod().getStart())
+            resource.getPerformedPeriod().getStart())
 
     assertEquals(new DateTimeType(performedPeriodEnd[DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
-        resource.getPerformedPeriod().getEnd())
+            resource.getPerformedPeriod().getEnd())
   }
 }

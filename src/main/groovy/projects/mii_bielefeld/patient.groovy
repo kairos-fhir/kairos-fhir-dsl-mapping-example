@@ -10,6 +10,7 @@ import de.kairos.fhir.centraxx.metamodel.PatientInsurance
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
+import groovy.json.JsonOutput
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
@@ -23,6 +24,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
  */
 
 patient {
+
+  println(JsonOutput.toJson(context.source))
 
   id = "Patient/" + context.source[patient().patientContainer().id()]
 
@@ -76,9 +79,10 @@ patient {
       value = pkvInsurance[PatientInsurance.POLICE_NUMBER]
       assigner {
         identifier {
-          system = "http://fhir.de/NamingSystem/arge-ik/iknr"
+          system = "http://fhir.de/sid/arge-ik/iknr"
           value = pkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
         }
+        display = pkvInsurance[PatientInsurance.INSURANCE_COMPANY]?.getAt(InsuranceCompany.COMPANY_ID) as String
       }
     }
   }
@@ -158,7 +162,7 @@ patient {
         type = "both"
         city = ad[PatientAddress.CITY] as String
         postalCode = ad[PatientAddress.ZIPCODE] as String
-        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) as String
+        country = ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String
         line(getLineString(ad as Map))
       }
     } else if (ad[PatientAddress.PO_BOX]) { // Postfach address, extensions could be added
@@ -166,7 +170,7 @@ patient {
         type = "postal"
         city = ad[PatientAddress.CITY] as String
         postalCode = ad[PatientAddress.ZIPCODE] as String
-        country = ad[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE) as String
+        country = ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String
         line(ad[PatientAddress.PO_BOX] as String)
       }
     }
