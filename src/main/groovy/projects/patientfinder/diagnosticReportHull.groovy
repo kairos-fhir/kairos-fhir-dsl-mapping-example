@@ -1,3 +1,5 @@
+package projects.patientfinder
+
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
@@ -11,7 +13,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
  * represented by CXX LaborMapping
  * @author Mike Wähnert
- * @since v.1.42.0, CXX.v.2024.4.3
+ * @since v.1.44.0, CXX.v.2025.1.0
  */
 diagnosticReport {
 
