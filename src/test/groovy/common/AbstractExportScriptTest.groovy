@@ -27,6 +27,24 @@ import java.util.stream.Stream
 
 import static org.junit.jupiter.api.Assertions.fail
 
+/**
+ * This test class provides test data for parameterized tests to verify the results of Groovy transformations.
+ * The source maps must be provided as JSON files. The FHIR Custom Export transforms a map, accessible in the Groovy
+ * transformation script via the 'context.source' variable, into a FHIR resource.
+ * <br><br>
+ * This test class reads an array of these source maps from JSON files and transforms them using the Groovy script under test
+ * into a list of resulting FHIR resources. The Groovy script and the source map JSON file are loaded from the paths specified
+ * by the {@link TestResources} annotation on the implementing test class.
+ * <br><br>
+ * Each test method that runs over the set of source map and resulting FHIR resource pairs needs to be annotated with
+ * {@link ExportScriptTest} and declare two arguments for the {@link Context} context and the resource. This annotation indicates
+ * that the method is a parameterized test and registers the {@link AbstractExportScriptTest#getTestData} method as the source
+ * for the method arguments.
+ * <br><br>
+ * Optionally, the {@link Validate} annotation can be used to validate the resulting resource against the profiles of a given FHIR package.
+ * FHIR packages can be downloaded for specific FHIR projects from https://simplifier.net/
+ * @param <E> the type parameter for the FHIR resource.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractExportScriptTest<E extends DomainResource> {
 

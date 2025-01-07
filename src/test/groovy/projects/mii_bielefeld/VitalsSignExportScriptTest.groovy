@@ -12,11 +12,12 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Observation
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/vitalstatus.groovy",
@@ -66,7 +67,7 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
   void testThatEffectiveDateTimeIsSet(final Context context, final Observation resource) {
     checkLaborMethod(context)
 
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
+    assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
         context.source[laborMapping().laborFinding().findingDate().date()])
 
     assertTrue(resource.hasEffectiveDateTimeType())
@@ -85,7 +86,7 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "Vitalstatus.valueCodeableConcept.coding.code"
     }
 
-    Assumptions.assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+    assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
         { ->
           assertTrue(resource.hasValueCodeableConcept())
           assertTrue(resource.getValueCodeableConcept().hasCoding(
@@ -95,7 +96,7 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
         }
     )
 
-    Assumptions.assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+    assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
         {
           assertTrue(resource.hasValueCodeableConcept())
           assertTrue(resource.getValueCodeableConcept().hasCoding(
@@ -106,6 +107,6 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
   }
 
   private static void checkLaborMethod(final Context context) {
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
+    assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
   }
 }

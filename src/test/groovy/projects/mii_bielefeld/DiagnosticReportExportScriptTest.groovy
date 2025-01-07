@@ -15,7 +15,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.DiagnosticReport
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
@@ -25,6 +24,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/diagnosticReport.groovy",
@@ -37,7 +38,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   @ExportScriptTest
   void testThatIdentifierIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
-    Assumptions.assumeTrue(context.source[laborFinding().laborFindingId()] != null)
+    assumeTrue(context.source[laborFinding().laborFindingId()] != null)
 
     assertTrue(resource.hasIdentifier())
 
@@ -51,7 +52,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.identifier.assigner"
     }
 
-    Assumptions.assumeTrue(assigner != null, "No assigner is given in Finding")
+    assumeTrue(assigner != null, "No assigner is given in Finding")
 
     assertTrue(resource.getIdentifierFirstRep().hasAssigner())
     assertEquals("Organization/" + assigner[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)[OrganisationUnit.ID],
@@ -88,7 +89,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
     final def lmEpisode = context.source[laborFinding().laborMappings()]
         .find { final def lm -> lm[LaborMapping.EPISODE] != null }
 
-    Assumptions.assumeTrue(lmEpisode != null, "No Episode on mapping")
+    assumeTrue(lmEpisode != null, "No Episode on mapping")
 
     assertTrue(resource.hasEncounter())
 
@@ -99,7 +100,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   void testThatEffectiveIsSet(final Context context, final DiagnosticReport resource) {
     checkLaborMethodCode(context)
 
-    Assumptions.assumeTrue(context.source[laborFinding().findingDate()] &&
+    assumeTrue(context.source[laborFinding().findingDate()] &&
         context.source[laborFinding().findingDate().date()], "Finding date is not given")
 
     assertTrue(resource.hasEffectiveDateTimeType())
@@ -117,7 +118,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.issued"
     }
 
-    Assumptions.assumeTrue(
+    assumeTrue(
         issuedLv &&
             issuedLv[LaborFindingLaborValue.DATE_VALUE] &&
             issuedLv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE],
@@ -167,7 +168,7 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.status"
     }
 
-    Assumptions.assumingThat(lflvStatus && lflvStatus[CATALOG_ENTRY_VALUE],
+    assumingThat(lflvStatus && lflvStatus[CATALOG_ENTRY_VALUE],
         { ->
           assertEquals(
               lflvStatus[CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String,
@@ -175,13 +176,13 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
           )
         })
 
-    Assumptions.assumingThat(!lflvStatus || !lflvStatus[CATALOG_ENTRY_VALUE],
+    assumingThat(!lflvStatus || !lflvStatus[CATALOG_ENTRY_VALUE],
         { ->
           assertEquals(DiagnosticReport.DiagnosticReportStatus.UNKNOWN.toCode(), resource.getStatus().toCode())
         })
   }
 
   private static void checkLaborMethodCode(final Context context) {
-    Assumptions.assumeTrue(context.source[laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
+    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
   }
 }
