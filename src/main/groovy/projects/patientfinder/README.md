@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-07
+* Worked on the Observation script to filter correctly
+* Added processing to remove "specialty: " from Orgunit names
+
 ## 2024-11-29
 * Added practitioner script to HULL to export AttendingDoctors
 * added reference from MedicationAdministration to MedicationReequest
