@@ -2,6 +2,7 @@ package projects.izi.hannover
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 import org.hl7.fhir.r4.model.CodeType
 import org.hl7.fhir.r4.model.DateTimeType
@@ -40,6 +41,17 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  */
 specimen {
+
+  final def orgUnit = context.source[sample().organisationUnit()]
+
+  if (orgUnit == null) {
+    return
+  }
+
+  // allow only samples with given orgunits to be exported
+  if (!["P-2031-ITM", "P-2261-ITM"].contains(orgUnit[OrganisationUnit.CODE] as String)){
+    return
+  }
 
   id = "Specimen/" + context.source[ID]
 
