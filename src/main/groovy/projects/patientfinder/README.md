@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-10
+* Added export of sample type in specimen export script
+
 ## 2025-01-07
 * Worked on the Observation script to filter correctly
 * Added processing to remove "specialty: " from Orgunit names
