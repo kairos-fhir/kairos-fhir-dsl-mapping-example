@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-16
+* Fixed metamodel usage for CatalogEntry, which was migrated to Multilinguals
+
 ## 2025-01-10
 * Added export of sample type in specimen export script
 

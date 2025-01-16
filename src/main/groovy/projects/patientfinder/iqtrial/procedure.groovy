@@ -5,11 +5,13 @@ import de.kairos.fhir.centraxx.metamodel.Episode
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
  * Represented by CXX MedProcedure
+ * @since v.1.43.0, CXX.v.2024.5.2
  */
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]
@@ -31,7 +33,7 @@ procedure {
         system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().userDefinedCatalogEntry().catalog().code()]
         version = context.source[medProcedure().userDefinedCatalogEntry().catalog().version()]
         code = context.source[medProcedure().userDefinedCatalogEntry().code()] as String
-        display = context.source[medProcedure().userDefinedCatalogEntry().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE)
+        display = context.source[medProcedure().userDefinedCatalogEntry().multilinguals()]?.find { it[LANGUAGE] == "en" }?.getAt(NAME)
       }
     }
 
