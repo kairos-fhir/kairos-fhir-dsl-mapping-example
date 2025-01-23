@@ -18,6 +18,10 @@ IZI Sync*
 
 # Changelog
 
+## 2025-01-23
+
+* Fixed OrgUnit Filter to check parent OrgUnit for Aliquot samples
+
 ## 2025-01-10
 
 * Added OrgUnit filter in specimen script for Hannover export

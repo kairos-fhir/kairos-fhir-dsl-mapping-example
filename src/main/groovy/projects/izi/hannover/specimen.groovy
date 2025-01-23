@@ -1,18 +1,22 @@
 package projects.izi.hannover
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
+import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
 import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
+import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.CodeType
 import org.hl7.fhir.r4.model.DateTimeType
 
+import javax.annotation.Nonnull
+
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.COLD_ISCH_TIME
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.COLD_ISCH_TIME_DATE
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.ID_CONTAINER
+import static de.kairos.fhir.centraxx.metamodel.AbstractSample.ORGANISATION_UNIT
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.PARENT
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SAMPLE_CATEGORY
 import static de.kairos.fhir.centraxx.metamodel.AbstractSample.SAMPLE_KIND
@@ -40,23 +44,19 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * @since v.1.7.0, CXX.v.3.17.2
  * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
  */
+
+
 specimen {
 
-  final def orgUnit = context.source[sample().organisationUnit()]
 
-  if (orgUnit == null) {
-    return
-  }
-
-  // allow only samples with given orgunits to be exported
-  if (!["P-2031-ITM", "P-2261-ITM"].contains(orgUnit[OrganisationUnit.CODE] as String)){
+  if (!isExportable(context.source)) {
     return
   }
 
   id = "Specimen/" + context.source[ID]
 
   final def idContainer = context.source[ID_CONTAINER]?.find {
-    "SAMPLEID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "SAMPLEID" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (idContainer) {
@@ -65,14 +65,14 @@ specimen {
       type {
         coding {
           system = "urn:centraxx"
-          code = idContainer[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+          code = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
         }
       }
     }
   }
 
   final def idSampleQf = context.source[ID_CONTAINER]?.find {
-    "SAMPLEQF" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "SAMPLEQF" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (idSampleQf) {
@@ -81,7 +81,7 @@ specimen {
       type {
         coding {
           system = "urn:centraxx"
-          code = idSampleQf[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+          code = idSampleQf[ID_CONTAINER_TYPE]?.getAt(CODE)
         }
       }
     }
@@ -97,7 +97,7 @@ specimen {
   }
 
   final def patIdContainer = context.source[sample().patientContainer().idContainer()]?.find {
-    "SID" == it[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+    "SID" == it[ID_CONTAINER_TYPE]?.getAt(CODE)
   }
 
   if (patIdContainer) {
@@ -107,7 +107,7 @@ specimen {
         type {
           coding {
             system = "urn:centraxx"
-            code = patIdContainer[ID_CONTAINER_TYPE]?.getAt(IdContainerType.CODE)
+            code = patIdContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
           }
         }
       }
@@ -431,4 +431,26 @@ private static DateTimeType createUnknownDate() {
   final DateTimeType unknownDate = new DateTimeType()
   unknownDate.addExtension().setUrl(FhirUrls.Extension.FhirDefaults.DATA_ABSENT_REASON).setValue(new CodeType("unknown"))
   return unknownDate
+}
+
+private static boolean isInOrgUnits(@Nonnull final Map abstractSample) {
+  final List orgUnits = ["P-2031-ITM", "P-2261-ITM"]
+
+  if (abstractSample[ORGANISATION_UNIT] == null) {
+    return false
+  }
+  return orgUnits.contains(abstractSample[ORGANISATION_UNIT][CODE] as String)
+}
+
+private static boolean isExportable(@Nonnull final Fhir4Source source) {
+  if (source[sample().sampleCategory()] as SampleCategory == SampleCategory.MASTER) {
+    return isInOrgUnits(source)
+  }
+  if (source[sample().sampleCategory()] as SampleCategory == SampleCategory.ALIQUOTGROUP){
+    return isInOrgUnits(source[sample().parent()] as Map)
+  }
+  if (source[sample().sampleCategory()] as SampleCategory == SampleCategory.DERIVED){
+    return isInOrgUnits(source)
+  }
+  return false;
 }
