@@ -109,11 +109,6 @@ condition {
         }
       }
     }
-  } else if (context.source[diagnosis().diagnosisDate().date()]) {
-    onsetDateTime {
-      date = context.source[diagnosis().diagnosisDate().date()]
-      precision = TemporalPrecisionEnum.DAY.toString()
-    }
   }
 }
 
