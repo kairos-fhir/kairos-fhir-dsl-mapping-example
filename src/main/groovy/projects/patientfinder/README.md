@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-27
+* removed export of onset end date for conditions as not desired anymore.
+
 ## 2025-01-16
 * Fixed metamodel usage for CatalogEntry, which was migrated to Multilinguals
 

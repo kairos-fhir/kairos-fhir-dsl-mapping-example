@@ -93,27 +93,6 @@ condition {
   }
 
   if (mapping) {
-    final def lflvOnset = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.start"
-    }
-
-    onsetPeriod {
-      if (lflvOnset) {
-        start {
-          date = lflvOnset[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      }
-
-      final def lflvEnd = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-        lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.end"
-      }
-
-      if (lflvEnd) {
-        end {
-          date = lflvEnd[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      }
-    }
 
     final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "specialism"
