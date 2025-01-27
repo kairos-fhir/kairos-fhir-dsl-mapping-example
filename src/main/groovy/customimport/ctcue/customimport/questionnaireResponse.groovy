@@ -70,16 +70,6 @@ bundle {
               }
             }
 
-            component {
-              code {
-                coding {
-                  system = FhirUrls.System.LaborValue.BASE_URL
-                  code = "Questionnaire-Response-Status"
-                }
-              }
-              valueString = sourceQR.getStatus().toCode()
-            }
-
             sourceQR.item.each { def sourceItem ->
               component {
                 code {
