@@ -23,9 +23,7 @@ final String VOLUMEINFUSED = "volumeinfused"
 final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
 final String CONCENTRATION_STRENGTH = "concentration_strength"
 final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
-final String FREQUENCY = "frequency"
-final String REQUESTER = "requester"
-final String STRENGTHTEXT = "strengthtext"
+final String MEDICATION_IDENTIFIER = "medication_identifier"
 
 final Map PROFILE_TYPES = [
     (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
@@ -34,9 +32,7 @@ final Map PROFILE_TYPES = [
     (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
     (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
     (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
-    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
-    (REQUESTER)                           : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
-    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
+    (MEDICATION_IDENTIFIER)               : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -62,8 +58,10 @@ medicationAdministration {
 
   status = MedicationAdministration.MedicationAdministrationStatus.COMPLETED
 
-  medicationReference {
-    reference = "Medication/" + context.source[medication().id()]
+  if (lflvMap.containsKey(MEDICATION_IDENTIFIER)) {
+    medicationReference {
+      reference = "Medication/" + lflvMap[MEDICATION_IDENTIFIER] as String
+    }
   }
 
   subject {

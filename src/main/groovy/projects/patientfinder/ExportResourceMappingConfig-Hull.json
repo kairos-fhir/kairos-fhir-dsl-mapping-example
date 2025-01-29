@@ -13,7 +13,7 @@
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
-      "transformByTemplate": "patient",
+      "transformByTemplate": "patientHull",
       "exportToFhirResource": "Patient"
     },
     {
@@ -33,12 +33,12 @@
     },
     {
       "selectFromCxxEntity": "LABOR_METHOD",
-      "transformByTemplate": "sactQuestionnaire",
+      "transformByTemplate": "questionnaireHull",
       "exportToFhirResource": "Questionnaire"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactQuestionnaireResponse",
+      "transformByTemplate": "questionnaireResponseHull",
       "exportToFhirResource": "QuestionnaireResponse"
     },
     {

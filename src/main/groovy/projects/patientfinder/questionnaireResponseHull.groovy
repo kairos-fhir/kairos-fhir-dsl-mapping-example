@@ -1,4 +1,4 @@
-package customimport.ctcue.customexport
+package projects.patientfinder
 
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
@@ -8,6 +8,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.QuestionnaireResponse
 
@@ -15,9 +16,14 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 questionnaireResponse {
+
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.LABOR){
+    return
+  }
 
   id = "QuestionnaireResponse/" + context.source[laborMapping().laborFinding().id()]
 
@@ -72,76 +78,9 @@ questionnaireResponse {
         answer {
           setValueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
         }
-      } else if (isEnumeration(laborValue)) {
-
-        lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
-              code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-            }
-          }
-        }
-        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-            }
-          }
-        }
-
-      } else if (isOptionGroup(laborValue)) {
-
-        lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
-              code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-            }
-          }
-        }
-        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-            }
-          }
-        }
-
-      } else if (isCatalog(laborValue)) {
-
-        lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
-            }
-          }
-        }
-        lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
-          answer {
-            valueCoding {
-              system = "urn:centraxx:CodeSystem/IcdCatalog-" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
-              code = entry[CODE] as String
-              display = entry[IcdEntry.PREFERRED_LONG] as String
-            }
-          }
-        }
-
-      } else {
-        final String msg = laborValue?.getAt(LaborValue.D_TYPE) + " not implemented yet."
-        System.out.println(msg)
       }
     }
   }
-
 }
 
 static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {

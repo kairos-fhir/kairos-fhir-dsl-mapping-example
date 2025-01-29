@@ -13,6 +13,11 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-29
+* changed the medication related export scripts to export medications and link them via identifier from finding
+* added export scripts for Questionnaire and QuestionnaireResponse in Hull
+* filtered Hull patient identifiers for NHS id.
+
 ## 2025-01-27
 * removed export of onset end date for conditions as not desired anymore.
 

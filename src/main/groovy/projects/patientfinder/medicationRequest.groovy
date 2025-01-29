@@ -26,26 +26,16 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * @since v.1.41.0, CXX.v.2024.2.0
  */
 
-final String DOSAGE_SITE = "dosage.site"
-final String DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT = "dosage.doseAndRate.rateQuantity.unit"
-final String VOLUMEINFUSED = "volumeinfused"
-final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
-final String CONCENTRATION_STRENGTH = "concentration_strength"
-final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
+final String MEDICATION_IDENTIFIER = "medication_identifier"
 final String FREQUENCY = "frequency"
 final String REQUESTER = "requester"
 final String STRENGTHTEXT = "strengthtext"
 
 final Map PROFILE_TYPES = [
-    (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
-    (DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT): LaborFindingLaborValue.STRING_VALUE,
-    (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
-    (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
-    (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
-    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
-    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
-    (REQUESTER)                           : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
-    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
+    (MEDICATION_IDENTIFIER): LaborFindingLaborValue.STRING_VALUE,
+    (FREQUENCY)            : LaborFindingLaborValue.STRING_VALUE,
+    (REQUESTER)            : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (STRENGTHTEXT)         : LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -73,8 +63,10 @@ medicationRequest {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  medicationReference {
-    reference = "Medication/" + context.source[medication().id()]
+  if (lflvMap.containsKey(MEDICATION_IDENTIFIER)) {
+    medicationReference {
+      reference = "Medication/" + lflvMap[MEDICATION_IDENTIFIER] as String
+    }
   }
 
   if (!isFakeEpisode(context.source[medication().episode()])) {
