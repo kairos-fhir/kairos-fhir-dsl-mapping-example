@@ -22,14 +22,19 @@
       "exportToFhirResource": "Specimen"
     },
     {
-      "selectFromCxxEntity": "ATTENDING_DOCTOR",
-      "transformByTemplate": "practitioner",
-      "exportToFhirResource": "Practitioner"
-    },
-    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
+    },
+    {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "condition",
+      "exportToFhirResource": "Condition"
+    },
+    {
+      "selectFromCxxEntity": "MED_PROCEDURE",
+      "transformByTemplate": "procedure",
+      "exportToFhirResource": "Procedure"
     },
     {
       "selectFromCxxEntity": "LABOR_METHOD",
@@ -47,49 +52,14 @@
       "exportToFhirResource": "Observation"
     },
     {
-      "selectFromCxxEntity": "DIAGNOSIS",
-      "transformByTemplate": "condition",
-      "exportToFhirResource": "Condition"
-    },
-    {
-      "selectFromCxxEntity": "MED_PROCEDURE",
-      "transformByTemplate": "procedure",
-      "exportToFhirResource": "Procedure"
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReportHull",
+      "exportToFhirResource": "Observation"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "allergyIntolerance",
       "exportToFhirResource": "AllergyIntolerance"
-    },
-    {
-      "selectFromCxxEntity": "HISTOLOGY",
-      "transformByTemplate": "histology",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "METASTASIS",
-      "transformByTemplate": "metastasis",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "TNM",
-      "transformByTemplate": "tnmSimple",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "ANN_ARBOR",
-      "transformByTemplate": "annArbor",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
-      "transformByTemplate": "otherClassification",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "PROGRESS",
-      "transformByTemplate": "progress",
-      "exportToFhirResource": "ClinicalImpression"
     },
     {
       "selectFromCxxEntity": "PATIENT_TRANSFER",
@@ -100,6 +70,11 @@
       "selectFromCxxEntity": "CALENDAR_EVENT",
       "transformByTemplate": "appointment",
       "exportToFhirResource": "Appointment"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medication",
+      "exportToFhirResource": "Medication"
     },
     {
       "selectFromCxxEntity": "MEDICATION",
