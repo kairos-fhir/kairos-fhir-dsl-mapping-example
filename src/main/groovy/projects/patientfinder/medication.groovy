@@ -23,6 +23,18 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * @author Jonas Küttner
  * v.1.43.0, CXX.v.2024.4.2
  */
+
+
+final String CONCENTRATION_STRENTH = "concentration_strenth"
+final String CONCENTRATION_STRENTH_UNIT = "concentration_strenth_unit"
+final String STRENGTHTEXT = "strengthtext"
+
+final Map PROFILE_TYPES = [
+    (CONCENTRATION_STRENTH)     : LaborFindingLaborValue.NUMERIC_VALUE,
+    (CONCENTRATION_STRENTH_UNIT): LaborFindingLaborValue.STRING_VALUE,
+    (STRENGTHTEXT)              : LaborFindingLaborValue.STRING_VALUE,
+]
+
 medication {
 
   if (context.source[medication().serviceType()] != "MED") {
@@ -30,6 +42,12 @@ medication {
   }
 
   id = "Medication/" + context.source[medication().fillerOrderNumber()]
+
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationCatalog_profile"
+  }
+
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   code {
     coding {
@@ -51,19 +69,24 @@ medication {
     itemCodeableConcept {
       if (context.source[medication().code()]) {
         coding {
-          system = FhirUrls.System.Medication.AGENT
-          code = context.source[medication().agent()] as String
+          code = context.source[medication().code()] as String
         }
       }
     }
 
-    if (context.source[medication().dosis()]) {
+    if (lflvMap.containsKey(CONCENTRATION_STRENTH)) {
       strength {
         numerator {
-          value = sanitizeScale(context.source[medication().dosis()] as String)
-          if (context.source[medication().unit()]) {
-            unit = context.source[medication().unit().code()]
+          value = lflvMap[CONCENTRATION_STRENTH]
+          if (lflvMap.containsKey(CONCENTRATION_STRENTH_UNIT)) {
+            unit = lflvMap[CONCENTRATION_STRENTH_UNIT] as String
           }
+        }
+      }
+    } else if (lflvMap.containsKey(STRENGTHTEXT)) {
+      strength {
+        numerator {
+          value = sanitizeScale(lflvMap[STRENGTHTEXT] as String)
         }
       }
     }
@@ -119,19 +142,4 @@ static Map<String, Object> getLflvMap(final def mapping, final Map<String, Strin
   return lflvMap
 }
 
-static def getLaborMapping(final Context context) {
-  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
-    return context.source[medication().laborMappings()].find { final def lm ->
-      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
-    }
-  }
-
-  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.VER) {
-    return context.source[medication().laborMappings()].find { final def lm ->
-      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
-    }
-  }
-
-  return null
-}
 
