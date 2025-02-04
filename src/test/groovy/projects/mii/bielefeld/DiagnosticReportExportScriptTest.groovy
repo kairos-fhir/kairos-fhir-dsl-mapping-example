@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -28,8 +28,8 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue
 import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/diagnosticReport.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/diagnosticReport.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/diagnosticReport.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<DiagnosticReport> {

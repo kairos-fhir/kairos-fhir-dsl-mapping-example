@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/condition.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/condition.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/condition.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/condition.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
