@@ -13,6 +13,24 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-01-29
+* changed the medication related export scripts to export medications and link them via identifier from finding
+* added export scripts for Questionnaire and QuestionnaireResponse in Hull
+* filtered Hull patient identifiers for NHS id.
+
+## 2025-01-27
+* removed export of onset end date for conditions as not desired anymore.
+
+## 2025-01-16
+* Fixed metamodel usage for CatalogEntry, which was migrated to Multilinguals
+
+## 2025-01-10
+* Added export of sample type in specimen export script
+
+## 2025-01-07
+* Worked on the Observation script to filter correctly
+* Added processing to remove "specialty: " from Orgunit names
+
 ## 2024-11-29
 * Added practitioner script to HULL to export AttendingDoctors
 * added reference from MedicationAdministration to MedicationReequest

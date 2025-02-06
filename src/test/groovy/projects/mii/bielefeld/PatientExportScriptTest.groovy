@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -18,7 +18,6 @@ import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
 import org.hl7.fhir.r4.model.Patient
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -26,10 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertNull
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/patient.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/patient.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/patient.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/patient.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
@@ -40,7 +41,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
 
-    Assumptions.assumeTrue(gkvInsurance != null)
+    assumeTrue(gkvInsurance != null)
 
     final Identifier identifier = resource.getIdentifier().find {
       it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "GKV")
@@ -65,7 +66,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
 
-    Assumptions.assumeTrue(pkvInsurance != null)
+    assumeTrue(pkvInsurance != null)
 
     final Identifier identifier = resource.getIdentifier().find {
       it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "PKV")
@@ -110,7 +111,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
   @ExportScriptTest
   void testThatPatientAddressesAreSet(final Context context, final Patient resource) {
     context.source[patient().addresses()].each { final def patAd ->
-      Assumptions.assumingThat(patAd[PatientAddress.STREET] != null, {
+      assumingThat(patAd[PatientAddress.STREET] != null, {
         final Address address = resource.getAddress().find {
           it.hasLine() &&
                   (!patAd[PatientAddress.STREET] || it.getLine()?.get(0)?.getValue()?.contains(patAd[PatientAddress.STREET] as String)) &&
@@ -125,7 +126,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
       })
 
-      Assumptions.assumingThat(patAd[PatientAddress.PO_BOX] != null, {
+      assumingThat(patAd[PatientAddress.PO_BOX] != null, {
         final Address address = resource.getAddress().find {
           it.hasLine() &&
                   (!patAd[PatientAddress.PO_BOX] in it.getLine().get(0)) &&
@@ -141,7 +142,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatBirthDateIsSet(final Context context, final Patient resource) {
-    Assumptions.assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
+    assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
     assertNotNull(resource.getBirthDate())
     assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getValue(),
             resource.getBirthDate())
@@ -149,7 +150,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatDeceasedDateIsSet(final Context context, final Patient resource) {
-    Assumptions.assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
+    assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
     assertNotNull(resource.getDeceasedDateTimeType())
     assertEquals(new DateTimeType(context.source[patient().dateOfDeath().date()] as String).getValue(),
             resource.getDeceasedDateTimeType().getValue())
@@ -157,7 +158,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatNamesIsSet(final Context context, final Patient resource) {
-    Assumptions.assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
+    assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
 
     final HumanName name = resource.getName().find {
       it.use == HumanName.NameUse.OFFICIAL
@@ -165,16 +166,16 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
     assertNotNull(name)
 
-    Assumptions.assumeTrue(context.source[patient().firstName()] != name)
+    assumeTrue(context.source[patient().firstName()] != name)
     assertEquals(context.source[patient().firstName()], name.getGivenAsSingleString())
 
-    Assumptions.assumeTrue(context.source[patient().lastName()] != null)
+    assumeTrue(context.source[patient().lastName()] != null)
     assertEquals(context.source[patient().lastName()], name.getFamily())
   }
 
   @ExportScriptTest
   void testThatBirthNamesIsSet(final Context context, final Patient resource) {
-    Assumptions.assumeTrue(context.source[patient().birthName()] != null)
+    assumeTrue(context.source[patient().birthName()] != null)
 
     final HumanName name = resource.getName().find {
       it.use == HumanName.NameUse.MAIDEN

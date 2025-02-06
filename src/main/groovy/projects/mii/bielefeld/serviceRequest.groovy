@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 

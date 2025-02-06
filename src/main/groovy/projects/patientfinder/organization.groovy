@@ -26,6 +26,19 @@ organization {
 
   active = true
 
-  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
+  final String orgUnitName = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
+
+  name = cleanName(orgUnitName)
 
 }
+
+static String cleanName(final String name){
+  final String prefix = "specialty:"
+
+  if (name.startsWith(prefix)){
+    return name.substring(prefix.length()).trim()
+  }
+  return name
+}
+
+

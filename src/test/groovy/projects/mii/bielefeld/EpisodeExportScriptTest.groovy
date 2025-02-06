@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -9,16 +9,17 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Encounter
 import org.hl7.fhir.r4.model.Identifier
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/encounter.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/encounter.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
@@ -26,7 +27,7 @@ class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
   @ExportScriptTest
   void testThatIdentifiersAreSet(final Context context, final Encounter resource) {
 
-    Assumptions.assumeTrue((context.source[episode().idContainer()] as List).size() > 0)
+    assumeTrue((context.source[episode().idContainer()] as List).size() > 0)
 
     assertTrue(resource.hasIdentifier())
     assertEquals((context.source[episode().idContainer()] as List).size(), resource.getIdentifier().size())
@@ -50,7 +51,7 @@ class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
 
   @ExportScriptTest
   void testThatClassIsSet(final Context context, final Encounter resource) {
-    Assumptions.assumeTrue(context.source[episode().stayType()] != null)
+    assumeTrue(context.source[episode().stayType()] != null)
 
     assertTrue(resource.hasClass_())
     assertEquals("http://terminology.hl7.org/CodeSystem/v3-ActCode", resource.getClass_().getSystem())
@@ -66,19 +67,19 @@ class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
   @ExportScriptTest
   void testThatPeriodIsSet(final Context context, final Encounter resource) {
 
-    Assumptions.assumeTrue(context.source[episode().validFrom()] || context.source[episode().validUntil()])
+    assumeTrue(context.source[episode().validFrom()] || context.source[episode().validUntil()])
 
     assertTrue(resource.hasPeriod())
 
 
-    Assumptions.assumingThat(context.source[episode().validFrom()] != null,
+    assumingThat(context.source[episode().validFrom()] != null,
         { ->
           assertEquals(new DateTimeType(context.source[episode().validFrom()] as String).getValue(),
               resource.getPeriod().getStart())
         }
     )
 
-    Assumptions.assumingThat(context.source[episode().validUntil()] != null,
+    assumingThat(context.source[episode().validUntil()] != null,
         { ->
           assertEquals(new DateTimeType(context.source[episode().validUntil()] as String).getValue(),
               resource.getPeriod().getEnd())

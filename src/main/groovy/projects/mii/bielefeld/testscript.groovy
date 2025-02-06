@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import com.fasterxml.jackson.databind.ObjectMapper
 

@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -8,16 +8,16 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Condition
 import org.hl7.fhir.r4.model.DateTimeType
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/condition.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/condition.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/condition.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/condition.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
@@ -53,7 +53,7 @@ class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
   @ExportScriptTest
   void testThatAssertedDateIsSet(final Context context, final Condition resource) {
 
-    Assumptions.assumeTrue(context.source[diagnosis().attestationDate()] && context.source[diagnosis().attestationDate().date()])
+    assumeTrue(context.source[diagnosis().attestationDate()] && context.source[diagnosis().attestationDate().date()])
 
     assertTrue(resource.hasExtension("http://hl7.org/fhir/StructureDefinition/condition-assertedDate"))
 

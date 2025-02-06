@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import de.kairos.fhir.centraxx.metamodel.*
 import de.kairos.fhir.centraxx.metamodel.enums.Localization

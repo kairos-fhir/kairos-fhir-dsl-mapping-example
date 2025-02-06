@@ -1,5 +1,9 @@
 # Change log
 
+## 2025-02-04
+* removed duplicate package
+* moved tests
+
 ## 2024-10-21
 
 * removed normalize date

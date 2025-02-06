@@ -11,45 +11,42 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.enums.MedicationServiceType
 import de.kairos.fhir.dsl.r4.context.Context
 
+import javax.annotation.Nullable
+
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
-final String DOSAGE_SITE = "dosage.site"
-final String DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT = "dosage.doseAndRate.rateQuantity.unit"
-final String VOLUMEINFUSED = "volumeinfused"
-final String VOLUMEINFUSED_UOM = "volumeinfused_uom"
-final String CONCENTRATION_STRENGTH = "concentration_strength"
-final String CONCENTRATION_STRENGTH_UNIT = "concentration_strength_unit"
-final String FREQUENCY = "frequency"
-final String REQUESTER = "requester"
-final String STRENGTHTEXT = "strengthtext"
-
-final Map PROFILE_TYPES = [
-    (DOSAGE_SITE)                         : LaborFindingLaborValue.STRING_VALUE,
-    (DOSAGE_DOSEANDRATE_RATEQUANTITY_UNIT): LaborFindingLaborValue.STRING_VALUE,
-    (VOLUMEINFUSED)                       : LaborFindingLaborValue.NUMERIC_VALUE,
-    (VOLUMEINFUSED_UOM)                   : LaborFindingLaborValue.STRING_VALUE,
-    (CONCENTRATION_STRENGTH)              : LaborFindingLaborValue.NUMERIC_VALUE,
-    (CONCENTRATION_STRENGTH_UNIT)         : LaborFindingLaborValue.STRING_VALUE,
-    (FREQUENCY)                           : LaborFindingLaborValue.STRING_VALUE,
-    (REQUESTER)                           : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
-    (STRENGTHTEXT)                        : LaborFindingLaborValue.STRING_VALUE
-]
 
 
 /**
  * Represents a CXX MedicationAdministration -> extracts the Medication data
  *
  * @author Jonas Küttner
- * v.1.41.0, CXX.v.2024.4.2
+ * v.1.43.0, CXX.v.2024.4.2
  */
+
+
+final String CONCENTRATION_STRENTH = "concentration_strenth"
+final String CONCENTRATION_STRENTH_UNIT = "concentration_strenth_unit"
+final String STRENGTHTEXT = "strengthtext"
+
+final Map PROFILE_TYPES = [
+    (CONCENTRATION_STRENTH)     : LaborFindingLaborValue.NUMERIC_VALUE,
+    (CONCENTRATION_STRENTH_UNIT): LaborFindingLaborValue.STRING_VALUE,
+    (STRENGTHTEXT)              : LaborFindingLaborValue.STRING_VALUE,
+]
+
 medication {
 
-  id = "Medication/" + context.source[medication().id()]
+  if (context.source[medication().serviceType()] != "MED") {
+    return
+  }
 
-  final def mapping = getLaborMapping(context)
+  id = "Medication/" + context.source[medication().fillerOrderNumber()]
 
-  // export for administration
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationCatalog_profile"
+  }
+
   final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   code {
@@ -70,43 +67,40 @@ medication {
 
   ingredient {
     itemCodeableConcept {
-      if (context.source[medication().agent()]) {
+      if (context.source[medication().code()]) {
         coding {
-          system = FhirUrls.System.Medication.AGENT
-          code = context.source[medication().agent()] as String
-        }
-      }
-      if (context.source[medication().agentGroup()]) {
-        coding {
-          system = FhirUrls.System.Medication.AGENT_GROUP
-          code = context.source[medication().agentGroup()] as String
+          code = context.source[medication().code()] as String
         }
       }
     }
 
-    if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
+    if (lflvMap.containsKey(CONCENTRATION_STRENTH)) {
       strength {
-        if (lflvMap.containsKey(CONCENTRATION_STRENGTH)) {
-          numerator {
-            value = lflvMap[CONCENTRATION_STRENGTH]
-            unit = lflvMap[CONCENTRATION_STRENGTH_UNIT]
+        numerator {
+          value = lflvMap[CONCENTRATION_STRENTH]
+          if (lflvMap.containsKey(CONCENTRATION_STRENTH_UNIT)) {
+            unit = lflvMap[CONCENTRATION_STRENTH_UNIT] as String
           }
         }
       }
-    }
-
-    if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.VER) {
+    } else if (lflvMap.containsKey(STRENGTHTEXT)) {
       strength {
-        if (lflvMap.containsKey(STRENGTHTEXT)) {
-          numerator {
-            code = lflvMap[STRENGTHTEXT] as String
-          }
+        numerator {
+          value = sanitizeScale(lflvMap[STRENGTHTEXT] as String)
         }
       }
     }
   }
 }
 
+@Nullable
+static BigDecimal sanitizeScale(final String numeric) {
+  try {
+    return BigDecimal.valueOf(Double.parseDouble(numeric))
+  } catch (final NumberFormatException | NullPointerException ignored) {
+    return null
+  }
+}
 
 /**
  * removes milli seconds and time zone.
@@ -148,19 +142,4 @@ static Map<String, Object> getLflvMap(final def mapping, final Map<String, Strin
   return lflvMap
 }
 
-static def getLaborMapping(final Context context) {
-  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.GAB) {
-    return context.source[medication().laborMappings()].find { final def lm ->
-      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationAdministration_profile"
-    }
-  }
-
-  if (context.source[medication().serviceType()] as MedicationServiceType == MedicationServiceType.VER) {
-    return context.source[medication().laborMappings()].find { final def lm ->
-      lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
-    }
-  }
-
-  return null
-}
 

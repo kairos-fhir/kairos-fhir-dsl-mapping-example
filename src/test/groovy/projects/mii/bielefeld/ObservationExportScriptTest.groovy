@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -18,16 +18,18 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Observation
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeFalse
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/observation.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/observation.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/observation.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/observation.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> {
@@ -91,7 +93,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
       idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] == "LOINC"
     }
 
-    Assumptions.assumeTrue(idContainer != null, "No LOINC IdContainer given for LaborValue.")
+    assumeTrue(idContainer != null, "No LOINC IdContainer given for LaborValue.")
 
     assertTrue(observation.hasCode())
 
@@ -124,7 +126,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatEffectiveIsSet(final Context context, final Observation observation) {
     assumeExportable(context)
-    Assumptions.assumeTrue(context.source[laborFindingLaborValue().laborFinding().findingDate()] &&
+    assumeTrue(context.source[laborFindingLaborValue().laborFinding().findingDate()] &&
         context.source[laborFindingLaborValue().laborFinding().findingDate().date()])
 
     assertEquals(new DateTimeType(context.source[laborFindingLaborValue().laborFinding().findingDate().date()] as String).getValue(),
@@ -135,7 +137,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatNonExportableValuesAreNotExported(final Context context,
                                                  final Observation observation) {
-    Assumptions.assumeFalse(isExportable(context))
+    assumeFalse(isExportable(context))
 
     assertFalse(observation.hasId())
   }
@@ -143,10 +145,10 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatNumericalValuesAreExported(final Context context,
                                           final Observation observation) {
-    Assumptions.assumeTrue(isExportable(context))
+    assumeTrue(isExportable(context))
     assumeNumeric(context)
 
-    Assumptions.assumeTrue(context.source[laborFindingLaborValue().numericValue()] != null, "LFLV has no numeric value")
+    assumeTrue(context.source[laborFindingLaborValue().numericValue()] != null, "LFLV has no numeric value")
 
     assertTrue(observation.hasValueQuantity())
 
@@ -157,14 +159,14 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatNumericalValueUnitsAreExported(final Context context,
                                               final Observation observation) {
-    Assumptions.assumeTrue(isExportable(context))
+    assumeTrue(isExportable(context))
     assumeNumeric(context)
-    Assumptions.assumeTrue(context.source[laborFindingLaborValue().numericValue()] != null, "LFLV has no numeric value")
+    assumeTrue(context.source[laborFindingLaborValue().numericValue()] != null, "LFLV has no numeric value")
 
     assertTrue(observation.hasValueQuantity())
     final def lvUnit = context.source[laborFindingLaborValue().crfTemplateField().laborValueDecimal().unit()]
 
-    Assumptions.assumeTrue(lvUnit != null, "LFLV has no unit")
+    assumeTrue(lvUnit != null, "LFLV has no unit")
 
     assertEquals(lvUnit[Unity.CODE], observation.getValueQuantity().getCode())
     assertEquals(lvUnit[Unity.CODE], observation.getValueQuantity().getUnit())
@@ -175,10 +177,10 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatCatalogValuesAreSet(final Context context,
                                    final Observation observation) {
-    Assumptions.assumeTrue(isExportable(context))
+    assumeTrue(isExportable(context))
     assumeCatalog(context)
 
-    Assumptions.assumingThat(isValueList(context),
+    assumingThat(isValueList(context),
         { ->
           assertTrue(observation.hasValueCodeableConcept())
 
@@ -190,7 +192,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
           }
         })
 
-    Assumptions.assumingThat(isCustomCatalog(context),
+    assumingThat(isCustomCatalog(context),
         { ->
           assertTrue(observation.hasValueCodeableConcept())
 
@@ -202,7 +204,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
           }
         })
 
-    Assumptions.assumingThat(isUsageEntry(context),
+    assumingThat(isUsageEntry(context),
         { ->
           assertTrue(observation.hasValueCodeableConcept())
 
@@ -248,18 +250,18 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   private static void assumeCatalog(final Context context) {
     final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
 
-    Assumptions.assumeTrue(dType in [LaborValueDType.CATALOG, LaborValueDType.OPTIONGROUP, LaborValueDType.ENUMERATION],
+    assumeTrue(dType in [LaborValueDType.CATALOG, LaborValueDType.OPTIONGROUP, LaborValueDType.ENUMERATION],
     "The LFLV is not a Catalog, OptionGroup or Enumeration type.")
   }
 
   private static void assumeNumeric(final Context context) {
     final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
 
-    Assumptions.assumeTrue(dType in [LaborValueDType.DECIMAL, LaborValueDType.INTEGER])
+    assumeTrue(dType in [LaborValueDType.DECIMAL, LaborValueDType.INTEGER])
   }
 
   private static void assumeExportable(final Context context) {
-    Assumptions.assumeTrue(isExportable(context), "The LFLV is not to be exported")
+    assumeTrue(isExportable(context), "The LFLV is not to be exported")
   }
 
   private static boolean isExportable(final Context context) {

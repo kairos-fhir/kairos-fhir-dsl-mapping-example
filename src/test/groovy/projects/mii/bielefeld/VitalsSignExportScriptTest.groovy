@@ -12,15 +12,16 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.CodeableConcept
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Observation
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
+import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/vitalstatus.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/vitalstatus.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/vitalstatus.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/vitalstatus.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
@@ -66,8 +67,8 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
   void testThatEffectiveDateTimeIsSet(final Context context, final Observation resource) {
     checkLaborMethod(context)
 
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
-            context.source[laborMapping().laborFinding().findingDate().date()])
+      assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
+              context.source[laborMapping().laborFinding().findingDate().date()])
 
     assertTrue(resource.hasEffectiveDateTimeType())
 
@@ -85,27 +86,27 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "Vitalstatus.valueCodeableConcept.coding.code"
     }
 
-    Assumptions.assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-            { ->
-              assertTrue(resource.hasValueCodeableConcept())
-              assertTrue(resource.getValueCodeableConcept().hasCoding(
-                      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-                      lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
-              ))
-            }
-    )
+      assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+              { ->
+                  assertTrue(resource.hasValueCodeableConcept())
+                  assertTrue(resource.getValueCodeableConcept().hasCoding(
+                          "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+                          lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
+                  ))
+              }
+      )
 
-    Assumptions.assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-            {
-              assertTrue(resource.hasValueCodeableConcept())
-              assertTrue(resource.getValueCodeableConcept().hasCoding(
-                      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-                      "X"
-              ))
-            })
+      assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+              {
+                  assertTrue(resource.hasValueCodeableConcept())
+                  assertTrue(resource.getValueCodeableConcept().hasCoding(
+                          "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+                          "X"
+                  ))
+              })
   }
 
   private static void checkLaborMethod(final Context context) {
-    Assumptions.assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MP_ObservationVitalstatus", "Not a MII MP_ObservationVitalstatus profile")
+    assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MP_ObservationVitalstatus", "Not a MII MP_ObservationVitalstatus profile")
   }
 }

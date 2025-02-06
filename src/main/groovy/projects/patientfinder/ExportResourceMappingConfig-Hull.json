@@ -13,7 +13,7 @@
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
-      "transformByTemplate": "patient",
+      "transformByTemplate": "patientHull",
       "exportToFhirResource": "Patient"
     },
     {
@@ -22,29 +22,9 @@
       "exportToFhirResource": "Specimen"
     },
     {
-      "selectFromCxxEntity": "ATTENDING_DOCTOR",
-      "transformByTemplate": "practitioner",
-      "exportToFhirResource": "Practitioner"
-    },
-    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_METHOD",
-      "transformByTemplate": "sactQuestionnaire",
-      "exportToFhirResource": "Questionnaire"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "sactQuestionnaireResponse",
-      "exportToFhirResource": "QuestionnaireResponse"
-    },
-    {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation"
     },
     {
       "selectFromCxxEntity": "DIAGNOSIS",
@@ -57,39 +37,29 @@
       "exportToFhirResource": "Procedure"
     },
     {
+      "selectFromCxxEntity": "LABOR_METHOD",
+      "transformByTemplate": "questionnaireHull",
+      "exportToFhirResource": "Questionnaire"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "questionnaireResponseHull",
+      "exportToFhirResource": "QuestionnaireResponse"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observation",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReportHull",
+      "exportToFhirResource": "Observation"
+    },
+    {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "allergyIntolerance",
       "exportToFhirResource": "AllergyIntolerance"
-    },
-    {
-      "selectFromCxxEntity": "HISTOLOGY",
-      "transformByTemplate": "histology",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "METASTASIS",
-      "transformByTemplate": "metastasis",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "TNM",
-      "transformByTemplate": "tnmSimple",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "ANN_ARBOR",
-      "transformByTemplate": "annArbor",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "OTHER_CLASSIFICATION",
-      "transformByTemplate": "otherClassification",
-      "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "PROGRESS",
-      "transformByTemplate": "progress",
-      "exportToFhirResource": "ClinicalImpression"
     },
     {
       "selectFromCxxEntity": "PATIENT_TRANSFER",
@@ -100,6 +70,11 @@
       "selectFromCxxEntity": "CALENDAR_EVENT",
       "transformByTemplate": "appointment",
       "exportToFhirResource": "Appointment"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medication",
+      "exportToFhirResource": "Medication"
     },
     {
       "selectFromCxxEntity": "MEDICATION",

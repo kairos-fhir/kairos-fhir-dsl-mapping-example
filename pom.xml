@@ -27,7 +27,6 @@
     <hapi.fhir.version>5.7.9</hapi.fhir.version>
   </properties>
 
-
   <scm>
     <connection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</connection>
     <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git

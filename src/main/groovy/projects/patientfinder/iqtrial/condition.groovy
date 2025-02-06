@@ -4,14 +4,14 @@ import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
- * @since v.1.6.0, CXX.v.3.17.1.7
+ * @since v.1.43.0, CXX.v.2024.5.2
  */
 condition {
 
@@ -62,7 +62,8 @@ condition {
         system = "https://fhir.centraxx.de/system/" + context.source[diagnosis().userDefinedCatalogEntry().catalog().code()]
         version = context.source[diagnosis().userDefinedCatalogEntry().catalog().version()]
         code = context.source[diagnosis().userDefinedCatalogEntry().code()] as String
-        display = context.source[diagnosis().userDefinedCatalogEntry().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE)
+        display = context.source[diagnosis().userDefinedCatalogEntry().multilinguals()]
+            ?.find { it[LANGUAGE] == "en" }?.getAt(NAME)
       }
     }
 

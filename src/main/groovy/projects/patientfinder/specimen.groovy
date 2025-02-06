@@ -1,5 +1,6 @@
 package projects.patientfinder
 
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
@@ -15,11 +16,26 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 specimen {
 
   id = "Specimen/" + context.source[sample().id()]
+
   context.source[sample().idContainer()].each { final idContainer ->
     final boolean isDecisive = idContainer[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
     if (isDecisive) {
       identifier {
         value = idContainer[PSN]
+      }
+    }
+  }
+
+  println(context.source[sample()])
+  println(context.source[sample().sampleType()])
+
+  if (context.source[sample().sampleType()] != null){
+    type {
+      coding {
+        code = context.source[sample().sampleType().code()] as String
+        display = context.source[sample().sampleType().multilinguals()].find { final def ml ->
+          ml[Multilingual.SHORT_NAME] != null & ml[Multilingual.LANGUAGE] == "de"
+        }?.getAt(Multilingual.SHORT_NAME)
       }
     }
   }

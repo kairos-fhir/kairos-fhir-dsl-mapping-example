@@ -1,5 +1,4 @@
-package projects.mii_bielefeld
-
+package projects.mii.bielefeld
 
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
@@ -15,7 +14,6 @@ import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Procedure
-import org.junit.jupiter.api.Assumptions
 
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFinding.LABOR_FINDING_LABOR_VALUES
@@ -26,10 +24,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @TestResources(
-    groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/procedure.groovy",
-    contextMapsPath = "src/test/resources/projects/mii_bielefeld/procedure.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/procedure.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/procedure.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
@@ -78,14 +77,14 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
       lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
 
-    Assumptions.assumeTrue(mapping != null)
+    assumeTrue(mapping != null)
 
 
     final def performedPeriodEnd = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.performedPeriod.end"
     }
 
-    Assumptions.assumeTrue(performedPeriodEnd && performedPeriodEnd[DATE_VALUE])
+    assumeTrue(performedPeriodEnd && performedPeriodEnd[DATE_VALUE])
 
     assertNotNull(performedPeriodEnd)
 

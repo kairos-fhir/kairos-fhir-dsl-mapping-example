@@ -1,4 +1,4 @@
-package projects.mii_bielefeld
+package projects.mii.bielefeld.experimental
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog

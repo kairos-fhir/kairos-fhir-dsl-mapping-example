@@ -1,18 +1,24 @@
-package customimport.ctcue.customexport
+package projects.patientfinder
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateSection
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Questionnaire
 
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
 
 /**
  * transforms a CXX LaborMethod to a Questionnaire.
  */
 questionnaire {
+
+  if (context.source[laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.LABOR){
+    return
+  }
 
   id = "Questionnaire/" + context.source[laborMethod().id()]
 
@@ -27,9 +33,8 @@ questionnaire {
     item {
       setLinkId(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.CODE) as String)
 
-      // assuming the question is stored as description
       setText(field[CrfTemplateField.LABOR_VALUE]
-          ?.getAt(LaborValue.DESC_MULTILINGUAL_ENTRIES)
+          ?.getAt(LaborValue.NAME_MULTILINGUAL_ENTRIES)
           ?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String
       )
       if (field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)) {
@@ -37,7 +42,6 @@ questionnaire {
       }
     }
   }
-
 }
 
 // more possible, focusing on main types
