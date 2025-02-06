@@ -162,7 +162,7 @@ patient {
         type = "both"
         city = ad[PatientAddress.CITY] as String
         postalCode = ad[PatientAddress.ZIPCODE] as String
-        country = ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String
+        country = ad[PatientAddress.COUNTRY] != null ? ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String : null
         line(getLineString(ad as Map))
       }
     } else if (ad[PatientAddress.PO_BOX]) { // Postfach address, extensions could be added
@@ -170,7 +170,7 @@ patient {
         type = "postal"
         city = ad[PatientAddress.CITY] as String
         postalCode = ad[PatientAddress.ZIPCODE] as String
-        country = ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String
+        country = ad[PatientAddress.COUNTRY] != null ? ad[PatientAddress.COUNTRY][Country.ISO2_CODE] as String : null
         line(ad[PatientAddress.PO_BOX] as String)
       }
     }
