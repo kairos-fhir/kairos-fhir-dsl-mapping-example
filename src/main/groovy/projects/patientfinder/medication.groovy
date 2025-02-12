@@ -21,7 +21,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
  * Represents a CXX MedicationAdministration -> extracts the Medication data
  *
  * @author Jonas Küttner
- * v.1.43.0, CXX.v.2024.4.2
+ * v.1.43.0, CXX.v.2024.5.4
  */
 
 
@@ -37,7 +37,7 @@ final Map PROFILE_TYPES = [
 
 medication {
 
-  if (context.source[medication().serviceType()] != "MED") {
+  if (context.source[medication().serviceType()] != MedicationServiceType.MED.name()) {
     return
   }
 

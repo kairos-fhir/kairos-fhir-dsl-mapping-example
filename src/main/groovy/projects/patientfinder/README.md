@@ -13,6 +13,11 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-02-12
+* replaced string with new enum for MedicationServiceType
+* removed id filter for NHS
+* added export of LaborMethod name as Questionnaire description
+
 ## 2025-01-29
 * changed the medication related export scripts to export medications and link them via identifier from finding
 * added export scripts for Questionnaire and QuestionnaireResponse in Hull

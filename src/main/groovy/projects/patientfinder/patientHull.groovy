@@ -31,9 +31,7 @@ patient {
   }
 
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll {
-    final def idc -> (idc[ID_CONTAINER_TYPE][CODE] as String) in ["NHS"]
-  }.each {
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each {
     final def idc ->
     final boolean isDecisive = idc[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
     if (isDecisive) {

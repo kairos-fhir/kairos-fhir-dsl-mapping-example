@@ -26,6 +26,12 @@ questionnaire {
     value = context.source[laborMethod().code()]
   }
 
+  description(
+      context.source[laborMethod().nameMultilingualEntries()].find { final def me ->
+        "en" == me[MultilingualEntry.LANG]
+      }?.getAt(MultilingualEntry.VALUE) as String
+  )
+
   // using first section only
   final def firstSection = context.source[laborMethod().crfTemplate().sections()].find()
 
