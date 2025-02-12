@@ -26,9 +26,6 @@ specimen {
     }
   }
 
-  println(context.source[sample()])
-  println(context.source[sample().sampleType()])
-
   if (context.source[sample().sampleType()] != null){
     type {
       coding {
