@@ -1,5 +1,8 @@
 # Change log
 
+# 2025-02-17
+* added new script and tests for MII consent
+
 ## 2025-02-04
 * removed duplicate package
 * moved tests
