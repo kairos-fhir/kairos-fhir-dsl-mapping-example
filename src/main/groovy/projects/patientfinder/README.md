@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-02-18
+* filtered Hull patient identifiers for NHS id.
+
 ## 2025-02-12
 * replaced string with new enum for MedicationServiceType
 * removed id filter for NHS

@@ -31,21 +31,22 @@ patient {
   }
 
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each {
-    final def idc ->
-    final boolean isDecisive = idc[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
-    if (isDecisive) {
-      identifier {
-        value = idc[PSN]
-        type {
-          coding {
-            system = FhirUrls.System.IdContainerType.BASE_URL
-            code = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .findAll { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS"}
+      .each { final def idc ->
+        final boolean isDecisive = idc[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
+        if (isDecisive) {
+          identifier {
+            value = idc[PSN]
+            type {
+              coding {
+                system = FhirUrls.System.IdContainerType.BASE_URL
+                code = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
+              }
+            }
           }
         }
       }
-    }
-  }
 
   humanName {
     text = context.source[patient().firstName()] + " " + context.source[patient().lastName()]
