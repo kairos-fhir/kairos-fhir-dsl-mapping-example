@@ -9,6 +9,7 @@ import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptEngine
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import groovy.json.JsonSlurper
+import org.apache.commons.lang3.tuple.Pair
 import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport
 import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport
@@ -43,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.fail
  * <br><br>
  * Optionally, the {@link Validate} annotation can be used to validate the resulting resource against the profiles of a given FHIR package.
  * FHIR packages can be downloaded for specific FHIR projects from https://simplifier.net/
- * @param <E> the type parameter for the FHIR resource.
+ * @param <E>            the type parameter for the FHIR resource.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractExportScriptTest<E extends DomainResource> {
@@ -80,21 +81,45 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
                                 final FhirValidator validator) throws FileNotFoundException {
     final List<Map<String, Object>> contexts = createTestData(contextMapsPath)
     final Fhir4ScriptRunner runner = createRunner(groovyPath)
-    mappingResults = contexts.collect {
+    final List<Pair> contextResourcePairs = contexts.collect {
       final Context context = new Context(it)
       final E resource = (E) runner.run(context)
-      if (validator != null && resource.hasId()) {
-        final ValidationResult result = validator.validateWithResult(resource)
-        if (!result.isSuccessful()) {
-          fail("Resource Validation failed:\n" +
-              String.join("\n",
-                  result.getMessages()
-                      .findAll { it.getSeverity() == ResultSeverityEnum.ERROR }
-                      .collect { it.toString() }))
-        }
+      return Pair.of(context, resource)
+    }.findAll {
+      it.getRight().hasId()
+    }
+
+    if (validator != null) {
+      validateResources(contextResourcePairs, validator)
+    }
+
+    mappingResults = contextResourcePairs.collect {
+      Arguments.of(it.getLeft(), it.getRight())
+    }
+
+  }
+
+  private static void validateResources(final List<Pair> contextResourcePairs, final validator) {
+    final Map<Integer, String> validationErrors = new HashMap<>();
+    contextResourcePairs.eachWithIndex { final Pair<Context, E> entry, final int i ->
+      final ValidationResult result = validator.validateWithResult(entry.getRight())
+      if (!result.isSuccessful()) {
+        final def messages = result.getMessages()
+            .findAll { it.getSeverity() == ResultSeverityEnum.ERROR }
+            .collect { it.toString() }
+            .join("\n")
+
+        validationErrors.put(i, messages)
       }
-      return Arguments.of(context, resource)
-    }.asImmutable()
+    }
+
+    if (!validationErrors.isEmpty()) {
+      final messages = validationErrors
+          .collect { "Context at index " + it.key + " " + "-" * 80 +"\n" + it.value }
+          .join("\n\n")
+
+      fail("Resource Validation failed for entries:\n" + messages)
+    }
   }
 
   @Nonnull
