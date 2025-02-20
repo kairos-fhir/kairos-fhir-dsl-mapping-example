@@ -29,11 +29,7 @@ questionnaireResponse {
     value = "Questionnaire/" + context.source[laborMapping().laborFinding().laborMethod().id()]
   }
 
-  def statusValue = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { def lflv ->
-    return "Questionnaire-Response-Status" == lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
-  }?.getAt(LaborFindingLaborValue.STRING_VALUE)
-
-  status = statusValue != null ? statusValue : QuestionnaireResponse.QuestionnaireResponseStatus.INPROGRESS
+  status = QuestionnaireResponse.QuestionnaireResponseStatus.COMPLETED
 
   subject {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
@@ -43,9 +39,7 @@ questionnaireResponse {
     date = context.source[laborMapping().laborFinding().findingDate().date()]
   }
 
-  // TODO: author (OrgUnit or Practitioner) has to be coded within the LaborMethod like the status
-
-  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { def lflv ->
+  context.source[laborMapping().laborFinding().laborFindingLaborValues()].findAll { final def lflv ->
     return "Questionnaire-Response-Status" != lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD]?.getAt(CrfTemplateField.LABOR_VALUE)?.getAt(CODE)
   }.each { final def lflv ->
     final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]

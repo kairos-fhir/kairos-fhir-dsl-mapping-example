@@ -28,7 +28,10 @@ questionnaire {
       setLinkId(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.CODE) as String)
 
       // assuming the question is stored as description
-      setText(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.DESC_MULTILINGUAL_ENTRIES)?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String)
+      setText(field[CrfTemplateField.LABOR_VALUE]
+          ?.getAt(LaborValue.DESC_MULTILINGUAL_ENTRIES)
+          ?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String
+      )
       if (field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)) {
         setType(mapToType(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType))
       }

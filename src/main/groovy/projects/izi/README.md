@@ -18,6 +18,14 @@ IZI Sync*
 
 # Changelog
 
+## 2025-01-23
+
+* Fixed OrgUnit Filter to check parent OrgUnit for Aliquot samples
+
+## 2025-01-10
+
+* Added OrgUnit filter in specimen script for Hannover export
+
 ## 2024-02-19
 
 * Add UNKNOWN precision date extensions in patient, specimen and observation, consent and condition added

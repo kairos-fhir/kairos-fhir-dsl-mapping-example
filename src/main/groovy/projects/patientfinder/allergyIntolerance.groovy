@@ -1,44 +1,89 @@
 package projects.patientfinder
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import org.hl7.fhir.r4.model.AllergyIntolerance
 
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
-
 /**
  * Represented by a CXX LaborMapping
  * @author Jonas Küttner
- * @since CXX.v.2024.3.7, CXX.v.2024.4.0, kairos-fhir-dsl-1.35.0
+ * @since CXX.v.2024.4.3, CXX.v.2024.5.0, kairos-fhir-dsl-1.42.0
  */
+
+final String ALLERGEN = "Allergen.Allergen"
+final String CATEGORY = "Allergen.Category"
+final String COMMENTS = "Allergen.Comments"
+final String REACTION = "Allergen.Reaction"
+final String SEVERITY = "Allergen.Severity"
+final String STATUS = "Allergen.Status"
+final String STATUS_REASON = "Allergy.StatusReason"
+final String FINISH = "Finish"
+final String RECORD_DATE = "Record date"
+final String START = "Start"
+
+
+final Map PROFILE_TYPES = [
+    (ALLERGEN)     : STRING_VALUE,
+    (CATEGORY)     : STRING_VALUE,
+    (COMMENTS)     : STRING_VALUE,
+    (REACTION)     : STRING_VALUE,
+    (SEVERITY)     : STRING_VALUE,
+    (STATUS)       : STRING_VALUE,
+    (STATUS_REASON): STRING_VALUE,
+    (FINISH)       : DATE_VALUE,
+    (RECORD_DATE)  : DATE_VALUE,
+    (START)        : DATE_VALUE
+]
+
+
 allergyIntolerance {
 
-  if (!(context.source[laborMapping().laborFinding().laborMethod().code()] as String).equals("Allergen")) {
+  if ((context.source[laborMapping().laborFinding().laborMethod().code()] as String) != "Allergen") {
     return
   }
 
   id = "AllergyIntolerance/" + context.source[laborMapping().laborFinding().id()]
 
-  final List labFinLabVals = context.source[laborMapping().laborFinding().laborFindingLaborValues()] as List
+  final Map<String, Object> lflvMap = getLflvMap(context.source, PROFILE_TYPES)
 
-  final def lvClinicalStatus = findLabFindLabVal(labFinLabVals, "Allergen.Status")
-  if (lvClinicalStatus) {
+  if (lflvMap.containsKey(STATUS)) {
     clinicalStatus {
       coding {
-        code = lvClinicalStatus[STRING_VALUE] as String
+        code = lflvMap.get(STATUS) as String
       }
     }
   }
 
-  final def lflvCategory = findLabFindLabVal(labFinLabVals, "Allergen.Category")
 
-  if (lflvCategory) {
+  if (lflvMap.containsKey(SEVERITY)) {
+    criticality {
+      extension {
+        url = "https://fhir.iqvia.com/patientfinder/extension/code-specification-extension"
+        valueCodeableConcept {
+          coding {
+            code = lflvMap.get(SEVERITY) as String
+          }
+        }
+      }
+    }
+  }
+
+  if (lflvMap.containsKey(CATEGORY)) {
     category {
-      value = lflvCategory[STRING_VALUE] as String
+      extension {
+        url = "https://fhir.iqvia.com/patientfinder/extension/code-specification-extension"
+        valueCodeableConcept {
+          coding {
+            code = lflvMap.get(CATEGORY) as String
+          }
+        }
+      }
     }
   }
 
@@ -46,85 +91,73 @@ allergyIntolerance {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  final def lflvOnsetStart = findLabFindLabVal(labFinLabVals, "Start")
-  final def lflvOnsetEnd = findLabFindLabVal(labFinLabVals, "Finish")
-
-  if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (!lflvOnsetEnd || !lflvOnsetEnd[DATE_VALUE])) {
-    onsetDateTime {
-      date = lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE]
-    }
-  } else if ((lflvOnsetStart && lflvOnsetStart[DATE_VALUE]) && (lflvOnsetEnd && lflvOnsetEnd[DATE_VALUE])) {
-    onsetPeriod {
+  onsetPeriod {
+    if (lflvMap.containsKey(START) && lflvMap.get(START)) {
       start {
-        date = normalizeDate(lflvOnsetStart[DATE_VALUE][PrecisionDate.DATE] as String)
+        date = lflvMap.get(START)[PrecisionDate.DATE]
       }
+    }
+    if (lflvMap.containsKey(FINISH) && lflvMap.get(FINISH)) {
       end {
-        date = normalizeDate(lflvOnsetEnd[DATE_VALUE][PrecisionDate.DATE] as String)
+        date = lflvMap.get(FINISH)[PrecisionDate.DATE]
       }
     }
   }
 
-  final def lflvRecordedDate = findLabFindLabVal(labFinLabVals, "Record date")
-
-  if (lflvRecordedDate && lflvRecordedDate[DATE_VALUE]) {
-    recordedDate = normalizeDate(lflvRecordedDate[DATE_VALUE][PrecisionDate.DATE] as String)
+  if (lflvMap.containsKey(RECORD_DATE) && lflvMap.get(RECORD_DATE)) {
+    recordedDate {
+      date = lflvMap.get(RECORD_DATE)[PrecisionDate.DATE]
+    }
   }
 
   reaction {
-    final def lflvAllergen = findLabFindLabVal(labFinLabVals, "Allergen.Allergen")
-    if (lflvAllergen) {
+    if (lflvMap.containsKey(ALLERGEN)) {
       substance {
         coding {
-          code = lflvAllergen[STRING_VALUE] as String
+          code = lflvMap.get(ALLERGEN) as String
         }
       }
     }
 
-    final def lflvRecation = findLabFindLabVal(labFinLabVals, "Allergen.Reaction")
-
-    if (lflvRecation) {
-      manifestation {
-        coding {
-          code = lflvRecation[STRING_VALUE] as String
+    if (lflvMap.containsKey(REACTION)) {
+      if (lflvMap.get(REACTION).class == String) {
+        manifestation {
+          coding {
+            code = lflvMap.get(REACTION) as String
+          }
+        }
+      } else {
+        lflvMap.get(REACTION).each { final def reactionCode ->
+          manifestation {
+            coding {
+              code = reactionCode as String
+            }
+          }
         }
       }
     }
+  }
+}
 
-    final def lflvSeverity = findLabFindLabVal(labFinLabVals, "Allergen.Severity")
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
 
-    final String aiSeverity = filterSeverity(lflvSeverity[STRING_VALUE] as String)
-    if (aiSeverity) {
-      severity(aiSeverity)
+  types.each { final String lvCode, final String lvType ->
+    final List<Map<String, Object>> lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].findAll { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
+    }
+
+    if (lflvForLv.size() == 1) {
+      lflvMap[(lvCode)] = lflvForLv[0][lvType]
+    }
+
+    if (lflvForLv && lflvForLv.size() > 1) {
+      lflvMap[(lvCode)] = lflvForLv.collect { it[lvType] }
     }
   }
 
-
-}
-
-static def findLabFindLabVal(final List labFinLabVals, final String code) {
-  return labFinLabVals.find {
-    it[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE].equals(code)
-  }
-}
-
-/**
- * removes milli seconds and time zone.
- * @param dateTimeString the date time string
- * @return the result might be something like "1989-01-15T00:00:00"
- */
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
-}
-
-static String filterSeverity(final String severity) {
-  if (!severity) {
-    return null
-  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.MILD.toCode())) {
-    return AllergyIntolerance.AllergyIntoleranceSeverity.MILD.toCode()
-  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.MODERATE.toCode())) {
-    return AllergyIntolerance.AllergyIntoleranceSeverity.MODERATE.toCode()
-  } else if (severity.equalsIgnoreCase(AllergyIntolerance.AllergyIntoleranceSeverity.SEVERE.toCode())) {
-    return AllergyIntolerance.AllergyIntoleranceSeverity.SEVERE.toCode()
-  }
-  return null
+  return lflvMap
 }

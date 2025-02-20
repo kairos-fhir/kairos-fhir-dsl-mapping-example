@@ -1,0 +1,566 @@
+[ {
+  "id" : 2315,
+  "initialEntitySource" : "CENTRAXX",
+  "patientcontainer" : {
+    "id" : 3735,
+    "creationdate" : "2024-03-01T19:04:23.000+01:00",
+    "entitySource" : "CENTRAXX",
+    "initialEntitySource" : "CENTRAXX",
+    "urlFragment" : "b6f5d61f-39e0-41a5-b573-3ac3a61bfa47",
+    "patientId" : 20,
+    "attributes" : [ ],
+    "anonymousId" : 7402342890753676381,
+    "organisationUnits" : [ {
+      "id" : 1,
+      "creationdate" : "2021-09-09T14:34:12.443+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "code" : "CentraXX",
+      "syncId" : "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+      "meddepartments" : null,
+      "nameMultilingualEntries2" : [ {
+        "id" : 1,
+        "creationdate" : "2021-09-09T14:34:12.447+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "ORGUNIT",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 1,
+        "lang" : "de",
+        "value" : "CENTRAXX",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      }, {
+        "id" : 2,
+        "creationdate" : "2021-09-09T14:34:12.447+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "ORGUNIT",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 1,
+        "lang" : "en",
+        "value" : "CENTRAXX",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      } ],
+      "descMultilingualEntries2" : null
+    } ],
+    "ethnicities" : [ {
+      "id" : 12,
+      "creationdate" : "2022-03-09T13:11:26.100+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "3F89BC74-35AA-4541-B391-4E91532702F6",
+      "code" : "EUROPEAN",
+      "multilinguals" : [ {
+        "id" : 4820,
+        "creationdate" : "2022-03-09T13:11:26.100+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "language" : "de",
+        "lastModifiedOn" : "2022-03-09T14:12:34.753+01:00",
+        "shortName" : "Europäer",
+        "name" : "Europäer"
+      }, {
+        "id" : 4821,
+        "creationdate" : "2022-03-09T13:11:26.100+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "language" : "en",
+        "lastModifiedOn" : "2022-03-09T14:12:34.753+01:00",
+        "shortName" : "European",
+        "name" : "European"
+      } ]
+    } ],
+    "idContainer" : [ {
+      "id" : 4275,
+      "creationdate" : "2024-03-01T19:04:23.147+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "psn" : "A999999999",
+      "tentative" : false,
+      "idContainerType" : {
+        "id" : 895,
+        "creationdate" : "2023-10-13T10:14:35.937+02:00",
+        "entitySource" : "XMLIMPORT",
+        "initialEntitySource" : "XMLIMPORT",
+        "syncId" : "318D212D-E66F-473A-8A44-1563043166B0",
+        "name" : "Spender ID",
+        "code" : "SID",
+        "decisive" : true,
+        "editable" : true,
+        "mandatory" : true,
+        "pseudonym" : true,
+        "system" : false,
+        "kind" : "PATIENT",
+        "allowUpdateForSync" : false,
+        "isBlinded" : false,
+        "sampleCategories" : null,
+        "uniqueness" : "SYSTEM"
+      }
+    }, {
+      "id" : 1259412,
+      "creationdate" : "2024-10-07T17:05:20.850+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "psn" : "PID124534",
+      "tentative" : false,
+      "idContainerType" : {
+        "id" : 3071,
+        "creationdate" : "2024-10-07T17:04:11.423+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "80c8781f-9dda-4368-98c0-d04382acbcc1",
+        "name" : "PID",
+        "code" : "Patient.identifier:pid",
+        "decisive" : true,
+        "editable" : true,
+        "mandatory" : false,
+        "pseudonym" : false,
+        "system" : false,
+        "kind" : "PATIENT",
+        "allowUpdateForSync" : false,
+        "isBlinded" : false,
+        "sampleCategories" : null,
+        "uniqueness" : "SYSTEM"
+      }
+    } ],
+    "patientStatus" : {
+      "active" : true
+    },
+    "episode" : null,
+    "sampleCount" : {
+      "id" : 3735,
+      "creationdate" : "2024-03-01T19:04:23.000+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "sampleCount" : 1
+    },
+    "studyMembers" : null,
+    "patientStudies" : null,
+    "laborMappings" : null,
+    "documentMappings" : null,
+    "flexiFlagItems" : null,
+    "patientMasterDataAnonymous" : null,
+    "tumors" : null,
+    "diagnoses" : null,
+    "progresses" : null,
+    "medProcedures" : null,
+    "medications" : null,
+    "consents" : [ {
+      "id" : 64,
+      "creationdate" : "2024-05-24T11:21:24.800+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "75cfd2b2-3dc9-4579-8d5d-3e952b9b788c",
+      "consentType" : {
+        "id" : 76,
+        "creationdate" : "2023-12-22T12:23:52.427+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+        "code" : "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+        "multilinguals" : [ {
+          "id" : 5433,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "en",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Study consent_NEW_CODE_BUDGET_TEST",
+          "name" : "Study consent_NEW_CODE_BUDGET_TEST"
+        }, {
+          "id" : 5432,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "de",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+          "name" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+        } ],
+        "flexiStudy" : null,
+        "policies" : null,
+        "system" : true,
+        "entityStatus" : "ACTIVE"
+      },
+      "validFrom" : {
+        "date" : "2024-05-16T00:00:00.000+02:00",
+        "precision" : "DAY"
+      },
+      "revocation" : {
+        "id" : 5,
+        "creationdate" : "2024-05-24T11:29:40.167+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "revokePartsOnly" : false,
+        "signedOn" : "2024-05-23T00:00:00.000+02:00",
+        "revocationElements" : null,
+        "pseudonym" : false
+      },
+      "consentElements" : null,
+      "consentPartsOnly" : false,
+      "declined" : false,
+      "pseudonym" : false
+    }, {
+      "id" : 238,
+      "creationdate" : "2024-10-08T15:12:18.563+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "418473ab-b91d-4150-b0b1-66f831f530c9",
+      "consentType" : {
+        "id" : 3,
+        "creationdate" : "2021-10-04T17:23:51.533+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "0994DCC0-84D6-4924-BEA5-7231D1F7E1D6",
+        "code" : "DEFAULTSTUDYCONSENT_NEW_STUDY_PROFILE_NEW_STUDY",
+        "multilinguals" : [ {
+          "id" : 5407,
+          "creationdate" : "2021-10-04T17:23:51.610+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "en",
+          "lastModifiedOn" : "2021-10-04T17:23:51.610+02:00",
+          "shortName" : "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY",
+          "name" : "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY"
+        }, {
+          "id" : 5406,
+          "creationdate" : "2021-10-04T17:23:51.610+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "de",
+          "lastModifiedOn" : "2021-10-04T17:23:51.610+02:00",
+          "shortName" : "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY",
+          "name" : "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY"
+        } ],
+        "flexiStudy" : null,
+        "policies" : null,
+        "system" : true,
+        "entityStatus" : "ACTIVE"
+      },
+      "validFrom" : {
+        "date" : "2024-10-08T00:00:00.000+02:00",
+        "precision" : "DAY"
+      },
+      "consentElements" : null,
+      "consentPartsOnly" : false,
+      "declined" : false,
+      "pseudonym" : false
+    }, {
+      "id" : 249,
+      "creationdate" : "2024-11-05T17:44:05.123+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "syncId" : "b6ff370e-cef1-42e8-8c66-04b7be22a96e",
+      "consentType" : {
+        "id" : 76,
+        "creationdate" : "2023-12-22T12:23:52.427+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+        "code" : "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+        "multilinguals" : [ {
+          "id" : 5433,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "en",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Study consent_NEW_CODE_BUDGET_TEST",
+          "name" : "Study consent_NEW_CODE_BUDGET_TEST"
+        }, {
+          "id" : 5432,
+          "creationdate" : "2023-12-22T12:23:52.497+01:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "language" : "de",
+          "lastModifiedOn" : "2023-12-22T12:23:52.497+01:00",
+          "shortName" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+          "name" : "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+        } ],
+        "flexiStudy" : null,
+        "policies" : null,
+        "system" : true,
+        "entityStatus" : "ACTIVE"
+      },
+      "validFrom" : {
+        "date" : "2024-11-04T00:00:00.000+01:00",
+        "precision" : "DAY"
+      },
+      "consentElements" : null,
+      "consentPartsOnly" : false,
+      "declined" : false,
+      "pseudonym" : false
+    } ],
+    "preexistingIllnesses" : null,
+    "patientInsurances" : [ {
+      "id" : 291,
+      "creationdate" : "2024-10-07T16:55:45.857+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "insuranceCompany" : {
+        "id" : 943,
+        "creationdate" : "2024-10-07T16:38:20.593+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "syncId" : "89e3feb1-6960-47be-b815-d5d8b51dbb87",
+        "companyId" : "100395611",
+        "contactAddress" : null
+      },
+      "policeNumber" : "Y58882304243",
+      "groupNumber" : "123233",
+      "insuredRelationship" : "SEL",
+      "coverageType" : "T",
+      "rank" : 1
+    } ]
+  },
+  "patientId" : 7402342890753676381,
+  "firstname" : "Maja Julia",
+  "firstnamecolognecode" : "838383",
+  "firstnamemodifiedsoundex" : "zjfjsfffzf",
+  "lastname" : "Van-der-Dussen",
+  "notes" : "vjvvjzvzvz",
+  "lastnamecolognecode" : "18183",
+  "lastnamemodifiedsoundex" : "pzszzzspzf",
+  "birthdate" : {
+    "date" : "1998-09-19T00:00:00.000+02:00",
+    "precision" : "DAY"
+  },
+  "birthname" : "Hansel",
+  "birthplace" : "Somewhere",
+  "maritalStatus" : {
+    "id" : 3,
+    "creationdate" : "2021-09-09T14:34:12.510+02:00",
+    "entitySource" : "CENTRAXX",
+    "initialEntitySource" : "CENTRAXX",
+    "syncId" : "6DAB5878-2AC0-428F-890C-61B57F4B7025",
+    "code" : "LD",
+    "multilinguals" : [ {
+      "id" : 4826,
+      "creationdate" : "2021-09-09T14:34:12.513+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "de",
+      "lastModifiedOn" : "2021-09-09T14:34:12.513+02:00",
+      "shortName" : "ledig",
+      "name" : "ledig"
+    }, {
+      "id" : 4827,
+      "creationdate" : "2021-09-09T14:34:12.513+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "en",
+      "lastModifiedOn" : "2021-09-09T14:34:12.513+02:00",
+      "shortName" : "single",
+      "name" : "single"
+    } ]
+  },
+  "genderType" : "FEMALE",
+  "denomination" : {
+    "id" : 13,
+    "creationdate" : "2022-03-09T13:05:06.370+01:00",
+    "entitySource" : "CENTRAXX",
+    "initialEntitySource" : "CENTRAXX",
+    "syncId" : "c6a527c9-e62c-4236-9c87-fd51af6cfd89",
+    "code" : "FLEAT_EARTH",
+    "multilinguals" : [ {
+      "id" : 4816,
+      "creationdate" : "2022-03-09T13:05:06.370+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "de",
+      "lastModifiedOn" : "2022-03-09T13:05:06.370+01:00",
+      "shortName" : "Flat Earth",
+      "name" : "Flat Earth"
+    }, {
+      "id" : 4817,
+      "creationdate" : "2022-03-09T13:05:06.370+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "en",
+      "lastModifiedOn" : "2022-03-09T13:05:06.370+01:00",
+      "shortName" : "(en) - FLEAT_EARTH",
+      "name" : "(en) - FLEAT_EARTH"
+    } ]
+  },
+  "citizenship" : {
+    "id" : 11,
+    "creationdate" : "2022-01-12T19:08:57.777+01:00",
+    "entitySource" : "XMLIMPORT",
+    "initialEntitySource" : "CENTRAXX",
+    "syncId" : "be4a497f-1448-432b-9e0d-fbf8c46c42ad",
+    "code" : "GERMAN",
+    "multilinguals" : [ {
+      "id" : 4809,
+      "creationdate" : "2022-01-12T19:08:57.777+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "en",
+      "lastModifiedOn" : "2022-06-17T20:02:06.627+02:00",
+      "shortName" : "Deutsch",
+      "name" : "Deutsch"
+    }, {
+      "id" : 4808,
+      "creationdate" : "2022-01-12T19:08:57.777+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "de",
+      "lastModifiedOn" : "2022-06-17T20:02:06.627+02:00",
+      "shortName" : "Deutsch",
+      "name" : "Deutsch"
+    } ]
+  },
+  "bloodGroup" : {
+    "id" : 1,
+    "creationdate" : "2021-09-09T14:34:12.493+02:00",
+    "entitySource" : "XMLIMPORT",
+    "initialEntitySource" : "CENTRAXX",
+    "syncId" : "4669187C-971F-4CEE-9D13-A09E8BA1D662",
+    "code" : "A",
+    "multilinguals" : [ {
+      "id" : 4794,
+      "creationdate" : "2021-09-09T14:34:12.497+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "de",
+      "lastModifiedOn" : "2021-09-09T14:34:12.497+02:00",
+      "shortName" : "A",
+      "name" : "A"
+    }, {
+      "id" : 4795,
+      "creationdate" : "2021-09-09T14:34:12.497+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "en",
+      "lastModifiedOn" : "2021-09-09T14:34:12.497+02:00",
+      "shortName" : "A",
+      "name" : "A"
+    } ]
+  },
+  "nameAffix" : "vjvpzvvzpv",
+  "dateOfDeath" : null,
+  "title" : {
+    "id" : 3,
+    "creationdate" : "2021-09-09T14:34:12.500+02:00",
+    "entitySource" : "CENTRAXX",
+    "initialEntitySource" : "CENTRAXX",
+    "syncId" : "EFC50AAE-6E4E-487D-8E1B-56A1A9313840",
+    "code" : "DR",
+    "multilinguals" : [ {
+      "id" : 4841,
+      "creationdate" : "2021-09-09T14:34:12.503+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "en",
+      "lastModifiedOn" : "2021-09-09T14:34:12.503+02:00",
+      "shortName" : "Dr.",
+      "name" : "Dr."
+    }, {
+      "id" : 4840,
+      "creationdate" : "2021-09-09T14:34:12.503+02:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "language" : "de",
+      "lastModifiedOn" : "2021-09-09T14:34:12.503+02:00",
+      "shortName" : "Dr.",
+      "name" : "Dr."
+    } ]
+  },
+  "species" : null,
+  "tumorDeathDict" : null,
+  "addresses" : [ {
+    "id" : 6979,
+    "creationdate" : "2024-03-01T19:04:22.877+01:00",
+    "entitySource" : "CENTRAXX",
+    "initialEntitySource" : "CENTRAXX",
+    "street" : "Teststraße",
+    "streetno" : "12",
+    "zipcode" : "50823",
+    "city" : "Köln",
+    "phone1" : "0162312423",
+    "phone2" : "02455235424",
+    "fax" : "whatever that is",
+    "mobile" : "0124534323",
+    "email" : "MajaJulia@example.me",
+    "countryDescriptor" : "Germany (DE)",
+    "country" : {
+      "id" : 259,
+      "creationdate" : "2014-02-28T22:29:10.370+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "iso2Code" : "DE",
+      "iso3Code" : "DEU",
+      "countryId" : "D",
+      "nameMultilingualEntries2" : [ {
+        "id" : 7097,
+        "creationdate" : "2021-09-09T14:34:59.413+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "COUNTRY",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 259,
+        "lang" : "en",
+        "value" : "Germany",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      }, {
+        "id" : 7292,
+        "creationdate" : "2021-09-09T14:34:59.413+02:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "relatedTable" : "COUNTRY",
+        "relatedColumn" : "NAME",
+        "relatedOid" : 259,
+        "lang" : "de",
+        "value" : "Deutschland",
+        "system" : false,
+        "entityStatus" : "ACTIVE"
+      } ]
+    },
+    "state" : {
+      "id" : 3,
+      "creationdate" : "2014-02-28T22:33:26.857+01:00",
+      "entitySource" : "CENTRAXX",
+      "initialEntitySource" : "CENTRAXX",
+      "name" : "Berlin",
+      "country" : {
+        "id" : 259,
+        "creationdate" : "2014-02-28T22:29:10.370+01:00",
+        "entitySource" : "CENTRAXX",
+        "initialEntitySource" : "CENTRAXX",
+        "iso2Code" : "DE",
+        "iso3Code" : "DEU",
+        "countryId" : "D",
+        "nameMultilingualEntries2" : [ {
+          "id" : 7097,
+          "creationdate" : "2021-09-09T14:34:59.413+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "relatedTable" : "COUNTRY",
+          "relatedColumn" : "NAME",
+          "relatedOid" : 259,
+          "lang" : "en",
+          "value" : "Germany",
+          "system" : false,
+          "entityStatus" : "ACTIVE"
+        }, {
+          "id" : 7292,
+          "creationdate" : "2021-09-09T14:34:59.413+02:00",
+          "entitySource" : "CENTRAXX",
+          "initialEntitySource" : "CENTRAXX",
+          "relatedTable" : "COUNTRY",
+          "relatedColumn" : "NAME",
+          "relatedOid" : 259,
+          "lang" : "de",
+          "value" : "Deutschland",
+          "system" : false,
+          "entityStatus" : "ACTIVE"
+        } ]
+      },
+      "code" : "DE-BE",
+      "shortcode" : "BE"
+    },
+    "masterdata" : 1806
+  } ]
+} ]

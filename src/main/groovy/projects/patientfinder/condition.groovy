@@ -13,14 +13,14 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
+import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
  * @author Mike Wähnert
- * @since v.1.6.0, CXX.v.3.17.1.7
+ * @since v.1.43.0, CXX.v.2024.5.2
  */
 condition {
 
@@ -68,7 +68,8 @@ condition {
         system = "https://fhir.centraxx.de/system/" + context.source[diagnosis().userDefinedCatalogEntry().catalog().code()]
         version = context.source[diagnosis().userDefinedCatalogEntry().catalog().version()]
         code = context.source[diagnosis().userDefinedCatalogEntry().code()] as String
-        display = context.source[diagnosis().userDefinedCatalogEntry().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE)
+        display = context.source[diagnosis().userDefinedCatalogEntry().multilinguals()]
+            ?.find { it[LANGUAGE] == "en" }?.getAt(NAME)
       }
     }
 
@@ -92,27 +93,6 @@ condition {
   }
 
   if (mapping) {
-    final def lflvOnset = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.start"
-    }
-
-    onsetPeriod {
-      if (lflvOnset) {
-        start {
-          date = lflvOnset[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      }
-
-      final def lflvEnd = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-        lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "onsetPeriod.end"
-      }
-
-      if (lflvEnd) {
-        end {
-          date = lflvEnd[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      }
-    }
 
     final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "specialism"
@@ -128,11 +108,6 @@ condition {
           }
         }
       }
-    }
-  } else if (context.source[diagnosis().diagnosisDate().date()]) {
-    onsetDateTime {
-      date = context.source[diagnosis().diagnosisDate().date()]
-      precision = TemporalPrecisionEnum.DAY.toString()
     }
   }
 }

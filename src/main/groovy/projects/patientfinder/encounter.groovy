@@ -87,7 +87,6 @@ encounter {
         precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
-
   }
 
   if (context.source[episode().habitation()]) {
@@ -100,6 +99,14 @@ encounter {
     location {
       location {
         reference = "Location/PT-" + pt[PatientTransfer.ID]
+      }
+    }
+  }
+
+  if (context.source[episode().attendingDoctor()]) {
+    participant {
+      individual {
+        reference = "Practitioner/" + context.source[episode().attendingDoctor().id()]
       }
     }
   }
