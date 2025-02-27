@@ -16,7 +16,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
  */
 questionnaire {
 
-  if (context.source[laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.LABOR){
+  if (context.source[laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.NURSING){
     return
   }
 

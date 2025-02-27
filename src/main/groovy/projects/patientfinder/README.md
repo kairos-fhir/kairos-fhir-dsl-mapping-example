@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-02-27
+* change filters for Finding exports
+
 ## 2025-02-18
 * filtered Hull patient identifiers for NHS id.
 
