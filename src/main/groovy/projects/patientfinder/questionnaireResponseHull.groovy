@@ -1,9 +1,7 @@
 package projects.patientfinder
 
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
@@ -16,12 +14,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 questionnaireResponse {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.LABOR){
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.NURSING){
     return
   }
 

@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-03
+* fixed wrong enum filter in questionnaireResponse script
+
 ## 2025-02-27
 * change filters for Finding exports
 

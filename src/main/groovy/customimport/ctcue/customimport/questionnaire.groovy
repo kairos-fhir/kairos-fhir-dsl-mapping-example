@@ -47,8 +47,8 @@ bundle {
             }
 
             code {
-              system = FhirUrls.System.LaborMethod.LaborMethodType.BASE_URL
-              code = LaborMethodCategory.NURSING as String
+              system = FhirUrls.System.LaborMethod.Category.BASE_URL
+              code = LaborMethodCategory.NURSING.toString()
             }
 
             identifier {
