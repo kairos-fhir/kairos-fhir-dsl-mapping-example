@@ -15,6 +15,7 @@ The following imported data sets are supported/tested:
 
 ## 2025-03-03
 * fixed wrong enum filter in questionnaireResponse script
+* querying the right finding field to get the source category for AllergyIntolerance
 
 ## 2025-02-27
 * change filters for Finding exports

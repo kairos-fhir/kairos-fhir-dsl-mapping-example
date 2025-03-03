@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 
 final String ALLERGEN = "Allergen.Allergen"
-final String CATEGORY = "Allergen.Category"
+final String CATEGORY = "Allergen.OriginalCategorie"
 final String COMMENTS = "Allergen.Comments"
 final String REACTION = "Allergen.Reaction"
 final String SEVERITY = "Allergen.Severity"
