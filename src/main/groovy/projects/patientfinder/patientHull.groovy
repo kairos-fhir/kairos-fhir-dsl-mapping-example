@@ -1,9 +1,7 @@
 package projects.patientfinder
 
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+
 import de.kairos.fhir.centraxx.metamodel.Country
-import de.kairos.fhir.centraxx.metamodel.IdContainer
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
@@ -11,7 +9,6 @@ import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -24,29 +21,22 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
+  final def nhsIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS" }
+
+  if (nhsIdc == null) {
+    return
+  }
+
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   meta {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
   }
 
-
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
-      .findAll { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS"}
-      .each { final def idc ->
-        final boolean isDecisive = idc[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
-        if (isDecisive) {
-          identifier {
-            value = idc[PSN]
-            type {
-              coding {
-                system = FhirUrls.System.IdContainerType.BASE_URL
-                code = idc[ID_CONTAINER_TYPE]?.getAt(CODE)
-              }
-            }
-          }
-        }
-      }
+  identifier {
+    value = nhsIdc[PSN]
+  }
 
   humanName {
     text = context.source[patient().firstName()] + " " + context.source[patient().lastName()]

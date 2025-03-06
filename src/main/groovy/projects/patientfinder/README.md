@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-06
+* fixed problem connected to the export of the fake patient
+
 ## 2025-03-03
 * fixed wrong enum filter in questionnaireResponse script
 * querying the right finding field to get the source category for AllergyIntolerance
