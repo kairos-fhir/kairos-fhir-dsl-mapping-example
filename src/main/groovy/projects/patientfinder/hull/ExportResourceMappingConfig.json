@@ -13,7 +13,7 @@
     },
     {
       "selectFromCxxEntity": "PATIENT_MASTER",
-      "transformByTemplate": "patientHull",
+      "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
     },
     {
@@ -38,12 +38,12 @@
     },
     {
       "selectFromCxxEntity": "LABOR_METHOD",
-      "transformByTemplate": "questionnaireHull",
+      "transformByTemplate": "questionnaire",
       "exportToFhirResource": "Questionnaire"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "questionnaireResponseHull",
+      "transformByTemplate": "questionnaireResponse",
       "exportToFhirResource": "QuestionnaireResponse"
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "diagnosticReportHull",
+      "transformByTemplate": "diagnosticReport",
       "exportToFhirResource": "Observation"
     },
     {

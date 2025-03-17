@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
@@ -87,6 +87,7 @@ encounter {
         precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
+
   }
 
   if (context.source[episode().habitation()]) {
@@ -99,14 +100,6 @@ encounter {
     location {
       location {
         reference = "Location/PT-" + pt[PatientTransfer.ID]
-      }
-    }
-  }
-
-  if (context.source[episode().attendingDoctor()]) {
-    participant {
-      individual {
-        reference = "Practitioner/" + context.source[episode().attendingDoctor().id()]
       }
     }
   }

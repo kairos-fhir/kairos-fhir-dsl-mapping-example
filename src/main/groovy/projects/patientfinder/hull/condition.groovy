@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField

@@ -1,7 +1,9 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+
 import de.kairos.fhir.centraxx.metamodel.Country
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
@@ -9,10 +11,32 @@ import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
+import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+
+final String COUNTRY_OF_BIRTH = "countryofbirth"
+final String PLACEOFBIRTH = "placeofbirth"
+final String ADDRESS_CITY = "address.city"
+final String ADDRESS_LINE = "address.line"
+final String ADDRESS_PERIOD_END = "address.period.end"
+final String ADDRESS_PERIOD_START = "address.period.start"
+final String ADDRESS_POSTALCODE = "address.postalCode"
+final String ADDRESS_USE = "address.use"
+
+final Map PROFILE_TYPES = [
+    (COUNTRY_OF_BIRTH)    : STRING_VALUE,
+    (PLACEOFBIRTH)        : STRING_VALUE,
+    (ADDRESS_CITY)        : STRING_VALUE,
+    (ADDRESS_LINE)        : STRING_VALUE,
+    (ADDRESS_PERIOD_END)  : STRING_VALUE,
+    (ADDRESS_PERIOD_START): STRING_VALUE,
+    (ADDRESS_POSTALCODE)  : STRING_VALUE,
+    (ADDRESS_USE)         : STRING_VALUE
+]
+
 /**
  * Represented by a CXX PatientMasterDataAnonymous
  * Specified: http://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html
@@ -21,25 +45,38 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
+  final def nhsIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS" }
+
+  if (nhsIdc == null) {
+    return
+  }
+
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   meta {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
   }
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final idContainer ->
-    final boolean isDecisive = idContainer[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
-    if (isDecisive) {
-      identifier {
-        value = idContainer[PSN]
-        type {
-          coding {
-            system = FhirUrls.System.IdContainerType.BASE_URL
-            code = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
-          }
-        }
+  final def patientMapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
+  }
+
+  final Map<String, Object> lflvPatientMap = getLflvMap(patientMapping, PROFILE_TYPES)
+
+  if (lflvPatientMap.containsKey(PLACEOFBIRTH) || lflvPatientMap.containsKey(COUNTRY_OF_BIRTH)) {
+    extension {
+      url = "https://fhir.iqvia.com/patientfinder/extension/place-of-birth"
+
+      valueAddress {
+        city = lflvPatientMap.get(PLACEOFBIRTH)
+        country = lflvPatientMap.get(COUNTRY_OF_BIRTH)
       }
     }
+  }
+
+  identifier {
+    value = nhsIdc[PSN]
   }
 
   humanName {
@@ -87,6 +124,21 @@ patient {
       system = ContactPointSystem.EMAIL.toCode()
       value = ad[PatientAddress.EMAIL]
     }
+  }
+
+  final def addressMappings = context.source[medication().laborMappings()].findAll { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Address_profile"
+  }
+
+  final List<Map<String, Object>> lflvAddressMaps = addressMappings.collect { final def lm -> getLflvMap(lm, PROFILE_TYPES) }
+
+  lflvAddressMaps.each { final Map<String, Object> addressMap ->
+    address {
+      line(addressMap.get(ADDRESS_LINE) as String)
+      city = addressMap.get(ADDRESS_CITY) as String
+      postalCode = addressMap.get(ADDRESS_POSTALCODE) as String
+    }
+
   }
 }
 

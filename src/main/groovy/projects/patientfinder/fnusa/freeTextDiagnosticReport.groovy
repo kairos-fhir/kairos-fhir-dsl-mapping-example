@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 
 import de.kairos.fhir.centraxx.metamodel.Episode

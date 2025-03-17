@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 
@@ -26,19 +26,6 @@ organization {
 
   active = true
 
-  final String orgUnitName = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
-
-  name = cleanName(orgUnitName)
+  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
 
 }
-
-static String cleanName(final String name){
-  final String prefix = "specialty:"
-
-  if (name.startsWith(prefix)){
-    return name.substring(prefix.length()).trim()
-  }
-  return name
-}
-
-

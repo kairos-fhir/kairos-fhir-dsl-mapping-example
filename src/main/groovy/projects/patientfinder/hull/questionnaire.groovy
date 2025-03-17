@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateSection
@@ -8,7 +8,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Questionnaire
 
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
 
 /**

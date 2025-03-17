@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue

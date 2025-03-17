@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField

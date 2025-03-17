@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
@@ -9,6 +9,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.ProcedureStatus
 import org.hl7.fhir.r4.model.Procedure
@@ -17,13 +18,24 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
+final String PERFORMER_ACTOR = "perfomer.actor"
+final Map PROFILE_TYPES = [
+    (PERFORMER_ACTOR): LaborFindingLaborValue.MULTI_VALUE_REFERENCES
+]
 /**
  * Represented by CXX MedProcedure
  * @since v.1.43.0, CXX.v.2024.5.2
  */
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]
+
+  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
+  }
+
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
 
   status = mapStatus(context.source[medProcedure().status()] as ProcedureStatus)
@@ -95,21 +107,14 @@ procedure {
     }
   }
 
-  final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Procedure_profile"
-  }
 
-  if(mapping){
-    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "performer.actor"
-    }
 
-    if (lflvSpecialism) {
-      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
-      if (valueRef) {
+  if (lflvMap.containsKey(PERFORMER_ACTOR)) {
+    lflvMap.get(PERFORMER_ACTOR).each { final def valueRef ->
+      if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
         performer {
           actor {
-            reference = "Practitioner/" +  valueRef[ValueReference.ATTENDING_DOCTOR_VALUE][AttendingDoctor.ID]
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
           }
         }
       }
@@ -165,4 +170,22 @@ static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus
     return Procedure.ProcedureStatus.UNKNOWN
   }
   return Procedure.ProcedureStatus.UNKNOWN
+}
+
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
+
+  types.each { final String lvCode, final String lvType ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
+    }
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
+    }
+  }
+  return lflvMap
 }

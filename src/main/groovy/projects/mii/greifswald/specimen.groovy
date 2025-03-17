@@ -4,11 +4,8 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractIdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.SampleType
 import de.kairos.fhir.centraxx.metamodel.enums.SampleCategory
-import de.kairos.fhir.centraxx.metamodel.enums.SampleKind
 import de.kairos.fhir.dsl.r4.context.BuiltinConcept
-import javassist.tools.rmi.Sample
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Specimen
 

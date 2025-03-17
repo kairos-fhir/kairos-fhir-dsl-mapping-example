@@ -13,62 +13,82 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-17
+
+* added export of address and additional data mappings for hull patients
+* fixed export of the performer.actor in hull procedures
+* Split out scripts for hull and fnusa into two directories and set back the fnusa scripts the current productively running scripts
+
 ## 2025-03-06
+
 * fixed problem connected to the export of the fake patient
 
 ## 2025-03-03
+
 * fixed wrong enum filter in questionnaireResponse script
 * querying the right finding field to get the source category for AllergyIntolerance
 
 ## 2025-02-27
+
 * change filters for Finding exports
 
 ## 2025-02-18
+
 * filtered Hull patient identifiers for NHS id.
 
 ## 2025-02-12
+
 * replaced string with new enum for MedicationServiceType
 * removed id filter for NHS
 * added export of LaborMethod name as Questionnaire description
 * removed println statements from specimen script
 
 ## 2025-01-29
+
 * changed the medication related export scripts to export medications and link them via identifier from finding
 * added export scripts for Questionnaire and QuestionnaireResponse in Hull
 * filtered Hull patient identifiers for NHS id.
 
 ## 2025-01-27
+
 * removed export of onset end date for conditions as not desired anymore.
 
 ## 2025-01-16
+
 * Fixed metamodel usage for CatalogEntry, which was migrated to Multilinguals
 
 ## 2025-01-10
+
 * Added export of sample type in specimen export script
 
 ## 2025-01-07
+
 * Worked on the Observation script to filter correctly
 * Added processing to remove "specialty: " from Orgunit names
 
 ## 2024-11-29
+
 * Added practitioner script to HULL to export AttendingDoctors
 * added reference from MedicationAdministration to MedicationReequest
-* Added Export of ObservationEnd to MedicationAdmin timing.event 
-
+* Added Export of ObservationEnd to MedicationAdmin timing.event
 
 ## 2024-11-26
+
 * Update Specimen script for Hull
 
 ## 2024-11-19
+
 * added export of AttendingDoctor as participant in Encounter script
 * added usage of extensions in allergy intolerance script
 
 ## 2024-11-06
+
 * moved telecom information from Patient.contact.telecom to Patient.telecom
 * Removed unused fields from the MedicationRequest and MedicationAdministration scripts
 * added Medication script
 
 ## 2024-10-17
+
 * Added the export of MedicationRequest requester from LaborMapping
 
 ## 2024-10-14
