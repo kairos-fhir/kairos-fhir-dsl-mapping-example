@@ -33,7 +33,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
-  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN", "CIMD_ABWEICHUNGEN"].contains(laborMethodCode)
+  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN"].contains(laborMethodCode)
   if (!(isIziRelevant)) {
     return
   }

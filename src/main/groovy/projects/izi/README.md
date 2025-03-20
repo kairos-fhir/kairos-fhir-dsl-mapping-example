@@ -18,6 +18,9 @@ IZI Sync*
 
 # Changelog
 
+# 2025-03-20
+* Removed CIMD_ABWEICHUNGEN from export relevant LaborMethods
+
 ## 2025-01-23
 
 * Fixed OrgUnit Filter to check parent OrgUnit for Aliquot samples
