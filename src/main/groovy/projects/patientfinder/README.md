@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-21
+* fixed ExportResourceMappingConfig.json for Hull
+
 ## 2025-03-17
 
 * added export of address and additional data mappings for hull patients

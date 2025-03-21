@@ -54,7 +54,7 @@
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "diagnosticReport",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "DiagnosticReport"
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
