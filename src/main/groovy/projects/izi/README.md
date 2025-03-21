@@ -18,6 +18,9 @@ IZI Sync*
 
 # Changelog
 
+# 2025-03-31
+* added solution for HDRP4 for syncing Findings with multiple SampleLaborMappings
+
 # 2025-03-20
 * Removed CIMD_ABWEICHUNGEN from export relevant LaborMethods
 
