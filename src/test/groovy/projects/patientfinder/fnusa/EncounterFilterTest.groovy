@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import common.AbstractDslBuilderTest
 import de.kairos.fhir.centraxx.metamodel.Episode
@@ -18,7 +18,7 @@ class EncounterFilterTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsNotFiltered() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/encounter.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/fnusa/encounter.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here
@@ -35,7 +35,7 @@ class EncounterFilterTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsFilteredByEntitySource() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/encounter.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/fnusa/encounter.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here
@@ -53,7 +53,7 @@ class EncounterFilterTest extends AbstractDslBuilderTest {
   void testThatFakeEpisodeIsFilteredByIdContainerPsn() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/encounter.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/fnusa/encounter.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here

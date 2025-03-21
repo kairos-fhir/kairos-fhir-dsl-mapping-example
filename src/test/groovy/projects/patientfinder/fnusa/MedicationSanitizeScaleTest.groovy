@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import common.AbstractDslBuilderTest
 import org.junit.jupiter.api.Test

@@ -151,9 +151,7 @@ observation {
 
   context.source[laborFinding().laborFindingLaborValues()].each { final lflv ->
 
-    final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+    final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
     if (isIziRelevantLaborValue(laborValueCode)) {

@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import common.AbstractDslBuilderTest
 import de.kairos.fhir.centraxx.metamodel.MedProcedure
@@ -17,7 +17,7 @@ class ProcedureDateTest extends AbstractDslBuilderTest{
   void testThatTimezoneIsRemoved() throws IOException {
 
     // given: select your groovy script to test
-    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/procedure.groovy")
+    final FileInputStream is = new FileInputStream("src/main/groovy/projects/patientfinder/fnusa/procedure.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
 
     // put your test data here

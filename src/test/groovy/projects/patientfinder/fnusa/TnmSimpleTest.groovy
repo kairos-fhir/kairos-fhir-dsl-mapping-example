@@ -1,4 +1,4 @@
-package projects.patientfinder
+package projects.patientfinder.fnusa
 
 import common.AbstractDslBuilderTest
 import de.kairos.fhir.centraxx.metamodel.Episode
