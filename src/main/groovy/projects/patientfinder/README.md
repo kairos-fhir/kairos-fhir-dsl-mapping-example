@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-24
+* restored organization script for Hull
+
 ## 2025-03-21
 * fixed ExportResourceMappingConfig.json for Hull
 
