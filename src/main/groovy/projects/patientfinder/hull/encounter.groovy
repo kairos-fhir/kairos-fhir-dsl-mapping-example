@@ -72,8 +72,13 @@ encounter {
     reference = "Patient/" + context.source[episode().patientContainer().id()]
   }
 
-  period {
+  if (context.source[episode().parent()]) {
+    partOf {
+      reference = "Episode/" + context.source[episode().parent().id()]
+    }
+  }
 
+  period {
     if (context.source[episode().validFrom()]) {
       start {
         date = context.source[episode().validFrom()]

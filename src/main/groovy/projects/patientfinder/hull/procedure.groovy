@@ -32,7 +32,7 @@ procedure {
   id = "Procedure/" + context.source[medProcedure().id()]
 
   final def mapping = context.source[medication().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MedicationRequest_profile"
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Procedure_profile"
   }
 
   final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)

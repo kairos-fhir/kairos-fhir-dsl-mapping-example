@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-03-31
+* fixed wrong filter in procedure script to find the labor mapping
+* added parent reference in episode export script
+
 ## 2025-03-24
 * restored organization script for Hull
 
