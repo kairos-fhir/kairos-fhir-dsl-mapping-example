@@ -163,12 +163,12 @@ static boolean containsIgnoreCase(final List<String> codeList, final String code
 }
 
 /**
- * removes milli seconds and time zone.
+ * removes time zone and time.
  * @param dateTimeString the date time string
- * @return the result might be something like "1989-01-15T00:00:00"
+ * @return the result might be something like "1989-01-15"
  */
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
 
 static boolean hasRelevantCode(final String icdCode) {

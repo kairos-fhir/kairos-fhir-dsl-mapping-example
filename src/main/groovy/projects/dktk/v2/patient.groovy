@@ -74,6 +74,11 @@ static AdministrativeGender mapGender(final GenderType genderType) {
   }
 }
 
+/**
+ * removes time zone and time.
+ * @param dateTimeString the date time string
+ * @return the result might be something like "1989-01-15"
+ */
 static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }
