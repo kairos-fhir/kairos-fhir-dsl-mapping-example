@@ -1,4 +1,4 @@
-package projects.patientfinder.iqtrial
+package projects.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -19,18 +19,38 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
  * Represented by a CXX Diagnosis
- * @author Mike Wähnert
+ * @author Jonas Küttner
  * @since v.1.43.0, CXX.v.2024.5.2
  */
+
+final String SPECIALISM = "specialism"
+final String ONSET_PERIOD_END = "onsetPeriod.start"
+final String ONSET_PERIOD_START = "onsetPeriod.start"
+final String CCISCORE = "CCISCORE"
+final String ECOG = "ECOG"
+
+
+final Map PROFILE_TYPES = [
+
+    (SPECIALISM)        : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (ONSET_PERIOD_END)  : LaborFindingLaborValue.DATE_VALUE,
+    (ONSET_PERIOD_START): LaborFindingLaborValue.DATE_VALUE,
+    (CCISCORE)          : LaborFindingLaborValue.NUMERIC_VALUE,
+    (ECOG)              : LaborFindingLaborValue.NUMERIC_VALUE
+]
+
+
 condition {
 
   id = "Condition/" + context.source[diagnosis().id()]
+
+  final Map<String, Object> lflvMap = getLflvMap(context.source[diagnosis().laborMappings()] as List, PROFILE_TYPES)
 
   subject {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
-  if (!isFakeEpisode(context.source[diagnosis().episode()])) {
+  if (context.source[diagnosis().episode()]) {
     encounter {
       reference = "Encounter/" + context.source[diagnosis().episode().id()]
     }
@@ -43,13 +63,7 @@ condition {
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {
-      value = diagnosisId
-      type {
-        coding {
-          system = "urn:centraxx"
-          code = "diagnosisId"
-        }
-      }
+      value = context.source[diagnosis().diagnosisId()]
     }
   }
 
@@ -88,39 +102,28 @@ condition {
     }
   }
 
-  final def mapping = context.source[diagnosis().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "Condition_profile"
+  onsetDateTime {
+    date = context.source[diagnosis().diagnosisDate().date()]
+    precision = TemporalPrecisionEnum.DAY.toString()
   }
 
-  if (mapping) {
+}
 
-    final def lflvSpecialism = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
-      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "specialism"
-    }
+static Map<String, Object> getLflvMap(final List mappings, final Map<String, String> types) {
 
-    if (lflvSpecialism) {
-      final def valueRef = lflvSpecialism[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()
-      if (valueRef) {
-        extension {
-          url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
-          valueReference {
-            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
-          }
-        }
+  final Map<String, Object> lflvMap = [:]
+
+  mappings.each { final def mapping ->
+    types.each { final String lvCode, final String lvType ->
+      final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+        lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == lvCode
+      }
+
+      if (lflvForLv && lflvForLv[lvType]) {
+        lflvMap[(lvCode)] = lflvForLv[lvType]
       }
     }
   }
-}
+  return lflvMap
 
-static boolean isFakeEpisode(final def episode) {
-  if (episode == null) {
-    return true
-  }
-
-  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
-    return true
-  }
-
-  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
-  return fakeId != null
 }

@@ -7,9 +7,19 @@
       "exportToFhirResource": "Organization"
     },
     {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitioner",
+      "exportToFhirResource": "Practitioner"
+    },
+    {
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimen",
+      "exportToFhirResource": "Specimen"
     },
     {
       "selectFromCxxEntity": "EPISODE",
@@ -27,9 +37,44 @@
       "exportToFhirResource": "Procedure"
     },
     {
+      "selectFromCxxEntity": "LABOR_METHOD",
+      "transformByTemplate": "questionnaire",
+      "exportToFhirResource": "Questionnaire"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "questionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse"
+    },
+    {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "diagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "PATIENT_TRANSFER",
+      "transformByTemplate": "location",
+      "exportToFhirResource": "Location"
+    },
+    {
+      "selectFromCxxEntity": "CALENDAR_EVENT",
+      "transformByTemplate": "appointment",
+      "exportToFhirResource": "Appointment"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }

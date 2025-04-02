@@ -28,7 +28,7 @@
   },
   "pageSize": {
     "description": "The page size of a query in CentraXX, and resources in a FHIR bundle. The recommendation is to use smaller pages (e.g. 10 for CentraXX), if the target system has a transaction system or bigger pages if not (e.g. 500 for file export only or blaze store).",
-    "value": 250000
+    "value": 10000
   },
   "exportInterval": {
     "description": "Sets the export cron interval. Default is once a day.",
