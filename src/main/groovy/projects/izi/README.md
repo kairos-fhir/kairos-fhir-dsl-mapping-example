@@ -14,9 +14,12 @@ IZI Sync*
 * All necessary master data must exist. Master data definitions can be imported by XML.  
 
 ---
-*With the kind support from  [Fraunhofer Institute for Cell Therapy and Immunology IZI](https://www.izi.fraunhofer.de/en.html).
+* With the kind support from  [Fraunhofer Institute for Cell Therapy and Immunology IZI](https://www.izi.fraunhofer.de/en.html).
 
 # Changelog
+
+# 2025-04-04
+* added date normalization to remove time zone from date strings
 
 # 2025-03-31
 * added solution for HDRP4 for syncing Findings with multiple SampleLaborMappings
