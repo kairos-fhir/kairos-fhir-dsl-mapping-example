@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-04-07
+* added export of encounter class name as display
+
 ## 2025-04-04
 * overworked Location script
 
@@ -42,11 +45,9 @@ The following imported data sets are supported/tested:
 * querying the right finding field to get the source category for AllergyIntolerance
 
 ## 2025-02-27
-
 * change filters for Finding exports
 
 ## 2025-02-18
-
 * filtered Hull patient identifiers for NHS id.
 
 ## 2025-02-12

@@ -3,6 +3,7 @@ package projects.patientfinder.hull
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
 
@@ -57,6 +58,9 @@ encounter {
     class_ {
       system = FhirUrls.System.Episode.StayType.BASE_URL
       code = context.source[episode().stayType().code()]
+      display = context.source[episode().stayType().multilinguals()].find { final def ml ->
+        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
