@@ -25,7 +25,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 observation {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.VITALSIGN){
+  if (context.source[laborMapping().laborFinding().laborMethod().category()]  != LaborMethodCategory.VITALSIGN.toString()){
     return
   }
 

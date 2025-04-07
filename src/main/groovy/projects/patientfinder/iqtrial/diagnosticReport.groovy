@@ -17,7 +17,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 diagnosticReport {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] as LaborMethodCategory != LaborMethodCategory.LABOR){
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.LABOR.toString()){
     return
   }
 
