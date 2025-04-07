@@ -65,9 +65,9 @@ encounter {
     reference = "Patient/" + context.source[episode().patientContainer().id()]
   }
 
-  if (context.source[episode().parent()]) {
+  if (context.source["parent"]) {
     partOf {
-      reference = "Episode/" + context.source[episode().parent().id()]
+      reference = "Episode/" + context.source["parent.id"]
     }
   }
 
