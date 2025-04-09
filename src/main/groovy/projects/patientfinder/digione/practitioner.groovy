@@ -1,4 +1,4 @@
-package projects.patientfinder.hull
+package projects.patientfinder.digione
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.attendingDoctor
@@ -17,6 +17,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.attendingDoctor
 practitioner {
 
   id = "Practitioner/" + context.source[attendingDoctor().id()]
+
+  meta {
+    profile("http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner")
+  }
 
   identifier {
     value = context.source[attendingDoctor().contact().syncId()]
