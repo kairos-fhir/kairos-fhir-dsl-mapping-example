@@ -1,11 +1,17 @@
 package projects.patientfinder.digione
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.Multilingual
+import de.kairos.fhir.centraxx.metamodel.OpsEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
@@ -16,6 +22,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGU
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * Represented by a CXX LaborMapping
  * @author Mike Wähnert
@@ -26,7 +33,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   // use other for all the additional data mapping methods to exclude from export
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.OTHER){
+  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.OTHER) {
     return
   }
 
@@ -52,7 +59,7 @@ observation {
     reference = "Patient/" + context.source[laborMapping().relatedPatient().id()]
   }
 
-  if (context.source[laborMapping().mappingType()] as LaborMappingType == LaborMappingType.SAMPLELABORMAPPING){
+  if (context.source[laborMapping().mappingType()] as LaborMappingType == LaborMappingType.SAMPLELABORMAPPING) {
     specimen {
       reference = "Specimen/" + context.source[laborMapping().relatedOid()]
     }
@@ -96,6 +103,74 @@ observation {
         valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
       } else if (isString(laborValue)) {
         valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
+      } else if (isEnumeration(laborValue)) {
+        valueCodeableConcept {
+          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+            coding {
+              system = "urn:centraxx:CodeSystem/UsageEntry"
+              code = entry[CODE] as String
+              display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
+                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+              }?.getAt(Multilingual.SHORT_NAME)
+            }
+          }
+          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+              }?.getAt(Multilingual.SHORT_NAME)
+            }
+          }
+        }
+      } else if (isOptionGroup(laborValue)) {
+        valueCodeableConcept {
+          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+            coding {
+              system = "urn:centraxx:CodeSystem/UsageEntry"
+              code = entry[CODE] as String
+              display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
+                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+              }?.getAt(Multilingual.SHORT_NAME)
+            }
+          }
+          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+              }?.getAt(Multilingual.SHORT_NAME)
+            }
+          }
+        }
+      } else if (isCatalog(laborValue)) {
+        valueCodeableConcept {
+          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+              }?.getAt(Multilingual.SHORT_NAME)
+            }
+          }
+          lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = FhirUrls.Catalog.ICD_CATALOG + "/" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[IcdEntry.PREFERRED] as String
+            }
+          }
+          lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE].each { final entry ->
+            coding {
+              system = FhirUrls.Catalog.OPS_CATALOG + "/" + entry[OpsEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
+              code = entry[CODE] as String
+              display = entry[OpsEntry.PREFERRED] as String
+            }
+          }
+        }
       }
     }
   }
@@ -136,4 +211,5 @@ static boolean isCatalog(final Object laborValue) {
 static boolean isOptionGroup(final Object laborValue) {
   return isDTypeOf(laborValue, [LaborValueDType.OPTIONGROUP])
 }
+
 

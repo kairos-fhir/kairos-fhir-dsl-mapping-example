@@ -1,7 +1,6 @@
 package projects.patientfinder.hull
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
@@ -106,8 +105,6 @@ procedure {
       reference = "Encounter/" + context.source[medProcedure().episode().id()]
     }
   }
-
-
 
   if (lflvMap.containsKey(PERFORMER_ACTOR)) {
     lflvMap.get(PERFORMER_ACTOR).each { final def valueRef ->
