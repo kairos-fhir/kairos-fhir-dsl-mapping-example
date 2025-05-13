@@ -12,6 +12,11 @@
       "exportToFhirResource": "Consent"
     },
     {
+      "selectFromCxxEntity": "PATIENT_STUDY",
+      "transformByTemplate": "researchSubject",
+      "exportToFhirResource": "ResearchSubject"
+    },
+    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
@@ -35,16 +40,6 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "vitalstatus",
       "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "CONSENT",
-      "transformByTemplate": "consent",
-      "exportToFhirResource": "Consent"
-    },
-    {
-      "selectFromCxxEntity": "PATIENT_STUDY",
-      "transformByTemplate": "researchSubject",
-      "exportToFhirResource": "ResearchSubject"
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING",
