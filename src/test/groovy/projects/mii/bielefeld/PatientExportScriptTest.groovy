@@ -92,9 +92,6 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
         it.hasSystem() && "https://fhir.centraxx.de/system/idContainer/psn" == it.getSystem() && (idContainer[IdContainer.PSN] as String) == it.getValue()
       }
 
-      println(identifier.getType().getCoding().each {
-        println([it.getSystem(), it.getCode()])
-      })
 
       assertNotNull(identifier)
       assertTrue(identifier.hasType())

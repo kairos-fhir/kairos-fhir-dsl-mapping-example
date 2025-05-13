@@ -33,7 +33,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 observation {
 
   final String laborMethodCode = context.source[laborMapping().laborFinding().laborMethod().code()]
-  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN", "CIMD_ABWEICHUNGEN"].contains(laborMethodCode)
+  final def isIziRelevant = ["ITEM_KLINISCHE_DATEN"].contains(laborMethodCode)
   if (!(isIziRelevant)) {
     return
   }
@@ -56,7 +56,7 @@ observation {
         valueCode = "unknown"
       }
     } else {
-      date = context.source[laborMapping().laborFinding().findingDate().date()]
+      date = normalizeDate(context.source[laborMapping().laborFinding().findingDate().date()] as String)
     }
   }
 
@@ -123,7 +123,7 @@ observation {
                 valueCode = "unknown"
               }
             } else {
-              date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
+              date = normalizeDate(lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE) as String)
             }
           }
         } else if (isTime(laborValue)) {
@@ -275,4 +275,8 @@ static String mapLocalToCentralLabValueCode(final String localLaborValueCode) {
 
 static Object sanitizeScale(final Object numeric) {
   return numeric == null ? null : new BigDecimal(numeric.toString()).stripTrailingZeros()
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }

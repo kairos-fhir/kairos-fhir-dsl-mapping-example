@@ -15,10 +15,6 @@ organization {
 
   id = "Organization/" + context.source[organizationUnit().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
-  }
-
   identifier {
     system = FhirUrls.System.ORGANIZATION_UNIT
     value = context.source[organizationUnit().code()]
@@ -29,3 +25,6 @@ organization {
   name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
 
 }
+
+
+

@@ -127,7 +127,7 @@ specimen {
         valueCode = "unknown"
       }
     } else {
-      date = context.source[sample().receiptDate().date()]
+      date = normalizeDate(context.source[sample().receiptDate().date()] as String)
     }
   }
 
@@ -139,7 +139,7 @@ specimen {
           valueCode = "unknown"
         }
       } else {
-        date = context.source[sample().samplingDate().date()]
+        date = normalizeDate(context.source[sample().samplingDate().date()] as String)
       }
     }
 
@@ -185,7 +185,7 @@ specimen {
       if ("UNKNOWN" == context.source[sample().repositionDate().precision()]) {
         valueDateTime = createUnknownDate()
       } else {
-        valueDateTime = context.source[sample().repositionDate().date()]
+        valueDateTime = normalizeDate(context.source[sample().repositionDate().date()] as String)
       }
     }
   }
@@ -196,7 +196,7 @@ specimen {
       if ("UNKNOWN" == context.source[sample().derivalDate().precision()]) {
         valueDateTime = createUnknownDate()
       } else {
-        valueDateTime = context.source[sample().derivalDate().date()]
+        valueDateTime = normalizeDate(context.source[sample().derivalDate().date()] as String)
       }
     }
   }
@@ -281,7 +281,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().warmIschTimeDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().warmIschTimeDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().warmIschTimeDate().date()] as String)
           }
         }
       }
@@ -300,7 +300,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().coldIschTimeDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().coldIschTimeDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().coldIschTimeDate().date()] as String)
           }
         }
       }
@@ -328,7 +328,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().sprecFixationTimeDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().sprecFixationTimeDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().sprecFixationTimeDate().date()] as String)
           }
         }
       }
@@ -362,7 +362,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().sprecPreCentrifugationDelayDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().sprecPreCentrifugationDelayDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().sprecPreCentrifugationDelayDate().date()] as String)
           }
         }
       }
@@ -381,7 +381,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().sprecPostCentrifugationDelayDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().sprecPostCentrifugationDelayDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().sprecPostCentrifugationDelayDate().date()] as String)
           }
         }
       }
@@ -400,7 +400,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().stockProcessingDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().stockProcessingDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().stockProcessingDate().date()] as String)
           }
         }
       }
@@ -419,7 +419,7 @@ specimen {
           if ("UNKNOWN" == context.source[sample().secondProcessingDate().precision()]) {
             valueDateTime = createUnknownDate()
           } else {
-            valueDateTime = context.source[sample().secondProcessingDate().date()]
+            valueDateTime = normalizeDate(context.source[sample().secondProcessingDate().date()] as String)
           }
         }
       }
@@ -453,4 +453,8 @@ private static boolean isExportable(@Nonnull final Fhir4Source source) {
     return isInOrgUnits(source)
   }
   return false;
+}
+
+static String normalizeDate(final String dateTimeString) {
+  return dateTimeString != null ? dateTimeString.substring(0, 10) : null
 }

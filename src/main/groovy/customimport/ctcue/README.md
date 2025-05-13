@@ -7,6 +7,9 @@ Imports IQVIA Patient Finder profiles to HDRP/CXX
 
 # CHANGELOG
 
+## 2025-02-27
+* changed the LaborMethodCategory for the questionnaires.
+
 ## 2025-01-27
 * removed the import of the status field as this seems not to be mapped from source.
 

@@ -26,15 +26,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  */
 encounter {
 
-  if (isFakeEpisode(context.source)) {
-    return //filters Encounters with EncounterOID prefix FAKE_
-  }
-
   id = "Encounter/" + context.source[episode().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
-  }
 
   context.source[episode().idContainer()].each { final idContainer ->
     final boolean isDecisive = idContainer[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
@@ -72,8 +65,13 @@ encounter {
     reference = "Patient/" + context.source[episode().patientContainer().id()]
   }
 
-  period {
+  if (context.source["parent"]) {
+    partOf {
+      reference = "Episode/" + context.source["parent.id"]
+    }
+  }
 
+  period {
     if (context.source[episode().validFrom()]) {
       start {
         date = context.source[episode().validFrom()]
@@ -87,7 +85,6 @@ encounter {
         precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
-
   }
 
   if (context.source[episode().habitation()]) {
@@ -103,17 +100,13 @@ encounter {
       }
     }
   }
+
+  if (context.source[episode().attendingDoctor()]) {
+    participant {
+      individual {
+        reference = "Practitioner/" + context.source[episode().attendingDoctor().id()]
+      }
+    }
+  }
 }
 
-static boolean isFakeEpisode(final def episode) {
-  if (episode == null) {
-    return true
-  }
-
-  if (["SACT", "COSD"].contains(episode[Episode.ENTITY_SOURCE])) {
-    return true
-  }
-
-  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
-  return fakeId != null
-}

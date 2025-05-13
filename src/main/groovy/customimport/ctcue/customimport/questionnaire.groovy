@@ -3,6 +3,7 @@ package customimport.ctcue.customimport
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.enums.CrfFieldType
 import de.kairos.fhir.centraxx.metamodel.enums.CrfSectionType
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueType
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.Questionnaire
@@ -43,6 +44,11 @@ bundle {
               system = FhirUrls.System.CrfTemplate.BASE_URL
               code = sourceQ.getDescription()
               version = "1"
+            }
+
+            code {
+              system = FhirUrls.System.LaborMethod.Category.BASE_URL
+              code = LaborMethodCategory.NURSING.toString()
             }
 
             identifier {

@@ -9,7 +9,12 @@ import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptEngine
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import groovy.json.JsonSlurper
-import org.hl7.fhir.common.hapi.validation.support.*
+import org.apache.commons.lang3.tuple.Pair
+import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport
+import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport
+import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport
+import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport
+import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator
 import org.hl7.fhir.r4.model.DomainResource
 import org.junit.jupiter.api.BeforeAll
@@ -39,123 +44,140 @@ import static org.junit.jupiter.api.Assertions.fail
  * <br><br>
  * Optionally, the {@link Validate} annotation can be used to validate the resulting resource against the profiles of a given FHIR package.
  * FHIR packages can be downloaded for specific FHIR projects from https://simplifier.net/
- * @param <E> the type parameter for the FHIR resource.
+ * @param <E>            the type parameter for the FHIR resource.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractExportScriptTest<E extends DomainResource> {
 
-    public static final String METHOD_SOURCE = "getTestData"
-    private List<Arguments> mappingResults
+  public static final String METHOD_SOURCE = "getTestData"
+  private List<Arguments> mappingResults
 
-    @BeforeAll
-    void setUp() {
+  @BeforeAll
+  void setUp() {
 
-        final TestResources resources = this.class.getAnnotation(TestResources)
+    final TestResources resources = this.class.getAnnotation(TestResources)
 
-        final Validate validate = this.class.getAnnotation(Validate)
+    final Validate validate = this.class.getAnnotation(Validate)
 
-        final FhirValidator validator = setUpValidator(validate)
+    final FhirValidator validator = setUpValidator(validate)
 
 
-        if (resources == null) {
-            throw new IllegalStateException("TestResources Annotation is missing ion the test class")
-        }
-
-        final def groovyPath = resources.groovyScriptPath()
-        final def contextMapsPath = resources.contextMapsPath()
-
-        if (groovyPath == null || contextMapsPath == null) {
-            throw new IllegalArgumentException("The TestResourcesAnnotation parameters must be given.")
-        }
-
-        loadAndTransform(groovyPath, contextMapsPath, validator)
+    if (resources == null) {
+      throw new IllegalStateException("TestResources Annotation is missing ion the test class")
     }
 
-    private void loadAndTransform(@Nonnull final String groovyPath,
-                                  @Nonnull final String contextMapsPath,
-                                  final FhirValidator validator) throws FileNotFoundException {
-        final List<Map<String, Object>> contexts = createTestData(contextMapsPath)
-        final Fhir4ScriptRunner runner = createRunner(groovyPath)
-        mappingResults = contexts.collect {
-            final Context context = new Context(it)
-            final E resource = (E) runner.run(context)
-            if (validator != null && resource.hasId()) {
-                final ValidationResult result = validator.validateWithResult(resource)
-                if (!result.isSuccessful()) {
-                    fail("Resource Validation failed:\n" +
-                            String.join("\n",
-                                    result.getMessages()
-                                            .findAll { it.getSeverity() == ResultSeverityEnum.ERROR }
-                                            .collect { it.toString() }))
-                }
-            }
-            return Arguments.of(context, resource)
-        }.asImmutable()
+    final def groovyPath = resources.groovyScriptPath()
+    final def contextMapsPath = resources.contextMapsPath()
+
+    if (groovyPath == null || contextMapsPath == null) {
+      throw new IllegalArgumentException("The TestResourcesAnnotation parameters must be given.")
     }
 
-    @Nonnull
-    static List<Map<String, Object>> createTestData(@Nonnull final String contextMapsPath) throws FileNotFoundException {
+    loadAndTransform(groovyPath, contextMapsPath, validator)
+  }
 
-        final projectPath = ConfigReader.getProperty(ConfigReader.TEST_CONFIG,"test.data.project")
-        FileInputStream is;
-        if (projectPath) {
-            is = new FileInputStream(contextMapsPath.replaceAll(/src\/test\/resources\/projects\/([^\/]+)\//,
-                    "src/test/resources/projects/${projectPath}/"))
-        } else
-            is = new FileInputStream(contextMapsPath)
-
-        return new JsonSlurper().parse(is) as List<Map<String, Object>>
+  private void loadAndTransform(@Nonnull final String groovyPath,
+                                @Nonnull final String contextMapsPath,
+                                final FhirValidator validator) throws FileNotFoundException {
+    final List<Map<String, Object>> contexts = createTestData(contextMapsPath)
+    final Fhir4ScriptRunner runner = createRunner(groovyPath)
+    final List<Pair> contextResourcePairs = contexts.collect {
+      final Context context = new Context(it)
+      final E resource = (E) runner.run(context)
+      return Pair.of(context, resource)
+    }.findAll {
+      it.getRight().hasId()
     }
 
-    @Nonnull
-    static Fhir4ScriptRunner createRunner(@Nonnull final String groovyPath) {
-        final FileInputStream is = new FileInputStream(groovyPath)
-        return getFhir4ScriptRunner(is, "test")
+    if (validator != null) {
+      validateResources(contextResourcePairs, validator)
     }
 
-    @Nonnull
-    private static Fhir4ScriptRunner getFhir4ScriptRunner(final InputStream is, final String className) throws UnsupportedEncodingException {
-        final InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8)
-        final Fhir4ScriptEngine engine = new Fhir4ScriptEngine()
-        return engine.create(reader, className)
+    mappingResults = contextResourcePairs.collect {
+      Arguments.of(it.getLeft(), it.getRight())
     }
 
-    protected Stream<Arguments> getTestData() {
-        return mappingResults.stream()
+  }
+
+  private static void validateResources(final List<Pair> contextResourcePairs, final validator) {
+    final Map<Integer, String> validationErrors = new HashMap<>();
+    contextResourcePairs.eachWithIndex { final Pair<Context, E> entry, final int i ->
+      final ValidationResult result = validator.validateWithResult(entry.getRight())
+      if (!result.isSuccessful()) {
+        final def messages = result.getMessages()
+            .findAll { it.getSeverity() == ResultSeverityEnum.ERROR }
+            .collect { it.toString() }
+            .join("\n")
+
+        validationErrors.put(i, messages)
+      }
     }
 
-    @Nullable
-    private static FhirValidator setUpValidator(final Validate validate) {
+    if (!validationErrors.isEmpty()) {
+      final messages = validationErrors
+          .collect { "Context at index " + it.key + " " + "-" * 80 +"\n" + it.value }
+          .join("\n\n")
 
-        if (validate == null) {
-            return null
-        }
-
-        final FhirContext context = FhirContext.forR4()
-
-
-        final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
-
-
-        final File packageDirFile = new File(validate.packageDir())
-        packageDirFile.eachFile { final file ->
-            npmPackageValidationSupport.loadPackageFromClasspath("${packageDirFile.name}/${file.name}")
-        }
-
-        final ValidationSupportChain supportChain = new ValidationSupportChain(
-                npmPackageValidationSupport,
-                new DefaultProfileValidationSupport(context),
-                new InMemoryTerminologyServerValidationSupport(context),
-                new SnapshotGeneratingValidationSupport(context))
-
-        final CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
-
-        final FhirValidator validator = context.newValidator()
-
-        final FhirInstanceValidator instanceValidator = new FhirInstanceValidator(validationSupport);
-        validator.registerValidatorModule(instanceValidator)
-        instanceValidator.setNoTerminologyChecks(true)
-
-        return validator
+      fail("Resource Validation failed for entries:\n" + messages)
     }
+  }
+
+  @Nonnull
+  static List<Map<String, Object>> createTestData(@Nonnull final String contextMapsPath) throws FileNotFoundException {
+
+    final FileInputStream is = new FileInputStream(contextMapsPath)
+    return new JsonSlurper().parse(is) as List<Map<String, Object>>
+  }
+
+  @Nonnull
+  static Fhir4ScriptRunner createRunner(@Nonnull final String groovyPath) {
+    final FileInputStream is = new FileInputStream(groovyPath)
+    return getFhir4ScriptRunner(is, "test")
+  }
+
+  @Nonnull
+  private static Fhir4ScriptRunner getFhir4ScriptRunner(final InputStream is, final String className) throws UnsupportedEncodingException {
+    final InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8)
+    final Fhir4ScriptEngine engine = new Fhir4ScriptEngine()
+    return engine.create(reader, className)
+  }
+
+  protected Stream<Arguments> getTestData() {
+    return mappingResults.stream()
+  }
+
+  @Nullable
+  private static FhirValidator setUpValidator(final Validate validate) {
+
+    if (validate == null) {
+      return null
+    }
+
+    final FhirContext context = FhirContext.forR4()
+
+
+    final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
+
+
+    final File packageDirFile = new File(validate.packageDir())
+    packageDirFile.eachFile { final file ->
+      npmPackageValidationSupport.loadPackageFromClasspath("${packageDirFile.name}/${file.name}")
+    }
+
+    final ValidationSupportChain supportChain = new ValidationSupportChain(
+        npmPackageValidationSupport,
+        new DefaultProfileValidationSupport(context),
+        new InMemoryTerminologyServerValidationSupport(context),
+        new SnapshotGeneratingValidationSupport(context))
+
+    final CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
+
+    final FhirValidator validator = context.newValidator()
+
+    final FhirInstanceValidator instanceValidator = new FhirInstanceValidator(validationSupport);
+    validator.registerValidatorModule(instanceValidator)
+    instanceValidator.setNoTerminologyChecks(true)
+
+    return validator
+  }
 }
