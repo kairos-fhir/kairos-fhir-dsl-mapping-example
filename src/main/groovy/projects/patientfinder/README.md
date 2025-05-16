@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+## 2025-05-16
+* fixed export of multiple addresses
+* added export of encounter types
+
 ## 2025-04-07
 * added export of encounter class name as display
 

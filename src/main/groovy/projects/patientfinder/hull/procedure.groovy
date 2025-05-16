@@ -157,9 +157,6 @@ static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus
   if (procedureStatus.equals(ProcedureStatus.ON_HOLD)) {
     return Procedure.ProcedureStatus.ONHOLD
   }
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
-    return Procedure.ProcedureStatus.COMPLETED
-  }
   if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)) {
     return Procedure.ProcedureStatus.ENTEREDINERROR
   }
