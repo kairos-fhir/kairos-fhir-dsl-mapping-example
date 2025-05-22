@@ -14,12 +14,22 @@ import de.kairos.fhir.centraxx.metamodel.PatientMaster
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
+import de.kairos.fhir.centraxx.metamodel.enums.LaborFindingValueStatus
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Observation
 
+import javax.annotation.Nullable
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CANCELLED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CORRECTED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.ENTEREDINERROR
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.FINAL
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.PRELIMINARY
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.REGISTERED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.UNKNOWN
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertTrue
@@ -60,7 +70,8 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
             "OBI")
     )
 
-    assertEquals(context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" + context.source[laborFindingLaborValue().laborFinding().laborFindingId()],
+    assertEquals(context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" +
+        context.source[laborFindingLaborValue().laborFinding().laborFindingId()],
         observation.getIdentifierFirstRep().getValue()
     )
 
@@ -70,7 +81,9 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   void testThatStatusIsSet(final Context context, final Observation observation) {
     assumeExportable(context)
 
-    assertEquals(Observation.ObservationStatus.FINAL, observation.getStatus())
+    final Observation.ObservationStatus status = mapStatus(context.source[laborFindingLaborValue().status()] as LaborFindingValueStatus)
+
+    assertEquals(status, observation.getStatus())
   }
 
   @ExportScriptTest
@@ -126,12 +139,11 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   @ExportScriptTest
   void testThatEffectiveIsSet(final Context context, final Observation observation) {
     assumeExportable(context)
-    assumeTrue(context.source[laborFindingLaborValue().laborFinding().findingDate()] &&
-        context.source[laborFindingLaborValue().laborFinding().findingDate().date()])
+    assumeTrue(context.source[laborFindingLaborValue().recordedOn()] &&
+        context.source[laborFindingLaborValue().recordedOn().date()])
 
-    assertEquals(new DateTimeType(context.source[laborFindingLaborValue().laborFinding().findingDate().date()] as String).getValue(),
-        observation.getEffectiveDateTimeType().getValue()
-    )
+    assertEquals(new DateTimeType(context.source[laborFindingLaborValue().recordedOn().date()] as String).getValue(),
+        observation.getEffectiveDateTimeType().getValue())
   }
 
   @ExportScriptTest
@@ -270,6 +282,28 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     final def isAdditionalDataLv = ((context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] as String)
         in [statusLvCode, issuedLvCode, assignerLvCode])
     return isMiiProfile && !isAdditionalDataLv
+  }
+
+  private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
+    if (cxxStatus == null){
+      return UNKNOWN
+    }
+    switch (cxxStatus){
+      case LaborFindingValueStatus.R:
+        return REGISTERED
+      case LaborFindingValueStatus.P:
+        return PRELIMINARY
+      case LaborFindingValueStatus.F:
+        return FINAL
+      case LaborFindingValueStatus.C:
+        return CORRECTED
+      case LaborFindingValueStatus.W:
+        return ENTEREDINERROR
+      case LaborFindingValueStatus.X:
+        return CANCELLED
+      default:
+        return UNKNOWN
+    }
   }
 
 }

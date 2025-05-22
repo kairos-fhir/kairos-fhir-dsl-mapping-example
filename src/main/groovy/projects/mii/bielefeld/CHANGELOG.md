@@ -1,5 +1,8 @@
 # Change log
 
+## 2025-05-22
+* added export of the LaborFindingLaborValue status and recordedOn date to Observations
+
 ## 2025-05-13
 * fixed the consent script
 * fixed ExportResourceMappingConfig.json

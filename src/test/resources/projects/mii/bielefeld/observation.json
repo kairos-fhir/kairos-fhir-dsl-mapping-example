@@ -896,6 +896,7 @@
   "flagValue" : [ ],
   "multilingualValues" : null,
   "multilingualStringValues" : [ ],
+  "status": "F",
   "recordedOn" : {
     "date" : "2024-11-04T11:02:36.963+01:00",
     "precision" : "EXACT"
@@ -2481,6 +2482,7 @@
   "flagValue" : [ ],
   "multilingualValues" : null,
   "multilingualStringValues" : [ ],
+  "status": "C",
   "recordedOn" : {
     "date" : "2024-11-04T11:04:53.763+01:00",
     "precision" : "EXACT"
@@ -9881,6 +9883,7 @@
   "flagValue" : [ ],
   "multilingualValues" : null,
   "multilingualStringValues" : [ ],
+  "status": "U",
   "recordedOn" : {
     "date" : "2024-11-04T11:21:20.043+01:00",
     "precision" : "EXACT"
