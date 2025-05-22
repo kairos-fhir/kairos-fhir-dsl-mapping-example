@@ -40,9 +40,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 final String TREATMENT_SERVICE = "treatmentService"
 final String TYPE = "type"
+final String DISCHARGE_DISPOSITION = "dischargeDisposition"
+final String DEPARTMENT = "department:"
+
+
 final Map PROFILE_TYPES = [
-    (TREATMENT_SERVICE): LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
-    (TYPE)             : LaborFindingLaborValue.CATALOG_ENTRY_VALUE
+    (TREATMENT_SERVICE)    : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (TYPE)                 : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
+    (DISCHARGE_DISPOSITION): LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
+    (DEPARTMENT)           : LaborFindingLaborValue.MULTI_VALUE_REFERENCES
 ]
 
 encounter {
@@ -80,9 +86,8 @@ encounter {
 
   status = mapStatus(context.source[episode().status()] as String)
 
-  if (context.source[episode().stayType().code()]) {
+  if (context.source[episode().stayType()]) {
     class_ {
-      system = FhirUrls.System.Episode.StayType.BASE_URL
       code = context.source[episode().stayType().code()]
       display = context.source[episode().stayType().multilinguals()].find { final def ml ->
         ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -146,11 +151,14 @@ encounter {
     }
   }
 
-  if (lflvMap.containsKey(TREATMENT_SERVICE)) {
-    lflvMap.get(TREATMENT_SERVICE).each { final def valueRef ->
+  if (lflvMap.containsKey(DEPARTMENT)) {
+    lflvMap.get(DEPARTMENT).each { final def valueRef ->
       if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
-        serviceProvider {
-          reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+        extension {
+          url = "https://fhir.iqvia.com/patientfinder/extension/department-organization"
+          valueReference {
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+          }
         }
       }
     }
@@ -164,6 +172,21 @@ encounter {
           display = entry[MULTILINGUALS].find { final def ml ->
             ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
           }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
+    }
+  }
+
+  if (lflvMap.containsKey(DISCHARGE_DISPOSITION)) {
+    hospitalization {
+      dischargeDisposition {
+        lflvMap.get(DISCHARGE_DISPOSITION).each { final def entry ->
+          coding {
+            code = entry[CODE] as String
+            display = entry[MULTILINGUALS].find { final def ml ->
+              ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+            }?.getAt(Multilingual.SHORT_NAME)
+          }
         }
       }
     }

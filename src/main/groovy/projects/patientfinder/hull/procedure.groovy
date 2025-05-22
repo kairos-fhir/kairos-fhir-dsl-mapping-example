@@ -110,6 +110,9 @@ procedure {
     lflvMap.get(PERFORMER_ACTOR).each { final def valueRef ->
       if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
         performer {
+          onBehalfOf {
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+          }
           actor {
             reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
           }
