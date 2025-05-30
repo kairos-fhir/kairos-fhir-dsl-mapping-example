@@ -13,7 +13,7 @@ A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR cu
 
 # How-To
 
-Detailed instructions to the interface and its DSL can be found in the [German how-to](/CXX_FHIR_Custom_Export.pdf).
+Detailed instructions to the interface and its DSL can be found in the [English documentation](/FHIR-Custom-Export-docs.md).
 
 # Requirements
 
@@ -175,4 +175,3 @@ You can also write this to a custom file in the file system if you do not want t
 ## Considerations for validation
 The validation may fail when the profiling declares fields as mandatory, which are optional in CXX and, therefore, may not be present.
 Ensure that the test data in CXX is complete and compliant with the FHIR profiling requirements.
-
