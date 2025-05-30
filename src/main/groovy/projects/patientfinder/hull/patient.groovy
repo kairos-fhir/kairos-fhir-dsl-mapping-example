@@ -129,7 +129,7 @@ patient {
     }
   }
 
-  final def addressMappings = context.source[medication().laborMappings()].findAll { final def lm ->
+  final def addressMappings = context.source[patient().patientContainer().laborMappings()].findAll { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Address_profile"
   }
 
@@ -141,7 +141,6 @@ patient {
       city = addressMap.get(ADDRESS_CITY) as String
       postalCode = addressMap.get(ADDRESS_POSTALCODE) as String
     }
-
   }
 }
 

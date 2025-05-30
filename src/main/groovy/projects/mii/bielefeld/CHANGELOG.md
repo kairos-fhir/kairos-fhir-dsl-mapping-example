@@ -1,5 +1,16 @@
 # Change log
 
+## 2025-05-28
+* fixed bug in gender mapping
+
+## 2025-05-22
+* added export of the LaborFindingLaborValue status and recordedOn date to Observations
+
+## 2025-05-13
+* fixed the consent script
+* fixed ExportResourceMappingConfig.json
+* added first script for research study
+
 ## 2025-02-17
 * added new script and tests for MII consent
 

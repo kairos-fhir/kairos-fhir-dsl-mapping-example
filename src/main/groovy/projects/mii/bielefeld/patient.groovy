@@ -125,7 +125,7 @@ patient {
     if (genderType == GenderType.MALE) {
       value = Enumerations.AdministrativeGender.MALE
     } else if (genderType == GenderType.FEMALE) {
-      value = Enumerations.AdministrativeGender.MALE
+      value = Enumerations.AdministrativeGender.FEMALE
     } else if (genderType == GenderType.UNKNOWN) {
       value = Enumerations.AdministrativeGender.UNKNOWN
     } else if (genderType == GenderType.UNDEFINED) {

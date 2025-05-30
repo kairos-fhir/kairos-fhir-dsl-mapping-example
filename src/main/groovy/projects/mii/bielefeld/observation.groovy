@@ -5,18 +5,24 @@ import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.PatientMaster
 import de.kairos.fhir.centraxx.metamodel.Unity
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
+import de.kairos.fhir.centraxx.metamodel.enums.LaborFindingValueStatus
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Observation
+import org.hl7.fhir.r4.model.codesystems.ObservationStatus
 
+import javax.annotation.Nonnull
 import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.*
 
 // the code of the MII common measurement profile
 final String laborMethodName = "MP_DiagnosticReportLab"
@@ -48,10 +54,11 @@ observation {
       }
     }
     system = "urn:centraxx/MessparameterCodeAndMesswertOid"
-    value = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" + context.source[laborFindingLaborValue().laborFinding().laborFindingId()]
+    value = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" +
+        context.source[laborFindingLaborValue().laborFinding().laborFindingId()]
   }
 
-  setStatus(Observation.ObservationStatus.FINAL)
+  status(mapStatus(context.source[laborFindingLaborValue().status()] as LaborFindingValueStatus))
 
   category {
     coding {
@@ -83,11 +90,12 @@ observation {
   }
 
   subject {
-    reference = "Patient/" + context.source[laborFindingLaborValue().laborFinding().laborMappings()].find()[LaborMapping.RELATED_PATIENT][PatientMaster.ID]
+    reference = "Patient/" + context.source[laborFindingLaborValue().laborFinding().laborMappings()]
+        .find()[LaborMapping.RELATED_PATIENT][PatientMaster.ID]
   }
 
-  if (context.source[laborFindingLaborValue().laborFinding().findingDate()] && context.source[laborFindingLaborValue().laborFinding().findingDate().date()]) {
-    effectiveDateTime = context.source[laborFindingLaborValue().laborFinding().findingDate().date()]
+  if (context.source[laborFindingLaborValue().recordedOn()] && context.source[laborFindingLaborValue().recordedOn().date()]) {
+    effectiveDateTime = context.source[laborFindingLaborValue().recordedOn().date()]
   }
 
   final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
@@ -145,6 +153,28 @@ private static String createSystem(final Object catalogEntry) {
       return FhirUrls.System.Catalogs.CUSTOM_CATALOG + "/" + catalogEntry[CatalogEntry.CATALOG][AbstractCustomCatalog.CODE]
 
     default: return null
+  }
+}
+
+private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
+  if (cxxStatus == null){
+    return UNKNOWN
+  }
+  switch (cxxStatus){
+    case LaborFindingValueStatus.R:
+      return REGISTERED
+    case LaborFindingValueStatus.P:
+      return PRELIMINARY
+    case LaborFindingValueStatus.F:
+      return FINAL
+    case LaborFindingValueStatus.C:
+      return CORRECTED
+    case LaborFindingValueStatus.W:
+      return ENTEREDINERROR
+    case LaborFindingValueStatus.X:
+      return CANCELLED
+    default:
+      return UNKNOWN
   }
 }
 

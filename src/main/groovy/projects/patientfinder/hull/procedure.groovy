@@ -110,6 +110,9 @@ procedure {
     lflvMap.get(PERFORMER_ACTOR).each { final def valueRef ->
       if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
         performer {
+          onBehalfOf {
+            reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+          }
           actor {
             reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
           }
@@ -156,9 +159,6 @@ static Procedure.ProcedureStatus mapStatus(final ProcedureStatus procedureStatus
   }
   if (procedureStatus.equals(ProcedureStatus.ON_HOLD)) {
     return Procedure.ProcedureStatus.ONHOLD
-  }
-  if (procedureStatus.equals(ProcedureStatus.COMPLETED)) {
-    return Procedure.ProcedureStatus.COMPLETED
   }
   if (procedureStatus.equals(ProcedureStatus.ENTERED_IN_ERROR)) {
     return Procedure.ProcedureStatus.ENTEREDINERROR

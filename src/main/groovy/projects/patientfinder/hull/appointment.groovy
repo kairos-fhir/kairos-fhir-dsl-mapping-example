@@ -16,11 +16,8 @@ appointment {
   id = "Appointment/" + context.source[calendarEvent().id()]
 
   identifier {
-    system = FhirUrls.System.Calendar.EVENT_ID
     value = context.source[calendarEvent().eventId()]
   }
-
-  status = context.source[calendarEvent().isDone()] ? Appointment.AppointmentStatus.FULFILLED : Appointment.AppointmentStatus.BOOKED
 
   serviceCategory {
     coding {
@@ -29,7 +26,7 @@ appointment {
     }
   }
 
-  description = context.source[calendarEvent().title()]
+  description = context.source[calendarEvent().description()]
 
   start {
     date = context.source[calendarEvent().startDate()]
@@ -39,44 +36,20 @@ appointment {
     date = context.source[calendarEvent().endDate()]
   }
 
-  patientInstruction = context.source[calendarEvent().description()]
 
-  participant {
-    type {
-      coding {
-        system = FhirUrls.System.Calendar.PARTICIPANT_TYPE
-        code = FhirAppointmentParticipantTypeEnum.PATIENT.name()
+  if (context.source[calendarEvent().patientContainer()]) {
+    participant {
+      actor {
+        reference = "Patient/" + context.source[calendarEvent().patientContainer().id()]
       }
     }
-    actor {
-      reference = "Patient/" + context.source[calendarEvent().patientContainer().id()]
-    }
-    status = Appointment.ParticipationStatus.ACCEPTED
   }
 
   if (context.source[calendarEvent().attendingDoctor()]) {
     participant {
-      type {
-        coding {
-          system = FhirUrls.System.Calendar.PARTICIPANT_TYPE
-          code = FhirAppointmentParticipantTypeEnum.ATTENDING_DOCTOR.name()
-        }
-      }
       actor {
         reference = "Practitioner/" + context.source[calendarEvent().attendingDoctor().id()]
       }
-      status = Appointment.ParticipationStatus.ACCEPTED
     }
   }
-
-  extension {
-    url = FhirUrls.Extension.Calendar.VISIBLE
-    valueBoolean = context.source[calendarEvent().visible()]
-  }
-
-  extension {
-    url = FhirUrls.Extension.Calendar.ALL_DAY
-    valueBoolean = context.source[calendarEvent().allDay()]
-  }
-
 }
