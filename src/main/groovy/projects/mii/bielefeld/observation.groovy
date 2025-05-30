@@ -19,7 +19,7 @@ import javax.annotation.Nullable
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 
 // the code of the MII common measurement profile
-final String laborMethodName = "MII_MeasurementProfile"
+final String laborMethodName = "MP_DiagnosticReportLab"
 
 // the code of the FHIR DiagnosticReport.status laborValue
 final String statusLvCode = "DiagnosticReport.status"

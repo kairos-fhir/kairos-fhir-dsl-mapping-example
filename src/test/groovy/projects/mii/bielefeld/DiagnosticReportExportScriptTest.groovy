@@ -15,6 +15,7 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.DiagnosticReport
+import org.junit.jupiter.api.TestInstance
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
@@ -27,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 import static org.junit.jupiter.api.Assumptions.assumeTrue
 import static org.junit.jupiter.api.Assumptions.assumingThat
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/diagnosticReport.groovy",
     contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport.json"
@@ -183,6 +185,6 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   }
 
   private static void checkLaborMethodCode(final Context context) {
-    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
+    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MP_DiagnosticReportLab", "Not a MII profile")
   }
 }

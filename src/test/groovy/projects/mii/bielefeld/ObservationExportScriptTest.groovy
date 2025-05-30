@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   // the code of the MII common measurement profile
-  final static String laborMethodName = "MII_MeasurementProfile"
+  final static String laborMethodName = "MP_DiagnosticReportLab"
 
   // the code of the FHIR DiagnosticReport.status laborValue
   final static String statusLvCode = "DiagnosticReport.status"

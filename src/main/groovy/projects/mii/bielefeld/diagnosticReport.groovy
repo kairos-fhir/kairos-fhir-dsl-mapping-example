@@ -24,7 +24,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 
 
 // the code of the MII common measurement profile
-final String laborMethodName = "MII_MeasurementProfile"
+final String laborMethodName = "MP_DiagnosticReportLab"
 
 // the code of the FHIR DiagnosticReport.status laborValue
 final String statusLvCode = "DiagnosticReport.status"
@@ -99,8 +99,9 @@ diagnosticReport {
   }
 
   if (lflvStatus && lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
+    String s = lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String
     status(DiagnosticReport.DiagnosticReportStatus
-        .fromCode(lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String))
+        .fromCode(s.toLowerCase()))
   } else {
     status(DiagnosticReport.DiagnosticReportStatus.UNKNOWN)
   }
