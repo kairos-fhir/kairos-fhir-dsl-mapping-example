@@ -1,13 +1,7 @@
 package projects.mii.bielefeld
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.Episode
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
-import de.kairos.fhir.centraxx.metamodel.PatientContainer
-import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.*
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -35,138 +29,148 @@ final String issuedLvCode = "DiagnosticReport.issued"
 // the identifier.assigner laborValue
 final String assignerLvCode = "DiagnosticReport.identifier.assigner"
 
+final String orgUnitDizId = "ukowl.de"
+
 diagnosticReport {
 
-  // export only patient Labor Mappings here
-  if (context.source[laborFinding().laborMethod().code()] != laborMethodName) {
-    return
-  }
-
-  id = "DiagnosticReport/" + context.source[laborFinding().id()]
-
-  meta {
-    source = "urn:centraxx"
-    profile("https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab")
-  }
-
-  code {
-    coding {
-      system = "http://loinc.org"
-      code = "11502-2"
+    // export only patient Labor Mappings here
+    if (context.source[laborFinding().laborMethod().code()] != laborMethodName) {
+        return
     }
-  }
-
-  final def assignerLFLV = context.source[laborFinding().laborFindingLaborValues()].find {
-    assignerLvCode == it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String
-  }
 
 
-  identifier {
-    type {
-      coding {
-        system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-        code = "FILL"
-      }
+    id = "DiagnosticReport/" + context.source[laborFinding().id()]
+
+    meta {
+        source = "urn:centraxx"
+        profile("https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab")
     }
-    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME // this needs to unique in CXX anyway
-    value = context.source[laborFinding().shortName()]
 
-    println(assignerLFLV)
-    // assigner would have to be coded as measurement value in the Observation. Remember to filter out of the actual observations
-    if (assignerLFLV && assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES]) {
-      final def orgUnit = assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)
-      if (orgUnit) {
-        assigner {
-          reference = "Organization/" + orgUnit[OrganisationUnit.ID]
+    code {
+        coding {
+            system = "http://loinc.org"
+            code = "11502-2"
         }
-      }
     }
-  }
 
-  //TODO: add in dsl metamodel enum and check if initialized
-  final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
-    mapping[LaborMapping.MAPPING_TYPE] == "SERVICEREQUEST"
-  }
+    final def assignerLFLV = context.source[laborFinding().laborFindingLaborValues()].find {
+        assignerLvCode == it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String
+    }
 
-  serviceRequestMappings.forEach {
+
+    identifier {
+        type {
+            coding {
+                system = "http://terminology.hl7.org/CodeSystem/v2-0203"
+                code = "FILL"
+            }
+        }
+        system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME // this needs to unique in CXX anyway
+        value = context.source[laborFinding().shortName()]
+
+        //println(assignerLFLV)
+        // assigner would have to be coded as measurement value in the Observation. Remember to filter out of the actual observations
+//    if (assignerLFLV && assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES]) {
+//      final def orgUnit = assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)
+//      if (orgUnit) {
+//        assigner {
+//          reference = "Organization/" + orgUnit[OrganisationUnit.ID]
+//        }
+//      }
+//    }
+        assigner {
+            identifier {
+                system = "https://www.medizininformatik-initiative.de/fhir/core/CodeSystem/core-location-identifier"
+                value = orgUnitDizId
+            }
+        }
+
+    }
+
+    //TODO: add in dsl metamodel enum and check if initialized
+    final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
+        mapping[LaborMapping.MAPPING_TYPE] == "SERVICEREQUEST"
+    }
+
+    serviceRequestMappings.forEach {
+        basedOn {
+            reference = "ServiceRequest/" + serviceRequestMappings[LaborMapping.RELATED_OID]
+        }
+    }
+
+    final def lflvStatus = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
+        lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == statusLvCode
+    }
+
+    if (lflvStatus && lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
+        String s = lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String
+        status(DiagnosticReport.DiagnosticReportStatus
+                .fromCode(s.toLowerCase()))
+    } else {
+        status(DiagnosticReport.DiagnosticReportStatus.UNKNOWN)
+    }
+
     basedOn {
-      reference = "ServiceRequest/" + serviceRequestMappings[LaborMapping.RELATED_OID]
+        reference = "ServiceRequest/" + 1
     }
-  }
-
-  final def lflvStatus = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-    lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == statusLvCode
-  }
-
-  if (lflvStatus && lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
-    String s = lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String
-    status(DiagnosticReport.DiagnosticReportStatus
-        .fromCode(s.toLowerCase()))
-  } else {
-    status(DiagnosticReport.DiagnosticReportStatus.UNKNOWN)
-  }
-
-  basedOn {
-    reference = "ServiceRequest/" + 1
-  }
 
 
-  category {
-    coding {
-      system = "http://loinc.org"
-      code = "26436-6"
+    category {
+        coding {
+            system = "http://loinc.org"
+            code = "26436-6"
+        }
+        coding {
+            system = "http://terminology.hl7.org/CodeSystem/v2-0074"
+            code = "LAB"
+        }
     }
-    coding {
-      system = "http://terminology.hl7.org/CodeSystem/v2-0074"
-      code = "LAB"
+
+    code {
+        coding {
+            system = "http://loinc.org"
+            code = "11502-2"
+        }
     }
-  }
 
-  code {
-    coding {
-      system = "http://loinc.org"
-      code = "11502-2"
+    final def lmPatient = context.source[laborFinding().laborMappings()]
+            .find { final def lm -> lm[LaborMapping.RELATED_PATIENT] != null }
+
+
+    if (lmPatient) {
+        subject {
+            reference = "Patient/" + lmPatient[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
+        }
     }
-  }
 
-  final def lmPatient = context.source[laborFinding().laborMappings()]
-      .find { final def lm -> lm[LaborMapping.RELATED_PATIENT] != null }
+    final def lmEpisode = context.source[laborFinding().laborMappings()]
+            .find { final def lm -> lm[LaborMapping.EPISODE] != null }
 
-
-  if (lmPatient) {
-    subject {
-      reference = "Patient/" + lmPatient[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
+    if (lmEpisode) {
+        encounter {
+            reference = "Encounter/" + lmEpisode[LaborMapping.EPISODE][Episode.ID]
+        }
     }
-  }
 
-  final def lmEpisode = context.source[laborFinding().laborMappings()]
-      .find { final def lm -> lm[LaborMapping.EPISODE] != null }
-
-  if (lmEpisode) {
-    encounter {
-      reference = "Encounter/" + lmEpisode[LaborMapping.EPISODE][Episode.ID]
+    effectiveDateTime {
+        date = context.source[laborFinding().findingDate().date()]
     }
-  }
 
-  effectiveDateTime {
-    date = context.source[laborFinding().findingDate().date()]
-  }
-
-  final def lvIssued = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-    lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == issuedLvCode
-  }
-
-  if (lvIssued && lvIssued[LaborFindingLaborValue.DATE_VALUE]) {
-    issued = lvIssued[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
-  }
-
-  context.source[laborFinding().laborFindingLaborValues()]?.findAll { final def lflv ->
-    !((lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String) in [issuedLvCode, statusLvCode, assignerLvCode])
-  }.each { final def lflv ->
-    result {
-      reference = "Observation/" + lflv[LaborFindingLaborValue.ID]
+    final def lvIssued = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
+        lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == issuedLvCode
     }
-  }
+
+    if (lvIssued && lvIssued[LaborFindingLaborValue.DATE_VALUE]) {
+        issued = lvIssued[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE]
+    }
+
+    context.source[laborFinding().laborFindingLaborValues()]?.findAll { final def lflv ->
+        !((lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String) in [issuedLvCode, statusLvCode, assignerLvCode])
+    }.each { final def lflv ->
+        result {
+            reference = "Observation/" + lflv[LaborFindingLaborValue.ID]
+        }
+    }
 }
 
 
