@@ -46,14 +46,14 @@ final Map PROFILE_TYPES = [
  */
 patient {
 
-  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
+  final def nhsIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS" }
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each {final def idc ->
-    identifier {
-      system = idc[ID_CONTAINER_TYPE][CODE]
-      value = idc[PSN]
-    }
+  if (nhsIdc == null) {
+    return
   }
+
+  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   meta {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
@@ -73,6 +73,20 @@ patient {
         city = lflvPatientMap.get(PLACEOFBIRTH)
         country = lflvPatientMap.get(COUNTRY_OF_BIRTH)
       }
+    }
+  }
+
+  identifier {
+    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+    value = nhsIdc[PSN]
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
+    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
+  }.each { final def idc ->
+    identifier {
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+      value = idc[PSN]
     }
   }
 
