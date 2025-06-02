@@ -109,7 +109,7 @@ encounter {
 
   if (context.source[episode().parent()]) {
     partOf {
-      reference = "Episode/" + context.source[episode().parent().id()]
+      reference = "Encounter/" + context.source[episode().parent().id()]
     }
   }
 
