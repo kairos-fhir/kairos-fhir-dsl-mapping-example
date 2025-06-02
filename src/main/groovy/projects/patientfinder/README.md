@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-06-02
+* added the export of all patient identifiers again
+* fixed appointment description
+
 ## 2025-05-22
 * added export of dischargeDisposition, department extension to encounter
 * added export of performerActor to performer.onBehalfOf in procedure script

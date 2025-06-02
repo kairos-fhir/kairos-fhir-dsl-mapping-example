@@ -1,12 +1,10 @@
 package projects.patientfinder.hull
 
-
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
@@ -48,14 +46,14 @@ final Map PROFILE_TYPES = [
  */
 patient {
 
-  final def nhsIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
-      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS" }
-
-  if (nhsIdc == null) {
-    return
-  }
-
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each {final def idc ->
+    identifier {
+      system = idc[ID_CONTAINER_TYPE][CODE]
+      value = idc[PSN]
+    }
+  }
 
   meta {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
@@ -76,10 +74,6 @@ patient {
         country = lflvPatientMap.get(COUNTRY_OF_BIRTH)
       }
     }
-  }
-
-  identifier {
-    value = nhsIdc[PSN]
   }
 
   humanName {
