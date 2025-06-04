@@ -1,5 +1,9 @@
 # Change log
 
+## 2025-06-04
+* updated MII fhir packages to latest versions
+* added export of patients without first and last name as MII Pseudo patient
+
 ## 2025-05-28
 * fixed bug in gender mapping
 
