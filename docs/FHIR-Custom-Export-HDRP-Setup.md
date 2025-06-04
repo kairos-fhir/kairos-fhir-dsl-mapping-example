@@ -457,7 +457,7 @@ The `uploadUrl` property specifies the endpoint of the target FHIR store.
 
 ### Useful Links
 
-- [FHIR Specification](https://www.hl7.org/fhir/)
+- [FHIR Specification](https://hl7.org/fhir/R4/index.html)
 - [Groovy Documentation](https://groovy-lang.org/documentation.html)
 - [HDRP](https://www.iqvia.com/locations/emea/iqvia-connected-healthcare-platform/iqvia-health-data-research-platform)
 

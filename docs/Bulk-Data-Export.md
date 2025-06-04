@@ -1,6 +1,6 @@
 <img src="images/Logo.png" width="250" alt="IQVIA Logo"/>
 
-# Bulk Data Export
+# FHIR Bulk Data Export
 
 Bulk data export is used to export configured export projects asynchronously to the file system or to an FHIR endpoint.
 The configurational setup and the FHIR operations used to control FHIR bulk data export are described in this section.
