@@ -13,6 +13,11 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-06-04
+* added the export of the reasonCode to the Encounters
+* remove precision on the enounter period data
+
+
 # 2025-06-02
 * added the export of all patient identifiers again
 * fixed appointment description

@@ -131,7 +131,8 @@ static boolean isFakeEpisode(final def episode) {
     return true
   }
 
-  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { final def idc ->
+    (idc[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
 }
 
