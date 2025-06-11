@@ -1,6 +1,7 @@
-package projects.patientfinder
+package projects.patientfinder.hull
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
@@ -10,7 +11,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank
 /**
  * Represented by a CXX OrganizationUnit
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.51.0, CXX.v.2025.1.7
  */
 organization {
 
@@ -23,7 +24,9 @@ organization {
 
   active = true
 
-  final String orgUnitName = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
+  final String orgUnitName = context.source[organizationUnit().multilinguals()]
+      ?.find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
+      ?.getAt(Multilingual.SHORT_NAME) as String
 
   name = cleanName(orgUnitName)
 

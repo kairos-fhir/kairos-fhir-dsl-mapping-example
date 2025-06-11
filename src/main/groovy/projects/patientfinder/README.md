@@ -14,6 +14,7 @@ The following imported data sets are supported/tested:
 # Change log
 
 # 2025-06-11
+* changed name extraction to multilinguals (needs release.)
 * added null check for orgunit names
 
 # 2025-06-04
