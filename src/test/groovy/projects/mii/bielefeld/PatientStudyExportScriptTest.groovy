@@ -20,7 +20,9 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/researchSubject.groovy",
     contextMapsPath = "src/test/resources/projects/mii/bielefeld/researchSubject.json"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
+// is returned in Person module an has been moved to Study module, but is not yet documented there.
+// Validation fails with new person module but it's not part if the study module release yet.
+//@Validate(packageDir = "src/test/resources/fhirpackages")
 class PatientStudyExportScriptTest extends AbstractExportScriptTest<ResearchSubject> {
 
   @ExportScriptTest

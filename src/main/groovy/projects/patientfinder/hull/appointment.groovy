@@ -1,8 +1,6 @@
 package projects.patientfinder.hull
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.enums.FhirAppointmentParticipantTypeEnum
-import org.hl7.fhir.r4.model.Appointment
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.calendarEvent
 
@@ -26,7 +24,7 @@ appointment {
     }
   }
 
-  description = context.source[calendarEvent().description()]
+  description = context.source[calendarEvent().title()]
 
   start {
     date = context.source[calendarEvent().startDate()]
