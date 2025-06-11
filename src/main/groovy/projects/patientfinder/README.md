@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-06-11
+* added null check for orgunit names
+
 # 2025-06-04
 * added the export of the reasonCode to the Encounters
 * remove precision on the enounter period data

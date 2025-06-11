@@ -5,6 +5,7 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
+import static org.apache.commons.lang3.StringUtils.isBlank
 
 /**
  * Represented by a CXX OrganizationUnit
@@ -28,10 +29,13 @@ organization {
 
 }
 
-static String cleanName(final String name){
+static String cleanName(final String name) {
+  if (isBlank(name)) {
+    return null
+  }
   final String prefix = "specialty:"
 
-  if (name.startsWith(prefix)){
+  if (name.startsWith(prefix)) {
     return name.substring(prefix.length()).trim()
   }
   return name
