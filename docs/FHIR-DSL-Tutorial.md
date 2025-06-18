@@ -249,15 +249,10 @@ The `context.source` will contain a HashMap Diagnosis entity object graph. Here 
       "attributes": [],
       "anonymousId": 7402342890753676381,
       "organisationUnits": [
-        {
-          ...
-        }
-      ],
-      ...
-    },
-    ...
-  },
-  ...
+        {}
+      ]
+    }
+  }
 }
 
 ```
