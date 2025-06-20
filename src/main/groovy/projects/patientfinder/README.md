@@ -14,10 +14,6 @@ The following imported data sets are supported/tested:
 # Change log
 
 ## 2025-05-22
-* fixed metamodel path on finding access in patient script
-
-
-## 2025-05-22
 * added export of dischargeDisposition, department extension to encounter
 * added export of performerActor to performer.onBehalfOf in procedure script
 
