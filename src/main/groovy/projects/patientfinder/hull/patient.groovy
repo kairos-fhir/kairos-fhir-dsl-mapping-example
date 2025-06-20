@@ -55,7 +55,7 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  final def patientMapping = context.source[medication().laborMappings()].find { final def lm ->
+  final def patientMapping = context.source[patientMasterDataAnonymous().patientContainer().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
   }
 
