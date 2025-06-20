@@ -61,7 +61,7 @@ patient {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
   }
 
-  final def patientMapping = context.source[medication().laborMappings()].find { final def lm ->
+  final def patientMapping = context.source[patientMasterDataAnonymous().patientContainer().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
   }
 
