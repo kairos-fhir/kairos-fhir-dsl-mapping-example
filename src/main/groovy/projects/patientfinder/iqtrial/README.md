@@ -7,10 +7,13 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
-# 2025-17-06
+## 2025-06-20
+* added multi id export for PFS 
+
+## 2025-06-17
 * fixed the multilinguals in organization
 
-# 2025-04-07
+## 2025-04-07
 * changed missing metamodel navigation to strings in encounter script
 * changed casting to enum to string comparison to work around missing LaborMethodCategory enum value
 

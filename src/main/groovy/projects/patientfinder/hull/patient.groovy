@@ -14,7 +14,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
