@@ -52,7 +52,7 @@ of the kick-off query
 |---------------|----------|-----------------------------|-------------|
 | `_jobId`      | String   | the job id assigned by HDRP | -           |
 
-Depending on the status different HTTP status codes will be returned
+Depending on the status, different HTTP status codes will be returned
 
 | **Status Code** | **Description**                                 |
 |-----------------|-------------------------------------------------|
@@ -116,8 +116,7 @@ Depending on the status different HTTP status codes will be returned
 ### Cancellation Query (`$cancel-export`)
 
 A running export can be canceled using this operation. The jobId must be supplied as the `_jobId` query parameter. The running export will be notified
-to terminate after the currently processed pages has been
-exported.
+to terminate after the currently processed pages have been exported.
 
 | **Parameter** | **Type** | **Description**             | **Default** |
 |---------------|----------|-----------------------------|-------------|
@@ -135,7 +134,7 @@ The jobId of the export job has to be supplied in the `_jobId` query parameter.
 |---------------|----------|-----------------------------|-------------|
 | `_jobId`      | String   | the job id assigned by HDRP | -           |
 
-If the operation was successful, the HTTP status code 202 will be returned.
+If the operation was successful, HTTP status code 202 will be returned.
 
 ## Cleanup
 
