@@ -7,6 +7,7 @@ import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -17,11 +18,26 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
+  final def patID = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "MPI" }
+
+  if (patID == null) {
+    return
+  }
+
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idc ->
+  identifier {
+    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+    value = patID[PSN]
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
+    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
+  }.each { final def idc ->
     identifier {
-      value = idc[ID_CONTAINER_TYPE][CODE] as String
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+      value = idc[PSN]
     }
   }
 
