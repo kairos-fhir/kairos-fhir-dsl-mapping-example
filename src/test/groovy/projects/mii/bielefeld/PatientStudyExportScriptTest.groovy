@@ -8,6 +8,8 @@ import de.kairos.fhir.centraxx.metamodel.StudyMember
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.ResearchSubject
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.params.ParameterizedTest
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy

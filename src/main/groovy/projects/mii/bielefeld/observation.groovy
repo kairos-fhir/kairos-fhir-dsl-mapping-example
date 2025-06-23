@@ -1,29 +1,17 @@
 package projects.mii.bielefeld
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
-import de.kairos.fhir.centraxx.metamodel.CatalogEntry
-import de.kairos.fhir.centraxx.metamodel.IdContainer
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.LaborFinding
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.PatientMaster
-import de.kairos.fhir.centraxx.metamodel.Unity
-import de.kairos.fhir.centraxx.metamodel.UsageEntry
+import de.kairos.fhir.centraxx.metamodel.*
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborFindingValueStatus
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.codesystems.ObservationStatus
 
-import javax.annotation.Nonnull
 import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 import static org.hl7.fhir.r4.model.Observation.ObservationStatus.*
-
 // the code of the MII common measurement profile
 final String laborMethodName = "MP_DiagnosticReportLab"
 

@@ -18,7 +18,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>1.8</java.compiler.level>
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.51.0-SNAPSHOT</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.48.0</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.8.2</junit-jupiter.version>
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <gmavenplus-plugin.version>1.9.1</gmavenplus-plugin.version>
@@ -27,10 +27,10 @@
     <hapi.fhir.version>5.7.9</hapi.fhir.version>
   </properties>
 
+
   <scm>
     <connection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</connection>
-    <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git
-    </developerConnection>
+    <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</developerConnection>
 
     <tag>bugfix-1.30</tag>
   </scm>
@@ -45,6 +45,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
+      <version>${junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>

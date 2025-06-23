@@ -11,6 +11,6 @@ import java.lang.annotation.Target
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@ParameterizedTest
 @MethodSource(AbstractExportScriptTest.METHOD_SOURCE)
+@ParameterizedTest
 @interface ExportScriptTest {}

@@ -5,7 +5,6 @@ import ca.uhn.fhir.context.support.DefaultProfileValidationSupport
 import ca.uhn.fhir.validation.FhirValidator
 import ca.uhn.fhir.validation.ResultSeverityEnum
 import ca.uhn.fhir.validation.ValidationResult
-import com.fasterxml.jackson.databind.ObjectMapper
 import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptEngine
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
@@ -41,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.fail
  * <br><br>
  * Optionally, the {@link Validate} annotation can be used to validate the resulting resource against the profiles of a given FHIR package.
  * FHIR packages can be downloaded for specific FHIR projects from https://simplifier.net/
- * @param <E>                the type parameter for the FHIR resource.
+ * @param <E>                 the type parameter for the FHIR resource.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractExportScriptTest<E extends DomainResource> {
@@ -92,8 +91,8 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
 
         println("✅ Loaded ${contextResourcePairs.size()} test cases")
 
-     //   List<E> res = contextResourcePairs.stream().map { e -> e.getRight() }.toList();
-      //  println("mappingResults: " + new ObjectMapper().writeValueAsString(res))
+        //   List<E> res = contextResourcePairs.stream().map { e -> e.getRight() }.toList();
+        //  println("mappingResults: " + new ObjectMapper().writeValueAsString(res))
 
 
         if (validator != null) {
