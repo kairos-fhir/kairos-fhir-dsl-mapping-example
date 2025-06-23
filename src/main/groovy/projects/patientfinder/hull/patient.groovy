@@ -14,7 +14,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
@@ -55,7 +54,7 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  final def patientMapping = context.source[medication().laborMappings()].find { final def lm ->
+  final def patientMapping = context.source[patientMasterDataAnonymous().patientContainer().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
   }
 

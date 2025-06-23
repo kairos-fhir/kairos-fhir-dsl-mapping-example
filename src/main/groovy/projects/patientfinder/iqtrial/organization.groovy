@@ -1,6 +1,7 @@
 package projects.patientfinder.iqtrial
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
@@ -22,7 +23,9 @@ organization {
 
   active = true
 
-  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
+  name = context.source[organizationUnit().multilinguals()]
+      ?.find { final def ml -> ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null }
+      ?.getAt(Multilingual.SHORT_NAME) as String
 
 }
 
