@@ -1,13 +1,12 @@
 package projects.mii.bielefeld
 
+
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
 import common.Validate
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
-import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.PatientInsurance
@@ -19,9 +18,13 @@ import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
 import org.hl7.fhir.r4.model.Patient
 
+import javax.annotation.Nonnull
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
+import static org.apache.commons.lang3.StringUtils.isBlank
 import static org.junit.jupiter.api.Assertions.assertEquals
+import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertNotNull
 import static org.junit.jupiter.api.Assertions.assertNull
 import static org.junit.jupiter.api.Assertions.assertTrue
@@ -37,6 +40,8 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatGKVIdentifierIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
@@ -44,7 +49,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assumeTrue(gkvInsurance != null)
 
     final Identifier identifier = resource.getIdentifier().find {
-      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "GKV")
+      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "KVZ10")
     }
 
     assertNotNull(identifier)
@@ -57,11 +62,18 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
         identifier.getAssigner().getIdentifier().getValue())
 
-    assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
   @ExportScriptTest
   void testThatPKVIdentifierIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
+    final def gkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
+      CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
+    }
+
+    assumeTrue(gkvInsurance == null, "If GKV is present it will be exported and PKV will be ignored");
+
     final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
@@ -69,12 +81,11 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assumeTrue(pkvInsurance != null)
 
     final Identifier identifier = resource.getIdentifier().find {
-      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "PKV")
+      it.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "KVZ10")
     }
 
     assertNotNull(identifier)
 
-    assertNull(identifier.getSystem())
     assertEquals(pkvInsurance[PatientInsurance.POLICE_NUMBER], identifier.getValue())
 
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
@@ -82,11 +93,22 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
         identifier.getAssigner().getIdentifier().getValue())
 
-    assertEquals("http://fhir.de/NamingSystem/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
   @ExportScriptTest
+  void testThatPseudoPatientsSetsIdentifierPattern(final Context context, final Patient resource) {
+    assumeTrue(isPseudo(context), "Patient is not pseudonymized")
+
+    assertTrue(resource.getIdentifierFirstRep()
+        .getType()
+        .hasCoding("http://terminology.hl7.org/CodeSystem/v3-ObservationValue", "PSEUDED"))
+  }
+
+
+  @ExportScriptTest
   void testThatIdContainerIdentifiersAreExported(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
       final def identifier = resource.getIdentifier().find {
         it.hasSystem() && "https://fhir.centraxx.de/system/idContainer/psn" == it.getSystem() && (idContainer[IdContainer.PSN] as String) == it.getValue()
@@ -96,8 +118,6 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       assertNotNull(identifier)
       assertTrue(identifier.hasType())
       assertTrue(identifier.getType().hasCoding("http://fhir.de/CodeSystem/identifier-type-de-basis", "MR"))
-      assertTrue(identifier.getType().hasCoding(FhirUrls.System.IdContainerType.BASE_URL,
-          idContainer[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String))
 
       assertEquals(idContainer[IdContainer.PSN], identifier.getValue())
     }
@@ -105,6 +125,8 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatPatientAddressesAreSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     context.source[patient().addresses()].each { final def patAd ->
       assumingThat(patAd[PatientAddress.STREET] != null, {
         final Address address = resource.getAddress().find {
@@ -136,15 +158,52 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
   }
 
   @ExportScriptTest
+  void testThatPatientAddressSetsOnlyZipCodeAndCountryForPseudoPatient(final Context context, final Patient resource) {
+    assumeTrue(isPseudo(context), "Patient is not pseudonymized")
+
+    context.source[patient().addresses()].each { final def patAd ->
+      final Address address = resource.getAddress().find {
+            (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+            (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode())
+      }
+
+      assertNotNull(address)
+      assertEquals(Address.AddressType.BOTH, address.getType())
+      assertFalse(address.hasLine())
+      assertFalse(address.hasCity())
+    }
+  }
+
+  @ExportScriptTest
   void testThatBirthDateIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
     assertNotNull(resource.getBirthDate())
     assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getValue(),
         resource.getBirthDate())
   }
 
+  /**
+   * Date must be rounded to first day of month, first month of quarter. Year must be the same.
+   * only checking year. The Month should be validated by the constraint on the element in the structure defintion
+   */
+  @ExportScriptTest
+  void testThatBirthDateIsSetForPseudo(final Context context, final Patient resource) {
+    assumeTrue(isPseudo(context), "Patient is not pseudonymized")
+
+    assumeTrue(context.source[patient().birthdate()] && context.source[patient().birthdate().date()])
+    assertNotNull(resource.getBirthDate())
+
+    // year must be equal
+    assertEquals(new DateTimeType(context.source[patient().birthdate().date()] as String).getYear(),
+        resource.getBirthDateElement().getYear())
+  }
+
   @ExportScriptTest
   void testThatDeceasedDateIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     assumeTrue(context.source[patient().dateOfDeath()] && context.source[patient().dateOfDeath().date()])
     assertNotNull(resource.getDeceasedDateTimeType())
     assertEquals(new DateTimeType(context.source[patient().dateOfDeath().date()] as String).getValue(),
@@ -153,6 +212,8 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatNamesIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     assumeTrue(context.source[patient().firstName()] || context.source[patient().lastName()])
 
     final HumanName name = resource.getName().find {
@@ -170,6 +231,8 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
   @ExportScriptTest
   void testThatBirthNamesIsSet(final Context context, final Patient resource) {
+    assumeTrue(!isPseudo(context), "Patient is pseudonymized")
+
     assumeTrue(context.source[patient().birthName()] != null)
 
     final HumanName name = resource.getName().find {
@@ -178,6 +241,11 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
     assertNotNull(name)
     assertEquals(context.source[patient().birthName()], name.getFamily())
+  }
+
+
+  private static boolean isPseudo(@Nonnull final Context context) {
+    return isBlank(context.source[patient().firstName()] as String) && isBlank(context.source[patient().lastName()] as String)
   }
 
 }

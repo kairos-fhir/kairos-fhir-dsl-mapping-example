@@ -1,20 +1,17 @@
 package projects.patientfinder.hull
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.LaborMethod
-import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.EpisodeStatus
-import org.hl7.fhir.r4.model.CatalogEntry
 import org.hl7.fhir.r4.model.Encounter
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -42,13 +39,15 @@ final String TREATMENT_SERVICE = "treatmentService"
 final String TYPE = "type"
 final String DISCHARGE_DISPOSITION = "dischargeDisposition"
 final String DEPARTMENT = "department:"
+final String REASON_CODE = "reasonCode"
 
 
 final Map PROFILE_TYPES = [
     (TREATMENT_SERVICE)    : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
     (TYPE)                 : LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
     (DISCHARGE_DISPOSITION): LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
-    (DEPARTMENT)           : LaborFindingLaborValue.MULTI_VALUE_REFERENCES
+    (DEPARTMENT)           : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (REASON_CODE)          : LaborFindingLaborValue.CATALOG_ENTRY_VALUE
 ]
 
 encounter {
@@ -109,7 +108,7 @@ encounter {
 
   if (context.source[episode().parent()]) {
     partOf {
-      reference = "Episode/" + context.source[episode().parent().id()]
+      reference = "Encounter/" + context.source[episode().parent().id()]
     }
   }
 
@@ -117,14 +116,12 @@ encounter {
     if (context.source[episode().validFrom()]) {
       start {
         date = context.source[episode().validFrom()]
-        precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
 
     if (context.source[episode().validUntil()]) {
       end {
         date = context.source[episode().validUntil()]
-        precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
   }
@@ -177,6 +174,19 @@ encounter {
     }
   }
 
+  if (lflvMap.containsKey(REASON_CODE)) {
+    reasonCode {
+      lflvMap.get(REASON_CODE).each { final def entry ->
+        coding {
+          code = entry[CODE] as String
+          display = entry[MULTILINGUALS].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
+    }
+  }
+
   if (lflvMap.containsKey(DISCHARGE_DISPOSITION)) {
     hospitalization {
       dischargeDisposition {
@@ -202,7 +212,9 @@ static boolean isFakeEpisode(final def episode) {
     return true
   }
 
-  final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
+  final def fakeId = episode[Episode.ID_CONTAINER]?.find { final def idc ->
+    (idc[PSN] as String).toUpperCase().startsWith("FAKE")
+  }
   return fakeId != null
 }
 

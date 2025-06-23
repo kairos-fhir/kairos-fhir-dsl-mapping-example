@@ -1,12 +1,10 @@
 package projects.patientfinder.hull
 
-
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
@@ -16,7 +14,6 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
@@ -57,11 +54,7 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
-  }
-
-  final def patientMapping = context.source[medication().laborMappings()].find { final def lm ->
+  final def patientMapping = context.source[patientMasterDataAnonymous().patientContainer().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
   }
 
@@ -79,7 +72,17 @@ patient {
   }
 
   identifier {
+    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
     value = nhsIdc[PSN]
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
+    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
+  }.each { final def idc ->
+    identifier {
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+      value = idc[PSN]
+    }
   }
 
   humanName {
