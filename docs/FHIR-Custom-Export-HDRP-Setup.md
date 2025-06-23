@@ -319,7 +319,7 @@ Example `ExportResourceMappingConfig.json`:
 
 #### BundleRequestMethodConfig.json
 
-This configuration specifies the HTTP request methods used for export to a target URL, such as a FHIR Blaze store.
+This configuration specifies the HTTP request methods used for export to a target URL, such as a FHIR [Blaze](https://samply.github.io/blaze/) store.
 
 Example `BundleRequestMethodConfig.json`:
 
@@ -463,7 +463,7 @@ The `uploadUrl` property specifies the endpoint of the target FHIR store.
 
 ### Glossary
 
-- **FHIR**: Fast Healthcare Interoperability Resources, a standard for healthcare data exchange
-- **HDRP**: Health Data Research Platform. A biobanking and clinical data management system
-- **Groovy**: A dynamic programming language for the Java Virtual Machine
+- **FHIR**: Fast Healthcare Interoperability Resources, a standard for healthcare data exchange.
+- **HDRP**: Health Data Research Platform. A biobanking and clinical data management system.
+- **Groovy**: A dynamic programming language for the Java virtual machine.
 - **JSON**: JavaScript Object Notation, a lightweight data-interchange format
