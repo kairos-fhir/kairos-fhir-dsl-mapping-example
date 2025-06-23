@@ -3,7 +3,7 @@
 Getting started
 ===============
 This is a brief tutorial on how to set up and configure a CentraXX FHIR custom export. For a detailed description, please read
-the [How-To](CXX_FHIR_Custom_Export.pdf) documentation.
+the [How-To](FHIR-Custom-Export-docs.md) documentation.
 ____________________________________________
 
 # Quickstart steps
