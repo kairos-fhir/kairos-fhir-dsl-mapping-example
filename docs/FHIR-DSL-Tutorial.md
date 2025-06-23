@@ -1,4 +1,5 @@
 <img src="images/Logo.png" width="250" alt="IQVIA Logo"/>
+
 # Groovy Scripting with the HDRP FHIR-DSL
 
 ## Introduction
@@ -35,17 +36,17 @@ The IntelliJ Community edition is enough. You can download it [here](https://www
 
 ### Setting up Maven
 
-IntelliJ itself comes with a bundled Maven. If you want to use that Maven from the command line, you will have to add the IntelliJ Maven to the Path
+IntelliJ itself comes with a bundled Maven. If you want to use that Maven from the command line, you will have to add the IntelliJ Maven to the path
 variable ```<IntelliJ>\plugins\maven\lib\maven\bin```. You can also install your own Maven, Maven can be downloaded
 from [here](https://maven.apache.org/download.cgi).
 Installation instructions can be found [here](https://maven.apache.org/install.html). To configure the custom Maven in IntelliJ, set the Maven home
-Path to
-```<custom-maven>\bin``` in <span style="color: darkblue"> Setting -> Build, Execution, Deployment -> Build Tools -> Maven</span>.
+path to
+```<custom-maven>\bin``` in <span style="color: lightblue"> Setting -> Build, Execution, Deployment -> Build Tools -> Maven</span>.
 
 ### Setting up JDK
 
 You can install the JDK following the [installation instructions](https://adoptium.net/installation/). The JDK must be configured in IntelliJ under
-<span style="color: darkblue"> Project Structure... → Project Settings → Project</span>. Set the SDK the installation location of your JDK. If you did
+<span style="color: lightblue"> Project Structure... → Project Settings → Project</span>. Set the SDK the installation location of your JDK. If you did
 not change the default, it should look like ```C:\Program Files\Eclipse Adoptium\jdk-17.0.13.11-hotspot```
 
 ## Creating a Project
@@ -80,10 +81,10 @@ To install the dialog FHIR-DSL library, add the dependency and the repository to
 
 Since GitHub only allows authorized access to the package, a general access token is supplied in the [`settings.xml`](../settings.xml).
 Create your own ```settings.xml``` and configure your Maven to use it. Go to
-<span style="color: darkblue"> Setting → Build, Execution, Deployment → Build Tools → Maven</span>,
+<span style="color: lightblue"> Setting → Build, Execution, Deployment → Build Tools → Maven</span>,
 check the "Override" box under "User settings file" and select the path to `<project>/settings.xml`.
 
-Now go to the maven menu on the right and <span style="color: darkblue"> [project name] → Lifecycle → Install → Maven</span> or execute
+Now go to the maven menu on the right and <span style="color: lightblue"> [project name] → Lifecycle → Install → Maven</span> or execute
 
 ```
 mvn install -s <path to custom settings xml>
@@ -100,7 +101,7 @@ git clone https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git
 Open the project in IntelliJ. Configure your Maven and JDK as described in sections [Setting up Maven](#setting-up-maven) and
 [Setting up JDK](#setting-up-jdk), respectively.
 
-Now go to the maven menu on the right and <span style="color: darkblue"> [project name] → Lifecycle → Install → Maven</span> or execute
+Now go to the maven menu on the right and <span style="color: lightblue"> [project name] → Lifecycle → Install → Maven</span> or execute
 
 ```
 mvn install -s <path to custom settings xml>
@@ -211,7 +212,7 @@ the list of elements. In our example, we add two identifiers by calling the `ide
 
 ### Using the HDRP Meta Model
 
-In the [previous section](#using-the-builders), the usage of the Builder was demonstrated. However, statically adding values is of no use.
+In the [previous section](#Using-the-FHIR-Resource-Builders), the usage of the Builder was demonstrated. However, statically adding values is of no use.
 In real world scenario, we would like to map actual HDRP data to these resources. This data is accessible via the `source` property
 on the `context` element in the script.
 
@@ -547,25 +548,3 @@ Alternatively, you can write the map to the file system using jackson as describ
 ## Considerations for validation
 The validation may fail when the profiling declares fields as mandatory, which are optional in CXX and, therefore, may not be present.
 Ensure that the test data in CXX is complete and compliant with the FHIR profiling requirements.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
