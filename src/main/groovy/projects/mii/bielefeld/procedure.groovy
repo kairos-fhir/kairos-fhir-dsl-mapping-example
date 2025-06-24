@@ -9,6 +9,8 @@ import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.Localization
 import org.hl7.fhir.r4.model.Procedure
 
+import javax.annotation.Nonnull
+
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFinding.LABOR_FINDING_LABOR_VALUES
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
@@ -38,7 +40,7 @@ procedure {
 
   // Data from LaborMapping
   final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-    lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
+    lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
   }
 
   if (context.source[medProcedure().opsEntry()]) {
@@ -84,11 +86,13 @@ procedure {
     }
 
     if (procedureStatus && procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
-      status = procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CatalogEntry.CODE)
+      status = Procedure.ProcedureStatus
+          .fromCode((procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CatalogEntry.CODE) as String).toLowerCase())
     } else {
       status = Procedure.ProcedureStatus.UNKNOWN
     }
-  }
+  } else
+    status = Procedure.ProcedureStatus.NULL
 }
 
 /**
@@ -100,7 +104,7 @@ static String normalizeDate(final String dateTimeString) {
   return dateTimeString != null ? dateTimeString.substring(0, 19) : null
 }
 
-static String mapCategory(String opsCode) {
+static String mapCategory(@Nonnull final String opsCode) {
   final char firstChar = opsCode.charAt(0)
   switch (firstChar) {
     case "1": return "103693007"
@@ -113,7 +117,7 @@ static String mapCategory(String opsCode) {
   }
 }
 
-static String mapLocalisation(Localization cxxLocalization) {
+static String mapLocalisation(@Nonnull final Localization cxxLocalization) {
   switch (cxxLocalization) {
     case Localization.LEFT: return "L"
     case Localization.RIGHT: return "R"

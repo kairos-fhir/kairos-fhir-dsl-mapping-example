@@ -4,10 +4,9 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
-import de.kairos.fhir.centraxx.metamodel.ValueReference
+import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import org.hl7.fhir.r4.model.DiagnosticReport
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
@@ -24,7 +23,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 
 
 // the code of the MII common measurement profile
-final String laborMethodName = "MII_MeasurementProfile"
+final String laborMethodName = "MP_DiagnosticReportLab"
 
 // the code of the FHIR DiagnosticReport.status laborValue
 final String statusLvCode = "DiagnosticReport.status"
@@ -34,6 +33,8 @@ final String issuedLvCode = "DiagnosticReport.issued"
 
 // the identifier.assigner laborValue
 final String assignerLvCode = "DiagnosticReport.identifier.assigner"
+
+final String orgUnitDizId = "ukowl.de"
 
 diagnosticReport {
 
@@ -56,11 +57,6 @@ diagnosticReport {
     }
   }
 
-  final def assignerLFLV = context.source[laborFinding().laborFindingLaborValues()].find {
-    assignerLvCode == it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String
-  }
-
-
   identifier {
     type {
       coding {
@@ -71,21 +67,18 @@ diagnosticReport {
     system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME // this needs to unique in CXX anyway
     value = context.source[laborFinding().shortName()]
 
-    println(assignerLFLV)
-    // assigner would have to be coded as measurement value in the Observation. Remember to filter out of the actual observations
-    if (assignerLFLV && assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES]) {
-      final def orgUnit = assignerLFLV[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)
-      if (orgUnit) {
-        assigner {
-          reference = "Organization/" + orgUnit[OrganisationUnit.ID]
-        }
+
+    assigner {
+      identifier {
+        system = "https://www.medizininformatik-initiative.de/fhir/core/CodeSystem/core-location-identifier"
+        value = orgUnitDizId
       }
     }
+
   }
 
-  //TODO: add in dsl metamodel enum and check if initialized
   final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
-    mapping[LaborMapping.MAPPING_TYPE] == "SERVICEREQUEST"
+    mapping[LaborMapping.MAPPING_TYPE] == LaborMappingType.SERVICEREQUEST as String
   }
 
   serviceRequestMappings.forEach {
@@ -99,16 +92,12 @@ diagnosticReport {
   }
 
   if (lflvStatus && lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE]) {
+    final String s = lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String
     status(DiagnosticReport.DiagnosticReportStatus
-        .fromCode(lflvStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String))
+        .fromCode(s.toLowerCase()))
   } else {
     status(DiagnosticReport.DiagnosticReportStatus.UNKNOWN)
   }
-
-  basedOn {
-    reference = "ServiceRequest/" + 1
-  }
-
 
   category {
     coding {

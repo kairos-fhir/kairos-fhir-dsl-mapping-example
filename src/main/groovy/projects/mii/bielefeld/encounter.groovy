@@ -1,5 +1,6 @@
 package projects.mii.bielefeld
 
+
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -16,6 +17,7 @@ import org.hl7.fhir.r4.model.Encounter
 import org.hl7.fhir.r4.model.codesystems.DataAbsentReason
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
+
 /**
  * @author Jonas Küttner
  * @since kairos-fhir-dsl v.1.39.0, CXX v.2024.4.1, v.2024.5.0
@@ -35,8 +37,9 @@ encounter {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
   }
 
-  //Create Identifier for all episode Ids
-  context.source[episode().idContainer()]?.each { final def episodeIdContainer ->
+  //Create Identifier for first episode Id
+  final def firstEpisodeIdContainer = context.source[episode().idContainer()]?.find { true }
+  if (firstEpisodeIdContainer) {
     identifier {
       type {
         coding {
@@ -45,13 +48,15 @@ encounter {
         }
         coding {
           system = FhirUrls.System.IdContainerType.BASE_URL
-          code = episodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
+          code = firstEpisodeIdContainer[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] as String
         }
       }
-      value = episodeIdContainer[EpisodeIdContainer.PSN]
-      system = "https://fhir.centraxx.de/system/idContainer/psn"// Haus-spezifisch // could be coded by the IdContainerType
+      value = firstEpisodeIdContainer[EpisodeIdContainer.PSN]
+      system = "https://fhir.centraxx.de/system/idContainer/psn"
+      // Haus-spezifisch // could be coded by the IdContainerType
     }
   }
+
 
   // the required system needs to be created as CXX MasterData
   final def stayType = context.source[episode().stayType()]
@@ -76,13 +81,12 @@ encounter {
     }
   }
 
-
   // Data from LaborMapping
   final def mapping = context.source[episode().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "EncounterProfile"
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Encounter"
   }
 
-  if (mapping == null){
+  if (mapping == null) {
     status {
       value = Encounter.EncounterStatus.UNKNOWN
       extension {

@@ -1,0 +1,570 @@
+{
+  "consentElements": [
+  ],
+  "consentPartsOnly": false,
+  "consentType": {
+    "code": "t_bc_16d_ohneBioproben",
+    "creationdate": "2025-02-11T09:29:59.753+01:00",
+    "entitySource": "XMLIMPORT",
+    "entityStatus": "ACTIVE",
+    "id": 338,
+    "initialEntitySource": "XMLIMPORT",
+    "multilinguals": [
+      {
+        "creationdate": "2025-02-11T09:29:59.857+01:00",
+        "description": "MII BC Version 1.6d mit Modulen: Patientendaten, Krankenkassendaten und Rekontaktierung",
+        "entitySource": "XMLIMPORT",
+        "id": 27229,
+        "initialEntitySource": "XMLIMPORT",
+        "language": "de",
+        "lastModifiedOn": "2025-01-21T20:05:21.737+01:00",
+        "name": "MII BC Version 1.6d ohne Modul Biomaterial",
+        "shortDescription": "MII BC Version 1.6d mit Modulen: Patientendaten, Krankenkassendaten und Rekontaktierung",
+        "shortName": "MII BC Version 1.6d ohne Modul Biomaterial"
+      },
+      {
+        "creationdate": "2025-02-11T09:29:59.857+01:00",
+        "entitySource": "XMLIMPORT",
+        "id": 27230,
+        "initialEntitySource": "XMLIMPORT",
+        "language": "en",
+        "lastModifiedOn": "2025-01-21T20:04:46.983+01:00",
+        "name": "(en) - t_bc_16d_ohneBioproebe",
+        "shortName": "(en) - t_bc_16d_ohneBioproebe"
+      }
+    ],
+    "policies": [
+      {
+        "consentableAction": {
+          "code": "m_bc_patdat",
+          "creationdate": "2025-02-11T09:29:59.730+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 7,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.730+01:00",
+              "description": "Ich willige ein in die Erhebung, Verarbeitung, Speicherung und wissenschaftliche Nutzung meinervPatientendaten wie in Punkt 1.1 bis 1.3 der Einwilligungserkl\u00e4rung und Punkt 1 der Patienteninformation beschrieben.",
+              "entitySource": "XMLIMPORT",
+              "id": 27228,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T15:51:39.407+02:00",
+              "name": "MII BC Nutzung Patientendaten",
+              "shortDescription": "Ich willige ein in die Erhebung, Verarbeitung, Speicherung und wissenschaftliche Nutzung meinervPatientendaten wie in Punkt 1.1 bis 1.3 der Einwilligungserkl\u00e4rung und Punkt 1 der Patienteninformation beschrieben.",
+              "shortName": "MII BC Nutzung Patientendaten"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.730+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27227,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T15:51:39.407+02:00",
+              "name": "(en) - MII BC Patientendaten",
+              "shortName": "(en) - MII BC Patientendaten"
+            }
+          ],
+          "syncId": "8ead9ab9-8531-410f-a2fc-af91a5c619a4"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.753+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 8,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 0,
+        "syncId": "f55f425d-c925-422b-be8a-e628ff965b11"
+      },
+      {
+        "consentableAction": {
+          "code": "m_bc_ins_prosp",
+          "creationdate": "2025-02-11T09:29:59.640+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 6,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.640+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27225,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T15:58:34.400+02:00",
+              "name": "(en) - MII BC Krankenkassendaten Prospektiv",
+              "shortName": "(en) - MII BC Krankenkassendaten Prospektiv"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.640+01:00",
+              "description": "F\u00fcr Daten ab dem Datum meiner Unterschrift \u00fcber einen Zeitraum von 5 Jahren. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nr. an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "entitySource": "XMLIMPORT",
+              "id": 27226,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T15:58:34.400+02:00",
+              "name": "MII BC Nutzung Krankenkassendaten Prospektiv",
+              "shortDescription": "F\u00fcr Daten ab dem Datum meiner Unterschrift \u00fcber einen Zeitraum von 5 Jahren. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nr. an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "shortName": "MII BC Nutzung Krankenkassendaten Prospektiv"
+            }
+          ],
+          "syncId": "c1084626-e4c0-4c2d-8486-73b4f174c9a4"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.840+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 9,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 1,
+        "syncId": "0984fb68-c039-47d2-b845-893e34899c4e"
+      },
+      {
+        "consentableAction": {
+          "code": "m_bc_ins_retro",
+          "creationdate": "2025-02-11T09:29:59.547+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 5,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.547+01:00",
+              "description": "Einmalig r\u00fcckwirkend f\u00fcr die Daten der vergangenen 5 Kalenderjahre. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nummer an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "entitySource": "XMLIMPORT",
+              "id": 27224,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T15:57:03.160+02:00",
+              "name": "MII BC Nutzung Krankenkassendaten Retrospektiv",
+              "shortDescription": "Einmalig r\u00fcckwirkend f\u00fcr die Daten der vergangenen 5 Kalenderjahre. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nummer an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "shortName": "MII BC Nutzung Krankenkassendaten Retrospektiv"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.547+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27223,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T15:57:03.160+02:00",
+              "name": "(en) - MII BC Krankenkassendaten retrospektiv",
+              "shortName": "(en) - MII BC Krankenkassendaten retrospektiv"
+            }
+          ],
+          "syncId": "7c310f22-4b5f-42bf-8b50-a04377ea3835"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.843+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 10,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 2,
+        "syncId": "57adcbe8-456c-4087-9f29-cc46d6f692de"
+      },
+      {
+        "consentableAction": {
+          "code": "m_bc_recon_med",
+          "creationdate": "2025-02-11T09:29:59.437+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 4,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.437+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27221,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T16:01:47.597+02:00",
+              "name": "(en) - MII BC Rekontaktierung Zusatzbefunde",
+              "shortName": "(en) - MII BC Rekontaktierung Zusatzbefunde"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.437+01:00",
+              "description": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL wieder kontaktiert werden darf, um \u00fcber medizinische Zusatzbefunde informiert zu werden (siehe Punkt 4.2 der Patienteninformation).",
+              "entitySource": "XMLIMPORT",
+              "id": 27222,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T16:01:47.597+02:00",
+              "name": "MII BC Rekontaktierung Information Zusatzbefunde",
+              "shortDescription": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL wieder kontaktiert werden darf, um \u00fcber medizinische Zusatzbefunde informiert zu werden (siehe Punkt 4.2 der Patienteninformation).",
+              "shortName": "MII BC Rekontaktierung Information Zusatzbefunde"
+            }
+          ],
+          "syncId": "3ed25b44-00dd-462a-9496-7220be4cc217"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.843+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 11,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 3,
+        "syncId": "44a4d689-291f-4fcf-b338-9915da2a0aef"
+      },
+      {
+        "consentableAction": {
+          "code": "m_bc_recon_res",
+          "creationdate": "2025-02-11T09:29:58.393+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 3,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:58.397+01:00",
+              "description": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL erneut kontaktiert werden darf, um gegebenenfalls zus\u00e4tzliche f\u00fcr wissenschaftliche Fragen relevante Informationen zur Verf\u00fcgung zu stellen, um \u00fcber neue Forschungsvorhaben / Studien informiert zu werden, und / oder um meine Einwilligung in die Verkn\u00fcpfung meiner Patientendaten mit medizinischen Informationen aus anderen Datenbanken einzuholen (siehe Punkt 4.1 der Patienteninformation).",
+              "entitySource": "XMLIMPORT",
+              "id": 27220,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T16:00:46.307+02:00",
+              "name": "MII BC Rekontaktierung Anfrage Forschungsdaten",
+              "shortDescription": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL erneut kontaktiert werden darf, um gegebenenfalls zus\u00e4tzliche f\u00fcr wissenschaftliche Fragen relevante Informationen zur Verf\u00fcgung zu stellen, um \u00fcber neue Forschungsvorhaben / Studien informiert zu werden, und / oder um meine Einwilligung in die Verkn\u00fcpfung meiner Patientendaten mit medizinischen Informationen aus anderen Datenbanken einzuholen (siehe Punkt 4.1 der Patienteninformation).",
+              "shortName": "MII BC Rekontaktierung Anfrage Forschungsdaten"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:58.400+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27219,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T16:00:46.307+02:00",
+              "name": "(en) - MII BC Rekontaktierung Forschungsdaten",
+              "shortName": "(en) - MII BC Rekontaktierung Forschungsdaten"
+            }
+          ],
+          "syncId": "33ba461f-7448-4f70-8c15-32d37cd136f0"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.847+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 12,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 4,
+        "syncId": "1096e7c9-c460-484d-a604-a30d0db7f0ac"
+      }
+    ],
+    "syncId": "26e9a20c-0578-4553-aaa9-08f41cf08a63",
+    "system": false
+  },
+  "creationdate": "2025-02-14T09:13:59.803+01:00",
+  "declined": false,
+  "entitySource": "CENTRAXX",
+  "id": 342,
+  "initialEntitySource": "CENTRAXX",
+  "patientcontainer": {
+    "anonymousId": 7402342890753676381,
+    "attributes": [
+    ],
+    "creationdate": "2024-03-01T19:04:23.000+01:00",
+    "diagnoses": null,
+    "documentMappings": null,
+    "entitySource": "CENTRAXX",
+    "episode": null,
+    "ethnicities": [
+      {
+        "code": "EUROPEAN",
+        "creationdate": "2022-03-09T13:11:26.100+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 12,
+        "initialEntitySource": "CENTRAXX",
+        "multilinguals": [
+          {
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "id": 4820,
+            "initialEntitySource": "CENTRAXX",
+            "language": "de",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "name": "Europ\u00e4er",
+            "shortName": "Europ\u00e4er"
+          },
+          {
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "id": 4821,
+            "initialEntitySource": "CENTRAXX",
+            "language": "en",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "name": "European",
+            "shortName": "European"
+          }
+        ],
+        "syncId": "3F89BC74-35AA-4541-B391-4E91532702F6"
+      }
+    ],
+    "flexiFlagItems": null,
+    "id": 3735,
+    "idContainer": [
+      {
+        "creationdate": "2024-03-01T19:04:23.147+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 4275,
+        "idContainerType": {
+          "allowUpdateForSync": false,
+          "code": "SID",
+          "creationdate": "2023-10-13T10:14:35.937+02:00",
+          "decisive": true,
+          "editable": true,
+          "entitySource": "XMLIMPORT",
+          "id": 895,
+          "initialEntitySource": "XMLIMPORT",
+          "isBlinded": false,
+          "kind": "PATIENT",
+          "mandatory": true,
+          "name": "Spender ID",
+          "pseudonym": true,
+          "sampleCategories": null,
+          "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+          "system": false,
+          "uniqueness": "SYSTEM"
+        },
+        "initialEntitySource": "CENTRAXX",
+        "psn": "A999999999",
+        "tentative": false
+      },
+      {
+        "creationdate": "2024-10-07T17:05:20.850+02:00",
+        "entitySource": "CENTRAXX",
+        "id": 1259412,
+        "idContainerType": {
+          "allowUpdateForSync": false,
+          "code": "Patient.identifier:pid",
+          "creationdate": "2024-10-07T17:04:11.423+02:00",
+          "decisive": true,
+          "editable": true,
+          "entitySource": "CENTRAXX",
+          "id": 3071,
+          "initialEntitySource": "CENTRAXX",
+          "isBlinded": false,
+          "kind": "PATIENT",
+          "mandatory": false,
+          "name": "PID",
+          "pseudonym": false,
+          "sampleCategories": null,
+          "syncId": "80c8781f-9dda-4368-98c0-d04382acbcc1",
+          "system": false,
+          "uniqueness": "SYSTEM"
+        },
+        "initialEntitySource": "CENTRAXX",
+        "psn": "PID124534",
+        "tentative": false
+      }
+    ],
+    "initialEntitySource": "CENTRAXX",
+    "laborMappings": null,
+    "medProcedures": null,
+    "medications": null,
+    "organisationUnits": [
+      {
+        "code": "CentraXX",
+        "creationdate": "2021-09-09T14:34:12.443+02:00",
+        "descMultilingualEntries2": null,
+        "entitySource": "CENTRAXX",
+        "id": 1,
+        "initialEntitySource": "CENTRAXX",
+        "meddepartments": null,
+        "nameMultilingualEntries2": [
+          {
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "id": 1,
+            "initialEntitySource": "CENTRAXX",
+            "lang": "de",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "relatedTable": "ORGUNIT",
+            "system": false,
+            "value": "CENTRAXX"
+          },
+          {
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "id": 2,
+            "initialEntitySource": "CENTRAXX",
+            "lang": "en",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "relatedTable": "ORGUNIT",
+            "system": false,
+            "value": "CENTRAXX"
+          },
+          {
+            "creationdate": "2025-02-05T14:46:17.120+01:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "id": 280701,
+            "initialEntitySource": "CENTRAXX",
+            "lang": "es",
+            "modifiedOn": "2025-02-05T14:46:17.120+01:00",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "relatedTable": "ORGUNIT",
+            "system": false,
+            "value": "(es) - CentraXX"
+          }
+        ],
+        "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C"
+      }
+    ],
+    "patientId": 20,
+    "patientInsurances": [
+      {
+        "coverageType": "T",
+        "creationdate": "2024-10-07T16:55:45.857+02:00",
+        "entitySource": "CENTRAXX",
+        "groupNumber": "123233",
+        "id": 291,
+        "initialEntitySource": "CENTRAXX",
+        "insuranceCompany": {
+          "companyId": "100395611",
+          "contactAddress": null,
+          "creationdate": "2024-10-07T16:38:20.593+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 943,
+          "initialEntitySource": "CENTRAXX",
+          "syncId": "89e3feb1-6960-47be-b815-d5d8b51dbb87"
+        },
+        "insuredRelationship": "SEL",
+        "policeNumber": "Y58882304243",
+        "rank": 1
+      }
+    ],
+    "patientMasterDataAnonymous": null,
+    "patientStatus": {
+      "active": true
+    },
+    "patientStudies": null,
+    "preexistingIllnesses": null,
+    "progresses": null,
+    "sampleCount": {
+      "creationdate": "2024-03-01T19:04:23.000+01:00",
+      "entitySource": "CENTRAXX",
+      "id": 3735,
+      "initialEntitySource": "CENTRAXX",
+      "sampleCount": 1
+    },
+    "studyMembers": null,
+    "tumors": null,
+    "urlFragment": "b6f5d61f-39e0-41a5-b573-3ac3a61bfa47"
+  },
+  "pseudonym": true,
+  "revocation": {
+    "creationdate": "2025-02-14T09:14:27.667+01:00",
+    "entitySource": "CENTRAXX",
+    "id": 7,
+    "initialEntitySource": "CENTRAXX",
+    "pseudonym": false,
+    "revocationElements": [
+      {
+        "consentableAction": {
+          "code": "m_bc_ins_prosp",
+          "creationdate": "2025-02-11T09:29:59.640+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 6,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.640+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27225,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T15:58:34.400+02:00",
+              "name": "(en) - MII BC Krankenkassendaten Prospektiv",
+              "shortName": "(en) - MII BC Krankenkassendaten Prospektiv"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.640+01:00",
+              "description": "F\u00fcr Daten ab dem Datum meiner Unterschrift \u00fcber einen Zeitraum von 5 Jahren. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nr. an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "entitySource": "XMLIMPORT",
+              "id": 27226,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T15:58:34.400+02:00",
+              "name": "MII BC Nutzung Krankenkassendaten Prospektiv",
+              "shortDescription": "F\u00fcr Daten ab dem Datum meiner Unterschrift \u00fcber einen Zeitraum von 5 Jahren. Mit der daf\u00fcr n\u00f6tigen \u00dcbermittlung meiner Krankenversicherungs-Nr. an die mich behandelnde Einrichtung des UK OWL bin ich einverstanden",
+              "shortName": "MII BC Nutzung Krankenkassendaten Prospektiv"
+            }
+          ],
+          "syncId": "c1084626-e4c0-4c2d-8486-73b4f174c9a4"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.840+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 9,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 1,
+        "syncId": "0984fb68-c039-47d2-b845-893e34899c4e"
+      },
+      {
+        "consentableAction": {
+          "code": "m_bc_recon_med",
+          "creationdate": "2025-02-11T09:29:59.437+01:00",
+          "entitySource": "XMLIMPORT",
+          "id": 4,
+          "initialEntitySource": "XMLIMPORT",
+          "multilinguals": [
+            {
+              "creationdate": "2025-02-11T09:29:59.437+01:00",
+              "entitySource": "XMLIMPORT",
+              "id": 27221,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "en",
+              "lastModifiedOn": "2024-09-11T16:01:47.597+02:00",
+              "name": "(en) - MII BC Rekontaktierung Zusatzbefunde",
+              "shortName": "(en) - MII BC Rekontaktierung Zusatzbefunde"
+            },
+            {
+              "creationdate": "2025-02-11T09:29:59.437+01:00",
+              "description": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL wieder kontaktiert werden darf, um \u00fcber medizinische Zusatzbefunde informiert zu werden (siehe Punkt 4.2 der Patienteninformation).",
+              "entitySource": "XMLIMPORT",
+              "id": 27222,
+              "initialEntitySource": "XMLIMPORT",
+              "language": "de",
+              "lastModifiedOn": "2024-09-11T16:01:47.597+02:00",
+              "name": "MII BC Rekontaktierung Information Zusatzbefunde",
+              "shortDescription": "Ich willige ein, dass ich von der mich behandelnden Einrichtung des UK OWL wieder kontaktiert werden darf, um \u00fcber medizinische Zusatzbefunde informiert zu werden (siehe Punkt 4.2 der Patienteninformation).",
+              "shortName": "MII BC Rekontaktierung Information Zusatzbefunde"
+            }
+          ],
+          "syncId": "3ed25b44-00dd-462a-9496-7220be4cc217"
+        },
+        "consentableObject": "PATIENT",
+        "creationdate": "2025-02-11T09:29:59.843+01:00",
+        "entityDeleteableOnRevocation": false,
+        "entityLockableOnRevocation": false,
+        "entitySource": "XMLIMPORT",
+        "id": 11,
+        "initialEntitySource": "XMLIMPORT",
+        "position": 3,
+        "syncId": "44a4d689-291f-4fcf-b338-9915da2a0aef"
+      }
+    ],
+    "revokePartsOnly": true,
+    "signedOn": "2025-02-15T00:00:00.000+01:00"
+  },
+  "signedOn": {
+    "date": "2025-02-14T00:00:00.000+01:00",
+    "precision": "DAY"
+  },
+  "syncId": "af0e2fc5-d5dc-434e-9636-7f8382347839",
+  "validFrom": {
+    "date": "2025-02-21T00:00:00.000+01:00",
+    "precision": "DAY"
+  },
+  "validUntil": {
+    "date": "2026-01-01T00:00:00.000+01:00",
+    "precision": "DAY"
+  }
+}

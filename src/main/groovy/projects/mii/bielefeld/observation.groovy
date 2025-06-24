@@ -5,8 +5,6 @@ import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
-import de.kairos.fhir.centraxx.metamodel.LaborFinding
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.PatientMaster
 import de.kairos.fhir.centraxx.metamodel.Unity
@@ -16,16 +14,20 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborFindingValueStatus
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.Observation
-import org.hl7.fhir.r4.model.codesystems.ObservationStatus
 
-import javax.annotation.Nonnull
 import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
-import static org.hl7.fhir.r4.model.Observation.ObservationStatus.*
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CANCELLED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CORRECTED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.ENTEREDINERROR
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.FINAL
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.PRELIMINARY
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.REGISTERED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.UNKNOWN
 
 // the code of the MII common measurement profile
-final String laborMethodName = "MII_MeasurementProfile"
+final String laborMethodName = "MP_DiagnosticReportLab"
 
 // the code of the FHIR DiagnosticReport.status laborValue
 final String statusLvCode = "DiagnosticReport.status"

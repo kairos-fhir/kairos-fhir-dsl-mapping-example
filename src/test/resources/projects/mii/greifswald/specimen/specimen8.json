@@ -1,0 +1,771 @@
+{
+  "id": 6740,
+  "entitySource": "CENTRAXX",
+  "initialEntitySource": "CENTRAXX",
+  "patientcontainer": {
+    "id": 3916,
+    "creationdate": "2024-05-29T16:25:44.020+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "urlFragment": "bcd15545-f131-46b0-ba08-35a88c237740",
+    "patientId": 21,
+    "attributes": [],
+    "anonymousId": 5570612860124294365,
+    "organisationUnits": [
+      {
+        "id": 1,
+        "creationdate": "2021-09-09T14:34:12.443+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "code": "CentraXX",
+        "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+        "meddepartments": [
+          {
+            "id": 1,
+            "creationdate": "2021-10-27T15:54:26.530+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD",
+            "code": "HOUSE1",
+            "multilinguals": null,
+            "organisationUnits": null
+          },
+          {
+            "id": 2,
+            "creationdate": "2021-10-28T13:11:30.280+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "syncId": "7EE78BF2-C8B1-480F-9F7A-E57A1EB032C0",
+            "code": "HOUSE18",
+            "multilinguals": null,
+            "organisationUnits": null
+          }
+        ],
+        "nameMultilingualEntries2": [
+          {
+            "id": 280701,
+            "creationdate": "2025-02-05T14:46:17.120+01:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "relatedTable": "ORGUNIT",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "lang": "es",
+            "value": "(es) - CentraXX",
+            "modifiedOn": "2025-02-05T14:46:17.120+01:00",
+            "system": false,
+            "entityStatus": "ACTIVE"
+          },
+          {
+            "id": 1,
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "relatedTable": "ORGUNIT",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "lang": "de",
+            "value": "CENTRAXX",
+            "system": false,
+            "entityStatus": "ACTIVE"
+          },
+          {
+            "id": 2,
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "relatedTable": "ORGUNIT",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "lang": "en",
+            "value": "CENTRAXX",
+            "system": false,
+            "entityStatus": "ACTIVE"
+          }
+        ],
+        "descMultilingualEntries2": []
+      }
+    ],
+    "ethnicities": [
+      {
+        "id": 12,
+        "creationdate": "2022-03-09T13:11:26.100+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "syncId": "3F89BC74-35AA-4541-B391-4E91532702F6",
+        "code": "EUROPEAN",
+        "multilinguals": [
+          {
+            "id": 4820,
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "language": "de",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "shortName": "Europäer",
+            "name": "Europäer"
+          },
+          {
+            "id": 4821,
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "initialEntitySource": "CENTRAXX",
+            "language": "en",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "shortName": "European",
+            "name": "European"
+          }
+        ]
+      }
+    ],
+    "idContainer": [
+      {
+        "id": 4429,
+        "creationdate": "2024-05-29T16:25:44.200+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "psn": "SpenderTest0",
+        "tentative": false,
+        "idContainerType": {
+          "id": 895,
+          "creationdate": "2023-10-13T10:14:35.937+02:00",
+          "entitySource": "XMLIMPORT",
+          "initialEntitySource": "XMLIMPORT",
+          "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+          "name": "Spender ID",
+          "code": "SID",
+          "decisive": true,
+          "editable": true,
+          "mandatory": true,
+          "pseudonym": true,
+          "system": false,
+          "kind": "PATIENT",
+          "allowUpdateForSync": false,
+          "isBlinded": false,
+          "sampleCategories": null,
+          "uniqueness": "SYSTEM"
+        }
+      },
+      {
+        "id": 1262926,
+        "creationdate": "2025-02-18T15:10:26.627+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "psn": "TEST_ID",
+        "tentative": false,
+        "idContainerType": {
+          "id": 5294,
+          "creationdate": "2025-02-18T15:01:58.590+01:00",
+          "entitySource": "CENTRAXX",
+          "initialEntitySource": "CENTRAXX",
+          "syncId": "0038d2ed-e946-443c-81d9-b7c63f9cc0a2",
+          "name": "MII Greifswald",
+          "code": "MII_GREIFSWALD",
+          "decisive": true,
+          "editable": true,
+          "mandatory": false,
+          "pseudonym": false,
+          "system": false,
+          "kind": "PATIENT",
+          "allowUpdateForSync": false,
+          "isBlinded": false,
+          "sampleCategories": null,
+          "uniqueness": "SYSTEM"
+        }
+      }
+    ],
+    "patientStatus": {
+      "active": true
+    },
+    "episode": null,
+    "sampleCount": {
+      "id": 3916,
+      "creationdate": "2024-05-29T16:25:44.020+02:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "sampleCount": 4
+    },
+    "studyMembers": null,
+    "patientStudies": null,
+    "laborMappings": null,
+    "documentMappings": null,
+    "flexiFlagItems": null,
+    "patientMasterDataAnonymous": null,
+    "tumors": null,
+    "diagnoses": null,
+    "progresses": null,
+    "medProcedures": null,
+    "medications": null,
+    "consents": [],
+    "preexistingIllnesses": null,
+    "patientInsurances": []
+  },
+  "diagnosis": {
+    "id": 1023,
+    "creationdate": "2025-02-18T15:50:00.663+01:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "episode": null,
+    "diagnosisDate": {
+      "date": "2025-02-18T00:00:00.000+01:00",
+      "precision": "DAY"
+    },
+    "diagnosisCode": "A01",
+    "diagnosisText": "Typhus abdominalis und Paratyphus",
+    "admission": false,
+    "transfer": false,
+    "discharge": false,
+    "meddepartment": false,
+    "postoperative": false,
+    "permanent": false,
+    "causeOfDeath": false,
+    "diagnosisId": "Diagnosis Id",
+    "icdEntry": {
+      "id": 252634,
+      "creationdate": "2021-04-09T08:06:51.090+02:00",
+      "entitySource": "XMLIMPORT",
+      "initialEntitySource": "XMLIMPORT",
+      "kind": "code",
+      "catalogue": null,
+      "parent": null,
+      "code": "A01",
+      "preferred": "Typhus abdominalis und Paratyphus",
+      "preferredLong": "Infektiöse Darmkrankheiten;\nTyphus abdominalis und Paratyphus",
+      "unifiedCode": "A01"
+    },
+    "samples": null,
+    "initialDiagnosis": false,
+    "laborMappings": null
+  },
+  "centraXXSampleId": 182,
+  "organisationUnit": {
+    "id": 1,
+    "creationdate": "2021-09-09T14:34:12.443+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "code": "CentraXX",
+    "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C",
+    "meddepartments": [
+      {
+        "id": 1,
+        "creationdate": "2021-10-27T15:54:26.530+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD",
+        "code": "HOUSE1",
+        "multilinguals": null,
+        "organisationUnits": null
+      },
+      {
+        "id": 2,
+        "creationdate": "2021-10-28T13:11:30.280+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "syncId": "7EE78BF2-C8B1-480F-9F7A-E57A1EB032C0",
+        "code": "HOUSE18",
+        "multilinguals": null,
+        "organisationUnits": null
+      }
+    ],
+    "nameMultilingualEntries2": [
+      {
+        "id": 280701,
+        "creationdate": "2025-02-05T14:46:17.120+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "relatedTable": "ORGUNIT",
+        "relatedColumn": "NAME",
+        "relatedOid": 1,
+        "lang": "es",
+        "value": "(es) - CentraXX",
+        "modifiedOn": "2025-02-05T14:46:17.120+01:00",
+        "system": false,
+        "entityStatus": "ACTIVE"
+      },
+      {
+        "id": 1,
+        "creationdate": "2021-09-09T14:34:12.447+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "relatedTable": "ORGUNIT",
+        "relatedColumn": "NAME",
+        "relatedOid": 1,
+        "lang": "de",
+        "value": "CENTRAXX",
+        "system": false,
+        "entityStatus": "ACTIVE"
+      },
+      {
+        "id": 2,
+        "creationdate": "2021-09-09T14:34:12.447+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "relatedTable": "ORGUNIT",
+        "relatedColumn": "NAME",
+        "relatedOid": 1,
+        "lang": "en",
+        "value": "CENTRAXX",
+        "system": false,
+        "entityStatus": "ACTIVE"
+      }
+    ],
+    "descMultilingualEntries2": []
+  },
+  "sprecFixationTime": {
+    "id": 4,
+    "creationdate": "2015-11-16T11:38:20.340+01:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "syncId": "630CCFB3-C3F4-40E8-A046-BA4275D04ADD",
+    "code": "D",
+    "sprecCode": "D",
+    "multilinguals": [
+      {
+        "id": 5128,
+        "creationdate": "2015-11-16T11:38:20.340+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2015-11-16T11:38:20.340+01:00",
+        "shortName": "4-8 h (D)",
+        "name": "4-8 h (D)"
+      },
+      {
+        "id": 5129,
+        "creationdate": "2015-11-16T11:38:20.340+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2015-11-16T11:38:20.340+01:00",
+        "shortName": "4-8 h (D)",
+        "name": "4-8 h (D)"
+      }
+    ]
+  },
+  "sprecTissueCollectionType": {
+    "id": 5,
+    "creationdate": "2015-11-16T11:38:20.300+01:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "CENTRAXX",
+    "syncId": "6509FD6A-55EA-46C9-9834-D53C624DF226",
+    "code": "A72",
+    "sprecCode": "A72",
+    "multilinguals": [
+      {
+        "id": 5305,
+        "creationdate": "2015-11-16T11:38:20.300+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2015-11-16T11:38:20.300+01:00",
+        "shortName": "Autopsy 48-72 h postmortem (A72)",
+        "name": "Autopsy 48-72 h postmortem (A72)"
+      },
+      {
+        "id": 5304,
+        "creationdate": "2015-11-16T11:38:20.300+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2015-11-16T11:38:20.300+01:00",
+        "shortName": "Autopsie 48-72 h postmortem (A72)",
+        "name": "Autopsie 48-72 h postmortem (A72)"
+      }
+    ]
+  },
+  "restAmount": {
+    "amount": 222.0000,
+    "unit": "MICL"
+  },
+  "initialAmount": {
+    "amount": 222.0000,
+    "unit": "MICL"
+  },
+  "concentrationMeasurements": [],
+  "stockType": {
+    "id": 1393,
+    "creationdate": "2023-10-13T10:11:48.377+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "syncId": "D4E1616E-A7E1-4ABB-A3F1-EDCF849F0A0E",
+    "code": "ALD",
+    "sprecCode": "ALD",
+    "multilinguals": [
+      {
+        "id": 5345,
+        "creationdate": "2023-10-13T10:11:48.423+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2023-10-13T10:11:48.423+02:00",
+        "shortName": "Aldehyde-based [ALD]",
+        "name": "Aldehyde-based [ALD]"
+      },
+      {
+        "id": 5344,
+        "creationdate": "2023-10-13T10:11:48.423+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2023-10-13T10:11:48.423+02:00",
+        "shortName": "Aldehyde-basiert [ALD]",
+        "name": "Aldehyde-basiert [ALD]"
+      }
+    ]
+  },
+  "sampleLocation": {
+    "id": 1,
+    "creationdate": "2021-09-09T14:34:12.533+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "assignedOrganisationUnits": null,
+    "assignedParticipants": null,
+    "childCount": null,
+    "fillLevel": null,
+    "locationId": "Workplace",
+    "locationSyncId": "8D4AE2D3-CD60-4715-8DCB-94A383395F4E",
+    "locationSchema": {
+      "id": 1,
+      "creationdate": "2021-09-09T14:34:12.527+02:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "syncId": "3D995083-12E6-4B95-9BA0-C5F58A42D244",
+      "extractable": false,
+      "ordered": false,
+      "rootAllowed": true,
+      "code": "WORKSPACE",
+      "storable": true,
+      "workspace": true,
+      "possibleReceptables": null,
+      "possibleLocations": null,
+      "multilinguals": null,
+      "width": 0,
+      "height": 0,
+      "isNunc": false,
+      "totalCapacity": 0,
+      "storageLocationUnique": false
+    },
+    "parent": null,
+    "locationPath": "FREEZE-Biobank --> Workplace",
+    "xPosition": 0,
+    "yPosition": 0,
+    "availableInSampleAdministration": false,
+    "inheritTemperature": false,
+    "lastRelocationOn": {
+      "date": "2023-09-29T13:48:07.000+02:00",
+      "precision": "EXACT"
+    },
+    "isSystem": false
+  },
+  "sampleKind": "TISSUE",
+  "sampleType": {
+    "id": 2888,
+    "creationdate": "2023-10-13T10:14:33.540+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "syncId": "5BD26788-F57B-4293-BF14-64EA4D9AD670",
+    "kind": "TISSUE",
+    "code": "TIS",
+    "sprecCode": "TIS",
+    "multilinguals": [
+      {
+        "id": 4990,
+        "creationdate": "2023-10-13T10:14:33.547+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2023-10-13T10:14:33.547+02:00",
+        "shortName": "Gewebe, solide [TIS]",
+        "name": "Gewebe, solide [TIS]"
+      },
+      {
+        "id": 4991,
+        "creationdate": "2023-10-13T10:14:33.547+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2023-10-13T10:14:33.547+02:00",
+        "shortName": "Tissue, solid [TIS]",
+        "name": "Tissue, solid [TIS]"
+      }
+    ]
+  },
+  "receptable": {
+    "id": 2416,
+    "creationdate": "2023-10-13T10:14:17.107+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "syncId": "5CDB2E6C-518F-4F85-BCC1-36844CF17D82",
+    "code": "BDVac100",
+    "multilinguals": [
+      {
+        "id": 5709,
+        "creationdate": "2023-10-13T10:14:17.363+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2023-10-13T10:14:17.363+02:00",
+        "shortName": "BD Vacutainer 10.0 ml",
+        "shortDescription": "Vacutainer BD 10ml, 16/100 mm",
+        "name": "BD Vacutainer 10.0 ml",
+        "description": "Vacutainer BD 10ml, 16/100 mm"
+      },
+      {
+        "id": 5710,
+        "creationdate": "2023-10-13T10:14:17.363+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2023-10-13T10:14:17.363+02:00",
+        "shortName": "BD Vacutainer 10.0 ml",
+        "shortDescription": "Vacutainer BD 10ml, 16/100 mm",
+        "name": "BD Vacutainer 10.0 ml",
+        "description": "Vacutainer BD 10ml, 16/100 mm"
+      }
+    ],
+    "sprecCode": "Y",
+    "size": 10000.00,
+    "volume": "MICL"
+  },
+  "hasChildren": false,
+  "warmIschTime": {
+    "id": 5,
+    "creationdate": "2021-09-09T14:34:12.520+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "syncId": "12271FC1-5EEF-495D-B3D4-B7F4715A89DD",
+    "code": "E",
+    "sprecCode": "E",
+    "multilinguals": [
+      {
+        "id": 5150,
+        "creationdate": "2021-09-09T14:34:12.523+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2021-09-09T14:34:12.523+02:00",
+        "shortName": "30-60 Minuten (E)",
+        "name": "30-60 Minuten (E)"
+      },
+      {
+        "id": 5151,
+        "creationdate": "2021-09-09T14:34:12.523+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2021-09-09T14:34:12.523+02:00",
+        "shortName": "30-60 minutes (E)",
+        "name": "30-60 minutes (E)"
+      }
+    ]
+  },
+  "coldIschTime": {
+    "id": 5,
+    "creationdate": "2021-09-09T14:34:12.520+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "syncId": "12271FC1-5EEF-495D-B3D4-B7F4715A89DD",
+    "code": "E",
+    "sprecCode": "E",
+    "multilinguals": [
+      {
+        "id": 5150,
+        "creationdate": "2021-09-09T14:34:12.523+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2021-09-09T14:34:12.523+02:00",
+        "shortName": "30-60 Minuten (E)",
+        "name": "30-60 Minuten (E)"
+      },
+      {
+        "id": 5151,
+        "creationdate": "2021-09-09T14:34:12.523+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2021-09-09T14:34:12.523+02:00",
+        "shortName": "30-60 minutes (E)",
+        "name": "30-60 minutes (E)"
+      }
+    ]
+  },
+  "useSprec": false,
+  "virtualPatient": false,
+  "xPosition": 0,
+  "yPosition": 0,
+  "samplingDate": {
+    "date": "2025-02-02T00:00:00.000+01:00",
+    "precision": "EXACT"
+  },
+  "donators": [],
+  "sampleCategory": "MASTER",
+  "virtualSlides": [],
+  "orgPrimary": {
+    "id": 173,
+    "creationdate": "2022-06-29T16:37:32.223+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "syncId": "40088c5e-b02c-4174-86ba-b7874ba3bcd5",
+    "code": "KIDNEY",
+    "multilinguals": [
+      {
+        "id": 4882,
+        "creationdate": "2022-06-29T16:37:32.237+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2022-06-29T16:37:32.237+02:00",
+        "shortName": "Niere",
+        "name": "Niere"
+      },
+      {
+        "id": 4883,
+        "creationdate": "2022-06-29T16:37:32.237+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2022-06-29T16:37:32.237+02:00",
+        "shortName": "Kidney",
+        "name": "Kidney"
+      }
+    ]
+  },
+  "orgSample": {
+    "id": 173,
+    "creationdate": "2022-06-29T16:37:32.223+02:00",
+    "entitySource": "XMLIMPORT",
+    "initialEntitySource": "XMLIMPORT",
+    "syncId": "40088c5e-b02c-4174-86ba-b7874ba3bcd5",
+    "code": "KIDNEY",
+    "multilinguals": [
+      {
+        "id": 4882,
+        "creationdate": "2022-06-29T16:37:32.237+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2022-06-29T16:37:32.237+02:00",
+        "shortName": "Niere",
+        "name": "Niere"
+      },
+      {
+        "id": 4883,
+        "creationdate": "2022-06-29T16:37:32.237+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2022-06-29T16:37:32.237+02:00",
+        "shortName": "Kidney",
+        "name": "Kidney"
+      }
+    ]
+  },
+  "anonymousId": 7618781165536526708,
+  "idContainer": [
+    {
+      "id": 5485,
+      "creationdate": "2025-02-18T15:22:12.060+01:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "psn": "181",
+      "tentative": false,
+      "idContainerType": {
+        "id": 6,
+        "creationdate": "2021-09-09T14:34:12.470+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "syncId": "72F48BAF-50C6-4E61-A40C-B87FF085D133",
+        "name": "Proben ID",
+        "code": "SAMPLEID",
+        "decisive": true,
+        "editable": true,
+        "mandatory": true,
+        "pseudonym": true,
+        "system": true,
+        "kind": "SAMPLE",
+        "allowUpdateForSync": false,
+        "isBlinded": false,
+        "sampleCategories": null,
+        "uniqueness": "SYSTEM"
+      }
+    },
+    {
+      "id": 5486,
+      "creationdate": "2025-02-18T15:22:12.060+01:00",
+      "entitySource": "CENTRAXX",
+      "initialEntitySource": "CENTRAXX",
+      "psn": "ui674u5z3t452",
+      "tentative": false,
+      "idContainerType": {
+        "id": 997,
+        "creationdate": "2024-02-15T18:41:17.520+01:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "syncId": "fd87acb1-ba11-46a5-a265-707d73edb469",
+        "name": "Test Proben ID",
+        "code": "TEST_SAMPLE_ID",
+        "decisive": true,
+        "editable": true,
+        "mandatory": true,
+        "pseudonym": false,
+        "system": false,
+        "kind": "SAMPLE",
+        "allowUpdateForSync": false,
+        "isBlinded": false,
+        "sampleCategories": null,
+        "uniqueness": "SYSTEM"
+      }
+    }
+  ],
+  "sopDeviation": false,
+  "sprecFixationTimeDate": {
+    "date": "2025-02-08T00:00:00.000+01:00",
+    "precision": "EXACT"
+  },
+  "coldIschTimeDate": {
+    "date": "2025-02-07T00:00:00.000+01:00",
+    "precision": "EXACT"
+  },
+  "warmIschTimeDate": {
+    "date": "2025-02-06T00:00:00.000+01:00",
+    "precision": "EXACT"
+  },
+  "sampleAbstractions": [],
+  "laborMappings": [],
+  "localisationSample": "DISTAL",
+  "samplingMomentRef": null,
+  "createdByLocationImport": false,
+  "active": false,
+  "storageTemperature": {
+    "id": 1,
+    "creationdate": "2024-10-14T13:19:53.720+02:00",
+    "entitySource": "CENTRAXX",
+    "initialEntitySource": "CENTRAXX",
+    "syncId": "96df250d-3ccc-4da9-91b2-1fd4f0d12464",
+    "code": "ICE_COLD",
+    "temperature": -20.0,
+    "multilinguals": [
+      {
+        "id": 6849,
+        "creationdate": "2024-10-14T13:19:53.723+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "de",
+        "lastModifiedOn": "2024-10-14T13:19:53.723+02:00",
+        "shortName": "Ice cold",
+        "name": "Ice cold"
+      },
+      {
+        "id": 6850,
+        "creationdate": "2024-10-14T13:19:53.723+02:00",
+        "entitySource": "CENTRAXX",
+        "initialEntitySource": "CENTRAXX",
+        "language": "en",
+        "lastModifiedOn": "2024-10-14T13:19:53.723+02:00",
+        "shortName": "ICE_COLD",
+        "name": "ICE_COLD"
+      }
+    ]
+  }
+}

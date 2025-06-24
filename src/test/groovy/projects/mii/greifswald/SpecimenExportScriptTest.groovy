@@ -24,9 +24,8 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/greifswald/specimen.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/greifswald/specimen.json"
+    contextMapsPath = "src/test/resources/projects/mii/greifswald/specimen"
 )
-//@Validate(packageDir = "src/test/resources/fhirpackages")
 class SpecimenExportScriptTest extends AbstractExportScriptTest<Specimen> {
 
   @ExportScriptTest

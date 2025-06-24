@@ -14,14 +14,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * @since v.1.40.0, CXX.v.2024.4.2
  *
  * Requirements:
- * CXX Custom Catalog MiiVitalstatus with code featured in Valueset "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus"
- * CXX MeasurementProfile for called "MiiVitalstatus" with parameters:
+ * CXX Custom Catalog MiiVitalstatus with code featured in Valueset
+ * "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus"
+ * CXX MeasurementProfile for called "MP_ObservationVitalstatus" with parameters:
  * Vitalstatus.valueCodeableConcept.coding.code (SingleSelection from Vitalstatus catalog)
  */
 
 observation {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().code()] != "MiiVitalstatus") {
+  if (context.source[laborMapping().laborFinding().laborMethod().code()] != "MP_ObservationVitalstatus") {
     return
   }
 

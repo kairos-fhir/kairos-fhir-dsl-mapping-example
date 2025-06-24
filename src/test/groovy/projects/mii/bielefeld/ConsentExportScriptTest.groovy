@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.ConsentPolicy
 import de.kairos.fhir.centraxx.metamodel.ConsentableAction
 import de.kairos.fhir.dsl.r4.context.Context
@@ -13,15 +12,13 @@ import org.hl7.fhir.r4.model.DateTimeType
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertTrue
-import static org.junit.jupiter.api.Assumptions.assumeFalse
 import static org.junit.jupiter.api.Assumptions.assumeTrue
 import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/consent.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/consent.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/consent"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class ConsentExportScriptTest extends AbstractExportScriptTest<Consent> {
 
   private final Map<String, String> consentMiiCodeMap = [
@@ -31,6 +28,11 @@ class ConsentExportScriptTest extends AbstractExportScriptTest<Consent> {
       m_bc_recon_res: "2.16.840.1.113883.3.1937.777.24.5.3.26",
       m_bc_recon_med: "2.16.840.1.113883.3.1937.777.24.5.3.30"
   ]
+
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Consent resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatConsentStateIsSet(final Context context, final Consent resource) {

@@ -522,23 +522,26 @@ The number of test runs will be the number of tests annotated with the annotatio
 
 ## Resource validation
 Additionally, HAPI validation can be used to validate the resulting resources against certain FHIR profiles. The required FHIR packages need
-to be provided in a separate folder. Annotate the test with the `@Validate` annotation like this:
+to be provided in a separate folder. Call the `getValidator(String packageDir)` method of the AbstractExportScriptTest class to lazily initialize a 
+FhirValidator with the FHIR packages located in the `packageDir`. The `packageDir` path must be relative to `src/test/resources` as HAPI can only add 
+packages located on the class path. 
 
 ```groovy
 @TestResources(
   groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
   contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
-class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {}
+class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Encounter resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
+}
 ```
-The test will load all package files from the given path and instantiate a HAPI validator. All resources created during the transformation will be
-validated.
 
-If the validation fails, the whole test will fail with a `ClassConfiguration` error. The validation message with errors will be displayed in the stack
-traces.
+If the validation fails, The validation message with errors will be displayed in the test results.
 
-Remember that for proper validation, you have to specify the profile a resource should be compliant with in the meta element.
+Remember that for proper validation, you have to specify the profile a resource should be compliant with in the meta element of the resource.
 
 ## Where to get the test maps from
 Currently, you would have to print the context map into the server log when testing with your local HDRP instance.

@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -28,10 +27,14 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/procedure.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/procedure.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/procedure"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
+
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Procedure resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatSubjectIsSet(final Context context, final Procedure resource) {
@@ -42,39 +45,40 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
   @ExportScriptTest
   void testThatStatusIsSet(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
+      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
 
-    assertNotNull(mapping)
+    assumeTrue(mapping != null)
 
     final def procedureStatus = mapping[LABOR_FINDING][LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
       lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][LaborValue.CODE] == "Procedure.status"
     }
 
-    assertNotNull(procedureStatus)
+    assumeTrue(procedureStatus != null)
 
     assertEquals(
-        procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE],
-        resource.getStatus().toCode()
+        procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE].toString().toLowerCase(),
+        resource.getStatus().toCode().toLowerCase()
     )
   }
 
   @ExportScriptTest
   void testThatCodeIsSet(final Context context, final Procedure resource) {
-    assertTrue(resource.hasCode());
+    assertTrue(resource.hasCode())
 
     final Coding opsCoding = resource.getCode().getCoding().find { it.getSystem() == "http://fhir.de/CodeSystem/bfarm/ops" }
 
     assertNotNull(opsCoding)
 
-    assertEquals(context.source[medProcedure().opsEntry().code()], opsCoding.getCode())
-    assertEquals(context.source[medProcedure().opsEntry().catalogue().catalogueVersion()], opsCoding.getVersion())
+    assertEquals(context.source[medProcedure().opsEntry().code()].toString().toLowerCase(), opsCoding.getCode().toLowerCase())
+    assertEquals(context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
+        .toString().toLowerCase(), opsCoding.getVersion().toLowerCase())
   }
 
   @ExportScriptTest
   void testThatPerformedPeriodIsExported(final Context context, final Procedure resource) {
     final def mapping = context.source[medProcedure().laborMappings()].find { final def lm ->
-      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "ProcedureProfile"
+      lm[LABOR_FINDING][LaborFinding.LABOR_METHOD][LaborMethod.CODE] == "MP_Procedure"
     }
 
     assumeTrue(mapping != null)

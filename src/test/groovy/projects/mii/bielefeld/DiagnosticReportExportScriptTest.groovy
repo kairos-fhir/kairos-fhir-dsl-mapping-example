@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -29,11 +28,14 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/diagnosticReport.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<DiagnosticReport> {
 
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final DiagnosticReport resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatIdentifierIsSet(final Context context, final DiagnosticReport resource) {
@@ -48,16 +50,9 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
     assertEquals(context.source[laborFinding().shortName()], resource.getIdentifierFirstRep().getValue())
     assertEquals(FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME, resource.getIdentifierFirstRep().getSystem())
 
-    final def assigner = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-      lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.identifier.assigner"
-    }
-
-    assumeTrue(assigner != null, "No assigner is given in Finding")
 
     assertTrue(resource.getIdentifierFirstRep().hasAssigner())
-    assertEquals("Organization/" + assigner[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)[OrganisationUnit.ID],
-        resource.getIdentifierFirstRep().getAssigner().getReference()
-    )
+    assertEquals("ukowl.de", resource.getIdentifierFirstRep().getAssigner().getIdentifier().getValue())
   }
 
   @ExportScriptTest
@@ -171,8 +166,8 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
     assumingThat(lflvStatus && lflvStatus[CATALOG_ENTRY_VALUE],
         { ->
           assertEquals(
-              lflvStatus[CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String,
-              resource.getStatus().toCode()
+              (lflvStatus[CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String).toLowerCase(),
+              resource.getStatus().toCode().toLowerCase()
           )
         })
 
@@ -183,6 +178,6 @@ class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<Diagnost
   }
 
   private static void checkLaborMethodCode(final Context context) {
-    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MII_MeasurementProfile", "Not a MII profile")
+    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MP_DiagnosticReportLab", "Not a MII profile")
   }
 }

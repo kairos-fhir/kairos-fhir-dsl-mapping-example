@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
@@ -19,10 +18,14 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/encounter.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/encounter.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/encounter"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
+
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Encounter resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatIdentifiersAreSet(final Context context, final Encounter resource) {

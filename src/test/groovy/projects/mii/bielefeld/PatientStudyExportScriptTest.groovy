@@ -1,13 +1,14 @@
 package projects.mii.bielefeld
 
+
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.StudyMember
 import de.kairos.fhir.dsl.r4.context.Context
 import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.ResearchSubject
+import org.junit.jupiter.api.Disabled
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
@@ -18,12 +19,16 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/researchSubject.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/researchSubject.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/researchSubject"
 )
-// is returned in Person module an has been moved to Study module, but is not yet documented there.
-// Validation fails with new person module but it's not part if the study module release yet.
-//@Validate(packageDir = "src/test/resources/fhirpackages")
+
 class PatientStudyExportScriptTest extends AbstractExportScriptTest<ResearchSubject> {
+
+  @Disabled("Is retired in Person module an has been moved to Study module, but is not yet documented there.")
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final ResearchSubject resource) {
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatIdentifierIsSet(final Context context, final ResearchSubject resource) {

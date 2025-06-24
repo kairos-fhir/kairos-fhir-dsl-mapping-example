@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
@@ -21,13 +20,19 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/vitalstatus.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/vitalstatus.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/vitalstatus"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   @ExportScriptTest
-  void testThatSatusIsSet(final Context context, final Observation resource) {
+  void validateResourceStructures(final Context context, final Observation resource){
+    println(resource)
+    getValidator("fhirpackages/mii").validate(resource)
+  }
+
+  @ExportScriptTest
+  void testThatStatusIsSet(final Context context, final Observation resource) {
+    println(resource)
     checkLaborMethod(context)
 
     assertEquals(Observation.ObservationStatus.FINAL, resource.getStatus())
@@ -107,6 +112,7 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
   }
 
   private static void checkLaborMethod(final Context context) {
-    assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MiiVitalstatus", "Not a MII VitalStatus profile")
+    assumeTrue(context.source[laborMapping().laborFinding().laborMethod().code()] == "MP_ObservationVitalstatus",
+        "Not a MII MP_ObservationVitalstatus profile")
   }
 }

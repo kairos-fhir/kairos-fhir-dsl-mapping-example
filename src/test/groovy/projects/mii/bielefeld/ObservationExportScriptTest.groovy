@@ -3,7 +3,6 @@ package projects.mii.bielefeld
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
@@ -39,13 +38,12 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/observation.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/observation.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/observation"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   // the code of the MII common measurement profile
-  final static String laborMethodName = "MII_MeasurementProfile"
+  final static String laborMethodName = "MP_DiagnosticReportLab"
 
   // the code of the FHIR DiagnosticReport.status laborValue
   final static String statusLvCode = "DiagnosticReport.status"
@@ -56,6 +54,10 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   // the identifier.assigner laborValue
   final static String assignerLvCode = "DiagnosticReport.identifier.assigner"
 
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Observation resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatIdentifierIsSet(final Context context, final Observation observation) {
@@ -263,7 +265,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
 
     assumeTrue(dType in [LaborValueDType.CATALOG, LaborValueDType.OPTIONGROUP, LaborValueDType.ENUMERATION],
-    "The LFLV is not a Catalog, OptionGroup or Enumeration type.")
+        "The LFLV is not a Catalog, OptionGroup or Enumeration type.")
   }
 
   private static void assumeNumeric(final Context context) {
@@ -284,11 +286,11 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     return isMiiProfile && !isAdditionalDataLv
   }
 
-  private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
-    if (cxxStatus == null){
+  private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus) {
+    if (cxxStatus == null) {
       return UNKNOWN
     }
-    switch (cxxStatus){
+    switch (cxxStatus) {
       case LaborFindingValueStatus.R:
         return REGISTERED
       case LaborFindingValueStatus.P:

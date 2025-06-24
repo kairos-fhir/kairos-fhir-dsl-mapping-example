@@ -1,10 +1,8 @@
 package projects.mii.bielefeld
 
-
 import common.AbstractExportScriptTest
 import common.ExportScriptTest
 import common.TestResources
-import common.Validate
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
@@ -26,17 +24,20 @@ import static org.apache.commons.lang3.StringUtils.isBlank
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertFalse
 import static org.junit.jupiter.api.Assertions.assertNotNull
-import static org.junit.jupiter.api.Assertions.assertNull
 import static org.junit.jupiter.api.Assertions.assertTrue
 import static org.junit.jupiter.api.Assumptions.assumeTrue
 import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/patient.groovy",
-    contextMapsPath = "src/test/resources/projects/mii/bielefeld/patient.json"
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/patient"
 )
-@Validate(packageDir = "src/test/resources/fhirpackages")
 class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
+
+  @ExportScriptTest
+  void validateResourceStructures(final Context context, final Patient resource){
+    getValidator("fhirpackages/mii").validate(resource)
+  }
 
   @ExportScriptTest
   void testThatGKVIdentifierIsSet(final Context context, final Patient resource) {
@@ -72,7 +73,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
       CoverageType.T == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
     }
 
-    assumeTrue(gkvInsurance == null, "If GKV is present it will be exported and PKV will be ignored");
+    assumeTrue(gkvInsurance == null, "If GKV is present it will be exported and PKV will be ignored")
 
     final def pkvInsurance = context.source[patient().patientContainer().patientInsurances()]?.find {
       CoverageType.C == it[PatientInsurance.COVERAGE_TYPE] as CoverageType || CoverageType.P == it[PatientInsurance.COVERAGE_TYPE] as CoverageType
@@ -93,6 +94,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
         identifier.getAssigner().getIdentifier().getValue())
 
+    assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
 
   @ExportScriptTest
@@ -111,7 +113,8 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
     context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idContainer ->
       final def identifier = resource.getIdentifier().find {
-        it.hasSystem() && "https://fhir.centraxx.de/system/idContainer/psn" == it.getSystem() && (idContainer[IdContainer.PSN] as String) == it.getValue()
+        it.hasSystem() && "https://fhir.centraxx.de/system/idContainer/psn" == it.getSystem() &&
+            (idContainer[IdContainer.PSN] as String) == it.getValue()
       }
 
 
@@ -163,7 +166,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
     context.source[patient().addresses()].each { final def patAd ->
       final Address address = resource.getAddress().find {
-            (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+        (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
             (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode())
       }
 

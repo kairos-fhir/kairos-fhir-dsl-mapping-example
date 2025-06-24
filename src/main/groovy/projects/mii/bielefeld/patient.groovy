@@ -1,6 +1,5 @@
 package projects.mii.bielefeld
 
-
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
@@ -27,7 +26,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank
  */
 
 patient {
-
   id = "Patient/" + context.source[patient().patientContainer().id()]
 
   final boolean isPseudo = (isBlank(context.source[patient().firstName()] as String) && isBlank(context.source[patient().firstName()] as String))
