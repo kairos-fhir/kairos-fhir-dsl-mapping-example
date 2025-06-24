@@ -263,7 +263,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
 
     assumeTrue(dType in [LaborValueDType.CATALOG, LaborValueDType.OPTIONGROUP, LaborValueDType.ENUMERATION],
-    "The LFLV is not a Catalog, OptionGroup or Enumeration type.")
+        "The LFLV is not a Catalog, OptionGroup or Enumeration type.")
   }
 
   private static void assumeNumeric(final Context context) {
@@ -284,11 +284,11 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     return isMiiProfile && !isAdditionalDataLv
   }
 
-  private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
-    if (cxxStatus == null){
+  private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus) {
+    if (cxxStatus == null) {
       return UNKNOWN
     }
-    switch (cxxStatus){
+    switch (cxxStatus) {
       case LaborFindingValueStatus.R:
         return REGISTERED
       case LaborFindingValueStatus.P:

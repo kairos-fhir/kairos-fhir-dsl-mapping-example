@@ -60,7 +60,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-            identifier.getAssigner().getIdentifier().getValue())
+        identifier.getAssigner().getIdentifier().getValue())
 
   }
 
@@ -91,7 +91,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-            identifier.getAssigner().getIdentifier().getValue())
+        identifier.getAssigner().getIdentifier().getValue())
 
     assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
@@ -164,7 +164,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 
     context.source[patient().addresses()].each { final def patAd ->
       final Address address = resource.getAddress().find {
-            (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
+        (!patAd[PatientAddress.COUNTRY] || patAd[PatientAddress.COUNTRY][Country.ISO2_CODE] == it.getCountry()) &&
             (!patAd[PatientAddress.ZIPCODE] || patAd[PatientAddress.ZIPCODE] == it.getPostalCode())
       }
 

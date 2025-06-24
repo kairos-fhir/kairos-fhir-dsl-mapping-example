@@ -54,8 +54,8 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
     assertNotNull(procedureStatus)
 
     assertEquals(
-            procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE].toString().toLowerCase(),
-            resource.getStatus().toCode().toLowerCase()
+        procedureStatus[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find()[CatalogEntry.CODE].toString().toLowerCase(),
+        resource.getStatus().toCode().toLowerCase()
     )
   }
 
@@ -89,9 +89,9 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
     assertNotNull(performedPeriodEnd)
 
     assertEquals(new DateTimeType(context.source[medProcedure().procedureDate().date()] as String).getValue(),
-            resource.getPerformedPeriod().getStart())
+        resource.getPerformedPeriod().getStart())
 
     assertEquals(new DateTimeType(performedPeriodEnd[DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
-            resource.getPerformedPeriod().getEnd())
+        resource.getPerformedPeriod().getEnd())
   }
 }

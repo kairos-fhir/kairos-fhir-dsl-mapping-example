@@ -67,14 +67,14 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
   void testThatEffectiveDateTimeIsSet(final Context context, final Observation resource) {
     checkLaborMethod(context)
 
-      assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
-              context.source[laborMapping().laborFinding().findingDate().date()])
+    assumeTrue(context.source[laborMapping().laborFinding().findingDate()] &&
+        context.source[laborMapping().laborFinding().findingDate().date()])
 
     assertTrue(resource.hasEffectiveDateTimeType())
 
     assertEquals(
-            new DateTimeType(context.source[laborMapping().laborFinding().findingDate().date()] as String).getValue(),
-            resource.getEffectiveDateTimeType().getValue()
+        new DateTimeType(context.source[laborMapping().laborFinding().findingDate().date()] as String).getValue(),
+        resource.getEffectiveDateTimeType().getValue()
     )
   }
 
@@ -86,24 +86,24 @@ class VitalsSignExportScriptTest extends AbstractExportScriptTest<Observation> {
       lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][LaborValue.CODE] == "Vitalstatus.valueCodeableConcept.coding.code"
     }
 
-      assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-              { ->
-                  assertTrue(resource.hasValueCodeableConcept())
-                  assertTrue(resource.getValueCodeableConcept().hasCoding(
-                          "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-                          lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
-                  ))
-              }
-      )
+    assumingThat(lflvVS && lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+        { ->
+          assertTrue(resource.hasValueCodeableConcept())
+          assertTrue(resource.getValueCodeableConcept().hasCoding(
+              "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+              lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].find().getAt(CatalogEntry.CODE) as String
+          ))
+        }
+    )
 
-      assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
-              {
-                  assertTrue(resource.hasValueCodeableConcept())
-                  assertTrue(resource.getValueCodeableConcept().hasCoding(
-                          "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
-                          "X"
-                  ))
-              })
+    assumingThat(!lflvVS || !lflvVS[LaborFindingLaborValue.CATALOG_ENTRY_VALUE],
+        {
+          assertTrue(resource.hasValueCodeableConcept())
+          assertTrue(resource.getValueCodeableConcept().hasCoding(
+              "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+              "X"
+          ))
+        })
   }
 
   private static void checkLaborMethod(final Context context) {

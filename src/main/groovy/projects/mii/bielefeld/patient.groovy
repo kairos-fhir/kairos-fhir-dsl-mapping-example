@@ -1,6 +1,5 @@
 package projects.mii.bielefeld
 
-
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
@@ -9,7 +8,6 @@ import de.kairos.fhir.centraxx.metamodel.PatientInsurance
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
-import groovy.json.JsonOutput
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.HumanName
 import org.hl7.fhir.r4.model.Identifier
@@ -28,9 +26,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank
  */
 
 patient {
-
-  println(JsonOutput.toJson(context.source))
-
   id = "Patient/" + context.source[patient().patientContainer().id()]
 
   final boolean isPseudo = (isBlank(context.source[patient().firstName()] as String) && isBlank(context.source[patient().firstName()] as String))

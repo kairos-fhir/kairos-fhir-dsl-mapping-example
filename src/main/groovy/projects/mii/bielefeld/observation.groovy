@@ -1,7 +1,14 @@
 package projects.mii.bielefeld
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.*
+import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.PatientMaster
+import de.kairos.fhir.centraxx.metamodel.Unity
+import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.CatalogCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborFindingValueStatus
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
@@ -11,7 +18,14 @@ import org.hl7.fhir.r4.model.Observation
 import javax.annotation.Nullable
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
-import static org.hl7.fhir.r4.model.Observation.ObservationStatus.*
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CANCELLED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.CORRECTED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.ENTEREDINERROR
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.FINAL
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.PRELIMINARY
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.REGISTERED
+import static org.hl7.fhir.r4.model.Observation.ObservationStatus.UNKNOWN
+
 // the code of the MII common measurement profile
 final String laborMethodName = "MP_DiagnosticReportLab"
 

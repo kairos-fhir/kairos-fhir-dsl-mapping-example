@@ -21,163 +21,162 @@ import static org.junit.jupiter.api.Assertions.*
 import static org.junit.jupiter.api.Assumptions.assumeTrue
 import static org.junit.jupiter.api.Assumptions.assumingThat
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestResources(
-        groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/diagnosticReport.groovy",
-        contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport.json"
+    groovyScriptPath = "src/main/groovy/projects/mii/bielefeld/diagnosticReport.groovy",
+    contextMapsPath = "src/test/resources/projects/mii/bielefeld/diagnosticReport.json"
 )
 @Validate(packageDir = "src/test/resources/fhirpackages")
 class DiagnosticReportExportScriptTest extends AbstractExportScriptTest<DiagnosticReport> {
 
 
-    @ExportScriptTest
-    void testThatIdentifierIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
-        assumeTrue(context.source[laborFinding().laborFindingId()] != null)
+  @ExportScriptTest
+  void testThatIdentifierIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+    assumeTrue(context.source[laborFinding().laborFindingId()] != null)
 
-        assertTrue(resource.hasIdentifier())
+    assertTrue(resource.hasIdentifier())
 
-        assertTrue(resource.getIdentifierFirstRep().hasType())
+    assertTrue(resource.getIdentifierFirstRep().hasType())
 
-        assertTrue(resource.getIdentifierFirstRep().getType().hasCoding("http://terminology.hl7.org/CodeSystem/v2-0203", "FILL"))
-        assertEquals(context.source[laborFinding().shortName()], resource.getIdentifierFirstRep().getValue())
-        assertEquals(FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME, resource.getIdentifierFirstRep().getSystem())
+    assertTrue(resource.getIdentifierFirstRep().getType().hasCoding("http://terminology.hl7.org/CodeSystem/v2-0203", "FILL"))
+    assertEquals(context.source[laborFinding().shortName()], resource.getIdentifierFirstRep().getValue())
+    assertEquals(FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME, resource.getIdentifierFirstRep().getSystem())
 
-        final def assigner = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-            lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.identifier.assigner"
-        }
-
-        assumeTrue(assigner != null, "No assigner is given in Finding")
-
-        assertTrue(resource.getIdentifierFirstRep().hasAssigner())
-        assertEquals("Organization/" + assigner[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)[OrganisationUnit.ID],
-                resource.getIdentifierFirstRep().getAssigner().getReference()
-        )
+    final def assigner = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
+      lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.identifier.assigner"
     }
 
-    @ExportScriptTest
-    void testThatCategoryIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
-        assertTrue(resource.hasCategory())
-        assertTrue(resource.getCategoryFirstRep().hasCoding("http://loinc.org", "26436-6"))
-        assertTrue(resource.getCategoryFirstRep().hasCoding("http://terminology.hl7.org/CodeSystem/v2-0074", "LAB"))
+    assumeTrue(assigner != null, "No assigner is given in Finding")
+
+    assertTrue(resource.getIdentifierFirstRep().hasAssigner())
+    assertEquals("Organization/" + assigner[LaborFindingLaborValue.MULTI_VALUE_REFERENCES].find()?.getAt(ValueReference.ORGANIZATION_VALUE)[OrganisationUnit.ID],
+        resource.getIdentifierFirstRep().getAssigner().getReference()
+    )
+  }
+
+  @ExportScriptTest
+  void testThatCategoryIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+    assertTrue(resource.hasCategory())
+    assertTrue(resource.getCategoryFirstRep().hasCoding("http://loinc.org", "26436-6"))
+    assertTrue(resource.getCategoryFirstRep().hasCoding("http://terminology.hl7.org/CodeSystem/v2-0074", "LAB"))
+  }
+
+  @ExportScriptTest
+  void testThatBasedOnIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+
+    final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
+      mapping[LaborMapping.MAPPING_TYPE] as LaborMappingType == LaborMappingType.SERVICEREQUEST
     }
 
-    @ExportScriptTest
-    void testThatBasedOnIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
+    serviceRequestMappings.forEach {
+      assertTrue(resource.hasBasedOn())
+      assertEquals("ServiceRequest/" + serviceRequestMappings[LaborMapping.RELATED_OID], resource.getBasedOnFirstRep().getReference())
+    }
+  }
 
-        final List serviceRequestMappings = context.source[laborFinding().laborMappings()].findAll { final def mapping ->
-            mapping[LaborMapping.MAPPING_TYPE] as LaborMappingType == LaborMappingType.SERVICEREQUEST
-        }
+  @ExportScriptTest
+  void testThatEncounterIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
 
-        serviceRequestMappings.forEach {
-            assertTrue(resource.hasBasedOn())
-            assertEquals("ServiceRequest/" + serviceRequestMappings[LaborMapping.RELATED_OID], resource.getBasedOnFirstRep().getReference())
-        }
+    final def lmEpisode = context.source[laborFinding().laborMappings()]
+        .find { final def lm -> lm[LaborMapping.EPISODE] != null }
+
+    assumeTrue(lmEpisode != null, "No Episode on mapping")
+
+    assertTrue(resource.hasEncounter())
+
+    assertEquals("Encounter/" + lmEpisode[LaborMapping.EPISODE][Episode.ID], resource.getEncounter().getReference())
+  }
+
+  @ExportScriptTest
+  void testThatEffectiveIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+
+    assumeTrue(context.source[laborFinding().findingDate()] &&
+        context.source[laborFinding().findingDate().date()], "Finding date is not given")
+
+    assertTrue(resource.hasEffectiveDateTimeType())
+
+    assertEquals(new DateTimeType(context.source[laborFinding().findingDate().date()] as String).getValue(),
+        resource.getEffectiveDateTimeType().getValue())
+
+  }
+
+  @ExportScriptTest
+  void testThatIssuedIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+
+    final def issuedLv = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
+      lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.issued"
     }
 
-    @ExportScriptTest
-    void testThatEncounterIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
+    assumeTrue(
+        issuedLv &&
+            issuedLv[LaborFindingLaborValue.DATE_VALUE] &&
+            issuedLv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE],
+        "No issued date given in finding")
 
-        final def lmEpisode = context.source[laborFinding().laborMappings()]
-                .find { final def lm -> lm[LaborMapping.EPISODE] != null }
 
-        assumeTrue(lmEpisode != null, "No Episode on mapping")
+    assertTrue(resource.hasIssued())
 
-        assertTrue(resource.hasEncounter())
+    assertEquals(new DateTimeType(issuedLv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
+        resource.getIssued())
 
-        assertEquals("Encounter/" + lmEpisode[LaborMapping.EPISODE][Episode.ID], resource.getEncounter().getReference())
+  }
+
+  @ExportScriptTest
+  void testThatObservationReferencesAreSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
+
+    context.source[laborFinding().laborFindingLaborValues()].findAll {
+      !["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
+          .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE])
+    }.each { final def lflv ->
+      assertTrue(
+          resource.getResult().any { final def obsRef ->
+            obsRef.getReference() == "Observation/" + lflv[LaborFindingLaborValue.ID]
+          }
+      )
     }
 
-    @ExportScriptTest
-    void testThatEffectiveIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
 
-        assumeTrue(context.source[laborFinding().findingDate()] &&
-                context.source[laborFinding().findingDate().date()], "Finding date is not given")
+    context.source[laborFinding().laborFindingLaborValues()].findAll {
+      ["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
+          .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String)
+    }.each { final def lflv ->
+      assertFalse(
+          resource.getResult().any { final def obsRef ->
+            obsRef.getReference() == "Observation/" + lflv[LaborFindingLaborValue.ID]
+          }
+      )
+    }
+  }
 
-        assertTrue(resource.hasEffectiveDateTimeType())
+  @ExportScriptTest
+  void testThatStatusIsSet(final Context context, final DiagnosticReport resource) {
+    checkLaborMethodCode(context)
 
-        assertEquals(new DateTimeType(context.source[laborFinding().findingDate().date()] as String).getValue(),
-                resource.getEffectiveDateTimeType().getValue())
-
+    final def lflvStatus = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
+      lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.status"
     }
 
-    @ExportScriptTest
-    void testThatIssuedIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
+    assumingThat(lflvStatus && lflvStatus[CATALOG_ENTRY_VALUE],
+        { ->
+          assertEquals(
+              (lflvStatus[CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String).toLowerCase(),
+              resource.getStatus().toCode().toLowerCase()
+          )
+        })
 
-        final def issuedLv = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-            lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.issued"
-        }
+    assumingThat(!lflvStatus || !lflvStatus[CATALOG_ENTRY_VALUE],
+        { ->
+          assertEquals(DiagnosticReport.DiagnosticReportStatus.UNKNOWN.toCode(), resource.getStatus().toCode())
+        })
+  }
 
-        assumeTrue(
-                issuedLv &&
-                        issuedLv[LaborFindingLaborValue.DATE_VALUE] &&
-                        issuedLv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE],
-                "No issued date given in finding")
-
-
-        assertTrue(resource.hasIssued())
-
-        assertEquals(new DateTimeType(issuedLv[LaborFindingLaborValue.DATE_VALUE][PrecisionDate.DATE] as String).getValue(),
-                resource.getIssued())
-
-    }
-
-    @ExportScriptTest
-    void testThatObservationReferencesAreSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
-
-        context.source[laborFinding().laborFindingLaborValues()].findAll {
-            !["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
-                    .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE])
-        }.each { final def lflv ->
-            assertTrue(
-                    resource.getResult().any { final def obsRef ->
-                        obsRef.getReference() == "Observation/" + lflv[LaborFindingLaborValue.ID]
-                    }
-            )
-        }
-
-
-        context.source[laborFinding().laborFindingLaborValues()].findAll {
-            ["DiagnosticReport.issued", "DiagnosticReport.identifier.assigner", "DiagnosticReport.status"]
-                    .contains(it[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] as String)
-        }.each { final def lflv ->
-            assertFalse(
-                    resource.getResult().any { final def obsRef ->
-                        obsRef.getReference() == "Observation/" + lflv[LaborFindingLaborValue.ID]
-                    }
-            )
-        }
-    }
-
-    @ExportScriptTest
-    void testThatStatusIsSet(final Context context, final DiagnosticReport resource) {
-        checkLaborMethodCode(context)
-
-        final def lflvStatus = context.source[laborFinding().laborFindingLaborValues()].find { final def lflv ->
-            lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "DiagnosticReport.status"
-        }
-
-        assumingThat(lflvStatus && lflvStatus[CATALOG_ENTRY_VALUE],
-                { ->
-                    assertEquals(
-                            (lflvStatus[CATALOG_ENTRY_VALUE].find()?.getAt(CODE) as String).toLowerCase(),
-                            resource.getStatus().toCode().toLowerCase()
-                    )
-                })
-
-        assumingThat(!lflvStatus || !lflvStatus[CATALOG_ENTRY_VALUE],
-                { ->
-                    assertEquals(DiagnosticReport.DiagnosticReportStatus.UNKNOWN.toCode(), resource.getStatus().toCode())
-                })
-    }
-
-    private static void checkLaborMethodCode(final Context context) {
-        assumeTrue(context.source[laborFinding().laborMethod().code()] == "MP_DiagnosticReportLab", "Not a MII profile")
-    }
+  private static void checkLaborMethodCode(final Context context) {
+    assumeTrue(context.source[laborFinding().laborMethod().code()] == "MP_DiagnosticReportLab", "Not a MII profile")
+  }
 }
