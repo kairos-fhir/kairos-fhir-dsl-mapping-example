@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-06-25
+* practitionerRole mapping
+* filtered out fake organization
+
 # 2025-06-20
 * fixed meta-model navigation for accessing labor mapping in patient
 

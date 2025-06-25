@@ -126,7 +126,7 @@ encounter {
     }
   }
 
-  if (context.source[episode().habitation()]) {
+  if (context.source[episode().habitation()] && context.source[episode().habitation().code()] != "FAKE") {
     serviceProvider {
       reference = "Organization/" + context.source[episode().habitation().id()]
     }

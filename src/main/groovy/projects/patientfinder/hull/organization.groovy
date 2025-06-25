@@ -15,6 +15,10 @@ import static org.apache.commons.lang3.StringUtils.isBlank
  */
 organization {
 
+  if (context.source[organizationUnit().code()] == "FAKE"){
+    return
+  }
+
   id = "Organization/" + context.source[organizationUnit().id()]
 
   identifier {
