@@ -12,6 +12,11 @@
       "exportToFhirResource": "Practitioner"
     },
     {
+      "selectFromCxxEntity": "ATTENDING_DOCTOR",
+      "transformByTemplate": "practitionerRole",
+      "exportToFhirResource": "PractitionerRole"
+    },
+    {
       "selectFromCxxEntity": "PATIENT_MASTER",
       "transformByTemplate": "patient",
       "exportToFhirResource": "Patient"
