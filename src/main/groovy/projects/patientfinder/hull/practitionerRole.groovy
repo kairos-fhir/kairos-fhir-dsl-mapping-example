@@ -18,4 +18,8 @@ practitionerRole {
       display = context.source[attendingDoctor().contact().position()] as String
     }
   }
+
+  practitioner {
+    reference = "Practitioner/" + context.source[attendingDoctor().id()]
+  }
 }
