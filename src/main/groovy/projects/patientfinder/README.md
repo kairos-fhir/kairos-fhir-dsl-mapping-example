@@ -17,6 +17,8 @@ The following imported data sets are supported/tested:
 * moved orgUnit from serviceProvider to extension
 * exported medication.observationBegin and End to the new MedicationRequest extension
 * exporting medication.dosisSchema to doasageInstruction.timing.code.text
+* fixing practitionerRole with workaround (setting status)
+* adding export of status in appointment script
 
 # 2025-06-25
 * practitionerRole mapping

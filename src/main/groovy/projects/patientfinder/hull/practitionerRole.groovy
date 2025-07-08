@@ -1,6 +1,5 @@
 package projects.patientfinder.hull
 
-import de.kairos.fhir.centraxx.metamodel.RootEntities
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.attendingDoctor
 
@@ -11,6 +10,8 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.attendingDoctor
 practitionerRole {
 
   id = "PractitionerRole/" + context.source[attendingDoctor().id()]
+
+  active = true
 
   specialty {
     coding {
