@@ -127,8 +127,11 @@ encounter {
   }
 
   if (context.source[episode().habitation()] && context.source[episode().habitation().code()] != "FAKE") {
-    serviceProvider {
-      reference = "Organization/" + context.source[episode().habitation().id()]
+    extension {
+      url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
+      valueReference {
+        reference = "Organization/" + context.source[episode().habitation().id()]
+      }
     }
   }
 

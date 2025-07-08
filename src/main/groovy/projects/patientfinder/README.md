@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-07-08
+* moved orgUnit from serviceProvider to extension
+
 # 2025-06-25
 * practitionerRole mapping
 * filtered out fake organization
