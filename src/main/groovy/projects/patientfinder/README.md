@@ -15,6 +15,8 @@ The following imported data sets are supported/tested:
 
 # 2025-07-08
 * moved orgUnit from serviceProvider to extension
+* exported medication.observationBegin and End to the new MedicationRequest extension
+* exporting medication.dosisSchema to doasageInstruction.timing.code.text
 
 # 2025-06-25
 * practitionerRole mapping

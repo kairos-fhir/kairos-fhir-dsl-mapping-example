@@ -107,18 +107,27 @@ medicationRequest {
       }
     }
 
-    if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) {
+    if (context.source[medication().dosisSchema()]) {
       timing {
-        event {
-          date = context.source[medication().observationBegin().date()]
+        code {
+          text = context.source[medication().dosisSchema()] as String
         }
       }
     }
 
-    if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]) {
-      timing {
-        event {
-          date = context.source[medication().observationEnd().date()]
+
+    if ((context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) ||
+        (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()])) {
+      extension {
+        url = "https://fhir.iqvia.com/patientfinder/extension/period-extension"
+        valuePeriod {
+          if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) {
+            start = context.source[medication().observationBegin().date()]
+          }
+
+          if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]) {
+            end = context.source[medication().observationEnd().date()]
+          }
         }
       }
     }
