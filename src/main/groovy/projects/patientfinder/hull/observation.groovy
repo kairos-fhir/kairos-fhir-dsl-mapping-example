@@ -5,6 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
@@ -70,7 +71,9 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
+    final String laborValueDisplay = laborValue?.getAt(LaborValue.MULTILINGUALS)
+        ?.find { final mle -> mle[Multilingual.LANGUAGE] == "en" && mle[Multilingual.SHORT_NAME] != null }
+        ?.getAt(Multilingual.SHORT_NAME) as String
 
     component {
       code {

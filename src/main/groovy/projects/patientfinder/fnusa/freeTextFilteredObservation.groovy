@@ -10,6 +10,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
@@ -17,13 +18,10 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.CrfTemplateField.LABOR_VALUE
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -38,7 +36,7 @@ observation {
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
   final String laborMethodCode = laborMethod[CODE]
 
-  if ("Allergen".equalsIgnoreCase(laborMethodCode)){
+  if ("Allergen".equalsIgnoreCase(laborMethodCode)) {
     return
   }
 
@@ -102,7 +100,9 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+    final String laborValueDisplay = laborValue?.getAt(LaborValue.MULTILINGUALS)
+        ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] }
+        ?.getAt(Multilingual.SHORT_NAME) as String
 
     component {
       code {
@@ -115,7 +115,6 @@ observation {
           coding {
             system = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
             code = idContainer[PSN] as String
-            display = idContainer[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
           }
         }
       }
@@ -141,14 +140,18 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]
+                  ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                  ?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]
+                  ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                  ?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -158,14 +161,18 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]
+                  ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                  ?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]
+                  ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                  ?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -175,7 +182,9 @@ observation {
             coding {
               system = "urn:centraxx:CodeSystem/ValueList-" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]
+                  ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                  ?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
           lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
@@ -192,7 +201,9 @@ observation {
               coding {
                 system = FhirUrls.System.Patient.BloodGroup.BASE_URL
                 code = bloodGroup?.getAt(CODE) as String
-                display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+                display = entry[CatalogEntry.MULTILINGUALS]
+                    ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+                    ?.getAt(Multilingual.SHORT_NAME) as String
               }
             }
 

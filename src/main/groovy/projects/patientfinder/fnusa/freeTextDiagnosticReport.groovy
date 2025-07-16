@@ -6,6 +6,7 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueGroup
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
@@ -19,6 +20,7 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
 import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
  * represented by CXX LaborMapping
  * @author Mike Wähnert
@@ -32,7 +34,7 @@ diagnosticReport {
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
   final String laborMethodCode = laborMethod[CODE]
 
-  if ("Allergen".equalsIgnoreCase(laborMethodCode)){
+  if ("Allergen".equalsIgnoreCase(laborMethodCode)) {
     return
   }
 
@@ -74,7 +76,9 @@ diagnosticReport {
     coding {
       system = "urn:centraxx"
       code = laborMethodCode
-      display = laborMethod[LaborMethod.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
+      display = laborMethod[LaborMethod.MULTILINGUALS]
+          ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+          ?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
@@ -100,29 +104,29 @@ diagnosticReport {
     reference = "Observation/" + context.source[laborMapping().laborFinding().id()]
   }
 
-  final def concatString = labFinLabVals.findAll{final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] != "Specialism"} // filter specialism
+  final def concatString = labFinLabVals.findAll { final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] != "Specialism" } // filter specialism
       .collect {
-    final lflv ->
-      final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE]
-      if (isString(laborValue)) {
-        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.STRING_VALUE] ? " ${lflv[LaborFindingLaborValue.STRING_VALUE]}" : "")
-      } else if (isBoolean(laborValue)) {
-        return "${laborValue[CODE]}:" + " ${lflv[LaborFindingLaborValue.BOOLEAN_VALUE]}"
-      } else if (isDate(laborValue)) {
-        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE) ?
-            " ${lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)}" : "")
-      } else if (isNumeric(laborValue)) {
-        return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.NUMERIC_VALUE] ? " ${lflv[LaborFindingLaborValue.NUMERIC_VALUE]}" : "")
-      } else {
-        return "${laborValue[CODE]}:" // assumes that catalog values are never used in these labor findings
-      }
-  }.join("\n\n")
+        final lflv ->
+          final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE]
+          if (isString(laborValue)) {
+            return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.STRING_VALUE] ? " ${lflv[LaborFindingLaborValue.STRING_VALUE]}" : "")
+          } else if (isBoolean(laborValue)) {
+            return "${laborValue[CODE]}:" + " ${lflv[LaborFindingLaborValue.BOOLEAN_VALUE]}"
+          } else if (isDate(laborValue)) {
+            return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE) ?
+                " ${lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)}" : "")
+          } else if (isNumeric(laborValue)) {
+            return "${laborValue[CODE]}:" + (lflv[LaborFindingLaborValue.NUMERIC_VALUE] ? " ${lflv[LaborFindingLaborValue.NUMERIC_VALUE]}" : "")
+          } else {
+            return "${laborValue[CODE]}:" // assumes that catalog values are never used in these labor findings
+          }
+      }.join("\n\n")
 
   conclusion = concatString
 
-  final def specialism = labFinLabVals.find{final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "Specialism"} // filter specialism
+  final def specialism = labFinLabVals.find { final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] == "Specialism" } // filter specialism
 
-  if (specialism != null){
+  if (specialism != null) {
     performer {
       display = specialism[LaborFindingLaborValue.STRING_VALUE]
     }
@@ -136,7 +140,9 @@ diagnosticReport {
     category {
       coding {
         code = group[CODE] as String
-        display = group[LaborValueGroup.NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE)
+        display = group[LaborValueGroup.MULTILINGUALS]
+            ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null}
+            ?.getAt(Multilingual.SHORT_NAME)
       }
     }
   }

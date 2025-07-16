@@ -94,14 +94,6 @@ encounter {
     }
   }
 
-  type {
-    coding {
-      system = "http://snomed.info/sct"
-      code = "308335008"
-      display = "Patient encounter procedure"
-    }
-  }
-
   subject {
     reference = "Patient/" + context.source[episode().patientContainer().id()]
   }

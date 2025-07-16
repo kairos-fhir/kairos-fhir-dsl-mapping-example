@@ -13,6 +13,10 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-07-16
+* removed usage for multilingualEntries and replaces with multilinguals
+* removed unnecessary static type from encounter
+
 # 2025-07-08
 * moved orgUnit from serviceProvider to extension
 * exported medication.observationBegin and End to the new MedicationRequest extension
