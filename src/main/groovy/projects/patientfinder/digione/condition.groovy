@@ -1,6 +1,6 @@
 package projects.patientfinder.digione
 
-import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
@@ -8,13 +8,12 @@ import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
-import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
-import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
@@ -69,7 +68,7 @@ condition {
         version = context.source[diagnosis().userDefinedCatalogEntry().catalog().version()]
         code = context.source[diagnosis().userDefinedCatalogEntry().code()] as String
         display = context.source[diagnosis().userDefinedCatalogEntry().multilinguals()]
-            ?.find { it[LANGUAGE] == "en" }?.getAt(NAME)
+            ?.find { it[LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }?.getAt(Multilingual.SHORT_NAME)
       }
     }
 
