@@ -27,7 +27,7 @@
       "exportToFhirResource": "Condition"
     },
     {
-      "selectFromCxxEntity": "PROCEDURE",
+      "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
       "exportToFhirResource": "Procedure"
     },
