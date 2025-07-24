@@ -18,9 +18,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -78,7 +75,9 @@ observation {
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
-    final String laborValueDisplay = laborValue?.getAt(NAME_MULTILINGUAL_ENTRIES)?.find { final mle -> mle[LANG] == "en" }?.getAt(VALUE) as String
+    final String laborValueDisplay = laborValue?.getAt(LaborValue.MULTILINGUALS)
+        ?.find { final mle -> mle[Multilingual.LANGUAGE] == "en" && mle[Multilingual.SHORT_NAME] != null }
+        ?.getAt(Multilingual.SHORT_NAME) as String
 
     component {
       code {

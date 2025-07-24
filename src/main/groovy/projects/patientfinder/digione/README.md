@@ -7,7 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
-# 2025-6-07 
+# 2025-07-24
+* fixed multilingual accessing
+
+# 2025-07-22 
 * add fixed multilingual access on catalog entry
 
 # 2025-06-27

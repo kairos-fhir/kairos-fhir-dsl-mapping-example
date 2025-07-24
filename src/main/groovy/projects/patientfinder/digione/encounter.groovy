@@ -2,7 +2,6 @@ package projects.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
 

@@ -1,25 +1,17 @@
 package projects.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.fhir.centraxx.metamodel.AttendingDoctor
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
-import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.LaborFinding
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
-import de.kairos.fhir.centraxx.metamodel.LaborMethod
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
-import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.ProcedureStatus
 import org.hl7.fhir.r4.model.Procedure
 
-import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
-
 
 /**
  * Represented by CXX MedProcedure

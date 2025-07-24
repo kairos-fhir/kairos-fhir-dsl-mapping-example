@@ -2,11 +2,10 @@ package projects.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 
 /**
@@ -56,9 +55,9 @@ observation {
       coding {
         system = "cosd:localisation"
         code = (context.source[metastasis().localisationCodeDict().code()] as String).toUpperCase()
-        display = context.source[metastasis().localisationCodeDict().nameMultilingualEntries()].find { final def me ->
-          me[LANG] == "en"
-        }?.getAt(VALUE) as String
+        display = context.source[metastasis().localisationCodeDict().multilinguals()]
+            .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
+            ?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }
