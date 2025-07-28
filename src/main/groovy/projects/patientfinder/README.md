@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-07-28
+* added mapping for treatmentService to encounter.serviceProvider
+
 # 2025-07-16
 * removed usage for multilingualEntries and replaces with multilinguals
 * removed unnecessary static type from encounter

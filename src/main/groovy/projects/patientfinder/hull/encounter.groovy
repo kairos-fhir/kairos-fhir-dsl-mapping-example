@@ -156,6 +156,16 @@ encounter {
     }
   }
 
+  if (lflvMap.containsKey(TREATMENT_SERVICE)) {
+    lflvMap.get(TREATMENT_SERVICE).each { final def valueRef ->
+      if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
+        serviceProvider {
+          reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
+        }
+      }
+    }
+  }
+
   if (lflvMap.containsKey(TYPE)) {
     type {
       lflvMap.get(TYPE).each { final def entry ->
