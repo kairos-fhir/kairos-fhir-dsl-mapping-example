@@ -3,8 +3,6 @@ package projects.patientfinder.hull
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 import static org.apache.commons.lang3.StringUtils.isBlank
 
