@@ -120,7 +120,7 @@ encounter {
 
   if (context.source[episode().habitation()] && context.source[episode().habitation().code()] != "FAKE") {
     extension {
-      url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
+      url ="https://fhir.iqvia.com/patientfinder/extension/department-organization"
       valueReference {
         reference = "Organization/" + context.source[episode().habitation().id()]
       }
@@ -147,7 +147,7 @@ encounter {
     lflvMap.get(DEPARTMENT).each { final def valueRef ->
       if (valueRef && valueRef[ValueReference.ORGANIZATION_VALUE]) {
         extension {
-          url = "https://fhir.iqvia.com/patientfinder/extension/department-organization"
+          url = "https://fhir.iqvia.com/patientfinder/extension/specialism-organization"
           valueReference {
             reference = "Organization/" + valueRef[ValueReference.ORGANIZATION_VALUE][OrganisationUnit.ID]
           }

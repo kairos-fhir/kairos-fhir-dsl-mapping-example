@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-07-30
+* switched orgunits export target in encounter script
+
 # 2025-07-28
 * added mapping for treatmentService to encounter.serviceProvider
 
