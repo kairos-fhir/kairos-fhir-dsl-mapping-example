@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-07-31
+* export position to code in PractitionerRole
+
 # 2025-07-30
 * switched orgunits export target in encounter script
 

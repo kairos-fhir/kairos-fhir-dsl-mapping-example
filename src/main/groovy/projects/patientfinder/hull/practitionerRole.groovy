@@ -13,7 +13,7 @@ practitionerRole {
 
   active = true
 
-  specialty {
+  code {
     coding {
       code = context.source[attendingDoctor().contact().position()] as String
       display = context.source[attendingDoctor().contact().position()] as String
