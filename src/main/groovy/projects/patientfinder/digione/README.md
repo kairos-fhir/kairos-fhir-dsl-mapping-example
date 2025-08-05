@@ -7,6 +7,9 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-08-05
+* added patient_ID as exported primary id
+
 # 2025-07-24
 * fixed multilingual accessing
 * fixed entity type for med procedure in ExportResourceMappingConfig.json

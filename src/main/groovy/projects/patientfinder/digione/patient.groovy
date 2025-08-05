@@ -7,6 +7,7 @@ import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
+import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
@@ -19,11 +20,23 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final def idc ->
+  final def healthCareId = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "patient_ID" }
+
+  identifier {
+    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+    value = healthCareId[PSN]
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
+    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
+  }.each { final def idc ->
     identifier {
-      value = idc[ID_CONTAINER_TYPE][CODE] as String
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+      value = idc[PSN]
     }
   }
+
 
   humanName {
     text = context.source[patient().firstName()] + " " + context.source[patient().lastName()]
