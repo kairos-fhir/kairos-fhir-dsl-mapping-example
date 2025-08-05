@@ -29,7 +29,7 @@ patient {
   }
 
   context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
-    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
+    idc[ID_CONTAINER_TYPE][CODE] != "patient_ID"
   }.each { final def idc ->
     identifier {
       system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
