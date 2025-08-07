@@ -122,7 +122,7 @@ encounter {
 
   if (context.source[episode().validFrom()] != null && context.source[episode().validUntil()] != null) {
     final DateTimeType startDate = new DateTimeType(context.source[episode().validFrom()] as String)
-    final DateTimeType endDate = new DateTimeType(context.source[episode().validFrom()] as String)
+    final DateTimeType endDate = new DateTimeType(context.source[episode().validUntil()] as String)
 
     final long diff = endDate.getValue().getTime() - startDate.getValue().getTime()
 
