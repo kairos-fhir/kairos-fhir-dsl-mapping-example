@@ -12,7 +12,9 @@ import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import de.kairos.fhir.centraxx.metamodel.ValueReference
 import de.kairos.fhir.centraxx.metamodel.enums.EpisodeStatus
+import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Encounter
+import org.hl7.fhir.r4.model.Quantity
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractCodeSyncIdMultilingual.MULTILINGUALS
@@ -118,9 +120,22 @@ encounter {
     }
   }
 
+  if (context.source[episode().validFrom()] != null && context.source[episode().validUntil()] != null) {
+    final DateTimeType startDate = new DateTimeType(context.source[episode().validFrom()] as String)
+    final DateTimeType endDate = new DateTimeType(context.source[episode().validFrom()] as String)
+
+    final long diff = endDate.getValue().getTime() - startDate.getValue().getTime()
+
+    length {
+      value = diff
+      unit = "ms"
+      system = "http://unitsofmeasure.org"
+    }
+  }
+
   if (context.source[episode().habitation()] && context.source[episode().habitation().code()] != "FAKE") {
     extension {
-      url ="https://fhir.iqvia.com/patientfinder/extension/department-organization"
+      url = "https://fhir.iqvia.com/patientfinder/extension/department-organization"
       valueReference {
         reference = "Organization/" + context.source[episode().habitation().id()]
       }

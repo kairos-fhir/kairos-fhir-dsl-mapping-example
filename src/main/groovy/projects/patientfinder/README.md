@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-08-07
+* added calculation of encounter length
+
 # 2025-07-31
 * export position to code in PractitionerRole
 
