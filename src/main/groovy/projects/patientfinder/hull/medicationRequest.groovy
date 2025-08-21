@@ -115,23 +115,6 @@ medicationRequest {
       }
     }
 
-
-    if ((context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) ||
-        (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()])) {
-      extension {
-        url = "https://fhir.iqvia.com/patientfinder/extension/period-extension"
-        valuePeriod {
-          if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) {
-            start = context.source[medication().observationBegin().date()]
-          }
-
-          if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]) {
-            end = context.source[medication().observationEnd().date()]
-          }
-        }
-      }
-    }
-
     asNeededBoolean = createAsNeededFromType(context.source[medication().resultStatus()] as String)
 
     route {
@@ -142,6 +125,21 @@ medicationRequest {
     }
   }
 
+  if ((context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) ||
+      (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()])) {
+    extension {
+      url = "https://fhir.iqvia.com/patientfinder/extension/period-extension"
+      valuePeriod {
+        if (context.source[medication().observationBegin()] && context.source[medication().observationBegin().date()]) {
+          start = context.source[medication().observationBegin().date()]
+        }
+
+        if (context.source[medication().observationEnd()] && context.source[medication().observationEnd().date()]) {
+          end = context.source[medication().observationEnd().date()]
+        }
+      }
+    }
+  }
 
   if (lflvMap.containsKey(REQUESTER)) {
     final def valueRef = lflvMap.get(REQUESTER).find()

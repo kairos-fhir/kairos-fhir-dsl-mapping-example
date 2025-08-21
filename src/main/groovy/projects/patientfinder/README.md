@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-08-21
+* fixed export of period on medication request
+
 # 2025-08-07
 * added calculation of encounter length
 
