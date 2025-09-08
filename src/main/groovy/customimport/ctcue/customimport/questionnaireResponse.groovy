@@ -2,7 +2,9 @@ package customimport.ctcue.customimport
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import org.hl7.fhir.r4.model.BooleanType
 import org.hl7.fhir.r4.model.Coding
+import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.DateType
 import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.Quantity
@@ -70,7 +72,7 @@ bundle {
               }
             }
 
-            sourceQR.item.each { def sourceItem ->
+            sourceQR.item.each { final def sourceItem ->
               component {
                 code {
                   coding {
@@ -80,7 +82,7 @@ bundle {
                   }
                 }
 
-                Type sourceValue = sourceItem.getAnswerFirstRep().getValue()
+                final Type sourceValue = sourceItem.getAnswerFirstRep().getValue()
                 if (sourceValue instanceof StringType) {
                   valueString = (sourceValue as StringType).getValue()
                 } else if (sourceValue instanceof DateType) {
@@ -94,8 +96,13 @@ bundle {
                   valueString {
                     value = (sourceValue as Coding).getCode()
                   }
-                } else {
-                  println("AnswerType '" + sourceValue.getClass().getSimpleName() + " ' not supported yet.")
+                } else if (sourceValue instanceof DateTimeType){
+                  valueDateTime = sourceValue
+                } else if (sourceValue instanceof BooleanType){
+                  valueBoolean(sourceValue.booleanValue())
+                }
+                else {
+                  throw new UnsupportedOperationException("AnswerType '" + sourceValue.getClass().getSimpleName() + " ' not supported yet.")
                 }
               }
             }

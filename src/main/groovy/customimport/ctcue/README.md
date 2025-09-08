@@ -7,6 +7,9 @@ Imports IQVIA Patient Finder profiles to HDRP/CXX
 
 # CHANGELOG
 
+## 2025-00-08
+* added handling of further type to the questionnaire script
+
 ## 2025-02-27
 * changed the LaborMethodCategory for the questionnaires.
 

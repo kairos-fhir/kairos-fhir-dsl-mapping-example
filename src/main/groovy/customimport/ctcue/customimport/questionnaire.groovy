@@ -13,7 +13,6 @@ import org.hl7.fhir.r4.model.ResourceType
  * TODO: WORK IN PROGRESS
  */
 bundle {
-
   context.bundles.each { final def bundle ->
     bundle.getEntry().findAll { it.getResource().getResourceType() == ResourceType.Questionnaire }.each {
 
