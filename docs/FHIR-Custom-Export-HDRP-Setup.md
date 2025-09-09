@@ -412,7 +412,7 @@ and enable on the project level and set a Spring chron expression in the `Projec
 
 ### Bulk data export
 
-Bulk data export is used to export configured export projects asynchronously to the file system or to a FHIR endpoint. The Configuration and usage
+Bulk data export is used to export configured export customexport asynchronously to the file system or to a FHIR endpoint. The Configuration and usage
 of the bulk data export is described [here](Bulk-Data-Export.md).
 
 ## Export Targets

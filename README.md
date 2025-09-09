@@ -44,7 +44,7 @@ A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR cu
 
 # Versioning
 
-* The versioning of this example projects will be parallel to the kairos-fhir-dsl library, which
+* The versioning of this example customexport will be parallel to the kairos-fhir-dsl library, which
   follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * All Groovy example scripts will contain a @since annotation that describes the first HDRP version, that can interpret the respective script. The
   specified HDRP version contains the necessary minimal version of the kairos-fhir-dsl library, HDRP entity exporter, initializer and support for
@@ -57,7 +57,7 @@ A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR cu
 * Everyone can fork the project.
 * If you want to enrich the project with your own scripts, follow these steps:
     * Fork the project.
-    * Create a new directory on your fork under src/main/groovy/projects
+    * Create a new directory on your fork under src/main/groovy/customexport
     * Add your new scripts.
     * Add a meaningful README.md file describing the purpose, sources, participants and HDRP version.
     * Create a pull request with your changes against our master branch.

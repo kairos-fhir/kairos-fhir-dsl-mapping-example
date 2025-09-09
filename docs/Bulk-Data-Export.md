@@ -2,7 +2,7 @@
 
 # FHIR Bulk Data Export
 
-Bulk data export is used to export configured export projects asynchronously to the file system or to an FHIR endpoint.
+Bulk data export is used to export configured export customexport asynchronously to the file system or to an FHIR endpoint.
 The configurational setup and the FHIR operations used to control FHIR bulk data export are described in this section.
 
 ## Configuration
@@ -37,7 +37,7 @@ Creates an export job and submits it for execution.
 | `_outputFormat` | String   | Specifies the output format for the export. The arguments are mapped as follows: `"application/fhir+json"`, `"application/json"` -> JSON, `"application/fhir+xml"`, `"application/xml"` -> XML, `"application/fhir+ndjson"`, `"application/x-ndjson"`, `"application/ndjson"` -> NDJSON. If the parameter is not specified, JSON is used by default. | JSON              |
 | `_type`         | String   | Comma-separated list of FHIR `ResourceType`s. The configured `ExportResourceMappings` are filtered based on the specified list.                                                                                                                                                                                                                      | - (exporting all) |
 | `_since`        | Date     | If specified, only patients modified after this date are included in the export. Requires [Patient modification and delete modification](#incremental-bulk-exports) logging to be enabled.                                                                                                                                                           | - (exporting all) |
-| `projectFilter` | String   | Comma-separated list of export projects to include in the export.                                                                                                                                                                                                                                                                                    | - (exporting all) |
+| `projectFilter` | String   | Comma-separated list of export customexport to include in the export.                                                                                                                                                                                                                                                                                    | - (exporting all) |
 
 The request will return a 202 status upon successful submission. The response will contain the `Content-Location` header which will contain
 a URL that can be used to query the job status.

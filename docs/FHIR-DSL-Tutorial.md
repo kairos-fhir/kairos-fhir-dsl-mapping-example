@@ -495,8 +495,8 @@ with the CXX entity map data, respectively.
 
 ``` 
 @TestResources(
-  groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
-  contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
+  groovyScriptPath = "src/main/groovy/customexport/mii_bielefeld/encounter.groovy",
+  contextMapsPath = "src/test/resources/customexport/mii_bielefeld/encounter.json"
 )
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {}
 ```
@@ -528,8 +528,8 @@ packages located on the class path.
 
 ```groovy
 @TestResources(
-  groovyScriptPath = "src/main/groovy/projects/mii_bielefeld/encounter.groovy",
-  contextMapsPath = "src/test/resources/projects/mii_bielefeld/encounter.json"
+  groovyScriptPath = "src/main/groovy/customexport/mii_bielefeld/encounter.groovy",
+  contextMapsPath = "src/test/resources/customexport/mii_bielefeld/encounter.json"
 )
 class EpisodeExportScriptTest extends AbstractExportScriptTest<Encounter> {
   @ExportScriptTest
