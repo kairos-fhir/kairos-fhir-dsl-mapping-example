@@ -5,30 +5,32 @@
 ## Table of Contents
 
 <!-- TOC -->
+
 * [FHIR Custom Export Documentation](#fhir-custom-export-documentation)
-  * [Table of Contents](#table-of-contents)
-  * [Introduction](#introduction)
-  * [HDRP global configuration](#hdrp-global-configuration)
-  * [Project Setup](#project-setup)
-    * [Project-Specific Configuration Files](#project-specific-configuration-files)
-      * [ProjectConfig.json](#projectconfigjson)
-      * [ExportResourceMappingConfig.json](#exportresourcemappingconfigjson)
-      * [BundleRequestMethodConfig.json](#bundlerequestmethodconfigjson)
-  * [Patient Selection](#patient-selection)
-  * [Export Mechanisms](#export-mechanisms)
-    * [Incremental Export](#incremental-export)
-    * [Scheduled Export](#scheduled-export)
-    * [Bulk data export](#bulk-data-export)
-  * [Export Targets](#export-targets)
-    * [Filesystem Export](#filesystem-export)
-    * [Target URL Export](#target-url-export)
-    * [Useful Links](#useful-links)
-    * [Glossary](#glossary)
+    * [Table of Contents](#table-of-contents)
+    * [Introduction](#introduction)
+    * [HDRP global configuration](#hdrp-global-configuration)
+    * [Project Setup](#project-setup)
+        * [Project-Specific Configuration Files](#project-specific-configuration-files)
+            * [ProjectConfig.json](#projectconfigjson)
+            * [ExportResourceMappingConfig.json](#exportresourcemappingconfigjson)
+            * [BundleRequestMethodConfig.json](#bundlerequestmethodconfigjson)
+    * [Patient Selection](#patient-selection)
+    * [Export Mechanisms](#export-mechanisms)
+        * [Incremental Export](#incremental-export)
+        * [Scheduled Export](#scheduled-export)
+        * [Bulk data export](#bulk-data-export)
+    * [Export Targets](#export-targets)
+        * [Filesystem Export](#filesystem-export)
+        * [Target URL Export](#target-url-export)
+        * [Useful Links](#useful-links)
+        * [Glossary](#glossary)
+
 <!-- TOC -->
 
 ## Introduction
 
-The HDRP FHIR Custom Export functionality allows you to export data from HDRP in [FHIR R4](https://hl7.org/fhir/R4/index.html) format. 
+The HDRP FHIR Custom Export functionality allows you to export data from HDRP in [FHIR R4](https://hl7.org/fhir/R4/index.html) format.
 This document provides detailed instructions on how to set up, configure, and use this functionality.
 
 FHIR (Fast Healthcare Interoperability Resources) is a standard for healthcare data exchange, published by HL7.
@@ -37,9 +39,7 @@ FHIR standard.
 
 ```mermaid
 graph LR
-
     subgraph "HDRP Application"
-
         subgraph Database
             DB[(Database)]
         end
@@ -52,10 +52,8 @@ graph LR
             EntityMaps[Key-Value Map]
         end
 
-
         subgraph "Transformation"
             GroovyEngine[Groovy Transformation Engine]
-
             FHIRResources[FHIR Resource]
         end
     end
@@ -69,26 +67,21 @@ graph LR
         RESTEndpoint[FHIR REST Endpoint]
     end
 
-
-
     DB --> Entities
-
     Entities --> EntityMaps
     EntityMaps --> GroovyEngine
     GroovyScripts --> GroovyEngine
     GroovyEngine --> FHIRResources
     FHIRResources --> ExportedBundles
     FHIRResources --> RESTEndpoint
-
-    classDef database fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef entity fill:#bbf,stroke:#333,stroke-width:1px;
-    classDef transformation fill:#bfb,stroke:#333,stroke-width:1px;
-    classDef export fill:#fbb,stroke:#333,stroke-width:1px;
-
+    classDef database fill: #f9f, stroke: #333, stroke-width: 2px;
+    classDef entity fill: #bbf, stroke: #333, stroke-width: 1px;
+    classDef transformation fill: #bfb, stroke: #333, stroke-width: 1px;
+    classDef export fill: #fbb, stroke: #333, stroke-width: 1px;
     class DB database;
-    class EntityLoader,Entities,ConvertToMaps,EntityMaps entity;
-    class GroovyEngine,GroovyScripts,FHIRResources transformation;
-    class RESTEndpoint,ExportedBundles export;
+class EntityLoader, Entities, ConvertToMaps, EntityMaps entity;
+class GroovyEngine,GroovyScripts, FHIRResources transformation;
+class RESTEndpoint,ExportedBundles export;
 ```
 
 ## HDRP global configuration
@@ -110,6 +103,7 @@ Each subdirectory represents an export project in the `interfaces.fhir.custom.ma
 C:/applications/hdrp-home/fhir-custom-mappings/project1
 C:/applications/hdrp-home/fhir-custom-mappings/project2
 ```
+
 ## Project Setup
 
 To set up a new export project:
@@ -151,143 +145,129 @@ Example `ProjectConfig.json`:
 {
   "description": "",
   "scheduledExportEnable": {
-    "value": true,
-    "description": ""
+    "value": true
   },
   "exportInterval": {
-    "value": "0 0 12 * * *",
-    "description": ""
+    "value": "0 0 12 * * *"
   },
   "incrementalExportEnable": {
-    "value": false,
-    "description": ""
+    "value": false
+  },
+  "exportUser": {
+    "value": "SYSTEM"
   },
   "bulkExportEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "incrementalDeleteExportEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "patientFilterValues": {
     "value": [
       "COVID-19-PATIENTID",
       "ANOTHER-PATIENT-ID"
-    ],
-    "description": ""
+    ]
   },
   "patientFilterType": {
-    "value": "IDTYPE",
-    "description": ""
+    "value": "IDTYPE"
   },
   "exportToFileSystem": {
-    "value": true,
-    "description": ""
+    "value": true
   },
   "exportFolder": {
-    "value": "C:/centraxx-home/fhir-custom-export",
-    "description": ""
+    "value": "C:/centraxx-home/fhir-custom-export"
   },
   "uploadToUrl": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "uploadUrl": {
-    "value": "http://localhost:9090/fhir",
-    "description": ""
+    "value": "http://localhost:9090/fhir"
   },
   "uploadUser": {
-    "value": "admin",
-    "description": ""
+    "value": "admin"
   },
   "uploadPassword": {
-    "value": "admin",
-    "description": ""
+    "value": "admin"
   },
   "sslTrustAllEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "trustStoreEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "trustStore": {
-    "value": "C:/centraxx-home/fhir-custom-truststore.jks",
-    "description": ""
+    "value": "C:/centraxx-home/fhir-custom-truststore.jks"
   },
   "trustStorePassword": {
-    "value": "changeit",
-    "description": ""
+    "value": "changeit"
   },
   "prettyPrintEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "exportFormat": {
-    "value": "JSON",
-    "description": ""
+    "value": "JSON"
   },
   "fhirMessageLoggingEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "fhirResponseLoggingEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "fhirResponseValidationEnable": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "pageSize": {
-    "value": 10,
-    "description": ""
+    "value": 10
   },
   "since": {
-    "value": "2023-07-11T18:30:00",
-    "description": ""
+    "value": "2023-07-11T18:30:00"
   },
   "enableThsPseudonymization": {
-    "value": false,
-    "description": ""
+    "value": false
   },
   "thsTargetId": {
-    "value": "targetId",
-    "description": ""
+    "value": "targetId"
+  },
+  "parallelEntityLoadingEnable": {
+    "value": false
+  },
+  "parallelProcessingEnable": {
+    "value": false
   }
 }
 ```
 
-| **Property**                    | **Description**                                                                                                                                          |
-|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `scheduledExportEnable`         | If true, this project will export all filtered HDRP patient data with the configured FHIR resources by the specified `exportInterval`.                   |
-| `incrementalExportEnable`       | If true, this project will export filtered HDRP patient data with the configured FHIR resources by a detected change after a HDRP transaction.           |
-| `incrementalDeleteExportEnable` | If true, this project will export deletes of all mapped resources. Deleted entities are exported by the FHIR ID based on the resource type and HDRP OID. |
-| `bulkExportEnable`              | If true, this project will export using the FHIR bulk export API.                                                                                        |
-| `exportToFileSystem`            | If true, the scheduler will export to the specified file system `exportFolder`.                                                                          |
-| `exportFolder`                  | Specifies the folder where the export will be saved.                                                                                                     |
-| `uploadToUrl`                   | If true, the scheduler will export to the specified `uploadUrl` REST endpoint.                                                                           |
-| `uploadUrl`                     | The URL of the REST endpoint where the export will be uploaded.                                                                                          |
-| `uploadUser`                    | BasicAuth username for the target system.                                                                                                                |
-| `uploadPassword`                | BasicAuth password for the target system.                                                                                                                |
-| `sslTrustAllEnable`             | If true, all SSL/TLS certificates are trusted.                                                                                                           |
-| `trustStoreEnable`              | If true, a separate trust store is used for verification, specified by `trustStore` and `trustStorePassword`.                                            |
-| `trustStore`                    | Path to the trust store file.                                                                                                                            |
-| `trustStorePassword`            | Password for the trust store.                                                                                                                            |
-| `prettyPrintEnable`             | If true, enables pretty-printing of the FHIR message body.                                                                                               |
-| `exportFormat`                  | Exchange format of FHIR resources (e.g., JSON).                                                                                                          |
-| `fhirMessageLoggingEnable`      | If true, HTTP message requests are logged in HDRP separately.                                                                                            |
-| `fhirResponseLoggingEnable`     | If true, HTTP message responses are logged in HDRP separately.                                                                                           |
-| `fhirResponseValidationEnable`  | If true, HTTP message responses are validated against their FHIR response status.                                                                        |
-| `patientFilterType`             | Filters patients and their data by a specified filter type (e.g., `PATIENTSTUDY`, `CONSENTTYPE`, etc.).                                                  |
-| `patientFilterValues`           | List of filter values used to filter patients.                                                                                                           |
-| `pageSize`                      | The page size for queries in HDRP and resources in a FHIR bundle.                                                                                        |
-| `since`                         | Resources will be included in the response if their related patients have changed after the specified date-time.                                         |
-| `enableThsPseudonymization`     | If true, enables pseudonymization of patient identifiers using the `thsTargetId` property.                                                               |
-| `thsTargetId`                   | Target ID used for pseudonymization in combination with study profile and study code.                                                                    |
-| `exportInterval`                | Sets the export cron interval (e.g., `0 0 12 * * *` for once a day).                                                                                     |
+| **Property**                                          | **Description**                                                                                                                                                                                            |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `scheduledExportEnable`                               | If true, this project will export all filtered HDRP patient data with the configured FHIR resources by the specified `exportInterval`.                                                                     |
+| `incrementalExportEnable`                             | If true, this project will export filtered HDRP patient data with the configured FHIR resources by a detected change after a HDRP transaction.                                                             |
+| `incrementalDeleteExportEnable`                       | If true, this project will export deletes of all mapped resources. Deleted entities are exported by the FHIR ID based on the resource type and HDRP OID.                                                   |
+| `exportUser`                                          | The user used to execute the incremental and scheduled exports. Default is SYSTEM. A user can be configured in the user administration via the UI to enable access to clear text patient data for example. |
+| `bulkExportEnable`                                    | If true, this project will export using the FHIR bulk export API.                                                                                                                                          |
+| `exportToFileSystem`                                  | If true, the scheduler will export to the specified file system `exportFolder`.                                                                                                                            |
+| `exportFolder`                                        | Specifies the folder where the export will be saved.                                                                                                                                                       |
+| `uploadToUrl`                                         | If true, the scheduler will export to the specified `uploadUrl` REST endpoint.                                                                                                                             |
+| `uploadUrl`                                           | The URL of the REST endpoint where the export will be uploaded.                                                                                                                                            |
+| `uploadUser`                                          | BasicAuth username for the target system.                                                                                                                                                                  |
+| `uploadPassword`                                      | BasicAuth password for the target system.                                                                                                                                                                  |
+| `sslTrustAllEnable`                                   | If true, all SSL/TLS certificates are trusted.                                                                                                                                                             |
+| `trustStoreEnable`                                    | If true, a separate trust store is used for verification, specified by `trustStore` and `trustStorePassword`.                                                                                              |
+| `trustStore`                                          | Path to the trust store file.                                                                                                                                                                              |
+| `trustStorePassword`                                  | Password for the trust store.                                                                                                                                                                              |
+| `prettyPrintEnable`                                   | If true, enables pretty-printing of the FHIR message body.                                                                                                                                                 |
+| `exportFormat`                                        | Exchange format of FHIR resources (e.g., JSON).                                                                                                                                                            |
+| `fhirMessageLoggingEnable`                            | If true, HTTP message requests are logged in HDRP separately.                                                                                                                                              |
+| `fhirResponseLoggingEnable`                           | If true, HTTP message responses are logged in HDRP separately.                                                                                                                                             |
+| `fhirResponseValidationEnable`                        | If true, HTTP message responses are validated against their FHIR response status.                                                                                                                          |
+| `patientFilterType`                                   | Filters patients and their data by a specified filter type (e.g., `PATIENTSTUDY`, `CONSENTTYPE`, etc.).                                                                                                    |
+| `patientFilterValues`                                 | List of filter values used to filter patients.                                                                                                                                                             |
+| `pageSize`                                            | The page size for queries in HDRP and resources in a FHIR bundle.                                                                                                                                          |
+| `since`                                               | Resources will be included in the response if their related patients have changed after the specified date-time.                                                                                           |
+| `enableThsPseudonymization`                           | If true, enables pseudonymization of patient identifiers using the `thsTargetId` property.                                                                                                                 |
+| `thsTargetId`                                         | Target ID used for pseudonymization in combination with study profile and study code.                                                                                                                      |
+| `exportInterval`                                      | Sets the export cron interval (e.g., `0 0 12 * * *` for once a day).                                                                                                                                       |
+| `parallelEntityLoadingEnable` (since HDRP v.2025.2.3) | Allows parallelizing loading and initializing of entities from the databases in batches of 1000. Only useful for large page sizes > 1000.                                                                  |
+| `parallelProcessingEnable` (since HDRP v.2025.2.3)    | The pseudonymization, serialization, and transformation is parallelized, which can improve performance for large page size exports                                                                         |                                                                                                                             |
 
 **Note**: When you configure a scheduled export, HDRP needs to be restarted to apply changes to the `ProjectConfig.json`. HDRP initializes the
 Scheduler at startup by reading the `ProjectConfig.json`. The incremental export does not require a restart after changes to the `ProjectConfig.json`.
@@ -356,12 +336,12 @@ Included patients. Patients can be filtered using the following filter types: Th
 
 The following filter types are supported:
 
-| **Code**     | **Description**                                                                                                                                   |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| IDTYPE       | Patient has an ID of the specified ID type (IdContainerType code).                                                                                |
-| FLEXIFLAGDEF | Patient has an universal attribute of the specified universal attribute type (code)                                                               |
-| ORGUNIT      | Patient has the specific organization unit (code).                                                                                                |
-| CONSENTTYPE  | Patient has a valid consent of the specified consent type (code).                                                                                 |
+| **Code**     | **Description**                                                                                                                                    |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| IDTYPE       | Patient has an ID of the specified ID type (IdContainerType code).                                                                                 |
+| FLEXIFLAGDEF | Patient has an universal attribute of the specified universal attribute type (code)                                                                |
+| ORGUNIT      | Patient has the specific organization unit (code).                                                                                                 |
+| CONSENTTYPE  | Patient has a valid consent of the specified consent type (code).                                                                                  |
 | PATIENTSTUDY | Patient belongs to a specified study in the study register. The study has to be specified by `{studyCode}${studyProfileCode}`, e.g. COVID19$BASIC. |
 
 ## Export Mechanisms
