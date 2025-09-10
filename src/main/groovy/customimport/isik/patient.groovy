@@ -20,7 +20,7 @@ final def idMap = [
  */
 bundle {
 
-  type = "transaction"
+  type = Bundle.BundleType.TRANSACTION
 
   final List<Patient> sourcePatients = getPatientsFromBundles(context.bundles)
 
@@ -46,7 +46,6 @@ bundle {
 
           for (final Identifier sourceIdentifier: sourceIdentifiers){
             final String idContainerTypeCode = mapSystem(sourceIdentifier.system, idMap)
-            println(idContainerTypeCode)
             identifier {
               type {
                 coding {
@@ -113,7 +112,7 @@ private static List<Patient> getPatientsFromBundles(final List<Bundle> bundles) 
 }
 
 private static List<Patient> getPatientFromBundle(final Bundle sourceBundle) {
-  sourceBundle.getEntry()
+  return sourceBundle.getEntry()
       .findAll { it.hasResource() }
       .collect { it.getResource() }
       .findAll { it instanceof Patient }
