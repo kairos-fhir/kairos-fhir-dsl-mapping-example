@@ -30,12 +30,9 @@ bundle {
 
   final List<Condition> sourceConditions = getConditionsFromBundles(context.bundles)
 
-  println(sourceConditions.size())
-
   if (sourceConditions.isEmpty()) {
     return
   }
-
 
   sourceConditions.each { final Condition sourceCondition ->
 
@@ -145,7 +142,6 @@ bundle {
               url = FhirUrls.Extension.LaborMapping.CREATE_PROFILE
               valueBoolean = true
             }
-
 
             identifier {
               system = FhirUrls.System.Finding.LABOR_FINDING_ID

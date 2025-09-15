@@ -2,17 +2,16 @@ package customexport.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.annArbor
 
 /**
- * Represented by a CXX AnnArbor classification
+ * Represented by a HDRP AnnArbor classification
  * @author Mike Wähnert
- * @since CXX.v.2023.2.0, kairos-fhir-dsl-1.21.0
+ * @since HDRP.v.2025.3.0, kairos-fhir-dsl-1.52.0
  */
 observation {
 
@@ -73,7 +72,9 @@ observation {
         coding {
           system = "https://fhir.centraxx.de/system/annArbor/extraDictionary"
           code = context.source[annArbor().extraDict().code()] as String
-          display = context.source[annArbor().extraDict().nameMultilingualEntries()].find { it[LANG] == "en" }?.getAt(VALUE) as String
+          display = context.source[annArbor().extraDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
@@ -93,9 +94,9 @@ observation {
         coding {
           system = "https://fhir.centraxx.de/system/annArbor/generalDictionary"
           code = context.source[annArbor().generalDict().code()] as String
-          display = context.source[annArbor().generalDict().nameMultilingualEntries()].find { final def me ->
-            me[LANG] == "en"
-          }?.getAt(VALUE) as String
+          display = context.source[annArbor().generalDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
@@ -115,9 +116,9 @@ observation {
         coding {
           system = "https://fhir.centraxx.de/system/annArbor/infestationDictionary"
           code = context.source[annArbor().spleenDict().code()] as String
-          display = context.source[annArbor().spleenDict().nameMultilingualEntries()].find { final def me ->
-            me[LANG] == "en"
-          }?.getAt(VALUE) as String
+          display = context.source[annArbor().spleenDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }

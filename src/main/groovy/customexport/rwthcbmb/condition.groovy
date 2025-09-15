@@ -6,11 +6,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Diagnosis
+ * Represented by a HDRP Diagnosis
  * Specified by https://simplifier.net/bbmri.de/condition
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @since HDRP.v.3.17.0.2
  */
 condition {
 

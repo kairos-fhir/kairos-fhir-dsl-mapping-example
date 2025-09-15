@@ -3,7 +3,7 @@ package customexport.patientfinder.iqtrial
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.DiagnosticReport
@@ -11,9 +11,9 @@ import org.hl7.fhir.r4.model.DiagnosticReport
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * represented by CXX LaborMapping
+ * represented by HDRP LaborMapping
  * @author Mike Wähnert
- * @since v.1.44.0, CXX.v.2025.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 diagnosticReport {
 
@@ -32,8 +32,10 @@ diagnosticReport {
   category {
     coding {
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()]
-          .find { final def me -> me[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE)
+      display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()]
+          .find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
     }
   }
 

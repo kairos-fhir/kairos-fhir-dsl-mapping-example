@@ -5,13 +5,13 @@ import org.hl7.fhir.r4.model.MedicationStatement
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 /**
- * Represented by a CXX Medication
+ * Represented by a HDRP Medication
  * This includes the agent in the medicationStatement directly.
  * Specified by https://simplifier.net/medizininformatikinitiative-modulmedikation/medicationstatement-duplicate-3
- * The specification of the coding used in CXX is unknown. Thus, the use of specific code systems must be integrated
- * depending on the standard that might be used in a customer CXX.
+ * The specification of the coding used in HDRP is unknown. Thus, the use of specific code systems must be integrated
+ * depending on the standard that might be used in a customer HDRP.
  * @author Mike Wähnert, Jonas Küttner
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  */
 medicationStatement {
 

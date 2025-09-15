@@ -3,7 +3,7 @@ package customexport.patientfinder.iqtrial
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateSection
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Questionnaire
@@ -11,7 +11,9 @@ import org.hl7.fhir.r4.model.Questionnaire
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
 
 /**
- * transforms a CXX LaborMethod to a Questionnaire.
+ * transforms a HDRP LaborMethod to a Questionnaire.
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 questionnaire {
 
@@ -26,9 +28,9 @@ questionnaire {
   }
 
   description(
-      context.source[laborMethod().nameMultilingualEntries()].find { final def me ->
-        "en" == me[MultilingualEntry.LANG]
-      }?.getAt(MultilingualEntry.VALUE) as String
+      context.source[laborMethod().multilinguals()].find { final def ml ->
+        ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+      }?.getAt(Multilingual.SHORT_NAME) as String
   )
 
   // using first section only
@@ -39,8 +41,8 @@ questionnaire {
       setLinkId(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.CODE) as String)
 
       setText(field[CrfTemplateField.LABOR_VALUE]
-          ?.getAt(LaborValue.NAME_MULTILINGUAL_ENTRIES)
-          ?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String
+          ?.getAt(LaborValue.MULTILINGUALS)
+          ?.find { it[Multilingual.LANGUAGE] == "en" }?.getAt(Multilingual.SHORT_NAME) as String
       )
       if (field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)) {
         setType(mapToType(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType))

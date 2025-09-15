@@ -9,11 +9,11 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping.
+ * Represents a HDRP LaborMapping.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-procedure.html
  *
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2023.1.0
+ * @since v.1.13.0, HDRP.v.2023.1.0
  *
  */
 procedure {

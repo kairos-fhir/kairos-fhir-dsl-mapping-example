@@ -11,9 +11,9 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * @author Jonas Küttner
- * @since CXX.v.2024.4.3, CXX.v.2024.5.0, kairos-fhir-dsl-1.42.0
+ * @since HDRP.v.2024.4.3, HDRP.v.2024.5.0, kairos-fhir-dsl-1.42.0
  */
 
 final String ALLERGEN = "Allergen.Allergen"

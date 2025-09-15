@@ -1,15 +1,14 @@
 package customexport.patientfinder.fnusa
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 
 /**
- * Represented by a CXX OrganizationUnit
+ * Represented by a HDRP OrganizationUnit
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 organization {
 
@@ -26,6 +25,8 @@ organization {
 
   active = true
 
-  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { final def me -> me[LANG] == "en" }?.getAt(VALUE) as String
+  name = context.source[organizationUnit().multilinguals()]?.find { final def ml ->
+    ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+  }?.getAt(Multilingual.SHORT_NAME) as String
 
 }

@@ -5,17 +5,17 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
 
 /**
- * Represented by a CXX Histology, because it is only a detailed information of the histology entity.
+ * Represented by a HDRP Histology, because it is only a detailed information of the histology entity.
  * Specified by https://simplifier.net/oncology/grading
  *
  * hints:
- * Reference to a single specimen is not clearly determinable, because in CXX the reference might be histology 1->n diagnosis/tumor 1->n sample.
- * Gradings can be displayed, but not entered by CXX-UI. The grading import is only possible by interfaces.
+ * Reference to a single specimen is not clearly determinable, because in HDRP the reference might be histology 1->n diagnosis/tumor 1->n sample.
+ * Gradings can be displayed, but not entered by HDRP-UI. The grading import is only possible by interfaces.
  * Even when the Observation.value hast cardinality 1.., Histology.gradingDict is not mandatory.
  * Resource is only exported, if a Progress.gradingDict exists.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  */
 observation {
 

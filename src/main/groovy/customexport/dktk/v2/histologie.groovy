@@ -5,15 +5,15 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
 
 /**
- * Represented by a CXX Histology
+ * Represented by a HDRP Histology
  * Specified by https://simplifier.net/oncology/histologie
  *
  * hints:
- *  Reference to a single specimen is not clearly determinable, because in CXX the reference might be histology 1->n diagnosis/tumor 1->n sample.
+ *  Reference to a single specimen is not clearly determinable, because in HDRP the reference might be histology 1->n diagnosis/tumor 1->n sample.
  *  Reference to focus condition has been added additionally, because a reverse reference is not possible yet.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2
  */
 observation {
   id = "Observation/Histology-" + context.source[histology().id()]

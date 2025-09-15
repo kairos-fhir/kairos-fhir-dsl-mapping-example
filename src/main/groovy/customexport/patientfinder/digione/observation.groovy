@@ -21,11 +21,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * @author Mike Wähnert
- * @since CXX v.2025.1.0, v.2024.5.2
- * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
- * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
+ * @since HDRP v.2025.1.0, v.2024.5.2
+ * The first code of each component represents the LaborValue.Code in HDRP. Further codes could be representations in LOINC, SNOMED-CT etc.
+ * LaborValueIdContainer in HDRP are just an export example, but not intended to be imported by HDRP FHIR API yet.
  */
 observation {
 
@@ -71,7 +71,7 @@ observation {
 
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
 
-    final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+    final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE] // from HDRP.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 

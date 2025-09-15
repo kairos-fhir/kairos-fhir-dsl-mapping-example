@@ -6,14 +6,14 @@ import org.hl7.fhir.r4.model.MedicationRequest
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 /**
- * Represents a CXX Medication for the US Core Resource Profile: US Core MedicationRequest Profile.
+ * Represents a HDRP Medication for the US Core Resource Profile: US Core MedicationRequest Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-medicationrequest.html
  *
- * hints: The "prescribedBy" field of a CXX Medication is just a String. Therefore, a US-CORE Requester
+ * hints: The "prescribedBy" field of a HDRP Medication is just a String. Therefore, a US-CORE Requester
  * can not be referenced.
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 
 medicationRequest {

@@ -6,9 +6,9 @@ import de.kairos.fhir.centraxx.metamodel.Multilingual
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientTransfer
 
 /**
- * Represented by a CXX PatientTransfer of an episode
+ * Represented by a HDRP PatientTransfer of an episode
  * @author Jonas Küttner
- * @since v.1.47.0, CXX.v.2024.5.7
+ * @since v.1.47.0, HDRP.v.2024.5.7
  */
 location {
   id = "Location/PT-" + context.source[patientTransfer().id()]

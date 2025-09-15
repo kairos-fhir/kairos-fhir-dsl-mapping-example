@@ -13,12 +13,12 @@ import org.hl7.fhir.r4.model.ResourceType
 import org.hl7.fhir.r4.model.StringType
 
 /**
- * transforms MII research subject to CXX research subject
+ * transforms MII research subject to HDRP research subject
  * Consent is not supported for research subjects, since the consent it self is linked to the patient the research subject is also linked to.
- * CXX requires a study center (extension) and the actualArm field to be set, which are not mandatory in MII.
+ * HDRP requires a study center (extension) and the actualArm field to be set, which are not mandatory in MII.
  *
  * TODO: incomplete, not all fields are mapped
- * required: import the CodeSystems of the Bindings as Catalogs into CXX
+ * required: import the CodeSystems of the Bindings as Catalogs into HDRP
  */
 bundle {
 
@@ -70,7 +70,7 @@ bundle {
 
                 subject = sourceEncounter.getSubject()
 
-                // service provider is mandatory for CXX
+                // service provider is mandatory for HDRP
                 if (sourceEncounter.hasServiceProvider()) {
                   serviceProvider = sourceEncounter.getServiceProvider()
                 } else {

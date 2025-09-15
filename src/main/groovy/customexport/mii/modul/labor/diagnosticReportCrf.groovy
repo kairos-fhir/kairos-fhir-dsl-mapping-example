@@ -7,11 +7,11 @@ import org.hl7.fhir.r4.model.DiagnosticReport
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab
  * This export study crf as DiagnosticReport. The Export of single observations from CentraXX CrfItems is not yet implemented.
  * @author Jonas KÜttner
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  */
 diagnosticReport {
 

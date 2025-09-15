@@ -9,12 +9,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
- * Represented by a CXX AbstractSample
+ * Represented by a HDRP AbstractSample
  *
  * Specified by https://simplifier.net/oncology/oncospecimen
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  *
  * Hints:
  *  * CCP-IT 2023-07-13: Always export aliquots with parent references
@@ -59,7 +59,7 @@ specimen {
   }
 
   type {
-    // 0. First coding is the CXX sample type code. If mapping is missing, this code might help to identify the source value.
+    // 0. First coding is the HDRP sample type code. If mapping is missing, this code might help to identify the source value.
     coding {
       system = "urn:centraxx"
       code = context.source[abstractSample().sampleType().code()]
@@ -68,20 +68,20 @@ specimen {
     final String sampleKind = context.source[abstractSample().sampleType().kind()] as String
     final String stockType = context.source[abstractSample().stockType().code()] as String
 
-    // 0. Site specific CXX sample type code => BBMRI SampleMaterialType.
+    // 0. Site specific HDRP sample type code => BBMRI SampleMaterialType.
     final String bbmriCode0 = codeToSampleType(sampleTypeCode, stockType, sampleKind)
     if (bbmriCode0 != null) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
         code = bbmriCode0
       }
-    } // 1. Without mapping, if CXX code and BBMRI code is the same.
+    } // 1. Without mapping, if HDRP code and BBMRI code is the same.
     else if (isBbmriSampleTypeCode(sampleTypeCode)) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
         code = sampleTypeCode.toLowerCase()
       }
-    } // 2. CXX sample type SPREC => BBMRI SampleMaterialType.
+    } // 2. HDRP sample type SPREC => BBMRI SampleMaterialType.
     else if (context.source[abstractSample().sampleType().sprecCode()]) {
       final String bbmriCode = sprecToBbmriSampleType(context.source[abstractSample().sampleType().sprecCode()] as String)
       if (bbmriCode != null) {
@@ -94,7 +94,7 @@ specimen {
         system = "https://doi.org/10.1089/bio.2017.0109"
         code = context.source[abstractSample().sampleType().sprecCode()]
       }
-    } else { // 3. CXX sample kind => BBMRI SampleMaterialType.
+    } else { // 3. HDRP sample kind => BBMRI SampleMaterialType.
       final String bbmriCode = sampleKindToBbmriSampleType(sampleKind)
       if (bbmriCode != null) {
         coding {
@@ -278,7 +278,7 @@ static String sampleKindToBbmriSampleType(final String sampleKind) {
   switch (sampleKind) {
     case "TISSUE": return "tissue-other"
     case "LIQUID": return "liquid-other"
-    default: return "derivative-other" // eg CXX cells
+    default: return "derivative-other" // eg HDRP cells
   }
 }
 

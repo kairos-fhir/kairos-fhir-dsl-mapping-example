@@ -9,11 +9,11 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALU
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core Goal Profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core Goal Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-goal.html
  *
  * @author Mike Wähnert, Niklas Biedka
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 goal {
 

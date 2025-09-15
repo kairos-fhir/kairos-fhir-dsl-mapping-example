@@ -10,9 +10,9 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
- * Represented by a CXX Histology
+ * Represented by a HDRP Histology
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2
  */
 
 

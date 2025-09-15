@@ -7,9 +7,9 @@ import org.hl7.fhir.r4.model.Appointment
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.calendarEvent
 
 /**
- * Represented by a CXX CalendarEvent of a Patient
+ * Represented by a HDRP CalendarEvent of a Patient
  * @author Mike Wähnert
- * @since v.1.26.0, CXX.v.2023.5.0
+ * @since v.1.26.0, HDRP.v.2023.5.0
  */
 appointment {
 

@@ -3,7 +3,7 @@ package customexport.patientfinder
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateSection
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.enums.CrfFieldType
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
@@ -26,9 +26,9 @@ questionnaire {
     }.each {final def field ->
       item {
         linkId  = field[CrfTemplateField.LABOR_VALUE][LaborValue.CODE]
-        text = field[CrfTemplateField.LABOR_VALUE][LaborValue.NAME_MULTILINGUAL_ENTRIES].find {
-          final def me -> me[MultilingualEntry.LANG] == "en"
-        }?.getAt(MultilingualEntry.VALUE) as String
+        text = field[CrfTemplateField.LABOR_VALUE][LaborValue.MULTILINGUALS].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }

@@ -6,15 +6,15 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VAL
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core Allergy Intolerance Device Profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core Allergy Intolerance Device Profile.
  * Specified by http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance
  *
  * The mapping works with the master data specification that is provided in xml/allergyIntolerance.xml
- * The xml file can be imported over CXX xml import interface
+ * The xml file can be imported over HDRP xml import interface
  * The corresponding code systems are provided rudimentary and are to be completed.
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 
 allergyIntolerance {

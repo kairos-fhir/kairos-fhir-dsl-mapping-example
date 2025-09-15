@@ -7,7 +7,7 @@ BBMRI.de / GBA Mappings* for RWTH cBMB
 * Mappings can be used to export to a [samply blaze](https://github.com/samply/blaze) store
   to be found by the [BBMRI Sample Locator](https://samplelocator.bbmri.de)
 
-RWTH cBMB uses the FHIR custom export only for some selected data points, that are documented by a CXX system.
+RWTH cBMB uses the FHIR custom export only for some selected data points, that are documented by a HDRP system.
 Other data points are added by other export processes from other biobanking systems.
 
 # Changes

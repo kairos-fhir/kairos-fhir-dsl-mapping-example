@@ -9,9 +9,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 
 /**
- * Represented by a CXX TNM
+ * Represented by a HDRP TNM
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2, kairos-fhir-dsl-1.13.0
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2, kairos-fhir-dsl-1.13.0
  */
 observation {
 

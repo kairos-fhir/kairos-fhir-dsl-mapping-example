@@ -15,10 +15,10 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 
 /**
- * represented by CXX LaborMapping
+ * represented by HDRP LaborMapping
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/diagnosticreportlab
  * @author Jonas Küttner
- * @since v.1.43.0, CXX.v.2024.5.0
+ * @since v.1.43.0, HDRP.v.2024.5.0
  */
 
 
@@ -64,7 +64,7 @@ diagnosticReport {
         code = "FILL"
       }
     }
-    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME // this needs to unique in CXX anyway
+    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME // this needs to unique in HDRP anyway
     value = context.source[laborFinding().shortName()]
 
 

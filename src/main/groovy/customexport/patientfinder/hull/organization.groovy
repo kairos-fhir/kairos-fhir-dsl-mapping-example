@@ -7,9 +7,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 import static org.apache.commons.lang3.StringUtils.isBlank
 
 /**
- * Represented by a CXX OrganizationUnit
+ * Represented by a HDRP OrganizationUnit
  * @author Mike Wähnert
- * @since v.1.51.0, CXX.v.2025.1.7
+ * @since v.1.51.0, HDRP.v.2025.1.7
  */
 organization {
 

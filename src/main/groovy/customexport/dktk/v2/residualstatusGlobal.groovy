@@ -7,9 +7,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
 
 /**
- * Represented by a CXX Surgery
+ * Represented by a HDRP Surgery
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  */
 observation {
   id = "Observation/GesamtbeurteilungResidualstatus-" + context.source[surgery().id()]

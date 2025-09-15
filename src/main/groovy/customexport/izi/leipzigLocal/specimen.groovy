@@ -34,10 +34,10 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.WARM_ISCH_TIME_DA
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
- * Represented by a CXX AbstractSample
+ * Represented by a HDRP AbstractSample
  * @author Franzy Hohnstaedter, Mike Wähnert
- * @since v.1.7.0, CXX.v.3.17.2
- * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
+ * @since v.1.7.0, HDRP.v.3.17.2
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 HDRP can import the data absence reason extension to represent the UNKNOWN precision date
  */
 specimen {
 

@@ -1,6 +1,5 @@
 package customexport.patientfinder.hull
 
-
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
@@ -21,19 +20,18 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 /**
- * Represents a CXX Episode.
+ * Represents a HDRP Episode.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-encounter.html
  *
  * hints:
  * - Mapping uses SNOMED-CT concepts.
- * - There is no participant, reasonCode/reference, hospitalization, location in CXX
+ * - There is no participant, reasonCode/reference, hospitalization, location in HDRP
  *
  *
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2023.3.0
+ * @since v.1.13.0, HDRP.v.2023.3.0
  */
 
 final String TREATMENT_SERVICE = "treatmentService"
@@ -59,7 +57,7 @@ encounter {
 
   id = "Encounter/" + context.source[episode().id()]
 
-  final def mapping = context.source[medication().laborMappings()].find { final def lm ->
+  final def mapping = context.source[episode().laborMappings()].find { final def lm ->
     lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Encounter_profile"
   }
 

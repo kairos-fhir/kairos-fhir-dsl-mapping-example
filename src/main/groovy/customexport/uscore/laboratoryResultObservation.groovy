@@ -1,29 +1,29 @@
 package customexport.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborValueCatalog
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.Unity
+import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCatalog.CATALOGUE_VERSION
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.CatalogEntry.CATALOG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.OpsEntry.CATALOGUE
 import static de.kairos.fhir.centraxx.metamodel.OpsEntry.PREFERRED
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 
 /**
- * Represents a CXX LaborFindingLaborValue that is part of a LaborFinding of Category LABOR.
+ * Represents a HDRP LaborFindingLaborValue that is part of a LaborFinding of Category LABOR.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-observation-lab.html
  *
  * Mapping uses CentraXX code system, since LOINC is not explicitly supported by CentraXX
@@ -33,7 +33,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
  * Does not export LFLV of Type masterDataCatalogEntry
  *
  * @author Jonas Küttner
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  *
  *
  */
@@ -69,12 +69,16 @@ observation {
   code {
     coding {
       system = FhirUrls.System.LaborValue.BASE_URL
-      code = context.source[laborFindingLaborValue().laborValue().code()] as String
-      display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()]
-          .find { final me -> me[LANG] == lang }?.getAt(VALUE)
+      code = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] as String
+      display = context.source[laborFindingLaborValue().crfTemplateField().laborValue().multilinguals()]
+          .find { final def ml ->
+            ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
     }
-    text = context.source[laborFindingLaborValue().laborValue().descMultilingualEntries()]
-        .find { final me -> me[LANG] == lang }?.getAt(VALUE) as String
+    text = context.source[laborFindingLaborValue().crfTemplateField().laborValue().multilinguals()]
+        .find { final def ml ->
+          ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.DESCRIPTION] != null
+        }?.getAt(Multilingual.DESCRIPTION) as String
 
   }
 
@@ -92,7 +96,7 @@ observation {
     date = normalizeDate(context.source[laborFindingLaborValue().creationDate()] as String)
   }
 
-  final def laborValue = context.source[laborFindingLaborValue().laborValue()]
+  final def laborValue = context.source[laborFindingLaborValue().crfTemplateField().laborValue()]
 
   final def numericValue = context.source[laborFindingLaborValue().numericValue()]
   final def stringValue = context.source[laborFindingLaborValue().stringValue()]
@@ -115,7 +119,9 @@ observation {
     valueQuantity {
       value = numericValue
       if (unit_ != null) {
-        unit = unit_[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == lang }?.getAt(VALUE)
+        unit = unit_[Unity.MULTILINGUALS].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
         system = ucumCode != null ? "http://unitsofmeasure.org" : FhirUrls.System.LaborValue.Unit.BASE_URL
         code = (ucumCode != null ? ucumCode : unit_[CODE]) as String
       }
@@ -136,8 +142,10 @@ observation {
         coding {
           system = "urn:centraxx:CodeSystem/UsageEntry-" + entry[ID]
           code = entry[CODE] as String
-          display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
+          display = entry[UsageEntry.MULTILINGUALS]
+              .find { final def ml ->
+                ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
@@ -170,8 +178,10 @@ observation {
           system = "urn:centraxx:CodeSystem/CustomCatalog-" + customCatalog[ID]
           version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
           code = entry[CODE] as String
-          display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
+          display = entry[CatalogEntry.MULTILINGUALS]
+              .find { final def ml ->
+                ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
@@ -182,8 +192,10 @@ observation {
           system = "urn:centraxx:CodeSystem/ValueList-" + valueList[ID]
           version = entry[CATALOG]?.getAt(CATALOGUE_VERSION)
           code = entry[CODE] as String
-          display = entry[NAME_MULTILINGUAL_ENTRIES]
-              .find { final def me -> me[LANG] == lang }?.getAt(VALUE)
+          display = entry[CatalogEntry.MULTILINGUALS]
+              .find { final def ml ->
+                ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }

@@ -7,11 +7,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.otherClassification
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
 
 /**
- * Represented by a CXX OtherClassification
+ * Represented by a HDRP OtherClassification
  * Specified by https://simplifier.net/oncology/weitereklassifikation
  *
  * @author Mike Wähnert
- * @since CXX.v.3.18.3.18, CXX.v.2023.2.0, kairos-fhir-dsl-1.21.0
+ * @since HDRP.v.3.18.3.18, HDRP.v.2023.2.0, kairos-fhir-dsl-1.21.0
  */
 observation {
 

@@ -3,7 +3,7 @@
 Kairos CentraXX to CTcue PatientFinder Mappings
 ========================
 
-Mappings can be used to export data in CXX profiles, which has been imported before by CXX-PatientFinder interfaces.
+Mappings can be used to export data in HDRP profiles, which has been imported before by HDRP-PatientFinder interfaces.
 The following imported data sets are supported/tested:
 
 * [Cancer Outcomes and Services Data set (COSD)](https://digital.nhs.uk/ndrs/data/data-sets/cosd)

@@ -9,9 +9,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 
 /**
- * Represented by a CXX Metastasis
+ * Represented by a HDRP Metastasis
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2
  */
 observation {
 

@@ -9,10 +9,10 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyMember
 
 /**
- * Represented by CXX StudyMember
+ * Represented by HDRP StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
  * @author Mike Wähnert
- * @since v.1.10.0, CXX.v.3.18.2
+ * @since v.1.10.0, HDRP.v.3.18.2
  */
 researchSubject {
 

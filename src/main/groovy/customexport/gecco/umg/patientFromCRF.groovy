@@ -11,10 +11,10 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/patient
  * @author Lukas Reinert, Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  *
  * hints:
  *  A StudyEpisode is no regular episode and cannot reference an encounter
@@ -30,9 +30,9 @@ patient {
     return //no export
   }
 
-  id = "Patient/UMG-CXX-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+  id = "Patient/UMG-HDRP-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
 
-  // change "MPI" to the correct Code of the CXX-identifier to be exported;
+  // change "MPI" to the correct Code of the HDRP-identifier to be exported;
   // e.g. "SAPID"    in PPIL-Prod to receive the SAP-ID
   //   or "CXXF-PSN" in REXX-Prod to receive the TTP pseudonym 
   final def idContainer = context.source[studyVisitItem().studyMember().patientContainer().idContainer()]?.find {

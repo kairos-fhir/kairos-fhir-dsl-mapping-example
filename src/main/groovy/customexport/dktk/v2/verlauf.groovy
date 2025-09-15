@@ -6,15 +6,15 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
 
 /**
- * Represented by a CXX Progress
+ * Represented by a HDRP Progress
  * Specified by https://simplifier.net/oncology/verlauf
  *
  * hints:
- * A CXX progress has all tumor state (Lokal, Gesamt, lymphknoten, Metastasen) always the same time. All fields are optional.
+ * A HDRP progress has all tumor state (Lokal, Gesamt, lymphknoten, Metastasen) always the same time. All fields are optional.
  * The clinical expression is also created, if no reference exists.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, missing References added since CXX.v.3.17.2
+ * @since HDRP.v.3.17.1.6, missing References added since HDRP.v.3.17.2
  */
 clinicalImpression {
 

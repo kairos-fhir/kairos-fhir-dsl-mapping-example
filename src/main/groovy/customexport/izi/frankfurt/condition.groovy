@@ -7,14 +7,14 @@ import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Diagnosis
+ * Represented by a HDRP Diagnosis
  * @author Franzy Hohnstaedter, Mike Wähnert
- * @since v.1.6.0, CXX.v.3.17.1.7
- * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
+ * @since v.1.6.0, HDRP.v.3.17.1.7
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 HDRP can import the data absence reason extension to represent the UNKNOWN precision date
  *
  * HINTS:
  *  - Catalog system URLS without logical FHIR ID (e.g. instead of with code or version) are implemented since
- *  CXX.v.3.18.2.11, CXX.v.3.18.3.8, CXX.v.3.18.4, CXX.v.2022.1.5, CXX.v.2022.2.5, CXX.v.2022.3.5, CXX.v.2022.4.0
+ *  HDRP.v.3.18.2.11, HDRP.v.3.18.3.8, HDRP.v.3.18.4, HDRP.v.2022.1.5, HDRP.v.2022.2.5, HDRP.v.2022.3.5, HDRP.v.2022.4.0
  * - Before those versions, an static ID type mapping for each catalog and value list of each source system is necessary in the target system.
  */
 condition {

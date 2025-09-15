@@ -43,7 +43,7 @@ bundle {
 
             setStatus(sourceP.getStatus())
 
-            // Code is mandatory in CXX and must be chosen from a CodeSystem
+            // Code is mandatory in HDRP and must be chosen from a CodeSystem
             // catalogs have to be created
             // just put a dummy code here
             code {
@@ -56,10 +56,10 @@ bundle {
             //reference by identifier
             subject = sourceP.getSubject()
 
-            //mandatory in CXX
+            //mandatory in HDRP
             performedDateTime = sourceP.getPerformed()
 
-            //mandatory in CXX -> create Fake encounter
+            //mandatory in HDRP -> create Fake encounter
             if (sourceP.hasEncounter()) {
               encounter = sourceP.getEncounter()
             } else {

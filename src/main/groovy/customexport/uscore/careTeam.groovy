@@ -11,7 +11,7 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VAL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-careteam.html
  *
  * The Script works with a CentraXX measurement profile with the code US_CORE_CARE_TEAM
@@ -22,7 +22,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * TODO: Export von MasterDataEntries
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 careTeam {
 

@@ -8,10 +8,10 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/malignantneoplasticdisease
  * @author Lukas Reinert, Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  *
  */
 

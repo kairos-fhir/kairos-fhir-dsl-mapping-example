@@ -3,7 +3,7 @@
 Mapping example for Cxx to Cxx Sync to IZI Leipzig*
 =====================================================
 
-* Mappings can be used to synchronize between CXX systems.
+* Mappings can be used to synchronize between HDRP systems.
 * From Frankfurt ITMP to Leipzig IZI
 _____________
 * with the kind support of 

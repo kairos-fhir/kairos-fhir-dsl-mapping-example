@@ -10,7 +10,7 @@ import org.hl7.fhir.r4.model.Specimen
 /**
  * Transforms a specimen bundles.
  * @author Mike Wähnert
- * @since v.1.7.0, CXX.v.2022.3.0
+ * @since v.1.7.0, HDRP.v.2022.3.0
  */
 bundle {
   context.bundles.each { final Bundle sourceBundle ->

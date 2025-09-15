@@ -1,14 +1,14 @@
 {
   "scheduledExportEnable": {
-    "description": "If true, this project will export all filtered CXX patient data with the configured FHIR resources by the specified exportInterval.",
+    "description": "If true, this project will export all filtered HDRP patient data with the configured FHIR resources by the specified exportInterval.",
     "value": false
   },
   "incrementalExportEnable": {
-    "description": "If true, this project will export filtered CXX patient data with the configured FHIR resources by a detected change after a centraxx transaction.",
+    "description": "If true, this project will export filtered HDRP patient data with the configured FHIR resources by a detected change after a centraxx transaction.",
     "value": false
   },
   "incrementalDeleteExportEnable": {
-    "description": "If true, this project will export deletes of all mapped resources. CAUTION: Because the fhir export has no access to deleted data anymore, there is no transformation or filtering possible. All deleted entities are always exported by the FHIR ID based on the FHIR resource type and the CXX OID in the pattern \u0027resourceType/OID\u0027. e.g. Specimen/123 or Patient/456 . Make sure, your export transformation uses the same pattern.",
+    "description": "If true, this project will export deletes of all mapped resources. CAUTION: Because the fhir export has no access to deleted data anymore, there is no transformation or filtering possible. All deleted entities are always exported by the FHIR ID based on the FHIR resource type and the HDRP OID in the pattern \u0027resourceType/OID\u0027. e.g. Specimen/123 or Patient/456 . Make sure, your export transformation uses the same pattern.",
     "value": false
   },
   "bulkExportEnable": {

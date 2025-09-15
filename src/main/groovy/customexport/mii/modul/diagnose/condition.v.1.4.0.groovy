@@ -3,13 +3,13 @@ package customexport.mii.modul.diagnose
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * represented by CXX DIAGNOSIS
+ * represented by HDRP DIAGNOSIS
  * Specified by (stable release) https://www.medizininformatik-initiative.de/Kerndatensatz/Modul_Diagnose/Condition.html v.1.0.4
  * Working draft (future release) https://simplifier.net/guide/MedizininformatikInitiative-ModulDiagnosen-ImplementationGuide/Condition
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.8.0, HDRP.v.3.18.1
  * hints:
- * bodysite is not depicted in CXX
+ * bodysite is not depicted in HDRP
  */
 
 condition {

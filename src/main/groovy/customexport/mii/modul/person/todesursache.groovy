@@ -4,10 +4,10 @@ package customexport.mii.modul.person
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by CXX Diagnosis
+ * Represented by HDRP Diagnosis
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/profileconditiontodesursache
  * @author Jonas Küttner
- * @since v.1.10.0, CXX.v.3.18.2
+ * @since v.1.10.0, HDRP.v.3.18.2
  */
 
 condition {

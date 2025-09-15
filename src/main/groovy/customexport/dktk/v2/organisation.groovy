@@ -1,15 +1,15 @@
 package customexport.dktk.v2
 
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 
 /**
- * Represented by a CXX OrganizationUnit
+ * Represented by a HDRP OrganizationUnit
  * Specified by https://simplifier.net/oncology/organisation
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 organization {
   id = "Organization/" + context.source[organizationUnit().id()]
@@ -33,6 +33,8 @@ organization {
     }
   }
 
-  name = context.source[organizationUnit().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE)
+  name = context.source[organizationUnit().multilinguals()]?.find { final def ml ->
+    ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+  }?.getAt(Multilingual.SHORT_NAME) as String
 
 }

@@ -6,9 +6,9 @@ import de.kairos.fhir.centraxx.metamodel.Multilingual
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 
 /**
- * Represented by a CXX OrganizationUnit
+ * Represented by a HDRP OrganizationUnit
  * @author Mike Wähnert
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.13.0, HDRP.v.2022.1.0
  */
 organization {
 

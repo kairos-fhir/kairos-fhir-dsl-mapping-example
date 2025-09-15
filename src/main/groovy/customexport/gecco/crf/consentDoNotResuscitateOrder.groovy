@@ -9,10 +9,10 @@ import org.hl7.fhir.r4.model.Consent
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://simplifier.net/guide/GermanCoronaConsensusDataSet-ImplementationGuide-1.0.5/Home/GECCOCore/AnamnesisRiskfactors/Resuscitationstatus.guide.md?version=current
  * @author Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  */
 consent {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]

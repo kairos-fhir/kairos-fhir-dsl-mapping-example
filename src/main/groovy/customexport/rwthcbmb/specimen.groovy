@@ -6,7 +6,7 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 /**
- * Represented by a CXX AbstractSample
+ * Represented by a HDRP AbstractSample
  * Specified by https://simplifier.net/bbmri.de/specimen
  *
  * hints:
@@ -14,7 +14,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
  * Because the DKTK uses also all Aliquots (yet), a separate Groovy mapping for the same profile is necessary for DKTK.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  */
 specimen {
 
@@ -60,18 +60,18 @@ specimen {
   status = context.source[abstractSample().restAmount().amount()] > 0 ? "available" : "unavailable"
 
   type {
-    // 0. First coding is the CXX sample type code. If mapping is missing, this code might help to identify the source value.
+    // 0. First coding is the HDRP sample type code. If mapping is missing, this code might help to identify the source value.
     coding {
       system = "urn:centraxx"
       code = context.source[abstractSample().sampleType().code()]
     }
-    // 1. Without mapping, if CXX code and BBMRI code is the same.
+    // 1. Without mapping, if HDRP code and BBMRI code is the same.
     if (isBbmriSampleTypeCode(context.source[abstractSample().sampleType().code()] as String)) {
       coding {
         system = "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
         code = (context.source[abstractSample().sampleType().code()] as String).toLowerCase()
       }
-    } // 2. CXX sample type SPREC => BBMRI SampleMaterialType.
+    } // 2. HDRP sample type SPREC => BBMRI SampleMaterialType.
     else if (context.source[abstractSample().sampleType().sprecCode()]) {
       final String bbmriCode = sprecToBbmriSampleType(context.source[abstractSample().sampleType().sprecCode()] as String)
       if (bbmriCode != null) {
@@ -84,7 +84,7 @@ specimen {
         system = "https://doi.org/10.1089/bio.2017.0109"
         code = context.source[abstractSample().sampleType().sprecCode()]
       }
-    } else { // 3. CXX sample kind => BBMRI SampleMaterialType.
+    } else { // 3. HDRP sample kind => BBMRI SampleMaterialType.
       final String bbmriCode = sampleKindToBbmriSampleType(context.source[abstractSample().sampleType().kind()] as String)
       if (bbmriCode != null) {
         coding {
@@ -284,7 +284,7 @@ static String sampleKindToBbmriSampleType(final String sampleKind) {
   } else if (sampleKind == "LIQUID") {
     return "liquid-other"
   }
-  return "derivative-other" // eg CXX cells
+  return "derivative-other" // eg HDRP cells
 }
 
 static boolean isBbmriSampleTypeCode(final String sampleTypeCode) {

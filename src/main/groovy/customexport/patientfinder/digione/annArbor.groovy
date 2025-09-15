@@ -9,9 +9,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.annArbor
 
 /**
- * Represented by a CXX AnnArbor classification
+ * Represented by a HDRP AnnArbor classification
  * @author Mike Wähnert
- * @since CXX.v.2023.2.0, kairos-fhir-dsl-1.21.0
+ * @since HDRP.v.2023.2.0, kairos-fhir-dsl-1.21.0
  */
 observation {
 

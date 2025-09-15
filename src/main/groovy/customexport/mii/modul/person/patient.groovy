@@ -15,10 +15,10 @@ import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 
 /**
- * represented by CXX Patient
+ * represented by HDRP Patient
  * Export of address data requires the rights to export clear data.
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.8.0, HDRP.v.3.18.1
  */
 
 

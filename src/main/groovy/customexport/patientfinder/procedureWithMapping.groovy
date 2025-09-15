@@ -18,13 +18,13 @@ import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 
 /**
- * Represented by CXX MedProcedure
+ * Represented by HDRP MedProcedure
  * Exports extra data that is documented in a measurement profile with code ADDITIONAL_PROCEDURE_DATA
  * The measurement profile 2 parameters:
  * 1.  Code: "DEPARTMENT", Type: SingleChoice on MasterDataCatalog of all OrgUnits
  * 2.  Code: "IS_SURGICAL_PROCEDURE", Type: boolean
  *
- * @since v.1.43.0, CXX.v.2024.5.2
+ * @since v.1.43.0, HDRP.v.2024.5.2
  */
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]

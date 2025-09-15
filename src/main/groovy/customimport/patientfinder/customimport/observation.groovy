@@ -126,7 +126,7 @@ bundle {
                     valueString = LaborValueType.STRING as String
                   }
 
-                  // this is required to make some sense of the data in CXX
+                  // this is required to make some sense of the data in HDRP
                   code {
                     coding {
                       system = FhirUrls.System.LaborValue.BASE_URL
@@ -145,7 +145,7 @@ bundle {
                       valueString = LaborValueType.STRING as String
                     }
 
-                    // this is required to make some sense of the data in CXX
+                    // this is required to make some sense of the data in HDRP
                     code {
                       coding {
                         system = FhirUrls.System.LaborValue.BASE_URL
@@ -171,7 +171,7 @@ bundle {
                     valueString = LaborValueType.STRING as String
                   }
 
-                  // this is required to make some sense of the data in CXX
+                  // this is required to make some sense of the data in HDRP
                   code {
                     coding {
                       system = FhirUrls.System.LaborValue.BASE_URL
@@ -190,7 +190,7 @@ bundle {
                     valueString = LaborValueType.DECIMAL as String
                   }
 
-                  // this is required to make some sense of the data in CXX
+                  // this is required to make some sense of the data in HDRP
                   code {
                     coding {
                       system = FhirUrls.System.LaborValue.BASE_URL

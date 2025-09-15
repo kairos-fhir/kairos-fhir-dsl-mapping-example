@@ -7,11 +7,11 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * Specified by https://simplifier.net/bbmri.de/bodyweight
  *
  * @author Mike Wähnert
- * @since v.1.7.0. CXX.v.3.17.2
+ * @since v.1.7.0. HDRP.v.3.17.2
  */
 observation {
 

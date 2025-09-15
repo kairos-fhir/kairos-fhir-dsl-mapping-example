@@ -1,17 +1,18 @@
 package customexport.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
+
 /**
- * Represented by a CXX RadiationTherapy
+ * Represented by a HDRP RadiationTherapy
  * Specified by https://simplifier.net/oncology/strahlentherapie
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 procedure {
   id = "Procedure/RadiationTherapy-" + context.source[radiationTherapy().id()]
@@ -56,10 +57,12 @@ procedure {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-SYSTIntention"
       valueCodeableConcept {
         coding {
-        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
-        code = context.source[radiationTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
-        display = context.source[radiationTherapy().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
-      }
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTIntentionCS"
+          code = context.source[radiationTherapy().intentionDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+          display = context.source[radiationTherapy().intentionDict().multilinguals()]?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
+        }
       }
     }
   }
@@ -69,10 +72,12 @@ procedure {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
       valueCodeableConcept {
         coding {
-        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
-        code = context.source[radiationTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
-        display = context.source[radiationTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
-      }
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+          code = context.source[radiationTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+          display = context.source[radiationTherapy().therapyKindDict().multilinguals()]?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
+        }
       }
     }
   }

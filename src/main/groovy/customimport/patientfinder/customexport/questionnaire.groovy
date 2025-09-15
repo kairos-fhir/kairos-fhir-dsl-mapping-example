@@ -3,14 +3,17 @@ package customimport.patientfinder.customexport
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateSection
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Questionnaire
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
 
 /**
- * transforms a CXX LaborMethod to a Questionnaire.
+ * transforms a HDRP LaborMethod to a Questionnaire.
+ *
+ * @since v.1.52.0
+ * @since HDRP v.2025.3.0
  */
 questionnaire {
 
@@ -29,8 +32,10 @@ questionnaire {
 
       // assuming the question is stored as description
       setText(field[CrfTemplateField.LABOR_VALUE]
-          ?.getAt(LaborValue.DESC_MULTILINGUAL_ENTRIES)
-          ?.find { it[MultilingualEntry.LANG] == "en" }?.getAt(MultilingualEntry.VALUE) as String
+          ?.getAt(LaborValue.MULTILINGUALS)
+          ?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.DESCRIPTION] != null
+          }?.getAt(Multilingual.DESCRIPTION) as String
       )
       if (field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE)) {
         setType(mapToType(field[CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.D_TYPE) as LaborValueDType))

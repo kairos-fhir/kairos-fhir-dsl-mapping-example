@@ -8,9 +8,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientTransfer
 
 /**
- * Represented by a CXX PatientTransfer of an episode
+ * Represented by a HDRP PatientTransfer of an episode
  * @author Mike Wähnert
- * @since v.1.23.0, CXX.v.2023.3.2
+ * @since v.1.23.0, HDRP.v.2023.3.2
  */
 location {
 

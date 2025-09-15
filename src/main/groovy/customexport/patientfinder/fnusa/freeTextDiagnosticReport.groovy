@@ -20,9 +20,9 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * represented by CXX LaborMapping
+ * represented by HDRP LaborMapping
  * @author Mike Wähnert
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.8.0, HDRP.v.3.18.1
  *
  * This writes free text fields into a diagnostic report. if a LaborMethod code contains  '_free_text', all LabFinLabVals are
  * concatenated in to a string. For other profiles, only LabFinLabVals with a LaborValue code that contains _MEMO are written
