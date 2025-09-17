@@ -22,7 +22,7 @@
     <gmavenplus-plugin.version>1.9.1</gmavenplus-plugin.version>
     <findbugs.version>3.0.2</findbugs.version>
     <slf4j-simple.version>1.7.36</slf4j-simple.version>
-    <hapi.fhir.version>5.7.0</hapi.fhir.version>
+    <hapi.fhir.version>6.6.0</hapi.fhir.version>
   </properties>
 
   <scm>

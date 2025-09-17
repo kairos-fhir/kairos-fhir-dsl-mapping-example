@@ -92,7 +92,7 @@ procedure {
       status = Procedure.ProcedureStatus.UNKNOWN
     }
   } else
-    status = Procedure.ProcedureStatus.NULL
+    status = Procedure.ProcedureStatus.UNKNOWN
 }
 
 /**
