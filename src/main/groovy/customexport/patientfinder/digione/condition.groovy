@@ -39,6 +39,12 @@ condition {
     date = context.source[diagnosis().creationDate()]
   }
 
+  if (context.source[diagnosis().diagnosisDate()] != null && context.source[diagnosis().diagnosisDate().date()] != null){
+    onsetDateTime {
+      date = context.source[diagnosis().diagnosisDate().date()]
+    }
+  }
+
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {

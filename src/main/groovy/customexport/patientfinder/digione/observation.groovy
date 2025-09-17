@@ -27,10 +27,14 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * The first code of each component represents the LaborValue.Code in HDRP. Further codes could be representations in LOINC, SNOMED-CT etc.
  * LaborValueIdContainer in HDRP are just an export example, but not intended to be imported by HDRP FHIR API yet.
  */
+
+final List<String> codesToFilter = ["DIAGNOSIS"]
+
+
 observation {
 
   // use other for all the additional data mapping methods to exclude from export
-  if (context.source[laborMapping().laborFinding().laborMethod().category()] != LaborMethodCategory.OTHER) {
+  if (codesToFilter.contains(context.source[laborMapping().laborFinding().laborMethod().code()] as String)) {
     return
   }
 
