@@ -13,7 +13,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * @author Jonas Küttner
  */
 patient {

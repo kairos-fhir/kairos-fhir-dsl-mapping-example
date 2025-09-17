@@ -6,14 +6,14 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
 
 /**
- * Represented by a CXX Progress
+ * Represented by a HDRP Progress
  * Specified by https://simplifier.net/oncology/gesamtbeurteilungtumorstatus
  *
  * hints:
  * Resource is only exported, if a Progress.fullAssessmentDict exists.
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  */
 observation {
 

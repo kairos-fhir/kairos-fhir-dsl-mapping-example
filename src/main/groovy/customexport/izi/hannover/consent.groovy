@@ -10,10 +10,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Consent
+ * Represented by a HDRP Consent
  * @author Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.16.0, CXX.v.2022.2.0
- * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 CXX can import the data absence reason extension to represent the UNKNOWN precision date
+ * @since KAIROS-FHIR-DSL.v.1.16.0, HDRP.v.2022.2.0
+ * @since v.3.18.3.19, 3.18.4, 2023.6.2, 2024.1.0 HDRP can import the data absence reason extension to represent the UNKNOWN precision date
  * HINT: binary file attachments are not needed and not supported yet.
  */
 consent {

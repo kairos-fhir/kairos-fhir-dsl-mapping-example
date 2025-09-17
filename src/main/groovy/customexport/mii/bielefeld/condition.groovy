@@ -3,9 +3,9 @@ package customexport.mii.bielefeld
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 /**
- * Represented by a CXX DIAGNOSIS
+ * Represented by a HDRP DIAGNOSIS
  * @author Jonas Küttner, Mike Wähnert
- * @since v.1.40.0, CXX.v.2024.4.2
+ * @since v.1.40.0, HDRP.v.2024.4.2
  *
  */
 

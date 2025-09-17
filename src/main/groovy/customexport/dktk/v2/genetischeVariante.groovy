@@ -13,10 +13,10 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * Specified by https://simplifier.net/oncology/genetischevariantecs
  * @author Mike Wähnert
- * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
+ * @since kairos-fhir-dsl.v.1.12.0, HDRP.v.3.18.1.19, HDRP.v.3.18.2
  *
  * Based on the measurement profile, which has been specified by the CCP-IT group in ../xml/masterdata_molecularmarker.xml
  * It does not cover the specified FHIR observation component slices like Amino-acid-change, DNA-change, etc.
@@ -70,8 +70,8 @@ observation {
   context.source[laborMapping().laborFinding().laborFindingLaborValues()].each { final lflv ->
 
     final def laborValue = lflv[LaborFindingLaborValue.LABOR_VALUE] != null
-        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before CXX.v.2022.3.0
-        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from CXX.v.2022.3.0
+        ? lflv[LaborFindingLaborValue.LABOR_VALUE] // before HDRP.v.2022.3.0
+        : lflv["crfTemplateField"][CrfTemplateField.LABOR_VALUE] // from HDRP.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
@@ -95,7 +95,7 @@ observation {
             code = loincCode
           }
         }
-        coding { // CXX code as a second coding is exported, if no loinc code exists.
+        coding { // HDRP code as a second coding is exported, if no loinc code exists.
           system = FhirUrls.System.LaborValue.BASE_URL
           code = laborValueCode
         }

@@ -10,16 +10,16 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core Implantable Device Profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core Implantable Device Profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-implantable-device.html
  *
  * The mapping works with the master data specification that is provided in xml/implantableDevice.xml
- * The xml file can be imported over CXX xml import interface
+ * The xml file can be imported over HDRP xml import interface
  * The corresponding code systems are provided rudimentary and are to be completed.
  *
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 
 device {

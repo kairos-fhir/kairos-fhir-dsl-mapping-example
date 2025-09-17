@@ -8,10 +8,10 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientStudy
 
 /**
- * Represented by CXX StudyMember
+ * Represented by HDRP StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
  * @author Jonas Küttner
- * @since v.1.38.0, CXX.v.2024.4.0
+ * @since v.1.38.0, HDRP.v.2024.4.0
  *
  *
  */

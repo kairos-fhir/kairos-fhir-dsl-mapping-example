@@ -8,7 +8,7 @@ import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALU
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 import static org.hl7.fhir.r4.model.CarePlan.CarePlanStatus.fromCode
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core CarePlan Profile.
  * Specified by https://hl7.org/fhir/us/core/STU4/StructureDefinition-us-core-careplan.html
  *
  * The Script works with a CentraXX measurement profile with the code US_CORE_CARE_PLAN
@@ -18,7 +18,7 @@ import static org.hl7.fhir.r4.model.CarePlan.CarePlanStatus.fromCode
  * The export of the "text" field is not supported yet
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 
 carePlan {

@@ -6,10 +6,10 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Diagnosis
+ * Represented by a HDRP Diagnosis
  * Specified by https://simplifier.net/oncology/todursache
  * @author Mike Wähnert
- * @since kairos-fhir-dsl.v.1.20.0, CXX.v.2023.2.0, 2023.1.1, 2022.4.7, 3.18.4, 3.18.3.14
+ * @since kairos-fhir-dsl.v.1.20.0, HDRP.v.2023.2.0, 2023.1.1, 2022.4.7, 3.18.4, 3.18.3.14
  */
 observation {
 

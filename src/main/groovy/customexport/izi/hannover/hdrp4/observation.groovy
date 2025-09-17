@@ -22,9 +22,9 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractSample.ID_CONTAINER
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 
 /**
- * Represented by a CXX LaborFinding
+ * Represented by a HDRP LaborFinding
  * @author Jonas Küttner
- * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
+ * @since kairos-fhir-dsl.v.1.12.0, HDRP.v.3.18.1.19, HDRP.v.3.18.2
  * @since v.2024.5.8, v.2025.1.0 (requires changes develeoped in CENTRAXX-21618, CENTRAXX-21615)
  *
  */
@@ -256,7 +256,7 @@ observation {
               if (attendingDoctor != null) {
                 coding {
                   system = FhirUrls.System.AttendingDoctor.BASE_URL
-                  // CXX uses the reference embedded in a coding to support multi selects
+                  // HDRP uses the reference embedded in a coding to support multi selects
                   code = "Practitioner/" + attendingDoctor?.getAt(AbstractCatalog.ID) as String
                 }
               }

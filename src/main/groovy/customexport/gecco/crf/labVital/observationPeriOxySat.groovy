@@ -10,10 +10,10 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/oxygensaturation
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
+ * @since KAIROS-FHIR-DSL.v.1.9.0, HDRP.v.3.18.1.7
  *
  */
 

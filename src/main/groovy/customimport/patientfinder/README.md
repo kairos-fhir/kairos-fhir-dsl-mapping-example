@@ -1,6 +1,6 @@
 <img src="/docs/images/Logo.png" width="250" alt="IQVIA Logo"/>
 
-Imports IQVIA Patient Finder profiles to HDRP/CXX
+Imports IQVIA Patient Finder profiles to HDRP/HDRP
 ========================
 
 * Specification: https://simplifier.net/iqvia-patient-finder

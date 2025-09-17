@@ -41,7 +41,7 @@ DKTK Oncology Mappings*
 
 ## 2023-11-03
 
-* BBMRI SampleMaterialType mapped by site specific CXX SampleType codes
+* BBMRI SampleMaterialType mapped by site specific HDRP SampleType codes
 
 ## 2023-11-01
 

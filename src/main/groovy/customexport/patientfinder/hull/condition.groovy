@@ -17,9 +17,9 @@ import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by a CXX Diagnosis
+ * Represented by a HDRP Diagnosis
  * @author Mike Wähnert
- * @since v.1.43.0, CXX.v.2024.5.2
+ * @since v.1.43.0, HDRP.v.2024.5.2
  */
 condition {
 

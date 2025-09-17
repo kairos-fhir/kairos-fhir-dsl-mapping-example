@@ -1,19 +1,19 @@
 package customexport.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.SurgeryComponent
 import org.hl7.fhir.r4.model.Procedure
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.surgery
+
 /**
- * Represented by a CXX Surgery
- * OPS code for surgeries are not available in CXX
+ * Represented by a HDRP Surgery
+ * OPS code for surgeries are not available in HDRP
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since v.1.52.0
+ * @since HDRP v.2025.3.0
  *
- * SurgeryComponent export is available since CXX.v.3.18.3.17, CXX.v.3.18.4,CXX.v.2023.3.9, CXX.v.2023.4.2, CXX.v.2023.5.1, CXX.v.2023.6.0
  */
 procedure {
   id = "Procedure/Surgery-" + context.source[surgery().id()]
@@ -70,14 +70,18 @@ procedure {
       coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/GesamtbeurteilungResidualstatusCS"
         version = context.source[surgery().rClassificationDict().version()]
-        code = context.source[surgery().rClassificationDict().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+        code = context.source[surgery().rClassificationDict().multilinguals()]?.find { final def ml ->
+          ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
     if (context.source[surgery().rClassificationLocalDict().code()]) {
       coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/LokaleBeurteilungResidualstatusCS"
         version = context.source[surgery().rClassificationLocalDict().version()]
-        code = context.source[surgery().rClassificationLocalDict().nameMultilingualEntries()]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+        code = context.source[surgery().rClassificationLocalDict().multilinguals()]?.find { final def ml ->
+          ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }
@@ -89,7 +93,9 @@ procedure {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/OPIntentionCS"
           code = (context.source[surgery().intentionDict().code()] as String).toUpperCase()
-          display = context.source[surgery().intentionDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+          display = context.source[surgery().intentionDict().multilinguals()]?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }

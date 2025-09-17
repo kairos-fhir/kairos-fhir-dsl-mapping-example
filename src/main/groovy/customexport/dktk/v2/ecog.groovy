@@ -1,18 +1,18 @@
 package customexport.dktk.v2
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.Observation
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.progress
 
 /**
- * Represented by a CXX Progress
+ * Represented by a HDRP Progress
  * Specified by https://simplifier.net/oncology/ecog
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.2
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 observation {
 
@@ -68,7 +68,9 @@ observation {
       system = FhirUrls.System.GtdsDict.EcogDictionary.BASE_URL
       code = context.source[progress().ecogDict().code()] as String
       version = context.source[progress().ecogDict().version()] as String
-      display = context.source[progress().ecogDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE)
+      display = context.source[progress().ecogDict().multilinguals()]?.find { final def ml ->
+        ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+      }?.getAt(Multilingual.SHORT_NAME) as String
     }
   }
 }

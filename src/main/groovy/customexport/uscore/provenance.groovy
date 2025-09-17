@@ -10,11 +10,11 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VAL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping for the US Core Resource Profile: US Core Provenance profile.
+ * Represents a HDRP LaborMapping for the US Core Resource Profile: US Core Provenance profile.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-provenance.html
  *
  * @author Mike Wähnert, Niklas Biedka
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.14.0, HDRP.v.2022.1.0
  */
 provenance {
 

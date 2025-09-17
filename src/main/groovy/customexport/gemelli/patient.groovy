@@ -18,12 +18,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * Specified: http://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html
  * @author Mike Wähnert
- * @since v.1.32.0, CXX.v.2024.2.1
+ * @since v.1.32.0, HDRP.v.2024.2.1
  *
- * Hints: Race, and birth sex are no explicit fields in CXX. If needed, specify the field and add extensions similar to ethnicity.
+ * Hints: Race, and birth sex are no explicit fields in HDRP. If needed, specify the field and add extensions similar to ethnicity.
  */
 patient {
 

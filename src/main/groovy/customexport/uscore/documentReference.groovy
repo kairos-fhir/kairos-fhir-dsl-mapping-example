@@ -4,7 +4,7 @@ import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.BinaryFilePart
 import de.kairos.fhir.centraxx.metamodel.DocumentCategory
 import de.kairos.fhir.centraxx.metamodel.Episode
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import org.hl7.fhir.r4.model.Enumerations
 import org.hl7.fhir.r4.model.codesystems.DataAbsentReason
@@ -12,12 +12,13 @@ import org.hl7.fhir.r4.model.codesystems.DataAbsentReason
 import static de.kairos.fhir.centraxx.metamodel.BinaryFile.CONTENT_PARTS
 import static de.kairos.fhir.centraxx.metamodel.BinaryFile.CONTENT_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.documentMapping
+
 /**
- * Represents a CXX DocumentMapping.
+ * Represents a HDRP DocumentMapping.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-documentreference.html
  *
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.14.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 
 final def lang = "de"
@@ -42,9 +43,9 @@ documentReference {
       coding {
         system = FhirUrls.System.Document.Category.BASE_URL
         code = docCategory[DocumentCategory.CODE]
-        display = docCategory[DocumentCategory.NAME_MULTILINGUAL_ENTRIES].find { final me ->
-          me[MultilingualEntry.LANG] == lang
-        }?.getAt(MultilingualEntry.VALUE)
+        display = docCategory[DocumentCategory.MULTILINGUALS].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     } else {
       coding {

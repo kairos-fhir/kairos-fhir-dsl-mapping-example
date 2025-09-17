@@ -1,21 +1,20 @@
 package customexport.uscore
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.organizationUnit
 
 /**
- * Represented by a CXX OrganizationUnit
+ * Represented by a HDRP OrganizationUnit
  * @author Mike Wähnert
  *
  * Hints
  * - example contains only CentraXX identifier. If your CentraXX contains NPI or CLIA, the identifier system for
  * NPI:http://hl7.org/fhir/sid/us-npi or CLIA:urn:oid:2.16.840.1.113883.4.7
- * - CXX OrgUnits have no telecom or address
+ * - HDRP OrgUnits have no telecom or address
  *
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 organization {
 
@@ -32,8 +31,8 @@ organization {
 
   active = true
 
-  name = context.source[organizationUnit().nameMultilingualEntries()].find { final def me ->
-    me[LANG] == "de"
-  }?.getAt(VALUE) as String
+  name = context.source[organizationUnit().multilinguals()].find { final def ml ->
+    ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+  }?.getAt(Multilingual.SHORT_NAME) as String
 
 }

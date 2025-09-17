@@ -1,21 +1,24 @@
 package customexport.patientfinder
 
-
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
+import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.QuestionnaireResponse
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
+/**
+ * @since v.1.52.0
+ * @since HDRP v.2025.3.0
+ */
 questionnaireResponse {
 
   if (!(context.source[laborMapping().laborFinding().laborMethod().code()] == "SACT_Profile")) {
@@ -42,7 +45,9 @@ questionnaireResponse {
     final def laborValue = lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]
     item {
       linkId = laborValue[CODE] as String
-      text = laborValue[NAME_MULTILINGUAL_ENTRIES].find { final def me -> me[LANG] == "en"}?.getAt(VALUE) as String
+      text = laborValue[LaborValue.MULTILINGUALS].find { final def ml ->
+        ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+      }?.getAt(Multilingual.SHORT_NAME) as String
 
       if (isNumeric(laborValue)) {
         answer {
@@ -75,7 +80,9 @@ questionnaireResponse {
           answer {
             valueCoding {
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[UsageEntry.MULTILINGUALS]?.find { final def ml ->
+                ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -83,7 +90,9 @@ questionnaireResponse {
           answer {
             valueCoding {
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]?.find { final def ml ->
+                ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -94,7 +103,9 @@ questionnaireResponse {
           answer {
             valueCoding {
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]?.find { final def ml ->
+                ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -102,7 +113,9 @@ questionnaireResponse {
           answer {
             valueCoding {
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]?.find { final def ml ->
+                ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -113,7 +126,9 @@ questionnaireResponse {
           answer {
             valueCoding {
               code = entry[CODE] as String
-              display = entry[NAME_MULTILINGUAL_ENTRIES]?.find { it[LANG] == "en" }?.getAt(VALUE) as String
+              display = entry[CatalogEntry.MULTILINGUALS]?.find { final def ml ->
+                ml[Multilingual.LANGUAGE] == "en" && ml[Multilingual.SHORT_NAME] != null
+              }?.getAt(Multilingual.SHORT_NAME) as String
             }
           }
         }
@@ -131,9 +146,7 @@ questionnaireResponse {
         System.out.println(msg)
       }
     }
-
   }
-
 }
 
 static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {

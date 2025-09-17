@@ -13,13 +13,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
- * Represented by a CXX SAMPLE
+ * Represented by a HDRP SAMPLE
  * Specified by https://simplifier.net/medizininformatikinitiative-modulbiobank/profilespecimenbioprobe History.v.8 (draft)
- * Codings are customized in CXX. Therefore, the code system is unknown. If other codings are used in the local CXX system, the code systems must be adjusted.
+ * Codings are customized in HDRP. Therefore, the code system is unknown. If other codings are used in the local HDRP system, the code systems must be adjusted.
  * In this example SPREC codes for the sample type, and container are translated requesting the the provided concept maps per HTTP.
  * TODO: NOTE: The script was written while the corresponding FHIR profile on simplifier.net was still in draft state. Changes in the profile might require adjustments in the script.
  * @author Jonas Küttner
- * @since KAIROS-FHIR-DSL.v.1.32.0, CXX.v.2024.2.1
+ * @since KAIROS-FHIR-DSL.v.1.32.0, HDRP.v.2024.2.1
  */
 
 final String sampleTypeConceptMapUrl = "https://fhir.simplifier.net/MedizininformatikInitiative-ModulBiobank/ConceptMap/SPRECSampleTypeMap"
@@ -64,8 +64,8 @@ specimen {
     }
   }
 
-  // Specimen status is customized in CXX. Exact meaning depends on implementation in CXX. Here, it is assumed that the codes of the codesystem
-  // are implemented in CXX.
+  // Specimen status is customized in HDRP. Exact meaning depends on implementation in HDRP. Here, it is assumed that the codes of the codesystem
+  // are implemented in HDRP.
   status = mapSpecimenStatus(context.source[sample().sampleStatus().code()] as String)
 
   if (context.source[sample().sampleType()]) {
@@ -98,7 +98,7 @@ specimen {
     collectedDateTime = context.source[sample().samplingDate().date()]
     if (context.source[sample().orgSample()]) {
       bodySite {
-        //Organs are specified user-defined in CXX. sct coding only applies, when used for coding in CXX
+        //Organs are specified user-defined in HDRP. sct coding only applies, when used for coding in HDRP
         coding {
           system = "http://snomed.info/sct"
           code = context.source[sample().orgSample().code()]

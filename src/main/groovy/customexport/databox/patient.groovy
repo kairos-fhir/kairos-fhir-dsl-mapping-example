@@ -10,7 +10,7 @@ import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * @author Marvin Schmidtke
  */
 patient {

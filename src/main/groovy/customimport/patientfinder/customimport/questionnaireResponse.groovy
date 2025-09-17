@@ -67,7 +67,7 @@ bundle {
               coding {
                 system = FhirUrls.System.LaborMethod.BASE_URL
                 // Original example references by a logical FHIR ID, which is not FHIR conform.
-                // It is necessary to reference by a canonical URL which contains the HDRP/CXX labor method code.
+                // It is necessary to reference by a canonical URL which contains the HDRP/HDRP labor method code.
                 code = sourceQR.getQuestionnaireElement().value.replaceFirst("#Questionnaire/", "")
               }
             }

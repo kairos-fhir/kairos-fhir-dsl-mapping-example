@@ -15,7 +15,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
 
 /**
- * Represented by a CXX SAMPLE
+ * Represented by a HDRP SAMPLE
 
  * @since fhir-dsl-1.45.0, HDRPv.2025.5.6
  */
@@ -108,7 +108,7 @@ specimen {
     if (context.source[sample().orgSample()]) {
 
       bodySite {
-        //Organs are specified user-defined in CXX. sct coding only applies, when used for coding in CXX
+        //Organs are specified user-defined in HDRP. sct coding only applies, when used for coding in HDRP
         coding {
           system = FhirUrls.System.Organ.BASE_URL
           code = context.source[sample().orgSample().code()]

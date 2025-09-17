@@ -12,17 +12,17 @@ import org.hl7.fhir.r4.model.codesystems.DiagnosisRole
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 
 /**
- * Represents a CXX Episode
+ * Represents a HDRP Episode
  * Specified by https://simplifier.net/medizininformatikinitiative-modulfall/kontaktgesundheitseinrichtung
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.8.0, HDRP.v.3.18.1
  * hints:
  * identifier visit number: the MII profile requires a "Aufnahmenummer" as identifier. Therefore a specific Episode ID
  * must be defined in CentraXX (with code "VISIT_NUMBER" in this example)
  * serviceType: The fhir-profile requires a "Fachabteilungsschluessel" as defined in the following value set
  * https://www.medizininformatik-initiative.de/fhir/core/modul-fall/CodeSystem/Fachabteilungsschluessel
- * For consistency, the med departments codes defined in CXX must match those defined in this value set.
- * type.kontaktebene, hospitalization are not depicted in CXX
+ * For consistency, the med departments codes defined in HDRP must match those defined in this value set.
+ * type.kontaktebene, hospitalization are not depicted in HDRP
  */
 
 encounter {
@@ -32,7 +32,7 @@ encounter {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
   }
 
-  //Created Episode Id in CXX called visit number
+  //Created Episode Id in HDRP called visit number
   final def visit_number = context.source[episode().idContainer()]?.find { final idc ->
     "VISIT_NUMBER" == idc[EpisodeIdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE]
   }

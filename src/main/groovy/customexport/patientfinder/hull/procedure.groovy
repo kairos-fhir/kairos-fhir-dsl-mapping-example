@@ -24,8 +24,8 @@ final Map PROFILE_TYPES = [
     (PERFORMER_ACTOR): LaborFindingLaborValue.MULTI_VALUE_REFERENCES
 ]
 /**
- * Represented by CXX MedProcedure
- * @since v.1.43.0, CXX.v.2024.5.2
+ * Represented by HDRP MedProcedure
+ * @since v.1.43.0, HDRP.v.2024.5.2
  */
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]

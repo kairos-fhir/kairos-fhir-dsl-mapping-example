@@ -11,7 +11,7 @@ FHIR repository connect import mapping examples
 
 # General ideas
 
-* In CXX the user selects always a single patient from the repository connect FHIR search result to be staged, merged and imported to CentraXX.
+* In HDRP the user selects always a single patient from the repository connect FHIR search result to be staged, merged and imported to CentraXX.
   Therefore, all bundle sources should contain only one source patient resource.
 * It is possible to transform multiple resources together, but it should result in exactly one patient bundle entry.
 * All other resources of all bundles of all scripts will be stored to the first patient. Other patients are ignored.

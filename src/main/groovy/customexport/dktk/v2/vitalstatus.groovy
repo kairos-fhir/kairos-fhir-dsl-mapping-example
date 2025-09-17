@@ -11,14 +11,14 @@ import static de.kairos.fhir.centraxx.metamodel.PrecisionDate.PRECISION
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * Specified by https://simplifier.net/oncology/vitalstatus
  *
  * Hints:
  * A vitalstatus has no separate encounter, but belongs to all encounter of the patient/subject
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6, v.3.17.2
+ * @since HDRP.v.3.17.1.6, v.3.17.2
  */
 observation {
   id = "Observation/Vitalstatus-" + context.source[patientMasterDataAnonymous().patientContainer().id()]

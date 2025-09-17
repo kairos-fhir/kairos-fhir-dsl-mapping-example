@@ -10,9 +10,9 @@ import static de.kairos.fhir.centraxx.metamodel.PrecisionDate.PRECISION
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * represented by a CXX patient
+ * represented by a HDRP patient
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.8.0, HDRP.v.3.18.1
  */
 
 observation {

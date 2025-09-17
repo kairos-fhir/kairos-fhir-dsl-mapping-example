@@ -6,7 +6,7 @@ import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.OpsEntry
 import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
@@ -17,12 +17,12 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborValue
 
 /**
- * Represented by CXX LaborFindingLaborValue
+ * Represented by HDRP LaborFindingLaborValue
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/observationlab
  * The profile focuses on numeric values. LaborValues that are not monitored as numerical values
  * are added as a component to the observation as most of them can not be mapped to a ValueCodeableConcept.
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 observation {
   id = "Observation/" + context.source[laborFindingLaborValue().id()]
@@ -60,10 +60,10 @@ observation {
   code {
     coding {
       system = "urn:centraxx"
-      code = context.source[laborFindingLaborValue().laborValue().code()] as String
-      display = context.source[laborFindingLaborValue().laborValue().nameMultilingualEntries()].find { final def entry ->
-        "de" == entry[MultilingualEntry.LANG]
-      }?.getAt(MultilingualEntry.VALUE)
+      code = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] as String
+      display = context.source[laborFindingLaborValue().crfTemplateField().laborValue().multilinguals()].find { final def ml ->
+        ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+      }?.getAt(Multilingual.SHORT_NAME) as String
     }
   }
 
@@ -86,7 +86,7 @@ observation {
     }
   }
 
-  // the CXX creation date documents the when the LaborFindingLaborValue got assigned a value. Therefore, the clinical reference date
+  // the HDRP creation date documents the when the LaborFindingLaborValue got assigned a value. Therefore, the clinical reference date
   // depends on the process of documentation.
   effectiveDateTime {
     date = normalizeDate(context.source[laborFindingLaborValue().creationDate()] as String)

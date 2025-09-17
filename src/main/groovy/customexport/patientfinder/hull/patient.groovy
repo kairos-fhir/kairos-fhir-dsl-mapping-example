@@ -38,10 +38,10 @@ final Map PROFILE_TYPES = [
 ]
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * Specified: http://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html
  * @author Mike Wähnert
- * @since v.1.32.0, CXX.v.2024.2.1
+ * @since v.1.32.0, HDRP.v.2024.2.1
  */
 patient {
 

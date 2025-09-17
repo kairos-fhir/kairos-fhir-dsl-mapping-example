@@ -10,10 +10,10 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * Specified by https://simplifier.net/guide/GermanCoronaConsensusDataSet-ImplementationGuide/Laboratoryvalue
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.9.0, CXX.v.3.18.1.7
+ * @since KAIROS-FHIR-DSL.v.1.9.0, HDRP.v.3.18.1.7
  *
  */
 

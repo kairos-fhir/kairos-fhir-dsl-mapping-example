@@ -8,7 +8,7 @@ import org.hl7.fhir.r4.model.ResourceType
 /**
  * Transforms encounter bundles.
  * @author Mike Wähnert
- * @since v.1.7.0, CXX.v.2022.3.0
+ * @since v.1.7.0, HDRP.v.2022.3.0
  */
 bundle {
   context.bundles.each { final Bundle sourceBundle ->
@@ -28,7 +28,7 @@ bundle {
                   effectiveDateTime = sourceObservation.getEffectiveDateTimeType()
                 }
 
-                // must exists as labor method in CXX with all required labor value definitions. Staging in CXX cannot create master data yet
+                // must exists as labor method in HDRP with all required labor value definitions. Staging in HDRP cannot create master data yet
                 method {
                   coding {
                     system = FhirUrls.System.LaborMethod.BASE_URL
@@ -50,7 +50,7 @@ bundle {
                   code {
                     coding {
                       system = FhirUrls.System.LaborValue.BASE_URL
-                      code = "WEIGHT" // must exists as labor value in CXX
+                      code = "WEIGHT" // must exists as labor value in HDRP
                     }
                   }
 

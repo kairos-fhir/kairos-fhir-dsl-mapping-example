@@ -37,10 +37,10 @@ final Map PROFILE_TYPES = [
 
 
 /**
- * Represents a CXX Medication
+ * Represents a HDRP Medication
  *
  * @author Mike Wähnert
- * @since v.1.41.0, CXX.v.2024.4.1
+ * @since v.1.41.0, HDRP.v.2024.4.1
  */
 medicationAdministration {
 

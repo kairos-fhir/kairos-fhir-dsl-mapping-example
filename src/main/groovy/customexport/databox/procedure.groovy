@@ -6,9 +6,9 @@ import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 
 /**
- * Represented by CXX MedProcedure
+ * Represented by HDRP MedProcedure
  * @author Marvin Schmidtke
- * TODO: bodysite: is it actually monitored in CXX?
+ * TODO: bodysite: is it actually monitored in HDRP?
  */
 procedure {
   id = "Procedure/" + context.source[medProcedure().id()]

@@ -5,7 +5,7 @@ import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
-import de.kairos.fhir.centraxx.metamodel.MultilingualEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import org.hl7.fhir.r4.model.DiagnosticReport
 
@@ -13,11 +13,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represents a CXX LaborMapping.
+ * Represents a HDRP LaborMapping.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-diagnosticreport-lab.html
  *
  * @author Jonas Küttner
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  *
  */
 
@@ -78,9 +78,9 @@ diagnosticReport {
     coding {
       system = FhirUrls.System.LaborMethod.BASE_URL
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().nameMultilingualEntries()]?.find {
-        final def ml -> ml[MultilingualEntry.LANG] == lang
-      }?.getAt(MultilingualEntry.VALUE)
+      display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()]?.find { final def ml ->
+        ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+      }?.getAt(Multilingual.SHORT_NAME) as String
     }
   }
 

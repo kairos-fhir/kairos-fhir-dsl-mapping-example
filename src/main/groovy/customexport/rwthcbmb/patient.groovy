@@ -6,11 +6,11 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
 
 /**
- * Represented by a CXX PatientMasterDataAnonymous
+ * Represented by a HDRP PatientMasterDataAnonymous
  * Specified by https://simplifier.net/bbmri.de/patient
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.0.2
+ * @since HDRP.v.3.17.0.2
  */
 patient {
 

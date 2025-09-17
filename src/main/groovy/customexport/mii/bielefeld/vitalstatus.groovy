@@ -9,14 +9,14 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * represented by a CXX patient
+ * represented by a HDRP patient
  * @author Jonas Küttner
- * @since v.1.40.0, CXX.v.2024.4.2
+ * @since v.1.40.0, HDRP.v.2024.4.2
  *
  * Requirements:
- * CXX Custom Catalog MiiVitalstatus with code featured in Valueset
+ * HDRP Custom Catalog MiiVitalstatus with code featured in Valueset
  * "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus"
- * CXX MeasurementProfile for called "MP_ObservationVitalstatus" with parameters:
+ * HDRP MeasurementProfile for called "MP_ObservationVitalstatus" with parameters:
  * Vitalstatus.valueCodeableConcept.coding.code (SingleSelection from Vitalstatus catalog)
  */
 

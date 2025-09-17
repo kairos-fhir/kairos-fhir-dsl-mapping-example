@@ -4,7 +4,7 @@ package customexport.databox
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
 /**
- * Represented by CXX Diagnosis
+ * Represented by HDRP Diagnosis
  * @author Marvin Schmidtke
  */
 condition {

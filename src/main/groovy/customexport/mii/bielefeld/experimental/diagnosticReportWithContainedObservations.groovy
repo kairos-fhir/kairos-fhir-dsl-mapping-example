@@ -26,10 +26,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * represented by CXX LaborMapping
+ * represented by HDRP LaborMapping
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/diagnosticreportlab
  * @author Jonas Küttner
- * @since v.1.41.0, CXX.v.2024.4.3
+ * @since v.1.41.0, HDRP.v.2024.4.3
  */
 
 
@@ -76,7 +76,7 @@ diagnosticReport {
           code = "FILL"
         }
       }
-      system = FhirUrls.System.Finding.LABOR_FINDING_ID // this needs to unique in CXX anyway
+      system = FhirUrls.System.Finding.LABOR_FINDING_ID // this needs to unique in HDRP anyway
       value = context.source[laborMapping().laborFinding().laborFindingId()]
 
       // assigner would have to be coded as measurement value in the Observation. Remember to filter out of the actual observations

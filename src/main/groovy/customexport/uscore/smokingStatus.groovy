@@ -1,26 +1,27 @@
 package customexport.uscore
 
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeName.NAME_MULTILINGUAL_ENTRIES
 import static de.kairos.fhir.centraxx.metamodel.AbstractEntity.ID
-import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.LABOR_VALUE
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
+import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.CATALOG_ENTRY_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
+
 /**
- * Represents a CXX LaborMapping for the US Core Smoking Status .
+ * Represents a HDRP LaborMapping for the US Core Smoking Status .
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-smokingstatus.html
  *
  * hints:
  * - Observation are specified by LOINC codes.
  * The LaborMapping must therefore use a custom catalog with the required SNOMED CT Codes.
- * The CXX Master data that must be defined in CXX for this script to work is provided
+ * The HDRP Master data that must be defined in HDRP for this script to work is provided
  * in /xml/smokingStatus.xml. The file can be imported over the xml import interface.
  *
  * @author Jonas Küttner
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  */
 
 final def lang = "de"
@@ -63,7 +64,7 @@ observation {
   }
 
   final def lflv = context.source[laborMapping().laborFinding().laborFindingLaborValues()]
-      .find { final lblv -> lblv[LABOR_VALUE][CODE] == "US_CORE_SMOKING_STATUS" }
+      .find { final lblv -> lblv[CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == "US_CORE_SMOKING_STATUS" }
 
   final def catalogEntries = lflv[CATALOG_ENTRY_VALUE]
   catalogEntries.each { final def entry ->
@@ -71,9 +72,9 @@ observation {
       coding {
         system = "http://snomed.info/sct"
         code = entry[CODE] as String
-        display = entry[NAME_MULTILINGUAL_ENTRIES].find {
-          final def ml -> ml[LANG] = lang
-        }?.getAt(VALUE)
+        display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }

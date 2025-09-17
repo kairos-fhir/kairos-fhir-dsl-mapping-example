@@ -6,11 +6,11 @@ import org.hl7.fhir.r4.model.Procedure
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 
 /**
- * Represented by CXX MedProcedure
+ * Represented by HDRP MedProcedure
  * Specified by https://simplifier.net/medizininformatikinitiative-modulprozeduren/prozedur v.2.0.0
  * @author Jonas Küttner
- * @since v.1.8.0, CXX.v.3.18.1
- * TODO: bodysite: is it actually monitored in CXX?
+ * @since v.1.8.0, HDRP.v.3.18.1
+ * TODO: bodysite: is it actually monitored in HDRP?
  */
 
 procedure {

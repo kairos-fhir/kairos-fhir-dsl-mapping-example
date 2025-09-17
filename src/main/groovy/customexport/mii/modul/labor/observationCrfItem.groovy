@@ -6,10 +6,10 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.crfItem
 
 /**
- * Represented by CXX CrfItem
+ * Represented by HDRP CrfItem
  * specified by https://simplifier.net/medizininformatikinitiative-modullabor/observationlab
  * @author Mike Wähnert, Jonas Küttner
- * @since v.1.9.0, CXX.v.3.18.2
+ * @since v.1.9.0, HDRP.v.3.18.2
  * TODO: work in progress
  */
 observation {

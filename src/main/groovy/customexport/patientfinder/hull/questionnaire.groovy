@@ -11,7 +11,7 @@ import org.hl7.fhir.r4.model.Questionnaire
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMethod
 
 /**
- * transforms a CXX LaborMethod to a Questionnaire.
+ * transforms a HDRP LaborMethod to a Questionnaire.
  */
 questionnaire {
 

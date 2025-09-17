@@ -25,11 +25,11 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPL
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by a CXX LaborMapping
+ * Represented by a HDRP LaborMapping
  * @author Mike Wähnert
- * @since kairos-fhir-dsl.v.1.12.0, CXX.v.3.18.1.19, CXX.v.3.18.2
- * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
- * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
+ * @since kairos-fhir-dsl.v.1.12.0, HDRP.v.3.18.1.19, HDRP.v.3.18.2
+ * The first code of each component represents the LaborValue.Code in HDRP. Further codes could be representations in LOINC, SNOMED-CT etc.
+ * LaborValueIdContainer in HDRP are just an export example, but not intended to be imported by HDRP FHIR API yet.
  */
 observation {
 
@@ -96,7 +96,7 @@ observation {
     final lflv -> lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE][CODE] != "Specialism" // filter specialism
   }.each { final lflv ->
 
-    final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE] // from CXX.v.2022.3.0
+    final def laborValue = lflv[CRF_TEMPLATE_FIELD][LABOR_VALUE] // from HDRP.v.2022.3.0
 
     final String laborValueCode = laborValue?.getAt(CODE) as String
 
@@ -212,7 +212,7 @@ observation {
             if (attendingDoctor != null) {
               coding {
                 system = FhirUrls.System.AttendingDoctor.BASE_URL
-                // CXX uses the reference embedded in a coding to support multi selects
+                // HDRP uses the reference embedded in a coding to support multi selects
                 code = "Practitioner/" + attendingDoctor?.getAt(AbstractCatalog.ID) as String
               }
             }

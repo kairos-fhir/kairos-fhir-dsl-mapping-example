@@ -3,10 +3,10 @@ package customexport.uscore
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 /**
- * Represented by a CXX Medication
+ * Represented by a HDRP Medication
  * Specified: https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-medication.html
  * @author Niklas Biedka
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.13.0, HDRP.v.2022.1.0
  */
 
 medication {

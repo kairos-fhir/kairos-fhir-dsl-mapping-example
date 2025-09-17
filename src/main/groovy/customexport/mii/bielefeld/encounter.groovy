@@ -20,12 +20,12 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 
 /**
  * @author Jonas Küttner
- * @since kairos-fhir-dsl v.1.39.0, CXX v.2024.4.1, v.2024.5.0
+ * @since kairos-fhir-dsl v.1.39.0, HDRP v.2024.4.1, v.2024.5.0
  *
  * Requirements:
- * Custom Catalog for Encounter.status codes in CXX featuring the FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
- * Catalog for StayType with codes in CXX for FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
- * CXX MeasurementProfile for called "EncounterProfile" with parameters:
+ * Custom Catalog for Encounter.status codes in HDRP featuring the FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
+ * Catalog for StayType with codes in HDRP for FHIR valueset (http://fhir.de/ValueSet/EncounterClassDE)
+ * HDRP MeasurementProfile for called "EncounterProfile" with parameters:
  * "Encounter.status" (SingleSelection from Encounter.status catalog)
  */
 
@@ -58,7 +58,7 @@ encounter {
   }
 
 
-  // the required system needs to be created as CXX MasterData
+  // the required system needs to be created as HDRP MasterData
   final def stayType = context.source[episode().stayType()]
   if (stayType) {
     class_ {

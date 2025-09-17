@@ -8,10 +8,10 @@ import org.hl7.fhir.r4.model.DateTimeType
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
 
 /**
- * Represented by a CXX Consent
+ * Represented by a HDRP Consent
  * Specified by http://fhir.de/ConsentManagement/StructureDefinition/Consent
  * @author Lukas Reinert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  */
 
 consent {

@@ -6,9 +6,9 @@ import org.hl7.fhir.r4.model.ResearchSubject
 import org.hl7.fhir.r4.model.ResourceType
 
 /**
- * transforms MII research subject to CXX research subject
+ * transforms MII research subject to HDRP research subject
  * Consent is not supported for research subjects, since the consent it self is linked to the patient the research subject is also linked to.
- * CXX requires a study center (extension) and the actualArm field to be set, which are not mandatory in MII.
+ * HDRP requires a study center (extension) and the actualArm field to be set, which are not mandatory in MII.
  */
 bundle {
 
@@ -46,7 +46,7 @@ bundle {
 
                 study = sourceSubject.getStudy()
                 individual = sourceSubject.getIndividual()
-                // actualArm is mandatory in CXX
+                // actualArm is mandatory in HDRP
                 actualArm = sourceSubject.getActualArm()
               }
             }

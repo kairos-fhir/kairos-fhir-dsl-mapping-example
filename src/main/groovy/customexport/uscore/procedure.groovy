@@ -1,17 +1,23 @@
 package customexport.uscore
 
-import de.kairos.fhir.centraxx.metamodel.*
+
+import de.kairos.fhir.centraxx.metamodel.AbstractCustomCatalog
+import de.kairos.fhir.centraxx.metamodel.CatalogEntry
+import de.kairos.fhir.centraxx.metamodel.Multilingual
+import de.kairos.fhir.centraxx.metamodel.OpsCatalog
+import de.kairos.fhir.centraxx.metamodel.OpsEntry
 import org.hl7.fhir.r4.model.Procedure
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
+
 /**
- * Represents a CXX MedProcedure.
+ * Represents a HDRP MedProcedure.
  * Specified by https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-procedure.html
  *
  * CentraXX MedProcedures are coded by either an OPS or a CustomCatalog code.
  *
  * @author Jonas Küttner
- * @since v.1.13.0, CXX.v.2022.1.0
+ * @since v.1.52.0, HDRP.v.2025.3.0
  *
  * TODO: Implement export of MasterDataEntries
  */
@@ -45,9 +51,9 @@ procedure {
         system = "urn:centraxx:CodeSystem/CustomCatalog-" + customCatalogEntry[CatalogEntry.CATALOG][AbstractCustomCatalog.ID]
         version = customCatalogEntry[CatalogEntry.CATALOG][AbstractCustomCatalog.VERSION]
         code = customCatalogEntry[CatalogEntry.CODE] as String
-        display = customCatalogEntry[CatalogEntry.NAME_MULTILINGUAL_ENTRIES].find {
-          final def ml -> ml[MultilingualEntry.LANG] == lang
-        }?.getAt(MultilingualEntry.VALUE)
+        display = customCatalogEntry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == lang && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }

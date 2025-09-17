@@ -9,9 +9,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.histology
 
 /**
- * Represented by a CXX Histology
+ * Represented by a HDRP Histology
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2
  */
 observation {
   id = "Observation/Histology-" + context.source[histology().id()]

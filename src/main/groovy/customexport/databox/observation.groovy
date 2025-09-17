@@ -1,12 +1,12 @@
 package customexport.databox
 
-import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
-import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
@@ -19,11 +19,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFindingLaborVa
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
- * Represented by CXX LaborMapping
+ * Represented by HDRP LaborMapping
  * @author Marvin Schmidtke
  * TODO: extend example for Enumerations and RadioOptionGroups
- * The first code of each component represents the LaborValue.Code in CXX. Further codes could be representations in LOINC, SNOMED-CT etc.
- * LaborValueIdContainer in CXX are just an export example, but not intended to be imported by CXX FHIR API yet.
+ * The first code of each component represents the LaborValue.Code in HDRP. Further codes could be representations in LOINC, SNOMED-CT etc.
+ * LaborValueIdContainer in HDRP are just an export example, but not intended to be imported by HDRP FHIR API yet.
  */
 observation {
   final def whitelistFindingCodes = ["RADIOLOGYFINDING", "MOLPATH_MUTATIONDIAGNOSIS", "MICROBIOLOGYFINDING", "MOLPATH_LYMPHOMDIAGNOSIS", "LEGACY_MP", "MOLPATH_FISH", "MOLPATH_PATHOGEN", "MOLPATH_ENDOPREDICT"]

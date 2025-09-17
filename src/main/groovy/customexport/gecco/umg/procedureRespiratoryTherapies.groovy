@@ -9,10 +9,10 @@ import de.kairos.fhir.centraxx.metamodel.LaborValue
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.studyVisitItem
 
 /**
- * Represented by a CXX StudyVisitItem
+ * Represented by a HDRP StudyVisitItem
  * Specified by https://simplifier.net/forschungsnetzcovid-19/respiratorytherapies-procedure
  * @author Lukas Reinert, Mike Wähnert
- * @since KAIROS-FHIR-DSL.v.1.8.0, CXX.v.3.18.1
+ * @since KAIROS-FHIR-DSL.v.1.8.0, HDRP.v.3.18.1
  */
 procedure {
   final def studyCode = context.source[studyVisitItem().studyMember().study().code()]
@@ -59,7 +59,7 @@ procedure {
       }
     }
     subject {
-      reference = "Patient/UMG-CXX-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
+      reference = "Patient/UMG-HDRP-" + context.source[studyVisitItem().studyMember().patientContainer().id()]
     }
 
     performedDateTime {

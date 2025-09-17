@@ -2,17 +2,17 @@ package customexport.patientfinder
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.metastasis
 
 /**
- * Represented by a CXX Metastasis
+ * Represented by a HDRP Metastasis
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 observation {
 
@@ -56,9 +56,9 @@ observation {
       coding {
         system = "cosd:localisation"
         code = (context.source[metastasis().localisationCodeDict().code()] as String).toUpperCase()
-        display = context.source[metastasis().localisationCodeDict().nameMultilingualEntries()].find { final def me ->
-          me[LANG] == "en"
-        }?.getAt(VALUE) as String
+        display = context.source[metastasis().localisationCodeDict().multilinguals()].find { final def ml ->
+          ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+        }?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }

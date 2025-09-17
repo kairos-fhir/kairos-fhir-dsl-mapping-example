@@ -6,14 +6,14 @@ import org.hl7.fhir.r4.model.Observation
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 
 /**
- * Represented by a CXX TNM
+ * Represented by a HDRP TNM
  * Hints:
  *  CCP-IT has decided on 2020-11-17 to use the TNMc profile only if all TNM prefixes are clinical.
  *  If only one prefix is not clinical (c) the profile TNMp is used, even if it is no prefix p (pathology), but e.g a (autopsy) or u (ultrasonic).
  *  Both profiles differ only in the loinc codes for Observation.code.coding.code and Observation.component:TNM-T/N/M.code.coding.code
  *  Reference to focus condition has been added additionally, because a reverse reference is not possible yet.
  * @author Mike Wähnert
- * @since CXX.v.3.18.1.21, CXX.v.3.18.2, kairos-fhir-dsl-1.13.0
+ * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2, kairos-fhir-dsl-1.13.0
  */
 observation {
 

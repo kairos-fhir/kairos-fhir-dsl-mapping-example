@@ -11,10 +11,10 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medication
 
 /**
- * Represents a CXX Medication
+ * Represents a HDRP Medication
  *
  * @author Mike Wähnert
- * @since v.1.26.0, CXX.v.2023.5.0
+ * @since v.1.26.0, HDRP.v.2023.5.0
  */
 medicationRequest {
 

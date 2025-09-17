@@ -1,22 +1,22 @@
 package customexport.dktk.v2
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import org.hl7.fhir.r4.model.MedicationStatement
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.LANG
-import static de.kairos.fhir.centraxx.metamodel.MultilingualEntry.VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.systemTherapy
 
 /**
- * Represented by a CXX SystemTherapy
+ * Represented by a HDRP SystemTherapy
  * Specified by https://simplifier.net/oncology/systemtherapie
  *
  * Hints:
- * There is no representation in a CXX SystemTherapy for the Extensions StellungZurOp, LokaleResidualstatus and GesamtbeurteilungResidualstatus
+ * There is no representation in a HDRP SystemTherapy for the Extensions StellungZurOp, LokaleResidualstatus and GesamtbeurteilungResidualstatus
  *
  * @author Mike Wähnert
- * @since CXX.v.3.17.1.6
+ * @since v.1.52.0
+ * @since HDRP.v.2025.3.0
  */
 medicationStatement {
 
@@ -99,7 +99,9 @@ medicationStatement {
         coding {
           system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
           code = context.source[systemTherapy().therapyKindDict()]?.getAt(CODE)?.toString()?.toUpperCase()
-          display = context.source[systemTherapy().therapyKindDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+          display = context.source[systemTherapy().therapyKindDict().multilinguals()]?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
@@ -111,9 +113,11 @@ medicationStatement {
       url = "http://dktk.dkfz.de/fhir/StructureDefinition/onco-core-Extension-StellungZurOp"
       valueCodeableConcept {
         coding {
-        system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
-        code = context.source[systemTherapy().therapyTypeDict()]?.getAt(CODE)?.toString()?.toUpperCase()
-        display = context.source[systemTherapy().therapyTypeDict().nameMultilingualEntries()]?.find { it[LANG] == "de" }?.getAt(VALUE) as String
+          system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/SYSTStellungOPCS"
+          code = context.source[systemTherapy().therapyTypeDict()]?.getAt(CODE)?.toString()?.toUpperCase()
+          display = context.source[systemTherapy().therapyTypeDict().multilinguals()]?.find { final def ml ->
+            ml[Multilingual.LANGUAGE] == "de" && ml[Multilingual.SHORT_NAME] != null
+          }?.getAt(Multilingual.SHORT_NAME) as String
         }
       }
     }
