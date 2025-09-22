@@ -7,6 +7,9 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-09-22
+* overworking the Tnm script
+
 # 2025-09-17
 * added filter to observation to remove diagnosis finding from export
 * added export of diagnosisDate to Condition.onsetDateTime

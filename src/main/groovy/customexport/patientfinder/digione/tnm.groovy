@@ -52,153 +52,123 @@ observation {
   }
 
   if (context.source[tnm().stadium()]) {
-    valueCodeableConcept {
-      coding {
-        system = "https://fhir.centraxx.de/system/tnm/stadium"
-        code = (context.source[tnm().stadium()] as String).trim()
-        version = context.source[tnm().version()]
+    component {
+      code {
+        coding {
+          code = "stadium"
+        }
       }
+      valueString = (context.source[tnm().stadium()] as String).trim()
     }
   }
 
-  //TNM-T
   if (context.source[tnm().t()]) {
     component {
-      if (context.source[tnm().praefixTDict()]) {
-        extension {
-          url = "https://fhir.centraxx.de/extension/tnm/tPraefix"
-          valueCoding {
-            system = "https://fhir.centraxx.de/system/tnm/tPraefix"
-            code = context.source[tnm().praefixTDict().code()] as String
-          }
-        }
-      }
       code {
         coding {
-          system = "http://loinc.org"
-          code = isClinical ? "21905-5" : "21899-0"
+          code = "t"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/t"
-          code = (context.source[tnm().t()] as String).trim()
-        }
-      }
+      valueString = (context.source[tnm().t()] as String).trim()
     }
   }
 
-  //TNM-N
+  if (context.source[tnm().praefixTDict()]) {
+    component {
+      code {
+        coding {
+          code = "t-prefix"
+        }
+      }
+      valueString = (context.source[tnm().praefixTDict().code()] as String).trim()
+    }
+  }
+
   if (context.source[tnm().n()]) {
     component {
-      if (context.source[tnm().praefixNDict()]) {
-        extension {
-          url = "https://fhir.centraxx.de/extension/tnm/nPraefix"
-          valueCoding {
-            system = "https://fhir.centraxx.de/system/tnm/nPraefix"
-            code = context.source[tnm().praefixNDict().code()] as String
-          }
-        }
-      }
       code {
         coding {
-          system = "http://loinc.org"
-          code = isClinical ? "21906-3" : "21900-6"
+          code = "n"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/n"
-          code = (context.source[tnm().n()] as String).trim()
-        }
-      }
+      valueString = (context.source[tnm().n()] as String).trim()
     }
   }
 
-  //TNM-M
+  if (context.source[tnm().praefixNDict()]) {
+    component {
+      code {
+        coding {
+          code = "n-prefix"
+        }
+      }
+      valueString = (context.source[tnm().praefixNDict().code()] as String).trim()
+    }
+  }
+
   if (context.source[tnm().m()]) {
     component {
-      if (context.source[tnm().praefixMDict()]) {
-        extension {
-          url = "https://fhir.centraxx.de/extension/tnm/mPraefix"
-          valueCoding {
-            system = "https://fhir.centraxx.de/system/tnm/mPraefix"
-            code = context.source[tnm().praefixMDict().code()] as String
-          }
-        }
-      }
       code {
         coding {
-          system = "http://loinc.org"
-          code = isClinical ? "21907-1" : "21901-4"
+          code = "m"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/m"
-          code = (context.source[tnm().m()] as String).trim()
-        }
-      }
+      valueString = (context.source[tnm().m()] as String).trim()
     }
   }
 
-  //TNM-y
+  if (context.source[tnm().praefixMDict()]) {
+    component {
+      code {
+        coding {
+          code = "m-prefix"
+        }
+      }
+      valueString = (context.source[tnm().praefixMDict().code()] as String).trim()
+    }
+  }
+
   if (context.source[tnm().ySymbol()]) {
     component {
       code {
         coding {
-          system = "http://loinc.org"
-          code = "59479-6"
+          code = "y-symbol"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/ySymbol"
-          code = context.source[tnm().ySymbol()] as String
-        }
-      }
+      valueString = (context.source[tnm().ySymbol()] as String).trim()
     }
   }
 
-  //TNM-r
+  if (context.source[tnm().sourceDict()]) {
+    component {
+      code {
+        coding {
+          code = "source"
+        }
+      }
+      valueString = (context.source["sourceDict.code"] as String).trim()
+    }
+  }
+
   if (context.source[tnm().recidivClassification()]) {
     component {
       code {
         coding {
-          system = "http://loinc.org"
-          code = "21983-2"
+          code = "recidiv classification"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/rSymbol"
-          code = context.source[tnm().recidivClassification()] as String
-        }
-      }
+      valueString = (context.source[tnm().recidivClassification()] as String).trim()
     }
   }
 
-  //TNM-m
   if (context.source[tnm().multiple()]) {
     component {
       code {
         coding {
-          system = "http://loinc.org"
-          code = "42030-7"
+          code = "multiple"
         }
       }
-      valueCodeableConcept {
-        coding {
-          system = "https://fhir.centraxx.de/system/tnm/mSymbol"
-          code = context.source[tnm().multiple()] as String
-        }
-      }
-    }
-  }
-
-  if (context.source[tnm().tumour()]) {
-    focus {
-      reference = "Condition/" + context.source[tnm().tumour().centraxxDiagnosis().id()]
+      valueString = (context.source[tnm().multiple()] as String).trim()
     }
   }
 }
