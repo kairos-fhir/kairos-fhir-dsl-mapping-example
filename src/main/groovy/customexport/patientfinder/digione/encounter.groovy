@@ -1,11 +1,11 @@
 package customexport.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
+import org.hl7.fhir.r4.model.DateTimeType
 import org.hl7.fhir.r4.model.Encounter
 
-import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
@@ -28,35 +28,25 @@ encounter {
   id = "Encounter/" + context.source[episode().id()]
 
 
-  context.source[episode().idContainer()].each { final idContainer ->
-    final boolean isDecisive = idContainer[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
-    if (isDecisive) {
-      identifier {
-        value = idContainer[PSN]
-        type {
-          coding {
-            system = FhirUrls.System.IdContainerType.BASE_URL
-            code = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
-          }
-        }
-      }
+  context.source[episode().idContainer()].findAll { final def idc ->
+    idc[ID_CONTAINER_TYPE][DECISIVE] as boolean
+  }.each { final def idc ->
+    identifier {
+      value = idc[PSN]
     }
   }
 
   status = Encounter.EncounterStatus.UNKNOWN
 
   if (context.source[episode().stayType().code()]) {
-    class_ {
-      system = FhirUrls.System.Episode.StayType.BASE_URL
-      code = context.source[episode().stayType().code()]
-    }
-  }
 
-  type {
-    coding {
-      system = "http://snomed.info/sct"
-      code = "308335008"
-      display = "Patient encounter procedure"
+    final String classCode = context.source[episode().stayType().code()]
+    class_ {
+
+      code = classCode == "Inpatient" ? "IMP" : classCode
+      display = context.source[episode().stayType().multilinguals()].find { final def ml ->
+        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
@@ -64,9 +54,9 @@ encounter {
     reference = "Patient/" + context.source[episode().patientContainer().id()]
   }
 
-  if (context.source["parent"]) {
+  if (context.source[episode().parent()]) {
     partOf {
-      reference = "Episode/" + context.source["parent.id"]
+      reference = "Episode/" + context.source[episode().parent().id()]
     }
   }
 
@@ -86,9 +76,25 @@ encounter {
     }
   }
 
+  if (context.source[episode().validFrom()] != null && context.source[episode().validUntil()] != null) {
+    final DateTimeType startDate = new DateTimeType(context.source[episode().validFrom()] as String)
+    final DateTimeType endDate = new DateTimeType(context.source[episode().validUntil()] as String)
+
+    final long diff = endDate.getValue().getTime() - startDate.getValue().getTime()
+
+    length {
+      value = diff
+      unit = "ms"
+      system = "http://unitsofmeasure.org"
+    }
+  }
+
   if (context.source[episode().habitation()]) {
-    serviceProvider {
-      reference = "Organization/" + context.source[episode().habitation().id()]
+    extension {
+      url = "https://fhir.iqvia.com/patientfinder/extension/department-organization"
+      valueReference {
+        reference = "Organization/" + context.source[episode().habitation().id()]
+      }
     }
   }
 

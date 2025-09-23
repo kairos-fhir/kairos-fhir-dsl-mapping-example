@@ -83,7 +83,7 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          code = (context.source[tnm().praefixTDict()] as String).trim()
+          code = (context.source[tnm().praefixTDict().code()] as String).trim()
           display = context.source[tnm().praefixTDict().multilinguals()].find { final def ml ->
             ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
           }?.getAt(Multilingual.SHORT_NAME)
@@ -112,7 +112,7 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          code = (context.source[tnm().praefixNDict()] as String).trim()
+          code = (context.source[tnm().praefixNDict().code()] as String).trim()
           display = context.source[tnm().praefixNDict().multilinguals()].find { final def ml ->
             ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
           }?.getAt(Multilingual.SHORT_NAME)
@@ -141,7 +141,7 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          code = (context.source[tnm().praefixMDict()] as String).trim()
+          code = (context.source[tnm().praefixMDict().code()] as String).trim()
           display = context.source[tnm().praefixMDict().multilinguals()].find { final def ml ->
             ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
           }?.getAt(Multilingual.SHORT_NAME)
