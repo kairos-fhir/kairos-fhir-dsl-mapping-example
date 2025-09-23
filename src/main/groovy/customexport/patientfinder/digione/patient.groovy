@@ -38,10 +38,12 @@ patient {
   }
 
 
-  humanName {
-    text = context.source[patient().firstName()] + " " + context.source[patient().lastName()]
-    family = context.source[patient().lastName()]
-    given(context.source[patient().firstName()] as String)
+  if (context.source[patient().lastName()] != null) {
+    humanName {
+      text = context.source[patient().firstName()] + " " + context.source[patient().lastName()]
+      family = context.source[patient().lastName()]
+      given(context.source[patient().firstName()] as String)
+    }
   }
 
   if (context.source[patient().birthName()]) {
