@@ -2,6 +2,7 @@ package customexport.patientfinder.digione
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
@@ -80,7 +81,14 @@ observation {
           code = "t-prefix"
         }
       }
-      valueString = (context.source[tnm().praefixTDict().code()] as String).trim()
+      valueCodeableConcept {
+        coding {
+          code = (context.source[tnm().praefixTDict()] as String).trim()
+          display = context.source[tnm().praefixTDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
     }
   }
 
@@ -102,7 +110,14 @@ observation {
           code = "n-prefix"
         }
       }
-      valueString = (context.source[tnm().praefixNDict().code()] as String).trim()
+      valueCodeableConcept {
+        coding {
+          code = (context.source[tnm().praefixNDict()] as String).trim()
+          display = context.source[tnm().praefixNDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
     }
   }
 
@@ -124,7 +139,14 @@ observation {
           code = "m-prefix"
         }
       }
-      valueString = (context.source[tnm().praefixMDict().code()] as String).trim()
+      valueCodeableConcept {
+        coding {
+          code = (context.source[tnm().praefixMDict()] as String).trim()
+          display = context.source[tnm().praefixMDict().multilinguals()].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
     }
   }
 
@@ -146,7 +168,14 @@ observation {
           code = "source"
         }
       }
-      valueString = (context.source["sourceDict.code"] as String).trim()
+      valueCodeableConcept {
+        coding {
+          code = (context.source["sourceDict.code"] as String).trim()
+          display = context.source["sourceDict.multilinguals"].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
     }
   }
 

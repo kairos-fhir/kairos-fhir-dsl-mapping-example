@@ -1,7 +1,5 @@
 package customexport.patientfinder.digione
 
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
-import de.kairos.fhir.centraxx.metamodel.AbstractCatalog
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
@@ -13,7 +11,6 @@ import de.kairos.fhir.centraxx.metamodel.OpsEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
 import de.kairos.fhir.centraxx.metamodel.enums.LaborMappingType
-import de.kairos.fhir.centraxx.metamodel.enums.LaborMethodCategory
 import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
@@ -28,15 +25,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  * LaborValueIdContainer in HDRP are just an export example, but not intended to be imported by HDRP FHIR API yet.
  */
 
-final List<String> codesToFilter = ["DIAGNOSIS"]
-
-
 observation {
-
-  // use other for all the additional data mapping methods to exclude from export
-  if (codesToFilter.contains(context.source[laborMapping().laborFinding().laborMethod().code()] as String)) {
-    return
-  }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 
@@ -68,8 +57,10 @@ observation {
 
   method {
     coding {
-      system = FhirUrls.System.LaborMethod.BASE_URL
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
+      display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()].find { final def ml ->
+        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
@@ -110,7 +101,6 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             coding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
               display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -119,7 +109,6 @@ observation {
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
-              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -131,7 +120,6 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             coding {
-              system = "urn:centraxx:CodeSystem/UsageEntry"
               code = entry[CODE] as String
               display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -140,7 +128,6 @@ observation {
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
-              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -152,7 +139,6 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
-              system = FhirUrls.Catalog.VALUELIST + "/" + entry[CatalogEntry.CATALOG]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -161,14 +147,12 @@ observation {
           }
           lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
             coding {
-              system = FhirUrls.Catalog.ICD_CATALOG + "/" + entry[IcdEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[IcdEntry.PREFERRED] as String
             }
           }
           lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE].each { final entry ->
             coding {
-              system = FhirUrls.Catalog.OPS_CATALOG + "/" + entry[OpsEntry.CATALOGUE]?.getAt(AbstractCatalog.ID)
               code = entry[CODE] as String
               display = entry[OpsEntry.PREFERRED] as String
             }
