@@ -89,6 +89,14 @@ encounter {
     }
   }
 
+  type {
+    coding {
+      system = "http://snomed.info/sct"
+      code = "308335008"
+      display = "Patient encounter procedure"
+    }
+  }
+
   if (context.source[episode().habitation()]) {
     serviceProvider {
       reference = "Organization/" + context.source[episode().habitation().id()]
