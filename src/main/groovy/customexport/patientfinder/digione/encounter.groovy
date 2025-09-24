@@ -90,11 +90,8 @@ encounter {
   }
 
   if (context.source[episode().habitation()]) {
-    extension {
-      url = "https://fhir.iqvia.com/patientfinder/extension/department-organization"
-      valueReference {
-        reference = "Organization/" + context.source[episode().habitation().id()]
-      }
+    serviceProvider {
+      reference = "Organization/" + context.source[episode().habitation().id()]
     }
   }
 
