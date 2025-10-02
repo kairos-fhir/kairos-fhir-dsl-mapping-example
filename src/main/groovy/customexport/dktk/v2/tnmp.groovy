@@ -3,6 +3,8 @@ package customexport.dktk.v2
 import de.kairos.fhir.dsl.r4.execution.Fhir4Source
 import org.hl7.fhir.r4.model.Observation
 
+import javax.annotation.Nullable
+
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 
 /**
@@ -53,7 +55,7 @@ observation {
     valueCodeableConcept {
       coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/UiccstadiumCS"
-        code = (context.source[tnm().stadium()] as String).trim()
+        code = extractCode(context.source[tnm().stadium()] as String)
         version = context.source[tnm().version()]
       }
     }
@@ -227,4 +229,11 @@ static boolean isClinical(final Fhir4Source source) {
 
 static boolean hasRelevantCode(final String icdCode) {
   return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+}
+
+@Nullable
+static String extractCode(@Nullable final String s) {
+  if (s == null || s.trim().isEmpty()) return null
+  final String[] parts = s.trim().split("\\s+")
+  return parts.length > 0 ? parts[0] : null;
 }
