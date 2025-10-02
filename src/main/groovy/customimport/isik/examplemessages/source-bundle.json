@@ -1,0 +1,77 @@
+{
+  "resourceType" : "Bundle",
+  "type" : "transaction",
+  "entry" : [ {
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "04618dcf-22ca-469e-9d18-f66ef5b25f0e",
+      "identifier" : [ {
+        "type" : {
+          "coding" : [ {
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "MR"
+          } ]
+        },
+        "system" : "https://some-uri/isik-id",
+        "value" : "f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+      } ],
+      "name" : [ {
+        "use" : "official",
+        "family" : "Test Patient",
+        "given" : [ "Neuer" ]
+      } ],
+      "gender" : "male",
+      "birthDate" : "1998-01-04",
+      "address" : [ {
+        "type" : "both",
+        "line" : [ "Alte Straße 43" ],
+        "city" : "Berlin",
+        "postalCode" : "12047",
+        "country" : "DE"
+      } ]
+    },
+    "request" : {
+      "method" : "POST",
+      "url" : "Patient/f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+    }
+  }, {
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "944f516d-0a18-46cf-97d8-f87f6bf25ab2",
+      "clinicalStatus" : {
+        "coding" : [ {
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active"
+        } ]
+      },
+      "code" : {
+        "coding" : [ {
+          "system" : "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+          "version" : "2025",
+          "code" : "E73.8"
+        } ]
+      },
+      "subject" : {
+        "identifier" : {
+          "type" : {
+            "coding" : [ {
+              "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code" : "MR"
+            } ]
+          },
+          "system" : "https://some-uri/isik-id",
+          "value" : "f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+        }
+      },
+      "onsetDateTime" : "2025-09-12T10:10:10+02:00",
+      "recordedDate" : "2025-09-12T13:25:53+02:00",
+      "note" : [ {
+        "text" : "Some note"
+      } ]
+    },
+    "request" : {
+      "method" : "POST",
+      "url" : "Condition/944f516d-0a18-46cf-97d8-f87f6bf25ab2"
+    }
+  } ]
+}
