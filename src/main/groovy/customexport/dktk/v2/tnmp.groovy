@@ -53,7 +53,7 @@ observation {
     valueCodeableConcept {
       coding {
         system = "http://dktk.dkfz.de/fhir/onco/core/CodeSystem/UiccstadiumCS"
-        code = (context.source[tnm().stadium()] as String).trim()
+        code = extractCode(context.source[tnm().stadium()] as String)
         version = context.source[tnm().version()]
       }
     }
@@ -227,4 +227,8 @@ static boolean isClinical(final Fhir4Source source) {
 
 static boolean hasRelevantCode(final String icdCode) {
   return icdCode != null && (icdCode.toUpperCase().startsWith('C') || icdCode.toUpperCase().startsWith('D'))
+}
+
+static String extractCode(String s) {
+  return s?.split(" ")[0]?.trim()
 }
