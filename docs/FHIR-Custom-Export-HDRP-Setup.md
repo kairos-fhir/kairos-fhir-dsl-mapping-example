@@ -79,8 +79,8 @@ graph LR
     classDef transformation fill: #bfb, stroke: #333, stroke-width: 1px;
     classDef export fill: #fbb, stroke: #333, stroke-width: 1px;
     class DB database;
-class EntityLoader,Entities,ConvertToMaps,EntityMaps entity;
-class GroovyEngine,GroovyScripts,FHIRResources transformation;
+class EntityLoader, Entities, ConvertToMaps, EntityMaps entity;
+class GroovyEngine,GroovyScripts, FHIRResources transformation;
 class RESTEndpoint,ExportedBundles export;
 ```
 
@@ -149,6 +149,9 @@ Example `ProjectConfig.json`:
   },
   "exportInterval": {
     "value": "0 0 12 * * *"
+  },
+  "scheduledIncrementsEnable": {
+    "value": false
   },
   "incrementalExportEnable": {
     "value": false
@@ -237,37 +240,39 @@ Example `ProjectConfig.json`:
 }
 ```
 
-| **Property**                                          | **Description**                                                                                                                                                                                            |
-|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `scheduledExportEnable`                               | If true, this project will export all filtered HDRP patient data with the configured FHIR resources by the specified `exportInterval`.                                                                     |
-| `incrementalExportEnable`                             | If true, this project will export filtered HDRP patient data with the configured FHIR resources by a detected change after a HDRP transaction.                                                             |
-| `incrementalDeleteExportEnable`                       | If true, this project will export deletes of all mapped resources. Deleted entities are exported by the FHIR ID based on the resource type and HDRP OID.                                                   |
-| `exportUser` (since HDRP v.2025.2.1)                  | The user used to execute the incremental and scheduled exports. Default is SYSTEM. A user can be configured in the user administration via the UI to enable access to clear text patient data for example. |
-| `bulkExportEnable`                                    | If true, this project will export using the FHIR bulk export API.                                                                                                                                          |
-| `exportToFileSystem`                                  | If true, the scheduler will export to the specified file system `exportFolder`.                                                                                                                            |
-| `exportFolder`                                        | Specifies the folder where the export will be saved.                                                                                                                                                       |
-| `uploadToUrl`                                         | If true, the scheduler will export to the specified `uploadUrl` REST endpoint.                                                                                                                             |
-| `uploadUrl`                                           | The URL of the REST endpoint where the export will be uploaded.                                                                                                                                            |
-| `uploadUser`                                          | BasicAuth username for the target system.                                                                                                                                                                  |
-| `uploadPassword`                                      | BasicAuth password for the target system.                                                                                                                                                                  |
-| `sslTrustAllEnable`                                   | If true, all SSL/TLS certificates are trusted.                                                                                                                                                             |
-| `trustStoreEnable`                                    | If true, a separate trust store is used for verification, specified by `trustStore` and `trustStorePassword`.                                                                                              |
-| `trustStore`                                          | Path to the trust store file.                                                                                                                                                                              |
-| `trustStorePassword`                                  | Password for the trust store.                                                                                                                                                                              |
-| `prettyPrintEnable`                                   | If true, enables pretty-printing of the FHIR message body.                                                                                                                                                 |
-| `exportFormat`                                        | Exchange format of FHIR resources (e.g., JSON).                                                                                                                                                            |
-| `fhirMessageLoggingEnable`                            | If true, HTTP message requests are logged in HDRP separately.                                                                                                                                              |
-| `fhirResponseLoggingEnable`                           | If true, HTTP message responses are logged in HDRP separately.                                                                                                                                             |
-| `fhirResponseValidationEnable`                        | If true, HTTP message responses are validated against their FHIR response status.                                                                                                                          |
-| `patientFilterType`                                   | Filters patients and their data by a specified filter type (e.g., `PATIENTSTUDY`, `CONSENTTYPE`, etc.).                                                                                                    |
-| `patientFilterValues`                                 | List of filter values used to filter patients.                                                                                                                                                             |
-| `pageSize`                                            | The page size for queries in HDRP and resources in a FHIR bundle.                                                                                                                                          |
-| `since`                                               | Resources will be included in the response if their related patients have changed after the specified date-time.                                                                                           |
-| `enableThsPseudonymization`                           | If true, enables pseudonymization of patient identifiers using the `thsTargetId` property.                                                                                                                 |
-| `thsTargetId`                                         | Target ID used for pseudonymization in combination with study profile and study code.                                                                                                                      |
-| `exportInterval`                                      | Sets the export cron interval (e.g., `0 0 12 * * *` for once a day).                                                                                                                                       |
-| `parallelEntityLoadingEnable` (since HDRP v.2025.2.3) | Allows parallelizing loading and initializing of entities from the databases in batches of 1000. Only useful for large page sizes > 1000.                                                                  |
-| `parallelProcessingEnable` (since HDRP v.2025.2.3)    | The pseudonymization, serialization, and transformation is parallelized, which can improve performance for large page size exports                                                                         |                                                                                                                             |
+| **Property**                                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `scheduledExportEnable`                                          | If true, this project will export all filtered HDRP patient data with the configured FHIR resources by the specified `exportInterval`.                                                                                                                                                                                                                                                                                                                                                                                   |
+| `incrementalExportEnable`                                        | If true, this project will export filtered HDRP patient data with the configured FHIR resources by a detected change after a HDRP transaction.                                                                                                                                                                                                                                                                                                                                                                           |
+| `scheduledIncrementsEnable` (since HDRP v.2025.3.1, v.2025.2.14) | If true, only patient records will be included in the export that have been after the last scheduled export. The since parameter of ProjectConfig.json will be updated with the timestamp of the start of the current export after a successful run. Requires interfaces.fhir.custom.bulkexport.patientModificationLogging.enable=true to be set.                                                                                                                                                                        |
+| `incrementalDeleteExportEnable`                                  | If true, this project will export deletes of all mapped resources. Deleted entities are exported by the FHIR ID based on the resource type and HDRP OID.                                                                                                                                                                                                                                                                                                                                                                 |
+| `exportUser` (since HDRP v.2025.2.1)                             | The user used to execute the incremental and scheduled exports. Default is SYSTEM. A user can be configured in the user administration via the UI to enable access to clear text patient data for example.                                                                                                                                                                                                                                                                                                               |
+| `bulkExportEnable`                                               | If true, this project will export using the FHIR bulk export API.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `exportToFileSystem`                                             | If true, the scheduler will export to the specified file system `exportFolder`.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `exportFolder`                                                   | Specifies the folder where the export will be saved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `uploadToUrl`                                                    | If true, the scheduler will export to the specified `uploadUrl` REST endpoint.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `uploadUrl`                                                      | The URL of the REST endpoint where the export will be uploaded.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `uploadUser`                                                     | BasicAuth username for the target system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `uploadPassword`                                                 | BasicAuth password for the target system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `sslTrustAllEnable`                                              | If true, all SSL/TLS certificates are trusted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `trustStoreEnable`                                               | If true, a separate trust store is used for verification, specified by `trustStore` and `trustStorePassword`.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `trustStore`                                                     | Path to the trust store file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `trustStorePassword`                                             | Password for the trust store.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `prettyPrintEnable`                                              | If true, enables pretty-printing of the FHIR message body.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `exportFormat`                                                   | Exchange format of FHIR resources (e.g., JSON).                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `fhirMessageLoggingEnable`                                       | If true, HTTP message requests are logged in HDRP separately.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `fhirResponseLoggingEnable`                                      | If true, HTTP message responses are logged in HDRP separately.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `fhirResponseValidationEnable`                                   | If true, HTTP message responses are validated against their FHIR response status.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `patientFilterType`                                              | Filters patients and their data by a specified filter type (e.g., `PATIENTSTUDY`, `CONSENTTYPE`, etc.).                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `patientFilterValues`                                            | List of filter values used to filter patients.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `pageSize`                                                       | The page size for queries in HDRP and resources in a FHIR bundle.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `since`                                                          | Resources will be included in the response if their related patients has changed after (inclusive, greater or equal) the supplied date time. If null, all patients are exported. The parameter needs interfaces.fhir.custom.bulkexport.patientModificationLogging.enable=true otherwise it will return always an empty result. The configured value is only effective for the scheduled export. FHIR bulk export requests override this parameter.                                                                       |
+| `until`                                                          | Resources will be included in the response if their related patients has changed before (exclusive, less than) the supplied date time. If null, all patients are exported. The parameter needs interfaces.fhir.custom.bulkexport.patientModificationLogging.enable=true otherwise it will return always an empty result. The configured value is only effective for the scheduled export. FHIR bulk export requests override this parameter. If the since parameter is set, the until date must be after the since date. |
+| `enableThsPseudonymization`                                      | If true, enables pseudonymization of patient identifiers using the `thsTargetId` property.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `thsTargetId`                                                    | Target ID used for pseudonymization in combination with study profile and study code.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `exportInterval`                                                 | Sets the export cron interval (e.g., `0 0 12 * * *` for once a day).                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `parallelEntityLoadingEnable` (since HDRP v.2025.2.3)            | Allows parallelizing loading and initializing of entities from the databases in batches of 1000. Only useful for large page sizes > 1000.                                                                                                                                                                                                                                                                                                                                                                                |
+| `parallelProcessingEnable` (since HDRP v.2025.2.3)               | The pseudonymization, serialization, and transformation is parallelized, which can improve performance for large page size exports                                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                                             |
 
 **Note**: When you configure a scheduled export, HDRP needs to be restarted to apply changes to the `ProjectConfig.json`. HDRP initializes the
 Scheduler at startup by reading the `ProjectConfig.json`. The incremental export does not require a restart after changes to the `ProjectConfig.json`.
@@ -386,14 +391,71 @@ and enable on the project level and set a Spring chron expression in the `Projec
   },
   "exportInterval": {
     "value": "0 0 12 * * *"
+  },
+  "scheduledIncrementsEnable": {
+    "value": false
   }
 }
 ```
+
+Enabling scheduled increments (scheduledIncrementsEnable) ensures that only patient records modified since the last successful scheduled export 
+are included. After each export, the `sinceDate` in `ProjectConfig.json` is automatically updated to the start time of the export. 
+The PatientModificationLogging needs to be enabled in the centraxx-dev.properties for this feature to work properly.
 
 ### Bulk data export
 
 Bulk data export is used to export configured export customexport asynchronously to the file system or to a FHIR endpoint. The Configuration and usage
 of the bulk data export is described [here](Bulk-Data-Export.md).
+
+## Advanced filtering (since HDRP v.2025.2.14, v.2025.3.1)
+
+A single HDRP entity may be mapped to multiple FHIR resources.
+For example, LaborMappings with LaborFindings whose LaborMethod code is `exampleCode`
+are mapped to AllergyIntolerance, while all other LaborMappings are mapped to Observation. 
+Usually, this filtering is implemented directly in the Groovy script, which required loading
+and initializing the entire object graph for all records before discarding non-eligible ones. 
+This approach significantly increases system load and reduced performance in large scale export scenarios.
+
+Filters for specific HDRP entity types can now be defined in the `ExportResourceMappingConfig.json` file. These filters are incorporated directly 
+into the database query, ensuring that only matching records are loaded.
+Here is an example:
+
+```json
+{
+  "mappings": [
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "allergyIntolerance",
+      "exportToFhirResource": "AllergyIntolerance",
+      "exportDeleteEnable": false,
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.code",
+          "comparator": "EQUALS",
+          "value": "exampleCode"
+        }
+      ]
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "observation",
+      "exportToFhirResource": "Observation",
+      "exportDeleteEnable": false,
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.code",
+          "comparator": "NOT_EQUALS",
+          "value": "exampleCode"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The currently supported filter for the HDRP entity types with their allowed data types and comparators 
+are documented in the `AdditionalFilterDocumentation.json`. This file is written to the `custom-mapping-dir`
+on application startup.
 
 ## Export Targets
 
