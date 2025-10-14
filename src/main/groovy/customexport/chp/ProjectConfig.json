@@ -34,11 +34,11 @@
   },
   "exportInterval": {
     "description": "Sets the export cron interval. Default is once a day.",
-    "value": "0 0/5 * * * ?"
+    "value": "0 0 0 * * * ?"
   },
   "scheduledIncrementsEnable": {
     "description": "scheduledIncrementsEnable",
-    "value": true
+    "value": false
   },
   "exportToFileSystem": {
     "description": "If true, the scheduler will export to the specified file system exportFolder.",
@@ -49,7 +49,7 @@
   },
   "uploadToUrl": {
     "description": "If true, the scheduler will export to the specified  uploadUrl REST endpoint.",
-    "value": false
+    "value": true
   },
   "uploadUrl": {
     "value": "http://localhost:9090/fhir"

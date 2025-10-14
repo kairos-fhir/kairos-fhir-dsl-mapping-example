@@ -1,6 +1,6 @@
 package customexport.chp
 
-
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.Episode
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 
@@ -34,6 +34,7 @@ condition {
   final def diagnosisId = context.source[diagnosis().diagnosisId()]
   if (diagnosisId) {
     identifier {
+      system = "https://fhir.centraxx.de/system/diagnosis/diagnosisId"
       value = diagnosisId
     }
   }
@@ -53,11 +54,6 @@ condition {
         code = context.source[diagnosis().userDefinedCatalogEntry().code()] as String
         display = context.source[diagnosis().userDefinedCatalogEntry().multilinguals()]
             ?.find { it[LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }?.getAt(Multilingual.SHORT_NAME)
-      }
-    } else if (context.source[diagnosis().diagnosisCode()]) {
-      coding {
-        code = context.source[diagnosis().diagnosisCode()] as String
-        display = context.source[diagnosis().diagnosisText()]
       }
     }
   }

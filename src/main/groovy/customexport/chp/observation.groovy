@@ -1,12 +1,15 @@
 package customexport.chp
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
+import de.kairos.fhir.centraxx.metamodel.IcdCatalog
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValueNumeric
 import de.kairos.fhir.centraxx.metamodel.Multilingual
+import de.kairos.fhir.centraxx.metamodel.OpsCatalog
 import de.kairos.fhir.centraxx.metamodel.OpsEntry
 import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.UsageEntry
@@ -24,11 +27,13 @@ observation {
   status = Observation.ObservationStatus.UNKNOWN
 
   identifier {
+    system = FhirUrls.System.Finding.LABOR_FINDING_ID
     value = context.source[laborMapping().laborFinding().laborFindingId()]
   }
 
   code {
     coding {
+      system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
       code = context.source[laborMapping().laborFinding().shortName()] as String
     }
   }
@@ -49,6 +54,7 @@ observation {
 
   method {
     coding {
+      system = FhirUrls.System.LaborMethod.BASE_URL
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
       display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()].find { final def ml ->
         ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -69,6 +75,7 @@ observation {
     component {
       code {
         coding {
+          system = FhirUrls.System.LaborValue.BASE_URL
           code = laborValueCode
           display = laborValueDisplay
         }
@@ -93,6 +100,7 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             coding {
+              system = "https://fhir.centraxx.de/system/UsageEntry"
               code = entry[CODE] as String
               display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -101,6 +109,7 @@ observation {
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
+              system = entry[CatalogEntry.CATALOG][CODE]
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -112,6 +121,7 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
             coding {
+              system = "https://fhir.centraxx.de/system/UsageEntry"
               code = entry[CODE] as String
               display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -120,6 +130,7 @@ observation {
           }
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
+              system = entry[CatalogEntry.CATALOG][CODE]
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -131,6 +142,7 @@ observation {
         valueCodeableConcept {
           lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
             coding {
+              system = entry[CatalogEntry.CATALOG][CODE]
               code = entry[CODE] as String
               display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
                 ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
@@ -139,12 +151,14 @@ observation {
           }
           lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
             coding {
+              system = "https://fhir.centraxx.de/system/" + entry[IcdEntry.CATALOGUE][IcdCatalog.NAME]
               code = entry[CODE] as String
               display = entry[IcdEntry.PREFERRED] as String
             }
           }
           lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE].each { final entry ->
             coding {
+              system = "https://fhir.centraxx.de/system/" + entry[OpsEntry.CATALOGUE][OpsCatalog.NAME]
               code = entry[CODE] as String
               display = entry[OpsEntry.PREFERRED] as String
             }
