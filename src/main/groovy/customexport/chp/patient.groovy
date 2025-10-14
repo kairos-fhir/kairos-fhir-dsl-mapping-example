@@ -9,7 +9,6 @@ import de.kairos.fhir.centraxx.metamodel.OrganisationUnit
 import de.kairos.fhir.centraxx.metamodel.PatientAddress
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.ContactPoint
-import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
@@ -114,7 +113,7 @@ patient {
       coding {
         system = FhirUrls.System.Patient.MaritalStatus.BASE_URL
         code = context.source[patientMasterDataAnonymous().maritalStatus().code()]
-        display = context.source[patientMasterDataAnonymous().maritalStatus().multtilinguals()].find { final def ml ->
+        display = context.source[patientMasterDataAnonymous().maritalStatus().multilinguals()].find { final def ml ->
           ml[Multilingual.LANGUAGE] == 'en' && ml[Multilingual.SHORT_NAME] == null
         }?.getAt(Multilingual.SHORT_NAME)
       }
