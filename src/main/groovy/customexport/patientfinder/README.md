@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-10-20
+* adapted Patient script to work with multiple addresses
+
 # 2025-08-21
 * fixed export of period on medication request
 

@@ -13,29 +13,8 @@ import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
-import static de.kairos.fhir.centraxx.metamodel.RecordedValue.STRING_VALUE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patient
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAnonymous
-
-final String COUNTRY_OF_BIRTH = "countryofbirth"
-final String PLACEOFBIRTH = "placeofbirth"
-final String ADDRESS_CITY = "address.city"
-final String ADDRESS_LINE = "address.line"
-final String ADDRESS_PERIOD_END = "address.period.end"
-final String ADDRESS_PERIOD_START = "address.period.start"
-final String ADDRESS_POSTALCODE = "address.postalCode"
-final String ADDRESS_USE = "address.use"
-
-final Map PROFILE_TYPES = [
-    (COUNTRY_OF_BIRTH)    : STRING_VALUE,
-    (PLACEOFBIRTH)        : STRING_VALUE,
-    (ADDRESS_CITY)        : STRING_VALUE,
-    (ADDRESS_LINE)        : STRING_VALUE,
-    (ADDRESS_PERIOD_END)  : STRING_VALUE,
-    (ADDRESS_PERIOD_START): STRING_VALUE,
-    (ADDRESS_POSTALCODE)  : STRING_VALUE,
-    (ADDRESS_USE)         : STRING_VALUE
-]
 
 /**
  * Represented by a HDRP PatientMasterDataAnonymous
@@ -54,19 +33,17 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  final def patientMapping = context.source[patientMasterDataAnonymous().patientContainer().laborMappings()].find { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Patient_profile"
+
+  final def countryOfBirth = context.source[patientMasterDataAnonymous().addresses()].find { final def ad ->
+    (ad["addressId"] as String).startsWith("countryOfBirth")
   }
 
-  final Map<String, Object> lflvPatientMap = getLflvMap(patientMapping, PROFILE_TYPES)
-
-  if (lflvPatientMap.containsKey(PLACEOFBIRTH) || lflvPatientMap.containsKey(COUNTRY_OF_BIRTH)) {
+  if (countryOfBirth != null){
     extension {
       url = "https://fhir.iqvia.com/patientfinder/extension/place-of-birth"
-
       valueAddress {
-        city = lflvPatientMap.get(PLACEOFBIRTH)
-        country = lflvPatientMap.get(COUNTRY_OF_BIRTH)
+        city = countryOfBirth[PatientAddress.CITY]
+        country = countryOfBirth[PatientAddress.COUNTRY]
       }
     }
   }
@@ -110,7 +87,9 @@ patient {
   deceasedDateTime = "UNKNOWN" != context.source[patientMasterDataAnonymous().dateOfDeath().precision()] ?
       context.source[patientMasterDataAnonymous().dateOfDeath().date()] : null
 
-  context.source[patient().addresses()]?.each { final ad ->
+  context.source[patient().addresses()].findAll {
+    final  def ad -> !(ad["addressId"] as String).startsWith("countryOfBirth")
+  }.each { final def ad ->
     address {
       type = "physical"
       city = ad[PatientAddress.CITY]
@@ -129,20 +108,6 @@ patient {
     telecom {
       system = ContactPointSystem.EMAIL.toCode()
       value = ad[PatientAddress.EMAIL]
-    }
-  }
-
-  final def addressMappings = context.source[patient().patientContainer().laborMappings()].findAll { final def lm ->
-    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Address_profile"
-  }
-
-  final List<Map<String, Object>> lflvAddressMaps = addressMappings.collect { final def lm -> getLflvMap(lm, PROFILE_TYPES) }
-
-  lflvAddressMaps.each { final Map<String, Object> addressMap ->
-    address {
-      line(addressMap.get(ADDRESS_LINE) as String)
-      city = addressMap.get(ADDRESS_CITY) as String
-      postalCode = addressMap.get(ADDRESS_POSTALCODE) as String
     }
   }
 }
