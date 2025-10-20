@@ -23,7 +23,7 @@
   "patientFilterValues": {
     "description": "If the patient matches one of this filter values, it is transformed and exported.",
     "value": [
-      "NHS", "EXPORT_INCLUSION"
+      "EXPORT_INCLUSION"
     ]
   },
   "pageSize": {
