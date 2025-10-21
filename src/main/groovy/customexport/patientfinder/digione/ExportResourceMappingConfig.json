@@ -37,6 +37,11 @@
       "exportToFhirResource": "Observation"
     },
     {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationRequest",
+      "exportToFhirResource": "MedicationRequest"
+    },
+    {
       "selectFromCxxEntity": "PROGRESS",
       "transformByTemplate": "progress",
       "exportToFhirResource": "Observation"

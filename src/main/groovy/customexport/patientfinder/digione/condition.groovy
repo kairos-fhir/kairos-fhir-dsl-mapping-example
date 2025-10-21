@@ -1,18 +1,31 @@
 package customexport.patientfinder.digione
 
-
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 
+import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 
 /**
  * Represented by a HDRP Diagnosis
  * @author Mike Wähnert
  * @since v.1.43.0, HDRP.v.2024.5.2
  */
+
+final String ECOG_INDEX = "ecog_index"
+
+
+final Map PROFILE_TYPES = [
+    (ECOG_INDEX)    : LaborFindingLaborValue.STRING_VALUE
+]
+
 condition {
 
   id = "Condition/" + context.source[diagnosis().id()]
@@ -74,6 +87,20 @@ condition {
       text = diagNote
     }
   }
+
+  final def mapping = context.source[episode().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "ECOG"
+  }
+
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
+
+  if (lflvMap.containsKey(ECOG_INDEX)) {
+    clinicalStatus {
+      coding {
+        code = lflvMap.get(ECOG_INDEX) as String
+      }
+    }
+  }
 }
 
 static boolean isFakeEpisode(final def episode) {
@@ -87,4 +114,22 @@ static boolean isFakeEpisode(final def episode) {
 
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
+}
+
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
+
+  types.each { final String lvCode, final String lvType ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == lvCode
+    }
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
+    }
+  }
+  return lflvMap
 }

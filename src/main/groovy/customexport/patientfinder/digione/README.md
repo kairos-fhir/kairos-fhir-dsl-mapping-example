@@ -7,6 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-10-25
+* added export of ECOG score to Condition.clinicalStatus
+* added script for MedicationRequests
+
 # 2025-09-22
 * overworking the Tnm script
 
