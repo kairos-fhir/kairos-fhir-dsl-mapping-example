@@ -23,7 +23,7 @@
   "patientFilterValues": {
     "description": "If the patient matches one of this filter values, it is transformed and exported.",
     "value": [
-      "MPI"
+      "PATIENTID"
     ]
   },
   "pageSize": {
@@ -89,5 +89,13 @@
   "fhirResponseValidationEnable": {
     "description": "If true, the HTTP message responses is parsed and each response entry is validated against its FHIR response status. Even if the HTTP response status is 200 ok, the status of a single entry might be 400 (bad request). If the status is not 200 or 201, an error is logged.",
     "value": false
+  },
+  "parallelEntityLoadingEnable": {
+    "description": "Allows parallelizing loading and initializing of entities from the databases in batches of 1000. Only useful for large page sizes \u003e 1000.",
+    "value": true
+  },
+  "parallelProcessingEnable": {
+    "description": "The pseudonymization, serialization, and transformation is parallelized, which can improve performance for large page size exports",
+    "value": true
   }
 }
