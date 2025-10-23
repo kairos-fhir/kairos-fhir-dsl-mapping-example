@@ -35,7 +35,7 @@ patient {
 
 
   final def countryOfBirth = context.source[patientMasterDataAnonymous().addresses()].find { final def ad ->
-    (ad["addressId"] as String).startsWith("countryOfBirth")
+    (ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
   }
 
   if (countryOfBirth != null){
@@ -88,7 +88,7 @@ patient {
       context.source[patientMasterDataAnonymous().dateOfDeath().date()] : null
 
   context.source[patient().addresses()].findAll {
-    final  def ad -> !(ad["addressId"] as String).startsWith("countryOfBirth")
+    final  def ad -> !(ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
   }.each { final def ad ->
     address {
       type = "physical"

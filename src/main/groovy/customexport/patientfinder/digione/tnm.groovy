@@ -12,7 +12,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.tnm
 /**
  * Represented by a HDRP TNM
  * @author Mike Wähnert
- * @since HDRP.v.3.18.1.21, HDRP.v.3.18.2, kairos-fhir-dsl-1.13.0
+ * @since HDRP.v.2025.3.2, kairos-fhir-dsl-1.54.0
  */
 observation {
 
@@ -170,8 +170,8 @@ observation {
       }
       valueCodeableConcept {
         coding {
-          code = (context.source["sourceDict.code"] as String).trim()
-          display = context.source["sourceDict.multilinguals"].find { final def ml ->
+          code = (context.source[tnm().sourceDict().code()] as String).trim()
+          display = context.source[tnm().sourceDict().multilinguals()].find { final def ml ->
             ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
           }?.getAt(Multilingual.SHORT_NAME)
         }
