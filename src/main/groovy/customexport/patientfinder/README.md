@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-10-23
+* fixed the patient script to export country of birth correctly
+
 # 2025-10-20
 * adapted Patient script to work with multiple addresses
 

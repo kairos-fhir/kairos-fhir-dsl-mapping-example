@@ -43,7 +43,7 @@ patient {
       url = "https://fhir.iqvia.com/patientfinder/extension/place-of-birth"
       valueAddress {
         city = countryOfBirth[PatientAddress.CITY]
-        country = countryOfBirth[PatientAddress.COUNTRY]
+        country = countryOfBirth[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE)
       }
     }
   }
