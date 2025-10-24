@@ -88,9 +88,9 @@
       "exportToFhirResource": "AllergyIntolerance",
       "filters": [
         {
-          "filterName": "laborFinding.laborMethod.category",
+          "filterName": "laborFinding.laborMethod.code",
           "comparator": "EQUALS",
-          "value": "NURSING"
+          "value": "Allergen"
         }
       ]
     },
