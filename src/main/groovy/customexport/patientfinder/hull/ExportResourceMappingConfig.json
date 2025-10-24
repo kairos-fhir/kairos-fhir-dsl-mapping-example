@@ -49,22 +49,50 @@
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "questionnaireResponse",
-      "exportToFhirResource": "QuestionnaireResponse"
+      "exportToFhirResource": "QuestionnaireResponse",
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.category",
+          "comparator": "EQUALS",
+          "value": "NURSING"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.category",
+          "comparator": "EQUALS",
+          "value": "VITALSIGN"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "diagnosticReport",
-      "exportToFhirResource": "DiagnosticReport"
+      "exportToFhirResource": "DiagnosticReport",
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.category",
+          "comparator": "EQUALS",
+          "value": "LABOR"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "allergyIntolerance",
-      "exportToFhirResource": "AllergyIntolerance"
+      "exportToFhirResource": "AllergyIntolerance",
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.category",
+          "comparator": "EQUALS",
+          "value": "NURSING"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "PATIENT_TRANSFER",
@@ -79,17 +107,38 @@
     {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medication",
-      "exportToFhirResource": "Medication"
+      "exportToFhirResource": "Medication",
+      "filters": [
+        {
+          "filterName": "serviceType",
+          "comparator": "EQUALS",
+          "value": "MED"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationRequest",
-      "exportToFhirResource": "MedicationRequest"
+      "exportToFhirResource": "MedicationRequest",
+      "filters": [
+        {
+          "filterName": "serviceType",
+          "comparator": "EQUALS",
+          "value": "VER"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
-      "exportToFhirResource": "MedicationAdministration"
+      "exportToFhirResource": "MedicationAdministration",
+      "filters": [
+        {
+          "filterName": "serviceType",
+          "comparator": "EQUALS",
+          "value": "GAB"
+        }
+      ]
     }
   ]
 }
