@@ -23,7 +23,7 @@
   "patientFilterValues": {
     "description": "If the patient matches one of this filter values, it is transformed and exported.",
     "value": [
-      "EXPORT_INCLUSION", "FAKEID"
+      "EXPORT_INCLUSION"
     ]
   },
   "pageSize": {

@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-10-27
+* removed the "FAKEID" from the inclusion filter as two values in the filter reduced performance.
+
 # 2025-10-24
 * added to use additional filters in ExportResourceMappingConfig to use
 
