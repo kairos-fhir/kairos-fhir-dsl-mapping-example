@@ -7,9 +7,11 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
-# 2025-23-10
-* added metamodel usage in tnm for sourceDict
+# 2025-10-28
+* added scripts to transform RadiationTherapy to medications and medicationAdministrations
 
+# 2025-10-23
+* added metamodel usage in tnm for sourceDict
 
 # 2025-10-25
 * added export of ECOG score to Condition.clinicalStatus

@@ -70,6 +70,16 @@
       "selectFromCxxEntity": "TNM",
       "transformByTemplate": "tnm",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "RADIATION_THERAPY",
+      "transformByTemplate": "radiationTherapyMedication",
+      "exportToFhirResource": "Medication"
+    },
+    {
+      "selectFromCxxEntity": "RADIATION_THERAPY",
+      "transformByTemplate": "radiationTherapyMedicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }
