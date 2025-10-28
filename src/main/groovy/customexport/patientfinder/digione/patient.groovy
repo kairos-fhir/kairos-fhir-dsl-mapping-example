@@ -21,7 +21,7 @@ patient {
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
   final def healthCareId = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
-      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "patient_ID" }
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "PATIENTID" }
 
   identifier {
     system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
@@ -29,7 +29,7 @@ patient {
   }
 
   context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
-    idc[ID_CONTAINER_TYPE][CODE] != "patient_ID"
+    idc[ID_CONTAINER_TYPE][CODE] != "PATIENTID"
   }.each { final def idc ->
     identifier {
       system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
