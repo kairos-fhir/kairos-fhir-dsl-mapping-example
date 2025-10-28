@@ -7,7 +7,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
  * @since HDRP v.2025.3.2 fhir-dsl v.1.52.0
  */
 medicationAdministration {
-  id = "MedicationAdministration/RadioTherapy-" + context.source[radiationTherapy().id()]
+  id = "MedicationAdministration/RadiationTherapy-" + context.source[radiationTherapy().id()]
 
   identifier {
     value = context.source[radiationTherapy().radiationTherapyId()]
@@ -15,7 +15,7 @@ medicationAdministration {
 
   medication {
     medicationReference {
-      reference = "Medication/RadioTherapy-" + context.source[radiationTherapy().id()]
+      reference = "Medication/RadiationTherapy-" + context.source[radiationTherapy().id()]
     }
   }
 
