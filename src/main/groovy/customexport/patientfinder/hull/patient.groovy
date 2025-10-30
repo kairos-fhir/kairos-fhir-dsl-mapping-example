@@ -38,7 +38,7 @@ patient {
     (ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
   }
 
-  if (countryOfBirth != null){
+  if (countryOfBirth != null) {
     extension {
       url = "https://fhir.iqvia.com/patientfinder/extension/place-of-birth"
       valueAddress {
@@ -88,7 +88,7 @@ patient {
       context.source[patientMasterDataAnonymous().dateOfDeath().date()] : null
 
   context.source[patient().addresses()].findAll {
-    final  def ad -> !(ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
+    final def ad -> !(ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
   }.each { final def ad ->
     address {
       type = "physical"
@@ -101,13 +101,17 @@ patient {
       }
     }
 
-    telecom {
-      system = ContactPointSystem.PHONE.toCode()
-      value = ad[PatientAddress.PHONE1]
+    if (ad[PatientAddress.PHONE1] != null) {
+      telecom {
+        system = ContactPointSystem.PHONE.toCode()
+        value = ad[PatientAddress.PHONE1]
+      }
     }
-    telecom {
-      system = ContactPointSystem.EMAIL.toCode()
-      value = ad[PatientAddress.EMAIL]
+    if (ad[PatientAddress.EMAIL] != null) {
+      telecom {
+        system = ContactPointSystem.EMAIL.toCode()
+        value = ad[PatientAddress.EMAIL]
+      }
     }
   }
 }

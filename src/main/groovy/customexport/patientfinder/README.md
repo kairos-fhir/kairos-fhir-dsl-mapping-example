@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2025-10-30
+* added filter to only export email and phone if they are not null
+
 # 2025-10-27
 * removed the "FAKEID" from the inclusion filter as two values in the filter reduced performance.
 
