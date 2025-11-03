@@ -79,8 +79,8 @@ graph LR
     classDef transformation fill: #bfb, stroke: #333, stroke-width: 1px;
     classDef export fill: #fbb, stroke: #333, stroke-width: 1px;
     class DB database;
-class EntityLoader, Entities, ConvertToMaps, EntityMaps entity;
-class GroovyEngine,GroovyScripts, FHIRResources transformation;
+class EntityLoader,Entities,ConvertToMaps,EntityMaps entity;
+class GroovyEngine,GroovyScripts,FHIRResources transformation;
 class RESTEndpoint,ExportedBundles export;
 ```
 
