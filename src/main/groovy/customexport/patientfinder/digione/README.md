@@ -7,6 +7,9 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-11-03
+* added truncation to restrict IcdEntry description to max 500 chars.
+
 # 2025-10-28
 * added scripts to transform RadiationTherapy to medications and medicationAdministrations
 

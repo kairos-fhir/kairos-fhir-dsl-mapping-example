@@ -63,7 +63,7 @@ condition {
         system = "https://fhir.centraxx.de/system/" + context.source[diagnosis().icdEntry().catalogue().name()]
         code = context.source[diagnosis().icdEntry().code()] as String
         version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
-        display = context.source[diagnosis().icdEntry().preferredLong()]
+        display = truncate(context.source[diagnosis().icdEntry().preferred()] as String)
       }
     } else if (context.source[diagnosis().userDefinedCatalogEntry()]) {
       coding {
@@ -114,6 +114,14 @@ static boolean isFakeEpisode(final def episode) {
 
   final def fakeId = episode[Episode.ID_CONTAINER]?.find { (it[PSN] as String).toUpperCase().startsWith("FAKE") }
   return fakeId != null
+}
+
+
+static String truncate(final String desc){
+  if (desc == null){
+    null
+  }
+  return desc.substring(0, Math.min(500, desc.length()))
 }
 
 static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
