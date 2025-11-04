@@ -39,6 +39,7 @@ medicationRequest {
   medicationCodeableConcept {
     coding {
       code = context.source[medication().code()] as String
+      display = context.source[medication().name()]
     }
   }
 
