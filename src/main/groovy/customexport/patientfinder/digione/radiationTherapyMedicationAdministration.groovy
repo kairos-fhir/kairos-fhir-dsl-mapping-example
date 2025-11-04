@@ -10,7 +10,7 @@ medicationAdministration {
   id = "MedicationAdministration/RadiationTherapy-" + context.source[radiationTherapy().id()]
 
   identifier {
-    value = "radiation_comp_" + context.source[radiationTherapy().radiationTherapyId()]
+    value = "radiation_therapy_" + context.source[radiationTherapy().radiationTherapyId()]
   }
 
   medication {

@@ -25,7 +25,7 @@ medication {
           itemCodeableConcept {
             coding {
               code = "radiation_comp_" + context.source[radiationTherapy().radiationTherapyId()] + "_" + i
-              display = "Radiation Component " + i + "for Radiation Therapy" + context.source[radiationTherapy().radiationTherapyId()]
+              display = "Radiation Component " + i + " for Radiation Therapy" + context.source[radiationTherapy().radiationTherapyId()]
             }
           }
           strength {
