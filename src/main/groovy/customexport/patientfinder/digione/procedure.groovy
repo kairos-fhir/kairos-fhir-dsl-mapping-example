@@ -29,20 +29,16 @@ procedure {
         system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().opsEntry().catalogue().name()]
         version = context.source[medProcedure().opsEntry().catalogue().catalogueVersion()]
         code = context.source[medProcedure().opsEntry().code()] as String
-        display = context.source[medProcedure().opsEntry().preferredLong()] as String
+        display = context.source[medProcedure().opsEntry().preferred()] as String
       }
-    }
-
-    if (context.source[medProcedure().userDefinedCatalogEntry()]) {
+    } else if (context.source[medProcedure().userDefinedCatalogEntry()]) {
       coding {
         system = "https://fhir.centraxx.de/system/" + context.source[medProcedure().userDefinedCatalogEntry().catalog().code()]
         version = context.source[medProcedure().userDefinedCatalogEntry().catalog().version()]
         code = context.source[medProcedure().userDefinedCatalogEntry().code()] as String
         display = context.source[medProcedure().userDefinedCatalogEntry().multilinguals()]?.find { it[LANGUAGE] == "en" }?.getAt(NAME)
       }
-    }
-
-    if (context.source[medProcedure().procedureCode()]) {
+    } else if (context.source[medProcedure().procedureCode()]) {
       coding {
         code = context.source[medProcedure().procedureCode()] as String
         display = context.source[medProcedure().procedureText()] as String
