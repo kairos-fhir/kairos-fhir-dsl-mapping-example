@@ -70,15 +70,15 @@ procedure {
     }
   }
 
-  if ("Surgical Procedure".equalsIgnoreCase(opsNote)) {
-    category {
-      coding {
-        system = "http://hl7.org/fhir/ValueSet/procedure-category"
-        code = "387713003"
-        display = "Surgical procedure (procedure)"
-      }
+
+  category {
+    coding {
+      system = "http://hl7.org/fhir/ValueSet/procedure-category"
+      code = "387713003"
+      display = "Surgical procedure (procedure)"
     }
   }
+
 
   subject {
     reference = "Patient/" + context.source[medProcedure().patientContainer().id()]

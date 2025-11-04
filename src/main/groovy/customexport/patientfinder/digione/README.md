@@ -7,6 +7,9 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-11-04
+* added the surgical procedure category code to mark procedures as surgeries
+
 # 2025-11-03
 * added truncation to restrict IcdEntry description to max 500 chars.
 
