@@ -19,8 +19,8 @@ medication {
 
   (context.source[radiationTherapy().radiationComponents()] as List)
       .sort { final c -> c[RadiationComponent.ID] }
-      .eachWithIndex { final def i,
-                       final def radComp ->
+      .eachWithIndex { final def radComp,
+                       final def i ->
         ingredient {
           itemCodeableConcept {
             coding {
