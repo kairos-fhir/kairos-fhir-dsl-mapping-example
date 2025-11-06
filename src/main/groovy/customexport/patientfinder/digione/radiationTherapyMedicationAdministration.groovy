@@ -34,7 +34,7 @@ medicationAdministration {
     end = context.source[radiationTherapy().therapyEnd()]
   }
 
-  final def radComp = context.source[radiationTherapy().radiationComponents()].find {}
+  final def radComp = context.source[radiationTherapy().radiationComponents()].find({it})
   if (radComp != null) {
     dosage {
       dose {
