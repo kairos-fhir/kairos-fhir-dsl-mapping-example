@@ -21,19 +21,11 @@ medicationAdministration {
     reference = "Patient/" + context.source[medication().patientContainer().id()]
   }
 
-  request {
-    reference = "MedicationRequest/" + context.source[medication().id()]
-  }
-
   medicationCodeableConcept {
     coding {
       code = context.source[medication().code()] as String
       display = context.source[medication().name()]
     }
-  }
-
-  encounter {
-    reference = "Encounter/" + context.source[medication().episode().id()]
   }
 
   if (context.source[medication().attendingDoctor()]) {
