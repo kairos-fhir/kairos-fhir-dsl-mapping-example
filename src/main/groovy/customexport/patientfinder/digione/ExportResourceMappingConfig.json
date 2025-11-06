@@ -38,8 +38,8 @@
     },
     {
       "selectFromCxxEntity": "MEDICATION",
-      "transformByTemplate": "medicationRequest",
-      "exportToFhirResource": "MedicationRequest"
+      "transformByTemplate": "medicationAdministration",
+      "exportToFhirResource": "MedicationAdministration"
     },
     {
       "selectFromCxxEntity": "PROGRESS",
