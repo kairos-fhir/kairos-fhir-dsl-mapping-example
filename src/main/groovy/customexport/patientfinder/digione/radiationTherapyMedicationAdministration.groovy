@@ -1,5 +1,6 @@
 package customexport.patientfinder.digione
 
+import de.kairos.fhir.centraxx.metamodel.RadiationComponent
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
 
@@ -13,9 +14,14 @@ medicationAdministration {
     value = "radiation_therapy_" + context.source[radiationTherapy().radiationTherapyId()]
   }
 
+  //TODO: read out the therapy type
+
   medication {
-    medicationReference {
-      reference = "Medication/RadiationTherapy-" + context.source[radiationTherapy().id()]
+    medicationCodeableConcept {
+      coding {
+        code = "radiation_therapy_" + context.source[radiationTherapy().radiationTherapyId()]
+        display = "RadiationTherapy " + context.source[radiationTherapy().radiationTherapyId()]
+      }
     }
   }
 
@@ -23,10 +29,19 @@ medicationAdministration {
     reference = "Patient/" + context.source[radiationTherapy().patientContainer().id()]
   }
 
-
   effectivePeriod {
     start = context.source[radiationTherapy().therapyStart()]
     end = context.source[radiationTherapy().therapyEnd()]
+  }
+
+  final def radComp = context.source[radiationTherapy().radiationComponents()].find {}
+  if (radComp != null) {
+    dosage {
+      dose {
+        value = radComp[RadiationComponent.COMPLETE_DOSE]
+        unit = "Gy"
+      }
+    }
   }
 
 }
