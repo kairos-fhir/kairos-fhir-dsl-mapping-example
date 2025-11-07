@@ -9,6 +9,8 @@ import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import org.hl7.fhir.r4.model.Condition
 import org.junit.jupiter.api.Test
 
+import java.text.SimpleDateFormat
+
 import static java.util.Collections.singletonMap
 import static org.junit.jupiter.api.Assertions.assertEquals
 
@@ -20,6 +22,7 @@ class ConditionDateTest extends AbstractDslBuilderTest {
     // given: select your groovy script to test
     final FileInputStream is = new FileInputStream("src/main/groovy/customexport/dktk/v2/condition.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
+    final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
 
     // put your test data here
     final Map<String, Object> testDataMap = createTestData()
@@ -28,7 +31,7 @@ class ConditionDateTest extends AbstractDslBuilderTest {
     final Condition condition = (Condition) runner.run(new Context(testDataMap))
 
     // then: test your assertions
-    assertEquals("1799-12-31", condition.getOnsetDateTimeType().getValue().format("yyyy-MM-dd"))
+    assertEquals("1799-12-31", dateFormat.format(condition.getOnsetDateTimeType().getValue()))
   }
 
   static Map<String, Object> createTestData() {

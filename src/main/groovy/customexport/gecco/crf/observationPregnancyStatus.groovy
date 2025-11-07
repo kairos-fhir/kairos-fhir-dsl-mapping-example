@@ -91,26 +91,26 @@ static String normalizeDate(final String dateTimeString) {
 
 static String mapPreg(final String smokingStatus) {
   switch (smokingStatus) {
-    default:
-      return null
     case "COV_JA":
       return "LA15173-0"
     case "COV_NEIN":
       return "LA26683-5"
     case "COV_UNBEKANNT":
       return "LA4489-6"
+    default:
+      return null
   }
 }
 
 static String mapPregSNOMED(final String smokingStatus) {
   switch (smokingStatus) {
-    default:
-      return null
     case "COV_JA":
       return "77386006"
     case "COV_NEIN":
       return "60001007"
     case "COV_UNBEKANNT":
       return "261665006"
+    default:
+      return null
   }
 }

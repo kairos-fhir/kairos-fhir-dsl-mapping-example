@@ -157,12 +157,12 @@ observation {
 
 static String mapDiscSNOMED(final String discharge) {
   switch (discharge) {
-    default:
-      return "419984006"
     case "COV_POSITIV":
       return "260373001"
     case "COV_NEGATIV":
       return "260415000"
+    default:
+      return "419984006"
   }
 }
 

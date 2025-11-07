@@ -86,8 +86,6 @@ static String normalizeDate(final String dateTimeString) {
 
 static String mapInclusionSNOMED(final String inclusion) {
   switch (inclusion) {
-    default:
-      return null
     case "COV_JA":
       return "373066001"
     case "COV_NEIN":
@@ -98,5 +96,7 @@ static String mapInclusionSNOMED(final String inclusion) {
       return "74964007"
     case "COV_NA":
       return "385432009"
+    default:
+      return null
   }
 }

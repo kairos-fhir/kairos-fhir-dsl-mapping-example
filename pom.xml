@@ -16,10 +16,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.compiler.level>11</java.compiler.level>
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-    <kairos-fhir-dsl.version>1.54.0</kairos-fhir-dsl.version>
+    <kairos-fhir-dsl.version>1.55.0-SNAPSHOT</kairos-fhir-dsl.version>
     <junit-jupiter.version>5.8.2</junit-jupiter.version>
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
-    <gmavenplus-plugin.version>1.9.1</gmavenplus-plugin.version>
+    <gmavenplus-plugin.version>4.2.1</gmavenplus-plugin.version>
     <findbugs.version>3.0.2</findbugs.version>
     <slf4j-simple.version>1.7.36</slf4j-simple.version>
     <hapi.fhir.version>6.6.0</hapi.fhir.version>
@@ -154,6 +154,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <targetBytecode>${java.compiler.level}</targetBytecode>
+        </configuration>
       </plugin>
 
       <plugin>

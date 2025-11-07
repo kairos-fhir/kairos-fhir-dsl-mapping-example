@@ -89,8 +89,6 @@ static String normalizeDate(final String dateTimeString) {
 
 static String mapDiscSNOMED(final String discharge) {
   switch (discharge) {
-    default:
-      return null
     case "COV_LEBEND":
       return "371827001"
     case "COV_KRANKENHAUSEINWEISUNG":
@@ -103,5 +101,7 @@ static String mapDiscSNOMED(final String discharge) {
       return "306237005"
     case "COV_UNBEKANNT":
       return "261665006"
+    default:
+      return null
   }
 }

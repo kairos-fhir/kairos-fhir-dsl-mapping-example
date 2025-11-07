@@ -10,6 +10,8 @@ import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import org.hl7.fhir.r4.model.Immunization
 import org.junit.jupiter.api.Test
 
+import java.text.SimpleDateFormat
+
 import static java.util.Arrays.asList
 import static java.util.Collections.singletonMap
 import static org.junit.jupiter.api.Assertions.assertEquals
@@ -25,6 +27,8 @@ class ImmunizationExampleTest extends AbstractDslBuilderTest {
     // given: select your groovy script to test
     final FileInputStream is = new FileInputStream("src/test/resources/customexport/gecco/crf/immunizationTest.groovy")
     final Fhir4ScriptRunner runner = getFhir4ScriptRunner(is, "test")
+    final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
+
 
     // put your test data here
     final Map<String, Object> testDataMap = createTestData()
@@ -33,7 +37,7 @@ class ImmunizationExampleTest extends AbstractDslBuilderTest {
     final Immunization immunization = (Immunization) runner.run(new Context(testDataMap))
 
     // then: test your assertions
-    assertEquals("2021-07-04", immunization.getOccurrenceDateTimeType().getValue().format("yyyy-MM-dd"))
+    assertEquals("2021-07-04", dateFormat.format(immunization.getOccurrenceDateTimeType().getValue()))
   }
 
   static Map<String, Object> createTestData() {
