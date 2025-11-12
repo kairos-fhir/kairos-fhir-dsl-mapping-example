@@ -1,6 +1,7 @@
 package common
 
-
+import org.hl7.fhir.r4.model.DateTimeType
+import org.hl7.fhir.r4.model.DateType
 import org.junit.jupiter.api.Test
 
 import static org.junit.jupiter.api.Assertions.assertEquals
@@ -19,5 +20,15 @@ class DateOrderExampleTest {
 
     assertEquals("2021-07-01", sortedList.first())
     assertEquals("2021-07-07", sortedList.last())
+  }
+
+  @Test
+  void testReasonableDate(){
+
+    final def date = "0001-01-01"
+
+    final DateType dateTimeType = new DateType(date)
+
+    println(dateTimeType.getValue())
   }
 }
