@@ -36,7 +36,7 @@ observation {
   final def laborMethod = context.source[laborMapping().laborFinding().laborMethod()]
   final String laborMethodCode = laborMethod[CODE]
 
-  if ("Allergen".equalsIgnoreCase(laborMethodCode)) {
+  if (["Encounter_profile"].contains(laborMethodCode)) {
     return
   }
 

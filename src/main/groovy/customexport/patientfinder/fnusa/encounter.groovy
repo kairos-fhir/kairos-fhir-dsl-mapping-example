@@ -2,11 +2,17 @@ package customexport.patientfinder.fnusa
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode
+import de.kairos.fhir.centraxx.metamodel.LaborFinding
+import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
+import de.kairos.fhir.centraxx.metamodel.LaborMapping
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.PatientTransfer
 import org.hl7.fhir.r4.model.Encounter
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.AbstractCodeSyncIdMultilingual.MULTILINGUALS
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
 import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
@@ -24,6 +30,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
  * @author Mike Wähnert
  * @since v.1.13.0, HDRP.v.2023.3.0
  */
+
+final String DISCHARGE_DISPOSITION = "dischargeDisposition"
+final String REASON_CODE = "reasonCode"
+
+final Map PROFILE_TYPES = [
+    (DISCHARGE_DISPOSITION): LaborFindingLaborValue.CATALOG_ENTRY_VALUE,
+    (REASON_CODE)          : LaborFindingLaborValue.CATALOG_ENTRY_VALUE
+]
+
 encounter {
 
   if (isFakeEpisode(context.source)) {
@@ -31,6 +46,12 @@ encounter {
   }
 
   id = "Encounter/" + context.source[episode().id()]
+
+  final def mapping = context.source[episode().laborMappings()].find { final def lm ->
+    lm[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_METHOD][CODE] == "Encounter_profile"
+  }
+
+  final Map<String, Object> lflvMap = getLflvMap(mapping, PROFILE_TYPES)
 
   meta {
     profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
@@ -103,6 +124,52 @@ encounter {
       }
     }
   }
+
+  if (lflvMap.containsKey(REASON_CODE)) {
+    reasonCode {
+      lflvMap.get(REASON_CODE).each { final def entry ->
+        coding {
+          code = entry[CODE] as String
+          display = entry[MULTILINGUALS].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+        }
+      }
+    }
+  }
+
+  if (lflvMap.containsKey(DISCHARGE_DISPOSITION)) {
+    hospitalization {
+      dischargeDisposition {
+        lflvMap.get(DISCHARGE_DISPOSITION).each { final def entry ->
+          coding {
+            code = entry[CODE] as String
+            display = entry[MULTILINGUALS].find { final def ml ->
+              ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+            }?.getAt(Multilingual.SHORT_NAME)
+          }
+        }
+      }
+    }
+  }
+}
+
+static Map<String, Object> getLflvMap(final def mapping, final Map<String, String> types) {
+  final Map<String, Object> lflvMap = [:]
+  if (!mapping) {
+    return lflvMap
+  }
+
+  types.each { final String lvCode, final String lvType ->
+    final def lflvForLv = mapping[LaborMapping.LABOR_FINDING][LaborFinding.LABOR_FINDING_LABOR_VALUES].find { final def lflv ->
+      lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == lvCode
+    }
+
+    if (lflvForLv && lflvForLv[lvType]) {
+      lflvMap[(lvCode)] = lflvForLv[lvType]
+    }
+  }
+  return lflvMap
 }
 
 static boolean isFakeEpisode(final def episode) {
