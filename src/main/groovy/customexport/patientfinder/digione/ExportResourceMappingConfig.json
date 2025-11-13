@@ -17,6 +17,30 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimenBiomarker",
+      "exportToFhirResource": "Specimen",
+      "filters": [
+        {
+          "filterName": "laborMethod.code",
+          "comparator": "EQUALS",
+          "value": "BIOMARKERS"
+        }
+      ]
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "observationBiomarker",
+      "exportToFhirResource": "Observation",
+      "filters": [
+        {
+          "filterName": "laborMethod.code",
+          "comparator": "EQUALS",
+          "value": "BIOMARKERS"
+        }
+      ]
+    },
+    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
@@ -34,7 +58,14 @@
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation"
+      "exportToFhirResource": "Observation",
+      "filters": [
+        {
+          "filterName": "laborMethod.code",
+          "comparator": "NOT_EQUALS",
+          "value": "BIOMARKERS"
+        }
+      ]
     },
     {
       "selectFromCxxEntity": "MEDICATION",

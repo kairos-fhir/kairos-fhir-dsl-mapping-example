@@ -7,6 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2025-11-13
+* added scripts to map biomarkers finding to specimen and observation
+* deleted obsolete scripts
+
 # 2025-11-06
 * remapped medications to medicationAdministration
 * remapped RadioTherapy to MedicationAdministration only
