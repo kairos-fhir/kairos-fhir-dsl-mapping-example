@@ -13,6 +13,11 @@
     },
     {
       "selectFromCxxEntity": "SAMPLE",
+      "transformByTemplate": "specimenstatus",
+      "exportToFhirResource": "Specimen"
+    },
+    {
+      "selectFromCxxEntity": "SAMPLE",
       "transformByTemplate": "specimen",
       "exportToFhirResource": "Specimen"
     },
