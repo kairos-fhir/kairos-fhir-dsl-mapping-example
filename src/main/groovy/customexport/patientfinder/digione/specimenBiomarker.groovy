@@ -47,7 +47,7 @@ static String getValueOrNull(final String value) {
 }
 
 static String removeBackSlashes(final String s){
-  s.replace("/", "-")
+  return s.replace("/", "-")
 }
 
 
