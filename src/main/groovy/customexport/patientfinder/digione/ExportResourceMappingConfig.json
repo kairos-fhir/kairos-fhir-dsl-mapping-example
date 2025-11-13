@@ -17,7 +17,7 @@
       "exportToFhirResource": "Patient"
     },
     {
-      "selectFromCxxEntity": "SAMPLE",
+      "selectFromCxxEntity": "LABOR_FINDING",
       "transformByTemplate": "specimenBiomarker",
       "exportToFhirResource": "Specimen",
       "filters": [
