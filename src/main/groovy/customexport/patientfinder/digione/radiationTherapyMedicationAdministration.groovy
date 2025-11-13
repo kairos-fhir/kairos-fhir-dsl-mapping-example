@@ -19,7 +19,7 @@ medicationAdministration {
     medicationCodeableConcept {
       coding {
         code = context.source[radiationTherapy().therapyKindDict().code()] as String
-        display = context.source[radiationTherapy().therapyKindDict().code()]
+        display = context.source[radiationTherapy().therapyKindDict().multilinguals()]
             ?.find { final mle -> mle[Multilingual.LANGUAGE] == "en" && mle[Multilingual.SHORT_NAME] != null }
             ?.getAt(Multilingual.SHORT_NAME) as String
       }
