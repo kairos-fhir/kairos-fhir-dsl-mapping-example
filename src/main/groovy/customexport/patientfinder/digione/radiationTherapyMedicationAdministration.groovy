@@ -1,5 +1,6 @@
 package customexport.patientfinder.digione
 
+import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.RadiationComponent
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.radiationTherapy
@@ -14,13 +15,13 @@ medicationAdministration {
     value = "radiation_therapy_" + context.source[radiationTherapy().radiationTherapyId()]
   }
 
-  //TODO: read out the therapy type
-
   medication {
     medicationCodeableConcept {
       coding {
-        code = "radiation_therapy_" + context.source[radiationTherapy().radiationTherapyId()]
-        display = "RadiationTherapy " + context.source[radiationTherapy().radiationTherapyId()]
+        code = context.source[radiationTherapy().therapyKindDict().code()] as String
+        display = context.source[radiationTherapy().therapyKindDict().code()]
+            ?.find { final mle -> mle[Multilingual.LANGUAGE] == "en" && mle[Multilingual.SHORT_NAME] != null }
+            ?.getAt(Multilingual.SHORT_NAME) as String
       }
     }
   }
