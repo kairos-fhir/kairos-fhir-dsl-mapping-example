@@ -106,12 +106,15 @@ observation {
     }
   }
 
-  final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
+  /**
+   * There are multiple findings for the same specimen id
+   */
+ /* final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
   if (sampleId != null) {
     specimen {
       reference = "Specimen/" + removeBackSlashes(sampleId)
     }
-  }
+  }*/
 
   method {
     coding {

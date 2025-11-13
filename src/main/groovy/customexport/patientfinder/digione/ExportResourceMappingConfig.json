@@ -18,18 +18,6 @@
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING",
-      "transformByTemplate": "specimenBiomarker",
-      "exportToFhirResource": "Specimen",
-      "filters": [
-        {
-          "filterName": "laborMethod.code",
-          "comparator": "EQUALS",
-          "value": "BIOMARKERS"
-        }
-      ]
-    },
-    {
-      "selectFromCxxEntity": "LABOR_FINDING",
       "transformByTemplate": "observationBiomarker",
       "exportToFhirResource": "Observation",
       "filters": [

@@ -8,7 +8,7 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 # Change log
 
 # 2025-11-13
-* added scripts to map biomarkers finding to specimen and observation
+* added scripts to map biomarkers finding to observation
 * deleted obsolete scripts
 
 # 2025-11-06
