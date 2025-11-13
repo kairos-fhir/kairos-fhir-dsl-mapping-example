@@ -43,9 +43,13 @@ observation {
 
   final Map<String, Object> lflvMap = getLflvMap(context.source[laborFinding().laborFindingLaborValues()] as List, PROFILE_TYPES)
 
-  final String bioMarkerCode = lflvMap.get(BIOMARKER_CODE)
-  final String bioMarkerName = lflvMap.get(BIOMARKER_NAME)
-  final String bioMarkerResult = lflvMap.get(BIOMARKER_RESULT)
+  final String bioMarkerName = getValueOrNull(lflvMap.get(BIOMARKER_NAME) as String)
+  final String bioMarkerResult = getValueOrNull(lflvMap.get(BIOMARKER_RESULT) as String)
+  final String bioMarkerCode = getValueOrNull(lflvMap.get(BIOMARKER_CODE) as String) != null ? lflvMap.get(BIOMARKER_CODE) : bioMarkerName
+
+  if (bioMarkerName == null || bioMarkerResult == null){
+    return
+  }
 
   id = "Observation/" + context.source[laborFinding().id()]
 
@@ -86,7 +90,7 @@ observation {
   if (numericResult != null){
     valueQuantity {
       value = numericResult
-      unit = lflvMap.get(BIOMARKER_UNIT)
+      unit = getValueOrNull(lflvMap.get(BIOMARKER_UNIT) as String)
     }
   } else {
     valueString(bioMarkerResult)
@@ -102,7 +106,7 @@ observation {
     }
   }
 
-  final String sampleId = lflvMap.get(SAMPLE_ID)
+  final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
   if (sampleId != null) {
     specimen {
       reference = "Specimen/" + sampleId
@@ -118,6 +122,18 @@ observation {
     }
   }
 
+}
+
+static String getValueOrNull(final String value){
+  if (value == null){
+    return null
+  }
+
+  if (value == "N/A"){
+    return null
+  }
+
+  return value
 }
 
 

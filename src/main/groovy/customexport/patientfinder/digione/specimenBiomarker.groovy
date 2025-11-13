@@ -14,8 +14,8 @@ final String SAMPLE_ID = "sample_id" //done
 final String SAMPLE_DATE = "sample_date" // not relevant here
 
 final Map PROFILE_TYPES = [
-    (SAMPLE_ID)                : LaborFindingLaborValue.STRING_VALUE,
-    (SAMPLE_DATE)              : LaborFindingLaborValue.DATE_VALUE
+    (SAMPLE_ID)  : LaborFindingLaborValue.STRING_VALUE,
+    (SAMPLE_DATE): LaborFindingLaborValue.DATE_VALUE
 ]
 
 specimen {
@@ -25,13 +25,29 @@ specimen {
 
   final Map<String, Object> lflvMap = getLflvMap(context.source[laborFinding().laborFindingLaborValues()] as List, PROFILE_TYPES)
 
-  final String bioMarkerSampleId = lflvMap.get(SAMPLE_ID)
+  final String bioMarkerSampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
 
-  if (bioMarkerSampleId == null){
+  if (bioMarkerSampleId == null) {
     return
   }
 
-  id = "Specimen/" + bioMarkerSampleId
+  id = "Specimen/" + removeBackSlashes(bioMarkerSampleId)
+}
+
+static String getValueOrNull(final String value) {
+  if (value == null) {
+    return null
+  }
+
+  if (value == "N/A") {
+    return null
+  }
+
+  return value
+}
+
+static String removeBackSlashes(final String s){
+  s.replace("/", "-")
 }
 
 
