@@ -1,0 +1,148 @@
+{
+  "resourceType" : "Bundle",
+  "type" : "transaction",
+  "entry" : [ {
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "944f516d-0a18-46cf-97d8-f87f6bf25ab2",
+      "identifier" : [ {
+        "value" : "ISIK_Diagnosis_Condition/944f516d-0a18-46cf-97d8-f87f6bf25ab2"
+      } ],
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.centraxx.de/catalog/IcdCatalog/#c.ICD-10-GM-DE#v.2025-GM-DE",
+          "version" : "code",
+          "code" : "E73.8"
+        } ]
+      },
+      "subject" : {
+        "identifier" : {
+          "type" : {
+            "coding" : [ {
+              "system" : "https://fhir.centraxx.de/system/idContainerType",
+              "code" : "ISIK"
+            } ]
+          },
+          "value" : "f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+        }
+      },
+      "onsetDateTime" : "2025-09-12T10:10:10+02:00",
+      "recordedDate" : "2025-09-12T13:25:53+02:00",
+      "note" : [ {
+        "text" : "Some note"
+      } ]
+    },
+    "request" : {
+      "method" : "POST",
+      "url" : "Condition/unknown"
+    }
+  }, {
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "944f516d-0a18-46cf-97d8-f87f6bf25ab2",
+      "status": "unknown",
+      "extension" : [ {
+        "url" : "https://fhir.centraxx.de/extension/laborMapping",
+        "extension" : [ {
+          "url" : "https://fhir.centraxx.de/extension/laborMapping/type",
+          "valueString" : "DIAGNOSIS"
+        }, {
+          "url" : "https://fhir.centraxx.de/extension/laborMapping/patient",
+          "valueReference" : {
+            "identifier" : {
+              "type" : {
+                "coding" : [ {
+                  "system" : "https://fhir.centraxx.de/system/idContainerType",
+                  "code" : "ISIK"
+                } ]
+              },
+              "value" : "f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+            }
+          }
+        }, {
+          "url" : "https://fhir.centraxx.de/extension/laborMapping/relatedReference",
+          "valueReference" : {
+            "identifier" : {
+              "value" : "ISIK_Diagnosis_Condition/944f516d-0a18-46cf-97d8-f87f6bf25ab2"
+            }
+          }
+        } ]
+      }, {
+        "url" : "https://fhir.centraxx.de/extension/laborMapping/createProfile",
+        "valueBoolean" : true
+      } ],
+      "identifier" : [ {
+        "system" : "https://fhir.centraxx.de/system/finding/laborFindingId",
+        "value" : "Additional Data Condition Condition/944f516d-0a18-46cf-97d8-f87f6bf25ab2"
+      } ],
+      "code" : {
+        "coding" : [ {
+          "system" : "https://fhir.centraxx.de/system/finding/shortname",
+          "code" : "Additional Data Condition Condition/944f516d-0a18-46cf-97d8-f87f6bf25ab2"
+        } ]
+      },
+      "effectiveDateTime" : "2025-09-12T13:25:53+02:00",
+      "method" : {
+        "coding" : [ {
+          "system" : "https://fhir.centraxx.de/system/laborMethod",
+          "code" : "ISIK_ADDITIONAL_CONDITION_DATA"
+        } ]
+      },
+      "component" : [ {
+        "extension" : [ {
+          "url" : "https://fhir.centraxx.de/extension/laborValue/laborValueType",
+          "valueString" : "CATALOG"
+        }, {
+          "url" : "https://fhir.centraxx.de/extension/laborValue/choiceType",
+          "valueString" : "SELECTONE"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "https://fhir.centraxx.de/system/laborValue",
+            "code" : "Condition.clinicalStatus"
+          } ]
+        },
+        "valueCodeableConcept" : {
+          "coding" : [ {
+            "system" : "urn:centraxx:CodeSystem/Catalog#c.FHIR_CONDITION_CLINICAL_STATUS",
+            "code" : "active"
+          } ]
+        }
+      } ]
+    },
+    "request" : {
+      "method" : "POST",
+      "url" : "Observation/unknown"
+    }
+  }, {
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "04618dcf-22ca-469e-9d18-f66ef5b25f0e",
+      "identifier" : [ {
+        "type" : {
+          "coding" : [ {
+            "system" : "https://fhir.centraxx.de/system/idContainerType",
+            "code" : "ISIK"
+          } ]
+        },
+        "value" : "f07caa59-5246-4fbb-9a6d-e0a3c159a316"
+      } ],
+      "name" : [ {
+        "use" : "official",
+        "family" : "Test Patient",
+        "given" : [ "Neuer" ]
+      } ],
+      "gender" : "male",
+      "birthDate" : "1998-01-04",
+      "address" : [ {
+        "line" : [ "Alte Straße 43" ],
+        "postalCode" : "12047",
+        "country" : "DE"
+      } ]
+    },
+    "request" : {
+      "method" : "POST",
+      "url" : "Patient/unknown"
+    }
+  } ]
+}

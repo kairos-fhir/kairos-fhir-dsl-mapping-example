@@ -1,207 +1,176 @@
 package common
 
-import ca.uhn.fhir.context.FhirContext
-import ca.uhn.fhir.context.support.DefaultProfileValidationSupport
-import ca.uhn.fhir.validation.FhirValidator
-import ca.uhn.fhir.validation.ResultSeverityEnum
-import ca.uhn.fhir.validation.ValidationResult
 import de.kairos.fhir.dsl.r4.context.Context
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptEngine
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import groovy.json.JsonSlurper
-import org.apache.commons.lang3.tuple.Pair
-import org.hl7.fhir.common.hapi.validation.support.*
-import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator
 import org.hl7.fhir.r4.model.DomainResource
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Named
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.provider.Arguments
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import javax.annotation.Nonnull
-import javax.annotation.Nullable
 import java.nio.charset.StandardCharsets
 import java.util.stream.Stream
 
-import static org.junit.jupiter.api.Assertions.fail
-
 /**
- * This test class provides test data for parameterized tests to verify the results of Groovy transformations.
- * The source maps must be provided as JSON files. The FHIR Custom Export transforms a map, accessible in the Groovy
- * transformation script via the 'context.source' variable, into a FHIR resource.
+ * This class provides a framework for end-to-end testing of Groovy transformation scripts.
+ * The Custom-Export process takes a Groovy script and an entity map as input, producing a FHIR resource as output.
  * <br><br>
- * This test class reads an array of these source maps from JSON files and transforms them using the Groovy script under test
- * into a list of resulting FHIR resources. The Groovy script and the source map JSON file are loaded from the paths specified
- * by the {@link TestResources} annotation on the implementing test class.
+ * Classes extending this abstract class must be annotated with the {@link TestResources} annotation,
+ * which specifies the path to the Groovy script under test and the JSON files containing the entity maps used as test inputs.
  * <br><br>
- * Each test method that runs over the set of source map and resulting FHIR resource pairs needs to be annotated with
- * {@link ExportScriptTest} and declare two arguments for the {@link Context} context and the resource. This annotation indicates
- * that the method is a parameterized test and registers the {@link AbstractExportScriptTest#getTestData} method as the source
- * for the method arguments.
+ * For each entity map in the specified directory, this class creates a {@link Context} and initializes a Groovy
+ * Transformation engine for the provided script. The script transforms each context into a HAPI FHIR resource.
  * <br><br>
- * Optionally, the {@link Validate} annotation can be used to validate the resulting resource against the profiles of a given FHIR package.
- * FHIR packages can be downloaded for specific FHIR projects from https://simplifier.net/
- * @param <E>                 the type parameter for the FHIR resource.
+ * The transformed contexts and their resulting FHIR resources are provided by {@link AbstractExportScriptTest#getTestData}.
+ * Test methods annotated with {@link ExportScriptTest} and accepting two parameters of type {@link Context} and E
+ * are executed for each pair of context and resulting resource.
+ * <br><br>
+ * The {@link AbstractExportScriptTest#getValidator} method can be used to lazily initialize a {@link FhirResourceValidator},
+ * which can be utilized to validate the resulting resources against structure definitions in the provided FHIR packages.
+ *
+ * @param <E>   The type parameter representing the FHIR resource.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractExportScriptTest<E extends DomainResource> {
+  private static final Logger LOG = LoggerFactory.getLogger(AbstractExportScriptTest.name)
+  public static final String METHOD_SOURCE = "getTestData"
+  private List<Arguments> mappingResults
 
-    public static final String METHOD_SOURCE = "getTestData"
-    private List<Arguments> mappingResults
+  private FhirResourceValidator validator
 
-    @BeforeAll
-    void setUp() {
-        println("✅ setUp() called")
+  @BeforeAll
+  void setUp() {
+    LOG.info("✅ setting up ${this.class.simpleName}")
+    final TestResources resources = this.class.getAnnotation(TestResources)
 
-        final TestResources resources = this.class.getAnnotation(TestResources)
-
-
-        final Validate validate = this.class.getAnnotation(Validate)
-
-        final FhirValidator validator = setUpValidator(validate)
-
-
-        if (resources == null) {
-            throw new IllegalStateException("TestResources Annotation is missing ion the test class")
-        }
-
-        final def groovyPath = resources.groovyScriptPath()
-        final def contextMapsPath = resources.contextMapsPath()
-
-        if (groovyPath == null || contextMapsPath == null) {
-            throw new IllegalArgumentException("The TestResourcesAnnotation parameters must be given.")
-        }
-
-        loadAndTransform(groovyPath, contextMapsPath, validator)
-
+    if (resources == null) {
+      throw new IllegalStateException("@${TestResources.class.simpleName} annotation is missing on ${this.class.simpleName}")
     }
 
-    private void loadAndTransform(@Nonnull final String groovyPath,
-                                  @Nonnull final String contextMapsPath,
-                                  final FhirValidator validator) throws FileNotFoundException {
-        final List<Map<String, Object>> contexts = createTestData(contextMapsPath)
+    final def groovyPath = resources.groovyScriptPath()
+    final def contextMapsPath = resources.contextMapsPath()
 
-        final Fhir4ScriptRunner runner = createRunner(groovyPath)
-        final List<Pair> contextResourcePairs = contexts.collect {
-            final Context context = new Context(it)
-            final E resource = (E) runner.run(context)
-            return Pair.of(context, resource)
-        }.findAll {
-            it.getRight().hasId()
-        }
-
-        println("✅ Loaded ${contextResourcePairs.size()} test cases")
-
-        //   List<E> res = contextResourcePairs.stream().map { e -> e.getRight() }.toList();
-        //  println("mappingResults: " + new ObjectMapper().writeValueAsString(res))
-
-
-        if (validator != null) {
-            validateResources(contextResourcePairs, validator)
-        }
-
-        mappingResults = contextResourcePairs.collect {
-            Arguments.of(it.getLeft(), it.getRight())
-        }
-
+    if (groovyPath == null || contextMapsPath == null) {
+      throw new IllegalArgumentException("The TestResourcesAnnotation parameters must be given.")
     }
 
-    private static void validateResources(final List<Pair> contextResourcePairs, final validator) {
-        final Map<Integer, String> validationErrors = new HashMap<>();
-        contextResourcePairs.eachWithIndex { final Pair<Context, E> entry, final int i ->
-            final ValidationResult result = validator.validateWithResult(entry.getRight())
-            if (!result.isSuccessful()) {
-                final def messages = result.getMessages()
-                        .findAll { it.getSeverity() == ResultSeverityEnum.ERROR }
-                        .collect { it.toString() }
-                        .join("\n")
+    loadAndTransform(groovyPath, contextMapsPath)
+  }
 
-                validationErrors.put(i, messages)
-            }
-        }
+  /**
+   * @param path
+   * @return
+   */
+  @Nonnull
+  protected FhirResourceValidator getValidator(@Nonnull final String path) {
+    if (validator == null) {
+      validator = new FhirResourceValidator(path)
+    }
+    return validator
+  }
 
-        if (!validationErrors.isEmpty()) {
-            final messages = validationErrors
-                    .collect { "Context at index " + it.key + " " + "-" * 80 + "\n" + it.value }
-                    .join("\n\n")
+  private void loadAndTransform(@Nonnull final String groovyPath,
+                                @Nonnull final String contextMapsPath) throws FileNotFoundException {
 
-            fail("Resource Validation failed for entries:\n" + messages)
-        }
+    final Map<String, Map<String, Object>> contextMaps = createTestData(contextMapsPath)
+
+    final Fhir4ScriptRunner runner = createRunner(groovyPath)
+
+    final List<ArgumentContainer<E>> arguments = contextMaps.collect { final fileName, final contextMap ->
+      final Context context = new Context(contextMap)
+      final E resource = (E) runner.run(context)
+      return new ArgumentContainer(fileName, context, resource)
+    }.findAll {
+      it.resource.hasId()
     }
 
-    @Nonnull
-    static List<Map<String, Object>> createTestData(@Nonnull final String contextMapsPath) throws FileNotFoundException {
-        println("🔍 loading test data from " + contextMapsPath)
-
-        final projectPath = ConfigReader.getProperty(ConfigReader.TEST_CONFIG, "test.data.project")
-        FileInputStream is
-        if (projectPath) {
-            final filename = new File(contextMapsPath).getName()
-            final customPath = projectPath + (projectPath.endsWith("/") ? "" : "/") + filename
-            File f = new File(customPath)
-            if (f.exists()) {
-                println("📄 USE CUSTOM PATH: " + customPath)
-                is = new FileInputStream(customPath)
-            }
-        }
-        if (is == null)
-            is = new FileInputStream(contextMapsPath)
-
-        is.withCloseable { stream ->
-            def json = new JsonSlurper().parse(stream)
-            println("📄 JSON loaded, size: " + (json as List).size())
-            return json as List<Map<String, Object>>
-        }
+    mappingResults = arguments.collect {
+      Arguments.of(new NamedArg(it.fileName, it.context), it.resource)
     }
 
-    @Nonnull
-    static Fhir4ScriptRunner createRunner(@Nonnull final String groovyPath) {
-        final FileInputStream is = new FileInputStream(groovyPath)
-        return getFhir4ScriptRunner(is, "test")
+    LOG.info("✅ Loaded ${mappingResults.size()} test cases.")
+
+  }
+
+  @Nonnull
+  static Map<String, Map<String, Object>> createTestData(@Nonnull final String contextMapsPath) throws FileNotFoundException {
+    LOG.info("🔍 Loading test data from $contextMapsPath")
+
+    final File contextMapDir = new File(contextMapsPath)
+
+    if (!contextMapDir.exists()) {
+      throw new IllegalStateException("The given contextMapPath does not exist. Path: ${contextMapDir.path}")
     }
 
-    @Nonnull
-    private static Fhir4ScriptRunner getFhir4ScriptRunner(final InputStream is, final String className) throws UnsupportedEncodingException {
-        final InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8)
-        final Fhir4ScriptEngine engine = new Fhir4ScriptEngine()
-        return engine.create(reader, className)
+    final Map<String, Map<String, Object>> contextMapByFile = new HashMap<>()
+
+    contextMapDir.eachFileMatch(~/.*\.json/) {
+      final def json = new JsonSlurper().parse(it)
+
+      if (json instanceof List) {
+        throw new IllegalStateException("The given context map JSON file must contain a representation of a single entity," +
+            " not an array of entity maps.")
+      }
+
+      contextMapByFile.put(it.name, json as Map<String, Object>)
     }
 
-    protected Stream<Arguments> getTestData() {
-        return mappingResults.stream()
+    return contextMapByFile
+  }
+
+  @Nonnull
+  static Fhir4ScriptRunner createRunner(@Nonnull final String groovyPath) {
+    final FileInputStream is = new FileInputStream(groovyPath)
+    return getFhir4ScriptRunner(is, "test")
+  }
+
+  @Nonnull
+  private static Fhir4ScriptRunner getFhir4ScriptRunner(@Nonnull final InputStream is,
+                                                        @Nonnull final String className) throws UnsupportedEncodingException {
+    final InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8)
+    final Fhir4ScriptEngine engine = new Fhir4ScriptEngine()
+    return engine.create(reader, className)
+  }
+
+  @Nonnull
+  protected Stream<Arguments> getTestData() {
+    return mappingResults.stream()
+  }
+
+  class ArgumentContainer<R extends DomainResource> {
+    private final String fileName
+    private final Context context
+    private final R resource
+
+    ArgumentContainer(@Nonnull final String fileName, @Nonnull final Context context, @Nonnull final R resource) {
+      this.fileName = fileName
+      this.context = context
+      this.resource = resource
+    }
+  }
+
+  static class NamedArg implements Named<Context> {
+    private final String name
+    private final Context context
+
+    NamedArg(@Nonnull final String name, @Nonnull final Context context) {
+      this.name = name
+      this.context = context
     }
 
-    @Nullable
-    private static FhirValidator setUpValidator(final Validate validate) {
-
-        if (validate == null) {
-            return null
-        }
-
-        final FhirContext context = FhirContext.forR4()
-
-
-        final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
-
-
-        final File packageDirFile = new File(validate.packageDir())
-        packageDirFile.eachFile { final file ->
-            npmPackageValidationSupport.loadPackageFromClasspath("${packageDirFile.name}/${file.name}")
-        }
-
-        final ValidationSupportChain supportChain = new ValidationSupportChain(
-                npmPackageValidationSupport,
-                new DefaultProfileValidationSupport(context),
-                new InMemoryTerminologyServerValidationSupport(context),
-                new SnapshotGeneratingValidationSupport(context))
-
-        final CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
-
-        final FhirValidator validator = context.newValidator()
-
-        final FhirInstanceValidator instanceValidator = new FhirInstanceValidator(validationSupport);
-        validator.registerValidatorModule(instanceValidator)
-        instanceValidator.setNoTerminologyChecks(true)
-
-        return validator
+    @Override
+    String getName() {
+      return name
     }
+
+    @Override
+    Context getPayload() {
+      return context
+    }
+  }
 }

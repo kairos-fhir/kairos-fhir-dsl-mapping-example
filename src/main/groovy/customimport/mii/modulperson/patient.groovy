@@ -95,7 +95,7 @@ bundle {
                 /**
                  * Names
                  * Currently we only import given and last name
-                 * CXX supports title, affix, birthname
+                 * HDRP supports title, affix, birthname
                  */
 
                 final HumanName firstSourceName = sourcePatient.name.find {
@@ -118,12 +118,12 @@ bundle {
 
                 if (firstSourceBirthName) {
                   /**
-                   * not yet implemented in CXX importer
+                   * not yet implemented in HDRP importer
                    */
                 }
 
                 /**
-                 * CXX does only map the FHIR administrative Genders back to the CXX Genders
+                 * HDRP does only map the FHIR administrative Genders back to the HDRP Genders
                  * MII uses and extension for the case UNKNOWN which specifies whether it is "unbestimmt" or "divers"
                  */
                 gender = sourcePatient.gender
@@ -153,7 +153,7 @@ bundle {
                 /**
                  * Importer currently considers first line item to be street and second to be HouseNo
                  *
-                 * country, state, postfach is supported by CXX but not yet by the FHIR importer
+                 * country, state, postfach is supported by HDRP but not yet by the FHIR importer
                  *
                  */
 

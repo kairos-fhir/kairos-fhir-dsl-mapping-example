@@ -1,0 +1,1442 @@
+{
+  "admission": true,
+  "attestationDate": {
+    "date": "2024-11-05T00:00:00.000+01:00",
+    "precision": "DAY"
+  },
+  "causeOfDeath": false,
+  "comments": "Whatever",
+  "creationdate": "2024-11-04T11:06:55.470+01:00",
+  "diagnosisCertainty": "Z",
+  "diagnosisCode": "A00.9",
+  "diagnosisDate": {
+    "date": "2024-11-04T00:00:00.000+01:00",
+    "precision": "DAY"
+  },
+  "diagnosisId": "some diagnosis id",
+  "diagnosisText": "Cholera, nicht n\u00e4her bezeichnet",
+  "discharge": false,
+  "entitySource": "CENTRAXX",
+  "episode": {
+    "anonymousId": 8306447139698401132,
+    "attendingDoctor": {
+      "contactAddress": {
+        "city": "Tree City",
+        "contactPersonFirstName": "Harald",
+        "contactPersonLastName": "Meier",
+        "contactPersonTitle": {
+          "code": "DR",
+          "creationdate": "2021-09-09T14:34:12.500+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 3,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2021-09-09T14:34:12.503+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 4841,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2021-09-09T14:34:12.503+02:00",
+              "name": "Dr.",
+              "shortName": "Dr."
+            },
+            {
+              "creationdate": "2021-09-09T14:34:12.503+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 4840,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2021-09-09T14:34:12.503+02:00",
+              "name": "Dr.",
+              "shortName": "Dr."
+            }
+          ],
+          "syncId": "EFC50AAE-6E4E-487D-8E1B-56A1A9313840"
+        },
+        "creationdate": "2023-05-26T15:03:42.070+02:00",
+        "cxxContactId": "ANOTHER",
+        "email": "harald.maier@mail.com",
+        "entitySource": "CENTRAXX",
+        "entityStatus": "ACTIVE",
+        "id": 6055,
+        "initialEntitySource": "CENTRAXX",
+        "mobile": "0176698823465",
+        "nameMultilingualEntries2": [
+        ],
+        "phone1": "4234",
+        "phone2": "552323",
+        "street": "Zur Baumschule",
+        "streetno": "524",
+        "syncId": "5fb04e61-fa3b-47fb-8562-cde231145449",
+        "zipcode": "00523"
+      },
+      "creationdate": "2023-05-26T15:03:42.060+02:00",
+      "entitySource": "CENTRAXX",
+      "id": 2846,
+      "initialEntitySource": "CENTRAXX",
+      "syncId": "3de134e4-fec3-4eea-9209-dd867b1bdac2"
+    },
+    "attributes": [
+    ],
+    "creationdate": "2024-11-04T11:01:07.017+01:00",
+    "entitySource": "CENTRAXX",
+    "episodeId": 52,
+    "habitation": {
+      "code": "CentraXX",
+      "creationdate": "2021-09-09T14:34:12.443+02:00",
+      "descMultilingualEntries2": [
+      ],
+      "entitySource": "CENTRAXX",
+      "id": 1,
+      "initialEntitySource": "CENTRAXX",
+      "meddepartments": [
+        {
+          "code": "HOUSE1",
+          "creationdate": "2021-10-27T15:54:26.530+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 1,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2021-10-27T15:54:26.600+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 6684,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+              "name": "Haus1",
+              "shortName": "Haus1"
+            },
+            {
+              "creationdate": "2021-10-27T15:54:26.600+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 6683,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+              "name": "Haus1",
+              "shortName": "Haus1"
+            }
+          ],
+          "organisationUnits": null,
+          "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD"
+        },
+        {
+          "code": "HOUSE18",
+          "creationdate": "2021-10-28T13:11:30.280+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 2,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": null,
+          "organisationUnits": null,
+          "syncId": "7EE78BF2-C8B1-480F-9F7A-E57A1EB032C0"
+        }
+      ],
+      "nameMultilingualEntries2": [
+        {
+          "creationdate": "2021-09-09T14:34:12.447+02:00",
+          "entitySource": "CENTRAXX",
+          "entityStatus": "ACTIVE",
+          "id": 1,
+          "initialEntitySource": "CENTRAXX",
+          "lang": "de",
+          "relatedColumn": "NAME",
+          "relatedOid": 1,
+          "relatedTable": "ORGUNIT",
+          "system": false,
+          "value": "CENTRAXX"
+        },
+        {
+          "creationdate": "2021-09-09T14:34:12.447+02:00",
+          "entitySource": "CENTRAXX",
+          "entityStatus": "ACTIVE",
+          "id": 2,
+          "initialEntitySource": "CENTRAXX",
+          "lang": "en",
+          "relatedColumn": "NAME",
+          "relatedOid": 1,
+          "relatedTable": "ORGUNIT",
+          "system": false,
+          "value": "CENTRAXX"
+        }
+      ],
+      "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C"
+    },
+    "id": 1962,
+    "idContainer": [
+      {
+        "creationdate": "2024-11-04T11:01:07.017+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 173,
+        "idContainerType": {
+          "allowUpdateForSync": false,
+          "code": "Encounter.id",
+          "creationdate": "2024-10-16T09:43:47.117+02:00",
+          "decisive": true,
+          "editable": true,
+          "entitySource": "CENTRAXX",
+          "id": 3072,
+          "initialEntitySource": "CENTRAXX",
+          "isBlinded": false,
+          "kind": "EPISODE",
+          "mandatory": false,
+          "name": "Encounter.id",
+          "pseudonym": false,
+          "sampleCategories": null,
+          "syncId": "e31d1436-006b-428a-97bd-dfb280de8fee",
+          "system": false,
+          "uniqueness": "SYSTEM"
+        },
+        "initialEntitySource": "CENTRAXX",
+        "psn": "32749235",
+        "tentative": false
+      }
+    ],
+    "initialEntitySource": "CENTRAXX",
+    "laborMappings": null,
+    "medDepartment": {
+      "code": "HOUSE1",
+      "creationdate": "2021-10-27T15:54:26.530+02:00",
+      "entitySource": "CENTRAXX",
+      "id": 1,
+      "initialEntitySource": "CENTRAXX",
+      "multilinguals": [
+        {
+          "creationdate": "2021-10-27T15:54:26.600+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 6684,
+          "initialEntitySource": "CENTRAXX",
+          "language": "en",
+          "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+          "name": "Haus1",
+          "shortName": "Haus1"
+        },
+        {
+          "creationdate": "2021-10-27T15:54:26.600+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 6683,
+          "initialEntitySource": "CENTRAXX",
+          "language": "de",
+          "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+          "name": "Haus1",
+          "shortName": "Haus1"
+        }
+      ],
+      "organisationUnits": null,
+      "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD"
+    },
+    "patientTransfers": [
+    ],
+    "patientcontainer": {
+      "anonymousId": 7402342890753676381,
+      "attributes": [
+      ],
+      "consents": [
+        {
+          "consentElements": null,
+          "consentPartsOnly": false,
+          "consentType": {
+            "code": "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+            "creationdate": "2023-12-22T12:23:52.427+01:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "flexiStudy": {
+              "additionalForms": null,
+              "approvedBy": {
+                "creationdate": "2021-09-22T17:54:04.100+02:00",
+                "entitySource": "CENTRAXX",
+                "firstname": "Jonas",
+                "id": 32,
+                "initialEntitySource": "CENTRAXX",
+                "lastname": "K\u00fcttner",
+                "username": "jonas"
+              },
+              "approvedOn": "2024-05-23T17:11:24.500+02:00",
+              "closed": false,
+              "code": "BUDGET_TEST",
+              "complete": true,
+              "creationdate": "2023-12-22T12:21:04.233+01:00",
+              "crfs": null,
+              "entitySource": "CENTRAXX",
+              "id": 2136,
+              "initialEntitySource": "CENTRAXX",
+              "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+              "name": "Budgeting study",
+              "organisationUnits": null,
+              "patientStudies": null,
+              "profile": null,
+              "proposalAllowed": false,
+              "relatedStudies": null,
+              "status": "APPROVED",
+              "studyArms": null,
+              "studyCenters": null,
+              "studyDirectors": null,
+              "studyStrategy": null,
+              "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+              "useBudget": false,
+              "userGroups": null
+            },
+            "id": 76,
+            "initialEntitySource": "CENTRAXX",
+            "multilinguals": [
+              {
+                "creationdate": "2023-12-22T12:23:52.497+01:00",
+                "entitySource": "CENTRAXX",
+                "id": 5433,
+                "initialEntitySource": "CENTRAXX",
+                "language": "en",
+                "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+                "name": "Study consent_NEW_CODE_BUDGET_TEST",
+                "shortName": "Study consent_NEW_CODE_BUDGET_TEST"
+              },
+              {
+                "creationdate": "2023-12-22T12:23:52.497+01:00",
+                "entitySource": "CENTRAXX",
+                "id": 5432,
+                "initialEntitySource": "CENTRAXX",
+                "language": "de",
+                "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+                "name": "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+                "shortName": "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+              }
+            ],
+            "policies": null,
+            "syncId": "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+            "system": true
+          },
+          "creationdate": "2024-05-24T11:21:24.800+02:00",
+          "declined": false,
+          "entitySource": "CENTRAXX",
+          "id": 64,
+          "initialEntitySource": "CENTRAXX",
+          "pseudonym": false,
+          "revocation": {
+            "creationdate": "2024-05-24T11:29:40.167+02:00",
+            "entitySource": "CENTRAXX",
+            "id": 5,
+            "initialEntitySource": "CENTRAXX",
+            "pseudonym": false,
+            "revocationElements": null,
+            "revokePartsOnly": false,
+            "signedOn": "2024-05-23T00:00:00.000+02:00"
+          },
+          "syncId": "75cfd2b2-3dc9-4579-8d5d-3e952b9b788c",
+          "validFrom": {
+            "date": "2024-05-16T00:00:00.000+02:00",
+            "precision": "DAY"
+          }
+        },
+        {
+          "consentElements": null,
+          "consentPartsOnly": false,
+          "consentType": {
+            "code": "DEFAULTSTUDYCONSENT_NEW_STUDY_PROFILE_NEW_STUDY",
+            "creationdate": "2021-10-04T17:23:51.533+02:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "flexiStudy": {
+              "additionalForms": null,
+              "approvedBy": {
+                "creationdate": "2021-09-22T17:54:04.100+02:00",
+                "entitySource": "CENTRAXX",
+                "firstname": "Jonas",
+                "id": 32,
+                "initialEntitySource": "CENTRAXX",
+                "lastname": "K\u00fcttner",
+                "username": "jonas"
+              },
+              "approvedOn": "2021-10-15T13:32:54.373+02:00",
+              "closed": false,
+              "code": "NEW_STUDY",
+              "complete": true,
+              "creationdate": "2021-09-28T12:14:28.370+02:00",
+              "crfs": null,
+              "entitySource": "CENTRAXX",
+              "id": 1,
+              "initialEntitySource": "CENTRAXX",
+              "lastChangeOn": "2021-10-15T13:10:50.250+02:00",
+              "name": "new study",
+              "organisationUnits": null,
+              "patientStudies": null,
+              "profile": null,
+              "proposalAllowed": false,
+              "relatedStudies": null,
+              "status": "APPROVED",
+              "studyArms": null,
+              "studyCenters": null,
+              "studyDirector": {
+                "creationdate": "2021-09-22T17:54:04.100+02:00",
+                "entitySource": "CENTRAXX",
+                "firstname": "Jonas",
+                "id": 32,
+                "initialEntitySource": "CENTRAXX",
+                "lastname": "K\u00fcttner",
+                "username": "jonas"
+              },
+              "studyDirectors": null,
+              "studyStrategy": null,
+              "syncId": "F75989A5-D138-4AA6-98FF-A9B8CE1B9AEF",
+              "useBudget": false,
+              "userGroups": null
+            },
+            "id": 3,
+            "initialEntitySource": "CENTRAXX",
+            "multilinguals": [
+              {
+                "creationdate": "2021-10-04T17:23:51.610+02:00",
+                "entitySource": "CENTRAXX",
+                "id": 5407,
+                "initialEntitySource": "CENTRAXX",
+                "language": "en",
+                "lastModifiedOn": "2021-10-04T17:23:51.610+02:00",
+                "name": "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY",
+                "shortName": "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY"
+              },
+              {
+                "creationdate": "2021-10-04T17:23:51.610+02:00",
+                "entitySource": "CENTRAXX",
+                "id": 5406,
+                "initialEntitySource": "CENTRAXX",
+                "language": "de",
+                "lastModifiedOn": "2021-10-04T17:23:51.610+02:00",
+                "name": "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY",
+                "shortName": "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY"
+              }
+            ],
+            "policies": null,
+            "syncId": "0994DCC0-84D6-4924-BEA5-7231D1F7E1D6",
+            "system": true
+          },
+          "creationdate": "2024-10-08T15:12:18.563+02:00",
+          "declined": false,
+          "entitySource": "CENTRAXX",
+          "id": 238,
+          "initialEntitySource": "CENTRAXX",
+          "pseudonym": false,
+          "syncId": "418473ab-b91d-4150-b0b1-66f831f530c9",
+          "validFrom": {
+            "date": "2024-10-08T00:00:00.000+02:00",
+            "precision": "DAY"
+          }
+        },
+        {
+          "consentElements": null,
+          "consentPartsOnly": false,
+          "consentType": {
+            "code": "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+            "creationdate": "2023-12-22T12:23:52.427+01:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "flexiStudy": {
+              "additionalForms": null,
+              "approvedBy": {
+                "creationdate": "2021-09-22T17:54:04.100+02:00",
+                "entitySource": "CENTRAXX",
+                "firstname": "Jonas",
+                "id": 32,
+                "initialEntitySource": "CENTRAXX",
+                "lastname": "K\u00fcttner",
+                "username": "jonas"
+              },
+              "approvedOn": "2024-05-23T17:11:24.500+02:00",
+              "closed": false,
+              "code": "BUDGET_TEST",
+              "complete": true,
+              "creationdate": "2023-12-22T12:21:04.233+01:00",
+              "crfs": null,
+              "entitySource": "CENTRAXX",
+              "id": 2136,
+              "initialEntitySource": "CENTRAXX",
+              "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+              "name": "Budgeting study",
+              "organisationUnits": null,
+              "patientStudies": null,
+              "profile": null,
+              "proposalAllowed": false,
+              "relatedStudies": null,
+              "status": "APPROVED",
+              "studyArms": null,
+              "studyCenters": null,
+              "studyDirectors": null,
+              "studyStrategy": null,
+              "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+              "useBudget": false,
+              "userGroups": null
+            },
+            "id": 76,
+            "initialEntitySource": "CENTRAXX",
+            "multilinguals": [
+              {
+                "creationdate": "2023-12-22T12:23:52.497+01:00",
+                "entitySource": "CENTRAXX",
+                "id": 5433,
+                "initialEntitySource": "CENTRAXX",
+                "language": "en",
+                "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+                "name": "Study consent_NEW_CODE_BUDGET_TEST",
+                "shortName": "Study consent_NEW_CODE_BUDGET_TEST"
+              },
+              {
+                "creationdate": "2023-12-22T12:23:52.497+01:00",
+                "entitySource": "CENTRAXX",
+                "id": 5432,
+                "initialEntitySource": "CENTRAXX",
+                "language": "de",
+                "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+                "name": "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+                "shortName": "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+              }
+            ],
+            "policies": null,
+            "syncId": "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+            "system": true
+          },
+          "creationdate": "2024-11-05T17:44:05.123+01:00",
+          "declined": false,
+          "entitySource": "CENTRAXX",
+          "id": 249,
+          "initialEntitySource": "CENTRAXX",
+          "pseudonym": false,
+          "syncId": "b6ff370e-cef1-42e8-8c66-04b7be22a96e",
+          "validFrom": {
+            "date": "2024-11-04T00:00:00.000+01:00",
+            "precision": "DAY"
+          }
+        }
+      ],
+      "creationdate": "2024-03-01T19:04:23.000+01:00",
+      "diagnoses": null,
+      "documentMappings": null,
+      "entitySource": "CENTRAXX",
+      "episode": null,
+      "ethnicities": [
+        {
+          "code": "EUROPEAN",
+          "creationdate": "2022-03-09T13:11:26.100+01:00",
+          "entitySource": "CENTRAXX",
+          "id": 12,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2022-03-09T13:11:26.100+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 4820,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+              "name": "Europ\u00e4er",
+              "shortName": "Europ\u00e4er"
+            },
+            {
+              "creationdate": "2022-03-09T13:11:26.100+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 4821,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+              "name": "European",
+              "shortName": "European"
+            }
+          ],
+          "syncId": "3F89BC74-35AA-4541-B391-4E91532702F6"
+        }
+      ],
+      "flexiFlagItems": null,
+      "id": 3735,
+      "idContainer": [
+        {
+          "creationdate": "2024-03-01T19:04:23.147+01:00",
+          "entitySource": "CENTRAXX",
+          "id": 4275,
+          "idContainerType": {
+            "allowUpdateForSync": false,
+            "code": "SID",
+            "creationdate": "2023-10-13T10:14:35.937+02:00",
+            "decisive": true,
+            "editable": true,
+            "entitySource": "XMLIMPORT",
+            "id": 895,
+            "initialEntitySource": "XMLIMPORT",
+            "isBlinded": false,
+            "kind": "PATIENT",
+            "mandatory": true,
+            "name": "Spender ID",
+            "pseudonym": true,
+            "sampleCategories": null,
+            "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+            "system": false,
+            "uniqueness": "SYSTEM"
+          },
+          "initialEntitySource": "CENTRAXX",
+          "psn": "A999999999",
+          "tentative": false
+        },
+        {
+          "creationdate": "2024-10-07T17:05:20.850+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 1259412,
+          "idContainerType": {
+            "allowUpdateForSync": false,
+            "code": "Patient.identifier:pid",
+            "creationdate": "2024-10-07T17:04:11.423+02:00",
+            "decisive": true,
+            "editable": true,
+            "entitySource": "CENTRAXX",
+            "id": 3071,
+            "initialEntitySource": "CENTRAXX",
+            "isBlinded": false,
+            "kind": "PATIENT",
+            "mandatory": false,
+            "name": "PID",
+            "pseudonym": false,
+            "sampleCategories": null,
+            "syncId": "80c8781f-9dda-4368-98c0-d04382acbcc1",
+            "system": false,
+            "uniqueness": "SYSTEM"
+          },
+          "initialEntitySource": "CENTRAXX",
+          "psn": "PID124534",
+          "tentative": false
+        }
+      ],
+      "initialEntitySource": "CENTRAXX",
+      "laborMappings": null,
+      "medProcedures": null,
+      "medications": null,
+      "organisationUnits": [
+        {
+          "code": "CentraXX",
+          "creationdate": "2021-09-09T14:34:12.443+02:00",
+          "descMultilingualEntries2": [
+          ],
+          "entitySource": "CENTRAXX",
+          "id": 1,
+          "initialEntitySource": "CENTRAXX",
+          "meddepartments": [
+            {
+              "code": "HOUSE1",
+              "creationdate": "2021-10-27T15:54:26.530+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 1,
+              "initialEntitySource": "CENTRAXX",
+              "multilinguals": [
+                {
+                  "creationdate": "2021-10-27T15:54:26.600+02:00",
+                  "entitySource": "CENTRAXX",
+                  "id": 6684,
+                  "initialEntitySource": "CENTRAXX",
+                  "language": "en",
+                  "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+                  "name": "Haus1",
+                  "shortName": "Haus1"
+                },
+                {
+                  "creationdate": "2021-10-27T15:54:26.600+02:00",
+                  "entitySource": "CENTRAXX",
+                  "id": 6683,
+                  "initialEntitySource": "CENTRAXX",
+                  "language": "de",
+                  "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+                  "name": "Haus1",
+                  "shortName": "Haus1"
+                }
+              ],
+              "organisationUnits": null,
+              "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD"
+            },
+            {
+              "code": "HOUSE18",
+              "creationdate": "2021-10-28T13:11:30.280+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 2,
+              "initialEntitySource": "CENTRAXX",
+              "multilinguals": null,
+              "organisationUnits": null,
+              "syncId": "7EE78BF2-C8B1-480F-9F7A-E57A1EB032C0"
+            }
+          ],
+          "nameMultilingualEntries2": [
+            {
+              "creationdate": "2021-09-09T14:34:12.447+02:00",
+              "entitySource": "CENTRAXX",
+              "entityStatus": "ACTIVE",
+              "id": 1,
+              "initialEntitySource": "CENTRAXX",
+              "lang": "de",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "relatedTable": "ORGUNIT",
+              "system": false,
+              "value": "CENTRAXX"
+            },
+            {
+              "creationdate": "2021-09-09T14:34:12.447+02:00",
+              "entitySource": "CENTRAXX",
+              "entityStatus": "ACTIVE",
+              "id": 2,
+              "initialEntitySource": "CENTRAXX",
+              "lang": "en",
+              "relatedColumn": "NAME",
+              "relatedOid": 1,
+              "relatedTable": "ORGUNIT",
+              "system": false,
+              "value": "CENTRAXX"
+            }
+          ],
+          "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C"
+        }
+      ],
+      "patientId": 20,
+      "patientInsurances": [
+        {
+          "coverageType": "T",
+          "creationdate": "2024-10-07T16:55:45.857+02:00",
+          "entitySource": "CENTRAXX",
+          "groupNumber": "123233",
+          "id": 291,
+          "initialEntitySource": "CENTRAXX",
+          "insuranceCompany": {
+            "companyId": "100395611",
+            "contactAddress": null,
+            "creationdate": "2024-10-07T16:38:20.593+02:00",
+            "entitySource": "CENTRAXX",
+            "id": 943,
+            "initialEntitySource": "CENTRAXX",
+            "syncId": "89e3feb1-6960-47be-b815-d5d8b51dbb87"
+          },
+          "insuredRelationship": "SEL",
+          "policeNumber": "Y58882304243",
+          "rank": 1
+        }
+      ],
+      "patientMasterDataAnonymous": null,
+      "patientStatus": {
+        "active": true
+      },
+      "patientStudies": null,
+      "preexistingIllnesses": null,
+      "progresses": null,
+      "sampleCount": {
+        "creationdate": "2024-03-01T19:04:23.000+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 3735,
+        "initialEntitySource": "CENTRAXX",
+        "sampleCount": 1
+      },
+      "studyMembers": [
+        {
+          "center": null,
+          "creationdate": "2024-11-05T17:57:57.570+01:00",
+          "enrollment": null,
+          "entitySource": "CENTRAXX",
+          "events": null,
+          "id": 728,
+          "initialEntitySource": "CENTRAXX",
+          "items": null,
+          "locked": false,
+          "signatures": null,
+          "study": {
+            "additionalForms": null,
+            "approvedBy": {
+              "creationdate": "2021-09-22T17:54:04.100+02:00",
+              "entitySource": "CENTRAXX",
+              "firstname": "Jonas",
+              "id": 32,
+              "initialEntitySource": "CENTRAXX",
+              "lastname": "K\u00fcttner",
+              "username": "jonas"
+            },
+            "approvedOn": "2024-05-23T17:11:24.500+02:00",
+            "closed": false,
+            "code": "BUDGET_TEST",
+            "complete": true,
+            "creationdate": "2023-12-22T12:21:04.233+01:00",
+            "crfs": null,
+            "entitySource": "CENTRAXX",
+            "id": 2136,
+            "initialEntitySource": "CENTRAXX",
+            "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+            "name": "Budgeting study",
+            "organisationUnits": null,
+            "patientStudies": null,
+            "profile": null,
+            "proposalAllowed": false,
+            "relatedStudies": null,
+            "status": "APPROVED",
+            "studyArms": null,
+            "studyCenters": null,
+            "studyDirectors": null,
+            "studyStrategy": null,
+            "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+            "useBudget": false,
+            "userGroups": null
+          },
+          "studyMemberId": 8,
+          "unblindingRoles": null,
+          "visible": false
+        }
+      ],
+      "tumors": null,
+      "urlFragment": "b6f5d61f-39e0-41a5-b573-3ac3a61bfa47"
+    },
+    "status": "ARRIVED",
+    "stayType": {
+      "code": "AMB",
+      "creationdate": "2024-05-06T16:14:23.233+02:00",
+      "entitySource": "CENTRAXX",
+      "id": 813,
+      "initialEntitySource": "CENTRAXX",
+      "isHotlineDefault": false,
+      "multilinguals": [
+        {
+          "creationdate": "2024-05-06T16:14:23.237+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 5860,
+          "initialEntitySource": "CENTRAXX",
+          "language": "de",
+          "lastModifiedOn": "2024-05-06T16:14:23.237+02:00",
+          "name": "ambulatory",
+          "shortName": "ambulatory"
+        },
+        {
+          "creationdate": "2024-05-06T16:14:23.237+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 5859,
+          "initialEntitySource": "CENTRAXX",
+          "language": "en",
+          "lastModifiedOn": "2024-05-06T16:14:23.237+02:00",
+          "name": "(en) - AMB",
+          "shortName": "(en) - AMB"
+        }
+      ],
+      "syncId": "4b8b678f-47b4-47e1-b515-0c7642b3825d"
+    },
+    "study": {
+      "additionalForms": null,
+      "approvedBy": {
+        "creationdate": "2021-09-22T17:54:04.100+02:00",
+        "entitySource": "CENTRAXX",
+        "firstname": "Jonas",
+        "id": 32,
+        "initialEntitySource": "CENTRAXX",
+        "lastname": "K\u00fcttner",
+        "username": "jonas"
+      },
+      "approvedOn": "2023-12-28T17:03:23.607+01:00",
+      "closed": false,
+      "code": "IMPORT_TEST_CRF",
+      "complete": true,
+      "creationdate": "2023-12-28T17:03:23.343+01:00",
+      "crfs": null,
+      "entitySource": "CENTRAXX",
+      "id": 2156,
+      "initialEntitySource": "CENTRAXX",
+      "lastChangeOn": "2023-12-28T17:03:23.463+01:00",
+      "name": "new study",
+      "organisationUnits": null,
+      "patientStudies": null,
+      "profile": null,
+      "proposalAllowed": false,
+      "relatedStudies": null,
+      "status": "APPROVED",
+      "studyArms": null,
+      "studyCenters": null,
+      "studyDirectors": null,
+      "studyStrategy": null,
+      "syncId": "2473d795-8f49-441d-9e0b-3d96e23c1934",
+      "useBudget": false,
+      "userGroups": null
+    },
+    "validFrom": "2024-11-03T00:00:00.000+01:00",
+    "validUntil": "2024-11-07T00:00:00.000+01:00"
+  },
+  "icdEntry": {
+    "catalogue": {
+      "catalogueKind": "ICD-General",
+      "catalogueVersion": "2021",
+      "creationdate": "2021-04-09T08:06:50.997+02:00",
+      "entitySource": "XMLIMPORT",
+      "id": 15,
+      "initialEntitySource": "XMLIMPORT",
+      "name": "ICD-10",
+      "previous": 0,
+      "releaseDate": "2020-09-18T00:00:00.000+02:00",
+      "syncId": "BDAEB403-E69C-4475-93EF-44D46DF6ABC8",
+      "validFrom": "2021-01-01T00:00:00.000+01:00"
+    },
+    "code": "A00.9",
+    "creationdate": "2021-04-09T08:06:51.087+02:00",
+    "entitySource": "XMLIMPORT",
+    "id": 252633,
+    "initialEntitySource": "XMLIMPORT",
+    "kind": "code",
+    "parent": null,
+    "preferred": "Cholera, nicht n\u00e4her bezeichnet",
+    "preferredLong": "Infekti\u00f6se Darmkrankheiten;\nCholera;\nCholera, nicht n\u00e4her bezeichnet",
+    "unifiedCode": "A009"
+  },
+  "id": 940,
+  "initialDiagnosis": false,
+  "initialEntitySource": "CENTRAXX",
+  "laborMappings": [
+  ],
+  "meddepartment": false,
+  "patientcontainer": {
+    "anonymousId": 7402342890753676381,
+    "attributes": [
+    ],
+    "consents": [
+      {
+        "consentElements": null,
+        "consentPartsOnly": false,
+        "consentType": {
+          "code": "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+          "creationdate": "2023-12-22T12:23:52.427+01:00",
+          "entitySource": "CENTRAXX",
+          "entityStatus": "ACTIVE",
+          "flexiStudy": {
+            "additionalForms": null,
+            "approvedBy": {
+              "creationdate": "2021-09-22T17:54:04.100+02:00",
+              "entitySource": "CENTRAXX",
+              "firstname": "Jonas",
+              "id": 32,
+              "initialEntitySource": "CENTRAXX",
+              "lastname": "K\u00fcttner",
+              "username": "jonas"
+            },
+            "approvedOn": "2024-05-23T17:11:24.500+02:00",
+            "closed": false,
+            "code": "BUDGET_TEST",
+            "complete": true,
+            "creationdate": "2023-12-22T12:21:04.233+01:00",
+            "crfs": null,
+            "entitySource": "CENTRAXX",
+            "id": 2136,
+            "initialEntitySource": "CENTRAXX",
+            "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+            "name": "Budgeting study",
+            "organisationUnits": null,
+            "patientStudies": null,
+            "profile": null,
+            "proposalAllowed": false,
+            "relatedStudies": null,
+            "status": "APPROVED",
+            "studyArms": null,
+            "studyCenters": null,
+            "studyDirectors": null,
+            "studyStrategy": null,
+            "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+            "useBudget": false,
+            "userGroups": null
+          },
+          "id": 76,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2023-12-22T12:23:52.497+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 5433,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+              "name": "Study consent_NEW_CODE_BUDGET_TEST",
+              "shortName": "Study consent_NEW_CODE_BUDGET_TEST"
+            },
+            {
+              "creationdate": "2023-12-22T12:23:52.497+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 5432,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+              "name": "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+              "shortName": "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+            }
+          ],
+          "policies": null,
+          "syncId": "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+          "system": true
+        },
+        "creationdate": "2024-05-24T11:21:24.800+02:00",
+        "declined": false,
+        "entitySource": "CENTRAXX",
+        "id": 64,
+        "initialEntitySource": "CENTRAXX",
+        "pseudonym": false,
+        "revocation": {
+          "creationdate": "2024-05-24T11:29:40.167+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 5,
+          "initialEntitySource": "CENTRAXX",
+          "pseudonym": false,
+          "revocationElements": null,
+          "revokePartsOnly": false,
+          "signedOn": "2024-05-23T00:00:00.000+02:00"
+        },
+        "syncId": "75cfd2b2-3dc9-4579-8d5d-3e952b9b788c",
+        "validFrom": {
+          "date": "2024-05-16T00:00:00.000+02:00",
+          "precision": "DAY"
+        }
+      },
+      {
+        "consentElements": null,
+        "consentPartsOnly": false,
+        "consentType": {
+          "code": "DEFAULTSTUDYCONSENT_NEW_STUDY_PROFILE_NEW_STUDY",
+          "creationdate": "2021-10-04T17:23:51.533+02:00",
+          "entitySource": "CENTRAXX",
+          "entityStatus": "ACTIVE",
+          "flexiStudy": {
+            "additionalForms": null,
+            "approvedBy": {
+              "creationdate": "2021-09-22T17:54:04.100+02:00",
+              "entitySource": "CENTRAXX",
+              "firstname": "Jonas",
+              "id": 32,
+              "initialEntitySource": "CENTRAXX",
+              "lastname": "K\u00fcttner",
+              "username": "jonas"
+            },
+            "approvedOn": "2021-10-15T13:32:54.373+02:00",
+            "closed": false,
+            "code": "NEW_STUDY",
+            "complete": true,
+            "creationdate": "2021-09-28T12:14:28.370+02:00",
+            "crfs": null,
+            "entitySource": "CENTRAXX",
+            "id": 1,
+            "initialEntitySource": "CENTRAXX",
+            "lastChangeOn": "2021-10-15T13:10:50.250+02:00",
+            "name": "new study",
+            "organisationUnits": null,
+            "patientStudies": null,
+            "profile": null,
+            "proposalAllowed": false,
+            "relatedStudies": null,
+            "status": "APPROVED",
+            "studyArms": null,
+            "studyCenters": null,
+            "studyDirector": {
+              "creationdate": "2021-09-22T17:54:04.100+02:00",
+              "entitySource": "CENTRAXX",
+              "firstname": "Jonas",
+              "id": 32,
+              "initialEntitySource": "CENTRAXX",
+              "lastname": "K\u00fcttner",
+              "username": "jonas"
+            },
+            "studyDirectors": null,
+            "studyStrategy": null,
+            "syncId": "F75989A5-D138-4AA6-98FF-A9B8CE1B9AEF",
+            "useBudget": false,
+            "userGroups": null
+          },
+          "id": 3,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2021-10-04T17:23:51.610+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 5407,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2021-10-04T17:23:51.610+02:00",
+              "name": "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY",
+              "shortName": "Study Consent _NEW_STUDY_PROFILE_NEW_STUDY"
+            },
+            {
+              "creationdate": "2021-10-04T17:23:51.610+02:00",
+              "entitySource": "CENTRAXX",
+              "id": 5406,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2021-10-04T17:23:51.610+02:00",
+              "name": "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY",
+              "shortName": "Einwilligung Studie _NEW_STUDY_PROFILE_NEW_STUDY"
+            }
+          ],
+          "policies": null,
+          "syncId": "0994DCC0-84D6-4924-BEA5-7231D1F7E1D6",
+          "system": true
+        },
+        "creationdate": "2024-10-08T15:12:18.563+02:00",
+        "declined": false,
+        "entitySource": "CENTRAXX",
+        "id": 238,
+        "initialEntitySource": "CENTRAXX",
+        "pseudonym": false,
+        "syncId": "418473ab-b91d-4150-b0b1-66f831f530c9",
+        "validFrom": {
+          "date": "2024-10-08T00:00:00.000+02:00",
+          "precision": "DAY"
+        }
+      },
+      {
+        "consentElements": null,
+        "consentPartsOnly": false,
+        "consentType": {
+          "code": "DEFAULTSTUDYCONSENT_NEW_CODE_BUDGET_TEST",
+          "creationdate": "2023-12-22T12:23:52.427+01:00",
+          "entitySource": "CENTRAXX",
+          "entityStatus": "ACTIVE",
+          "flexiStudy": {
+            "additionalForms": null,
+            "approvedBy": {
+              "creationdate": "2021-09-22T17:54:04.100+02:00",
+              "entitySource": "CENTRAXX",
+              "firstname": "Jonas",
+              "id": 32,
+              "initialEntitySource": "CENTRAXX",
+              "lastname": "K\u00fcttner",
+              "username": "jonas"
+            },
+            "approvedOn": "2024-05-23T17:11:24.500+02:00",
+            "closed": false,
+            "code": "BUDGET_TEST",
+            "complete": true,
+            "creationdate": "2023-12-22T12:21:04.233+01:00",
+            "crfs": null,
+            "entitySource": "CENTRAXX",
+            "id": 2136,
+            "initialEntitySource": "CENTRAXX",
+            "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+            "name": "Budgeting study",
+            "organisationUnits": null,
+            "patientStudies": null,
+            "profile": null,
+            "proposalAllowed": false,
+            "relatedStudies": null,
+            "status": "APPROVED",
+            "studyArms": null,
+            "studyCenters": null,
+            "studyDirectors": null,
+            "studyStrategy": null,
+            "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+            "useBudget": false,
+            "userGroups": null
+          },
+          "id": 76,
+          "initialEntitySource": "CENTRAXX",
+          "multilinguals": [
+            {
+              "creationdate": "2023-12-22T12:23:52.497+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 5433,
+              "initialEntitySource": "CENTRAXX",
+              "language": "en",
+              "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+              "name": "Study consent_NEW_CODE_BUDGET_TEST",
+              "shortName": "Study consent_NEW_CODE_BUDGET_TEST"
+            },
+            {
+              "creationdate": "2023-12-22T12:23:52.497+01:00",
+              "entitySource": "CENTRAXX",
+              "id": 5432,
+              "initialEntitySource": "CENTRAXX",
+              "language": "de",
+              "lastModifiedOn": "2023-12-22T12:23:52.497+01:00",
+              "name": "Studieneinwilligung_NEW_CODE_BUDGET_TEST",
+              "shortName": "Studieneinwilligung_NEW_CODE_BUDGET_TEST"
+            }
+          ],
+          "policies": null,
+          "syncId": "e5f9a2c3-d417-45b7-86ac-9e84e7661377",
+          "system": true
+        },
+        "creationdate": "2024-11-05T17:44:05.123+01:00",
+        "declined": false,
+        "entitySource": "CENTRAXX",
+        "id": 249,
+        "initialEntitySource": "CENTRAXX",
+        "pseudonym": false,
+        "syncId": "b6ff370e-cef1-42e8-8c66-04b7be22a96e",
+        "validFrom": {
+          "date": "2024-11-04T00:00:00.000+01:00",
+          "precision": "DAY"
+        }
+      }
+    ],
+    "creationdate": "2024-03-01T19:04:23.000+01:00",
+    "diagnoses": null,
+    "documentMappings": null,
+    "entitySource": "CENTRAXX",
+    "episode": null,
+    "ethnicities": [
+      {
+        "code": "EUROPEAN",
+        "creationdate": "2022-03-09T13:11:26.100+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 12,
+        "initialEntitySource": "CENTRAXX",
+        "multilinguals": [
+          {
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "id": 4820,
+            "initialEntitySource": "CENTRAXX",
+            "language": "de",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "name": "Europ\u00e4er",
+            "shortName": "Europ\u00e4er"
+          },
+          {
+            "creationdate": "2022-03-09T13:11:26.100+01:00",
+            "entitySource": "CENTRAXX",
+            "id": 4821,
+            "initialEntitySource": "CENTRAXX",
+            "language": "en",
+            "lastModifiedOn": "2022-03-09T14:12:34.753+01:00",
+            "name": "European",
+            "shortName": "European"
+          }
+        ],
+        "syncId": "3F89BC74-35AA-4541-B391-4E91532702F6"
+      }
+    ],
+    "flexiFlagItems": null,
+    "id": 3735,
+    "idContainer": [
+      {
+        "creationdate": "2024-03-01T19:04:23.147+01:00",
+        "entitySource": "CENTRAXX",
+        "id": 4275,
+        "idContainerType": {
+          "allowUpdateForSync": false,
+          "code": "SID",
+          "creationdate": "2023-10-13T10:14:35.937+02:00",
+          "decisive": true,
+          "editable": true,
+          "entitySource": "XMLIMPORT",
+          "id": 895,
+          "initialEntitySource": "XMLIMPORT",
+          "isBlinded": false,
+          "kind": "PATIENT",
+          "mandatory": true,
+          "name": "Spender ID",
+          "pseudonym": true,
+          "sampleCategories": null,
+          "syncId": "318D212D-E66F-473A-8A44-1563043166B0",
+          "system": false,
+          "uniqueness": "SYSTEM"
+        },
+        "initialEntitySource": "CENTRAXX",
+        "psn": "A999999999",
+        "tentative": false
+      },
+      {
+        "creationdate": "2024-10-07T17:05:20.850+02:00",
+        "entitySource": "CENTRAXX",
+        "id": 1259412,
+        "idContainerType": {
+          "allowUpdateForSync": false,
+          "code": "Patient.identifier:pid",
+          "creationdate": "2024-10-07T17:04:11.423+02:00",
+          "decisive": true,
+          "editable": true,
+          "entitySource": "CENTRAXX",
+          "id": 3071,
+          "initialEntitySource": "CENTRAXX",
+          "isBlinded": false,
+          "kind": "PATIENT",
+          "mandatory": false,
+          "name": "PID",
+          "pseudonym": false,
+          "sampleCategories": null,
+          "syncId": "80c8781f-9dda-4368-98c0-d04382acbcc1",
+          "system": false,
+          "uniqueness": "SYSTEM"
+        },
+        "initialEntitySource": "CENTRAXX",
+        "psn": "PID124534",
+        "tentative": false
+      }
+    ],
+    "initialEntitySource": "CENTRAXX",
+    "laborMappings": null,
+    "medProcedures": null,
+    "medications": null,
+    "organisationUnits": [
+      {
+        "code": "CentraXX",
+        "creationdate": "2021-09-09T14:34:12.443+02:00",
+        "descMultilingualEntries2": [
+        ],
+        "entitySource": "CENTRAXX",
+        "id": 1,
+        "initialEntitySource": "CENTRAXX",
+        "meddepartments": [
+          {
+            "code": "HOUSE1",
+            "creationdate": "2021-10-27T15:54:26.530+02:00",
+            "entitySource": "CENTRAXX",
+            "id": 1,
+            "initialEntitySource": "CENTRAXX",
+            "multilinguals": [
+              {
+                "creationdate": "2021-10-27T15:54:26.600+02:00",
+                "entitySource": "CENTRAXX",
+                "id": 6684,
+                "initialEntitySource": "CENTRAXX",
+                "language": "en",
+                "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+                "name": "Haus1",
+                "shortName": "Haus1"
+              },
+              {
+                "creationdate": "2021-10-27T15:54:26.600+02:00",
+                "entitySource": "CENTRAXX",
+                "id": 6683,
+                "initialEntitySource": "CENTRAXX",
+                "language": "de",
+                "lastModifiedOn": "2021-10-27T15:54:26.600+02:00",
+                "name": "Haus1",
+                "shortName": "Haus1"
+              }
+            ],
+            "organisationUnits": null,
+            "syncId": "C4EEDBF0-776A-4F45-A3B6-A373DDD31CFD"
+          },
+          {
+            "code": "HOUSE18",
+            "creationdate": "2021-10-28T13:11:30.280+02:00",
+            "entitySource": "CENTRAXX",
+            "id": 2,
+            "initialEntitySource": "CENTRAXX",
+            "multilinguals": null,
+            "organisationUnits": null,
+            "syncId": "7EE78BF2-C8B1-480F-9F7A-E57A1EB032C0"
+          }
+        ],
+        "nameMultilingualEntries2": [
+          {
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "id": 1,
+            "initialEntitySource": "CENTRAXX",
+            "lang": "de",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "relatedTable": "ORGUNIT",
+            "system": false,
+            "value": "CENTRAXX"
+          },
+          {
+            "creationdate": "2021-09-09T14:34:12.447+02:00",
+            "entitySource": "CENTRAXX",
+            "entityStatus": "ACTIVE",
+            "id": 2,
+            "initialEntitySource": "CENTRAXX",
+            "lang": "en",
+            "relatedColumn": "NAME",
+            "relatedOid": 1,
+            "relatedTable": "ORGUNIT",
+            "system": false,
+            "value": "CENTRAXX"
+          }
+        ],
+        "syncId": "0DD456BF-403C-47F9-A344-2E53D18D0A6C"
+      }
+    ],
+    "patientId": 20,
+    "patientInsurances": [
+      {
+        "coverageType": "T",
+        "creationdate": "2024-10-07T16:55:45.857+02:00",
+        "entitySource": "CENTRAXX",
+        "groupNumber": "123233",
+        "id": 291,
+        "initialEntitySource": "CENTRAXX",
+        "insuranceCompany": {
+          "companyId": "100395611",
+          "contactAddress": null,
+          "creationdate": "2024-10-07T16:38:20.593+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 943,
+          "initialEntitySource": "CENTRAXX",
+          "syncId": "89e3feb1-6960-47be-b815-d5d8b51dbb87"
+        },
+        "insuredRelationship": "SEL",
+        "policeNumber": "Y58882304243",
+        "rank": 1
+      }
+    ],
+    "patientMasterDataAnonymous": null,
+    "patientStatus": {
+      "active": true
+    },
+    "patientStudies": null,
+    "preexistingIllnesses": null,
+    "progresses": null,
+    "sampleCount": {
+      "creationdate": "2024-03-01T19:04:23.000+01:00",
+      "entitySource": "CENTRAXX",
+      "id": 3735,
+      "initialEntitySource": "CENTRAXX",
+      "sampleCount": 1
+    },
+    "studyMembers": [
+      {
+        "center": null,
+        "creationdate": "2024-11-05T17:57:57.570+01:00",
+        "enrollment": null,
+        "entitySource": "CENTRAXX",
+        "events": null,
+        "id": 728,
+        "initialEntitySource": "CENTRAXX",
+        "items": null,
+        "locked": false,
+        "signatures": null,
+        "study": {
+          "additionalForms": null,
+          "approvedBy": {
+            "creationdate": "2021-09-22T17:54:04.100+02:00",
+            "entitySource": "CENTRAXX",
+            "firstname": "Jonas",
+            "id": 32,
+            "initialEntitySource": "CENTRAXX",
+            "lastname": "K\u00fcttner",
+            "username": "jonas"
+          },
+          "approvedOn": "2024-05-23T17:11:24.500+02:00",
+          "closed": false,
+          "code": "BUDGET_TEST",
+          "complete": true,
+          "creationdate": "2023-12-22T12:21:04.233+01:00",
+          "crfs": null,
+          "entitySource": "CENTRAXX",
+          "id": 2136,
+          "initialEntitySource": "CENTRAXX",
+          "lastChangeOn": "2023-12-22T12:26:11.780+01:00",
+          "name": "Budgeting study",
+          "organisationUnits": null,
+          "patientStudies": null,
+          "profile": null,
+          "proposalAllowed": false,
+          "relatedStudies": null,
+          "status": "APPROVED",
+          "studyArms": null,
+          "studyCenters": null,
+          "studyDirectors": null,
+          "studyStrategy": null,
+          "syncId": "7bcb8e60-59d0-4150-9018-04e01ba3abb6",
+          "useBudget": false,
+          "userGroups": null
+        },
+        "studyMemberId": 8,
+        "unblindingRoles": null,
+        "visible": false
+      }
+    ],
+    "tumors": null,
+    "urlFragment": "b6f5d61f-39e0-41a5-b573-3ac3a61bfa47"
+  },
+  "permanent": false,
+  "postoperative": false,
+  "samples": [
+  ],
+  "transfer": false
+}

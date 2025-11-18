@@ -23,25 +23,25 @@ class ValidatorSupportTest {
   @Test
   void validate() {
 
-    final FhirContext context = FhirContext.forR4();
+    final FhirContext context = FhirContext.forR4()
 
 
     final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
 
-    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/de.medizininformatikinitiative.kerndatensatz.person-2025.0.0.tgz");
-    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/de.basisprofil.r4-1.5.1.tgz")
+    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.medizininformatikinitiative.kerndatensatz.person-2025.0.0.tgz");
+    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.basisprofil.r4-1.5.1.tgz")
 
     final ValidationSupportChain supportChain = new ValidationSupportChain(
         npmPackageValidationSupport,
         new DefaultProfileValidationSupport(context),
         new InMemoryTerminologyServerValidationSupport(context),
-        new SnapshotGeneratingValidationSupport(context));
+        new SnapshotGeneratingValidationSupport(context))
 
-    final CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
+    final CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain)
 
     final FhirValidator validator = context.newValidator()
 
-    final FhirInstanceValidator instanceValidator = new FhirInstanceValidator(validationSupport);
+    final FhirInstanceValidator instanceValidator = new FhirInstanceValidator(validationSupport)
     validator.registerValidatorModule(instanceValidator)
     instanceValidator.setNoTerminologyChecks(true)
 
@@ -63,7 +63,7 @@ class ValidatorSupportTest {
             .setAssigner(new Reference("Organization/123"))
     )
 
-    final ValidationResult outcome = validator.validateWithResult(patient);
+    final ValidationResult outcome = validator.validateWithResult(patient)
 
     outcome.getMessages().forEach {
       println(it.toString())
