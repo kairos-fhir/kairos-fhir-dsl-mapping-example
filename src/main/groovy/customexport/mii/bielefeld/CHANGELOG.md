@@ -1,24 +1,34 @@
 # Change log
 
+## 2025-11-20
+
+* fix export order between LABOR_FINDING_LABOR_VALUE observation and LABOR_FINDING diagnosticReport
+
 ## 2025-06-04
+
 * updated MII fhir packages to latest versions
 * added export of patients without first and last name as MII Pseudo patient
 
 ## 2025-05-28
+
 * fixed bug in gender mapping
 
 ## 2025-05-22
+
 * added export of the LaborFindingLaborValue status and recordedOn date to Observations
 
 ## 2025-05-13
+
 * fixed the consent script
 * fixed ExportResourceMappingConfig.json
 * added first script for research study
 
 ## 2025-02-17
+
 * added new script and tests for MII consent
 
 ## 2025-02-04
+
 * removed duplicate package
 * moved tests
 
