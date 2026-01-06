@@ -15,6 +15,7 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -26,6 +27,10 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
  */
 
 observation {
+
+  if (context.source[laborFinding().laborMethod().code()] == "BIOMARKERS") {
+    return
+  }
 
   id = "Observation/" + context.source[laborMapping().laborFinding().id()]
 

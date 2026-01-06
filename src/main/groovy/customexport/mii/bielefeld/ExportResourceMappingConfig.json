@@ -42,14 +42,14 @@
       "exportToFhirResource": "Observation"
     },
     {
-      "selectFromCxxEntity": "LABOR_FINDING",
-      "transformByTemplate": "diagnosticReport",
-      "exportToFhirResource": "DiagnosticReport"
-    },
-    {
       "selectFromCxxEntity": "LABOR_FINDING_LABOR_VALUE",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "diagnosticReport",
+      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }

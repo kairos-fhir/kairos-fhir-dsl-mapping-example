@@ -49,7 +49,7 @@
       "exportToFhirResource": "Observation",
       "filters": [
         {
-          "filterName": "laborMethod.code",
+          "filterName": "laborFinding.laborMethod.code",
           "comparator": "NOT_EQUALS",
           "value": "BIOMARKERS"
         }

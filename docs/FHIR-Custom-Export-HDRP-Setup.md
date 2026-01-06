@@ -1,34 +1,34 @@
 <img src="images/Logo.png" width="250" alt="IQVIA Logo"/>
 
-# FHIR Custom Export Documentation
+FHIR Custom Export Setup Documentation
+======================================
 
-## Table of Contents
-
-<!-- TOC -->
-
-* [FHIR Custom Export Documentation](#fhir-custom-export-documentation)
-    * [Table of Contents](#table-of-contents)
-    * [Introduction](#introduction)
-    * [HDRP global configuration](#hdrp-global-configuration)
-    * [Project Setup](#project-setup)
-        * [Project-Specific Configuration Files](#project-specific-configuration-files)
-            * [ProjectConfig.json](#projectconfigjson)
-            * [ExportResourceMappingConfig.json](#exportresourcemappingconfigjson)
-            * [BundleRequestMethodConfig.json](#bundlerequestmethodconfigjson)
-    * [Patient Selection](#patient-selection)
-    * [Export Mechanisms](#export-mechanisms)
-        * [Incremental Export](#incremental-export)
-        * [Scheduled Export](#scheduled-export)
-        * [Bulk data export](#bulk-data-export)
-    * [Export Targets](#export-targets)
-        * [Filesystem Export](#filesystem-export)
-        * [Target URL Export](#target-url-export)
-        * [Useful Links](#useful-links)
-        * [Glossary](#glossary)
+# Table of Contents
 
 <!-- TOC -->
+* [FHIR Custom Export Setup Documentation](#fhir-custom-export-setup-documentation)
+* [Table of Contents](#table-of-contents)
+* [Introduction](#introduction)
+* [HDRP global configuration](#hdrp-global-configuration)
+* [Project Setup](#project-setup)
+  * [Project-Specific Configuration Files](#project-specific-configuration-files)
+    * [ProjectConfig.json](#projectconfigjson)
+    * [ExportResourceMappingConfig.json](#exportresourcemappingconfigjson)
+    * [BundleRequestMethodConfig.json](#bundlerequestmethodconfigjson)
+* [Patient Selection](#patient-selection)
+* [Export Mechanisms](#export-mechanisms)
+  * [Incremental Export](#incremental-export)
+  * [Scheduled Export](#scheduled-export)
+  * [Bulk data export](#bulk-data-export)
+* [Advanced filtering (since HDRP v.2025.2.14, v.2025.3.1)](#advanced-filtering-since-hdrp-v2025214-v202531)
+* [Export Targets](#export-targets)
+  * [Filesystem Export](#filesystem-export)
+  * [Target URL Export](#target-url-export)
+  * [Useful Links](#useful-links)
+* [Glossary](#glossary)
+<!-- TOC -->
 
-## Introduction
+# Introduction
 
 The HDRP FHIR Custom Export functionality allows you to export data from HDRP in [FHIR R4](https://hl7.org/fhir/R4/index.html) format.
 This document provides detailed instructions on how to set up, configure, and use this functionality.
@@ -38,7 +38,7 @@ The HDRP FHIR Custom Export enables you to transform HDRP data into FHIR resourc
 FHIR standard.
 
 ```mermaid
-graph LR
+graph TD
     subgraph "HDRP Application"
         subgraph Database
             DB[(Database)]
@@ -79,12 +79,12 @@ graph LR
     classDef transformation fill: #bfb, stroke: #333, stroke-width: 1px;
     classDef export fill: #fbb, stroke: #333, stroke-width: 1px;
     class DB database;
-class EntityLoader, Entities, ConvertToMaps, EntityMaps entity;
-class GroovyEngine,GroovyScripts, FHIRResources transformation;
-class RESTEndpoint,ExportedBundles export;
+    class EntityLoader,Entities,ConvertToMaps,EntityMaps entity;
+    class GroovyEngine,GroovyScripts,FHIRResources transformation;
+    class RESTEndpoint,ExportedBundles export;
 ```
 
-## HDRP global configuration
+# HDRP global configuration
 
 To enable FHIR Custom Export, you need to add the following properties to the `centraxx-dev.properties` file:
 
@@ -104,7 +104,7 @@ C:/applications/hdrp-home/fhir-custom-mappings/project1
 C:/applications/hdrp-home/fhir-custom-mappings/project2
 ```
 
-## Project Setup
+# Project Setup
 
 To set up a new export project:
 
@@ -129,9 +129,9 @@ interfaces.fhir.custom.mapping.dir/
 If not supplied, HDRP will create the `ProjectConfig.json` after restart and the `ExportResourceMappingConfig.json`
 and `BundleRequestMethodConfig.json` after triggering the first export, respectively.
 
-### Project-Specific Configuration Files
+## Project-Specific Configuration Files
 
-#### ProjectConfig.json
+### ProjectConfig.json
 
 The `ProjectConfig.json` file configures:
 
@@ -277,7 +277,7 @@ Example `ProjectConfig.json`:
 **Note**: When you configure a scheduled export, HDRP needs to be restarted to apply changes to the `ProjectConfig.json`. HDRP initializes the
 Scheduler at startup by reading the `ProjectConfig.json`. The incremental export does not require a restart after changes to the `ProjectConfig.json`.
 
-#### ExportResourceMappingConfig.json
+### ExportResourceMappingConfig.json
 
 This file is created at the first export if it does not already exist in the directory.
 It configures which Groovy scripts are used to transform HDRP entities and into which FHIR bundle resource type the result is exported.
@@ -302,7 +302,7 @@ Example `ExportResourceMappingConfig.json`:
 }
 ```
 
-#### BundleRequestMethodConfig.json
+### BundleRequestMethodConfig.json
 
 This configuration specifies the HTTP request methods used for export to a target URL, such as a FHIR [Blaze](https://samply.github.io/blaze/) store.
 
@@ -320,7 +320,7 @@ Example `BundleRequestMethodConfig.json`:
 Both the `ExportResourceMappingConfig.json` and the `BundleRequestMethodConfig.json` are created upon the first export attempt. They can be changed
 during runtime and do not require a HDRP restart.
 
-## Patient Selection
+# Patient Selection
 
 The FHIR Custom Export dataset is filtered at patient level. Each exported HDRP entity is selected based on its linkage to the
 Included patients. Patients can be filtered using the following filter types: These are specified in the `ProjectConfig.json` file.
@@ -349,9 +349,9 @@ The following filter types are supported:
 | CONSENTTYPE  | Patient has a valid consent of the specified consent type (code).                                                                                  |
 | PATIENTSTUDY | Patient belongs to a specified study in the study register. The study has to be specified by `{studyCode}${studyProfileCode}`, e.g. COVID19$BASIC. |
 
-## Export Mechanisms
+# Export Mechanisms
 
-### Incremental Export
+## Incremental Export
 
 The incremental export is triggered when a HDRP entity that is configured for export is changed. This allows for real-time updates to the exported
 FHIR resources.
@@ -372,7 +372,7 @@ and enable the incremantal export on the project level in the `ProjectConfig.jso
 }
 ```
 
-### Scheduled Export
+## Scheduled Export
 
 The scheduled export runs at specified intervals, exporting all entities that match the patient filter.
 
@@ -398,25 +398,25 @@ and enable on the project level and set a Spring chron expression in the `Projec
 }
 ```
 
-Enabling scheduled increments (scheduledIncrementsEnable) ensures that only patient records modified since the last successful scheduled export 
-are included. After each export, the `sinceDate` in `ProjectConfig.json` is automatically updated to the start time of the export. 
+Enabling scheduled increments (scheduledIncrementsEnable) ensures that only patient records modified since the last successful scheduled export
+are included. After each export, the `sinceDate` in `ProjectConfig.json` is automatically updated to the start time of the export.
 The PatientModificationLogging needs to be enabled in the centraxx-dev.properties for this feature to work properly.
 
-### Bulk data export
+## Bulk data export
 
 Bulk data export is used to export configured export customexport asynchronously to the file system or to a FHIR endpoint. The Configuration and usage
 of the bulk data export is described [here](Bulk-Data-Export.md).
 
-## Advanced filtering (since HDRP v.2025.2.14, v.2025.3.1)
+# Advanced filtering (since HDRP v.2025.2.14, v.2025.3.1)
 
 A single HDRP entity may be mapped to multiple FHIR resources.
 For example, LaborMappings with LaborFindings whose LaborMethod code is `exampleCode`
-are mapped to AllergyIntolerance, while all other LaborMappings are mapped to Observation. 
+are mapped to AllergyIntolerance, while all other LaborMappings are mapped to Observation.
 Usually, this filtering is implemented directly in the Groovy script, which required loading
-and initializing the entire object graph for all records before discarding non-eligible ones. 
+and initializing the entire object graph for all records before discarding non-eligible ones.
 This approach significantly increases system load and reduced performance in large scale export scenarios.
 
-Filters for specific HDRP entity types can now be defined in the `ExportResourceMappingConfig.json` file. These filters are incorporated directly 
+Filters for specific HDRP entity types can now be defined in the `ExportResourceMappingConfig.json` file. These filters are incorporated directly
 into the database query, ensuring that only matching records are loaded.
 Here is an example:
 
@@ -453,13 +453,13 @@ Here is an example:
 }
 ```
 
-The currently supported filter for the HDRP entity types with their allowed data types and comparators 
+The currently supported filter for the HDRP entity types with their allowed data types and comparators
 are documented in the `AdditionalFilterDocumentation.json`. This file is written to the `custom-mapping-dir`
 on application startup.
 
-## Export Targets
+# Export Targets
 
-### Filesystem Export
+## Filesystem Export
 
 The filesystem export writes the FHIR resources to files on the local filesystem.
 
@@ -478,7 +478,7 @@ Configure the export target in `ProjectConfig.json`:
 
 The `exportFolder` property specifies the directory where the FHIR resources will be written.
 
-### Target URL Export
+## Target URL Export
 
 The target URL export sends the FHIR resources to a specified URL using HTTP requests.
 
@@ -497,15 +497,15 @@ Configure the export target in `ProjectConfig.json`:
 
 The `uploadUrl` property specifies the endpoint of the target FHIR store.
 
-### Useful Links
+## Useful Links
 
 - [FHIR Specification](https://hl7.org/fhir/R4/index.html)
 - [Groovy Documentation](https://groovy-lang.org/documentation.html)
 - [HDRP](https://www.iqvia.com/locations/emea/iqvia-connected-healthcare-platform/iqvia-health-data-research-platform)
 
-### Glossary
+# Glossary
 
-- **FHIR**: Fast Healthcare Interoperability Resources, a standard for healthcare data exchange.
+- **FHIR**: Fast Healthcare Interoperability Resources, a standard for healthcare data exchange. See
 - **HDRP**: Health Data Research Platform. A biobanking and clinical data management system.
 - **Groovy**: A dynamic programming language for the Java virtual machine.
 - **JSON**: JavaScript Object Notation, a lightweight data-interchange format
