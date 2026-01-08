@@ -51,7 +51,7 @@ observation {
     return
   }
 
-  id = "Observation/" + context.source[laborFinding().id()]
+  id = "Observation/Biomarker-" + context.source[laborFinding().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
 
