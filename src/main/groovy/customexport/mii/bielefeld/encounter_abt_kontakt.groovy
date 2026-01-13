@@ -58,7 +58,6 @@ encounter {
 
   final def relatedPatient = context.source[laborMapping().relatedPatient()]
 
-
   if (context.source[laborMapping().relatedPatient()] == null || context.source[laborMapping().episode()] == null) {
     return
   }
@@ -97,7 +96,6 @@ encounter {
   subject {
     reference = "Patient/" + relatedPatient[PatientContainer.ID]
   }
-
 
   final def encounterStart = lflvMpEncounterAk.get(PERIOD_START)
   final def encounterEnd = lflvMpEncounterAk.get(PERIOD_END)

@@ -22,6 +22,11 @@
       "exportToFhirResource": "Encounter"
     },
     {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "encounter_abt_kontakt",
+      "exportToFhirResource": "Encounter"
+    },
+    {
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "condition",
       "exportToFhirResource": "Condition"
