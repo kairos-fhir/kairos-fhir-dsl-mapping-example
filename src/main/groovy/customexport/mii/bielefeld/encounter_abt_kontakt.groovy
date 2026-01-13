@@ -47,7 +47,6 @@ final Map PROFILE_TYPES = [
 
 
 encounter {
-
   if (context.source[laborMapping().laborFinding().laborMethod().code()] != "MP_Encounter_Abteilungskontakt") {
     return
   }
@@ -60,7 +59,6 @@ encounter {
   if (context.source[laborMapping().relatedPatient()] == null || context.source[laborMapping().episode()] == null) {
     return
   }
-
 
   id = "Encounter/" + context.source[laborMapping().episode().id()] + "-" +  context.source[laborMapping().laborFinding().id()]
 
