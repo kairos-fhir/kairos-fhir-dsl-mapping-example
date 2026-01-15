@@ -61,7 +61,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(gkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-        identifier.getAssigner().getIdentifier().getValue())
+            identifier.getAssigner().getIdentifier().getValue())
 
   }
 
@@ -92,7 +92,7 @@ class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
     assertTrue(identifier.hasAssigner() && identifier.getAssigner().hasIdentifier())
 
     assertEquals(pkvInsurance[PatientInsurance.INSURANCE_COMPANY][InsuranceCompany.COMPANY_ID],
-        identifier.getAssigner().getIdentifier().getValue())
+            identifier.getAssigner().getIdentifier().getValue())
 
     assertEquals("http://fhir.de/sid/arge-ik/iknr", identifier.getAssigner().getIdentifier().getSystem())
   }
