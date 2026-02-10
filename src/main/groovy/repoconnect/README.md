@@ -1,20 +1,32 @@
-<img src="/docs/images/Logo.png" width="250" alt="IQVIA Logo"/>
+# FHIR Repository Connect — Import Mapping Examples
 
-FHIR repository connect import mapping examples
-======================
+<img src="/docs/images/Logo.png" width="250" alt="IQVIA Logo" />
 
-* This directory shows an example project with a set of groovy mappings, which can be used to connect an external FHIR store to a CentraXX system with
-  a project specific FHIR profiling.
-* It targets a common source profiling and results in CentraXX profiling: https://simplifier.net/centraxx-structures/
-* The examples can be used as starting point. Feel free to extend scripts or combine examples for new customexport.
-* We love to receive feedback in the form of E-Mails, GitHub issues or pull requests.
+This directory contains example Groovy mappings that connect an external FHIR store to IQVIA Health Data Research Platform (HDRP) using
+project‑specific FHIR profiles. This allows to import FHIR data with any FHIR R4 profiling into HDRP.
 
-# General ideas
+- Target profile: https://simplifier.net/centraxx-structures/
+- Use these examples as a starting point and adapt or combine them for your custom import pipelines.
+- Feedback is welcome via email, GitHub issues, or pull requests.
+- The current implementation supports the import of following FHIR resource types into HDRP entities:
+  - Patient ->  PatientContainer, PatientMasterData, Patient IDContainer
+  - Encounter -> Episodes, EpisodeIdContainer
+  - Consent -> Consent
+  - Observation -> LaborFinding (Type Patient), LaborFindingLaborValue
+  - Condition -> Diagnosis
+  - Procedure -> MedProcedure
+  - Specimen -> MasterSample, DerivedSample, AliquotGroup
 
-* In HDRP the user selects always a single patient from the repository connect FHIR search result to be staged, merged and imported to CentraXX.
-  Therefore, all bundle sources should contain only one source patient resource.
-* It is possible to transform multiple resources together, but it should result in exactly one patient bundle entry.
-* All other resources of all bundles of all scripts will be stored to the first patient. Other patients are ignored.
-* It is possible to transform all target resources in one or multiple scripts. Here we show a multi-script solution for more overview.
-* Because the repository connect search will load only related resources to the selected patient, during transformation it is unnecessary for default to
-  filter related data by subject again or specify a subject reference. It is not intended to move data between patients during transformation.  
+## Principles
+
+- In HDRP, the user always selects exactly one patient from the Repository Connect FHIR search to stage, merge, and import. Each source bundle should
+  therefore include a single Patient resource.
+- You may transform multiple resources at once, but the result must contain exactly one patient bundle entry.
+- All other resources from all bundles/scripts are attached to the first (selected) patient; additional patients are ignored.
+- Transformations can live in one or multiple scripts; this project demonstrates a multi‑script setup for clarity.
+- Because Repository Connect loads only resources related to the selected patient, you generally do not need to re‑filter by subject or add subject
+  references. Moving data between patients is not intended.
+
+## Sequence diagram
+
+<img src="sequence-diagram.png" alt="Sequence Diagram"/>
