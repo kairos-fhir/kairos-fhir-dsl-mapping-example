@@ -12,6 +12,11 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "DIAGNOSIS",
+      "transformByTemplate": "condition",
+      "exportToFhirResource": "Condition"
+    },
+    {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation",
