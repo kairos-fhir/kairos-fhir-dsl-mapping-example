@@ -47,7 +47,6 @@ final Map PROFILE_TYPES = [
 
 
 encounter {
-
   if (context.source[laborMapping().laborFinding().laborMethod().code()] != "MP_Encounter_Abteilungskontakt") {
     return
   }
@@ -149,7 +148,7 @@ encounter {
     final def fas_code2 = lflvMpEncounterAk.get(FAS_CODE2)?.find()?.getAt(CODE)
     final def fas_code3 = lflvMpEncounterAk.get(FAS_CODE2)?.find()?.getAt(CODE)
 
-    if (fas_code) {
+    if (fas_code2) {
       coding {
         system = "http://fhir.de/CodeSystem/dkgev/Fachabteilungsschluessel-erweitert"
         code = fas_code2

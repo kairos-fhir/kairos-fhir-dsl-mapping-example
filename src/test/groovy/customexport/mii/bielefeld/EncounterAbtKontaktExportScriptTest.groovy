@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/customexport/mii/bielefeld/encounter_abt_kontakt.groovy",
-    contextMapsPath = "src/test/resources/customexport/mii/bielefeld/encounter_abt_kontakt"
+    contextMapsPath = "src/test/resources/customexport/mii/bielefeld_20260130/encounter_abt_kontakt"
 )
 class EncounterAbtKontaktExportScriptTest extends AbstractExportScriptTest<Encounter> {
 

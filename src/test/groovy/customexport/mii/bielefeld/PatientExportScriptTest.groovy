@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/customexport/mii/bielefeld/patient.groovy",
-    contextMapsPath = "src/test/resources/customexport/mii/bielefeld/patient"
+    contextMapsPath = "src/test/resources/customexport/mii/bielefeld_20260130/patient"
 )
 class PatientExportScriptTest extends AbstractExportScriptTest<Patient> {
 

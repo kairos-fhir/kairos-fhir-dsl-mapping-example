@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/customexport/mii/bielefeld/consent.groovy",
-    contextMapsPath = "src/test/resources/customexport/mii/bielefeld/consent"
+    contextMapsPath = "src/test/resources/customexport/mii/bielefeld_20260130/consent"
 )
 class ConsentExportScriptTest extends AbstractExportScriptTest<Consent> {
 
