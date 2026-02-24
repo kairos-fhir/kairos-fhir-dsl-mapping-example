@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.mmci
 
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import de.kairos.fhir.centraxx.metamodel.Episode

@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.mmci
 
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
@@ -15,7 +15,6 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -28,7 +27,15 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 observation {
 
-  if (context.source[laborMapping().laborFinding().laborMethod().code()] == "BIOMARKERS") {
+  if (["BIOMARKERS"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])) {
+    return
+  }
+
+  final radiationTherapyLflv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
+    lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == "treatment_radio_method"
+  }
+
+  if (radiationTherapyLflv != null) {
     return
   }
 

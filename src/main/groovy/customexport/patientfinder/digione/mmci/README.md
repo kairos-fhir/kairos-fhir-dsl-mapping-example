@@ -7,6 +7,11 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2026-02-24
+* split project for tartu and mmci
+* added script transform radiation therapy data that sits now in findings
+
+
 # 2025-09-12
 * fixed the filter for BIOMARKER profiles
 
