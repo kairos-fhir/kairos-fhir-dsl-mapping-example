@@ -23,7 +23,7 @@
     },
     {
       "selectFromCxxEntity": "PATIENT_STUDY",
-      "transformByTemplate": "researchSubjectFromDatasharingProjekt",
+      "transformByTemplate": "researchSubjectFromDataSharingProject",
       "exportToFhirResource": "ResearchSubject"
     },
     {

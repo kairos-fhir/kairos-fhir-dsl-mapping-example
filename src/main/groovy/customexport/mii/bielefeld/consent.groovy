@@ -13,10 +13,10 @@ enum RevokationStatus {
     PARTIAL
 }
 
-final Map<RevokationStatus, String> consentCodeMap = [
-        (RevokationStatus.NOT_REVOKED): "2.16.840.1.113883.3.1937.777.24.2.1790",
-        (RevokationStatus.PARTIAL)    : "2.16.840.1.113883.3.1937.777.24.2.2719",
-        (RevokationStatus.COMPLETE)   : "2.16.840.1.113883.3.1937.777.24.2.2718"
+final Map<RevokationStatus, String> consentCodeMap_1_6_d = [
+        (RevokationStatus.NOT_REVOKED): "urn:oid:2.16.840.1.113883.3.1937.777.24.2.1790",
+        (RevokationStatus.PARTIAL)    : "urn:oid:2.16.840.1.113883.3.1937.777.24.2.2719",
+        (RevokationStatus.COMPLETE)   : "urn:oid:2.16.840.1.113883.3.1937.777.24.2.2718"
 ]
 
 class PolicyComponent {
@@ -79,6 +79,10 @@ final Map<String, List<PolicyComponent>> consentMiiCodeMap = [
 consent {
     id = "Consent/" + context.source[consent().id()]
 
+    meta {
+        profile "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-einwilligung"
+    }
+
     category {
         coding {
             system = "http://loinc.org"
@@ -107,14 +111,19 @@ consent {
         date = context.source[consent().creationDate()]
     }
 
+    if ((context.source[consent().consentType().code()] as String).contains("t_bc_16d")) {
+        final String miiCode = getUri(context, consentCodeMap_1_6_d)
 
-    final String miiCode = getUri(context, consentCodeMap)
-
-    if (miiCode != null) {
-        policy {
-            uri = miiCode
+        if (miiCode != null) {
+            policy {
+                uri = miiCode
+            }
         }
+    }else {
+        println("You need to update this script or have it updated. It is not suitable for ConstenType.Code " +
+                context.source[consent().consentType().code()])
     }
+
 
     final List allPolicies = (context.source[consent().consentElements()] as List).isEmpty() ?
             context.source[consent().consentType().policies()] as List :
