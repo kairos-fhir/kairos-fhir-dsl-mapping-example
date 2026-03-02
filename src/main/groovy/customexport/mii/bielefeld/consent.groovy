@@ -69,6 +69,13 @@ final Map<String, List<PolicyComponent>> consentMiiCodeMap = [
 ]
 
 consent {
+
+    if (!(context.source[consent().consentType().code()] as String).contains("t_bc_16d")) {
+        println("You need to update this script or have it updated. It is not suitable for ConstenType.Code " +
+                context.source[consent().consentType().code()])
+        return
+    }
+
     id = "Consent/" + context.source[consent().id()]
 
     meta {
@@ -143,19 +150,13 @@ consent {
         date = context.source[consent().creationDate()]
     }
 
-    if ((context.source[consent().consentType().code()] as String).contains("t_bc_16d")) {
-        final String miiCode = getUri(context, consentCodeMap_1_6_d)
+    final String miiCode = getUri(context, consentCodeMap_1_6_d)
 
-        if (miiCode != null) {
-            policy {
-                uri = miiCode
-            }
+    if (miiCode != null) {
+        policy {
+            uri = miiCode
         }
-    } else {
-        println("You need to update this script or have it updated. It is not suitable for ConstenType.Code " +
-                context.source[consent().consentType().code()])
     }
-
 
     final List allPolicies = (context.source[consent().consentElements()] as List).isEmpty() ?
             context.source[consent().consentType().policies()] as List :
