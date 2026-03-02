@@ -29,14 +29,6 @@ class PolicyComponent {
     }
 }
 
-// defines cxx codes and corresponding mii valuesets
-//final Map<String, String> consentMiiCodeMap = [
-//    m_bc_patdat   : "2.16.840.1.113883.3.1937.777.24.5.3.1",
-//    m_bc_ins_retro: "2.16.840.1.113883.3.1937.777.24.5.3.10",
-//    m_bc_ins_prosp: "2.16.840.1.113883.3.1937.777.24.5.3.14",
-//    m_bc_recon_res: "2.16.840.1.113883.3.1937.777.24.5.3.26",
-//    m_bc_recon_med: "2.16.840.1.113883.3.1937.777.24.5.3.30"
-//]
 final Map<String, List<PolicyComponent>> consentMiiCodeMap = [
         m_bc_patdat   : [
                 new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.1", "Patientendaten erheben, speichern, nutzen"),
@@ -83,23 +75,23 @@ consent {
         profile "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-einwilligung"
     }
 
-    extension {
+    if (false) {
+        // Aktuell keine Unterstützung hier. flexiStudy ist dummerweise immer DummyBC. Dafür müsste sich das erst ändern.
         extension {
-            url = "status"
-            valueCoding {
-                system = "http://hl7.org/fhir/publication-status"
-                code = "active"
+            extension {
+                url = "status"
+                valueCoding {
+                    system = "http://hl7.org/fhir/publication-status"
+                    code = "active"
+                }
+            }
+            extension {
+                url = "domain"
+                valueReference {
+                    reference = "ResearchStudy/" + context.source[consent().consentType().flexiStudy().id()]
+                }
             }
         }
-        //   if (false) {
-        // Aktuell keine Unterstützung hier. flexiStudy ist dummerweise immer DummyBC
-        extension {
-            url = "domain"
-            valueReference {
-                reference = "ResearchStudy/" + context.source[consent().consentType().flexiStudy().id()]
-            }
-        }
-        //      }
         url = "http://fhir.de/ConsentManagement/StructureDefinition/DomainReference"
     }
 
