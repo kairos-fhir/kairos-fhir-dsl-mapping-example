@@ -27,12 +27,41 @@ patient {
   final def nhsIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
       .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NHS" }
 
-  if (nhsIdc == null) {
+  final def heyIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "HEY" }
+
+
+  if (nhsIdc == null && heyIdc == null) {
     return
   }
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
+  final List<String> codesToFilter = [nhsIdc, heyIdc]
+      .findAll { it != null }
+      .collect { it[CODE] as String}
+
+  // assign NHS if given, otherwise HEY
+  if (nhsIdc != null) {
+    identifier {
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+      value = nhsIdc[PSN]
+    }
+  } else if (nhsIdc == null) {
+    identifier {
+      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+      value = heyIdc[PSN]
+    }
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .findAll { final def idc -> !codesToFilter.contains(idc[ID_CONTAINER_TYPE][CODE]) }
+      .each { final def idc ->
+        identifier {
+          system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+          value = idc[PSN]
+        }
+      }
 
   final def countryOfBirth = context.source[patientMasterDataAnonymous().addresses()].find { final def ad ->
     (ad[PatientAddress.ADDRESS_ID] as String).startsWith("countryOfBirth")
@@ -45,20 +74,6 @@ patient {
         city = countryOfBirth[PatientAddress.CITY]
         country = countryOfBirth[PatientAddress.COUNTRY]?.getAt(Country.ISO2_CODE)
       }
-    }
-  }
-
-  identifier {
-    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
-    value = nhsIdc[PSN]
-  }
-
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].findAll { final def idc ->
-    idc[ID_CONTAINER_TYPE][CODE] != "NHS"
-  }.each { final def idc ->
-    identifier {
-      system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
-      value = idc[PSN]
     }
   }
 
