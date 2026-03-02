@@ -83,14 +83,54 @@ consent {
         profile "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-einwilligung"
     }
 
+    extension {
+        extension {
+            url = "status"
+            valueCoding {
+                system = "http://hl7.org/fhir/publication-status"
+                code = "active"
+            }
+        }
+        //   if (false) {
+        // Aktuell keine Unterstützung hier. flexiStudy ist dummerweise immer DummyBC
+        extension {
+            url = "domain"
+            valueReference {
+                reference = "ResearchStudy/" + context.source[consent().consentType().flexiStudy().id()]
+            }
+        }
+        //      }
+        url = "http://fhir.de/ConsentManagement/StructureDefinition/DomainReference"
+    }
+
+
+// LOINC Slice
     category {
         coding {
             system = "http://loinc.org"
             code = "57016-8"
         }
+    }
+
+// MII Slice
+    category {
         coding {
-            system = "https://www.medizininformatik-initiative.de/fhir/modul-consent/CodeSystem/mii-cs-consent-consent_category"
+            system = "https://www.medizininformatik-initiative.de/fhir/modul-consent/CodeSystem/mii-cs-consent-version-modules"
             code = "2.16.840.1.113883.3.1937.777.24.2.184"
+        }
+    }
+
+// Optional: ResultType / TemplateType
+    category {
+        coding {
+            system = "http://fhir.de/ConsentManagement/CodeSystem/ResultType"
+            code = "document"
+        }
+    }
+    category {
+        coding {
+            system = "http://fhir.de/ConsentManagement/CodeSystem/TemplateType"
+            code = "CONSENT-OPT-IN"
         }
     }
 
@@ -119,7 +159,7 @@ consent {
                 uri = miiCode
             }
         }
-    }else {
+    } else {
         println("You need to update this script or have it updated. It is not suitable for ConstenType.Code " +
                 context.source[consent().consentType().code()])
     }
