@@ -8,6 +8,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2026-02-11
+* added filter in Observation/DiagnosticReport scripts for 'Encounter_profile'
+
 # 2025-11-12
 * added export of reasonCode and dischargeDisposition for Encounter#
 * added filter in Observation/DiagnosticReport scripts for 'Encounter_profile'

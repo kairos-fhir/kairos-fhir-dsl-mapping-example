@@ -54,15 +54,13 @@ encounter {
   final Map<String, Object> lflvMpEncounterAk = getLflvMap(context.source[laborMapping().laborFinding().laborFindingLaborValues()] as List,
       PROFILE_TYPES)
 
-
   final def relatedPatient = context.source[laborMapping().relatedPatient()]
-
 
   if (context.source[laborMapping().relatedPatient()] == null || context.source[laborMapping().episode()] == null) {
     return
   }
 
-  id = "Encounter/" + context.source[laborMapping().laborFinding().id()]
+  id = "Encounter/" + context.source[laborMapping().episode().id()] + "-" +  context.source[laborMapping().laborFinding().id()]
 
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
@@ -96,7 +94,6 @@ encounter {
   subject {
     reference = "Patient/" + relatedPatient[PatientContainer.ID]
   }
-
 
   final def encounterStart = lflvMpEncounterAk.get(PERIOD_START)
   final def encounterEnd = lflvMpEncounterAk.get(PERIOD_END)
@@ -165,7 +162,6 @@ encounter {
   partOf {
     reference = "Encounter/" + context.source[laborMapping().episode().id()]
   }
-
 }
 
 static Map<String, Object> getLflvMap(final List lflvs, final Map<String, String> types) {

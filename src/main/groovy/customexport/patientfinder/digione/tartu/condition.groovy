@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.tartu
 
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.Episode

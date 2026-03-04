@@ -1,0 +1,33 @@
+title Search on external FHIR stores.
+
+actor User
+participant "IQVIA HDRP" as HDRP
+participant "FHIR store\n(HAPI FHIR server, sample/blaze, etc)" as FHIR store
+
+activate User
+User->HDRP: Simple Search (e.g. by Patient ID)
+activate HDRP
+
+HDRP->HDRP: Mapping to FHIR search query (MII/GECCO Profiles)
+HDRP->FHIR store: FHIR search query (MII/GECCO Profiles)
+activate FHIR store
+FHIR store-->HDRP: List of FHIR Patient Resources (MII/GECCO Profiles)
+deactivate FHIR store
+HDRP-->User: Display results (FHIR ID, Identifier, NAME)
+
+User->HDRP: Select result one patient entry
+HDRP->FHIR store: Select FHIR Resources of one patient
+activate FHIR store
+FHIR store-->HDRP: FHIR Resources, e.g. Patient, Specimen, Condition, Observation, etc. (MII/GECCO Profiles)
+deactivate FHIR store
+
+
+HDRP->HDRP: Transform by kairos-fhir-dsl (Groovy) to HDRP-FHIR-Profiles
+
+HDRP->HDRP: Import by HDRP-FHIR-API and parse to Staging DTOs
+HDRP-->User: Display DTO Staging
+User-> HDRP: Save Staging (create or update EPA)
+HDRP->HDRP: Save EPA
+HDRP-->User:OK
+deactivate HDRP
+deactivate User

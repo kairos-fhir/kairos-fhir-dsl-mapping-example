@@ -29,6 +29,18 @@
       ]
     },
     {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "medicationAdministrationRadiationTherapy",
+      "exportToFhirResource": "MedicationAdministration",
+      "filters": [
+        {
+          "filterName": "laborMethod.code",
+          "comparator": "EQUALS",
+          "value": "TREATMENT"
+        }
+      ]
+    },
+    {
       "selectFromCxxEntity": "EPISODE",
       "transformByTemplate": "encounter",
       "exportToFhirResource": "Encounter"
@@ -89,11 +101,6 @@
       "selectFromCxxEntity": "TNM",
       "transformByTemplate": "tnm",
       "exportToFhirResource": "Observation"
-    },
-    {
-      "selectFromCxxEntity": "RADIATION_THERAPY",
-      "transformByTemplate": "radiationTherapyMedicationAdministration",
-      "exportToFhirResource": "MedicationAdministration"
     }
   ]
 }

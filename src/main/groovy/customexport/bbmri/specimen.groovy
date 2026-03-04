@@ -2,6 +2,7 @@ package customexport.bbmri
 
 import de.kairos.fhir.centraxx.metamodel.IdContainer
 import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.dsl.r4.context.Context
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.abstractSample
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.sample
@@ -167,13 +168,13 @@ specimen {
 
 }
 
-static def toTemperature(final ctx) {
-  final def temp = ctx.source[abstractSample().sampleLocation().temperature() as String]
+static def toTemperature(final Context ctx) {
+  final Float temp = ctx.source[abstractSample().sampleLocation().temperature()] as Float
   if (null != temp) {
     switch (temp) {
-      case { it >= 2.0 && it <= 10 }: return "temperature2to10"
-      case { it <= -18.0 && it >= -35.0 }: return "temperature-18to-35"
-      case { it <= -60.0 && it >= -85.0 }: return "temperature-60to-85"
+      case { temp >= 2.0 && temp <= 10 }: return "temperature2to10"
+      case { temp <= -18.0 && temp >= -35.0 }: return "temperature-18to-35"
+      case { temp <= -60.0 && temp >= -85.0 }: return "temperature-60to-85"
     }
   }
 

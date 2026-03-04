@@ -1,4 +1,3 @@
 .idea
 /target/
 /kairos-fhir-dsl-mapping-example.iml
-/src/test/resources/projects/mii/custom/

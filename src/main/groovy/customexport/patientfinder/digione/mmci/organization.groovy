@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.mmci
 
 
 import de.kairos.centraxx.fhir.r4.utils.FhirUrls

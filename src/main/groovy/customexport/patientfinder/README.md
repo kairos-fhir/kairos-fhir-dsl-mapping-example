@@ -12,6 +12,10 @@ The following imported data sets are supported/tested:
 * Bahia Histol imports at [Brno FNUSA](https://www.fnusa.cz/en/hp/)
 
 # Change log
+# 2026-03-02
+* added export of additional HEY id as primary identifier if NHS is not present
+* removed duplicate mapping in medicationRequest script for dosisSchema
+* added new filter in ProjectConfig.json
 
 # 2025-10-30
 * added filter to only export email and phone if they are not null

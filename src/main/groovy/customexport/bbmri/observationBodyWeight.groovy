@@ -1,5 +1,6 @@
 package customexport.bbmri
 
+import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborValue
 import org.hl7.fhir.r4.model.Observation
@@ -50,7 +51,7 @@ observation {
   }
 
   final def bodyHeightLfLv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find {
-    "BodyWeightValue" == it[LaborFindingLaborValue.LABOR_VALUE]?.getAt(LaborValue.CODE)
+    "BodyWeightValue" == it[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE]?.getAt(LaborValue.CODE)
   }
 
   if (bodyHeightLfLv) {

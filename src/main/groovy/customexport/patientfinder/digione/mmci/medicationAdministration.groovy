@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.mmci
 
 
 import org.hl7.fhir.r4.model.MedicationAdministration

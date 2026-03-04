@@ -1,4 +1,4 @@
-package customexport.patientfinder.digione
+package customexport.patientfinder.digione.mmci
 
 import de.kairos.fhir.centraxx.metamodel.Multilingual
 import de.kairos.fhir.centraxx.metamodel.RadiationComponent
@@ -44,5 +44,4 @@ medicationAdministration {
       }
     }
   }
-
 }

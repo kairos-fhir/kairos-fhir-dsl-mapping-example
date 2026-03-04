@@ -86,8 +86,6 @@ medicationRequest {
   }
 
   dosageInstruction {
-    text = context.source[medication().dosisSchema()] as String
-
     additionalInstruction {
       text = context.source[medication().ordinanceReleaseForm()] as String
     }

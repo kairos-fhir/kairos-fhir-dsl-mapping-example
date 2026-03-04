@@ -1,7 +1,8 @@
 <img src="docs/images/Logo.png" width="250" alt="IQVIA Logo"/>
 
-Example project for the Kairos FHIR DSL
-========================================
+Example project for the IQVIA HDRP FHIR DSL*
+===========================================
+*previously known as Kairos FHIR DSL
 
 This project contains Groovy example scripts for the use of the HDRP FHIR custom export interface. The examples show the possibilities how to
 export HDRP data to FHIR in accordance with almost any FHIR R4 profile. More info about HDRP can be found on
