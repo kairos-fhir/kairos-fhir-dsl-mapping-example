@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue
 
 @TestResources(
     groovyScriptPath = "src/main/groovy/customexport/mii/bielefeld/procedure.groovy",
-    contextMapsPath = "src/test/resources/customexport/mii/bielefeld_20260130/procedure"
+    contextMapsPath = "src/test/resources/customexport/mii/bielefeld/procedure"
 )
 class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
 
