@@ -23,6 +23,7 @@ medicationAdministration {
 
   medicationCodeableConcept {
     coding {
+      system = "http://www.whocc.no/atc"
       code = context.source[medication().code()] as String
       display = context.source[medication().name()]
     }

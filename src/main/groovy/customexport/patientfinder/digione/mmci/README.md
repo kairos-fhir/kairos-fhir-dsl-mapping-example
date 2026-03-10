@@ -7,6 +7,9 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2026-03-10
+* added atc coding system
+
 # 2026-02-24
 * split project for tartu and mmci
 * added script transform radiation therapy data that sits now in findings
