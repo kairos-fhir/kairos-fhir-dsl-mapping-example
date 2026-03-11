@@ -24,7 +24,7 @@
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
