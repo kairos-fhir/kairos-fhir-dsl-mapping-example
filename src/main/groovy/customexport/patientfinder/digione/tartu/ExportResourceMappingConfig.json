@@ -12,6 +12,11 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "encounter",
+      "exportToFhirResource": "Encounter"
+    },
+    {
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "condition",
       "exportToFhirResource": "Condition"
@@ -20,13 +25,6 @@
       "selectFromCxxEntity": "LABOR_MAPPING",
       "transformByTemplate": "observation",
       "exportToFhirResource": "Observation",
-      "filters": [
-        {
-          "filterName": "laborFinding.laborMethod.code",
-          "comparator": "IN",
-          "value": ["DIAGNOSIS", "TREATMENT"]
-        }
-      ]
     }
   ]
 }
