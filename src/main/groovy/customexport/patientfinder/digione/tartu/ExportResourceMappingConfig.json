@@ -23,7 +23,7 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
+      "transformByTemplate": "observationBiomarker",
       "exportToFhirResource": "Observation"
     }
   ]
