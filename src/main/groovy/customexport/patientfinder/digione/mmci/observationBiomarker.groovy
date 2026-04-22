@@ -1,5 +1,6 @@
 package customexport.patientfinder.digione.mmci
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue
 import de.kairos.fhir.centraxx.metamodel.LaborMapping
@@ -8,7 +9,6 @@ import de.kairos.fhir.centraxx.metamodel.PatientContainer
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
-import static de.kairos.fhir.centraxx.metamodel.AbstractCodeSyncIdMultilingual.MULTILINGUALS
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 
 /**
@@ -47,7 +47,7 @@ observation {
   final String bioMarkerResult = getValueOrNull(lflvMap.get(BIOMARKER_RESULT) as String)
   final String bioMarkerCode = getValueOrNull(lflvMap.get(BIOMARKER_CODE) as String) != null ? lflvMap.get(BIOMARKER_CODE) : bioMarkerName
 
-  if (bioMarkerName == null || bioMarkerResult == null){
+  if (bioMarkerName == null || bioMarkerResult == null) {
     return
   }
 
@@ -55,13 +55,26 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  identifier {
-    value = context.source[laborFinding().laborFindingId()]
+  if (context.source[laborFinding().laborFindingId()] != null) {
+    identifier {
+      system = FhirUrls.System.Finding.LABOR_FINDING_ID
+      value = context.source[laborFinding().laborFindingId()]
+    }
   }
+  identifier {
+    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
+    value = context.source[laborFinding().shortName()]
+  }
+
+  final def bioMarkerType = lflvMap.get(BIOMARKER_TYPE_VOCABULARY) as List
+  final String bioMarkerSystem = (bioMarkerType != null && !bioMarkerType.isEmpty()) ?
+      bioMarkerType.collect { final def entry -> entry[CODE] }.find() :
+      null
 
   code {
     coding {
       code = bioMarkerCode
+      system = bioMarkerSystem
       display = bioMarkerName
     }
   }
@@ -70,24 +83,18 @@ observation {
     date = context.source[laborFinding().findingDate().date()]
   }
 
-  final def bioMarkerType = lflvMap.get(BIOMARKER_TYPE_VOCABULARY) as List
-  if (bioMarkerType != null && !bioMarkerType.isEmpty()){
-    category {
-      bioMarkerType.each { final def entry ->
-        coding {
-          code = entry[CODE] as String
-          display = entry[MULTILINGUALS].find { final def ml ->
-            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-          }?.getAt(Multilingual.SHORT_NAME)
-        }
+  category {
+    bioMarkerType.each { final def entry ->
+      coding {
+        code = "Biomarker"
+        display = "Biomarker"
       }
     }
   }
 
-
   final Float numericResult = parseResult(bioMarkerResult)
 
-  if (numericResult != null){
+  if (numericResult != null) {
     valueQuantity {
       value = numericResult
       unit = getValueOrNull(lflvMap.get(BIOMARKER_UNIT) as String)
@@ -109,12 +116,12 @@ observation {
   /**
    * There are multiple findings for the same specimen id
    */
- /* final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
-  if (sampleId != null) {
-    specimen {
-      reference = "Specimen/" + removeBackSlashes(sampleId)
-    }
-  }*/
+  /* final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
+   if (sampleId != null) {
+     specimen {
+       reference = "Specimen/" + removeBackSlashes(sampleId)
+     }
+   }*/
 
   method {
     coding {
@@ -127,12 +134,12 @@ observation {
 
 }
 
-static String getValueOrNull(final String value){
-  if (value == null){
+static String getValueOrNull(final String value) {
+  if (value == null) {
     return null
   }
 
-  if (value == "N/A"){
+  if (value == "N/A") {
     return null
   }
 
@@ -140,9 +147,9 @@ static String getValueOrNull(final String value){
 }
 
 
-static Float parseResult(final String result){
+static Float parseResult(final String result) {
   if (result == null) {
-    return  null
+    return null
   }
 
   try {
@@ -152,7 +159,7 @@ static Float parseResult(final String result){
   }
 }
 
-static String removeBackSlashes(final String s){
+static String removeBackSlashes(final String s) {
   return s.replace("/", "-")
 }
 

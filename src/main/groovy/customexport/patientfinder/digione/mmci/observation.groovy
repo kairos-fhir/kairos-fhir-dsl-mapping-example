@@ -1,5 +1,6 @@
 package customexport.patientfinder.digione.mmci
 
+import de.kairos.centraxx.fhir.r4.utils.FhirUrls
 import de.kairos.fhir.centraxx.metamodel.CatalogEntry
 import de.kairos.fhir.centraxx.metamodel.CrfTemplateField
 import de.kairos.fhir.centraxx.metamodel.IcdEntry
@@ -15,6 +16,9 @@ import de.kairos.fhir.centraxx.metamodel.enums.LaborValueDType
 import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -27,7 +31,7 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 observation {
 
-  if (["BIOMARKERS"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])) {
+  if (["BIOMARKERS", "ECOG", "TREATMENT"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])) {
     return
   }
 
@@ -43,13 +47,23 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
+  if (context.source[laborFinding().laborFindingId()] != null) {
+    identifier {
+      system = FhirUrls.System.Finding.LABOR_FINDING_ID
+      value = context.source[laborFinding().laborFindingId()]
+    }
+  }
   identifier {
-    value = context.source[laborMapping().laborFinding().laborFindingId()]
+    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
+    value = context.source[laborFinding().shortName()]
   }
 
   code {
     coding {
-      code = context.source[laborMapping().laborFinding().shortName()] as String
+      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
+      display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()].find { final def ml ->
+        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
@@ -64,15 +78,6 @@ observation {
   if (context.source[laborMapping().mappingType()] as LaborMappingType == LaborMappingType.SAMPLELABORMAPPING) {
     specimen {
       reference = "Specimen/" + context.source[laborMapping().relatedOid()]
-    }
-  }
-
-  method {
-    coding {
-      code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
-      display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()].find { final def ml ->
-        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 

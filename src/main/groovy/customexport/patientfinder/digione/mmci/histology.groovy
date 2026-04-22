@@ -27,6 +27,7 @@ observation {
     coding {
       system = "http://loinc.org"
       code = "59847-4"
+      display = "Histological Cell Type"
     }
   }
 

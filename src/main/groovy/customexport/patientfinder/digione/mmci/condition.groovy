@@ -23,7 +23,7 @@ final String ECOG_INDEX = "ecog_index"
 
 
 final Map PROFILE_TYPES = [
-    (ECOG_INDEX)    : LaborFindingLaborValue.STRING_VALUE
+    (ECOG_INDEX): LaborFindingLaborValue.STRING_VALUE
 ]
 
 condition {
@@ -40,11 +40,19 @@ condition {
     }
   }
 
+  if (context.source[diagnosis().comments()] != null) {
+    category {
+      coding {
+        code = diagnosis().comments() as String;
+      }
+    }
+  }
+
   recordedDate {
     date = context.source[diagnosis().creationDate()]
   }
 
-  if (context.source[diagnosis().diagnosisDate()] != null && context.source[diagnosis().diagnosisDate().date()] != null){
+  if (context.source[diagnosis().diagnosisDate()] != null && context.source[diagnosis().diagnosisDate().date()] != null) {
     onsetDateTime {
       date = context.source[diagnosis().diagnosisDate().date()]
     }
@@ -117,8 +125,8 @@ static boolean isFakeEpisode(final def episode) {
 }
 
 
-static String truncate(final String desc){
-  if (desc == null){
+static String truncate(final String desc) {
+  if (desc == null) {
     null
   }
   return desc.substring(0, Math.min(500, desc.length()))
