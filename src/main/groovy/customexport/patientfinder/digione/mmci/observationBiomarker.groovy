@@ -61,10 +61,6 @@ observation {
       value = context.source[laborFinding().laborFindingId()]
     }
   }
-  identifier {
-    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
-    value = context.source[laborFinding().shortName()]
-  }
 
   final def bioMarkerType = lflvMap.get(BIOMARKER_TYPE_VOCABULARY) as List
   final String bioMarkerSystem = (bioMarkerType != null && !bioMarkerType.isEmpty()) ?

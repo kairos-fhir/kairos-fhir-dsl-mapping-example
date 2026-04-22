@@ -57,10 +57,6 @@ observation {
       value = context.source[laborFinding().laborFindingId()]
     }
   }
-  identifier {
-    system = FhirUrls.System.Finding.LABOR_FINDING_SHORTNAME
-    value = context.source[laborFinding().shortName()]
-  }
 
   code {
     coding {
