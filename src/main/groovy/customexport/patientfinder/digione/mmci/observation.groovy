@@ -58,8 +58,9 @@ observation {
     value = context.source[laborFinding().shortName()]
   }
 
-  code {
+  category {
     coding {
+      system = FhirUrls.System.LaborMethod.BASE_URL
       code = context.source[laborMapping().laborFinding().laborMethod().code()] as String
       display = context.source[laborMapping().laborFinding().laborMethod().multilinguals()].find { final def ml ->
         ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"

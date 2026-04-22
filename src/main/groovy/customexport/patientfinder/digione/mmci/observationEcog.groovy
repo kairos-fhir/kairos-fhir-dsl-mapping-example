@@ -58,7 +58,7 @@ observation {
     }
   }
 
-  code {
+  category {
     coding {
       code = context.source[laborFinding().laborMethod().code()] as String
       display = context.source[laborFinding().laborMethod().multilinguals()].find { final def ml ->
