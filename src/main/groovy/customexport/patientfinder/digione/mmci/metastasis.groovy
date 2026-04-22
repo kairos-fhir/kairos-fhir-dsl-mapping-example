@@ -30,6 +30,7 @@ observation {
     coding {
       system = "http://loinc.org"
       code = "21907-1"
+      display = "Metastasis"
     }
   }
 
