@@ -38,7 +38,7 @@ observation {
     return
   }
 
-  final var split = ecog.split(";")
+  final String[] split = ecog.split(";")
 
   if (split.size() != 2) {
     return
