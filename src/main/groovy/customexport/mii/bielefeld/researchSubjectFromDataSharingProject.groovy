@@ -56,13 +56,11 @@ researchSubject {
         reference = "Patient/" + patientOid
     }
 
-
-    consent {
-        reference = "Consent/" + consentVar["id"]
-    }
+ //  verursacht Fehler: consent {
+ //       reference = "Consent/" + consentVar["id"]
+  //  }
 
     final def memberFrom = context.source["memberFrom"]
-
 
     if (memberFrom) {
         period {
