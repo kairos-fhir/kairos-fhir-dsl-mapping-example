@@ -81,7 +81,8 @@ observation {
       }
       valueString(karnofskyVal)
     }
-  } else if (ecogVal != null && "NA" != ecogVal) {
+  }
+  if (ecogVal != null && "NA" != ecogVal) {
     component {
       code {
         coding {
@@ -103,7 +104,6 @@ observation {
     }
   }
 
-
 }
 
 static String getValueOrNull(final String value) {
@@ -116,23 +116,6 @@ static String getValueOrNull(final String value) {
   }
 
   return value
-}
-
-
-static Float parseResult(final String result) {
-  if (result == null) {
-    return null
-  }
-
-  try {
-    return Float.parseFloat(result)
-  } catch (final NumberFormatException ignored) {
-    return null
-  }
-}
-
-static String removeBackSlashes(final String s) {
-  return s.replace("/", "-")
 }
 
 static Map<String, Object> getLflvMap(final List lflvs, final Map<String, String> types) {
