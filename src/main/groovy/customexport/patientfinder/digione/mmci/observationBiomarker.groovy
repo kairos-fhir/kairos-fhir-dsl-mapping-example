@@ -84,11 +84,11 @@ observation {
   }
 
   category {
-    bioMarkerType.each { final def entry ->
-      coding {
-        code = "Biomarker"
-        display = "Biomarker"
-      }
+    coding {
+      code = context.source[laborFinding().laborMethod().code()] as String
+      display = context.source[laborFinding().laborMethod().multilinguals()].find { final def ml ->
+        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+      }?.getAt(Multilingual.SHORT_NAME)
     }
   }
 
@@ -123,14 +123,7 @@ observation {
      }
    }*/
 
-  method {
-    coding {
-      code = context.source[laborFinding().laborMethod().code()] as String
-      display = context.source[laborFinding().laborMethod().multilinguals()].find { final def ml ->
-        ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-      }?.getAt(Multilingual.SHORT_NAME)
-    }
-  }
+
 
 }
 
