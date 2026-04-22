@@ -93,6 +93,7 @@ observation {
           display = "Ecog"
         }
       }
+      valueString(ecogVal)
     }
   }
 
