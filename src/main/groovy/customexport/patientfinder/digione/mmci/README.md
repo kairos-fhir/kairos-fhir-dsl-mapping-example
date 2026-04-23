@@ -7,7 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
-# 2026-04-2026
+# 2026-04-23
+* fixed Condition script category mapping
+
+# 2026-04-22
 * Splitting ecog into karnofsky and ecog
 * Remapping fields to Observation.code and Observation.identifier 
 * adding comment to Condition.category to indicate Tumor vs Comorbidity

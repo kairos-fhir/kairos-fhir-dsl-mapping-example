@@ -43,7 +43,8 @@ condition {
   if (context.source[diagnosis().comments()] != null) {
     category {
       coding {
-        code = diagnosis().comments() as String;
+        code = context.source[diagnosis().comments()] as String
+        display = context.source[diagnosis().comments()] as String
       }
     }
   }
