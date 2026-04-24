@@ -58,12 +58,19 @@ observation {
     }
   }
 
-  category {
+  code {
     coding {
       code = context.source[laborFinding().laborMethod().code()] as String
       display = context.source[laborFinding().laborMethod().multilinguals()].find { final def ml ->
         ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
       }?.getAt(Multilingual.SHORT_NAME)
+    }
+  }
+
+  category {
+    coding {
+      code = "Performance status"
+      display = "Performance status"
     }
   }
 

@@ -7,6 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2026-05-24
+* changed category and code mapping based on hints to hopefully improve usability in PFS
+* added descriptions of Histology codes
+
 # 2026-04-23
 * fixed Condition script category mapping
 

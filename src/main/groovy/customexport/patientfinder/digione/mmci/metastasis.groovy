@@ -19,17 +19,17 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category {
-    coding {
-      system = "http://hl7.org/fhir/observation-category"
-      code = "laboratory"
-    }
-  }
-
   code {
     coding {
       system = "http://loinc.org"
       code = "21907-1"
+      display = "Metastasis"
+    }
+  }
+
+  category {
+    coding {
+      code = "Metastasis"
       display = "Metastasis"
     }
   }

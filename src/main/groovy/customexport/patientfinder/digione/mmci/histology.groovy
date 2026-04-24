@@ -17,17 +17,19 @@ observation {
   id = "Observation/Histology-" + context.source[histology().id()]
 
   status = Observation.ObservationStatus.UNKNOWN
-  category {
-    coding {
-      system = "http://hl7.org/fhir/observation-category"
-      code = "laboratory"
-    }
-  }
+
   code {
     coding {
       system = "http://loinc.org"
       code = "59847-4"
-      display = "Histological Cell Type"
+      display = "Histology"
+    }
+  }
+
+  category {
+    coding {
+      code = "Histology"
+      display = "Histology"
     }
   }
 
@@ -54,6 +56,7 @@ observation {
         system = context.source[diagnosis().icdEntry().catalogue().name()]
         version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
         code = context.source[histology().icdEntry().code()] as String
+        display = context.source[histology().icdEntry().preferred()] as String
       }
     }
   }
