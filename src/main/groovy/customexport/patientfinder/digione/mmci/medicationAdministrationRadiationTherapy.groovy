@@ -49,6 +49,12 @@ medicationAdministration {
   final def beginDate = lflvMap.get(START_OF_THERAPY)?.getAt(PrecisionDate.DATE)
   final def endDate = lflvMap.get(END_OF_THERAPY)?.getAt(PrecisionDate.DATE)
 
+  if (context.source[laborFinding().laborFindingId()] != null){
+    identifier {
+      value = context.source[laborFinding().laborFindingId()]
+    }
+  }
+
   if (beginDate != null || endDate != null) {
     effectivePeriod {
       start = beginDate
@@ -84,7 +90,7 @@ medicationAdministration {
   }
 
   if (labMap != null) {
-    patient {
+    subject {
       reference = "Patient/" + labMap[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
     }
   }
