@@ -3,6 +3,10 @@ IQVIA HDRP to CTcue PatientFinder Mappings
 
 # Change log
 
+# 2026-04-27
+* added histology and tnm script to export config.
+* filtered out OUTCOMES and BIOMARKERS from export
+
 # 2026-04-24
 * added observation script to cover NLP_OUTPUT findings
 * carried over changes from MMCI Biomarker script

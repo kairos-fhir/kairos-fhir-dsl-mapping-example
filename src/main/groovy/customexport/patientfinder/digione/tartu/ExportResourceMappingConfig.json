@@ -28,22 +28,20 @@
       "filters": [
         {
           "filterName": "laborFinding.laborMethod.code",
-          "comparator": "EQUALS",
-          "value": "NLP_OUTPUT"
+          "comparator": "NOT_IN",
+          "value": ["BIOMARKERS", "OUTCOMES"]
         }
       ]
     },
     {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observationBiomarker",
-      "exportToFhirResource": "Observation",
-      "filters": [
-        {
-          "filterName": "laborFinding.laborMethod.code",
-          "comparator": "EQUALS",
-          "value": "BIOMARKERS"
-        }
-      ]
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "histology",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "TNM",
+      "transformByTemplate": "tnm",
+      "exportToFhirResource": "Observation"
     }
   ]
 }
