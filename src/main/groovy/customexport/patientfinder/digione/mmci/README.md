@@ -7,7 +7,11 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
-# 2026-05-24
+# 2026-04-28
+* fixed subject references in scripts
+* added concatenation of code and t
+
+# 2026-04-24
 * changed category and code mapping based on hints to hopefully improve usability in PFS
 * added descriptions of Histology codes
 * updated metastasis script

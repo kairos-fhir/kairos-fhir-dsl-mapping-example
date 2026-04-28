@@ -104,23 +104,10 @@ observation {
   }
 
   if (labMap != null) {
-    patient {
+    subject {
       reference = "Patient/" + labMap[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
     }
   }
-
-  /**
-   * There are multiple findings for the same specimen id
-   */
-  /* final String sampleId = getValueOrNull(lflvMap.get(SAMPLE_ID) as String)
-   if (sampleId != null) {
-     specimen {
-       reference = "Specimen/" + removeBackSlashes(sampleId)
-     }
-   }*/
-
-
-
 }
 
 static String getValueOrNull(final String value) {

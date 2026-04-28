@@ -17,8 +17,6 @@ import org.hl7.fhir.r4.model.Observation
 
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborFinding
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 /**
@@ -99,93 +97,102 @@ observation {
         ?.find { final mle -> mle[Multilingual.LANGUAGE] == "en" && mle[Multilingual.SHORT_NAME] != null }
         ?.getAt(Multilingual.SHORT_NAME) as String
 
-    component {
-      code {
-        coding {
-          code = laborValueCode
-          display = laborValueDisplay
+
+    if (!(lflv[LaborFindingLaborValue.MULTI_VALUE] as List).isEmpty()) {
+      lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+        component {
+          code {
+            coding {
+              code = laborValueCode
+              display = laborValueDisplay
+            }
+          }
+
+          final String desc = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+          valueString = toValueString(entry[CODE] as String, desc)
         }
       }
+    } else if (!(lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE] as List).isEmpty())
+      lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
+        component {
+          code {
+            coding {
+              code = laborValueCode
+              display = laborValueDisplay
+            }
+          }
 
-      if (isNumeric(laborValue)) {
-        valueQuantity {
-          value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
-          unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
+          final String desc = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
+            ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
+          }?.getAt(Multilingual.SHORT_NAME)
+          valueString = toValueString(entry[CODE] as String, desc)
         }
-      } else if (isBoolean(laborValue)) {
-        valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
-      } else if (isDate(laborValue)) {
-        valueDateTime {
-          date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
-        }
-      } else if (isTime(laborValue)) {
-        valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
-      } else if (isString(laborValue)) {
-        valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
-      } else if (isEnumeration(laborValue)) {
-        valueCodeableConcept {
-          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+      }
+    else if (!(lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE] as List).isEmpty())
+
+      lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
+        component {
+          code {
             coding {
-              code = entry[CODE] as String
-              display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
-                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-              }?.getAt(Multilingual.SHORT_NAME)
+              code = laborValueCode
+              display = laborValueDisplay
             }
           }
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            coding {
-              code = entry[CODE] as String
-              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
-                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-              }?.getAt(Multilingual.SHORT_NAME)
-            }
-          }
+
+          valueString = toValueString(entry[CODE] as String, entry[IcdEntry.PREFERRED] as String)
         }
-      } else if (isOptionGroup(laborValue)) {
-        valueCodeableConcept {
-          lflv[LaborFindingLaborValue.MULTI_VALUE].each { final entry ->
+      }
+    else if (!(lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE] as List).isEmpty())
+      lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE].each { final entry ->
+        component {
+          code {
             coding {
-              code = entry[CODE] as String
-              display = entry[UsageEntry.MULTILINGUALS].find { final def ml ->
-                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-              }?.getAt(Multilingual.SHORT_NAME)
+              code = laborValueCode
+              display = laborValueDisplay
             }
           }
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            coding {
-              code = entry[CODE] as String
-              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
-                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-              }?.getAt(Multilingual.SHORT_NAME)
-            }
+
+          valueString = toValueString(entry[CODE] as String, entry[OpsEntry.PREFERRED] as String)
+        }
+      }
+    else {
+      component {
+        code {
+          coding {
+            code = laborValueCode
+            display = laborValueDisplay
           }
         }
-      } else if (isCatalog(laborValue)) {
-        valueCodeableConcept {
-          lflv[LaborFindingLaborValue.CATALOG_ENTRY_VALUE].each { final entry ->
-            coding {
-              code = entry[CODE] as String
-              display = entry[CatalogEntry.MULTILINGUALS].find { final def ml ->
-                ml[Multilingual.SHORT_NAME] != null && ml[Multilingual.LANGUAGE] == "en"
-              }?.getAt(Multilingual.SHORT_NAME)
-            }
+
+        if (isNumeric(laborValue)) {
+          valueQuantity {
+            value = lflv[LaborFindingLaborValue.NUMERIC_VALUE]
+            unit = laborValue?.getAt(LaborValueNumeric.UNIT)?.getAt(CODE) as String
           }
-          lflv[LaborFindingLaborValue.ICD_ENTRY_VALUE].each { final entry ->
-            coding {
-              code = entry[CODE] as String
-              display = entry[IcdEntry.PREFERRED] as String
-            }
+        } else if (isBoolean(laborValue)) {
+          valueBoolean(lflv[LaborFindingLaborValue.BOOLEAN_VALUE] as Boolean)
+        } else if (isDate(laborValue)) {
+          valueDateTime {
+            date = lflv[LaborFindingLaborValue.DATE_VALUE]?.getAt(PrecisionDate.DATE)
           }
-          lflv[LaborFindingLaborValue.OPS_ENTRY_VALUE].each { final entry ->
-            coding {
-              code = entry[CODE] as String
-              display = entry[OpsEntry.PREFERRED] as String
-            }
-          }
+        } else if (isTime(laborValue)) {
+          valueTime(lflv[LaborFindingLaborValue.TIME_VALUE] as String)
+        } else if (isString(laborValue)) {
+          valueString(lflv[LaborFindingLaborValue.STRING_VALUE] as String)
         }
       }
     }
   }
+}
+
+static String toValueString(final String code, final String desc) {
+  String descStr = ""
+  if (desc != null) {
+    descStr = " " + desc
+  }
+  return "(" + code + ")" + descStr
 }
 
 static boolean isDTypeOf(final Object laborValue, final List<LaborValueDType> types) {

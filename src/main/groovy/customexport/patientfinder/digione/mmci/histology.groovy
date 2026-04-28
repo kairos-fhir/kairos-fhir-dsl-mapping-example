@@ -51,14 +51,9 @@ observation {
   }
 
   if (context.source[histology().icdEntry()]) {
-    valueCodeableConcept {
-      coding {
-        system = context.source[diagnosis().icdEntry().catalogue().name()]
-        version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()]
-        code = context.source[histology().icdEntry().code()] as String
-        display = context.source[histology().icdEntry().preferred()] as String
-      }
-    }
+    final String description = "(" + context.source[histology().icdEntry().code()] + ") " + context.source[histology().icdEntry().preferred()]
+
+    valueString = description
   }
 
   if (context.source[histology().tumour()]) {

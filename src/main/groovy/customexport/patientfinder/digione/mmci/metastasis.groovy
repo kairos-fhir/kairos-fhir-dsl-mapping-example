@@ -69,33 +69,14 @@ observation {
         }
       }
 
-      valueCodeableConcept {
-        coding {
-          code = (context.source[metastasis().localisationCodeDict().code()] as String).toUpperCase()
-          display = context.source[metastasis().localisationCodeDict().multilinguals()]
-              .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
-              ?.getAt(Multilingual.SHORT_NAME) as String
-        }
-      }
-    }
+      final String locCode = (context.source[metastasis().localisationCodeDict().code()] as String)
+      final String locDisplayNullable = context.source[metastasis().localisationCodeDict().multilinguals()]
+          .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
+          ?.getAt(Multilingual.SHORT_NAME) as String
 
-    if (context.source[metastasis().sourceDict()]) {
-      component {
-        code {
-          coding {
-            code = "metastasis_source"
-            display = "Metastasis source"
-          }
-        }
-        valueCodeableConcept {
-          coding {
-            code = (context.source[metastasis().sourceDict().code()] as String).toUpperCase()
-            display = context.source[metastasis().sourceDict().multilinguals()]
-                .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
-                ?.getAt(Multilingual.SHORT_NAME) as String
-          }
-        }
-      }
+      final String locDisplay = locDisplayNullable != null ? " " + locDisplayNullable : ""
+
+      valueString = "(" + locCode + ")" + locDisplay
     }
   }
 

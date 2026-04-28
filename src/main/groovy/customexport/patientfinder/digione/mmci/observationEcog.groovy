@@ -106,7 +106,7 @@ observation {
   }
 
   if (labMap != null) {
-    patient {
+    subject {
       reference = "Patient/" + labMap[LaborMapping.RELATED_PATIENT][PatientContainer.ID]
     }
   }
