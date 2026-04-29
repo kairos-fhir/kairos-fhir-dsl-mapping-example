@@ -75,7 +75,19 @@
         {
           "filterName": "laborFinding.laborMethod.code",
           "comparator": "NOT_IN",
-          "value": ["BIOMARKERS", "ECOG", "TREATMENT"]
+          "value": ["BIOMARKERS", "ECOG"]
+        }
+      ]
+    },
+    {
+      "selectFromCxxEntity": "LABOR_MAPPING",
+      "transformByTemplate": "questionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse",
+      "filters": [
+        {
+          "filterName": "laborFinding.laborMethod.code",
+          "comparator": "NOT_IN",
+          "value": ["BIOMARKERS", "ECOG"]
         }
       ]
     },

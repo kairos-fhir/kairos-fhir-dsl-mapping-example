@@ -29,10 +29,11 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.laborMapping
 
 observation {
 
-  if (["BIOMARKERS", "ECOG", "TREATMENT"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])) {
+  if (["BIOMARKERS", "ECOG"].contains(context.source[laborMapping().laborFinding().laborMethod().code()])) {
     return
   }
 
+  // exclude these
   final radiationTherapyLflv = context.source[laborMapping().laborFinding().laborFindingLaborValues()].find { final def lflv ->
     lflv[LaborFindingLaborValue.CRF_TEMPLATE_FIELD][CrfTemplateField.LABOR_VALUE][CODE] == "treatment_radio_method"
   }
