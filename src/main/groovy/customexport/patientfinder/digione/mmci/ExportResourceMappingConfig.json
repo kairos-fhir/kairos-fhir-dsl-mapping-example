@@ -80,18 +80,6 @@
       ]
     },
     {
-      "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "questionnaireResponse",
-      "exportToFhirResource": "QuestionnaireResponse",
-      "filters": [
-        {
-          "filterName": "laborFinding.laborMethod.code",
-          "comparator": "NOT_IN",
-          "value": ["BIOMARKERS", "ECOG"]
-        }
-      ]
-    },
-    {
       "selectFromCxxEntity": "MEDICATION",
       "transformByTemplate": "medicationAdministration",
       "exportToFhirResource": "MedicationAdministration"
