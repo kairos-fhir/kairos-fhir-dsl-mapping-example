@@ -20,7 +20,7 @@ final String TREATMENT_RADIO_METHOD = "treatment_radio_method"
 
 final Map PROFILE_TYPES = [
     (HEIGHT_AT_IMMUNO_START): LaborFindingLaborValue.DATE_VALUE,
-    (END_OF_THERAPY)        : LaborFindingLaborValue.NUMERIC_VALUE,
+    (END_OF_THERAPY)        : LaborFindingLaborValue.DATE_VALUE,
     (COMPLETE_DOSE)         : LaborFindingLaborValue.NUMERIC_VALUE,
     (ESMO_TREATMENT)        : LaborFindingLaborValue.STRING_VALUE,
     (START_OF_THERAPY)      : LaborFindingLaborValue.DATE_VALUE,
