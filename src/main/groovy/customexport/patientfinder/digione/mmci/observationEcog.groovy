@@ -79,6 +79,9 @@ observation {
   }
 
   if (karnofskyVal != null && "NA" != karnofskyVal) {
+
+    final Float numericResult = parseResult(karnofskyVal)
+
     component {
       code {
         coding {
@@ -86,10 +89,19 @@ observation {
           display = "Karnofsky"
         }
       }
-      valueString(karnofskyVal)
+      if (numericResult != null) {
+        valueQuantity {
+          value = numericResult
+        }
+      } else {
+        valueString(karnofskyVal)
+      }
     }
   }
   if (ecogVal != null && "NA" != ecogVal) {
+
+    final Float numericEcog = parseResult(ecogVal)
+
     component {
       code {
         coding {
@@ -97,7 +109,14 @@ observation {
           display = "Ecog"
         }
       }
-      valueString(ecogVal)
+
+      if (numericEcog != null) {
+        valueQuantity {
+          value = numericEcog
+        }
+      } else {
+        valueString(ecogVal)
+      }
     }
   }
 
@@ -143,5 +162,16 @@ static Map<String, Object> getLflvMap(final List lflvs, final Map<String, String
   return lflvMap
 }
 
+static Float parseResult(final String result) {
+  if (result == null) {
+    return null
+  }
+
+  try {
+    return Float.parseFloat(result)
+  } catch (final NumberFormatException ignored) {
+    return null
+  }
+}
 
 

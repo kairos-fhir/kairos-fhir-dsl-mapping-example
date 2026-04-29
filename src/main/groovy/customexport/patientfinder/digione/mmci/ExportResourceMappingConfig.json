@@ -42,8 +42,8 @@
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING",
-      "transformByTemplate": "medicationAdministrationRadiationTherapy",
-      "exportToFhirResource": "MedicationAdministration",
+      "transformByTemplate": "medicationRequestRadiationTherapy",
+      "exportToFhirResource": "MedicationRequest",
       "filters": [
         {
           "filterName": "laborMethod.code",

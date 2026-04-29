@@ -7,6 +7,10 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2026-04-29
+* added mapping to karnofksy and Ecog to numeric value where possible
+* added mapping of RadiationTherapy to MedicationRequest
+
 # 2026-04-28
 * fixed subject references in scripts
 * added concatenation of code and t

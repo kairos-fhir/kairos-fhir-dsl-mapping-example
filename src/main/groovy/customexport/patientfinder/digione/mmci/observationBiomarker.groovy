@@ -135,9 +135,6 @@ static Float parseResult(final String result) {
   }
 }
 
-static String removeBackSlashes(final String s) {
-  return s.replace("/", "-")
-}
 
 static Map<String, Object> getLflvMap(final List lflvs, final Map<String, String> types) {
   final Map<String, Object> lflvMap = [:]
