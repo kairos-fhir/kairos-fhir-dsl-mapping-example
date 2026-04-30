@@ -51,6 +51,10 @@ questionnaireResponse {
     item {
       linkId = laborValue[CODE]
 
+      setText(laborValue[MULTILINGUALS]
+          ?.find { it[Multilingual.LANGUAGE] == "en" && it[Multilingual.SHORT_NAME] != null }
+          ?.getAt(Multilingual.SHORT_NAME) as String)
+
       if (lflv[LaborFindingLaborValue.STRING_VALUE] != null) {
         answer {
           valueString = lflv.getAt(LaborFindingLaborValue.STRING_VALUE) as String

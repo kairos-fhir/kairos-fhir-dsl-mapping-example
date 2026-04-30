@@ -69,8 +69,8 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation",
+      "transformByTemplate": "questionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse",
       "filters": [
         {
           "filterName": "laborFinding.laborMethod.code",
