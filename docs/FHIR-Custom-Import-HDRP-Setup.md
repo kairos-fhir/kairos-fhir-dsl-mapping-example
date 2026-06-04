@@ -1,27 +1,29 @@
 <img src="images/Logo.png" width="250" alt="IQVIA Logo"/>
 
-FHIR Custom Export Setup Documentation
+FHIR Custom Import Setup Documentation
 ======================================
 
 <!-- @formatter:off -->
 <!-- TOC -->
-* [FHIR Custom Export Setup Documentation](#fhir-custom-export-setup-documentation)
+* [FHIR Custom Import Setup Documentation](#fhir-custom-import-setup-documentation)
 * [Introduction](#introduction)
 * [HDRP global configuration](#hdrp-global-configuration)
 * [Project Setup](#project-setup)
   * [Project-Specific Configuration Files](#project-specific-configuration-files)
-* [Example REST Call](#example-rest-call)
-  * [Useful Links](#useful-links)
+  * [Example REST Call](#example-rest-call)
+  * [Example transformation](#example-transformation)
+  * [Example result](#example-result)
+* [Useful Links](#useful-links)
 * [Glossary](#glossary)
 <!-- TOC -->
 <!-- @formatter:on -->
 
 # Introduction
 
-The HDRP FHIR Custom Import functionality allows you to Import data the by [FHIR R4](https://hl7.org/fhir/R4/index.html) format.
+The HDRP FHIR Custom Import functionality allows you to import data in [FHIR R4](https://hl7.org/fhir/R4/index.html) format.
 This document provides detailed instructions on how to set up, configure, and use this functionality.
 
-The HDRP FHIR Custom Import enables you to transform FHIR bundle messages with any FHIR profiling into HDRP profiling and then import them.
+HDRP FHIR Custom Import enables you to transform FHIR bundle messages from any FHIR profile into HDRP-specific profiles and then import them.
 
 <!-- @formatter:off -->
 ```mermaid
@@ -73,26 +75,27 @@ To enable the FHIR Custom Import, you need to add the following properties to th
 interfaces.fhir.custom.import.mappings=C:/applications/hdrp-home/fhir-custom-import-mappings
 ```
 
-The `interfaces.fhir.custom.import.mappings` property specifies the directory that will contain the import project directory.
-This directory must exist on the HDRP application server. Each subdirectory represents an import project which can specified in the Bundle import REST
-call. E.g.
+The `interfaces.fhir.custom.import.mappings` property specifies the directory that contains import project directories.
+This directory must exist on the HDRP application server. Each subdirectory represents an import project that can be specified in the bundle import
+REST
+call, for example:
 
 ```
 C:/applications/hdrp-home/fhir-custom-import-mappings/project1
 C:/applications/hdrp-home/fhir-custom-import-mappings/project2
 ```
 
-Each project can contain a set of transformation groovy files and a project specific configuration. With multiple projects HDRP can support different
+Each project can contain a set of transformation Groovy files and a project-specific configuration. With multiple projects, HDRP can support different
 FHIR profile transformations.
 
 # Project Setup
 
-To set up a new export project:
+To set up a new import project:
 
-1. Create a new directory under the `interfaces.fhir.custom.import.mappings`
-2. Copy the necessary Groovy scripts file into this directory. Examples can be found [here](../src/main/groovy/customimport).
+1. Create a new directory under `interfaces.fhir.custom.import.mappings`.
+2. Copy the required Groovy script files into this directory. Examples are available [here](../src/main/groovy/customimport).
 3. Optional: Copy the [Configuration files](#project-specific-configuration-files) into this directory.
-4. Restart HDRP
+4. Restart HDRP.
 5. Send your custom FHIR bundles to the REST endpoint with the project name as a parameter.
 
 The directory structure will look like:
@@ -106,11 +109,11 @@ interfaces.fhir.custom.import.mappings/
     └── ...
 ```
 
-If not supplied, HDRP will create the `ProjectConfig.json` after restart and the first incoming REST calls.
+If it is not provided, HDRP creates `ProjectConfig.json` after restart and the first incoming REST call.
 
 ## Project-Specific Configuration Files
 
-The ProjectConfig.json looks like the following.
+`ProjectConfig.json` looks as follows:
 
 ```json
 {
@@ -134,7 +137,7 @@ The ProjectConfig.json looks like the following.
 }
 ```
 
-# Example REST Call
+## Example REST Call
 
 ```
 curl --request POST \
@@ -208,12 +211,14 @@ curl --request POST \
 }'
 ```
 
-The import reads always all Groovy files in for transformation (ordered by name) and applies each of them to the incoming bundle.
-Each script should filter the incoming bundle to make sure it covers only intended resources.
-It would also be possible to a multistep transformation of the same resources.
+## Example transformation
 
-The very simple example groovy transformation file [patient.groovy](../src/main/groovy/customimport/example/patient.groovy)
-would filter for all patient resources in the bundle, extracting the identifier and create a new patient resource with the same identifier but an
+The import always reads all Groovy files used for transformation (ordered by name) and applies each one to the incoming bundle.
+Each script should filter the incoming bundle to make sure it covers only intended resources.
+It is also possible to perform a multistep transformation of the same resources.
+
+The simple example Groovy transformation file [patient.groovy](../src/main/groovy/customimport/example/patient.groovy)
+filters all patient resources in the bundle, extracts the identifier, and creates a new patient resource with the same identifier but an
 unknown id. Additionally, if the patient has an identifier with the code "SID", an encounter resource will be created with a reference to this
 identifier.
 
@@ -281,6 +286,8 @@ bundle {
 }
 ```
 
+## Example result
+
 The transformed result would look like the following:
 
 ```json
@@ -316,9 +323,9 @@ The transformed result would look like the following:
 }
 ```
 
-This message is forwarded to the HDRP FHIR Bundle import and processed the same way as any other Bundle by the HDRP FHIR API.
+This message is forwarded to HDRP FHIR Bundle Import and processed by the HDRP FHIR API like any other bundle.
 
-## Useful Links
+# Useful Links
 
 - [FHIR Specification](https://hl7.org/fhir/R4/index.html)
 - [Groovy Documentation](https://groovy-lang.org/documentation.html)
