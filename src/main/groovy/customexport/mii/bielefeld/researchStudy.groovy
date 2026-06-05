@@ -12,9 +12,9 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.flexiStudy
 researchStudy {
   id = "ResearchStudy/" + context.source[flexiStudy().id()]
 
-  context.source[flexiStudy().studyArms()].each {final def studyArm ->
+  context.source[flexiStudy().studyArms()].each { final def studyArm ->
     arm {
-     name = studyArm[FlexiStudyArm.NAME]
+      name = studyArm[FlexiStudyArm.NAME]
     }
   }
 }

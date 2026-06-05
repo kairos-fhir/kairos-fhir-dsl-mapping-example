@@ -4,6 +4,7 @@ package customexport.mii.bielefeld.experimental
 import org.hl7.fhir.r4.model.ResearchSubject
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
+
 /**
  * Represented by HDRP StudyMember
  * Specified by https://simplifier.net/medizininformatikinitiative-modulperson/probantin
@@ -14,13 +15,13 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.consent
  */
 researchSubject {
 
-  if(!context.source[consent().consentType().flexiStudy()])
+  if (!context.source[consent().consentType().flexiStudy()])
     return
 
-  if(!context.source[consent().consentType().flexiStudy().profile()])
+  if (!context.source[consent().consentType().flexiStudy().profile()])
     return
 
-  if(context.source[consent().consentType().flexiStudy().status()] != "APPROVED")
+  if (context.source[consent().consentType().flexiStudy().status()] != "APPROVED")
     return
 
   final def studyOid = context.source[consent().id()]
@@ -45,10 +46,10 @@ researchSubject {
     value = context.source[consent().consentType().flexiStudy().code()]
   }
 
- // sonst will er die auf dem Blaze kennen. Aber hab noch kein Profil dafür:
- // study {
- //   reference = "ResearchStudy/" + context.source[consent().consentType().flexiStudy().id()]
- // }
+  // sonst will er die auf dem Blaze kennen. Aber hab noch kein Profil dafür:
+  // study {
+  //   reference = "ResearchStudy/" + context.source[consent().consentType().flexiStudy().id()]
+  // }
 
   individual {
     reference = "Patient/" + context.source[consent().patientContainer().id()]

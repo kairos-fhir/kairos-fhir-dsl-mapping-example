@@ -162,11 +162,11 @@ private static String createSystem(final Object catalogEntry) {
   }
 }
 
-private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
-  if (cxxStatus == null){
+private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus) {
+  if (cxxStatus == null) {
     return UNKNOWN
   }
-  switch (cxxStatus){
+  switch (cxxStatus) {
     case LaborFindingValueStatus.R:
       return REGISTERED
     case LaborFindingValueStatus.P:

@@ -60,7 +60,7 @@ encounter {
     return
   }
 
-  id = "Encounter/" + context.source[laborMapping().episode().id()] + "-" +  context.source[laborMapping().laborFinding().id()]
+  id = "Encounter/" + context.source[laborMapping().episode().id()] + "-" + context.source[laborMapping().laborFinding().id()]
 
   meta {
     profile "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"

@@ -1,6 +1,13 @@
 package customexport.mii.bielefeld
 
-import de.kairos.fhir.centraxx.metamodel.*
+
+import de.kairos.fhir.centraxx.metamodel.Country
+import de.kairos.fhir.centraxx.metamodel.IdContainer
+import de.kairos.fhir.centraxx.metamodel.IdContainerType
+import de.kairos.fhir.centraxx.metamodel.InsuranceCompany
+import de.kairos.fhir.centraxx.metamodel.PatientAddress
+import de.kairos.fhir.centraxx.metamodel.PatientInsurance
+import de.kairos.fhir.centraxx.metamodel.PrecisionDate
 import de.kairos.fhir.centraxx.metamodel.enums.CoverageType
 import de.kairos.fhir.centraxx.metamodel.enums.GenderType
 import org.hl7.fhir.r4.model.Enumerations
@@ -120,10 +127,14 @@ patient {
   }
 
 
-  humanName {
-    use = HumanName.NameUse.OFFICIAL
-    family = context.source[patient().lastName()]
-    given(context.source[patient().firstName()] as String)
+  if (context.source[patient().lastName()] || context.source[patient().firstName()]) {
+    humanName {
+      use = HumanName.NameUse.OFFICIAL
+      family = context.source[patient().lastName()]
+      if (context.source[patient().firstName()] != null) {
+        given(context.source[patient().firstName()] as String)
+      }
+    }
   }
 
   if (context.source[patient().birthName()]) {

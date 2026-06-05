@@ -111,10 +111,6 @@ class ConsentExportScriptTest extends AbstractExportScriptTest<Consent> {
 
         assumeTrue(resource.hasProvision() && !(context.source[consent().consentPartsOnly()] as boolean))
 
-        // Kann nicht sein
-        //  assertEquals((context.source[consent().consentType().policies()] as List).size(),
-        //      resource.getProvision().getProvisionFirstRep().getCode().size())
-
         resource.getProvision().getProvisionFirstRep().getCode().forEach { final def pc ->
             assertTrue(
                     context.source[consent().consentType().policies()].findResult { final def pol ->
@@ -130,13 +126,9 @@ class ConsentExportScriptTest extends AbstractExportScriptTest<Consent> {
 
         assumeTrue(context.source[consent().consentPartsOnly()] as boolean, "Only for partially consented consents")
 
-        // Kann nicht sein
-        //  assertEquals((context.source[consent().consentElements()] as List).size(),
-        //      resource.getProvision().getProvisionFirstRep().getCode().size())
-
         resource.getProvision().getProvisionFirstRep().getCode().forEach { final def pc ->
             assertTrue(
-                    context.source[RootEntities.consent().consentElements()].findResult { final def pol ->
+                    context.source[consent().consentElements()].findResult { final def pol ->
                         pc.getCodingFirstRep().getSystem() == "urn:oid:2.16.840.1.113883.3.1937.777.24.5.3" &&
                                 pc.getCodingFirstRep().getCode() == consentMiiCodeMap[pol[ConsentPolicy.CONSENTABLE_ACTION][ConsentableAction.CODE] as String]
                     } != null
