@@ -43,11 +43,15 @@ observation {
   if (!isExportable(context, laborMethodName, [statusLvCode, issuedLvCode, assignerLvCode])) {
     return
   }
-
   id = "Observation/" + context.source[laborFindingLaborValue().id()]
 
   // Create unique Id from LaborValue code and Lflv Oid
   // assigner not possible
+
+  meta {
+    profile "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ObservationLab|2026.0.0"
+  }
+
   identifier {
     type {
       coding {
@@ -158,11 +162,11 @@ private static String createSystem(final Object catalogEntry) {
   }
 }
 
-private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus){
-  if (cxxStatus == null){
+private static Observation.ObservationStatus mapStatus(@Nullable final LaborFindingValueStatus cxxStatus) {
+  if (cxxStatus == null) {
     return UNKNOWN
   }
-  switch (cxxStatus){
+  switch (cxxStatus) {
     case LaborFindingValueStatus.R:
       return REGISTERED
     case LaborFindingValueStatus.P:

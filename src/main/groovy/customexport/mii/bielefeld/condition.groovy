@@ -2,6 +2,7 @@ package customexport.mii.bielefeld
 
 
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
+
 /**
  * Represented by a HDRP DIAGNOSIS
  * @author Jonas Küttner, Mike Wähnert

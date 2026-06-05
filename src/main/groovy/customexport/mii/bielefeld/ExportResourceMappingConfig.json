@@ -27,6 +27,11 @@
       "exportToFhirResource": "Encounter"
     },
     {
+      "selectFromCxxEntity": "PATIENT_STUDY",
+      "transformByTemplate": "researchSubjectFromDataSharingProject",
+      "exportToFhirResource": "ResearchSubject"
+    },
+    {
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "condition",
       "exportToFhirResource": "Condition"

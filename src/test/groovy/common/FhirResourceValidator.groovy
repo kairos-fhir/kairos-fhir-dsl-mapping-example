@@ -11,7 +11,6 @@ import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport
 import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator
-import org.hl7.fhir.r4.model.DomainResource
 import org.hl7.fhir.r4.model.Resource
 
 import javax.annotation.Nonnull
@@ -25,9 +24,9 @@ import static org.junit.jupiter.api.Assertions.fail
  * The FHIR packages must be added in a directory in 'src/test/resources' and the relative path must be supplied when constructing an instance
  * For example: 'source/test/resources/fhirpackages/mii' will contain the package files. The the Constructor must be called as follows:
  * <pre>
- *   {@code
+ * {@code
  *   final def validator = new FhirResourceValidator("fhirpackages/mii")
- *   }
+ *}
  * </pre>
  */
 class FhirResourceValidator {
@@ -43,7 +42,7 @@ class FhirResourceValidator {
 
     final URL resourceUrl = FhirResourceValidator.class.classLoader.getResource(packagePath)
 
-    if (resourceUrl == null){
+    if (resourceUrl == null) {
       throw new IllegalStateException("The provided path $packagePath could not be found. " +
           "Please specify a path relative to 'src/test/resources' directory.")
     }
@@ -60,6 +59,7 @@ class FhirResourceValidator {
     final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
 
     packageDirFile.eachFile { final file ->
+      println("Try to resolve package file " + file.name)
       npmPackageValidationSupport.loadPackageFromClasspath(Paths.get(packagePath).resolve(file.name).toString())
     }
 

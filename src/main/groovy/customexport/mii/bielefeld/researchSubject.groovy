@@ -26,6 +26,7 @@ researchSubject {
 
   final def patientStudyStatus = context.source[patientStudy().status()] as String
 
+
   status = patientStudyStatus != null ? ResearchSubject.ResearchSubjectStatus.fromCode(patientStudyStatus) : ResearchSubject.ResearchSubjectStatus.CANDIDATE
 
   final def studyMember = context.source[patientStudy().patientContainer().studyMembers()].find { final def sm ->
