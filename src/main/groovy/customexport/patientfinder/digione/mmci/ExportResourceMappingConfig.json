@@ -30,8 +30,20 @@
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING",
-      "transformByTemplate": "medicationAdministrationRadiationTherapy",
-      "exportToFhirResource": "MedicationAdministration",
+      "transformByTemplate": "observationEcog",
+      "exportToFhirResource": "Observation",
+      "filters": [
+        {
+          "filterName": "laborMethod.code",
+          "comparator": "EQUALS",
+          "value": "ECOG"
+        }
+      ]
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "medicationRequestRadiationTherapy",
+      "exportToFhirResource": "MedicationRequest",
       "filters": [
         {
           "filterName": "laborMethod.code",
@@ -57,13 +69,13 @@
     },
     {
       "selectFromCxxEntity": "LABOR_MAPPING",
-      "transformByTemplate": "observation",
-      "exportToFhirResource": "Observation",
+      "transformByTemplate": "questionnaireResponse",
+      "exportToFhirResource": "QuestionnaireResponse",
       "filters": [
         {
           "filterName": "laborFinding.laborMethod.code",
-          "comparator": "NOT_EQUALS",
-          "value": "BIOMARKERS"
+          "comparator": "NOT_IN",
+          "value": ["BIOMARKERS", "ECOG"]
         }
       ]
     },

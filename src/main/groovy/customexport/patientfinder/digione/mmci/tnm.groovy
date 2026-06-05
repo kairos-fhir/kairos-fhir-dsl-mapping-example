@@ -22,8 +22,8 @@ observation {
 
   category {
     coding {
-      system = "http://hl7.org/fhir/observation-category"
-      code = "laboratory"
+      code = "TNM"
+      display = "TNM classification"
     }
   }
 
@@ -32,6 +32,7 @@ observation {
     coding {
       system = "http://loinc.org"
       code = isClinical ? "21908-9" : "21902-2"
+      display = "TNM"
     }
   }
 
@@ -57,6 +58,7 @@ observation {
       code {
         coding {
           code = "stadium"
+          display = "stadium"
         }
       }
       valueString = (context.source[tnm().stadium()] as String).trim()
@@ -68,6 +70,7 @@ observation {
       code {
         coding {
           code = "t"
+          display = "t"
         }
       }
       valueString = (context.source[tnm().t()] as String).trim()
@@ -79,6 +82,7 @@ observation {
       code {
         coding {
           code = "t-prefix"
+          display = "t-prefix"
         }
       }
       valueCodeableConcept {
@@ -97,6 +101,7 @@ observation {
       code {
         coding {
           code = "n"
+          display = "t-prefix"
         }
       }
       valueString = (context.source[tnm().n()] as String).trim()
@@ -108,6 +113,7 @@ observation {
       code {
         coding {
           code = "n-prefix"
+          display = "n-prefix"
         }
       }
       valueCodeableConcept {
@@ -126,6 +132,7 @@ observation {
       code {
         coding {
           code = "m"
+          display = "m"
         }
       }
       valueString = (context.source[tnm().m()] as String).trim()
@@ -137,6 +144,7 @@ observation {
       code {
         coding {
           code = "m-prefix"
+          display = "m-prefix"
         }
       }
       valueCodeableConcept {
@@ -155,6 +163,7 @@ observation {
       code {
         coding {
           code = "y-symbol"
+          display = "y-symbol"
         }
       }
       valueString = (context.source[tnm().ySymbol()] as String).trim()
@@ -166,6 +175,7 @@ observation {
       code {
         coding {
           code = "source"
+          display = "source"
         }
       }
       valueCodeableConcept {
@@ -184,6 +194,7 @@ observation {
       code {
         coding {
           code = "recidiv classification"
+          display = "recidiv classification"
         }
       }
       valueString = (context.source[tnm().recidivClassification()] as String).trim()
@@ -195,6 +206,7 @@ observation {
       code {
         coding {
           code = "multiple"
+          display = "multiple"
         }
       }
       valueString = (context.source[tnm().multiple()] as String).trim()

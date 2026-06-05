@@ -8,6 +8,7 @@ import ca.uhn.fhir.validation.ValidationResult
 import org.hl7.fhir.common.hapi.validation.support.*
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator
 import org.hl7.fhir.r4.model.DomainResource
+import org.hl7.fhir.r4.model.Resource
 
 import javax.annotation.Nonnull
 import javax.annotation.Nullable
@@ -75,8 +76,8 @@ class FhirResourceValidator {
         validator
     }
 
-    void validate(@Nonnull final DomainResource resource) {
-        final ValidationResult result = validator.validateWithResult(resource)
+  void validate(@Nonnull final Resource resource) {
+    final ValidationResult result = validator.validateWithResult(resource)
 
         final List<String> errors = []
 

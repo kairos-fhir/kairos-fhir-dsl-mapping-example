@@ -89,13 +89,13 @@ static String normalizeDate(final String dateTimeString) {
 
 static String mapExpoSNOMED(final String smokingStatus) {
   switch (smokingStatus) {
-    default:
-      return null
     case "COV_JA":
       return "840546002"
     case "COV_NEIN":
       return "373067005"
     case "COV_UNBEKANNT":
       return "261665006"
+    default:
+      return null
   }
 }

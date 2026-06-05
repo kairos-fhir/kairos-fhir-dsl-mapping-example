@@ -94,21 +94,17 @@ encounter {
   }
 
   period {
-
     if (context.source[episode().validFrom()]) {
       start {
         date = context.source[episode().validFrom()]
-        precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
 
     if (context.source[episode().validUntil()]) {
       end {
         date = context.source[episode().validUntil()]
-        precision = TemporalPrecisionEnum.DAY.toString()
       }
     }
-
   }
 
   if (context.source[episode().habitation()]) {

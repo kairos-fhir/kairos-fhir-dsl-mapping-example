@@ -19,17 +19,18 @@ observation {
 
   status = Observation.ObservationStatus.UNKNOWN
 
-  category {
-    coding {
-      system = "http://hl7.org/fhir/observation-category"
-      code = "laboratory"
-    }
-  }
-
   code {
     coding {
       system = "http://loinc.org"
       code = "21907-1"
+      display = "Metastasis"
+    }
+  }
+
+  category {
+    coding {
+      code = "Metastasis"
+      display = "Metastasis"
     }
   }
 
@@ -53,12 +54,29 @@ observation {
   if (context.source[metastasis().localisationCodeDict()]) {
     bodySite {
       coding {
-        system = "cosd:localisation"
         code = (context.source[metastasis().localisationCodeDict().code()] as String).toUpperCase()
         display = context.source[metastasis().localisationCodeDict().multilinguals()]
             .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
             ?.getAt(Multilingual.SHORT_NAME) as String
       }
+    }
+
+    component {
+      code {
+        coding {
+          code = "localization"
+          display = "Metastasis localization"
+        }
+      }
+
+      final String locCode = (context.source[metastasis().localisationCodeDict().code()] as String)
+      final String locDisplayNullable = context.source[metastasis().localisationCodeDict().multilinguals()]
+          .find { final def me -> me[Multilingual.LANGUAGE] == "en" && me[Multilingual.SHORT_NAME] != null }
+          ?.getAt(Multilingual.SHORT_NAME) as String
+
+      final String locDisplay = locDisplayNullable != null ? " " + locDisplayNullable : ""
+
+      valueString = "(" + locCode + ")" + locDisplay
     }
   }
 

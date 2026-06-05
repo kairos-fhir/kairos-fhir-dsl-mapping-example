@@ -5,6 +5,8 @@ import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptEngine
 import de.kairos.fhir.dsl.r4.execution.Fhir4ScriptRunner
 import groovy.json.JsonSlurper
 import org.hl7.fhir.r4.model.DomainResource
+import org.hl7.fhir.r4.model.Resource
+import org.hl7.fhir.r4.model.ResourceType
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Named
 import org.junit.jupiter.api.TestInstance
@@ -36,7 +38,7 @@ import java.util.stream.Stream
  * @param <E>   The type parameter representing the FHIR resource.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class AbstractExportScriptTest<E extends DomainResource> {
+abstract class AbstractExportScriptTest<E extends Resource> {
   private static final Logger LOG = LoggerFactory.getLogger(AbstractExportScriptTest.name)
   public static final String METHOD_SOURCE = "getTestData"
   private List<Arguments> mappingResults
@@ -45,7 +47,7 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
 
   @BeforeAll
   void setUp() {
-    LOG.info("✅ setting up ${this.class.simpleName}")
+    LOG.info("Setting up ${this.class.simpleName}")
     final TestResources resources = this.class.getAnnotation(TestResources)
 
     if (resources == null) {
@@ -86,20 +88,20 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
       final E resource = (E) runner.run(context)
       return new ArgumentContainer(fileName, context, resource)
     }.findAll {
-      it.resource.hasId()
+      it.resource.getResourceType() == ResourceType.Bundle || it.resource.hasId()
     }
 
     mappingResults = arguments.collect {
       Arguments.of(new NamedArg(it.fileName, it.context), it.resource)
     }
 
-    LOG.info("✅ Loaded ${mappingResults.size()} test cases.")
+    LOG.info("Loaded ${mappingResults.size()} test cases.")
 
   }
 
   @Nonnull
   static Map<String, Map<String, Object>> createTestData(@Nonnull final String contextMapsPath) throws FileNotFoundException {
-    LOG.info("🔍 Loading test data from $contextMapsPath")
+    LOG.info("Loading test data from $contextMapsPath")
 
     final File contextMapDir = new File(contextMapsPath)
 
@@ -142,7 +144,7 @@ abstract class AbstractExportScriptTest<E extends DomainResource> {
     return mappingResults.stream()
   }
 
-  class ArgumentContainer<R extends DomainResource> {
+  class ArgumentContainer<R extends Resource> {
     private final String fileName
     private final Context context
     private final R resource

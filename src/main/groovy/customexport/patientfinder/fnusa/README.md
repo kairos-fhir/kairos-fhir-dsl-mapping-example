@@ -8,6 +8,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2026-03-09
+* removed date precision from encounter dates
+
 # 2026-02-11
 * added filter in Observation/DiagnosticReport scripts for 'Encounter_profile'
 

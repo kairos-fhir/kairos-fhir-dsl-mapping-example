@@ -12,6 +12,11 @@
       "exportToFhirResource": "Patient"
     },
     {
+      "selectFromCxxEntity": "EPISODE",
+      "transformByTemplate": "encounter",
+      "exportToFhirResource": "Encounter"
+    },
+    {
       "selectFromCxxEntity": "DIAGNOSIS",
       "transformByTemplate": "condition",
       "exportToFhirResource": "Condition"
@@ -23,10 +28,20 @@
       "filters": [
         {
           "filterName": "laborFinding.laborMethod.code",
-          "comparator": "IN",
-          "value": ["DIAGNOSIS", "TREATMENT"]
+          "comparator": "NOT_IN",
+          "value": ["BIOMARKERS", "OUTCOMES"]
         }
       ]
+    },
+    {
+      "selectFromCxxEntity": "HISTOLOGY",
+      "transformByTemplate": "histology",
+      "exportToFhirResource": "Observation"
+    },
+    {
+      "selectFromCxxEntity": "TNM",
+      "transformByTemplate": "tnm",
+      "exportToFhirResource": "Observation"
     }
   ]
 }

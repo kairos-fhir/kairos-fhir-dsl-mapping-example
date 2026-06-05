@@ -7,6 +7,32 @@ Mappings can be used to export data in IqTrial HDRP to PatientFinder system
 
 # Change log
 
+# 2026-04-29
+* added mapping to karnofksy and Ecog to numeric value where possible
+* added mapping of RadiationTherapy to MedicationRequest
+* adapted the filters for observations
+
+# 2026-04-28
+* fixed subject references in scripts
+* added concatenation of code and t
+
+# 2026-04-24
+* changed category and code mapping based on hints to hopefully improve usability in PFS
+* added descriptions of Histology codes
+* updated metastasis script
+* fixed radiationTherapyMedicationAdministration script
+
+# 2026-04-23
+* fixed Condition script category mapping
+
+# 2026-04-22
+* Splitting ecog into karnofsky and ecog
+* Remapping fields to Observation.code and Observation.identifier 
+* adding comment to Condition.category to indicate Tumor vs Comorbidity
+
+# 2026-03-10
+* added atc coding system
+
 # 2026-02-24
 * split project for tartu and mmci
 * added script transform radiation therapy data that sits now in findings
