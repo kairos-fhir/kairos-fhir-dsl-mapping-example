@@ -30,12 +30,14 @@ final String MEDICATION_IDENTIFIER = "medication_identifier"
 final String FREQUENCY = "frequency"
 final String REQUESTER = "requester"
 final String STRENGTHTEXT = "strengthtext"
+final String DOSAGE_INSTRUCTION_TIMING_CODE_TEXT = "dosageInstructions.timing.code.text"
 
 final Map PROFILE_TYPES = [
-    (MEDICATION_IDENTIFIER): LaborFindingLaborValue.STRING_VALUE,
-    (FREQUENCY)            : LaborFindingLaborValue.STRING_VALUE,
-    (REQUESTER)            : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
-    (STRENGTHTEXT)         : LaborFindingLaborValue.STRING_VALUE
+    (MEDICATION_IDENTIFIER)              : LaborFindingLaborValue.STRING_VALUE,
+    (FREQUENCY)                          : LaborFindingLaborValue.STRING_VALUE,
+    (REQUESTER)                          : LaborFindingLaborValue.MULTI_VALUE_REFERENCES,
+    (STRENGTHTEXT)                       : LaborFindingLaborValue.STRING_VALUE,
+    (DOSAGE_INSTRUCTION_TIMING_CODE_TEXT): LaborFindingLaborValue.STRING_VALUE
 ]
 
 
@@ -86,10 +88,9 @@ medicationRequest {
   }
 
   dosageInstruction {
-    additionalInstruction {
-      text = context.source[medication().ordinanceReleaseForm()] as String
+    if (lflvMap.containsKey(STRENGTHTEXT)){
+      text = lflvMap.get(STRENGTHTEXT) as String
     }
-
 
     if (context.source[medication().dosis()] != null || context.source[medication().quantity()] != null) {
       doseAndRate {

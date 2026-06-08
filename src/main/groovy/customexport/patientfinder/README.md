@@ -12,6 +12,11 @@ The following imported data sets are supported/tested:
 * Bahia Histol imports at [Brno FNUSA](https://www.fnusa.cz/en/hp/)
 
 # Change log
+
+# 2026-06-08
+* removed the dosageInstruction.additionalInstruction
+* added export of dosageInstruction.strengthtext to dosage.text
+
 # 2026-03-02
 * added export of additional HEY id as primary identifier if NHS is not present
 * removed duplicate mapping in medicationRequest script for dosisSchema
