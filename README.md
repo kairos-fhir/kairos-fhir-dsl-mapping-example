@@ -10,12 +10,13 @@ the [HDRP website](https://www.iqvia.com/locations/emea/iqvia-connected-healthca
 
 # Getting Started
 
-A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR custom export in HDRP..
+A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR custom export in HDRP.
 
-# How-To
+# How-Tos for HDRP
 
-- [Documentation for the HDRP setup of the FHIR Custom Export](docs/FHIR-Custom-Export-HDRP-Setup.md)
-- [Documentation for the HDRP FHIR Bulk Data Export](docs/Bulk-Data-Export.md)
+- [FHIR Custom Export](docs/FHIR-Custom-Export-HDRP-Setup.md)
+- [FHIR Custom Import](docs/FHIR-Custom-Import-HDRP-Setup.md)
+- [FHIR Bulk Data Export](docs/Bulk-Data-Export.md)
 - [HDRP FHIR-DSL Tutorial](docs/FHIR-DSL-Tutorial.md)
 
 # Requirements
@@ -29,7 +30,8 @@ A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR cu
 
 # GitHub Authentication with Maven
 
-* Because GitHub does not allow downloading packages without an access token, use maven with the access token in the local [settings.xml](settings.xml)
+* Because GitHub does not allow downloading packages without an access token, use maven with the access token in the
+  local [settings.xml](settings.xml)
   in this project.
 
   ```
@@ -50,22 +52,23 @@ A [brief tutorial](gettingstarted.md) on how to set up and configure the FHIR cu
 * All Groovy example scripts will contain a @since annotation that describes the first HDRP version, that can interpret the respective script. The
   specified HDRP version contains the necessary minimal version of the kairos-fhir-dsl library, HDRP entity exporter, initializer and support for
   the ExportResourceMappingConfig.json.
-* The master branch might contain scripts, which are using methods of the SNAPSHOT version of the underlying KAIROS-FHIR-DSL that has not been released
+* The master branch might contain scripts, which are using methods of the SNAPSHOT version of the underlying KAIROS-FHIR-DSL that has not been
+  released
   yet. Please use only scripts of release tags, intended for your installed HDRP version.
 
 # Contribution / Participation
 
 * Everyone can fork the project.
 * If you want to enrich the project with your own scripts, follow these steps:
-    * Fork the project.
-    * Create a new directory on your fork under src/main/groovy/customexport
-    * Add your new scripts.
-    * Add a meaningful README.md file describing the purpose, sources, participants and HDRP version.
-    * Create a pull request with your changes against our master branch.
-    * If possible, please follow the existing basic coding standards:
-        * use 2 spaces for indent / tab size
-        * use the final keyword wherever possible
-        * prefer explicit typization instead of the untyped def keyword
+  * Fork the project.
+  * Create a new directory on your fork under src/main/groovy/customexport
+  * Add your new scripts.
+  * Add a meaningful README.md file describing the purpose, sources, participants and HDRP version.
+  * Create a pull request with your changes against our master branch.
+  * If possible, please follow the existing basic coding standards:
+    * use 2 spaces for indent / tab size
+    * use the final keyword wherever possible
+    * prefer explicit typization instead of the untyped def keyword
 * If you discover errors or bugs in existing scripts, we would be happy to receive a notices in the form of e-mails, issues or pull requests.
 
 # License
