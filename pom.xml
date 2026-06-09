@@ -8,8 +8,8 @@
   <description>This project contains kairos-fhir-dsl example mappings for the CentraXX FHIR custom export interface.</description>
   <url>https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example</url>
   <organization>
-    <name>Kairos GmbH</name>
-    <url>https://www.kairos.de</url>
+    <name>IQVIA Commercial GmbH &amp; Co. OHG</name>
+    <url>https://www.iqvia.com/locations/emea/iqvia-connected-healthcare-platform/iqvia-health-data-research-platform</url>
   </organization>
 
   <properties>
