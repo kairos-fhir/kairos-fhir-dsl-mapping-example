@@ -43,19 +43,20 @@ import static org.junit.jupiter.api.Assumptions.assumingThat
 class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> {
 
   // the code of the MII common measurement profile
-  final static String laborMethodName = "MP_DiagnosticReportLab"
+  private final static String laborMethodName = "MP_DiagnosticReportLab"
 
   // the code of the FHIR DiagnosticReport.status laborValue
-  final static String statusLvCode = "DiagnosticReport.status"
+  private final static String statusLvCode = "DiagnosticReport.status"
 
   // the issued Date laborValue
-  final static String issuedLvCode = "DiagnosticReport.issued"
+  private final static String issuedLvCode = "DiagnosticReport.issued"
 
   // the identifier.assigner laborValue
-  final static String assignerLvCode = "DiagnosticReport.identifier.assigner"
+  private final static String assignerLvCode = "DiagnosticReport.identifier.assigner"
 
   @ExportScriptTest
   void validateResourceStructures(final Context context, final Observation resource){
+    assumeExportable(context)
     getValidator("fhirpackages/mii").validate(resource)
   }
 

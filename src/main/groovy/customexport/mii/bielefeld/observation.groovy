@@ -62,6 +62,9 @@ observation {
     system = "urn:centraxx/MessparameterCodeAndMesswertOid"
     value = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" +
         context.source[laborFindingLaborValue().laborFinding().laborFindingId()]
+    assigner{
+      reference = "Organization/OBI"
+    }
   }
 
   status(mapStatus(context.source[laborFindingLaborValue().status()] as LaborFindingValueStatus))
@@ -118,7 +121,7 @@ observation {
     }
   }
 
-  if (dType in [LaborValueDType.CATALOG, LaborValueDType.ENUMERATION, LaborValueDType.OPTIONGROUP]) {
+  else if (dType in [LaborValueDType.CATALOG, LaborValueDType.ENUMERATION, LaborValueDType.OPTIONGROUP]) {
     valueCodeableConcept {
       context.source[laborFindingLaborValue().catalogEntryValue()].each { final def ce ->
         coding {
@@ -134,6 +137,13 @@ observation {
           system = "https://fhir.centraxx.de/system/catalogs/usageEntry"
           code = ue[UsageEntry.CODE] as String
         }
+      }
+    }
+  } else {
+    dataAbsentReason {
+      coding {
+        system = "http://terminology.hl7.org/CodeSystem/data-absent-reason"
+        code = "unsupported"
       }
     }
   }

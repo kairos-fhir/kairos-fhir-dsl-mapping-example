@@ -28,8 +28,8 @@ class ValidatorSupportTest {
 
     final NpmPackageValidationSupport npmPackageValidationSupport = new NpmPackageValidationSupport(context)
 
-    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.medizininformatikinitiative.kerndatensatz.person-2025.0.0.tgz");
-    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.basisprofil.r4-1.5.1.tgz")
+    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.medizininformatikinitiative.kerndatensatz.base-2026.0.0.tgz");
+    npmPackageValidationSupport.loadPackageFromClasspath("fhirpackages/mii/de.basisprofil.r4-1.5.4.tgz")
 
     final ValidationSupportChain supportChain = new ValidationSupportChain(
         npmPackageValidationSupport,

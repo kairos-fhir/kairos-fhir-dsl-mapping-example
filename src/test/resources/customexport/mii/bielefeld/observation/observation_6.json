@@ -19,7 +19,7 @@
     "initialEntitySource": "CENTRAXX",
     "laborValue": {
       "choiceType": "SELECTONE",
-      "code": "DiagnosticReport.identfier.assigner",
+      "code": "DiagnosticReport.identifier.assigner",
       "creationdate": "2024-11-04T11:20:04.830+01:00",
       "dType": "CATALOG",
       "descMultilingualEntries2": [
@@ -33,7 +33,7 @@
       "masterDataCatalog": {
         "catalogCategory": "MASTERDATACATALOG",
         "catalogUsage": "NONE",
-        "code": "DiagnosticReport.identfier.assigner",
+        "code": "DiagnosticReport.identifier.assigner",
         "containsAllMasterDataEntries": true,
         "creationdate": "2024-11-04T11:19:02.800+01:00",
         "entityCatalogType": "ORGANIZATIONUNIT",
@@ -50,8 +50,8 @@
             "initialEntitySource": "CENTRAXX",
             "language": "de",
             "lastModifiedOn": "2024-11-04T11:19:02.800+01:00",
-            "name": "DiagnosticReport.identfier.assigner",
-            "shortName": "DiagnosticReport.identfier.assigner"
+            "name": "DiagnosticReport.identifier.assigner",
+            "shortName": "DiagnosticReport.identifier.assigner"
           },
           {
             "creationdate": "2024-11-04T11:19:02.800+01:00",
@@ -60,8 +60,8 @@
             "initialEntitySource": "CENTRAXX",
             "language": "en",
             "lastModifiedOn": "2024-11-04T11:19:02.800+01:00",
-            "name": "DiagnosticReport.identfier.assigner",
-            "shortName": "DiagnosticReport.identfier.assigner"
+            "name": "DiagnosticReport.identifier.assigner",
+            "shortName": "DiagnosticReport.identifier.assigner"
           }
         ],
         "sortAlphabetical": true,
