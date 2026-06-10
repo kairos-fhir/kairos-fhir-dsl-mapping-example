@@ -70,4 +70,10 @@ class ConditionExportScriptTest extends AbstractExportScriptTest<Condition> {
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[diagnosis().patientContainer().id()], resource.getSubject().getReference())
   }
+
+  @ExportScriptTest
+  void testThatEncounterIsSet(final Context context, final Condition resource) {
+    assertTrue(resource.hasEncounter())
+    assertEquals("Encounter/" + context.source[diagnosis().episode().id()], resource.getEncounter().getReference())
+  }
 }

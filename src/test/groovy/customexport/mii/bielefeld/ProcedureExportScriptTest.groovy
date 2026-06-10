@@ -19,6 +19,7 @@ import static de.kairos.fhir.centraxx.metamodel.LaborFinding.LABOR_FINDING_LABOR
 import static de.kairos.fhir.centraxx.metamodel.LaborFindingLaborValue.CRF_TEMPLATE_FIELD
 import static de.kairos.fhir.centraxx.metamodel.LaborMapping.LABOR_FINDING
 import static de.kairos.fhir.centraxx.metamodel.RecordedValue.DATE_VALUE
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.episode
 import static de.kairos.fhir.centraxx.metamodel.RootEntities.medProcedure
 import static org.junit.jupiter.api.Assertions.assertEquals
 import static org.junit.jupiter.api.Assertions.assertNotNull
@@ -40,6 +41,12 @@ class ProcedureExportScriptTest extends AbstractExportScriptTest<Procedure> {
   void testThatSubjectIsSet(final Context context, final Procedure resource) {
     assertTrue(resource.hasSubject())
     assertEquals("Patient/" + context.source[medProcedure().patientContainer().id()], resource.getSubject().getReference())
+  }
+
+  @ExportScriptTest
+  void testThatEncounterIsSet(final Context context, final Procedure resource) {
+    assertTrue(resource.hasEncounter())
+    assertEquals("Encounter/" + context.source[medProcedure().episode().id()], resource.getEncounter().getReference())
   }
 
   @ExportScriptTest

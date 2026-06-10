@@ -65,6 +65,10 @@ procedure {
     reference = "Patient/" + context.source[medProcedure().patientContainer().id()]
   }
 
+  encounter {
+    reference = "Encounter/" + context.source[medProcedure().episode().id()]
+  }
+
   // set EPA.procedureDate is mandatory
   // set end date if given in mapping
   performedPeriod {

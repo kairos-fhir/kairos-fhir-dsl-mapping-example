@@ -28,6 +28,10 @@ condition {
     reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
   }
 
+  encounter {
+    reference = "Encounter/" + context.source[diagnosis().episode().id()]
+  }
+
   if (context.source[diagnosis().icdEntry()]) {
     code {
       coding {

@@ -52,8 +52,6 @@ final Map<String, List<PolicyComponent>> consentMiiCodeMap = [
     m_bc_ins_prosp: [
         new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.14", "KKDAT prospektiv uebertragen speichern nutzen"),
         new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.15", "KKDAT 5J prospektiv uebertragen"),
-        new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.16", "KKDAT 5J prospektiv speichern verarbeiten"),
-        new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.17", "KKDAT 5J prospektiv wissenschaftlich nutzen"),
         new PolicyComponent("2.16.840.1.113883.3.1937.777.24.5.3.39", "KKDAT 5J prospektiv uebertragen KVNR")
     ],
     m_bc_recon_res: [
