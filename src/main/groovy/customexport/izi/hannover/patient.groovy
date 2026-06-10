@@ -48,7 +48,7 @@ patient {
           valueCode = "unknown"
         }
       } else {
-        date = normalizeDate(context.source[patientMasterDataAnonymous().birthdate().date()] as String)
+        date = context.source[patientMasterDataAnonymous().birthdate().date()]
         precision = TemporalPrecisionEnum.MONTH.name()
       }
     }
@@ -62,7 +62,7 @@ patient {
           valueCode = "unknown"
         }
       } else {
-        date = normalizeDate(context.source[patientMasterDataAnonymous().dateOfDeath().date()] as String)
+        date = context.source[patientMasterDataAnonymous().dateOfDeath().date()]
         precision = TemporalPrecisionEnum.DAY.name()
       }
     }
@@ -92,6 +92,3 @@ static def mapGender(final GenderType genderType) {
   }
 }
 
-static String normalizeDate(final String dateTimeString) {
-  return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
-}
