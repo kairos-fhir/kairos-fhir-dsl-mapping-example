@@ -8,6 +8,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2026-08-17
+* Changed patient ID mapping to align with PFS
+
 # 2026-03-09
 * removed date precision from encounter dates
 

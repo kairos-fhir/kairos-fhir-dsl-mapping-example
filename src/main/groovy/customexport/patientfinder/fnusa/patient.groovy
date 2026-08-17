@@ -1,6 +1,6 @@
 package customexport.patientfinder.fnusa
 
-import de.kairos.centraxx.fhir.r4.utils.FhirUrls
+
 import de.kairos.fhir.centraxx.metamodel.Country
 import de.kairos.fhir.centraxx.metamodel.Ethnicity
 import de.kairos.fhir.centraxx.metamodel.Multilingual
@@ -11,7 +11,6 @@ import org.hl7.fhir.r4.model.codesystems.ContactPointSystem
 import static de.kairos.fhir.centraxx.metamodel.AbstractCode.CODE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.ID_CONTAINER_TYPE
 import static de.kairos.fhir.centraxx.metamodel.AbstractIdContainer.PSN
-import static de.kairos.fhir.centraxx.metamodel.IdContainerType.DECISIVE
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.LANGUAGE
 import static de.kairos.fhir.centraxx.metamodel.Multilingual.NAME
 import static de.kairos.fhir.centraxx.metamodel.PatientMaster.GENDER_TYPE
@@ -28,24 +27,31 @@ patient {
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
-  meta {
-    profile "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+
+  final def nationalIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NationalID" }
+
+
+  if (nationalIdc == null) {
+    return
   }
 
-  context.source[patientMasterDataAnonymous().patientContainer().idContainer()].each { final idContainer ->
-    final boolean isDecisive = idContainer[ID_CONTAINER_TYPE]?.getAt(DECISIVE)
-    if (isDecisive) {
-      identifier {
-        value = idContainer[PSN]
-        type {
-          coding {
-            system = FhirUrls.System.IdContainerType.BASE_URL
-            code = idContainer[ID_CONTAINER_TYPE]?.getAt(CODE)
-          }
+  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
+
+  // assign NationalID if given, otherwise HEY
+  identifier {
+    system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PatientID"
+    value = nationalIdc[PSN]
+  }
+
+  context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
+      .findAll { final def idc -> !"NationalId".equalsIgnoreCase(idc[ID_CONTAINER_TYPE][CODE] as String) }
+      .each { final def idc ->
+        identifier {
+          system = "https://fhir.iqvia.com/patientfinder/CodeSystem/PersonalIdentifier"
+          value = idc[PSN]
         }
       }
-    }
-  }
 
   humanName {
     use = "official"
@@ -102,7 +108,7 @@ patient {
       url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
       extension {
         url = "text"
-        valueString = firstEthnicity[Ethnicity.MULTILINGUALS].find { it[LANGUAGE] == "en"}?.getAt(NAME) as String
+        valueString = firstEthnicity[Ethnicity.MULTILINGUALS].find { it[LANGUAGE] == "en" }?.getAt(NAME) as String
       }
     }
   }
