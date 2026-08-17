@@ -25,9 +25,6 @@ import static de.kairos.fhir.centraxx.metamodel.RootEntities.patientMasterDataAn
  */
 patient {
 
-  id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
-
-
   final def nationalIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
       .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "NationalID" }
 
