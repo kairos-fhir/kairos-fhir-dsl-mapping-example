@@ -55,7 +55,7 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
   private final static String assignerLvCode = "DiagnosticReport.identifier.assigner"
 
   @ExportScriptTest
-  void validateResourceStructures(final Context context, final Observation resource){
+  void validateResourceStructures(final Context context, final Observation resource) {
     assumeExportable(context)
     getValidator("fhirpackages/mii").validate(resource)
   }
@@ -233,6 +233,29 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
 
   }
 
+  @ExportScriptTest
+  void testThatStringValuesAreSetAsCodeableConcept(final Context context,
+                                                   final Observation observation) {
+    assumeTrue(isExportable(context))
+    assumeString(context)
+
+
+    assertTrue(observation.hasValueCodeableConcept())
+
+    assertEquals(context.source[laborFindingLaborValue().stringValue()] as String,
+        observation.getValueCodeableConcept()
+            .getCodingFirstRep().getCode());
+
+    final def loincIdc = context.source[laborFindingLaborValue().crfTemplateField().laborValue().idContainers()].find { final def idc ->
+      idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] == "LOINC"
+    }
+
+    assertEquals("urn:centraxx:" + loincIdc[IdContainer.PSN] + "Answers",
+        observation.getValueCodeableConcept()
+            .getCodingFirstRep().getSystem());
+
+  }
+
   private static boolean isValueList(final Context context) {
 
     final def entry = context.source[laborFindingLaborValue().catalogEntryValue()].find()
@@ -275,11 +298,26 @@ class ObservationExportScriptTest extends AbstractExportScriptTest<Observation> 
     assumeTrue(dType in [LaborValueDType.DECIMAL, LaborValueDType.INTEGER])
   }
 
+  private static void assumeString(final Context context) {
+    final LaborValueDType dType = context.source[laborFindingLaborValue().crfTemplateField().laborValue().dType()] as LaborValueDType
+
+    assumeTrue(dType in [LaborValueDType.STRING, LaborValueDType.LONGSTRING])
+  }
+
   private static void assumeExportable(final Context context) {
     assumeTrue(isExportable(context), "The LFLV is not to be exported")
   }
 
   private static boolean isExportable(final Context context) {
+
+    final def loincIdc = context.source[laborFindingLaborValue().crfTemplateField().laborValue().idContainers()].find { final def idc ->
+      idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] == "LOINC"
+    }
+
+    if (loincIdc == null) {
+      return false
+    }
+
     final def isMiiProfile = context.source[laborFindingLaborValue().laborFinding().laborMethod().code()] == laborMethodName
 
     final def isAdditionalDataLv = ((context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] as String)

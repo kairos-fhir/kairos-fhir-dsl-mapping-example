@@ -43,6 +43,15 @@ observation {
   if (!isExportable(context, laborMethodName, [statusLvCode, issuedLvCode, assignerLvCode])) {
     return
   }
+
+  final def loincIdc = context.source[laborFindingLaborValue().crfTemplateField().laborValue().idContainers()].find { final def idc ->
+    idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] == "LOINC"
+  }
+
+  if (loincIdc == null) {
+    return
+  }
+
   id = "Observation/" + context.source[laborFindingLaborValue().id()]
 
   // Create unique Id from LaborValue code and Lflv Oid
@@ -62,8 +71,11 @@ observation {
     system = "urn:centraxx/MessparameterCodeAndMesswertOid"
     value = context.source[laborFindingLaborValue().crfTemplateField().laborValue().code()] + "_" +
         context.source[laborFindingLaborValue().laborFinding().laborFindingId()]
-    assigner{
-      reference = "Organization/OBI"
+    assigner {
+      identifier {
+        system = "https://www.medizininformatik-initiative.de/fhir/core/CodeSystem/core-location-identifier"
+        value = "ukowl.de"
+      }
     }
   }
 
@@ -80,15 +92,12 @@ observation {
     }
   }
 
-  code {
-    final def idContainer = context.source[laborFindingLaborValue().crfTemplateField().laborValue().idContainers()].find { final def idc ->
-      idc[IdContainer.ID_CONTAINER_TYPE][IdContainerType.CODE] == "LOINC"
-    }
 
-    if (idContainer) {
+  code {
+    if (loincIdc) {
       coding {
         system = "http://loinc.org"
-        code = idContainer[IdContainer.PSN] as String
+        code = loincIdc[IdContainer.PSN] as String
       }
     }
 
@@ -119,9 +128,7 @@ observation {
         unit = lvUnit[Unity.CODE] as String
       }
     }
-  }
-
-  else if (dType in [LaborValueDType.CATALOG, LaborValueDType.ENUMERATION, LaborValueDType.OPTIONGROUP]) {
+  } else if (dType in [LaborValueDType.CATALOG, LaborValueDType.ENUMERATION, LaborValueDType.OPTIONGROUP]) {
     valueCodeableConcept {
       context.source[laborFindingLaborValue().catalogEntryValue()].each { final def ce ->
         coding {
@@ -137,6 +144,13 @@ observation {
           system = "https://fhir.centraxx.de/system/catalogs/usageEntry"
           code = ue[UsageEntry.CODE] as String
         }
+      }
+    }
+  } else if (dType in [LaborValueDType.STRING, LaborValueDType.LONGSTRING]) {
+    valueCodeableConcept {
+      coding {
+        system = "urn:centraxx:" + loincIdc[IdContainer.PSN] + "Answers"
+        code = context.source[laborFindingLaborValue().stringValue()] as String
       }
     }
   } else {

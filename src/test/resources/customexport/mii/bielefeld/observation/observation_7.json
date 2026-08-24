@@ -154,6 +154,60 @@
       "entityStatus": "ACTIVE",
       "id": 7513,
       "idContainers": [
+        {
+          "creationdate": "2022-09-15T20:16:54.480+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 2,
+          "idContainerType": {
+            "allowUpdateForSync": false,
+            "code": "LOINC",
+            "creationdate": "2022-09-15T20:14:07.560+02:00",
+            "decisive": false,
+            "editable": true,
+            "entitySource": "CENTRAXX",
+            "id": 323,
+            "initialEntitySource": "CENTRAXX",
+            "isBlinded": false,
+            "kind": "LABORVALUE",
+            "mandatory": false,
+            "name": "LOINC",
+            "pseudonym": false,
+            "sampleCategories": null,
+            "syncId": "54e84b58-3dc1-4936-9e08-e76960ef5767",
+            "system": false,
+            "uniqueness": "NONE"
+          },
+          "initialEntitySource": "CENTRAXX",
+          "psn": "8302-2",
+          "tentative": false
+        },
+        {
+          "creationdate": "2022-09-16T14:52:37.653+02:00",
+          "entitySource": "CENTRAXX",
+          "id": 27,
+          "idContainerType": {
+            "allowUpdateForSync": false,
+            "code": "US_CORE_FHIR_EXPORT_DISCRIMINATOR",
+            "creationdate": "2022-09-16T14:21:15.263+02:00",
+            "decisive": false,
+            "editable": true,
+            "entitySource": "CENTRAXX",
+            "id": 324,
+            "initialEntitySource": "CENTRAXX",
+            "isBlinded": false,
+            "kind": "LABORVALUE",
+            "mandatory": false,
+            "name": "US Core FHIR Export Discriminator",
+            "pseudonym": false,
+            "sampleCategories": null,
+            "syncId": "3a140bd5-5541-453f-8382-73d834f4319c",
+            "system": false,
+            "uniqueness": "NONE"
+          },
+          "initialEntitySource": "CENTRAXX",
+          "psn": "US_CORE_VITAL_SIGNS",
+          "tentative": false
+        }
       ],
       "initialEntitySource": "CENTRAXX",
       "nameMultilingualEntries2": [
