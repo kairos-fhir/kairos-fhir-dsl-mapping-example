@@ -31,7 +31,6 @@ patient {
   final def heyIdc = context.source[patientMasterDataAnonymous().patientContainer().idContainer()]
       .find { final def idc -> idc[ID_CONTAINER_TYPE][CODE] == "HEY" }
 
-
   if (nhsIdc != null && (nhsIdc[PSN] as String).startsWith('FAKE')) {
     return
   }
@@ -39,8 +38,6 @@ patient {
   if (nhsIdc == null && heyIdc == null) {
     return
   }
-
-
 
   id = "Patient/" + context.source[patientMasterDataAnonymous().patientContainer().id()]
 
