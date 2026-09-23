@@ -26,14 +26,4 @@ specimen {
     }
   }
 
-  if (context.source[sample().sampleType()] != null){
-    type {
-      coding {
-        code = context.source[sample().sampleType().code()] as String
-        display = context.source[sample().sampleType().multilinguals()].find { final def ml ->
-          ml[Multilingual.SHORT_NAME] != null & ml[Multilingual.LANGUAGE] == "de"
-        }?.getAt(Multilingual.SHORT_NAME)
-      }
-    }
-  }
 }

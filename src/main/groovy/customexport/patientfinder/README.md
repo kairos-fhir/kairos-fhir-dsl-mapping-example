@@ -13,6 +13,9 @@ The following imported data sets are supported/tested:
 
 # Change log
 
+# 2026-09-23
+* removing export of sample type as PFS wants to display the identifier only
+
 # 2026-06-08
 * removed the dosageInstruction.additionalInstruction
 * added export of dosageInstruction.strengthtext to dosage.text
