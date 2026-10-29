@@ -3223,6 +3223,7 @@ public final class FhirUrls {
       private static final String BASE_URL = System.BASE_URL + DOCUMENT;
       private static final String BASE_URL_VALUESET = System.BASE_URL_VALUE_SET + DOCUMENT;
       public static final String DOCUMENT_ID = BASE_URL + "/documentId";
+      public static final String DOCUMENT_NAME = BASE_URL + "/documentName";
 
       public static final class Kind {
         public static final String BASE_URL = Document.BASE_URL + KIND;
