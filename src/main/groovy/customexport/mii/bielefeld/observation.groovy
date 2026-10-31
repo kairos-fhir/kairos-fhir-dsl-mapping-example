@@ -225,16 +225,13 @@ observation {
                             break
                     }
                 } else {
-                    valueCodeableConcept {
-                        coding {
-                            system = "urn:centraxx:" + loincIdc[IdContainer.PSN] + "Answers"
-                            code = stringValue
-                        }
-                    }
+                    system = "urn:centraxx:" + loincIdc[IdContainer.PSN] + "Answers"
+                    code = stringValue
                 }
             }
         }
     } else {
+     //   println "Default element-type (LaborValueDType) not in script: " + dType
         dataAbsentReason {
             coding {
                 system = "http://terminology.hl7.org/CodeSystem/data-absent-reason"
