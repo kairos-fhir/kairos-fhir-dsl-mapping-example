@@ -33,7 +33,7 @@ documentReference {
     final String docName = hdrpDocName.substring(docType.length() + 1)
 
     identifier {
-      system = FhirUrls.System.Document.DOCUMENT_NAME
+      system = "https://fhir.centraxx.de/system/document/documentName"
       value = docName
     }
 
