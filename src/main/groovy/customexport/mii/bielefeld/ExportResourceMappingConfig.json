@@ -7,11 +7,6 @@
       "exportToFhirResource": "Patient"
     },
     {
-      "selectFromCxxEntity": "DOCUMENT_MAPPING",
-      "transformByTemplate": "documentReference",
-      "exportToFhirResource": "DocumentReference"
-    },
-    {
       "selectFromCxxEntity": "CONSENT",
       "transformByTemplate": "consent",
       "exportToFhirResource": "Consent"
@@ -45,6 +40,16 @@
       "selectFromCxxEntity": "MED_PROCEDURE",
       "transformByTemplate": "procedure",
       "exportToFhirResource": "Procedure"
+    },
+    {
+      "selectFromCxxEntity": "MEDICATION",
+      "transformByTemplate": "medicationBundle",
+      "exportToFhirResource": "Bundle"
+    },
+    {
+      "selectFromCxxEntity": "DOCUMENT_MAPPING",
+      "transformByTemplate": "documentReference",
+      "exportToFhirResource": "DocumentReference"
     },
     {
       "selectFromCxxEntity": "LABOR_FINDING",
