@@ -28,7 +28,7 @@
   <scm>
     <connection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</connection>
     <developerConnection>scm:git:https://github.com/kairos-fhir/kairos-fhir-dsl-mapping-example.git</developerConnection>
-    <tag>bugfix-1.30</tag>
+    <tag>bugfix-2.0</tag>
   </scm>
 
   <dependencies>
