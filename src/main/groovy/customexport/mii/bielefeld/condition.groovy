@@ -1,133 +1,80 @@
 package customexport.mii.bielefeld
 
-import de.kairos.fhir.centraxx.metamodel.enums.DocumentMappingType
-import org.hl7.fhir.r4.model.CodeType
-import org.hl7.fhir.r4.model.Enumerations
-import org.hl7.fhir.r4.model.Extension
 
-import static de.kairos.fhir.centraxx.metamodel.RootEntities.documentMapping
+import static de.kairos.fhir.centraxx.metamodel.RootEntities.diagnosis
 
-documentReference {
+/**
+ * Represented by a HDRP DIAGNOSIS
+ * @author Jonas Küttner, Mike Wähnert
+ * @since v.1.40.0, HDRP.v.2024.4.2
+ *
+ */
 
-    if ((context.source[documentMapping().mappingType()] as DocumentMappingType) != DocumentMappingType.PATIENTMAPPING) {
-        return
+condition {
+
+    if (!context.source[diagnosis().icdEntry()] && !context.source[diagnosis().diagnosisCode()]) {
+        return // only ICD 10 supported
     }
+
+
+    id = "Condition/" + context.source[diagnosis().id()]
 
     meta {
-        profile "https://www.medizininformatik-initiative.de/fhir/ext/modul-dokument/StructureDefinition/mii-pr-dokument-dokument"
+        profile "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+        versionId = "2.0.0"
     }
-
-    id = "DocumentReference/" + context.source[documentMapping().id()]
-
-    extension {
-        url = "https://www.medizininformatik-initiative.de/fhir/ext/modul-dokument/StructureDefinition/mii-ex-dokument-nlp-processing-status"
-        valueCodeableConcept {
-            coding {
-                system = "https://www.medizininformatik-initiative.de/fhir/ext/modul-dokument/CodeSystem/mii-cs-dokument-nlp-processing-status"
-                code = "unprocessed"
-            }
-        }
-    }
-
-    status = Enumerations.DocumentReferenceStatus.CURRENT
-    docStatus = "final"
-
-    final String hdrpDocName = context.source[documentMapping().finding().name()] as String
-    final String categoryCode = context.source[documentMapping().category().code()] as String
-    final String docuemtId = context.source[documentMapping().finding().documentId()] as String
-
-    final String[] split = categoryCode.split("_")
-
-    language = "de"
-
-    if (split.length > 0 && ["KDL", "LNC", "SCT", "XDS"].contains(split[0])) {
-        final String docType = split[0]
-        final String docName = hdrpDocName.substring(docType.length() + 1)
-        final String docSystem = getSystem(docType)
-
-        println("docName: " + docName)
-
-        type {
-            coding {
-                system = docSystem
-                code = categoryCode
-            }
-        }
-    }
-
-    securityLabel {
-        coding {
-            system = "http://terminology.hl7.org/CodeSystem/v3-Confidentiality"
-            code = "N"
-            display = "normal"
-        }
-    }
-
-    identifier {
-        use = "official"
-        system = "https://evkb.de/sid/imedone-document-id"
-        value = docuemtId
-    }
-
 
     subject {
-        reference = "Patient/" + context.source[documentMapping().relatedPatient().id()]
+        reference = "Patient/" + context.source[diagnosis().patientContainer().id()]
     }
 
-    // Attachment ohne URL erzeugen
-    content {
-        attachment {
-            language = "de"
-            title = hdrpDocName
-            def outputDate = context.source[
-                    documentMapping().finding().dateOfOutput()
-            ]
+    encounter {
+        reference = "Encounter/" + context.source[diagnosis().episode().id()]
+    }
 
-            if (outputDate != null) {
-                creation = outputDate
+    if (context.source[diagnosis().icdEntry()]) {
+        code {
+            coding {
+                system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
+                version = context.source[diagnosis().icdEntry().catalogue().catalogueVersion()] as String
+                code = context.source[diagnosis().icdEntry().code()] as String
+            }
+            if(context.source[diagnosis().diagnosisText()]){
+                text = context.source[diagnosis().diagnosisText()] as String
+            }
+        }
+    }else if(context.source[diagnosis().diagnosisCode()]){
+        code {
+            coding {
+                system = "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
+                version = "2025"
+                code = context.source[diagnosis().diagnosisCode()] as String
+            }
+            if(context.source[diagnosis().diagnosisText()]){
+                text = context.source[diagnosis().diagnosisText()] as String
             }
         }
     }
 
-    def creationDate = context.source[
-            documentMapping().finding().creationDate()
-    ]
-
-    if (creationDate != null) {
-        date = creationDate
+    // diagnosis date mandatory
+    if (context.source[diagnosis().diagnosisDate()] && context.source[diagnosis().diagnosisDate().date()]) {
+        onsetDateTime = context.source[diagnosis().diagnosisDate().date()]
     }
 
+    // technical recording date
+    recordedDate = context.source[diagnosis().creationDate()]
 
-    if (context.source[documentMapping().episode()] != null) {
-        contextComponent {
-            encounter {
-                reference = "Encounter/" + context.source[documentMapping().episode().id()]
-            }
+    // attestation date (optional
+    if (context.source[diagnosis().attestationDate()] && context.source[diagnosis().attestationDate().date()]) {
+        extension {
+            url = "http://hl7.org/fhir/StructureDefinition/condition-assertedDate"
+            valueDateTime = context.source[diagnosis().attestationDate().date()]
         }
     }
 
-    description = context.source[documentMapping().finding().description()]
-}.with { resource ->
 
-    resource.getContent().each { content ->
-        content.getAttachment().getUrlElement().addExtension(
-                new Extension(
-                        "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                        new CodeType("masked")
-                )
-        )
-    }
-
-    // Letzter Ausdruck ist die DocumentReference
-    resource
 }
 
-
-static String getSystem(final String docType) {
-    switch (docType) {
-        case "KDL" -> "http://dvmd.de/fhir/CodeSystem/kdl"
-        case "LNC" -> "http://loinc.org"
-        case "SCT" -> "http://snomed.info/sct"
-        case "XDS" -> "http://ihe-d.de/CodeSystems/IHEXDStypeCode"
-    }
+static String normalizeDate(final String dateTimeString) {
+    return dateTimeString != null ? dateTimeString.substring(0, 10) : null // removes the time
 }
