@@ -46,8 +46,6 @@ documentReference {
         final String docName = hdrpDocName.substring(docType.length() + 1)
         final String docSystem = getSystem(docType)
 
-        println("docName: " + docName)
-
         type {
             coding {
                 system = docSystem

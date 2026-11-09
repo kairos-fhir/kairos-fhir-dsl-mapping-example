@@ -70,6 +70,16 @@
       "selectFromCxxEntity": "LABOR_FINDING",
       "transformByTemplate": "diagnosticReport",
       "exportToFhirResource": "DiagnosticReport"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "microBioKulturNachweisObservation",
+      "exportToFhirResource": "Bundle"
+    },
+    {
+      "selectFromCxxEntity": "LABOR_FINDING",
+      "transformByTemplate": "microbioDiagnosticReport.groovy",
+      "exportToFhirResource": "DiagnosticReport"
     }
   ]
 }
