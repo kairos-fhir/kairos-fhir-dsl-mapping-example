@@ -27,7 +27,7 @@ documentReference {
             }
         }
     }
-    id = context.source[documentMapping().id()]
+    id = "DocumentReference/" + context.source[documentMapping().id()]
 
     status = Enumerations.DocumentReferenceStatus.CURRENT
 
