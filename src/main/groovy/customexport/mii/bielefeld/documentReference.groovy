@@ -64,7 +64,6 @@ documentReference {
     // Attachment ohne URL erzeugen
     content {
         attachment {
-            contentType = "application/pdf"
         }
     }
 
