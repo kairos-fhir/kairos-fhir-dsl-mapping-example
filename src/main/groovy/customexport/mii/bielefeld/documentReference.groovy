@@ -37,16 +37,12 @@ documentReference {
 
     final String[] split = categoryCode.split("_")
 
-    println("documentMapping().finding().name(): " + hdrpDocName)
-    println("context.source[documentMapping().category().code()]: " + categoryCode)
-
-
     if (split.length > 0 && ["KDL", "LNC", "SCT", "XDS"].contains(split[0])) {
         final String docType = split[0]
-        final String docName = hdrpDocName.substring(docType.length() + 1)
         final String docSystem = getSystem(docType)
 
         type {
+            text = hdrpDocName
             coding {
                 system = docSystem
                 code = categoryCode
