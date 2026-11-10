@@ -130,7 +130,10 @@ patient {
   if (context.source[patient().lastName()] || context.source[patient().firstName()]) {
     humanName {
       use = HumanName.NameUse.OFFICIAL
-      family = context.source[patient().lastName()]
+      family = context.source[patient().lastName()] as String
+    //  def first = context.source[patient().firstName()]
+   //   println "first=${first}"
+   //   println "type=${first?.getClass()}"
       if (context.source[patient().firstName()] != null) {
         given(context.source[patient().firstName()] as String)
       }
